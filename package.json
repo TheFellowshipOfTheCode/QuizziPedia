@@ -1,0 +1,43 @@
+{
+  "name": "QuizziPedia",
+  "description": "QuizziPedia è una web app sviluppata dal gruppo
+  TheFellowshipOfTheCode durante il corso di Ingegneria del Software.
+  QuizziPedia is a web app developed by TheFellowShipOfTheCode
+  group during the software engineering course.
+  2015-2016 - UNIPD",
+  "version": "0.0.1",
+  "main": "Back-End/Server.js",
+  "scripts": {
+    "start": "node Back-End/Server.js",
+    "preinstall": "npm prune --verbose",
+    "postinstall": "bower prune && bower install --verbose"
+  },
+  "repository": {
+  "type": "git",
+    "url": "https://github.com/TheFellowshipOfTheCode/QuizziPedia"
+  },
+  "author": [
+    "TheFellowshipOfTheCode <thefellowshipofthecode@gmail.com>",
+    "Matteo Granzotto <granzotto.matteo@gmail.com>",
+    "Alberto Ferrara",
+    "Simone Magagna",
+    "Marco Prelaz",
+    "Mattia Varotto",
+    "Franco Berton",
+    "Matteo Gnoato"
+    ],
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "express": "^4.13.3",
+    "method-override": "~2.1.2",
+    "mongodb": "^1.4.40",
+    "mongoose": "^4.3.7",
+    "mongoskin": "^1.3.20",
+    "morgan": "~1.2.2",
+    "passport": "0.3.2"
+  },
+  "devDependencies": {
+    "mocha": "2.x.x"
+  }
+}

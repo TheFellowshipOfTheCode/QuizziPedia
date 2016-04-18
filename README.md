@@ -73,8 +73,11 @@ group during the software engineering course.
 ### Design revision
   + [Documents](https://goo.gl/s2fpVe)
   + [Slides](https://goo.gl/he4oWb)
+
 - - -
+
 ## Install
+
 ### Prerequisites
 
 Install the following frameworks: [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/), [bower](http://bower.io/) and [MongoDB](https://www.mongodb.org/) (you can use a service like [MongoLab](https://mlab.com) instead).

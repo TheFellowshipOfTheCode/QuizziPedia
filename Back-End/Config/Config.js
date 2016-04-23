@@ -17,9 +17,9 @@ module.exports = function(app) {
         }
 
     });
-    require('./passport')(passport); // pass passport for configuration
+    require('./Passport')(passport); // pass passport for configuration
     // view engine setup
-    app.set('views','./public/views');
+    app.set('views','../../Front-End/Views');
     app.set('view engine', 'ejs');
     // set up our express application
     app.use(morgan('dev')); // log every request to the console
@@ -34,5 +34,8 @@ module.exports = function(app) {
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions
     // routes ======================================================================
-    require('../app/routes/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+    require('../App/Routes/UserRouter.js')(app);
+    require('../App/Routes/QuizRouter.js')(app); 
+    require('../App/Routes/QuestionRouter.js')(app); 
+    require('../App/Routes/LangRouter.js')(app); 
 };

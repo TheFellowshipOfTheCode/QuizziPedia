@@ -11,11 +11,7 @@
     "Franco Berton",
     "Matteo Gnoato"
     ],
-  "description": "QuizziPedia è una web app sviluppata dal gruppo
-  TheFellowshipOfTheCode durante il corso di Ingegneria del Software.
-  QuizziPedia is a web app developed by TheFellowShipOfTheCode
-  group during the software engineering course.
-  2015-2016 - UNIPD",
+  "description": "QuizziPedia è una web app sviluppata dal gruppo TheFellowshipOfTheCode durante il corso di Ingegneria del Software.QuizziPedia is a web app developed by TheFellowShipOfTheCode group during the software engineering course. 2015-2016 - UNIPD",
   "moduleType": [
     "amd",
     "es6",

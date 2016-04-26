@@ -1,4 +1,4 @@
-<img src="http://thefellowshipofthecode.github.io/IMG/QP.jpg" data-canonical-src="http://thefellowshipofthecode.github.io/" height="400" /> 
+<img src="http://thefellowshipofthecode.github.io/IMG/QP.jpg" data-canonical-src="http://thefellowshipofthecode.github.io/" height="400" />
 
 # QuizziPedia [![Build](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia.svg?branch=master)](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia)
 
@@ -16,7 +16,8 @@ TheFellowshipOfTheCode durante il corso di Ingegneria del Software.
 
 ### Revisione di progettazione
   + [Documenti](https://goo.gl/s2fpVe)
-  + [Presentazione](https://goo.gl/he4oWb) + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RP/TheFellowshipOfTheCode.pdf)
+  + [Presentazione](https://goo.gl/he4oWb)
+  + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RP/TheFellowshipOfTheCode.pdf)
 
 
 - - -
@@ -75,7 +76,7 @@ group during the software engineering course.
 ### Design revision
   + [Documents](https://goo.gl/s2fpVe)
   + [Slides](https://goo.gl/he4oWb)
-
+  + [Grade](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RP/TheFellowshipOfTheCode.pdf)  
 - - -
 
 ## Install

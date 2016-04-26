@@ -27,7 +27,7 @@ module.exports = function(app) {
     app.use(bodyParser()); // get information from html forms
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(express.static(path.join('.', 'public')));
+    app.use(express.static(path.join('../../', 'Front-End')));
     // required for passport
     app.use(session({ secret: 'anything'})); // session secret
     app.use(flash()); // use connect-flash for flash messages stored in session

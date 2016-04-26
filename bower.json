@@ -10,7 +10,7 @@
     "Mattia Varotto",
     "Franco Berton",
     "Matteo Gnoato"
-    ],
+  ],
   "description": "QuizziPedia è una web app sviluppata dal gruppo TheFellowshipOfTheCode durante il corso di Ingegneria del Software.QuizziPedia is a web app developed by TheFellowShipOfTheCode group during the software engineering course. 2015-2016 - UNIPD",
   "moduleType": [
     "amd",
@@ -23,19 +23,24 @@
   "homepage": "",
   "private": true,
   "dependencies": {
-    "angular": ">1.5.3",
+    "angular": "1.5.5",
     "bootstrap": ">3.3.0",
     "modernizr": ">3.3.0",
     "jquery": ">1.12.0",
     "angular-route": "~1.4.9",
-    "angular-animate": "~1.4.9",
-    "angular-material": ">1.1.0"
+    "angular-animate": ">1.5.0",
+    "angular-aria": ">1.5.0",
+    "angular-messages": ">1.5.0",
+    "angular-material": ">1.1.0-rc4"
   },
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "Front-End/bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.5.5"
+  }
 }

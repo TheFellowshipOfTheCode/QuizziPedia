@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node Back-End/Server.js",
     "preinstall": "npm prune --verbose",
-    "postinstall": "bower prune && bower install --verbose"
+    "postinstall": "bower install --verbose"
   },
   "repository": {
   "type": "git",

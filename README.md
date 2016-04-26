@@ -16,7 +16,7 @@ TheFellowshipOfTheCode durante il corso di Ingegneria del Software.
 
 ### Revisione di progettazione
   + [Documenti](https://goo.gl/s2fpVe)
-  + [Presentazione](https://goo.gl/he4oWb)
+  + [Presentazione](https://goo.gl/he4oWb) + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RP/TheFellowshipOfTheCode.pdf)
 
 
 - - -

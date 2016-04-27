@@ -1,3 +1,26 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Controllers::Users::
+ * AuthenticationController;
+ * Description: classe che si occupa della registrazione e dell'autenticazione
+ * dell'utente nel sistema. È un componente ConcreteHandler del design pattern
+ * Chain of responsibility. Risulta essere il componente che eventualmente
+ * esegue la richiesta del client attraverso Passport;
+ * Relations with other classes:
+ * + IN	UserController;
+ * + OUT Session;
+ * + OUT UserModel.
+ * Creation data: 27-04-2016;
+ * Author: Franco Berton.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: UserController_20160427;
+ * Update data: 27-04-2016;
+ * Description: Creata classe e inseriti tutti i metodi;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
 var passport = require("passport");
 
 exports.signout = function(req, res, next) {

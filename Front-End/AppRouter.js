@@ -7,7 +7,7 @@ var AppRun = function ($routeProvider, $locationProvider) {
         controller:"LoginController"
       })
       .otherwise({
-        redirectTo: '/ita'
+        redirectTo: '/it'
       });
   };
 

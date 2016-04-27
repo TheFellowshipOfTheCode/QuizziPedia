@@ -1,2 +1,7 @@
 node_modules
 Front-End/bower_components
+logs/*
+!.gitkeep
+tmp
+.DS_Store
+.idea

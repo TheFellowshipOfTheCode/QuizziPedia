@@ -1,14 +1,15 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::UserController;
- * Description: classe che raggruppa attraverso require i vari controllers
- * responsabili delle operazioni legate alla gestione degli utenti. Si è scelto
- * di predisporre questo raggruppamento per facilitare l'introduzione di nuove
- * funzionalità legate alla gestione degli utenti;
+ * Name: QuizziPedia::Back-End::App::Routers::UserRouter;
+ * Description: classe che gestisce le richieste relative alla registrazione,
+ * alla gestione della sessione e alla cronologia dei questionari svolti da un
+ * utente. Componente ConcreteHandler del design pattern Chain of
+ * responsibility. Utilizza il modulo Passport;
  * Relations with other classes:
- * + IN	UserRouter;
- * + OUT SessionController;
- * + OUT AuthenticationController;
- * + OUT UserManagementController.
+ * + IN	Server;
+ * + OUT ErrorHandler;
+ * + OUT NotFoundHandler;
+ * + OUT UserController;
+ * + OUT SummaryController.
  * Creation data: 27-04-2016;
  * Author: Franco Berton.
  ********************************************************************************
@@ -16,7 +17,7 @@
  *-------------------------------------------------------------------------------
  * ID: UserController_20160427;
  * Update data: 27-04-2016;
- * Description: Creata classe e inserite le require;
+ * Description: Creata classe e inseriti tutti metodi;
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

@@ -14,7 +14,7 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: UserController_20160427;
+ * ID: AuthenticationController_20160427;
  * Update data: 27-04-2016;
  * Description: Creata classe e inseriti tutti i metodi;
  * Autore: Franco Berton.

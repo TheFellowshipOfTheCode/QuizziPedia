@@ -13,7 +13,7 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: UserController_20160427;
+ * ID: SessionController_20160427;
  * Update data: 27-04-2016;
  * Description: Creata classe e inserita la funzione;
  * Autore: Franco Berton.

@@ -4,7 +4,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-//var Users            = require('../app/models/Users');
+var user            = require('../App/Model/UserModel');
 
 
 
@@ -24,7 +24,7 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        Users.findById(id, function(err, user) {
+        user.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -56,14 +56,14 @@ module.exports = function(passport) {
                     } else {
                         // if there is no user with that email
                         // create the user
-                        var newUser            = new Users();
+                        var newUser            = new user();
 
                         // set the user's local credentials
-                        newUser.local.password 	  = newUser.generateHash(password)
-                        newUser.local.username    = username;
-                        newUser.local.email    	  = req.param('email');
-                        newUser.local.surname 	  = req.param('surname');
-                        newUser.local.name    	  = req.param('name');
+                        newUser.password 	  = newUser.generateHash(password)
+                        newUser.username      = username;
+                        newUser.email    	  = req.param('email');
+                        newUser.surname 	  = req.param('surname');
+                        newUser.name    	  = req.param('name');
                         // save the user
                         newUser.save(function(err) {
                             if (err)
@@ -89,7 +89,7 @@ module.exports = function(passport) {
         function(req, username, password, done) { // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            Users.findOne({ 'local.username' :  username }, function(err, user) {
+            user.findOne({ 'local.username' :  username }, function(err, user) {
                 // if there are any errors, return the error before anything else
                 if (err)
                     return done(err);

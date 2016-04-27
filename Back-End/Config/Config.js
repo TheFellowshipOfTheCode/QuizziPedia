@@ -62,7 +62,7 @@ module.exports = function(app) {
     // routes ======================================================================
     // Routing for the application
      app.get('/*',function(req,res){
-        res.sendFile(path.resolve('Front-End/index.html'));
+        res.sendFile(path.resolve('../Front-End/Index.html'));
      });
     require('../App/Routes/UserRouter.js')(app);
     require('../App/Routes/QuizRouter.js')(app);

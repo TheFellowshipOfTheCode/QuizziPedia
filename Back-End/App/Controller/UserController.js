@@ -21,6 +21,8 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-require('../Controller/Users/AuthenticationController')
-require('../Controller/Users/SessionController')
-require('../Controller/Users/UserManagementController')
+module.exports = {
+    auth : require('./Users/AuthenticationController'),
+    session : require('./Users/SessionController'),
+    userManagement : require('./Users/UserManagementController')
+}

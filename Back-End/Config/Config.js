@@ -27,7 +27,7 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(express.static(path.join('../../', 'Front-End')));
+    app.use(express.static(__dirname + '/../../Front-End'));
     // required for passport
     app.use(session({
         secret: "cookie_secret",

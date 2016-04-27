@@ -17,26 +17,49 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-app.factory('AuthService', ['$logged', '$http', '$q', '$cookie', function($logged, $http, $q, $cookie) {
+app.factory('AuthService', AuthService);
 
-    function isLogged(){
+AuthService.$inject = ['$http', '$cookies', '$q'];
+
+    function AuthService() {
+    var methods = {
+        isLogged: isLogged,
+        signIn: singIn,
+        logout: logout,
+        signup: signup,
+        getNewPassword: getNewPassword
+    };
+
+    return methods;
+
+    function isLogged() {
+        return $cookies.get('logged');
+    }
+
+    function signIn(email, password) {
+        var user = [];
+        item = {};
+        item["username"] = email;
+        item["password"] = password;
+        user.push(item);
+        $http.get('')
+            .success(function(data) {
+
+            })
+            .error(function() {
+
+        });
+
+    function logout(username) {
 
     }
 
-    function signIn(email, password){
+    function signup(username, password, email, nome, cognome) {
 
     }
 
-    function logout(username){
+    function getNewPassword(email) {
 
     }
-
-    function signup(username, password, email, nome, cognome){
-
-    }
-
-    function getNewPassword(email){
-
-    }
-
-}]);
+  }
+}

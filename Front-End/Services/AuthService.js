@@ -42,24 +42,58 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
         item["username"] = email;
         item["password"] = password;
         user.push(item);
-        $http.get('')
-            .success(function(data) {
-
+        $http.post('/api/signin', user)
+            .then(function (data) {
+                return data;
             })
-            .error(function() {
-
-        });
+            .catch(function () {
+                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            });
+    }
 
     function logout(username) {
-
+        var user = [];
+        item = {};
+        item["username"] = username;
+        user.push(item);
+        $http.post('/api/signout', user)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(data){
+                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            })
     }
 
     function signup(username, password, email, nome, cognome) {
-
+        var user = [];
+        item = {};
+        item["username"] = username;
+        item["password"] = password;
+        item["email"] = email;
+        item["nome"] = nome;
+        item["cognome"] = cognome;
+        user.push(item);
+        $http.post('/api/signup', user)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(data){
+                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            })
     }
 
     function getNewPassword(email) {
-
+        var user = [];
+        item = {};
+        item["username"] = email;
+        user.push(item);
+        $http.post('/api/recovery', user)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(err){
+                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            })
     }
   }
-}

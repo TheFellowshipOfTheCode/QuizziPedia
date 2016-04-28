@@ -15,15 +15,25 @@
  * Autore: Nome Cognome
  *-------------------------------------------------------------------------------
  *******************************************************************************/
-class QuizziPediaError {
-    private code: Number;
-    private title: String;
-    private message: String;
+"use strict";
 
-    QuizziPediaError(err: Number) {
-        this.code = err;
-
+module.exports = class QuizziPediaError  {
+    constructor(code, title, message) {
+        this.code = code;
+        this.title = title;
+        this.message = message;
     }
 
+    getCode() {
+        return this.code;
+    }
 
+    getTitle() {
+        return this.title;
+    }
+
+    getMessage() {
+        return this.message;
+    }
 }
+

@@ -35,12 +35,5 @@ errorSchema.methods.getTitle = function() {
     return this.errorTitle;
 };
 
-errorSchema.on('init', function() {
-
-})
-
 let Errors = mongoose.model('Errors', errorSchema);
-errorSchema.add
-
-
 module.exports = Errors;

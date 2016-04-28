@@ -51,7 +51,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=yes">
     <!-- CSS -->
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
-    <link href="css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link href="CSS/main.css" rel="stylesheet" />
     <!-- JS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
@@ -65,10 +66,18 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   </head>
   <!-- Principal container of the application -->
-  <body data-ng-app="QuizziPedia">
-    <!-- AngularJS's views -->
-    <div data-ng-view>
-      Caricamento...
+  <body data-ng-app="QuizziPedia" class="docs-body layout-row" ng-controller="MenuBarController">
+    <menu-bar-directive></menu-bar-directive>
+    <div layout="column" tabindex="-1" role="main" flex="" class="layout-column flex">
+      <bread-bar-directive></bread-bar-directive>
+      <md-content md-scroll-y="" layout="column" flex="" class="_md layout-column flex">
+        <div  layout-fill="" layout-align="top center">
+          <!-- AngularJS's views -->
+          <div data-ng-view>
+            Caricamento...
+          </div>
+        </div>
+      </md-content>
     </div>
     <!-- JS fon Angular -->
     <script src="AppRun.js"></script>
@@ -93,6 +102,7 @@
     <script src="Directives/QuestionnaireManagementBarDirective.js"></script>
     <script src="Directives/FooterDirective.js"></script>
     <script src="Directives/SearchDirective.js"></script>
+    <script src="Directives/BreadBarDirective.js"></script>
     <!-- Models -->
     <script src="Models/LangModel.js"></script>
     <script src="Models/MenuBarModel.js"></script>

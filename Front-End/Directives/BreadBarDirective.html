@@ -1,6 +1,6 @@
 <!--
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Directives::MenuBarDirective;
+* Name: QuizziPedia::Front-End::Directives::BreadcrumpBarDirective;
 * Description: rappresenta il menù, presente in ogni pagina dell’applicazione,
 * generato in base agli oggetti passati nello $scope isolato. Fornisce un
 * pulsante per ogni oggetto ricevuto come parametro, ogni pulsante viene
@@ -22,7 +22,7 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: MenuBarDirective_20160427
+* ID: BreadcrumpBarDirective_20160427
 * Update data: 27-04-2016
 * Description: Creata la classe e scritto il codice html;
 * Author: Matteo Granzotto.
@@ -30,17 +30,15 @@
 *******************************************************************************/
 -->
 
-
-<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print ng-isolate-scope _md _md-closed _md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
-  <header class="nav-header">
-    <a ng-href="/" class="logo" href="/">
-      <img src="Images/Icons/logo.png" alt="" data-pin-nopin="true">
-      <h1 class="docs-logotype md-heading">QuizziPedia</h1>
-    </a>
-  </header>
-  <md-content flex="" role="navigation" class="menu _md flex">
-    <profile-management-bar-directive></profile-management-bar-directive>
-    <questionnaire-management-bar-directive></questionnaire-management-bar-directive>
-    <questions-management-bar-directive></questions-management-bar-directive>
-  </md-content>
-</md-sidenav>
+<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar _md">
+    <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false" ng-click="toggleLeft()" hide-gt-md="">
+      <md-icon md-svg-icon="Images/Icons/menu.svg"></md-icon>
+    </md-button>
+    <search-directive></search-directive>
+    <span flex=""></span>
+    <login-bar-directive></login-bar-directive>
+    <sign-up-bar-directive></sign-up-bar-directive>
+    <logout-bar-directive></logout-bar-directive>
+  </div>
+</md-toolbar>

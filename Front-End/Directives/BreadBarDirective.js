@@ -1,4 +1,3 @@
-<!--
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Directives::MenuBarDirective;
 * Description: rappresenta il menù, presente in ogni pagina dell’applicazione,
@@ -24,23 +23,14 @@
 *-------------------------------------------------------------------------------
 * ID: MenuBarDirective_20160427
 * Update data: 27-04-2016
-* Description: Creata la classe e scritto il codice html;
+* Description: Creata la classe e scritto il file js;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
--->
 
-
-<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print ng-isolate-scope _md _md-closed _md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
-  <header class="nav-header">
-    <a ng-href="/" class="logo" href="/">
-      <img src="Images/Icons/logo.png" alt="" data-pin-nopin="true">
-      <h1 class="docs-logotype md-heading">QuizziPedia</h1>
-    </a>
-  </header>
-  <md-content flex="" role="navigation" class="menu _md flex">
-    <profile-management-bar-directive></profile-management-bar-directive>
-    <questionnaire-management-bar-directive></questionnaire-management-bar-directive>
-    <questions-management-bar-directive></questions-management-bar-directive>
-  </md-content>
-</md-sidenav>
+app.directive('breadBarDirective', function() {
+ return {
+   restrict: 'E',
+   templateUrl: 'Directives/BreadBarDirective.html'
+ };
+});

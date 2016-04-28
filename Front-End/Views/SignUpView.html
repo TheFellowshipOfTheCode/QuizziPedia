@@ -39,33 +39,23 @@
             </div>
             <form class="form-register" method="post" name="register" novalidate>
                 <div class="input-field col s6">
-                    <label for="first-name">Nome</label>
                     <input id="first-name" type="text" class="validate" required>
+                    <label for="first-name">Nome</label>
                 </div>
-
                 <div class="input-field col s6">
-                    <label for="last-name">Cognome</label>
                     <input id="last-name" type="text" class="validate" required>
+                    <label for="last-name">Cognome</label>
                 </div>
-
-                <div class="input-field col s6" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" class="form-control" ng-model="vm.user.username" required />
-                    <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
-                </div>
-
                 <div class="input-field col s6">
-                    <label for="email">Email</label>
                     <input id="email" type="email" name="email" ng-model="email" class="validate" required>
+                    <label for="email">Email</label>
                 </div>
-                <p class="alert alert-danger" ng-show="form-register.email.$error.email">L'email non è valida</p>
-
+                <p class="alert alert-danger" ng-show="form-register.email.$error.email">L'email non è valida.</p>
                 <div class="input-field col s6">
-                    <label for="password">Password</label>
                     <input id="password" type="password" name="password" ng-model="password" ng-minlength='8' class="validate" required>
+                    <label for="password">Password</label>
                 </div>
-                <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">La password deve avere almeno 8 caratteri</p>
-
+                <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">La password deve avere almeno 8 caratteri.</p>
                 <div class="space-top text-center">
                     <button ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done">
                         <i class="material-icons left">Registra</i>
@@ -75,10 +65,15 @@
         </div>
     </div>
 </div>
+</body>
 
 <script type="text/javascript">
+
     var myApp = angular.module("myApp", []);
+
     myApp.controller("SignUpController", function ($scope) {});
+
 </script>
 
 </body>
+</html>

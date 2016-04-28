@@ -35,5 +35,14 @@ module.exports = class QuizziPediaError  {
     getMessage() {
         return this.message;
     }
+
+    // da sistemare, in javascript le variabili tra virgolette non vengono parsate
+    toJSON() {
+        return this;
+    }
+
+    toString() {
+        return this.code + ' ' + this.title + ': ' + this.message + '.';
+    }
 }
 

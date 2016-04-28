@@ -21,10 +21,10 @@ app.factory('AuthService', AuthService);
 
 AuthService.$inject = ['$http', '$cookies', '$q'];
 
-    function AuthService() {
+    function AuthService($http, $cookies, $q) {
     var methods = {
         isLogged: isLogged,
-        signIn: singIn,
+        signIn: signIn,
         logout: logout,
         signup: signup,
         getNewPassword: getNewPassword

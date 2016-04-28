@@ -42,24 +42,60 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
         item["username"] = email;
         item["password"] = password;
         user.push(item);
-        $http.get('')
-            .success(function(data) {
-
+        $http.post('/api/signin', user)
+            .then(function (data) {
+                return data;
             })
-            .error(function() {
-
-        });
+            .catch(function () {
+                return new ErrorInfoModel("1", "La login non è andata a buon fine", "Login non effettuata");
+            });
+    }
 
     function logout(username) {
-
+        var user = [];
+        item = {};
+        item["username"] = username;
+        user.push(item);
+        $http.post('/api/signout', user)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(){
+                return new ErrorInfoModel("2", "La logout non è andata a buon fine", "Logout non effettuata");
+            })
     }
 
     function signup(username, password, email, nome, cognome) {
-
+        var user = [];
+        item = {};
+        item["username"] = username;
+        item["password"] = password;
+        item["email"] = email;
+        item["nome"] = nome;
+        item["cognome"] = cognome;
+        user.push(item);
+        $http.post('/api/signup', user)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(){
+                return new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
+                    "effettuata");
+            })
     }
 
     function getNewPassword(email) {
-
+        var user = [];
+        item = {};
+        item["username"] = email;
+        user.push(item);
+        $http.post('/api/recovery', user)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(){
+                return new ErrorInfoModel("4", "Il recupero password non è andato a buon fine", "Recupero password " +
+                    "non effettuato");
+            })
     }
   }
-}

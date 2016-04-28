@@ -47,7 +47,7 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
                 return data;
             })
             .catch(function () {
-                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+                return new ErrorInfoModel("1", "La login non è andata a buon fine", "Login non effettuata");
             });
     }
 
@@ -60,8 +60,8 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
             .then(function(data) {
                 return data;
             })
-            .catch(function(data){
-                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            .catch(function(){
+                return new ErrorInfoModel("2", "La logout non è andata a buon fine", "Logout non effettuata");
             })
     }
 
@@ -78,8 +78,9 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
             .then(function(data) {
                 return data;
             })
-            .catch(function(data){
-                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            .catch(function(){
+                return new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
+                    "effettuata");
             })
     }
 
@@ -92,8 +93,9 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
             .then(function(data) {
                 return data;
             })
-            .catch(function(err){
-                //qui devo creare l'ErrorInfoModel con i dati dell'errore
+            .catch(function(){
+                return new ErrorInfoModel("4", "Il recupero password non è andato a buon fine", "Recupero password " +
+                    "non effettuato");
             })
     }
   }

@@ -1,15 +1,23 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Models::ErrorInfoModel;
- * Description: ;
+ * Description: rappresenta le informazioni di un errore che si è verificato eseguendo una determinata operazione;
+ *
  * Relations with other classes:
- * +
+ * + AuthService
+ * + SearchService
+ * + LangService
+ * + QuizService
+ * + StatisticsService
+ * + QuestionsService
+ * + UserDetailsService
+ *
  * Creation data: 28-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: LangModel_20160427
+ * ID: ErrorInfoModel_20160427
  * Update data: 28-04-2016
  * Description: Creato il model;
  * Author: Alberto Ferrara.
@@ -18,10 +26,10 @@
 
 app.factory('ErrorInfoModel', ErrorInfoModel);
 
-    function ErrorInfoModel() {
-        var errorCode;
-        var errorMessage;
-        var errorTitle;
+    function ErrorInfoModel(errorCode, errorMessage, errorTitle) {
+        var errorCode_ = errorCode;
+        var errorMessage_ = errorMessage;
+        var errorTitle_ = errorTitle;
 
         var methods = {
             ErrorInfoModel: ErrorInfoModel,
@@ -29,25 +37,17 @@ app.factory('ErrorInfoModel', ErrorInfoModel);
             getMessage: getMessage,
             getTitle: getTitle
         };
-        
-        function ErrorInfoModel(errorCode, errorMessage, errorTitle) {
-            if(errorCode && errorMessage && errorTitle){
-                this.errorCode = errorCode;
-                this.errorMessage = errorMessage;
-                this.errorTitle = errorTitle;
-            }
-        }
 
         function getCode(){
-            return this.errorCode;
+            return this.errorCode_;
         }
 
         function getMessage(){
-            return this.errorMessage;
+            return this.errorMessage_;
         }
 
         function getTitle(){
-            return this.errorTitle;
+            return this.errorTitle_;
         }
 
         return ErrorInfoModel;

@@ -28,9 +28,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('breadBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/BreadBarDirective.html'
- };
-});
+app.directive('breadBarDirective', breadBarDirective);
+
+function breadBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/BreadBarDirective.html'
+    };
+    return directive;
+}

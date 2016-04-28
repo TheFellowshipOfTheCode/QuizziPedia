@@ -18,9 +18,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('questionsManagementBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/QuestionsManagementBarDirective.html'
- };
-});
+app.directive('questionsManagementBarDirective', questionsManagementBarDirective);
+
+function questionsManagementBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/QuestionsManagementBarDirective.html'
+    };
+    return directive;
+}

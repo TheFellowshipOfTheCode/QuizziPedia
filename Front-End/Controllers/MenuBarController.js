@@ -18,63 +18,75 @@
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
-app.controller('MenuBarController', ['$scope','$timeout','$mdSidenav','$log', function($scope, $timeout, $mdSidenav, $log) {
-    $scope.toggleLeft = buildDelayedToggler('left');
-    $scope.toggleRight = buildToggler('right');
-    $scope.isOpenRight = function(){
-      return $mdSidenav('right').isOpen();
+
+app.controller('MenuBarController',MenuBarController);
+
+MenuBarController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'AuthService']; //, 'UserDetailsModel'];
+function MenuBarController ($scope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, AuthService) {  //, UserDetailsModel) {
+  /*Temporary variables - delete them in future*/
+  var privilege = "";
+  $scope.listOfKeys= {
+    "logIn": "Login",
+    "signUp": "Signup",
+    "logOut": "Logout",
+    "profileManagement": "Gestione profilo",
+    "questionsManagement": "Gestione delle domande",
+    "questionnaireManagement": "Gestione dei questionari"
+  };
+  /* Scope variables and function*/
+  $scope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
+  $scope.logIn = function () {
+    $location.path('/'+$routeParams.lang+'/login');
+  };
+  $scope.signUp = function () {
+    $location.path('/'+$routeParams.lang+'/signup');
+  };
+  $scope.goToUserPage = function () {
+    $location.path('/'+$routeParams.lang+'/'); // da completare
+  };
+  $scope.goToUserManagementPage = function () {
+    $location.path('/'+$routeParams.lang+'/'); // da completare
+  };
+  $scope.goToQuestionsManagementPage = function () {
+    $location.path('/'+$routeParams.lang+'/'); // da completare
+  };
+  $scope.goToQuizManagementPage = function () {
+    $location.path('/'+$routeParams.lang+'/'); // da completare
+  };
+  /*$scope.logOut = function () {
+    AuthService.logout(UserDetailsModel.getUsername());
+  };*/
+  /*Variable for animations*/
+  $scope.toggleLeft = buildDelayedToggler('left');
+  $scope.toggleRight = buildToggler('right');
+  $scope.isOpenRight = function(){
+    return $mdSidenav('right').isOpen();
+  };
+
+  /*Auxiliary functions for menubar*/
+  function debounce(func, wait, context) {
+    var timer;
+    return function debounced() {
+      var context = $scope,
+          args = Array.prototype.slice.call(arguments);
+      $timeout.cancel(timer);
+      timer = $timeout(function() {
+        timer = undefined;
+        func.apply(context, args);
+      }, wait || 10);
     };
-
-    $scope.listOfKeys= {
-      "logIn": "Login",
-      "signUp": "Signup",
-      "logOut": "Logout",
-      "profileManagement": "Gestione profilo",
-      "questionsManagement": "Gestione delle domande",
-      "questionnaireManagement": "Gestione dei questionari"
-    };
-
-    /**
-     * Supplies a function that will continue to operate until the
-     * time is up.
-     */
-    function debounce(func, wait, context) {
-      var timer;
-
-      return function debounced() {
-        var context = $scope,
-            args = Array.prototype.slice.call(arguments);
-        $timeout.cancel(timer);
-        timer = $timeout(function() {
-          timer = undefined;
-          func.apply(context, args);
-        }, wait || 10);
-      };
+  }
+  function buildDelayedToggler(navID) {
+    return debounce(function() {
+      // Component lookup should always be available since we are not using `ng-if`
+      $mdSidenav(navID)
+        .toggle();
+    }, 200);
+  }
+  function buildToggler(navID) {
+    return function() {
+      $mdSidenav(navID)
+        .toggle();
     }
-
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
-    function buildDelayedToggler(navID) {
-      return debounce(function() {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(navID)
-          .toggle()
-          .then(function () {
-            $log.debug("toggle " + navID + " is done");
-          });
-      }, 200);
-    }
-
-    function buildToggler(navID) {
-      return function() {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(navID)
-          .toggle()
-          .then(function () {
-            $log.debug("toggle " + navID + " is done");
-          });
-      }
-    }
-  }]);
+  }
+}

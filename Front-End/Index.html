@@ -64,6 +64,8 @@
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+
   </head>
   <!-- Principal container of the application -->
   <body data-ng-app="QuizziPedia" class="docs-body layout-row" ng-controller="MenuBarController">
@@ -82,15 +84,19 @@
     <!-- JS fon Angular -->
     <script src="AppRun.js"></script>
     <script src="AppRouter.js"></script>
+    <!-- Services -->
+    <script src="Services/AuthService.js"></script>
+    <script src="Services/LangService.js"></script>
+    <!-- Models -->
+    <script src="Models/LangModel.js"></script>
+    <script src="Models/MenuBarModel.js"></script>
+    <script src="Models/UserDetailsModeL.js"></script>
     <!-- Controllers -->
     <!--<script src="Controllers/SearchController.js"></script>-->
     <script src="Controllers/MenuBarController.js"></script>
     <script src="Controllers/LoginController.js"></script>
     <script src="Controllers/SignUpController.js"></script>
     <script src="Controllers/PasswordForgotController.js"></script>
-    <!-- Services -->
-    <script src="Services/AuthService.js"></script>
-    <script src="Services/LangService.js"></script>
     <!-- Directives -->
     <script src="Directives/MenuBarDirective.js"></script>
     <script src="Directives/LoginBarDirective.js"></script>
@@ -103,9 +109,5 @@
     <script src="Directives/FooterDirective.js"></script>
     <script src="Directives/SearchDirective.js"></script>
     <script src="Directives/BreadBarDirective.js"></script>
-    <!-- Models -->
-    <script src="Models/LangModel.js"></script>
-    <script src="Models/MenuBarModel.js"></script>
-    <script src="Models/UserDetailsModeL.js"></script>
   </body>
 </html>

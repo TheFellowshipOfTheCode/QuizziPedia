@@ -18,9 +18,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('userBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/UserBarDirective.html'
- };
-});
+app.directive('userBarDirective', userBarDirective);
+
+function userBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/UserBarDirective.html'
+    };
+    return directive;
+}

@@ -35,10 +35,10 @@
     <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false" ng-click="toggleLeft()" hide-gt-md="">
       <md-icon md-svg-icon="Images/Icons/menu.svg"></md-icon>
     </md-button>
-    <search-directive></search-directive>
+    <search-directive ng-if="directivesChoose.searchDirective != undefined"></search-directive>
     <span flex=""></span>
-    <login-bar-directive></login-bar-directive>
-    <sign-up-bar-directive></sign-up-bar-directive>
-    <logout-bar-directive></logout-bar-directive>
+    <login-bar-directive ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
+    <sign-up-bar-directive ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
+    <logout-bar-directive ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
   </div>
 </md-toolbar>

@@ -28,9 +28,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('menuBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/MenuBarDirective.html'
- };
-});
+app.directive('menuBarDirective', menuBarDirective);
+
+function menuBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/MenuBarDirective.html'
+    };
+    return directive;
+}

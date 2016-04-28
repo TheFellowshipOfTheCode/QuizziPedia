@@ -17,9 +17,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('logoutBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/LogoutBarDirective.html'
- };
-});
+app.directive('logoutBarDirective', logoutBarDirective);
+
+function logoutBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/LogoutBarDirective.html'
+    };
+    return directive;
+}

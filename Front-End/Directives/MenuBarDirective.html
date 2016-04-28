@@ -39,8 +39,8 @@
     </a>
   </header>
   <md-content flex="" role="navigation" class="menu _md flex">
-    <profile-management-bar-directive></profile-management-bar-directive>
-    <questionnaire-management-bar-directive></questionnaire-management-bar-directive>
-    <questions-management-bar-directive></questions-management-bar-directive>
+    <profile-management-bar-directive ng-if="directivesChoose.profileManagementBarDirective != undefined"></profile-management-bar-directive>
+    <questionnaire-management-bar-directive  ng-if="directivesChoose.questionnaireManagementBarDirective != undefined"></questionnaire-management-bar-directive>
+    <questions-management-bar-directive  ng-if="directivesChoose.questionsManagementBarDirective != undefined"></questions-management-bar-directive>
   </md-content>
 </md-sidenav>

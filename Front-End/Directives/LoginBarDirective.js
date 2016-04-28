@@ -18,9 +18,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('loginBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/LoginBarDirective.html'
- };
-});
+app.directive('loginBarDirective', loginBarDirective);
+
+function loginBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/LoginBarDirective.html'
+    };
+    return directive;
+}

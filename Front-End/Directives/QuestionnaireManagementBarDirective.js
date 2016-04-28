@@ -17,9 +17,13 @@
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
-app.directive('questionnaireManagementBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/QuestionnaireManagementBarDirective.html'
- };
-});
+
+app.directive('questionnaireManagementBarDirective', questionnaireManagementBarDirective);
+
+function questionnaireManagementBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/QuestionnaireManagementBarDirective.html'
+    };
+    return directive;
+}

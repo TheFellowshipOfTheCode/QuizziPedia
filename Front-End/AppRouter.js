@@ -19,11 +19,16 @@
 
 var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider) {
     $locationProvider.html5Mode(true);
-
     $routeProvider
       .when('/:lang/login', {
         templateUrl: '/Views/LoginView.html',
         controller:"LoginController"
+      })
+      .when('/:lang/signup', {
+        templateUrl: '/Views/SignUpView.html'
+      })
+      .when('/:lang/password-forgotten', {
+        templateUrl: '/Views/PasswordForgottenView.html'
       })
       .otherwise({
         redirectTo: '/it'

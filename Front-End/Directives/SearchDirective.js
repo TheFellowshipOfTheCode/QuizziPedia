@@ -21,10 +21,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('searchDirective', function() {
- return {
-   restrict: 'E',
-   scope: {},
-   templateUrl: 'Directives/SearchDirective.html'
- };
-});
+app.directive('searchDirective', searchDirective);
+
+function searchDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/SearchDirective.html'
+    };
+    return directive;
+}

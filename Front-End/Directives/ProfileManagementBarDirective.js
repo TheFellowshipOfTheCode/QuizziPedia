@@ -17,9 +17,13 @@
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
-app.directive('profileManagementBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/ProfileManagementBarDirective.html'
- };
-});
+
+app.directive('profileManagementBarDirective', profileManagementBarDirective);
+
+function profileManagementBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/ProfileManagementBarDirective.html'
+    };
+    return directive;
+}

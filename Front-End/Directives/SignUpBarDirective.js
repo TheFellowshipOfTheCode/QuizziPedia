@@ -18,9 +18,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.directive('signUpBarDirective', function() {
- return {
-   restrict: 'E',
-   templateUrl: 'Directives/SignUpBarDirective.html'
- };
-});
+app.directive('signUpBarDirective', signUpBarDirective);
+
+function signUpBarDirective() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'Directives/SignUpBarDirective.html'
+    };
+    return directive;
+}

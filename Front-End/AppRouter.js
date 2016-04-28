@@ -30,6 +30,9 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
       .when('/:lang/password-forgotten', {
         templateUrl: '/Views/PasswordForgottenView.html'
       })
+      .when('/:lang', {
+        templateUrl: '/Views/HomeView.html'
+      })
       .otherwise({
         redirectTo: '/it'
       });

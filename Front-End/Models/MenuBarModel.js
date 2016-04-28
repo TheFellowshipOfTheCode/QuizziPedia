@@ -17,7 +17,6 @@
 * Description: Scritto la classe;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-*-------------------------------------------------------------------------------
 * ID: MenuBarModel_20160427;
 * Update data: 27-04-2016;
 * Description: Creato il file;
@@ -69,7 +68,7 @@ function MenuBarModel() {
       {
         combination = "authPro";
       }
-      var directives = [];
+      var directives = {};
       combinations[combination].forEach(function (directive){
         directives[arrayOfDirectives[directive]] = true;
       });

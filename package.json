@@ -8,9 +8,9 @@
     "preinstall": "npm prune --verbose",
     "postinstall": "bower prune && bower install --verbose",
 
-    "pretest": "npm install",
+    "pretest": "",
     "test": "karma start karma.conf.js",
-    "test-single-run": "karma start karma.conf.js  --single-run",
+    "test-single-run": "",
 
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",

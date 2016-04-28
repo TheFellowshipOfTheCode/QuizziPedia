@@ -19,6 +19,10 @@
 app.factory('ErrorInfoModel', ErrorInfoModel);
 
     function ErrorInfoModel() {
+        var errorCode;
+        var errorMessage;
+        var errorTitle;
+
         var methods = {
             ErrorInfoModel: ErrorInfoModel,
             getCode: getCode,

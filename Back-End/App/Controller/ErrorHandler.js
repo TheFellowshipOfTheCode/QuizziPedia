@@ -15,3 +15,20 @@
  * Autore: Nome Cognome
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+"use strict";
+var QuizziPediaError = require('../Controller/Errors/QuizziPediaError.js');
+var ErrorModel = require('../App/Model/ErrorModel.js');
+var errormodel = new ErrorModel();
+
+/**
+exports.handleError = function(req, res, next) {
+    errormodel.findOne({errorCode: req.errormodel.errorCode}, function(errorFound) {
+        var error = {
+            errorCode: errorFound.errorCode,
+            errorTitle: errorFound.errorTitle,
+            errorMessage: errorFound.errorMessage
+        }
+        res.sendFile(error);
+    })
+}
+ **/

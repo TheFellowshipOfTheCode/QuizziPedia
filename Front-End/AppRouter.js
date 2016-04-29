@@ -25,7 +25,8 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
         controller:"LoginController"
       })
       .when('/:lang/signup', {
-        templateUrl: '/Views/SignUpView.html'
+        templateUrl: '/Views/SignUpView.html',
+          controller:"SignUpController"
       })
       .when('/:lang/password-forgotten', {
         templateUrl: '/Views/PasswordForgottenView.html'

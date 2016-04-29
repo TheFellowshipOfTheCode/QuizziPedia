@@ -8,12 +8,14 @@ function AppController ($scope,$rootScope, $mdDialog, $location, $routeParams, U
     $rootScope.systemLang=$routeParams.lang;
     lang = getLang($routeParams.lang);
     lang.then(function(data){
+      console.log(data);
       $rootScope.listOfKeys= data.getListOfKeys();
     });
   }
   function getLang (lang) {
     var setOfKeywords = LangService.getKeywords(lang);
     return setOfKeywords.then(function(data){
+      console.log(data);
       return new LangModel(lang, data);
     });
   }

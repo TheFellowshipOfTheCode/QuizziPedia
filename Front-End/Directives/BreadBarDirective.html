@@ -37,8 +37,8 @@
     </md-button>
     <search-directive ng-if="directivesChoose.searchDirective != undefined"></search-directive>
     <span flex=""></span>
-    <login-bar-directive ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
-    <sign-up-bar-directive ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
-    <logout-bar-directive ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
+    <login-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
+    <sign-up-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
+    <logout-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
   </div>
 </md-toolbar>

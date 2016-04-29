@@ -37,7 +37,9 @@ function LangService($http, $q, ErrorInfoModel) {
     var deferred = $q.defer();
     $http.get('/api/' + lang)
      .success(function(data) {
-          deferred.resolve(data);
+          console.log(data[0]);
+          console.log(data[0].variables);
+          deferred.resolve(data[0].variables);
      }).error(function(msg, code) {
         deferred.reject(msg);
      });

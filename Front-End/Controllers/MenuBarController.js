@@ -24,18 +24,8 @@ app.controller('MenuBarController',MenuBarController);
 MenuBarController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService']; //, 'UserDetailsModel'];
 function MenuBarController ($scope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) {  //, UserDetailsModel) {
   /*Temporary variables - delete them in future*/
-
   var privilege = "";
-  /*$scope.listOfKeys= {
-    "logIn": "Login",
-    "signUp": "Signup",
-    "logOut": "Logout",
-    "profileManagement": "Gestione profilo",
-    "questionsManagement": "Gestione delle domande",
-    "questionnaireManagement": "Gestione dei questionari"
-  };*/
   /* Scope variables and function*/
-  $scope.systemLang= $routeParams.lang;
   $scope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
   $scope.logIn = function () {
     $location.path('/'+$routeParams.lang+'/login');

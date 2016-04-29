@@ -49,7 +49,7 @@ exports.signup = function(req, res, next) {
             return next(err);
         }
         if (!user) {
-            return res.send({ success : false, message : 'Registrazione non effettuato' });
+            return res.send({ success : false, message : 'Registrazione non effettuata' });
         }
         req.logIn(user, function(err) {
             if (err) { return next(err); }

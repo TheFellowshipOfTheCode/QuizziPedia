@@ -25,7 +25,7 @@ let errorSchema = new mongoose.Schema({
     errorMessage: String
 });
 
-
+/**
 errorSchema.methods.getCode = function() {
     return this.errorCode;
 };
@@ -37,10 +37,10 @@ errorSchema.methods.getTitle = function() {
 errorSchema.methods.getMessage = function() {
     return this.errorMessage;
 };
+**/
+
 
 // vedere se si riesce ad inserire gli errori nel database e fare i test relativi
-
-
 
 let ErrorModel = mongoose.model('Errors', errorSchema);
 

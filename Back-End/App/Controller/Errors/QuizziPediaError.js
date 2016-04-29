@@ -15,6 +15,10 @@
  * e toString(); il metodo toJSON() è ancora da definire.
  * Autore: Mattia Varotto
  *-------------------------------------------------------------------------------
+ * ID: QuizziPediaError_20160427
+ * Update data: 29-04-2016
+ * Description: definito il metodo toJSON().
+ * Autore: Mattia Varotto
  *******************************************************************************/
 "use strict";
 
@@ -37,9 +41,12 @@ module.exports = class QuizziPediaError  {
         return this.message;
     }
 
-    // da sistemare, in javascript le variabili tra virgolette non vengono parsate
     toJSON() {
-        return this;
+        let string = '{ "code": ' + this.code + ',' +
+                       ' "title": ' + '"' + this.title + '"' + ',' +
+                        ' "message": ' + '"' + this.message + '"' + ' }';
+        let json = JSON.parse(string);
+        return json;
     }
 
     toString() {

@@ -14,11 +14,15 @@
  * toJSON() e toString(); il test per il metodo toJSON() è ancora da definire.
  * Autore: Mattia Varotto
  *-------------------------------------------------------------------------------
+ * ID: QuizziPediaError_test_20160428
+ * Update data: 29-04-2016
+ * Description: definito il test per il metodo toJSON().
+ * Autore: Mattia Varotto
  *******************************************************************************/
 "use strict";
 
 let QuizziPediaError = require('../App/Controller/Errors/QuizziPediaError.js');
-let q = new QuizziPediaError(123,"asd","qwe");
+let q = new QuizziPediaError(123,"Accesso vietato","l\'utente non può accedere a quest\'area");
 
 let expect = require('expect');
 
@@ -28,19 +32,21 @@ describe("QuizziPediaError", function() {
     });
 
     it("check if it returns the error title", function() {
-        expect(q.getTitle()).toEqual('asd');
+        expect(q.getTitle()).toEqual('Accesso vietato');
     });
 
     it("check if it returns the error title", function() {
-        expect(q.getMessage()).toEqual('qwe');
+        expect(q.getMessage()).toEqual('l\'utente non può accedere a quest\'area');
     });
 
     it("check if it returns the error as a string", function() {
-        expect(q.toString()).toEqual('123 asd: qwe.');
+        expect(q.toString()).toEqual('123 Accesso vietato: l\'utente non può accedere a quest\'area.');
+        console.log(q.toString());
     });
 
-    /**it("check if it returns the error as a JSON", function() {
-        expect(q.toJSON()).toEqual({ "code": 123, "title": "asd", "message": "qwe" });
-    });**/
+    it("check if it returns the error as a JSON", function() {
+        expect(q.toJSON()).toEqual({ "code": 123, "title": "Accesso vietato",
+            "message": "l\'utente non può accedere a quest\'area" });
+    });
 });
 

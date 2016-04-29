@@ -24,8 +24,19 @@ LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService'
 
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
  $scope.logIn = function(email, password){
-  AuthService.signIn(email, password, function (response) {
-   if (response.success) {
+     var result = AuthService.signIn(email, password);
+     return result
+         .then(function(data){
+            return new UserDetailsModel(data.name, data. surname);
+     })
+         .catch(function(response){
+            console.error('Gists error', response.status, response.data);
+            return new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+
+ })
+/*
+OPPURE COSì, DA VEDERE
+      if (response.success) {
        $cookies.put('logged', true);
     $rootScope.user = new UserDetailsModel();
     var lang = $routeParams.lang;
@@ -34,6 +45,7 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
         var error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
    }
   });
+*/
 
  }
 }

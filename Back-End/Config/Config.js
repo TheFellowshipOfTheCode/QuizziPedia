@@ -18,6 +18,7 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
+ var accessToDB = require("./loginToMongoLab.js");
 
 
 var express = require('express');
@@ -31,7 +32,13 @@ var flash    = require('connect-flash');
 var passport= require('passport');
 module.exports = function(app) {
 
-    mongoose.connect('mongodb://localhost/Database', function(err) {
+
+    var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+                  replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+
+    var mongodbUri = 'mongodb://'+accessToDB.login+':'+accessToDB.password+'@'+accessToDB.url+'/'+accessToDB.database;
+
+    mongoose.connect(mongodbUri, options, function(err) {
         if(err) {
             console.log('connection error', err);
         } else {
@@ -61,11 +68,11 @@ module.exports = function(app) {
     app.use(passport.session()); // persistent login sessions
     // routes ======================================================================
     // Routing for the application
-     app.get('/*',function(req,res){
-        res.sendFile(path.resolve('../Front-End/Index.html'));
-     });
     require('../App/Routes/UserRouter.js')(app);
     require('../App/Routes/QuizRouter.js')(app);
     require('../App/Routes/QuestionRouter.js')(app);
     require('../App/Routes/LangRouter.js')(app);
+    app.get('/*',function(req,res){
+       res.sendFile(path.resolve('../Front-End/Index.html'));
+    });
 };

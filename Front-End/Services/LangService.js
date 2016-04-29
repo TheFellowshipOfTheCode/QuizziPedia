@@ -21,3 +21,28 @@ app.factory('LangService', ['$http', '$q', '$cookie', function($http, $q, $cooki
 
 
 }]);
+
+app.factory('LangService', LangService);
+
+LangService.$inject = ['$http', '$q', 'ErrorInfoModel'];
+
+function LangService($http, $q, ErrorInfoModel) {
+
+  var methods = {
+    getKeywords : getKeywords
+  };
+  return methods;
+
+  function getKeywords(lang) {
+    var deferred = $q.defer();
+    $http.get('/api/' + lang)
+     .success(function(data) {
+          deferred.resolve(data);
+     }).error(function(msg, code) {
+        deferred.reject(msg);
+     });
+    return deferred.promise;
+  }
+
+
+}

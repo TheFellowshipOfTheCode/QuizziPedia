@@ -29,8 +29,9 @@ function LangModel () {
   var LangModel = function (lang, listOfKeys)
   {
     // private variables
+    var listOfKeys_ = {};
     var lang_ = lang;
-    var listOfKeys_ = listOfKeys;
+    listOfKeys_ = listOfKeys;
     // public functions
     this.getLang = function(){
         return lang_;

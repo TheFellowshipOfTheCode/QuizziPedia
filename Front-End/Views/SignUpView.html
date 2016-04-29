@@ -36,10 +36,10 @@
 
                         <md-input-container class="md-block">
                             <label>Username</label>
-                            <input required="" type="text" name="username" ng-model="user.username" minlength="1" maxlength="20" ng-pattern="/^.+@.+\..+$/">
+                            <input required="" type="text" name="username" ng-model="user.username" minlength="1" maxlength="20" >
 
                             <div ng-messages="userForm.username.$error" role="alert">
-                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength']">
                                     Username non valida.
                                 </div>
                             </div>

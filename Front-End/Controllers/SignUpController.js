@@ -1,4 +1,3 @@
-<!--
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Views::SingUpController
 * Description:
@@ -16,5 +15,11 @@
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/
--->
 
+    app.controller('SignUpController', function($scope) {
+        $scope.user = {
+            firstName: '',
+            lastName: '',
+            email: 'ipsum@lorem.com',
+        };
+    })

@@ -24,9 +24,9 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-app.factory("ErrorInfoModel", ErrorModel);
+app.factory("ErrorInfoModel", ErrorInfoModel);
 
-    function ErrorModel() {
+    function ErrorInfoModel() {
 
     var ErrorInfoModel = function(errorCode, errorMessage, errorTitle) {
         var errorCode_ = errorCode;
@@ -45,7 +45,7 @@ app.factory("ErrorInfoModel", ErrorModel);
         this.getTitle = function () {
             return errorTitle_;
         };
-    };
+    }
 
         return ErrorInfoModel;
-};
+}

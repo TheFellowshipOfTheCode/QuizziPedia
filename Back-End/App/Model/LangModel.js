@@ -18,24 +18,13 @@
  *******************************************************************************/
 
 var mongoose = require('mongoose');
-var langSchema = new mongoose.Schema({
-    lang: String,
-    variables: [String]
+var Schema = mongoose.Schema;
+
+var LangSchema = new Schema({},
+{
+  strict: false
 });
 
-let langs = mongoose.model('Lang', langSchema );
+var Lang = mongoose.model('LangSchema', LangSchema, 'Variables');
 
-langSchema.methods.getVarlist = function(lang, callback, errback){
-    if(lang === "ita"){
-        callback = langSchema.findOne({lang: ita});
-    }
-    else if(lang === "eng"){
-        callback = langSchema.findOne({lang: eng});
-    }
-    else{
-        errback; // quando è pronta la classe QuizziPediaError aggiungere qua
-                 // l'errore di Lingua sconosciuta (1600)
-    }
-}
-
-module.exports = langs;
+module.exports = Lang;

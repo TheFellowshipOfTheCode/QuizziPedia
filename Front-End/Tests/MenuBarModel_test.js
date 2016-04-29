@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Name: MenuBarModelTest;
+* Name: MenuBarModel_test;
 * Description: test di unità per la classe
 * QuizziPedia::Front-End::Models::MenuBarModel;
 * Relations with other classes:
@@ -10,7 +10,7 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: MenuBarModel_20160428;
+* ID: MenuBarModel_test_20160428;
 * Update data: 28-04-2016;
 * Description: Scritto il test, superato;
 * Author: Matteo Granzotto.

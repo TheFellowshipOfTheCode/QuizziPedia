@@ -34,6 +34,7 @@
     ],
   "license": "MIT",
   "dependencies": {
+    "bower": "~1.7.9",
     "body-parser": "~1.5.2",
     "express": "^4.13.3",
     "method-override": "~2.1.2",

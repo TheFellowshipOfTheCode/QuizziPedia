@@ -24,32 +24,28 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-app.factory('ErrorInfoModel', ErrorInfoModel);
+app.factory("ErrorInfoModel", ErrorModel);
 
-    function ErrorInfoModel(errorCode, errorMessage, errorTitle) {
+    function ErrorModel() {
+
+    var ErrorInfoModel = function(errorCode, errorMessage, errorTitle) {
         var errorCode_ = errorCode;
         var errorMessage_ = errorMessage;
         var errorTitle_ = errorTitle;
 
-        var methods = {
-            ErrorInfoModel: ErrorInfoModel,
-            getCode: getCode,
-            getMessage: getMessage,
-            getTitle: getTitle
+
+        this.getCode = function () {
+            return errorCode_;
         };
 
-        function getCode(){
-            return this.errorCode_;
-        }
+        this.getMessage = function () {
+            return errorMessage_;
+        };
 
-        function getMessage(){
-            return this.errorMessage_;
-        }
-
-        function getTitle(){
-            return this.errorTitle_;
-        }
+        this.getTitle = function () {
+            return errorTitle_;
+        };
+    };
 
         return ErrorInfoModel;
-
-    }
+};

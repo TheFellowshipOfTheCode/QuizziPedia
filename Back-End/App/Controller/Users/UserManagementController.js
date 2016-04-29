@@ -56,7 +56,7 @@ exports.getSummaries = function(req, res, next) {
         var query=summary.find({'quiz':{$in:summaries.quizSummaries.quiz}});
         var query2=quiz.find({'_id':{$in:query.quiz}});
         var dataSummaries={
-            id: quey2._id,
+            id: query2._id,
             title: query2.title,
             date: query.date
         };

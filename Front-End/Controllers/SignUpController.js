@@ -15,11 +15,20 @@
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/
+app.controller('SignUpController', SignUpController);
 
-    app.controller('SignUpController', function($scope) {
+SignUpController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'AuthService'];
+
+function SignUpController ($scope, $timeout, $mdSidenav, $mdDialog, $location, $routeParams, MenuBarModel, AuthService) {
         $scope.user = {
             firstName: '',
             lastName: '',
-            email: 'ipsum@lorem.com',
+            email: '',
+            username: '',
+            password: ''
         };
-    })
+
+        $scope.logIn = function () {
+            $location.path('/'+$routeParams.lang+'/login');
+        }
+    }

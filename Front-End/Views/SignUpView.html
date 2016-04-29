@@ -17,28 +17,54 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
+    <h1>Registrazione</h1>
     <md-content layout-padding="">
         <div>
             <form name="userForm">
 
                 <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm="">
+                    <md-input-container layout-gt-sm="row" class="md-block">
                         <label>Nome</label>
                         <input ng-model="user.firstName">
                     </md-input-container>
+                </div>
 
-                    <md-input-container class="md-block" flex-gt-sm="">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block">
                         <label>Cognome</label>
                         <input ng-model="user.lastName">
                     </md-input-container>
-
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>Email</label>
-                        <input ng-model="user.email">
-                    </md-input-container>
-
                 </div>
 
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block">
+                        <input ng-model="user.email" type="email" placeholder="Email *" ng-required="true">
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container>
+                        <label>Username</label>
+                        <input name="username" ng-model="user.username" required/>
+                        <div ng-messages="userForm.username.$error" ng-if='userForm.username.$dirty'>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container>
+                        <label>Password</label>
+                        <input name="password" type="password" ng-model="user.password" required/>
+                        <div ng-messages="userForm.password.$error" ng-if='userForm.password.$dirty'>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-button ng-disabled="userForm.$invalid" class="md-button md-raised md-primary" ng-click="logIn()">
+                        <i class="material-icons left">Registra</i>
+                    </md-button>
+                </div>
             </form>
         </div>
     </md-content>

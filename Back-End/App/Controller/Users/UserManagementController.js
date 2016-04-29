@@ -23,10 +23,7 @@ exports.deleteUser = function(req, res, next) {
 
 
 exports.getInfo = function(req, res, next) {
-    user.findOne({username:req.user.username},function(err,datauser){
-        if (err)
-            next(err)
-
+    user.findOne({username:req.user.username},function(datauser){
         var info={
             username: datauser.username,
             name:datauser.name,

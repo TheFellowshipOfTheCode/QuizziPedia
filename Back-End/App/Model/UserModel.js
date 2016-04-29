@@ -62,7 +62,7 @@ userSchema.methods.updateSummary=function(summaryId){
 }
 
 userSchema.methods.getSummaries=function(callback,errback){
-
+    return this.model('User').find({ 'quizSummaries': this.quizSummaries }, callback);
 }
 
 userSchema.statics.getUsers=function(searchword,callback,errback){

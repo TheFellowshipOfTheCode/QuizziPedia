@@ -128,6 +128,6 @@ function UserDetailsModel(name, surname, email, userImg, username, statistics, l
         return this.id_;
     }
 
-    return UserDetailsModel;
+    return methods;
 
 }

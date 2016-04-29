@@ -24,110 +24,89 @@
 
 app.factory('UserDetailsModel', UserDetailsModel);
 
-function UserDetailsModel(name, surname, email, userImg, username, statistics, levelUser, privilege, id) {
-    var name_ = name;
-    var surname_ = surname;
-    var email_ = email;
-    var userImg_ = userImg;
-    var username_ = username;
-    var statistics_ = statistics;
-    var levelUser_ = levelUser;
-    var privilege_ = privilege;
-    var id_ = id;
+function UserDetailsModel() {
 
-    var methods = {
-        setName: setName,
-        setSurname: setSurname,
-        setEmail: setEmail,
-        setUsername: setUsername,
-        setUserImg: setUserImg,
-        setStatistics: setStatistics,
-        setLevel: setlevel,
-        setPrivilege: setPrivilege,
-        setId: setId,
-        getName: getName,
-        getSurname: getSurname,
-        getEmail: getEmail,
-        getUsername: getUsername,
-        getUserImg: getUserImg,
-        getStatistics: getStatistics,
-        getLevel: getlevel,
-        getPrivilege: getPrivilege,
-        getId: getId
-    };
+    var UserDetailsModel = function (name, surname, email, userImg, username, statistics, levelUser, privilege, id) {
+        var name_ = name;
+        var surname_ = surname;
+        var email_ = email;
+        var userImg_ = userImg;
+        var username_ = username;
+        var statistics_ = statistics;
+        var levelUser_ = levelUser;
+        var privilege_ = privilege;
+        var id_ = id;
 
-    function setName(name){
-        this.name_ = name;
+        this.setName = function (name) {
+            name_ = name;
+        };
+        this.setSurname = function (surname) {
+            surname_ = surname;
+        };
+
+        this.setEmail = function (email) {
+            email_ = email;
+        };
+
+        this.setUsername = function (username) {
+            username_ = username;
+        };
+
+        this.setUserImg = function (userImg) {
+            userImg_ = userImg;
+        };
+
+        this.setStatistics = function (statistics) {
+            statistics_ = statistics;
+        };
+
+        this.setLevel = function (level) {
+            levelUser_ = level;
+        };
+
+        this.setPrivilege = function (privilege) {
+            privilege_ = privilege;
+        };
+
+        this.setId = function (id) {
+            id_ = id;
+        };
+
+        this.getName = function () {
+            return name_;
+        };
+
+        this.getSurname = function () {
+            return surname_;
+        };
+
+        this.getEmail = function () {
+            return email_;
+        };
+
+        this.getUsername = function () {
+            return username_;
+        };
+
+        this.getUserImg = function () {
+            return userImg_;
+        };
+
+        this.getStatistics = function () {
+            return statistics_;
+        };
+
+        this.getLevel = function () {
+            return levelUser_;
+        };
+
+        this.getPrivilege = function () {
+            return privilege_;
+        };
+
+        this.getId = function () {
+            return id_;
+        };
     }
-
-    function setSurname(surname){
-        this.surname_ = surname;
-    }
-
-    function setEmail(email){
-        this.email_ = email;
-    }
-
-    function setUsername(username){
-        this.username_ = username;
-    }
-
-    function setUserImg(userImg){
-        this.userImg_ = userImg;
-    }
-
-    function setStatistics(statistics){
-        this.statistics_ = statistics;
-    }
-
-    function setlevel(level){
-        this.level_ = level;
-    }
-
-    function setPrivilege(privilege){
-        this.privilege_ = privilege;
-    }
-
-    function setId(id){
-        this.id_ = id;
-    }
-
-    function getName(){
-        return this.name_;
-    }
-
-    function getSurname(){
-        return this.surname_;
-    }
-
-    function getEmail(){
-        return this.email_;
-    }
-
-    function getUsername(){
-        return this.username_;
-    }
-
-    function getUserImg(){
-        return this.userImg_;
-    }
-
-    function getStatistics(){
-        return this.statistics_;
-    }
-
-    function getlevel(){
-        return this.level_;
-    }
-
-    function getPrivilege(){
-        return this.privilege_;
-    }
-
-    function getId(){
-        return this.id_;
-    }
-
-    return methods;
-
+        return UserDetailsModel;
 }

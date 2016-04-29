@@ -51,7 +51,7 @@ exports.getSummary= function(req, res, next) {
 };
 
 exports.getSummaries = function(req, res, next) {
-   /* req.user.getSummaries(function(error,summaries){
+    req.user.getSummaries(function(error,summaries){
         if(err) return res.status(500).json(err.findOne({code:700}));
         var query=summary.find({'quiz':{$in:summaries.quizSummaries.quiz}});
         var query2=quiz.find({'_id':{$in:query.quiz}});
@@ -61,7 +61,7 @@ exports.getSummaries = function(req, res, next) {
             date: query.date
         };
         return res.send(dataSummaries);
-    });*/
+    });
 };
 
 exports.getUsers = function(req, res, next) {

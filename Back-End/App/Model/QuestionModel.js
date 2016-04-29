@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var questionSchema = new mongoose.Schema({
     author: {
-        type:ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
     makeWith: String,

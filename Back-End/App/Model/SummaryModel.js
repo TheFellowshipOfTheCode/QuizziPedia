@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+
 var summarySchema = new mongoose.Schema({
     quiz: {
-        type:ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'Quiz'
     },
     givenAnswers:[{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'Question',
         answers: [{
             text: String,

@@ -1,23 +1,24 @@
 var mongoose = require('mongoose');
-var questionSchema = new mongoose.Schema({
+
+var quizSchema = new mongoose.Schema({
     title: String,
     author: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     questions:[{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Question'
     }],
     registeredUsers: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     activeUsers: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     correctAnswers: Number
 });
 
-module.exports = mongoose.model('Quiz', questionSchema);
+module.exports = mongoose.model('Quiz', quizSchema);

@@ -8,8 +8,11 @@ var user            = require('../App/Model/UserModel');
 
 
 
+
 // expose this function to our app using module.exports
 module.exports = function(passport) {
+
+
 
     // =========================================================================
     // passport session setup ==================================================
@@ -46,7 +49,7 @@ module.exports = function(passport) {
 
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                Users.findOne({ 'local.username' :  username }, function(err, user) {
+                user.findOne({ 'username' :  username }, function(err, user) {
                     // if there are any errors, return the error
                     if (err)
                         return done(err);

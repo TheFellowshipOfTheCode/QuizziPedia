@@ -28,7 +28,6 @@ function SignUpController ($scope, $timeout, $mdSidenav, $mdDialog, $location, $
             password: ''
         };
 
-        $scope.logIn = function () {
-            $location.path('/'+$routeParams.lang+'/login');
+        $scope.signUp = function (user) {
         }
     }

@@ -17,7 +17,7 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-<div layout="column" flex id="content" role="main">
+<div ng-controller="AppController" layout="column" flex id="content" role="main">
     <md-content layout="vertical" flex id="content">
         <div layout="row" layout-align="center center" layout-fill>
             <md-whiteframe class="md-whiteframe-z1" layout="column" flex="30" layout-padding>
@@ -69,7 +69,7 @@
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
-                            <md-button ng-disabled="userForm.$invalid" ng-click="logIn()" class="md-raised md-primary" flex="50" flex-sm="100">Register</md-button>
+                            <md-button ng-disabled="userForm.$invalid" ng-click="signUp(user)" class="md-raised md-primary" flex="50" flex-sm="100">signup</md-button>
                         </div>
                     </md-input-container>
 

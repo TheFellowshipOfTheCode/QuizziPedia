@@ -27,19 +27,33 @@
         <div layout="row" layout-align="center center" layout-fill>
             <md-whiteframe class="md-whiteframe-z1" layout="column" flex="30" layout-padding>
                 <md-content md-theme="docs-dark">
+                  <form name="userForm">
                     <md-input-container>
                         <label>Email</label>
-                        <input ng-model="user.email">
+                        <input required="" type="email" name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+                        <div ng-messages="userForm.email.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Email non valida.
+                            </div>
+                        </div>
                     </md-input-container>
                     <md-input-container>
                         <label>Password</label>
-                        <input ng-model="user.password" type="password">
-                    </md-input-container>
-                    <md-input-container layout-align="center center">
-                        <div layout="row" layout-sm="column" layout-margin>
-                            <md-button class="md-raised" flex="50" flex-sm="100">Login</md-button>
+                        <input required="" type="password" name="password" ng-model="user.password" minlength="8">
+
+                        <div ng-messages="userForm.password.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength']">
+                                La password deve avere almeno 8 caratteri.
+                            </div>
                         </div>
                     </md-input-container>
+                      <md-input-container layout-align="center center">
+                          <div layout="row" layout-sm="column" layout-margin>
+                              <md-button ng-disabled="userForm.$invalid" ng-click="logIn()" class="md-raised md-primary" flex="50" flex-sm="100">Login</md-button>
+                          </div>
+                      </md-input-container>
+                  </form>
                 </md-content>
             </md-whiteframe>
         </div>

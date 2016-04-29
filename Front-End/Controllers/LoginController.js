@@ -18,5 +18,25 @@
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
- app.controller('LoginController', ['$scope', function($scope) {
- }]);
+app.controller('LoginController', LoginController);
+
+LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', 'UserDetailsModel', 'ErrorInfoModel'];
+
+function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
+ $scope.logIn = function(email, password){
+  AuthService.signIn(email, password, function (response) {
+   if (response.success) {
+       $cookies.put('logged', true);
+    $rootScope.user = new UserDetailsModel();
+    var lang = $routeParams.lang;
+    $location.path('/' + lang);
+   } else {
+        var error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+   }
+  });
+
+ }
+}
+
+
+

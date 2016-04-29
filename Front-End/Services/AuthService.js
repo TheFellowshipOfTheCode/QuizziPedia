@@ -42,13 +42,14 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
         item["username"] = email;
         item["password"] = password;
         user.push(item);
+        var deferred = $q.defer();
         $http.post('/api/signin', user)
-            .then(function (data) {
-                return data;
-            })
-            .catch(function () {
-                return new ErrorInfoModel("1", "La login non è andata a buon fine", "Login non effettuata");
-            });
+            .success(function(data) {
+                deferred.resolve(data);
+            }).error(function(msg) {
+            deferred.reject(msg);
+        });
+        return deferred.promise;
     }
 
     function logout(username) {

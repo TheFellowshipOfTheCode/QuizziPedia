@@ -18,7 +18,19 @@
 "use strict";
 var QuizziPediaError = require('../Controller/Errors/QuizziPediaError.js');
 var ErrorModel = require('../App/Model/ErrorModel.js');
+
 var errormodel = new ErrorModel();
+
+exports.insertError = function(req, res, next) {
+    var error = {
+        errorCode: req.errorCode,
+        errorTitle: req.errorTitle,
+        errorMessage: req.errorMessage
+    }
+    errormodel.insert(error);
+    return res.send(error);
+}
+
 
 /**
 exports.handleError = function(req, res, next) {
@@ -28,7 +40,7 @@ exports.handleError = function(req, res, next) {
             errorTitle: errorFound.errorTitle,
             errorMessage: errorFound.errorMessage
         }
-        res.sendFile(error);
+        res.send(error);
     })
 }
  **/

@@ -16,7 +16,7 @@ var userSchema = new mongoose.Schema(
         }],
         experienceLevel: Number,
         quizSummaries:[{
-            type: Schema.Types.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: 'Summaries'
         }]
     }
@@ -30,9 +30,44 @@ userSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
+    return bcrypt.compareSync(password, this.password);
 };
 
+userSchema.methods.editUser=function(content,callback,errback){
+
+}
+
+userSchema.methods.editPassword=function(password,errback){
+
+}
+
+userSchema.methods.setImg=function(image,errback){
+
+}
+
+userSchema.methods.updateStatistics=function(statistics,callback){
+
+}
+
+userSchema.methods.upLevel=function(callback){
+
+}
+
+userSchema.methods.deleteUser=function(callback,errback){
+
+}
+
+userSchema.methods.updateSummary=function(summaryId){
+
+}
+
+userSchema.methods.getSummaries=function(callback,errback){
+
+}
+
+userSchema.statics.getUsers=function(searchword,callback,errback){
+
+}
 
 
 module.exports = mongoose.model('User', userSchema);

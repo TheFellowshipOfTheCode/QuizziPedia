@@ -1,0 +1,16 @@
+.homepage {
+  width: 90%;
+  margin: auto;
+}
+
+.sezione {
+  margin-top: 3em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.home-toolbar {
+  background-color: rgb(255,202,40) !important;
+}

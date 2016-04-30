@@ -36,9 +36,14 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: Index_20160430;
+* Update data: 30-04-2016;
+* Description: Inserito i css per l'applicazione generale;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
 * ID: Index_20160427;
 * Update data: 27-04-2016;
-* Description: Creato file e inserito tutti icollegamenti per l'autenticazione;
+* Description: Creato file e inserito tutti i collegamenti per l'autenticazione;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
@@ -52,7 +57,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link href="CSS/main.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <!-- Media query CSS -->
+    <link type="text/css" rel="stylesheet" href="css/medium.css" media="handheld, screen and (max-width:960px), only screen and (max-device-width:960px)">
+    <link type="text/css" rel="stylesheet" href="css/small.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)">
     <!-- JS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
@@ -60,6 +68,7 @@
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-loader/angular-loader.min.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-css/angular-css.min.js"></script>
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
@@ -81,7 +90,6 @@
         </div>
       </md-content>
     </div>
-
     <!-- JS fon Angular -->
     <script src="AppRun.js"></script>
     <script src="AppRouter.js"></script>
@@ -100,6 +108,7 @@
     <script src="Controllers/SignUpController.js"></script>
     <script src="Controllers/PasswordForgotController.js"></script>
     <script src="Controllers/AppController.js"></script>
+    <script src="Controllers/HomeController.js"></script>
     <!-- Directives -->
     <script src="Directives/MenuBarDirective.js"></script>
     <script src="Directives/LoginBarDirective.js"></script>

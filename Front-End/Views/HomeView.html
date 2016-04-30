@@ -1,2 +1,64 @@
-<div ng-controller="AppController"> HomePage </div>
-{{setOfKeys.logIn}}
+<!--
+/*******************************************************************************
+* Nome: QuizziPedia::Front-End::Views::HomeView;
+* Description: view contenente la direttiva per barra di ricerca degli utenti
+* e questionari e il bottone che porterà l’utente nella modalità allenamento.
+* Viene utilizzata come view iniziale dell’applicazione;
+* Relations with other classes:
+* + LangModel;
+* + SearchDirective.
+* Creation data: 30-04-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: HomeView_20160430;
+* Update data: 30-04-2016;
+* Description: Scritto il file html;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<div ng-controller="AppController">
+
+  <div class=" homepage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+      <md-toolbar class="md-primary home-toolbar">
+        <div class="md-toolbar-tools">
+          <span flex="" class="flex"></span>
+          <h3 class="ng-binding">{{listOfKeys.training}}</h3>
+          <span flex="" class="flex"></span>
+        </div>
+      </md-toolbar>
+        <div class="md-padding">
+          <p class="text-center">{{listOfKeys.whatIsTraining}}</p>
+          <div class="layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+            <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="" aria-label="{{listOfKeys.goToTraing}}">
+              <span>{{listOfKeys.goToTraining}}</span>
+            </button>
+          </div>
+        </div>
+    </section>
+
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+      <md-toolbar class="md-primary home-toolbar">
+        <div class="md-toolbar-tools">
+          <span flex="" class="flex"></span>
+          <h3 class="ng-binding">{{listOfKeys.search}}</h3>
+          <span flex="" class="flex"></span>
+        </div>
+      </md-toolbar>
+        <div class="md-padding">
+          <p class="text-center">{{listOfKeys.whatIsSearch}}</p>
+          <div class="layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+            <search-directive class="flex-80"></search-directive>
+          </div>
+        </div>
+    </section>
+
+  </div>
+
+</div>

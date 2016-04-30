@@ -1,0 +1,24 @@
+/*General*/
+
+@media screen and (max-width: 960px) {
+
+  .hideMeOnMobile {
+    display: none;
+  }
+
+  .hideMeOnDesktop {
+    display: inline;
+  }
+
+}
+
+/*Ricerca*/
+
+@media screen and (max-width: 960px) {
+
+  search-directive {
+    display: inline;
+    width: 100%;
+  }
+
+}

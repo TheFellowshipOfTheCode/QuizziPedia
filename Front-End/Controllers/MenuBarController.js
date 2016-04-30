@@ -21,8 +21,8 @@
 
 app.controller('MenuBarController',MenuBarController);
 
-MenuBarController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService']; //, 'UserDetailsModel'];
-function MenuBarController ($scope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) {  //, UserDetailsModel) {
+MenuBarController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService'];
+function MenuBarController ($scope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) { 
   /*Temporary variables - delete them in future*/
   var privilege = "";
   /* Scope variables and function*/

@@ -21,7 +21,7 @@ AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$rout
 function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
   var lang;
   /*Temporary variables - delete them in future*/
-  var privilege = "pro";
+  var privilege = "";
 
   /* Scope variables and function*/
   $rootScope.directivesChoose= MenuBarModel.getDirectives(location,privilege);

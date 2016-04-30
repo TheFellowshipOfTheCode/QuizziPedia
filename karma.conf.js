@@ -1,6 +1,8 @@
 module.exports = function(config){
   config.set({
 
+
+
     basePath : './',
 
     files : [
@@ -11,6 +13,7 @@ module.exports = function(config){
       'Front-End/bower_components/angular-aria/angular-aria.js',
       'Front-End/bower_components/angular-loader/angular-loader.min.js',
       'Front-End/bower_components/angular-material/angular-material.js',
+      'Front-End/bower_components/angular-css/angular-css.min.js',
       'Front-End/bower_components/angular-messages/angular-messages.min.js',
       'Front-End/bower_components/angular-mocks/angular-mocks.js',
       'Front-End/bower_components/angular-cookies/angular-cookies.min.js',
@@ -19,11 +22,28 @@ module.exports = function(config){
       'Front-End/AppRouter.js',
       'Front-End/Controllers/**/*.js',
       'Front-End/Models/**/*.js',
-      'Front-End/Directives/**/*.js',
+      'Front-End/Directives/*.js',
       'Front-End/Services/**/*.js',
       'Front-End/Tests/**/*.js',
       'Back-End/Tests/**/*.js'
     ],
+
+    preprocessors: {
+      'Front-End/Directives/LoginBarDirective.html' : ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor : {
+      'moduleName': 'Templates',
+
+      // Function that transforms the path to look exactly like
+      // you have it in templateUrl in your Angular code
+      //
+      // Mine looks like this
+      cacheIdFromPath: function(filepath) {
+        console.log(filepath.match(/\/Directives\/.*\.html/));
+        return filepath.match(/\/Directives\/.*\.html/);
+      }
+    },
 
     autoWatch : true,
 

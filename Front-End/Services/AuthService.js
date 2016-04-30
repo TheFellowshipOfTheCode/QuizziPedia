@@ -66,14 +66,14 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
             })
     }
 
-    function signup(username, password, email, nome, cognome) {
+    function signup(username, password, email, name, surname) {
         var user = [];
         item = {};
         item["username"] = username;
         item["password"] = password;
         item["email"] = email;
-        item["nome"] = nome;
-        item["cognome"] = cognome;
+        item["name"] = name;
+        item["surname"] = surname;
         user.push(item);
         $http.post('/api/signup', user)
             .then(function(data) {

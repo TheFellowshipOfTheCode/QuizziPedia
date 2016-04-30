@@ -18,39 +18,40 @@
 *******************************************************************************/
 -->
 <div ng-controller="AppController" layout="column" flex id="content" role="main">
+    <h1>{{listOfKeys.titleLangSignUp}}</h1>
     <md-content layout="vertical" flex id="content">
         <div layout="row" layout-align="center center" layout-fill>
             <md-whiteframe class="md-whiteframe-z1" layout="column" flex="30" layout-padding>
                 <md-content md-theme="docs-dark">
                     <form name="userForm">
                     <md-input-container class="md-block">
-                        <label>Nome</label>
-                        <input ng-model="user.name">
+                        <label>{{listOfKeys.nameLangSignUp}}</label>
+                        <input ng-model="user.nome">
                     </md-input-container>
 
                     <md-input-container class="md-block">
-                        <label>Cognome</label>
-                        <input ng-model="user.surname">
+                        <label>{{listOfKeys.surnameLangSignUp}}</label>
+                        <input ng-model="user.cognome">
                     </md-input-container>
 
                         <md-input-container class="md-block">
-                            <label>Username</label>
+                            <label>{{listOfKeys.usernameLangSignUp}}</label>
                             <input required="" type="text" name="username" ng-model="user.username" minlength="1" maxlength="20" >
 
                             <div ng-messages="userForm.username.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    Username non valida.
+                                    {{listOfKeys.errorUser}}
                                 </div>
                             </div>
                         </md-input-container>
 
                         <md-input-container class="md-block">
-                            <label>Email</label>
+                            <label>{{listOfKeys.emailLangSignUp}}</label>
                             <input required="" type="email" name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
 
                             <div ng-messages="userForm.email.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                                    Email non valida.
+                                    {{listOfKeys.errorEmail}}
                                 </div>
                             </div>
                         </md-input-container>
@@ -61,14 +62,14 @@
 
                             <div ng-messages="userForm.email.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength']">
-                                    La password deve avere almeno 8 caratteri.
+                                    {{listOfKeys.errorPassword}}
                                 </div>
                             </div>
                         </md-input-container>
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
-                            <md-button ng-disabled="userForm.$invalid" ng-click="signUp(user)" class="md-raised md-primary" flex="50" flex-sm="100">signup</md-button>
+                            <md-button ng-disabled="userForm.$invalid" ng-click="signUp(user)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLangSignUp}}</md-button>
                         </div>
                     </md-input-container>
 

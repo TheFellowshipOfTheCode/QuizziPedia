@@ -5,6 +5,14 @@ module.exports = function(config){
 
     basePath : './',
 
+    preprocessors: {
+      'Front-End/Directives/**/*.html' : ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      moduleName: 'templates'
+    },
+
     files : [
       'Front-End/bower_components/angular/angular.js',
       'Front-End/bower_components/angular-route/angular-route.js',
@@ -23,27 +31,13 @@ module.exports = function(config){
       'Front-End/Controllers/**/*.js',
       'Front-End/Models/**/*.js',
       'Front-End/Directives/*.js',
+      'Front-End/Directives/**/*.html',
       'Front-End/Services/**/*.js',
       'Front-End/Tests/**/*.js',
       'Back-End/Tests/**/*.js'
     ],
 
-    preprocessors: {
-      'Front-End/Directives/LoginBarDirective.html' : ['ng-html2js']
-    },
 
-    ngHtml2JsPreprocessor : {
-      'moduleName': 'Templates',
-
-      // Function that transforms the path to look exactly like
-      // you have it in templateUrl in your Angular code
-      //
-      // Mine looks like this
-      cacheIdFromPath: function(filepath) {
-        console.log(filepath.match(/\/Directives\/.*\.html/));
-        return filepath.match(/\/Directives\/.*\.html/);
-      }
-    },
 
     autoWatch : true,
 
@@ -55,7 +49,8 @@ module.exports = function(config){
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-ng-html2js-preprocessor'
             ],
 
     junitReporter : {

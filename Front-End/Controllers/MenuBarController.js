@@ -21,12 +21,12 @@
 
 app.controller('MenuBarController',MenuBarController);
 
-MenuBarController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService'];
-function MenuBarController ($scope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) { 
+MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService'];
+function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) {
   /*Temporary variables - delete them in future*/
-  var privilege = "";
+  var privilege = "pro";
   /* Scope variables and function*/
-  $scope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
+  $rootScope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
   $scope.logIn = function () {
     $location.path('/'+$routeParams.lang+'/login');
   };

@@ -31,7 +31,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
       .when('/:lang/password-forgotten', {
         templateUrl: '/Views/PasswordForgottenView.html'
       })
-      .when('/:lang', {
+      .when('/:lang/home', {
         templateUrl: '/Views/HomeView.html',
         controller:"HomeController",
         css: [
@@ -49,7 +49,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
           ]
       })
       .otherwise({
-        redirectTo: '/it'
+        redirectTo: '/it/home'
       });
   };
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Nome: QuizziPedia::Front-End::Views::HomeController;
+* Nome: QuizziPedia::Front-End::Controllers::HomeController;
 * Description: questa classe permette di gestire la home page. Fornisce tutte
 * le informazioni da mostrare nella homepage;
 * Creation data: 30-04-2016;

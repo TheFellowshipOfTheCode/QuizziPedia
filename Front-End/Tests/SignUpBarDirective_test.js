@@ -1,7 +1,7 @@
 /*******************************************************************************
-* Name: LoginBarDirective_test;
+* Name: SignUpBarDirective_test;
 * Description: test di unità per la classe
-* QuizziPedia::Front-End::Directives::LoginBarDirective;
+* QuizziPedia::Front-End::Directives::SignUpBarDirective;
 * Creation data: 30-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -15,7 +15,7 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-describe("LoginBarDirective's Unit test", function () {
+describe("SignUpBarDirective's Unit test", function () {
   var $compile;
   var $scope;
 
@@ -29,13 +29,13 @@ describe("LoginBarDirective's Unit test", function () {
   });
 
   it('should create botton with the correct label', inject(function() {
-    var template = $compile("<login-bar-directive></login-bar-directive>")($scope);
+    var template = $compile("<sign-up-bar-directive></sign-up-bar-directive>")($scope);
     var contents = template.find('button');
-    $scope.listOfKeys={"logIn": "Accedi"};
+    $scope.listOfKeys={"signUp": "Registrati"};
     $scope.$digest();
     var result = template.text();
     var check = false;
-    var n = result.search($scope.listOfKeys.logIn);
+    var n = result.search($scope.listOfKeys.signUp);
     if(n != -1) {
       check = true;
     }

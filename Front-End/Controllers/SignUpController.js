@@ -28,15 +28,20 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
             password: ''
         };
 
+        $scope.logIn = function() {
+            $scope.$location.path("/"+$routeParams.lang+"/login")
+        }
+
         $scope.signUp = function (user) {
             var result = AuthService.signup(user.username, user.password, usre.email, user.nome, user.cognome);
             return result
                 .then(function(data){
-                    return new UserDetailsModel(data.name, data.surname);
+                    return new UserDetailsModel(data.name, data.surname, data.username, data.email, data.password);
                 })
                 .catch(function(response){
                     console.error('Gists error', response.status, response.data);
-                    return new ErrorInfoModel("1", "Errore nella Registrazione", "Login non effettuata");
+                    return new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
+                        "effettuata");
                 })
         }
     }

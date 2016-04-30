@@ -27,7 +27,7 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
      var result = AuthService.signIn(email, password);
      return result
          .then(function(data){
-            return new UserDetailsModel(data.name, data. surname);
+            return new UserDetailsModel(data.name, data.surname);
      })
          .catch(function(response){
             console.error('Gists error', response.status, response.data);

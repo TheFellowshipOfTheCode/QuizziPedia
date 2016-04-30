@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Name: LangModelTest;
+* Name: LangModel_test;
 * Description: test di unità per la classe
 * QuizziPedia::Front-End::Models::LangModel;
 * Relations with other classes:

@@ -14,3 +14,13 @@
 .home-toolbar {
   background-color: rgb(255,202,40) !important;
 }
+
+ .md-padding {
+   min-height: 6em;
+   overflow: auto;
+ }
+
+.search-div {
+  min-height: 6em;
+  overflow: auto;
+}

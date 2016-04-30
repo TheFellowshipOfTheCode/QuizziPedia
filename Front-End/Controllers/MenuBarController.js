@@ -24,7 +24,7 @@ app.controller('MenuBarController',MenuBarController);
 MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService'];
 function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) {
   /*Temporary variables - delete them in future*/
-  var privilege = "";
+  var privilege = "normal";
   /* Scope variables and function*/
   $rootScope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
   $scope.logIn = function () {

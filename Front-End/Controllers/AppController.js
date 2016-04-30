@@ -21,7 +21,7 @@ AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$rout
 function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
   var lang;
   /*Temporary variables - delete them in future*/
-  var privilege = "";
+  var privilege = "normal";
 
   /* Scope variables and function*/
   $rootScope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
@@ -29,14 +29,12 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
     $rootScope.systemLang=$routeParams.lang;
     lang = getLang($routeParams.lang);
     lang.then(function(data){
-      console.log(data);
       $rootScope.listOfKeys= data.getListOfKeys();
     });
   }
   function getLang (lang) {
     var setOfKeywords = LangService.getKeywords(lang);
     return setOfKeywords.then(function(data){
-      console.log(data);
       return new LangModel(lang, data);
     });
   }

@@ -32,9 +32,15 @@
 
 <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar _md">
     <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false" ng-click="toggleLeft()" hide-gt-md="">
+    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false" ng-click="toggleLeft()" hide-gt-sm="">
       <md-icon md-svg-icon="Images/Icons/menu.svg"></md-icon>
     </md-button>
+    <header class="nav-header logo-and-quizzipedia-mobile-home" hide-gt-sm="" ng-if="directivesChoose.searchDirective === undefined">
+      <a ng-href="/" class="logo" href="/">
+        <img class="logo-mobile-home" src="Images/Icons/logo.png" alt="" data-pin-nopin="true">
+        <h1 class="quizzipedia-mobile-home md-heading">QuizziPedia</h1>
+      </a>
+    </header>
     <search-directive ng-if="directivesChoose.searchDirective != undefined"></search-directive>
     <span flex=""></span>
     <login-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>

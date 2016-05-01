@@ -1,6 +1,7 @@
 .authpage {
-  width: 90%;
-  margin: auto;
+    max-width: 40em;
+    width: 100%;
+    margin: auto;
 }
 
 .sezione {
@@ -35,6 +36,7 @@
 }
 
 md-input-container {
- min-height: 5.5em !important;
- margin-top: 3em !important;
+  min-height: 4em !important;
+  margin-top: 2em !important;
+  margin-bottom: 0.5em !important;
 }

@@ -3,6 +3,16 @@
   text-align: -webkit-right;
 }
 
+@media screen and (max-width: 600px) {
+
+  .authpage {
+      max-width: auto;
+      max-width: 90%;
+      margin: auto;
+  }
+
+}
+
 @media screen and (max-width: 550px) {
 
   .userForm {

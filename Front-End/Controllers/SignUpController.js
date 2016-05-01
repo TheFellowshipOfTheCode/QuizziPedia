@@ -21,27 +21,30 @@ SignUpController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$loc
 
 function SignUpController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel) {
         $scope.user = {
-            nome: '',
-            cognome: '',
+            name: '',
+            surname: '',
             email: '',
             username: '',
             password: ''
         };
 
         $scope.logIn = function() {
-            $scope.$location.path("/"+$routeParams.lang+"/login")
+            $location.path('/'+$routeParams.lang+'/login');
         }
 
         $scope.signUp = function (user) {
-            var result = AuthService.signup(user.username, user.password, usre.email, user.nome, user.cognome);
-            return result
-                .then(function(data){
-                    return new UserDetailsModel(data.name, data.surname, data.username, data.email, data.password);
+            AuthService.signIn(user.name, user.surname, user.email, user.username, user.password)
+
+                .success(function(result){
+                    $rootScope.user = new UserDetailsModel(user.name, user.surname, user.email, user.username, user.password);
+                    $location.path('/'+$routeParams.lang+'/login');
                 })
-                .catch(function(response){
-                    console.error('Gists error', response.status, response.data);
-                    return new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
+
+                .error(function(response){
+                    console.error('Error', response.status, response.data);
+                    $rootScope.error = new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
                         "effettuata");
+
                 })
         }
-    }
+}

@@ -18,7 +18,30 @@
 
 app.controller('PasswordForgotController', PasswordForgotController);
 
-PasswordForgotController.$inject = ['$scope', '$location', '$routeParams', 'AuthService'];
-function PasswordForgotController ($scope, $location, $routeParams, AuthService) {
+PasswordForgotController.$inject = ['$scope', '$location', '$mDialog', '$routeParams', 'AuthService'];
 
+function PasswordForgotController ($scope, $location, $routeParams, $mDialog, AuthService) {
+
+    $scope.user = {
+        email: ''
+    }
+
+    $scope.logIn = function() {
+        $location.path('/'+$routeParams.lang+'/login');
+    }
+
+    $scope.passwordForgot = function (user) {
+        AuthService.getNewPassword(user.email)
+
+            .success(function(result){
+                $location.path('/'+$routeParams.lang+'/login');
+            })
+
+            .error(function(response){
+                console.error('Error', response.status, response.data);
+                $rootScope.error = new ErrorInfoModel("4", "Il recupero password non è andato a buon fine", "Recupero password " +
+                    "non effettuato");
+
+            })
+    }
 }

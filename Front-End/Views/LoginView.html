@@ -35,7 +35,7 @@
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 class="ng-binding">Login</h3>
+          <h3 class="ng-binding">{{listOfKeys.logIn}}</h3>
           <span flex="" class="flex"></span>
         </div>
       </md-toolbar>
@@ -63,7 +63,8 @@
           </md-input-container>
           <md-input-container layout-align="center">
               <div layout="column" layout-sm="column" layout-margin>
-                  <md-button ng-disabled="userForm.$invalid" ng-click="logIn()" class="md-raised md-primary auth-button">Login</md-button>
+                  <md-button ng-disabled="userForm.$invalid" ng-click="logIn()" class="md-raised md-primary auth-button">{{listOfKeys.logIn}}</md-button>
+                  <md-button class="md-primary" ng-href="PasswordForgotView.html" target="_blank">{{listOfKeys.passwordForgot}}</md-button>
               </div>
           </md-input-container>
         </form>

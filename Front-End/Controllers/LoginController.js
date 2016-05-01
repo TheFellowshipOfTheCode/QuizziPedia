@@ -37,6 +37,9 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
             })
 
     }
+    $scope.goToPasswordForgotPage = function () {
+        $location.path('/'+$routeParams.lang+'/passwordforgot');
+    };
 }
 
 

@@ -1,6 +1,7 @@
 
 var user = require('../../Model/UserModel');
 var summary = require('../../Model/SummaryModel');
+var error = require('../../Model/ErrorModel');
 var quiz = require('../../Model/QuizModel');
 
 exports.updateDataUser = function(req, res, next) {
@@ -56,12 +57,14 @@ exports.getSummaries = function(req, res, next) {
         var query=summary.find({'quiz':{$in:summaries.quizSummaries.quiz}});
         var query2=quiz.find({'_id':{$in:query.quiz}});
         var dataSummaries={
-            id: query2._id,
+            id: quey2._id,
             title: query2.title,
             date: query.date
         };
         return res.send(dataSummaries);
     });
+
+
 };
 
 exports.getUsers = function(req, res, next) {

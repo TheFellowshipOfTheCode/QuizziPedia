@@ -30,7 +30,6 @@ describe("LoginBarDirective's Unit test", function () {
 
   it('should create botton with the correct label', inject(function() {
     var template = $compile("<login-bar-directive></login-bar-directive>")($scope);
-    var contents = template.find('button');
     $scope.listOfKeys={"logIn": "Accedi"};
     $scope.$digest();
     var result = template.text();

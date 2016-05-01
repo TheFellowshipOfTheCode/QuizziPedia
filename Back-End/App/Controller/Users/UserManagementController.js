@@ -25,7 +25,12 @@ exports.updateSummary = function(req, res, next) {
 };
 
 exports.deleteUser = function(req, res, next) {
-    req.user.deleteUser()
+    req.user.deleteUser(function(err,user){
+        if (err)
+            return handleError(err)
+        else
+            return res.send(user)
+    })
 };
 
 

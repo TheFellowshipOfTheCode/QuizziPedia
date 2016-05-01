@@ -44,4 +44,7 @@ module.exports = function(app){
     app.route('/api/:lang/user/:userId')
         .get(user.userManagement.getInfo)
 
+    app.route('/api/:lang/user')
+        .delete(user.userManagement.deleteUser)
+
 };

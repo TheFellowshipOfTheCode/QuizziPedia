@@ -1,0 +1,40 @@
+.authpage {
+  width: 90%;
+  margin: auto;
+}
+
+.sezione {
+  margin-top: 3em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.toolbar {
+  background-color: rgb(255,202,40) !important;
+}
+
+.md-padding {
+ min-height: 6em;
+ overflow: auto;
+}
+
+.search-div {
+  min-height: 6em;
+  overflow: auto;
+}
+
+.userForm {
+  max-width: 30em !important;
+}
+
+.auth-button {
+  width: 80%;
+  margin: auto;
+}
+
+md-input-container {
+ min-height: 5.5em !important;
+ margin-top: 3em !important;
+}

@@ -1,0 +1,12 @@
+.button-go-to-training {
+  margin-top: 1em;
+  text-align: -webkit-right;
+}
+
+@media screen and (max-width: 550px) {
+
+  .userForm {
+    max-width: 20em !important;
+  }
+
+}

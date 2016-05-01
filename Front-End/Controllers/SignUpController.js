@@ -25,7 +25,8 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
             surname: '',
             email: '',
             username: '',
-            password: ''
+            password: '',
+            passwordCheck: ''
         };
 
         $scope.logIn = function() {
@@ -33,6 +34,7 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
         }
 
         $scope.signup = function (user) {
+            if(user.password !== user.passwordCheck) return;
             AuthService.signUp(user.username, user.password, user.email, nuser.name, user.surname)
 
                 .success(function(result){

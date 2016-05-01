@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+var Summaries=require('./SummaryModel');
 var userSchema = new mongoose.Schema(
     {
         name: String,
@@ -34,7 +35,7 @@ userSchema.methods.validPassword = function(password) {
 };
 
 userSchema.methods.editUser=function(content,callback,errback){
-
+    return User.update({username: this.username},content, callback);
 }
 
 userSchema.methods.editPassword=function(password,errback){
@@ -59,6 +60,12 @@ userSchema.methods.deleteUser=function(callback,errback){
 
 userSchema.methods.updateSummary=function(summaryId){
 
+}
+
+userSchema.methods.getSummary=function(summaryId,callback,errback){
+    User.findOne({ 'username': this.username, 'quizSummaries': summaryId },'quizSummaries', quizSummary);
+    Summaries.findOne({'_id': quizSummary.quizSummaries},'quiz givenAnswers', Summary);
+    return
 }
 
 userSchema.methods.getSummaries=function(callback,errback){

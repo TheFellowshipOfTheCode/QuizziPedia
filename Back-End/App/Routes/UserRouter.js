@@ -26,19 +26,19 @@ var user = require('../Controller/UserController');
 
 module.exports = function(app){
 
-    app.route('/:lang/signup')
+    app.route('/api/:lang/signup')
        .post(user.auth.signup);
 
-    app.route('/:lang/signin')
+    app.route('/api/:lang/signin')
         .post(user.auth.signin);
 
-    app.route('/:lang/signout')
+    app.route('/api/:lang/signout')
         .post(user.auth.signout);
 /*
     app.route('/:lang/recovery')
         .post(user.recovery);*/
 
-    app.route('/:lang/loggedin')
+    app.route('/api/:lang/loggedin')
         .get(user.session.loggedin);
 
 };

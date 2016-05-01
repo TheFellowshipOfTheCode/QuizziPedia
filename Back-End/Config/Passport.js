@@ -4,16 +4,13 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var user            = require('../App/Model/UserModel');
+var User            = require('../App/Model/UserModel');
 
 
 
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
-
-
-
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
@@ -49,17 +46,18 @@ module.exports = function(passport) {
 
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                user.findOne({ 'username' :  username }, function(err, user) {
-                    // if there are any errors, return the error
+                User.findOne({ 'username' :  username }, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
                     if (user) {
+                        // if there are any errors, return the error
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
+
                         // if there is no user with that email
                         // create the user
-                        var newUser            = new user();
+                        var newUser            = new User();
 
                         // set the user's local credentials
                         newUser.password 	  = newUser.generateHash(password)
@@ -89,11 +87,12 @@ module.exports = function(passport) {
     passport.use('local-signin', new LocalStrategy({
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) {
+        function(req, username, password, done) {console.log("ciao")
             // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            user.findOne({ 'username' :  username }, function(err, user) {
+            //var UsernameOrEmail = (username.indexOf('@') === -1) ? {username: username} : {email: username};
+            User.findOne({ 'username' :  username } , function(err, user) {
                 // if there are any errors, return the error before anything else
                 if (err)
                     return done(err);

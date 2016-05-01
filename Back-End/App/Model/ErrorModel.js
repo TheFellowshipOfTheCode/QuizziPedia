@@ -17,9 +17,9 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 "use strict";
-let mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-let errorSchema = new mongoose.Schema({
+var errorSchema = new mongoose.Schema({
     errorCode: Number,
     errorTitle : String,
     errorMessage: String
@@ -42,6 +42,6 @@ errorSchema.methods.getMessage = function() {
 
 // vedere se si riesce ad inserire gli errori nel database e fare i test relativi
 
-let ErrorModel = mongoose.model('Errors', errorSchema);
+var ErrorModel = mongoose.model('Errors', errorSchema);
 
 module.exports = ErrorModel;

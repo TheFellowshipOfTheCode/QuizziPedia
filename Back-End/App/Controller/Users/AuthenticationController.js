@@ -25,7 +25,7 @@ var passport = require("passport");
 
 exports.signout = function(req, res, next) {
     req.logOut();
-    res.send(200);
+    res.sendStatus(200);
 };
 
 exports.signin = function(req, res, next) {

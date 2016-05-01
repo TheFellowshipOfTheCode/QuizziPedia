@@ -24,6 +24,7 @@
 let QuizziPediaError = require('../App/Controller/Errors/QuizziPediaError.js');
 let q = new QuizziPediaError(123,"Accesso vietato","l\'utente non può accedere a quest\'area");
 
+
 let expect = require('expect');
 
 describe("QuizziPediaError", function() {

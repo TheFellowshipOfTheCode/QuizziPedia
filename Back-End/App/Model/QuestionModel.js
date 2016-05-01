@@ -40,4 +40,8 @@ var questionSchema = new mongoose.Schema({
     }]
 });
 
+questionSchema.methods.getQuestion=function(questionId,callback){
+    return Quiz.findOne({'_id':{$in:questionId}},callback);
+}
+
 module.exports = mongoose.model('Question', questionSchema);

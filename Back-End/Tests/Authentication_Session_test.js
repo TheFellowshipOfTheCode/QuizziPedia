@@ -13,10 +13,10 @@ describe("signin", function() {
         .expect('Content-Type', /json/ )
         .end(function(err,res){
             if (!err && res.status==200)
-                if (res.body.success==false){
-                    res.body.message.should.equal("Login non effettuato")}
-                else{
-                    res.body.user.username.should.equal("fberton")}
+                if (res.body.success==false)
+                    res.body.message.should.equal("Login non effettuato")
+                else
+                    res.body.user.username.should.equal("fberton")
         });
         done()
     });
@@ -41,6 +41,9 @@ describe("signup", function() {
     });
 })
 
+
+
+
 describe("signout", function() {
     it("check signout user", function (done) {
         request(app)
@@ -51,6 +54,21 @@ describe("signout", function() {
             .end(function(err,res){
                 if (!err)
                     res.status.should.equal(200)
+            });
+        done()
+    });
+})
+
+describe("loggedin", function() {
+    it("check user loggedin ", function (done) {
+        request(app)
+            .get('/api/:lang/loggedin')
+            .expect('Content-Type', /json/ )
+            .expect(200)
+            .end(function(err,res){
+                if (!err && res.status==200){
+                    res.body.should.equal(0)
+                }
             });
         done()
     });

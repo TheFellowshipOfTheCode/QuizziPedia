@@ -87,7 +87,7 @@ module.exports = function(passport) {
     passport.use('local-signin', new LocalStrategy({
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) {console.log("ciao")
+        function(req, username, password, done) {
             // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists

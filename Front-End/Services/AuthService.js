@@ -21,7 +21,7 @@ app.factory('AuthService', AuthService);
 
 AuthService.$inject = ['$http', '$cookies', '$q'];
 
-    function AuthService($http, $cookies, $q) {
+function AuthService($http, $cookies, $q) {
     var methods = {
         isLogged: isLogged,
         signIn: signIn,
@@ -83,4 +83,4 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
                     "non effettuato");
             })
     }
-  }
+}

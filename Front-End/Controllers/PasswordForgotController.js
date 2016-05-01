@@ -18,9 +18,9 @@
 
 app.controller('PasswordForgotController', PasswordForgotController);
 
-PasswordForgotController.$inject = ['$scope', '$location', '$mDialog', '$routeParams', 'AuthService'];
+PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService'];
 
-function PasswordForgotController ($scope, $location, $routeParams, $mDialog, AuthService) {
+function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, AuthService) {
 
     $scope.user = {
         email: ''

@@ -23,29 +23,18 @@ app.controller('LoginController', LoginController);
 LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', 'UserDetailsModel', 'ErrorInfoModel'];
 
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
- $scope.logIn = function(email, password){
-     var result = AuthService.signIn(email, password);
-     return result
-         .then(function(data){
-            return new UserDetailsModel(data.name, data.surname);
+ $scope.logIn = function(user){
+     if(!user.username || user.username.length<1 || !user.password || user.password.length<1) return;
+     AuthService.signIn(user.username, user.password)
+         .success(function(result){
+            $rootScope.user = new UserDetailsModel(result.user.name, result.user.surname);
+             $location.path("/");
      })
-         .catch(function(response){
-            console.error('Gists error', response.status, response.data);
-            return new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+         .error(function(response){
+            console.error('Error', response.status, response.data);
+            $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
 
  })
-/*
-OPPURE COSì, DA VEDERE
-      if (response.success) {
-       $cookies.put('logged', true);
-    $rootScope.user = new UserDetailsModel();
-    var lang = $routeParams.lang;
-    $location.path('/' + lang);
-   } else {
-        var error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
-   }
-  });
-*/
 
  }
 }

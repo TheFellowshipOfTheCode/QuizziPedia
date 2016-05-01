@@ -36,14 +36,11 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
         return $cookies.get('logged');
     }
 
-    function signIn(email, password) {
-        var user = [];
-        item = {};
-        item["username"] = email;
-        item["password"] = password;
-        user.push(item);
+    function signIn(username, password) {
+        if(!username || !password) return; //errore?
         var deferred = $q.defer();
-        $http.post('/api/signin', user)
+        var userJSON = {user: username, pass: password};
+        $http.post('/api/signin', userJSON)
             .success(function(data) {
                 deferred.resolve(data);
             }).error(function(msg) {

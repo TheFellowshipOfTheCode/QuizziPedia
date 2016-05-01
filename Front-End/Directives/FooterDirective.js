@@ -17,3 +17,13 @@
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+
+app.directive('footerDirective', footerDirective);
+
+function footerDirective() {
+    var directive = {
+        restrict: 'E',
+        templateUrl: 'Directives/FooterDirective.html'
+    };
+    return directive;
+}

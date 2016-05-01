@@ -1,4 +1,3 @@
-<!--
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Views::PasswordForgotController
 * Description:
@@ -16,4 +15,10 @@
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/
--->
+
+app.controller('PasswordForgotController', PasswordForgotController);
+
+PasswordForgotController.$inject = ['$scope', '$location', '$routeParams', 'AuthService'];
+function PasswordForgotController ($scope, $location, $routeParams, AuthService) {
+
+}

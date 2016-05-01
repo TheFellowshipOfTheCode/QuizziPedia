@@ -32,11 +32,11 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
             $location.path('/'+$routeParams.lang+'/login');
         }
 
-        $scope.signUp = function (user) {
-            AuthService.signIn(user.name, user.surname, user.email, user.username, user.password)
+        $scope.signup = function (user) {
+            AuthService.signUp(user.username, user.password, user.email, nuser.name, user.surname)
 
                 .success(function(result){
-                    $rootScope.user = new UserDetailsModel(user.name, user.surname, user.email, user.username, user.password);
+                    $rootScope.user = new UserDetailsModel(result.user.name, result.user.surname, result.user.email, result.user.username, result.user.password);
                     $location.path('/'+$routeParams.lang+'/login');
                 })
 

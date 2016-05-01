@@ -100,3 +100,29 @@ search-directive {
   }
 
 }
+
+
+/*Footer*/
+.icon-footer {
+  height: 24px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.developed {
+  font-weight: 900;
+  font-size: 24px;
+}
+
+footer {
+  margin-top: 3em;
+}
+
+footer ul  {
+  list-style-type: none;
+}
+
+.madeBy {
+  padding-top: 1em;
+  padding-bottom: : 0.5em;
+}

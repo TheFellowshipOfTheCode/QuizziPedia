@@ -25,7 +25,7 @@ exports.updateSummary = function(req, res, next) {
 };
 
 exports.deleteUser = function(req, res, next) {
-
+    req.user.deleteUser()
 };
 
 

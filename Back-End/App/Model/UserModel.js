@@ -33,7 +33,7 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
-/*
+
 userSchema.methods.editUser=function(content,callback,errback){
     return User.update({username: this.username},content, callback);
 }
@@ -54,8 +54,8 @@ userSchema.methods.upLevel=function(callback){
 
 }
 
-userSchema.methods.deleteUser=function(callback,errback){
-
+userSchema.methods.deleteUser=function(callback){
+    return this.model('User').findByIdAndRemove(this._id , callback);
 }
 
 userSchema.methods.updateSummary=function(summaryId){
@@ -75,6 +75,6 @@ userSchema.methods.getSummaries=function(callback,errback){
 userSchema.statics.getUsers=function(searchword,callback,errback){
 
 }
-*/
+
 
 module.exports = mongoose.model('User', userSchema);

@@ -23,11 +23,11 @@ app.controller('LoginController', LoginController);
 LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', 'UserDetailsModel', 'ErrorInfoModel'];
 
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
- $scope.logIn = function(user){
-     if(!user.username || user.username.length<1 || !user.password || user.password.length<1) return;
-     AuthService.signIn(user.username, user.password)
+ $scope.logIn = function(email, password){
+     if(!email || email.length<1 || !password || password.length<1) return;
+     AuthService.signIn(email, password)
          .success(function(result){
-            $rootScope.user = new UserDetailsModel(result.user.name, result.user.surname);
+             $rootScope.user = new UserDetailsModel(result.user.name, result.user.surname);
              $location.path("/");
      })
          .error(function(response){

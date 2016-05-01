@@ -50,11 +50,8 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
     }
 
     function logout(username) {
-        var user = [];
-        item = {};
-        item["username"] = username;
-        user.push(item);
-        $http.post('/api/signout', user)
+        var userJSON = {username: username};
+        $http.post('/api/signout', userJSON)
             .then(function(data) {
                 return data;
             })
@@ -64,15 +61,8 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
     }
 
     function signup(username, password, email, name, surname) {
-        var user = [];
-        item = {};
-        item["username"] = username;
-        item["password"] = password;
-        item["email"] = email;
-        item["name"] = name;
-        item["surname"] = surname;
-        user.push(item);
-        $http.post('/api/signup', user)
+        var userJSON = {username: username, passwrod:password, email:email, name:name, surname: surname};
+        $http.post('/api/signup', userJSON)
             .then(function(data) {
                 return data;
             })
@@ -83,11 +73,8 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
     }
 
     function getNewPassword(email) {
-        var user = [];
-        item = {};
-        item["username"] = email;
-        user.push(item);
-        $http.post('/api/recovery', user)
+        var userJSON = {username: email};
+        $http.post('/api/recovery', userJSON)
             .then(function(data) {
                 return data;
             })

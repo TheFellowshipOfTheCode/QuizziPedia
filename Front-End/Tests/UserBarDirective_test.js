@@ -18,28 +18,30 @@
 describe("UserBarDirective's Unit test", function () {
   var $compile;
   var $scope;
+  var UserDetailsModel;
 
   beforeEach(function(){
     module("QuizziPedia");
     module('templates');
-    inject(function(_$compile_, _$rootScope_) {
+    inject(function(_$compile_, _$rootScope_,$injector) {
                $compile = _$compile_;
                $scope = _$rootScope_.$new();
+               UserDetailsModel = $injector.get('UserDetailsModel');
              });
   });
 
   it('should create botton with the correct label', inject(function() {
     var template = $compile("<user-bar-directive></user-bar-directive>")($scope);
-    var contents = template.find('button');
-    $scope.userName="Blundert";
+    $scope.userLogged = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "path", "aferrara", "stats" , "500", "pro", "01");
     $scope.$digest();
     var result = template.text();
     var check = false;
-    var n = result.search($scope.userName);
+    var n = result.search($scope.userLogged.getName()+" "+$scope.userLogged.getSurname());
     if(n != -1) {
       check = true;
     }
     expect(check).toBe(true);
+
   }));
 
 });

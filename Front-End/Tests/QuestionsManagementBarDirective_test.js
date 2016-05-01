@@ -30,7 +30,6 @@ describe("QuestionsManagementBarDirective's Unit test", function () {
 
   it('should create botton with the correct label', inject(function() {
     var template = $compile("<questions-management-bar-directive></questions-management-bar-directive>")($scope);
-    var contents = template.find('button');
     $scope.listOfKeys={"questionsManagement": "Gestione domande"};
     $scope.$digest();
     var result = template.text();

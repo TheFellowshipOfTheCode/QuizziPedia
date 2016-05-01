@@ -30,7 +30,6 @@ describe("SearchDirective's Unit test", function () {
 
   it('should create botton with the correct label', inject(function() {
     var template = $compile("<search-directive></search-directive>")($scope);
-    var contents = template.find('button');
     $scope.listOfKeys={"makeSearch": "Cerca"};
     $scope.$digest();
     var result = template.text();

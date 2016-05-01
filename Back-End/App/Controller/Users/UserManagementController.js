@@ -30,14 +30,17 @@ exports.deleteUser = function(req, res, next) {
 
 
 exports.getInfo = function(req, res, next) {
-    user.findOne({'username':req.user.username},'username name surname email userImg experienceLevel', function(info){
-        if (err) return handleError(err);
-        return res.send(info);
+    userId=req.params.userId.replace(':','');
+    user.findOne({'_id':userId},'name surname userImg experienceLevel', function(err,info){
+        if (err)
+            return handleError(err);
+        else
+            return res.send(info);
     })
 };
 
 exports.getSummary= function(req, res, next) {
-    summary.findOne({'_id':req.param('summaryId')},'quiz givenAnswers data mark', function(summaryJson){
+    summary.findOne({_id:req.param('summaryId')},'quiz givenAnswers data mark', function(summaryJson){
         var quizJson=summary.getQuiz(summaryJson.quiz)
         summaryJson.quizJson=quizJson;
         return res.send(summaryJson);

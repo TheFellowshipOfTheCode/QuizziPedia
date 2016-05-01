@@ -1,10 +1,11 @@
 
-var app = require('../Server.js');
+var app = require('../Server');;
 var request = require("supertest");
 var should = require("should")
 
-describe("signin", function() {
-    it("check authentication user", function (done) {
+describe("Autentication_Session Test", function() {
+
+    it("check signin", function (done) {
         var userJSON = {username:'fberton', password:'ciaociao'}
         request(app)
         .post('/api/:lang/signin')
@@ -17,35 +18,33 @@ describe("signin", function() {
                     res.body.message.should.equal("Login non effettuato")
                 else
                     res.body.user.username.should.equal("fberton")
+            done()
         });
-        done()
     });
-})
 
-describe("signup", function() {
-    it("check registration user", function (done) {
-        var userJSON={name:'franco', surname:'berton', email:'franco.berton@gmail.com', username:'fberton', password:'ciaociao'}
+    it("check signup", function (done) {
+        var userJSON={'name':'matteo', 'surname':'granzotto', 'email':'matteo.granzotto@gmail.com', 'username':'mgranzotto', 'password':'ciaociao'}
         request(app)
             .post('/api/:lang/signup')
             .send(userJSON)
-            .expect('Content-Type', /json/ )
             .expect(200)
+            .expect('Content-Type', /json/ )
             .end(function(err,res){
-                if (!err && res.status==200)
-                    if (res.body.success==false)
+                if (!err && res.status==200) {
+                    if (res.body.success == false) {
                         res.body.message.should.equal("Registrazione non effettuata")
-                    else
-                        res.body.user.username.should.equal("fberton")
+                    }
+                    else {
+                        res.body.user.username.should.equal("mgranzotto")
+                    }
+                }
+                done()
             });
-        done()
+
     });
-})
 
 
-
-
-describe("signout", function() {
-    it("check signout user", function (done) {
+    it("check signout", function (done) {
         request(app)
             .post('/api/:lang/signout')
             .send({})
@@ -54,13 +53,12 @@ describe("signout", function() {
             .end(function(err,res){
                 if (!err)
                     res.status.should.equal(200)
+                done()
             });
-        done()
-    });
-})
 
-describe("loggedin", function() {
-    it("check user loggedin ", function (done) {
+    });
+
+    it("check loggedin ", function (done) {
         request(app)
             .get('/api/:lang/loggedin')
             .expect('Content-Type', /json/ )
@@ -69,7 +67,7 @@ describe("loggedin", function() {
                 if (!err && res.status==200){
                     res.body.should.equal(0)
                 }
+                done()
             });
-        done()
     });
 })

@@ -41,4 +41,7 @@ module.exports = function(app){
     app.route('/api/:lang/loggedin')
         .get(user.session.loggedin);
 
+    app.route('/api/:lang/user/:userId')
+        .get(user.userManagement.getInfo)
+
 };

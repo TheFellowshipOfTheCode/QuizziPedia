@@ -4,8 +4,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-var User            = require('../App/Model/UserModel');
-
+var User        = require('../App/Model/UserModel.js');
 
 
 
@@ -24,7 +23,7 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        user.findById(id, function(err, user) {
+        User.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -43,10 +42,9 @@ module.exports = function(passport) {
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function() {
-
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.findOne({ 'username' :  username }, function(err, user) {
+                User.findOne({'username' : username}, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
@@ -91,8 +89,8 @@ module.exports = function(passport) {
             // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            //var UsernameOrEmail = (username.indexOf('@') === -1) ? {username: username} : {email: username};
-            User.findOne({ 'username' :  username } , function(err, user) {
+            //var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
+            User.findOne( {'username': username} , function(err, user) {
                 // if there are any errors, return the error before anything else
                 if (err)
                     return done(err);

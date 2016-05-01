@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-var Summaries=require('./SummaryModel');
+//var Summaries=require('./SummaryModel');
 var userSchema = new mongoose.Schema(
     {
         name: String,
@@ -33,7 +33,7 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
-
+/*
 userSchema.methods.editUser=function(content,callback,errback){
     return User.update({username: this.username},content, callback);
 }
@@ -75,6 +75,6 @@ userSchema.methods.getSummaries=function(callback,errback){
 userSchema.statics.getUsers=function(searchword,callback,errback){
 
 }
-
+*/
 
 module.exports = mongoose.model('User', userSchema);

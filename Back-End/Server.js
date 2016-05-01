@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var port     = process.env.PORT || 8080;  // set our port
 var config= require('./Config/Config');
+var server;
 start(config(app));
 function start(config){
 // start app ===============================================

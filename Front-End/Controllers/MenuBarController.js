@@ -21,12 +21,18 @@
 
 app.controller('MenuBarController',MenuBarController);
 
-MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService'];
-function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService) {
-  /*Temporary variables - delete them in future*/
-  var privilege = "";
+MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel'];
+function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel) {
+
   /* Scope variables and function*/
-  $rootScope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
+
+  $rootScope.userLogged = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "path", "aferrara", "stats" , "500", "pro", "01");
+
+
+  if($rootScope.userLogged != undefined) {
+    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+  }
+
   $scope.logIn = function () {
     $location.path('/'+$routeParams.lang+'/login');
   };
@@ -45,9 +51,13 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   $scope.goToQuizManagementPage = function () {
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
-  /*$scope.logOut = function () {
-    AuthService.logout(UserDetailsModel.getUsername());
-  };*/
+  $scope.logOut = function () {
+    // In futuro...
+    //AuthService.logout($rootScope.userLogged.getUsername());
+    $rootScope.userLogged = new UserDetailsModel("", "", "", "", "", "" , "", "", "");
+    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+    $location.path('/'+$routeParams.lang+'/home');
+  };
   /*Variable for animations*/
   $scope.toggleLeft = buildDelayedToggler('left');
   $scope.toggleRight = buildToggler('right');

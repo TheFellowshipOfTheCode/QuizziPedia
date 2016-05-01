@@ -15,16 +15,18 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-app.controller('AppController',AppController);
+app.controller('AppController', AppController);
 
 AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel'];
 function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
   var lang;
-  /*Temporary variables - delete them in future*/
-  var privilege = "";
 
-  /* Scope variables and function*/
-  $rootScope.directivesChoose= MenuBarModel.getDirectives(location,privilege);
+
+  checkUrl($location.path());
+
+  if($rootScope.userLogged != undefined) {
+    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+  }
   if($rootScope.systemLang === undefined) {
     $rootScope.systemLang=$routeParams.lang;
     lang = getLang($routeParams.lang);
@@ -38,4 +40,15 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
       return new LangModel(lang, data);
     });
   }
+
+  function checkUrl(path) {
+    var pathLocal = path+ '';
+    var variableOfPath= pathLocal.split("/");
+    var combination = "noAuth";
+    if((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1) && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() != "")
+    {
+      $location.path('/'+$routeParams.lang+'/home');
+    }
+  }
+
 }

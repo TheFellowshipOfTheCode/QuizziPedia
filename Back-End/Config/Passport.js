@@ -43,15 +43,19 @@ module.exports = function(passport) {
             process.nextTick(function() {
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.findOne({'username' : username, 'email' : req.param('email')}, function(err, user) {
+                User.findOne({$or: [{'username' : username}, {'email' : req.param('email')}]}, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
                     if (user) {
-                        if (user.username)
-                            return done(null, false, req.flash('signupMessage', 'Username già presente'));
-                        else
-                            return done(null, false, req.flash('signupMessage', 'Email già presente'));
+                        if (user.username == username && user.email == req.param('email'))
+                            return done(null, false, {message: 'Username e Email già presente'});
+                        else {
+                            if (user.email === req.param('email'))
+                                return done(null, false, {message: 'Email già presente'})
+                            else
+                                return done(null, false, {message: 'Username già presente'})
+                        }
                     } else {
 
                         // if there is no user with that email
@@ -72,9 +76,7 @@ module.exports = function(passport) {
                             return done(null, newUser);
                         });
                     }
-
                 });
-
             });
 
         }));
@@ -91,8 +93,8 @@ module.exports = function(passport) {
             // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            //var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
-            User.findOne( {'username': username} , function(err, user) {
+            var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
+            User.findOne( UsernameOrEmail , function(err, user) {
                 if (err)
                     return done(err);
 

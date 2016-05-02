@@ -43,13 +43,15 @@ module.exports = function(passport) {
             process.nextTick(function() {
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.findOne({'username' : username}, function(err, user) {
+                User.findOne({'username' : username, 'email' : req.param('email')}, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
                     if (user) {
-                        // if there are any errors, return the error
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        if (user.username)
+                            return done(null, false, req.flash('signupMessage', 'Username già presente'));
+                        else
+                            return done(null, false, req.flash('signupMessage', 'Email già presente'));
                     } else {
 
                         // if there is no user with that email

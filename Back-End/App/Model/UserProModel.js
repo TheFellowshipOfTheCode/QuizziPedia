@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var userProSchema = new mongoose.Schema(
     {
-        userID: {
-            type: Schema.Types.ObjectId,
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
     }

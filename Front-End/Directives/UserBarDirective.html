@@ -1,0 +1,23 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::UserBarDirective;
+* Description: directive contenente il componente che permette di effettuare
+* il redirect alla pagina di visualizzazione profilo. Permette di effettuare
+* il redirect alla pagina di visualizzazione profilo;
+* Relations with other classes:
+* + MenuBarDirective.
+* Creation data: 27-04-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: UserBarDirective_20160427;
+* Update data: 27-04-2016;
+* Description: Creata la classe e scritto il codice html;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<md-button class="md-button md-raised md-primary" ng-click="goToUserPage()"> {{userLogged.getName()}} {{userLogged.getSurname()}} </md-button>

@@ -1,0 +1,50 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::BreadcrumpBarDirective;
+* Description: rappresenta il menù, presente in ogni pagina dell’applicazione,
+* generato in base agli oggetti passati nello $scope isolato. Fornisce un
+* pulsante per ogni oggetto ricevuto come parametro, ogni pulsante viene
+* rappresentato con un’icona e con un testo. Al click di un pulsante viene
+* invocata la funzione ad esso associata;
+* Relations with other classes:
+* + Index;
+* + SearchDirective;
+* + LoginDirective;
+* + SignUpBarDirective;
+* + UserBarDirective;
+* + ProfileManagementBarDirective;
+* + QuestionsManagementBarDirective;
+* + LogoutBarDirective;
+* + QuestionnarireManagementBarDirective.
+* Creation data: 27-04-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: BreadcrumpBarDirective_20160427
+* Update data: 27-04-2016
+* Description: Creata la classe e scritto il codice html;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar _md">
+    <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="false" ng-click="toggleLeft()" hide-gt-sm="">
+      <md-icon md-svg-icon="Images/Icons/menu.svg"></md-icon>
+    </md-button>
+    <header class="nav-header logo-and-quizzipedia-mobile-home" hide-gt-sm="" ng-if="directivesChoose.searchDirective === undefined">
+      <a ng-href="/" class="logo" href="/">
+        <img class="logo-mobile-home" src="Images/Icons/logo.png" alt="" data-pin-nopin="true">
+        <h1 class="quizzipedia-mobile-home md-heading">QuizziPedia</h1>
+      </a>
+    </header>
+    <search-directive ng-if="directivesChoose.searchDirective != undefined"></search-directive>
+    <span flex=""></span>
+    <login-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
+    <sign-up-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
+    <logout-bar-directive class="hideMeOnMobile" ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
+  </div>
+</md-toolbar>

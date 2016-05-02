@@ -4,13 +4,11 @@
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-//var Users            = require('../app/models/Users');
-
+var User        = require('../App/Model/UserModel');
 
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
-
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
@@ -24,7 +22,7 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        Users.findById(id, function(err, user) {
+        User.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -43,27 +41,30 @@ module.exports = function(passport) {
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function() {
-
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                Users.findOne({ 'local.username' :  username }, function(err, user) {
-                    // if there are any errors, return the error
+                User.findOne({'username' : username, 'email' : req.param('email')}, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
                     if (user) {
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        if (user.username)
+                            return done(null, false, req.flash('signupMessage', 'Username già presente'));
+                        else
+                            return done(null, false, req.flash('signupMessage', 'Email già presente'));
                     } else {
+
                         // if there is no user with that email
                         // create the user
-                        var newUser            = new Users();
+                        var newUser            = new User();
 
                         // set the user's local credentials
-                        newUser.local.password 	  = newUser.generateHash(password)
-                        newUser.local.username    = username;
-                        newUser.local.email    	  = req.param('email');
-                        newUser.local.surname 	  = req.param('surname');
-                        newUser.local.name    	  = req.param('name');
+                        newUser.password 	  = newUser.generateHash(password)
+                        newUser.username      = username;
+                        newUser.email    	  = req.param('email');
+                        newUser.surname 	  = req.param('surname');
+                        newUser.name    	  = req.param('name');
+                        newUser.privilege     = 'normal'
                         // save the user
                         newUser.save(function(err) {
                             if (err)
@@ -86,11 +87,12 @@ module.exports = function(passport) {
     passport.use('local-signin', new LocalStrategy({
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) { // callback with email and password from our form
+        function(req, username, password, done) {
+            // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            Users.findOne({ 'local.username' :  username }, function(err, user) {
-                // if there are any errors, return the error before anything else
+            //var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
+            User.findOne( {'username': username} , function(err, user) {
                 if (err)
                     return done(err);
 

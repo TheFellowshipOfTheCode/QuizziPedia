@@ -1,23 +1,36 @@
 var mongoose = require('mongoose');
-var questionSchema = new mongoose.Schema({
+var Question = require('./QuestionModel');
+
+var quizSchema = new mongoose.Schema({
     title: String,
     author: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     questions:[{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Question'
     }],
     registeredUsers: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     activeUsers: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     correctAnswers: Number
 });
 
-module.exports = mongoose.model('Quiz', questionSchema);
+quizSchema.statics.getQuiz=function(quizId){
+    var quizJson={};
+    quizJson.quiz=this.model('Quiz').findOne({'_id':quizId});
+    Question.getQuestion(quizJson.quiz.questions,function(err,questions){
+        if (err) return handleError(err);
+        quizJson.questions=questions;
+        return quizJson;
+    });
+};
+
+module.exports = mongoose.model('Quiz', quizSchema);
+

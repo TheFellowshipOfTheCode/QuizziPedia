@@ -1,0 +1,78 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Views::LoginView;
+ * Description: view contenente le form necessarie per e ettuare il login.
+ * Contiene inoltre un link alla pagina di registrazione e uno alla pagina per
+ * il recupero della password;
+ * Relations with other classes:
+ * + LoginModelView;
+ * + LangModel.
+ * Creation data: 28-04-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: LoginView_20160502;
+ * Update data: 02-05-2016;
+ * Description: Cambiato da email a user il login;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: LoginView_20160501
+ * Update data: 01-05-2016
+ * Description: Uniformato lo stile;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: LoginView_20160428
+ * Update data: 28-04-2016
+ * Description: Creata la view;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<div layout="column" flex id="content" role="main" ng-controller="AppController">
+
+  <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+
+      <md-toolbar class="md-primary toolbar">
+        <div class="md-toolbar-tools">
+          <span flex="" class="flex"></span>
+          <h3 class="ng-binding">{{listOfKeys.logIn}}</h3>
+          <span flex="" class="flex"></span>
+        </div>
+      </md-toolbar>
+
+      <div layout="row" layout-align="center center" >
+        <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+          <md-input-container class="md-block">
+              <label>Username</label>
+              <input required="" type="" name="username" ng-model="user.username">
+          </md-input-container>
+          <md-input-container class="md-block">
+              <label>Password</label>
+              <input required="" type="password" name="password" ng-model="user.password" minlength="8">
+
+              <div ng-messages="userForm.password.$error" role="alert">
+                  <div ng-message-exp="['required', 'minlength']">
+                      La password deve avere almeno 8 caratteri.
+                  </div>
+              </div>
+          </md-input-container>
+          <md-input-container layout-align="center">
+              <div layout="column" layout-sm="column" layout-margin>
+                  <md-button ng-disabled="userForm.$invalid" ng-click="logIn(user.username, user.password)" class="md-raised md-primary auth-button">{{listOfKeys.logIn}}</md-button>
+                  <md-button class="md-primary" ng-href="" ng-click="goToPasswordForgotPage()" target="_blank">{{listOfKeys.passwordForgot}}</md-button>
+              </div>
+          </md-input-container>
+        </form>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</div>

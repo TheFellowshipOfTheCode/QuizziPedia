@@ -27,6 +27,9 @@ TheFellowshipOfTheCode durante il corso di Ingegneria del Software.
 
 E' necessario che sia installato [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/), [bower](http://bower.io/) e [MongoDB](https://www.mongodb.org/) (in alternativa si può usare un servizio come [MongoLab](https://mlab.com)).
 
+Inoltre l'ambiente di lavoro in cui verrà eseguito QuizziPedia dovrà aver installato Python 2.7.
+Per impostare l'ambiente vedere la [seguente](https://github.com/nodejs/node-gyp#installation) guida. 
+
 ### Installazione pacchetti
 Dopo essersi posizionati dentro la cartella di QuizziPedia lanciare i seguenti comandi:
 ```bash
@@ -77,7 +80,7 @@ group during the software engineering course.
   + [Documents](https://goo.gl/s2fpVe)
   + [Slides](https://goo.gl/he4oWb)
   + [Grade](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RP/TheFellowshipOfTheCode.pdf)  
-  
+
 - - -
 
 ## Install

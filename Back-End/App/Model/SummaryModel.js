@@ -1,11 +1,14 @@
 var mongoose = require('mongoose');
+var Quiz=require('./QuizModel');
+var Question=require ('./QuestionModel');
+
 var summarySchema = new mongoose.Schema({
     quiz: {
-        type:ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'Quiz'
     },
     givenAnswers:[{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'Question',
         answers: [{
             text: String,
@@ -34,5 +37,10 @@ var summarySchema = new mongoose.Schema({
     date: Date,
     mark: Number
 });
+
+summarySchema.statics.getQuiz=function(quizId){
+    return Quiz.getQuiz(quizId)
+}
+
 
 module.exports = mongoose.model('Summaries', summarySchema);

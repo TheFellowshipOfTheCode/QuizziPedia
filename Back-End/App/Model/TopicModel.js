@@ -4,7 +4,7 @@ var topicSchema = new mongoose.Schema({
     correctAnswers: Number,
     totalAnswers: Number,
     question: [{
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'Question'
     }]
 });

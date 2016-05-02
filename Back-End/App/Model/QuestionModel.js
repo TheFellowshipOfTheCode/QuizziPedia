@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var questionSchema = new mongoose.Schema({
     author: {
-        type:ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
     makeWith: String,
@@ -39,5 +39,9 @@ var questionSchema = new mongoose.Schema({
         correctAnswers: Number
     }]
 });
+
+questionSchema.methods.getQuestion=function(questionId,callback){
+    return Quiz.findOne({'_id':{$in:questionId}},callback);
+}
 
 module.exports = mongoose.model('Question', questionSchema);

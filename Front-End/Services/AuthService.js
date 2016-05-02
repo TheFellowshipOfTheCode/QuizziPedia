@@ -10,6 +10,11 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: AuthService_20160502
+ * Update data: 02-05-2016
+ * Description: Aggiornate funzioni signIn e signUp con gestione corretta promise.
+ * Autore: Alberto Ferrara
+ *-------------------------------------------------------------------------------
  * ID: AuthService_20160427
  * Update data: 27-04-2016
  * Description: Creato il file.
@@ -48,14 +53,11 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password};
         $http.post('/api/'+ lang + '/signin', userJSON)
             .then(function(data) {
-                console.log(data);
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
             }, function(error) {
             deferred.reject(error);
-            console.log("Incorrect login");
-            throw error;
-        })
+        });
         return deferred.promise;
     }
 
@@ -63,25 +65,16 @@ function AuthService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.get('/api/'+ lang + '/loggedin')
             .then(function(data) {
-                console.log(data);
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
             }
             ,function(error) {
                 deferred.reject(error);
-        })
+        });
         return deferred.promise;
     }
 
     function logout(username) {
-        /*var userJSON = {username: username};
-        $http.post('/api/signout', userJSON)
-            .then(function(data) {
-                return data;
-            })
-            .catch(function(){
-                return new ErrorInfoModel("2", "La logout non è andata a buon fine", "Logout non effettuata");
-            })*/
         $cookies.remove('logged');
     }
 
@@ -91,14 +84,14 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password, email: email, name: name, surname: surname};
         $http.post('/api/' + lang + '/signup', userJSON)
             .then(function(data) {
-                console.log(data);
                 deferred.resolve(data);
             }, function(error){
                 deferred.reject(error);
-            })
+            });
         return deferred.promise;
     }
 
+    //Da aggiornare
     function getNewPassword(email) {
         var userJSON = {username: email};
         $http.post('/api/recovery', userJSON)

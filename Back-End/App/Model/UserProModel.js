@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var userProSchema = new mongoose.Schema(
     {
         userId: {
-            type: moongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
     }

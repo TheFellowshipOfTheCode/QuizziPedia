@@ -36,16 +36,20 @@ function AuthService($http, $cookies, $q) {
         return $cookies.get('logged');
     }
 
-    function signIn(username, password) {
+    function signIn(username, password, lang) {
         if(!username || !password) return; //errore?
         var deferred = $q.defer();
-        var userJSON = {user: username, pass: password};
-        $http.post('/api/signin', userJSON)
-            .success(function(data) {
+        var userJSON = {username: username, password: password};
+        $http.post('/api/'+ lang + '/signin', userJSON)
+            .then(function(data) {
+                console.log(data);
                 deferred.resolve(data);
-            }).error(function(msg) {
-            deferred.reject(msg);
-        });
+            })
+            , function(error) {
+            deferred.reject(error);
+            console.log("Incorrect login");
+            throw error;
+        };
         return deferred.promise;
     }
 

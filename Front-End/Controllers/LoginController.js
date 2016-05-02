@@ -24,17 +24,27 @@ LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService'
 
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
     $scope.logIn = function(email, password){
+        console.log(email);
+        console.log(password);
         if(!email || email.length<1 || !password || password.length<1) return;
-        AuthService.signIn(email, password)
-            .success(function(result){
-                $rootScope.user = new UserDetailsModel(result.user.name, result.user.surname);
-                $location.path("/");
-            })
-            .error(function(response){
-                console.error('Error', response.status, response.data);
-                $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+        AuthService.signIn(email, password, $routeParams.lang)
+            .then(function(result){
+                console.log(result.data.user);
+                if(result.data.user != undefined) {
+                    $rootScope.userLogged = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, "", result.data.user.username, "" , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
+                    console.log($rootScope.userLogged);
+                    $location.path('/' + $routeParams.lang + '/home');
+                }
+                else{
+                    $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
+                    //console.log($rootScope.error.getMessage());
+                }
 
             })
+            ,function (err){
+                console.error('Error', response.status, response.data);
+                $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+            }
 
     }
     $scope.goToPasswordForgotPage = function () {

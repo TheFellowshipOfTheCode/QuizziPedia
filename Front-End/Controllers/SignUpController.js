@@ -53,8 +53,19 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
 
                     $location.path('/'+$routeParams.lang+'/login');
                     }
-                },function (err){
+                },function(err){
                     console.log(err);
+                    if(err.data.code == 2) {
+                        alert = $mdDialog.alert()
+                            .title("C'è stato un errore con la registrazione")
+                            .content("L'username che hai usato esiste già!")
+                            .ok('Chiudi');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
+                    }
                     $rootScope.error = new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
                         "effettuata");
                 })

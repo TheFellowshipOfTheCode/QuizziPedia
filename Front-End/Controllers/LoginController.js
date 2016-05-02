@@ -40,11 +40,11 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
                     console.log($rootScope.error.getMessage());
                 }
 
-            })
+            }
             ,function (err){
                 console.error('Entra' + err);
                 $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
-            }
+            })
 
     }
     $scope.goToPasswordForgotPage = function () {

@@ -51,12 +51,11 @@ function AuthService($http, $cookies, $q) {
                 console.log(data);
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
-            })
-            , function(error) {
+            }, function(error) {
             deferred.reject(error);
             console.log("Incorrect login");
             throw error;
-        };
+        })
         return deferred.promise;
     }
 
@@ -67,10 +66,10 @@ function AuthService($http, $cookies, $q) {
                 console.log(data);
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
-            })
+            }
             ,function(error) {
                 deferred.reject(error);
-        };
+        })
         return deferred.promise;
     }
 
@@ -94,12 +93,9 @@ function AuthService($http, $cookies, $q) {
             .then(function(data) {
                 console.log(data);
                 deferred.resolve(data);
-            })
-            ,function(error){
+            }, function(error){
                 deferred.reject(error);
-                console.log("Incorrect signup");
-                throw error;
-            };
+            })
         return deferred.promise;
     }
 

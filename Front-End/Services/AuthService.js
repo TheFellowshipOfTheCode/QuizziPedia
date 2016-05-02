@@ -92,9 +92,9 @@ function AuthService($http, $cookies, $q) {
     }
 
     //Da aggiornare
-    function getNewPassword(email) {
+    function getNewPassword(email, lang) {
         var userJSON = {username: email};
-        $http.post('/api/recovery', userJSON)
+        $http.post('/api/' + lang + '/recovery', userJSON)
             .then(function(data) {
                 return data;
             })

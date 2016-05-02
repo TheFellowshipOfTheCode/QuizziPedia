@@ -36,7 +36,7 @@ function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, A
     }
 
     $scope.passwordForgot = function (user) {
-        AuthService.getNewPassword(user.email)
+        AuthService.getNewPassword(user.email, $routeParams.lang)
 
             .success(function(result){
                 $location.path('/'+$routeParams.lang+'/login');

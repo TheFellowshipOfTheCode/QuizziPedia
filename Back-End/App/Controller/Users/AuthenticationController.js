@@ -22,6 +22,8 @@
  *******************************************************************************/
 
 var passport = require("passport");
+var errormodel = require("../../Model/ErrorModel");
+
 
 exports.signout = function(req, res, next) {
     req.logOut();
@@ -38,7 +40,7 @@ exports.signin = function(req, res, next) {
         }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
-            return res.send({success:true, user:user});
+            return res.send({user:user});
         });
     })(req, res, next);
 }

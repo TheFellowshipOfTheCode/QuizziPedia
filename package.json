@@ -2,6 +2,9 @@
   "name": "QuizziPedia",
   "description": "QuizziPedia is a web app developed by TheFellowShipOfTheCode group during the software engineering course. 2015-2016 - UNIPD",
   "version": "0.0.1",
+  "engines": {
+    "node": "5.5.0"
+  },
   "main": "Back-End/Server.js",
   "scripts": {
     "start": "node Back-End/Server.js",

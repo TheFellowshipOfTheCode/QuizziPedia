@@ -17,9 +17,9 @@
 *******************************************************************************/
 app.controller('SignUpController', SignUpController);
 
-SignUpController.$inject = ['$scope','$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'AuthService'];
+SignUpController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', '$timeout','$mdSidenav', 'UserDetailsModel', 'ErrorInfoModel', 'MenuBarModel'];
 
-function SignUpController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel) {
+function SignUpController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, $timeout, $mdSidenav, UserDetailsModel, ErrorInfoModel, MenuBarModel) {
         $scope.user = {
             name: '',
             surname: '',
@@ -34,17 +34,15 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
         };
 
         $scope.signUp = function(user) {
-            
+            console.log(user);
             if(user.password !== user.passwordCheck) return;
             
             AuthService.signUp(user.username, user.password, user.email, user.name, user.surname, $routeParams.lang)
-
                 .then(function(result){
-                    console.log(result.user);
-                    $rootScope.user = new UserDetailsModel(result.user.name, result.user.surname, result.user.email, result.user.username, result.user.password);
+                    $rootScope.user = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, "", result.data.user.username, "" , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
+                    console.log($rootScope.user);
                     $location.path('/'+$routeParams.lang+'/login');
                 })
-
                 ,function (err){
                     $rootScope.error = new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
                         "effettuata");

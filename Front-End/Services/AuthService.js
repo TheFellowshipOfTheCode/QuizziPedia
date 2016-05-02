@@ -70,12 +70,13 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password, email: email, name: name, surname: surname};
         $http.post('/api/' + lang + '/signup', userJSON)
             .then(function(data) {
+                console.log(data);
                 deferred.resolve(data);
             })
             ,function(error){
-            deferred.reject(error);
-            new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
-                    "effettuata");
+                deferred.reject(error);
+                console.log("Incorrect signup");
+                throw error;
             };
         return deferred.promise;
     }

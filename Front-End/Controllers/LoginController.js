@@ -26,6 +26,7 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
     $scope.logIn = function(email, password){
         console.log(email);
         console.log(password);
+        
         if(!email || email.length<1 || !password || password.length<1) return;
         AuthService.signIn(email, password, $routeParams.lang)
             .then(function(result){

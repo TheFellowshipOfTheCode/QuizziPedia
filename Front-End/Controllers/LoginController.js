@@ -23,9 +23,8 @@ app.controller('LoginController', LoginController);
 LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', 'UserDetailsModel', 'ErrorInfoModel'];
 
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
+
     $scope.logIn = function(email, password){
-        console.log(email);
-        console.log(password);
         
         if(!email || email.length<1 || !password || password.length<1) return;
         AuthService.signIn(email, password, $routeParams.lang)
@@ -38,12 +37,12 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
                 }
                 else{
                     $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
-                    //console.log($rootScope.error.getMessage());
+                    console.log($rootScope.error.getMessage());
                 }
 
             })
             ,function (err){
-                //console.error('Error', response.status, response.data);
+                console.error('Entra' + err);
                 $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
             }
 
@@ -51,6 +50,10 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
     $scope.goToPasswordForgotPage = function () {
         $location.path('/'+$routeParams.lang+'/passwordforgot');
     };
+
+
+
+    
 }
 
 

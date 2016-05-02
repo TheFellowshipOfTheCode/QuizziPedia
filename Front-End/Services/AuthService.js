@@ -68,10 +68,8 @@ function AuthService($http, $cookies, $q) {
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
             })
-            , function(error) {
-            deferred.reject(error);
-            console.log("Incorrect login");
-            throw error;
+            ,function(error) {
+                deferred.reject(error);
         };
         return deferred.promise;
     }

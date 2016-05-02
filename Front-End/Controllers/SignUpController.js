@@ -39,13 +39,26 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
             
             AuthService.signUp(user.username, user.password, user.email, user.name, user.surname, $routeParams.lang)
                 .then(function(result){
-                    $rootScope.user = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, "", result.data.user.username, "" , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
-                    console.log($rootScope.user);
+
+                    if(result.data.code == 3){
+                    alert = $mdDialog.alert()
+                        .title('Ciao ' + user.name + " " + user.surname)
+                        .content('La registrazione è avvenuta con successo!')
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show( alert )
+                        .finally(function() {
+                            alert = undefined;
+                        });
+
                     $location.path('/'+$routeParams.lang+'/login');
-                })
-                ,function (err){
+                    }
+                },function (err){
+                    console.log(err);
                     $rootScope.error = new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
                         "effettuata");
-                }
+                })
         };
+
+
 }

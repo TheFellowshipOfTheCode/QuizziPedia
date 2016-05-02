@@ -26,7 +26,7 @@ function AuthService($http, $cookies, $q) {
         isLogged: isLogged,
         signIn: signIn,
         logout: logout,
-        signup: signup,
+        signUp: signUp,
         getNewPassword: getNewPassword
     };
 
@@ -64,16 +64,20 @@ function AuthService($http, $cookies, $q) {
             })
     }
 
-    function signup(username, password, email, name, surname) {
-        var userJSON = {username: username, passwrod:password, email:email, name:name, surname: surname};
-        $http.post('/api/signup', userJSON)
+    function signUp(username, password, email, name, surname, lang) {
+        if(!username || !password || !email || !name || !surname || !lang) return;
+        var deferred = $q.defer();
+        var userJSON = {username: username, password: password, email: email, name: name, surname: surname};
+        $http.post('/api/' + lang + '/signup', userJSON)
             .then(function(data) {
-                return data;
+                deferred.resolve(data);
             })
-            .catch(function(){
-                return new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
+            ,function(error){
+            deferred.reject(error);
+            new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
                     "effettuata");
-            })
+            };
+        return deferred.promise;
     }
 
     function getNewPassword(email) {

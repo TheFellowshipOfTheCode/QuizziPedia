@@ -42,7 +42,7 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
 
             })
             ,function (err){
-                console.error('Error', response.status, response.data);
+                //console.error('Error', response.status, response.data);
                 $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
             }
 

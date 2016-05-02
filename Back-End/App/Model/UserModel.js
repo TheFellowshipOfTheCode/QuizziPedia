@@ -19,7 +19,8 @@ var userSchema = new mongoose.Schema(
         quizSummaries:[{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Summaries'
-        }]
+        }],
+        privilege: String,
     }
 );
 

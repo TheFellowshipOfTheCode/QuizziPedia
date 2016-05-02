@@ -5,7 +5,6 @@ var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
 var User        = require('../App/Model/UserModel');
-var UserProModel     = require('../App/Model/UserProModel');
 
 
 // expose this function to our app using module.exports
@@ -63,6 +62,7 @@ module.exports = function(passport) {
                         newUser.email    	  = req.param('email');
                         newUser.surname 	  = req.param('surname');
                         newUser.name    	  = req.param('name');
+                        newUser.privilege     = 'normal'
                         // save the user
                         newUser.save(function(err) {
                             if (err)
@@ -91,12 +91,6 @@ module.exports = function(passport) {
             // we are checking to see if the user trying to login already exists
             //var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
             User.findOne( {'username': username} , function(err, user) {
-                UserProModel.findOne({'userId': user._id } , function(err, found ) {
-                    if (found)
-                        user.privilege="pro";
-                    else
-                        user.privilege="normal";
-                })
                 if (err)
                     return done(err);
 

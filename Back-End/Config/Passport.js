@@ -62,7 +62,7 @@ module.exports = function(passport) {
                         newUser.email    	  = req.param('email');
                         newUser.surname 	  = req.param('surname');
                         newUser.name    	  = req.param('name');
-                        newUser.privilege     = req.param('privilege')
+                        newUser.privilege     = 'normal'
                         // save the user
                         newUser.save(function(err) {
                             if (err)

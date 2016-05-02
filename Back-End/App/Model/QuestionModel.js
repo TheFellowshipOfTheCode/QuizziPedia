@@ -40,8 +40,15 @@ var questionSchema = new mongoose.Schema({
     }]
 });
 
+questionSchema.statics.createQuestion=function(question, callback){
+    var quest = new this();
+    quest.makeWith=question.makeWith;
+    quest.language=question.language;
+    return quest.save(callback);
+};
+
 questionSchema.methods.getQuestion=function(questionId,callback){
     return Quiz.findOne({'_id':{$in:questionId}},callback);
-}
+};
 
 module.exports = mongoose.model('Question', questionSchema);

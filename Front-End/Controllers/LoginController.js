@@ -12,6 +12,11 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: LoginController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Scritto il gestore degli errori;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
  * ID: LoginController_20160428
  * Update data: 28-04-2016
  * Description: Creato il controller;
@@ -23,34 +28,34 @@ app.controller('LoginController', LoginController);
 LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', 'UserDetailsModel', 'ErrorInfoModel'];
 
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
-    $scope.logIn = function(email, password){
-        console.log(email);
-        console.log(password);
-        if(!email || email.length<1 || !password || password.length<1) return;
-        AuthService.signIn(email, password, $routeParams.lang)
+
+    $scope.logIn = function(username, password){
+
+        if(!username || username.length<1 || !password || password.length<1) return;
+        AuthService.signIn(username, password, $routeParams.lang)
             .then(function(result){
-                console.log(result.data.user);
                 if(result.data.user != undefined) {
                     $rootScope.userLogged = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, "", result.data.user.username, "" , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
-                    console.log($rootScope.userLogged);
                     $location.path('/' + $routeParams.lang + '/home');
                 }
-                else{
-                    $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
-                    //console.log($rootScope.error.getMessage());
-                }
-
-            })
-            ,function (err){
-                console.error('Error', response.status, response.data);
-                $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
-            }
-
+            } ,function (err){
+                $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+                alert = $mdDialog.alert()
+                    .title($scope.error.getTitle())
+                    .content($scope.error.getCode()+": "+$scope.error.getMessage())
+                    .ok('Ok');
+                $mdDialog
+                    .show( alert )
+                    .finally(function() {
+                        alert = undefined;
+                    });
+            });
     }
     $scope.goToPasswordForgotPage = function () {
         $location.path('/'+$routeParams.lang+'/passwordforgot');
     };
+
+
+
+
 }
-
-
-

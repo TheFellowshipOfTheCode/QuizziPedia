@@ -9,6 +9,11 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: PasswordForgotController_20160502;
+* Update data: 02-05-2016;
+* Description: Riscritta la classe con le promesse;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
 * ID: PasswordForgotController_20160427
 * Update data: 27-04-2016
 * Description: creazione
@@ -31,17 +36,16 @@ function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, A
     }
 
     $scope.passwordForgot = function (user) {
-        AuthService.getNewPassword(user.email)
+        AuthService.getNewPassword(user.email, $routeParams.lang)
 
             .success(function(result){
                 $location.path('/'+$routeParams.lang+'/login');
             })
 
             .error(function(response){
-                console.error('Error', response.status, response.data);
                 $rootScope.error = new ErrorInfoModel("4", "Il recupero password non è andato a buon fine", "Recupero password " +
                     "non effettuato");
 
-            })
+            });
     }
 }

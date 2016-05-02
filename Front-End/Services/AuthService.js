@@ -10,6 +10,11 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: AuthService_20160502
+ * Update data: 02-05-2016
+ * Description: Aggiornate funzioni signIn e signUp con gestione corretta promise.
+ * Autore: Alberto Ferrara
+ *-------------------------------------------------------------------------------
  * ID: AuthService_20160427
  * Update data: 27-04-2016
  * Description: Creato il file.
@@ -26,8 +31,10 @@ function AuthService($http, $cookies, $q) {
         isLogged: isLogged,
         signIn: signIn,
         logout: logout,
-        signup: signup,
-        getNewPassword: getNewPassword
+        signUp: signUp,
+        getNewPassword: getNewPassword,
+        giveMe: giveMe,
+        resetCookies: resetCookies
     };
 
     return methods;
@@ -36,49 +43,58 @@ function AuthService($http, $cookies, $q) {
         return $cookies.get('logged');
     }
 
+    function resetCookies() {
+        $cookies.remove('logged');
+    }
+
     function signIn(username, password, lang) {
         if(!username || !password) return; //errore?
         var deferred = $q.defer();
         var userJSON = {username: username, password: password};
         $http.post('/api/'+ lang + '/signin', userJSON)
             .then(function(data) {
-                console.log(data);
+                $cookies.putObject('logged', true );
                 deferred.resolve(data);
-            })
-            , function(error) {
+            }, function(error) {
             deferred.reject(error);
-            console.log("Incorrect login");
-            throw error;
-        };
+        });
+        return deferred.promise;
+    }
+
+    function giveMe(lang) {
+        var deferred = $q.defer();
+        $http.get('/api/'+ lang + '/loggedin')
+            .then(function(data) {
+                $cookies.putObject('logged', true );
+                deferred.resolve(data);
+            }
+            ,function(error) {
+                deferred.reject(error);
+        });
         return deferred.promise;
     }
 
     function logout(username) {
-        var userJSON = {username: username};
-        $http.post('/api/signout', userJSON)
-            .then(function(data) {
-                return data;
-            })
-            .catch(function(){
-                return new ErrorInfoModel("2", "La logout non è andata a buon fine", "Logout non effettuata");
-            })
+        $cookies.remove('logged');
     }
 
-    function signup(username, password, email, name, surname) {
-        var userJSON = {username: username, passwrod:password, email:email, name:name, surname: surname};
-        $http.post('/api/signup', userJSON)
+    function signUp(username, password, email, name, surname, lang) {
+        if(!username || !password || !email || !name || !surname || !lang) return;
+        var deferred = $q.defer();
+        var userJSON = {username: username, password: password, email: email, name: name, surname: surname};
+        $http.post('/api/' + lang + '/signup', userJSON)
             .then(function(data) {
-                return data;
-            })
-            .catch(function(){
-                return new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
-                    "effettuata");
-            })
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
     }
 
-    function getNewPassword(email) {
+    //Da aggiornare
+    function getNewPassword(email, lang) {
         var userJSON = {username: email};
-        $http.post('/api/recovery', userJSON)
+        $http.post('/api/' + lang + '/recovery', userJSON)
             .then(function(data) {
                 return data;
             })

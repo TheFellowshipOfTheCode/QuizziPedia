@@ -13,7 +13,7 @@
  * ID: ErrorInfoModel_20160429;
  * Update data: 29-04-2016;
  * Description: Scritto il test, superato;
- * Author: Alberto ferrara.
+ * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 

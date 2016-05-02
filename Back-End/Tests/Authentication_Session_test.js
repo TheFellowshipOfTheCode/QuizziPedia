@@ -1,7 +1,7 @@
 
-var app = require('../Server');;
+var app = require('../Server');
 var request = require("supertest");
-var should = require("should")
+var should = require("should");
 var agent = request.agent(app);
 
     describe("Signup Test", function() {

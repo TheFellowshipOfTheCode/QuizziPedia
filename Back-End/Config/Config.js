@@ -49,7 +49,7 @@ module.exports = function(app) {
     require('./Passport')(passport); // pass passport for configuration
     // view engine setup
     app.set('views','../../Front-End/Views');
-    app.set('view engine', 'ejs');
+    app.set('view engine', 'html');
     // set up our express application
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)

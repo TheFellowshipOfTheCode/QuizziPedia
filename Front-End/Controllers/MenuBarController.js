@@ -26,11 +26,13 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
 
   /* Scope variables and function*/
 
-  $rootScope.userLogged = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "path", "aferrara", "stats" , "500", "pro", "01");
-
+  
 
   if($rootScope.userLogged != undefined) {
     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+  }
+  else {
+    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, "");
   }
 
   $scope.logIn = function () {
@@ -53,9 +55,9 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.logOut = function () {
     // In futuro...
-    //AuthService.logout($rootScope.userLogged.getUsername());
-    $rootScope.userLogged = new UserDetailsModel("", "", "", "", "", "" , "", "", "");
-    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+    AuthService.logout($rootScope.userLogged.getUsername());
+    delete $rootScope.userLogged;
+    $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
     $location.path('/'+$routeParams.lang+'/home');
   };
   /*Variable for animations*/

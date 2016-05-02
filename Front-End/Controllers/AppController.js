@@ -21,6 +21,36 @@ AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$rout
 function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
   var lang;
 
+  console.log(AuthService.isLogged());
+
+  if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
+    console.log("ho un cookie ma non l'utente");
+      console.log("scarico l'utente");
+      AuthService.giveMe($routeParams.lang)
+          .then(function(result){
+            console.log(result);
+              if(result.data != undefined) {
+                  $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
+                  console.log($rootScope.userLogged);
+                  $location.path('/' + $routeParams.lang + '/home');
+                  $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+              }
+              else{
+                  $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
+                  AuthService.resetCookies();
+                  console.log($rootScope.error);
+              }
+
+          })
+          ,function (err){
+              //console.error('Error', response.status, response.data);
+              $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+          }
+
+  }
+  else {
+
+  }
 
   checkUrl($location.path());
 

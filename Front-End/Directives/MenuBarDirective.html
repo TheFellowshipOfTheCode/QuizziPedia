@@ -39,7 +39,7 @@
     </a>
   </header>
   <md-content flex="" role="navigation" class="menu _md flex">
-    <user-bar-directive ng-if="userLogged.getPrivilege() != '' "></user-bar-directive>
+    <user-bar-directive ng-if="userLogged != undefined"></user-bar-directive>
     <profile-management-bar-directive ng-if="directivesChoose.profileManagementBarDirective != undefined"></profile-management-bar-directive>
     <questionnaire-management-bar-directive  ng-if="directivesChoose.questionnaireManagementBarDirective != undefined"></questionnaire-management-bar-directive>
     <questions-management-bar-directive  ng-if="directivesChoose.questionsManagementBarDirective != undefined"></questions-management-bar-directive>

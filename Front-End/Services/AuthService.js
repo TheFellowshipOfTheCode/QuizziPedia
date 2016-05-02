@@ -27,13 +27,19 @@ function AuthService($http, $cookies, $q) {
         signIn: signIn,
         logout: logout,
         signUp: signUp,
-        getNewPassword: getNewPassword
+        getNewPassword: getNewPassword,
+        giveMe: giveMe,
+        resetCookies: resetCookies
     };
 
     return methods;
 
     function isLogged() {
         return $cookies.get('logged');
+    }
+
+    function resetCookies() {
+        $cookies.remove('logged');
     }
 
     function signIn(username, password, lang) {
@@ -43,6 +49,23 @@ function AuthService($http, $cookies, $q) {
         $http.post('/api/'+ lang + '/signin', userJSON)
             .then(function(data) {
                 console.log(data);
+                $cookies.putObject('logged', true );
+                deferred.resolve(data);
+            })
+            , function(error) {
+            deferred.reject(error);
+            console.log("Incorrect login");
+            throw error;
+        };
+        return deferred.promise;
+    }
+
+    function giveMe(lang) {
+        var deferred = $q.defer();
+        $http.get('/api/'+ lang + '/loggedin')
+            .then(function(data) {
+                console.log(data);
+                $cookies.putObject('logged', true );
                 deferred.resolve(data);
             })
             , function(error) {
@@ -54,14 +77,15 @@ function AuthService($http, $cookies, $q) {
     }
 
     function logout(username) {
-        var userJSON = {username: username};
+        /*var userJSON = {username: username};
         $http.post('/api/signout', userJSON)
             .then(function(data) {
                 return data;
             })
             .catch(function(){
                 return new ErrorInfoModel("2", "La logout non è andata a buon fine", "Logout non effettuata");
-            })
+            })*/
+        $cookies.remove('logged');
     }
 
     function signUp(username, password, email, name, surname, lang) {

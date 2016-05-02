@@ -1,0 +1,55 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::FooterDirective;
+ * Description: directive contenente i componenti grafici del footer dell'applicazione;
+ *
+ * Relations with other classes:
+ * + Index
+ *
+ * Creation data: 28-04-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: FooterDirective_20160501
+ * Update data: 01-05-2016
+ * Description: Scritta la direttiva;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: FooterDirective_20160428
+ * Update data: 28-04-2016
+ * Description: Creata la direttiva;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+
+<footer class="md-whiteframe-z2">
+    <div class="container-fluid">
+        <div layout="row" layout-sm="column" layout-align="center">
+            <div class="col-md-6">
+                <h3 class="ng-binding">QuizziPedia</h3>
+                <p class="text-lighten-4">{{listOfKeys.footerDescription}}</p>
+            </div>
+            <div class="col-md-6">
+                <h3 class="ng-binding">{{listOfKeys.footerLinks}}</h3>
+                <ul>
+                    <li><a href="http://thefellowshipofthecode.github.io">The Fellowship Of The Code</a></li>
+                    <li><a href="https://github.com/TheFellowshipOfTheCode">GitHub</a></li>
+                    <li><a href="http://www.math.unipd.it/~tullio/IS-1/2015/">UNIPD</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class=" madeBy text-center md-whiteframe-1dp">
+        <div class="container-fluid">
+          <span class="developed" aria-label="{{listOfKeys.developed}} "> &lt;/&gt; </span>
+          {{listOfKeys.with}}
+          <img class="icon-footer" src="Images/Icons/heart.png" aria-label="{{listOfKeys.heart}} "/>
+          {{listOfKeys.by}}
+          <a href="http://thefellowshipofthecode.github.io"> <img class="icon-footer" src="Images/Icons/tfotc.png" aria-label="The Fellowship Of The Code/"></a>
+        </div>
+    </div>
+</footer>

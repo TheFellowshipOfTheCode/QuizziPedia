@@ -1,0 +1,50 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::MenuBarDirective;
+* Description: rappresenta il menù, presente in ogni pagina dell’applicazione,
+* generato in base agli oggetti passati nello $scope isolato. Fornisce un
+* pulsante per ogni oggetto ricevuto come parametro, ogni pulsante viene
+* rappresentato con un’icona e con un testo. Al click di un pulsante viene
+* invocata la funzione ad esso associata;
+* Relations with other classes:
+* + Index;
+* + SearchDirective;
+* + LoginDirective;
+* + SignUpBarDirective;
+* + UserBarDirective;
+* + ProfileManagementBarDirective;
+* + QuestionsManagementBarDirective;
+* + LogoutBarDirective;
+* + QuestionnarireManagementBarDirective.
+* Creation data: 27-04-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: MenuBarDirective_20160427
+* Update data: 27-04-2016
+* Description: Creata la classe e scritto il codice html;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print ng-isolate-scope _md _md-closed _md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
+  <header class="nav-header">
+    <a ng-href="/" class="logo" href="/">
+      <img src="Images/Icons/logo.png" alt="" data-pin-nopin="true">
+      <h1 class="md-heading">QuizziPedia</h1>
+    </a>
+  </header>
+  <md-content flex="" role="navigation" class="menu _md flex">
+    <user-bar-directive ng-if="userLogged.getPrivilege() != '' "></user-bar-directive>
+    <profile-management-bar-directive ng-if="directivesChoose.profileManagementBarDirective != undefined"></profile-management-bar-directive>
+    <questionnaire-management-bar-directive  ng-if="directivesChoose.questionnaireManagementBarDirective != undefined"></questionnaire-management-bar-directive>
+    <questions-management-bar-directive  ng-if="directivesChoose.questionsManagementBarDirective != undefined"></questions-management-bar-directive>
+    <login-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
+    <sign-up-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
+    <logout-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
+  </md-content>
+</md-sidenav>

@@ -12,6 +12,11 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: MenuBarController_20160502;
+* Update data: 02-05-2016;
+* Description: Pulito il codice;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
 * ID: MenuBarController_20160427;
 * Update data: 27-04-2016;
 * Description: Creata la classe;
@@ -25,12 +30,11 @@ MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$
 function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel) {
 
   /* Scope variables and function*/
-
-  $rootScope.userLogged = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "path", "aferrara", "stats" , "500", "pro", "01");
-
-
   if($rootScope.userLogged != undefined) {
     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+  }
+  else {
+    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, "");
   }
 
   $scope.logIn = function () {
@@ -52,12 +56,24 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.logOut = function () {
-    // In futuro...
-    //AuthService.logout($rootScope.userLogged.getUsername());
-    $rootScope.userLogged = new UserDetailsModel("", "", "", "", "", "" , "", "", "");
-    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
-    $location.path('/'+$routeParams.lang+'/home');
+    alert = $mdDialog.confirm()
+        .title($rootScope.listOfKeys.logOut)
+        .content($rootScope.listOfKeys.areYouSure)
+        .ok($rootScope.listOfKeys.yesLogoutMe)
+        .cancel($rootScope.listOfKeys.dontLogoutMe);
+    $mdDialog
+        .show( alert )
+        .finally(function() {
+            alert = undefined;
+        })
+        .then(function() {
+          AuthService.logout($rootScope.userLogged.getUsername());
+          delete $rootScope.userLogged;
+          $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
+          $location.path('/'+$routeParams.lang+'/home');
+        });
   };
+
   /*Variable for animations*/
   $scope.toggleLeft = buildDelayedToggler('left');
   $scope.toggleRight = buildToggler('right');

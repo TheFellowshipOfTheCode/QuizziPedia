@@ -13,6 +13,11 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: LoginView_20160502;
+ * Update data: 02-05-2016;
+ * Description: Cambiato da email a user il login;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
  * ID: LoginView_20160501
  * Update data: 01-05-2016
  * Description: Uniformato lo stile;
@@ -43,13 +48,8 @@
       <div layout="row" layout-align="center center" >
         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
           <md-input-container class="md-block">
-              <label>Email</label>
-              <input required="" type="" name="email" ng-model="user.email"  maxlength="100">
-              <div ng-messages="userForm.email.$error" role="alert">
-                  <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                      Email non valida.
-                  </div>
-              </div>
+              <label>Username</label>
+              <input required="" type="" name="username" ng-model="user.username">
           </md-input-container>
           <md-input-container class="md-block">
               <label>Password</label>
@@ -63,7 +63,7 @@
           </md-input-container>
           <md-input-container layout-align="center">
               <div layout="column" layout-sm="column" layout-margin>
-                  <md-button ng-disabled="userForm.$invalid" ng-click="logIn(user.email, user.password)" class="md-raised md-primary auth-button">{{listOfKeys.logIn}}</md-button>
+                  <md-button ng-disabled="userForm.$invalid" ng-click="logIn(user.username, user.password)" class="md-raised md-primary auth-button">{{listOfKeys.logIn}}</md-button>
                   <md-button class="md-primary" ng-href="" ng-click="goToPasswordForgotPage()" target="_blank">{{listOfKeys.passwordForgot}}</md-button>
               </div>
           </md-input-container>

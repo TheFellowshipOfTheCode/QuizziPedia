@@ -12,6 +12,11 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: MenuBarController_20160502;
+* Update data: 02-05-2016;
+* Description: Pulito il codice;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
 * ID: MenuBarController_20160427;
 * Update data: 27-04-2016;
 * Description: Creata la classe;
@@ -25,9 +30,6 @@ MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$
 function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel) {
 
   /* Scope variables and function*/
-
-
-
   if($rootScope.userLogged != undefined) {
     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
   }
@@ -70,10 +72,8 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
           $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
           $location.path('/'+$routeParams.lang+'/home');
         });
-
-    // In futuro...
-
   };
+
   /*Variable for animations*/
   $scope.toggleLeft = buildDelayedToggler('left');
   $scope.toggleRight = buildToggler('right');

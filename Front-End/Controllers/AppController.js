@@ -8,7 +8,12 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: HomeView_20160430;
+* ID: AppController_20160502;
+* Update data: 02-05-2016;
+* Description: Scritta la gestione dell'autorizzazione dell'utente;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: AppController_20160430;
 * Update data: 30-04-2016;
 * Description: Scritta la classe;
 * Author: Matteo Granzotto.
@@ -20,41 +25,29 @@ app.controller('AppController', AppController);
 AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel'];
 function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
   var lang;
-
-  console.log(AuthService.isLogged());
-
   if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
-    console.log("ho un cookie ma non l'utente");
-      console.log("scarico l'utente");
       AuthService.giveMe($routeParams.lang)
           .then(function(result){
-            console.log(result);
               if(result.data != undefined) {
                   $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
-                  console.log($rootScope.userLogged);
                   $location.path('/' + $routeParams.lang + '/home');
                   $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
               }
               else{
                   $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
                   AuthService.resetCookies();
-                  console.log($rootScope.error);
               }
-
-          })
-          ,function (err){
-              //console.error('Error', response.status, response.data);
+          } ,function (err){
               $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
-          }
-
+          });
   }
-
 
   checkUrl($location.path());
 
   if($rootScope.userLogged != undefined) {
     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
   }
+
   if($rootScope.systemLang === undefined) {
     $rootScope.systemLang=$routeParams.lang;
     lang = getLang($routeParams.lang);
@@ -62,6 +55,7 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
       $rootScope.listOfKeys= data.getListOfKeys();
     });
   }
+
   function getLang (lang) {
     var setOfKeywords = LangService.getKeywords(lang);
     return setOfKeywords.then(function(data){

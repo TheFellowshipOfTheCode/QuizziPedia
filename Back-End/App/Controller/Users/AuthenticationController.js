@@ -36,7 +36,7 @@ exports.signin = function(req, res, next) {
             return next(err);
         }
         if (!user) {
-            return res.status(500).json({"code":1, "title":"no login", "message":"Login non effettuato"});
+            return res.status(500).json({code:1, title:"no login", message:"Login non effettuato"});
         }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
@@ -47,15 +47,15 @@ exports.signin = function(req, res, next) {
 
 exports.signup = function(req, res, next) {
     passport.authenticate('local-signup', function (err, user, info) {
-        if (err) {
+        if (err)
             return next(err);
-        }
-        if (!user) {
-            return res.send({ success : false, message : 'Registrazione non effettuata' });
-        }
-        req.logIn(user, function(err) {
+        if (!user)
+            return res.status(500).json({code:2, title:"no registration", message:'Registrazione non effettuata'});
+        else
+            return res.status(200).json({code:3, title:"ok registration", message:'Registrazione effettuata'})
+        /*req.logIn(user, function(err) {
             if (err) { return next(err); }
             return res.send({success:true, user:user});
-        });
+        });*/
     })(req, res, next);
 };

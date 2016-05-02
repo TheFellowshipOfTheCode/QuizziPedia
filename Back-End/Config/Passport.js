@@ -91,7 +91,7 @@ module.exports = function(passport) {
             // we are checking to see if the user trying to login already exists
             //var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
             User.findOne( {'username': username} , function(err, user) {
-                UserProModel.findOne({'userId': user_id } , function(err, found ) {
+                UserProModel.findOne({'userId': user._id } , function(err, found ) {
                     if (found)
                         user.privilege="pro";
                     else

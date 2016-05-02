@@ -28,13 +28,13 @@ exports.signout = function(req, res, next) {
     res.sendStatus(200);
 };
 
-exports.signin = function(req, res, next) {
+exports.signin = function(req, res, next) { 
     passport.authenticate('local-signin', function (err, user, info) {
         if (err) {
             return next(err);
         }
         if (!user) {
-            return res.send({ success : false, message : 'Login non effettuato' });
+            return res.status(500).json({"code":1, "title":"no login", "message":"Login non effettuato"});
         }
         req.logIn(user, function(err) {
             if (err) { return next(err); }

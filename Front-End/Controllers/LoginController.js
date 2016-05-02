@@ -25,7 +25,7 @@ LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService'
 function LoginController($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, UserDetailsModel, ErrorInfoModel){
 
     $scope.logIn = function(email, password){
-        
+
         if(!email || email.length<1 || !password || password.length<1) return;
         AuthService.signIn(email, password, $routeParams.lang)
             .then(function(result){
@@ -36,15 +36,21 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
                     $location.path('/' + $routeParams.lang + '/home');
                 }
                 else{
-                    $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
-                    console.log($rootScope.error.getMessage());
+
                 }
 
-            }
-            ,function (err){
-                console.error('Entra' + err);
-                $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
-            })
+            } ,function (err){
+                $rootScope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+                alert = $mdDialog.alert()
+                    .title($rootScope.error.getTitle())
+                    .content($rootScope.error.getCode()+": "+$rootScope.error.getMessage())
+                    .ok('Ok');
+                $mdDialog
+                    .show( alert )
+                    .finally(function() {
+                        alert = undefined;
+                    });
+            });
 
     }
     $scope.goToPasswordForgotPage = function () {
@@ -53,8 +59,5 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
 
 
 
-    
+
 }
-
-
-

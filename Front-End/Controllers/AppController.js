@@ -48,9 +48,7 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
           }
 
   }
-  else {
 
-  }
 
   checkUrl($location.path());
 

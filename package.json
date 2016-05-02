@@ -8,6 +8,8 @@
   "main": "Back-End/Server.js",
   "scripts": {
     "start": "node Back-End/Server.js",
+    "preinstall": "npm prune --verbose",
+    "postinstall": "bower prune && bower install --verbose",
     "pretest": "",
     "test": "karma start karma.conf.js",
     "test-single-run": "",

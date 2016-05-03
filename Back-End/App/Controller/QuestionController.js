@@ -22,7 +22,7 @@ exports.createQuestion = function(req, res) {
     Question.createQuestion(req.user._id,req.body, function(err, question){
         console.log(err)
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
-        else return res.send(question);
+        else return res.send.json({code:90, title: "Ok Domanda", message: "Domanda creata correttamente"});
     })
 };
 

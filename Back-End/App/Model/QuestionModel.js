@@ -40,8 +40,9 @@ var questionSchema = new mongoose.Schema({
     }]
 });
 
-questionSchema.statics.getQuestion=function(questionId,callback){
-    return  model('Question').findOne({'_id':{$in:questionId}},callback);
+questionSchema.statics.getQuestion=function(questionId,callback) {
+    return model('Question').findOne({'_id': {$in: questionId}}, callback);
+}
 questionSchema.statics.createQuestion=function(question, callback){
     var quest = new this();
     quest.makeWith=question.makeWith;

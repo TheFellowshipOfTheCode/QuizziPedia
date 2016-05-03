@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Question = require('./QuestionModel')
+var Question = require('./QuestionModel');
+var User = require('./UserModel');
 
 
 var quizSchema = new mongoose.Schema({
@@ -26,18 +27,33 @@ var quizSchema = new mongoose.Schema({
 
 
 quizSchema.statics.createQuiz = function(info, callback) {
-    Quiz.save({ title: info.title, correctAnswers: info.correctAnswers });
+    var quiz = new this();
+    quiz.title = info.title;
+    quiz.correctAnswers = info.correctAnswers;
+    return quiz.save(callback);
+}
+
+quizSchema.statics.editQuiz = function(info, callback) {
+
+}
+
+quizSchema.statics.addUser = function(userId, callback) {
+
 }
 
 
-quizSchema.methods.getQuiz=function(quizId){
-    var quizJson={};
-    quizJson.quiz=Quiz.findOne({'_id':quizId});
-    Question.getQuestion(quizJson.quiz.questions,function(err,questions){
+quizSchema.statics.getQuiz=function(quizId, callback){
+    var quizJson = new this();
+    quizJson = Quiz.findOne({'_id':quizId}, callback);
+    console.log(quizJson);
+    return quizJson;
+
+
+    /*Question.getQuestion(quizJson.quiz.questions,function(err,questions){
         if (err) return handleError(err);
         quizJson.questions=questions;
         return quizJson;
-    });
+    });*/
 
 }
 

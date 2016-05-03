@@ -12,35 +12,49 @@ exports.createQuiz = function (req, res) {
     })
 }
 
-
+exports.getQuiz = function (req, res, next) {
+    /*quiz.getQuiz(req.body._id, function(err, quiz) {
+        if (err) return res.status(500).json({
+            code: 323,
+            title: 'quiz-getting-error',
+            message: 'byebyebye'
+        });
+        else return res.send(quiz)
+    })*/
+}
 
 
 exports.editQuiz = function (req, res, next) {
-    var quizUpdated = {
-        title: req.title,
-        author: req.author,
-        questions: req.questions,
-        registeredUsers: req.registeredUsers,
-        activeUsers: req.activeUsers,
-        correctAnswers: req.correctAnswers
-    }
-    quizSchema.update({ _id: req.params._id }, quizUpdated, function(err) {
-        if (err) {
-            return handleError(err);
-        }
-        else {
-            return res.send(quizUpdated)
-        }
-    })
-
+    /*quiz.editQuiz(req.body, function(err, quiz) {
+        if (err) return res.status(500).json({
+            code: 322,
+            title: 'quiz-editing-error',
+            message: 'byebye'
+        });
+        else return res.send(quiz);
+    })*/
 }
 
 exports.addUser = function (req, res, next) {
-
+    quiz.addUser(req.body._id, function(err, user) {
+        if (err) return res.status(500).json({
+            code: 331,
+            title: 'addUser-error',
+            message: 'error occurred while adding user'
+        });
+        else return res.send(user)
+    })
 }
 
 exports.removeUser = function (req, res, next) {
-
+    quiz.removeUser(req.body._id, function(err, user) {
+        if (err) return res.status(500).json({
+            code: 331,
+            title: 'removeUser-error',
+            message: 'error occurred while removing user'
+        });
+        else return res.send(user)
+    })
 }
 
 exports.addActiveUser = function (req, res, next) {
@@ -59,6 +73,3 @@ exports.getPersonalQuizzes = function (req, res, next) {
 
 }
 
-exports.getQuiz = function (req, res, next) {
-
-}

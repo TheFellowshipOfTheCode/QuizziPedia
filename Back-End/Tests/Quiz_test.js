@@ -4,7 +4,7 @@ var should = require("should");
 var agent = request.agent(app);
 
 
-/*describe("Signin Test", function () {
+describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
@@ -18,7 +18,7 @@ var agent = request.agent(app);
                 done()
             });
     });
-})*/
+})
 
 
 describe("Quiz tests", function() {
@@ -26,12 +26,13 @@ describe("Quiz tests", function() {
         agent
             .post('/api/:lang/user/quiz')
             .send({
-                title: "questionario pazzesco",
+                title: "questionario top",
                 correctAnswers: 13
             })
             .end(function(err, res) {
                 if (!err && res.status == 200) {
-                    res.body.title.should.equal("questionario pazzesco");
+                    res.body.title.should.equal("questionario top");
+                    res.body.correctAnswers.should.equal(13);
                 }
                 else {
                     res.status.should.equal(500);
@@ -39,4 +40,6 @@ describe("Quiz tests", function() {
                 done();
             })
     })
+
+
 })

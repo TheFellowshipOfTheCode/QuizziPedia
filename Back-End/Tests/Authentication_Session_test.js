@@ -9,8 +9,8 @@ var agent = request.agent(app);
             var userJSON = {
                 'name': 'matteo',
                 'surname': 'granzotto',
-                'email': 'matteo.granzotto@gmail.com',
-                'username': 'mgranzotto',
+                'email': 'atteo.granzotto@gmail.com',
+                'username': 'anzotto',
                 'password': 'ciaociao'
             }
             request(app)
@@ -19,12 +19,10 @@ var agent = request.agent(app);
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end(function (err, res) {
-                    if (!err && res.status == 200) {
-                        if (res.body.success == false)
-                            res.body.message.should.equal("Registrazione non effettuata")
-                        else
-                            res.body.user.username.should.equal("mgranzotto")
-                    }
+                    if (!err && res.status == 200) 
+                        res.body.message.should.equal("Registrazione effettuata")
+                    else
+                        res.body.message.should.equal("Registrazione non effettuata")
                     done()
                 });
         })
@@ -34,13 +32,12 @@ var agent = request.agent(app);
         it("should signin and return a user object", function (done) {
             agent
                 .post('/api/:lang/signin')
-                .send({username: 'fberton', password: 'ciaociao'})
+                .send({username: 'alberto.ferrara@gmail.com', password: 'ciaociao'})
                 .end(function (err, res) {
                     if (!err && res.status == 200)
-                        if (res.body.success == false)
-                            res.body.message.should.equal("Login non effettuato")
-                        else
-                            res.body.user.username.should.equal("fberton")
+                        res.body.user.username.should.equal("aferrara")
+                    else
+                        res.status.should.equal(500)
                     done()
                 });
         });

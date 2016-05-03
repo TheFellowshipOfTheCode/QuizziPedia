@@ -38,14 +38,30 @@ quizSchema.statics.editQuiz = function(info, callback) {
 }
 
 quizSchema.statics.addUser = function(userId, callback) {
+    params.quiz.registeredUsers.push(userId);
+    params.quiz.save(callback);
+}
 
+quizSchema.statics.removeUser = function(userId, callback) {
+    params.quiz.registeredUsers.remove(userId);
+    params.quiz.save(callback);
+}
+
+quizSchema.statics.addActiveUser = function(userId, callback) {
+    params.quiz.activeUsers.push(userId);
+    params.quiz.save(callback);
+}
+
+quizSchema.statics.getPersonalQuizzes = function(author, callback) {
+    var jsonQuizzes = new this();
+    jsonQuizzes = Quiz.find({'author': author}, callback);
+    return jsonQuizzes;
 }
 
 
 quizSchema.statics.getQuiz=function(quizId, callback){
     var quizJson = new this();
     quizJson = Quiz.findOne({'_id':quizId}, callback);
-    console.log(quizJson);
     return quizJson;
 
 

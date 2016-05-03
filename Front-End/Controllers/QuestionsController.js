@@ -69,24 +69,25 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         });
 
         $rootScope.$on("isItAnswered", function(event, args) { //SI
-          console.log("catturo2");
-          console.log($scope.objAnswer);
+          console.log("cattreo2");
           var ok= true;
-          $scope.objAnswer.forEach(
-            function(elem) {
-              console.log(elem);
-              if(elem == null) {
-                ok=false;
-              }
-            }
-          );
 
-          console.log(ok);
+           if(Object.keys($scope.objAnswer).length != Object.keys($scope.arrayDomande).length) {
+             ok = false;
+           }
 
-          $rootScope.$emit("doYouWannaGoHome",ok);
-
+          var answer = $scope.objAnswer;
+          $rootScope.$emit("doYouWannaGoOn",ok);
         });
 
         console.log($scope.variabile);
+
+
+        /**/
+
+
+
+
+
 
 };

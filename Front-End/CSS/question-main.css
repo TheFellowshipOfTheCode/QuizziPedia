@@ -40,3 +40,20 @@ md-checkbox.md-checked ._md-icon {
 .button-answer {
     background-color: rgb(255,202,40) !important;
   }
+
+.piece-of-question{
+  margin: auto;
+  max-width: 50%;
+}
+
+
+li {
+  margin: 1em;
+  list-style: none;
+}
+
+.zone {
+  min-width: 8em;
+  min-height: 3em;
+  display: inline-block;
+}

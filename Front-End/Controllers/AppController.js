@@ -28,8 +28,7 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
   if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
       AuthService.giveMe($routeParams.lang)
           .then(function(result){
-              if(result.data != undefined) {
-                  console.log("Entro qui");
+              if(result.data != false) {
                   $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
                   $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
               }

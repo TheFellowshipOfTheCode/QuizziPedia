@@ -23,23 +23,26 @@ function TrueFalseAnswerDirective() {
   return {
     restrict: 'E',
     templateUrl: 'Directives/TrueFalseAnswerDirective.html',
-    link: link
+    link: trueFalseAnswerDirectiveFunction
   };
 };
 
-link.$inject = ['$scope'];
+trueFalseAnswerDirectiveFunction.$inject = ['$scope'];
 
-function link ($scope) {
+function trueFalseAnswerDirectiveFunction ($scope) {
 
   $scope.isActiveTrue = false;
   $scope.isActiveFalse = false;
 
   $scope.toggleActive = function(check) {
+    console.log("entro");
     if(check) {
+      console.log("a");
       $scope.isActiveTrue = true;
       $scope.isActiveFalse = false;
     }
     else {
+      console.log("b");
       $scope.isActiveTrue = false;
       $scope.isActiveFalse = true;
     }

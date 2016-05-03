@@ -22,49 +22,26 @@ TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '
 function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel ) {
   $scope.training= {questionNumber:1};
   $scope.newQuestion= function() {
-    $scope.training.questionNumber++;
-    console.log($rootScope.objAnswer);
-    $rootScope.$emit("isItAnswered","ciao");
-    }
+    $rootScope.$emit("isItAnswered");
+  };
 
-  /*  $scope.canIgoOn= function(objAnswer) {
+    $rootScope.$on("doYouWannaGoOn", function(event, args) { //SI
+      if(!args) {
+        alert = $mdDialog.confirm()
+            .title($rootScope.listOfKeys.attention)
+            .content($rootScope.listOfKeys.areYouSureToGoOn)
+            .ok($rootScope.listOfKeys.yesLogoutMe)
+            .cancel($rootScope.listOfKeys.dontLogoutMe);
+        $mdDialog
+            .show( alert )
+            .then(function() {
+              $scope.training.questionNumber++;
+              $rootScope.$emit("loadNewQuestion");
 
-
-      alert = $mdDialog.confirm()
-          .title($rootScope.listOfKeys.logOut)
-          .content($rootScope.listOfKeys.areYouSure)
-          .ok($rootScope.listOfKeys.yesLogoutMe)
-          .cancel($rootScope.listOfKeys.dontLogoutMe);
-      $mdDialog
-          .show( alert )
-          .finally(function() {
-              alert = undefined;
-          })
-          .then(function() {
-            $scope.training.questionNumber++;
-            $rootScope.$emit("loadNewQuestion","ciao");
-
-          });
-
+            });
       }
-*/
-      $rootScope.$on("doYouWannaGoHome", function(event, args) { //SI
-        if(!args) {
-          alert = $mdDialog.confirm()
-              .title($rootScope.listOfKeys.logOut)
-              .content($rootScope.listOfKeys.areYouSure)
-              .ok($rootScope.listOfKeys.yesLogoutMe)
-              .cancel($rootScope.listOfKeys.dontLogoutMe);
-          $mdDialog
-              .show( alert )
-              .finally(function() {
-                  alert = undefined;
-              })
-              .then(function() {
-                $scope.training.questionNumber++;
-                $rootScope.$emit("loadNewQuestion","ciao");
-
-              });
-        }
-      });
+      else {
+        $rootScope.$emit("loadNewQuestion");
+      }
+    });
 };

@@ -19,18 +19,16 @@
 -->
 
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
-    <div class="md-padding">
+    <div class=" md-padding">
       <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
         <span class="text-center questionText">{{d.questionText}} </span>
       </div>
       <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
         <div ng-repeat="a in d.answer">
-          <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <span flex="" class="flex"></span>
+          <div class="layout-row piece-of-question" layout="row" >
           <md-checkbox class="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.typeDomanda,save($parent.$index) )'>
             {{a.text}}
           </md-checkbox>
-          <span flex="" class="flex"></span>
         </div>
         </div>
       </div>

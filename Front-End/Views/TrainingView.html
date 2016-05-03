@@ -23,7 +23,9 @@
                 <div ng-repeat="d in arrayDomande" ng-switch on="d.typeDomanda">
                   <div ng-switch-when="veroFalso"> <True-false-answer-directive></True-false-answer-directive> </div>
                   <div ng-switch-when="rispostaMultipla"> <Multiple-choice-answer-directive></Multiple-choice-answer-directive> </div>
+                  <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
                 </div>
+
 
                 <br/>
                 <br/>

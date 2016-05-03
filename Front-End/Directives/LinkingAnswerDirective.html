@@ -1,0 +1,64 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+    <div class=" md-padding">
+      <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
+        <span class="text-center questionText">{{d.questionText}} </span>
+      </div>
+      <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
+
+        {{d.answer}}
+
+    <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+
+      <div class="layout-row" layout="row" layout-sm="row" >
+        <ul>
+          <li ng-repeat="a in d.answer">
+              <button  ng-if="a.text1 != undefined" class="md-primary md-raised md-button" type="button" name="button">
+                {{a.text1}}
+              </button>
+              <button  ng-if="a.url1 != undefined" class="md-primary md-raised md-button " type="button" name="button">
+                {{a.url1}}
+              </button>
+          </li>
+        </ul>
+        <ul>
+          <li ng-repeat="item in list1">
+            <div class="zone md-whiteframe-z1" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop :'prova1' }">
+              <div class="md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.text2}}</div>
+              <div class="md-primary md-raised md-button" ng-show="item.url2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.url2}}</div>
+            </div>
+          </li>
+        </ul>
+        </div>
+        <ul>
+          <li ng-repeat="item in list2 " ng-model='list2'>
+            <div  class="md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2">{{item.text2}}</div>
+            <div class="md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2">{{item.url2}}</div>
+          </li>
+        </ul>
+      </div>
+
+
+
+      </div>
+    </div>
+</section>

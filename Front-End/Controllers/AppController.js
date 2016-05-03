@@ -29,8 +29,8 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
       AuthService.giveMe($routeParams.lang)
           .then(function(result){
               if(result.data != undefined) {
+                  console.log("Entro qui");
                   $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
-                  $location.path('/' + $routeParams.lang + '/home');
                   $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
               }
               else{
@@ -69,7 +69,8 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
     var combination = "noAuth";
     if((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1) && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() != "")
     {
-      $location.path('/'+$routeParams.lang+'/home');
+      console.log("Redirect to home");
+      //$location.path('/'+$routeParams.lang+'/home');
     }
   }
 

@@ -1,0 +1,21 @@
+.training {
+  width: 90%;
+  margin: auto;
+}
+
+.sezione {
+  margin-top: 3em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.toolbar {
+  background-color: rgb(255,202,40) !important;
+}
+
+ .md-padding {
+   min-height: 6em;
+   overflow: auto;
+ }

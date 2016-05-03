@@ -1,0 +1,73 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<!--
+<div>
+  <div class="">
+    <span>Testo della domanda #{{$index}}: </span>{{d.questionText}}
+  </div>
+  <div ng-repeat="a in d.answer">
+    {{a.text}}
+    <input type="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.typeDomanda,
+    save($parent.$index) )
+    '>
+  </div>
+
+</div>
+-->
+
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+    <div class="md-padding">
+      <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+        <span class="text-center questionText">{{d.questionText}} </span>
+      </div>
+      <div class="button-go-to-training layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+        <div ng-repeat="a in d.answer">
+          <md-checkbox class="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.typeDomanda,save($parent.$index) )'>
+            {{a.text}}
+          </md-checkbox>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!--
+<div layout="row" layout-wrap="">
+    <div flex="100" layout="column">
+      <div>
+
+        <fieldset class="demo-fieldset">
+          <legend class="demo-legend">Using <md-checkbox> with the 'indeterminate' attribute </legend>
+          <div layout="row" layout-wrap="" flex="">
+          <div flex-xs="" flex="50">
+            <md-checkbox aria-label="Select All" ng-checked="isChecked()" md-indeterminate="isIndeterminate()" ng-click="toggleAll()">
+              <span ng-if="isChecked()">Un-</span>Select All
+            </md-checkbox>
+          </div>
+            <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in items">
+              <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+               {{ item }}
+              </md-checkbox>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+  -->

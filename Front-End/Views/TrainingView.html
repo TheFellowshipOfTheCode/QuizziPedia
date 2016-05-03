@@ -1,0 +1,41 @@
+
+<div ng-controller="AppController">
+
+  <div class=" training layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+      <md-toolbar class="md-primary toolbar">
+        <div class="md-toolbar-tools">
+          <span flex="" class="flex"></span>
+          <h3 class="ng-binding">{{listOfKeys.questionNumberLang}} {{training.questionNumber}} {{listOfKeys.ofLang}} {{training.numberOfQuestion}} </h3>
+          <span flex="" class="flex"></span>
+        </div>
+      </md-toolbar>
+        <div class="md-padding">
+
+          <div ng-controller="QuestionsController">
+
+                {{pezzoDomanda}}
+                <div ng-repeat="d in arrayDomande" ng-switch on="d.typeDomanda">
+                  <div ng-switch-when="veroFalso"> <True-false-answer-directive></True-false-answer-directive> </div>
+                  <div ng-switch-when="rispostaMultipla"> <Multiple-choice-answer-directive></Multiple-choice-answer-directive> </div>
+                </div>
+
+                <button type="button" name="button" ng-click="closeAnswer(objAswer)">Rispondi</button>
+                <br/>
+                <br/>
+                <br/>
+                {{objAnswer}} <br/>
+
+          </div>
+
+          {{scope}}
+
+          <button type="button" name="button" ng-click="newQuestion()">Nuova domanda</button>
+
+        </div>
+    </section>
+
+  </div>
+
+</div>

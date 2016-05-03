@@ -88,6 +88,34 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
+      .when('/:lang/training/:number', {
+        templateUrl: '/Views/TrainingView.html',
+        controller:"TrainingController",
+        css: [
+            {
+              href: 'css/training-main.css'
+            },
+            {
+              href: 'css/training-medium.css',
+              media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+            },
+            {
+              href: 'css/training-small.css',
+              media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+            },
+            {
+              href: 'css/question-main.css'
+            },
+            {
+              href: 'css/question-medium.css',
+              media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+            },
+            {
+              href: 'css/question-small.css',
+              media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+            }
+          ]
+      })
       .otherwise({
         redirectTo: '/it/home'
       });

@@ -19,8 +19,15 @@
 var Question = require('../Model/QuestionModel');
 
 exports.createQuestion = function(req, res) {
-    Question.createQuestion(req.body, function(err, question){
-        if(err) return res.status(500).json({code:88, title: "questionError", message: "ciao"});
+    Question.createQuestion(req.user._id,req.body, function(err, question){
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
+        else return res.send(question);
+    })
+};
+
+exports.editQuestion = function(req, res) {
+    Question.editQuestion(req.body, function(err, question){
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
         else return res.send(question);
     })
 };

@@ -39,7 +39,7 @@ var questionSchema = new mongoose.Schema({
         correctAnswers: Number
     }]
 });
-
+/*
 questionSchema.statics.getQuestion=function(questionId,callback){
     return  model('Question').findOne({'_id':{$in:questionId}},callback);
 questionSchema.statics.createQuestion=function(question, callback){
@@ -51,6 +51,6 @@ questionSchema.statics.createQuestion=function(question, callback){
 
 questionSchema.methods.getQuestion=function(questionId,callback){
     return Quiz.findOne({'_id':{$in:questionId}},callback);
-};
+};*/
 
 module.exports = mongoose.model('Question', questionSchema);

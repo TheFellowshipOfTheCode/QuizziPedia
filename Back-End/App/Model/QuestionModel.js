@@ -7,9 +7,9 @@ var questionSchema = new mongoose.Schema({
     makeWith: String,
     language: String,
     question: [{
-        type: String,
-        questionText: String,
-        image: String,
+        type: {type: String},
+        questionText: {type: String},
+        image: {type: String},
         answers: [{
             text: String,
             url: String,
@@ -33,11 +33,11 @@ var questionSchema = new mongoose.Schema({
                 wordNumber: Number
             }
         }],
-        keywords: [String],
-        level: Number,
-        totalAnswers: Number,
-        correctAnswers: Number
-    }]
+    }],
+    keywords: [String],
+    level: Number,
+    totalAnswers: Number,
+    correctAnswers: Number
 });
 
 questionSchema.statics.getQuestion=function(questionId,callback) {
@@ -45,12 +45,52 @@ questionSchema.statics.getQuestion=function(questionId,callback) {
 }
 
 questionSchema.statics.createQuestion=function(author,question, callback){
-    var quest = new this();
-    quest.author=author;
-    quest.makeWith=question.makeWith;
-    quest.language=question.language;
-    quest.question=question.question;
-    return quest.save(callback);
+    question.author = author
+    var new_question = new this(question);
+    /*new_question.author=author;
+    new_question.makeWith=question.makeWith;
+    new_question.language=question.language;
+    new_question.question.answers = [{}];
+    for (var i in question.question) {
+        var questionarray = question.question[i];
+        new_question.question.push({
+            type: questionarray['type'],
+            questionText: questionarray['questionText'],
+            image: questionarray['image']
+        });
+        console.log(new_question)
+        for (var j in questionarray['answers']) {
+         var answersarray = questionarray['answers'][j]
+         new_question.question.answers.push({
+             text: answersarray['text'],
+             url: answersarray['url'],
+             attributesForTForMultiple: {isItRight: answersarray.attributesForTForMultiple['isItRight'] || ""},
+             //attributesForSorting: {position: (answersarray.attributesForSorting['position'] || "")},
+             attributesForLinking: {
+                 text1: answersarray.attributesForLinking['text1'],
+                 text2: answersarray.attributesForLinking['text2'],
+                 url1: answersarray.attributesForLinking['url1'],
+                 url2: answersarray.attributesForLinking['url2'],
+             },
+             attributesForClickableArea: {
+                 x: answersarray.attributesForClickableArea['x'],
+                 y: answersarray.attributesForClickableArea['y'],
+             },
+             attributesForEmptySpaces: {
+                 wordNumber: answersarray.attributesForEmptySpaces['wordNumber'],
+             },
+         })
+            new_question.question.answers.push(answersarray);
+         }
+        //console.log(new_question.question)
+
+
+
+        //
+        //  console.log(new_question.question)
+        //}
+    }*/
+    new_question.save(callback);
 };
 
 questionSchema.statics.editQuestion=function(question,callback){

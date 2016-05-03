@@ -50,9 +50,8 @@ exports.signup = function(req, res, next) {
         if (err)
             return next(err);
         if (!user)
-        {   console.log(info);
-            return res.status(500).json({code:2, title:"no registration", message:'Registrazione non effettuata'});}
+            return res.status(500).json(info);
         else
-            return res.status(200).json({code:3, title:"ok registration", message:'Registrazione effettuata'})
+            return res.status(200).json(info)
     })(req, res, next);
 };

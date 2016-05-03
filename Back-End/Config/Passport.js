@@ -49,12 +49,12 @@ module.exports = function(passport) {
                     // check to see if theres already a user with that email
                     if (user) {
                         if (user.username == username && user.email == req.param('email'))
-                            return done(null, false, {message: 'Username e Email già presente'});
+                            return done(null, false, {code:4,title:'Errore Registrazione',message: 'Username e Email già presente'});
                         else {
                             if (user.email === req.param('email'))
-                                return done(null, false, {message: 'Email già presente'})
+                                return done(null, false, {code:3, title:'Errore Registrazione', message: 'Email già presente'})
                             else
-                                return done(null, false, {message: 'Username già presente'})
+                                return done(null, false, {code:2, title:'Errore Registrazione', message: 'Username già presente'})
                         }
                     } else {
 

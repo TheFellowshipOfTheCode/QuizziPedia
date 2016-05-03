@@ -21,7 +21,7 @@ app.directive('TopicKeywordsDirective', TopicKeywordsDirective);
 function TopicKeywordsDirective() {
     var directive = {
         restrict: 'E',
-        templateUrl: 'Directives/TopicKeywordsDirective.html'
+        templateUrl: '../Directives/TopicKeywordsDirective.html'
     };
     return directive;
 }

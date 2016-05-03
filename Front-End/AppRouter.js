@@ -88,7 +88,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
-        .when('/:lang/CreateQuestionnaireView', {
+        .when('/:lang/createquestionnaireview', {
             templateUrl: '/Views/CreateQuestionnaireView.html',
             controller:"CreateQuestionnaireController",
             css: [

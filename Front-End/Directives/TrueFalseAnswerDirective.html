@@ -21,15 +21,15 @@
 
   <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
       <div class="md-padding">
-        <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+        <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
           <span class="text-center questionText">{{d.answer[0].text}} </span>
         </div>
-        <div class="button-go-to-training layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
-          <button  ng-class="{true: 'button-answer'}[isActiveTrue]" ng-click="toggleActive()" class="  md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.typeDomanda,{"answerGiven": [true]})'>
-            Vero
+        <div class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+          <button  ng-class="{true: 'button-answer'}[isActiveTrue]" class="answer-button  md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.typeDomanda,{"answerGiven": [true]}); toggleActive(true)'>
+            {{listOfKeys.trueButton}}
           </button>
-          <button ng-click="toggleActive()" ng-class="{true: 'button-answer'}[isActiveFalse]" class=" md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.typeDomanda,{"answerGiven": [  false]})'>
-            Falso
+          <button ng-class="{true: 'button-answer'}[isActiveFalse]" class="answer-button md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.typeDomanda,{"answerGiven": [  false]}); toggleActive(false)'>
+            {{listOfKeys.falseButton}}
           </button>
         </div>
       </div>

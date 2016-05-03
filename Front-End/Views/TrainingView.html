@@ -7,21 +7,24 @@
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 class="ng-binding">{{listOfKeys.questionNumberLang}} {{training.questionNumber}} {{listOfKeys.ofLang}} {{training.numberOfQuestion}} </h3>
-          <span flex="" class="flex"></span>
+          <h3 class="ng-binding">{{listOfKeys.questionNumberLang}} {{training.questionNumber}}
+            <span ng-if="training.numberOfQuestion != undefined">
+             {{listOfKeys.ofLang}}
+             {{training.numberOfQuestion}}
+           </span>
+          </h3>
+         <span flex="" class="flex"></span>
         </div>
       </md-toolbar>
         <div class="md-padding">
 
           <div ng-controller="QuestionsController">
 
-                {{pezzoDomanda}}
                 <div ng-repeat="d in arrayDomande" ng-switch on="d.typeDomanda">
                   <div ng-switch-when="veroFalso"> <True-false-answer-directive></True-false-answer-directive> </div>
                   <div ng-switch-when="rispostaMultipla"> <Multiple-choice-answer-directive></Multiple-choice-answer-directive> </div>
                 </div>
 
-                <button type="button" name="button" ng-click="closeAnswer(objAswer)">Rispondi</button>
                 <br/>
                 <br/>
                 <br/>
@@ -31,8 +34,14 @@
 
           {{scope}}
 
-          <button type="button" name="button" ng-click="newQuestion()">Nuova domanda</button>
-
+          <div class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+            <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='newQuestion()'>
+              {{listOfKeys.buttonNextQuestionLang}}
+            </button>
+            <button class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click=''>
+              {{listOfKeys.buttonEndTrainingLang}}
+            </button>
+          </div>
         </div>
     </section>
 

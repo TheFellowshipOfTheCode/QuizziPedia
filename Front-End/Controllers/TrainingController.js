@@ -20,9 +20,51 @@ app.controller('TrainingController', TrainingController);
 
 TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel'];
 function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel ) {
-  $scope.variabile="training";
+  $scope.training= {questionNumber:1};
   $scope.newQuestion= function() {
-    $rootScope.$emit("loadNewQuestion","ciao");
-    console.log("emetto");
+    $scope.training.questionNumber++;
+    console.log($rootScope.objAnswer);
+    $rootScope.$emit("isItAnswered","ciao");
     }
+
+  /*  $scope.canIgoOn= function(objAnswer) {
+
+
+      alert = $mdDialog.confirm()
+          .title($rootScope.listOfKeys.logOut)
+          .content($rootScope.listOfKeys.areYouSure)
+          .ok($rootScope.listOfKeys.yesLogoutMe)
+          .cancel($rootScope.listOfKeys.dontLogoutMe);
+      $mdDialog
+          .show( alert )
+          .finally(function() {
+              alert = undefined;
+          })
+          .then(function() {
+            $scope.training.questionNumber++;
+            $rootScope.$emit("loadNewQuestion","ciao");
+
+          });
+
+      }
+*/
+      $rootScope.$on("doYouWannaGoHome", function(event, args) { //SI
+        if(!args) {
+          alert = $mdDialog.confirm()
+              .title($rootScope.listOfKeys.logOut)
+              .content($rootScope.listOfKeys.areYouSure)
+              .ok($rootScope.listOfKeys.yesLogoutMe)
+              .cancel($rootScope.listOfKeys.dontLogoutMe);
+          $mdDialog
+              .show( alert )
+              .finally(function() {
+                  alert = undefined;
+              })
+              .then(function() {
+                $scope.training.questionNumber++;
+                $rootScope.$emit("loadNewQuestion","ciao");
+
+              });
+        }
+      });
 };

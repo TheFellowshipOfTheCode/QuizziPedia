@@ -88,7 +88,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
-      .when('/:lang/training/:number', {
+      .when('/:lang/training', {
         templateUrl: '/Views/TrainingView.html',
         controller:"TrainingController",
         css: [

@@ -33,7 +33,7 @@ md-checkbox.md-checked ._md-icon {
     background-color: rgb(255,202,40) !important;
   }
 
-.md-button.md-primary.md-raised {
+.answer-button.md-button.md-primary.md-raised {
   background-color: white;
 }
 

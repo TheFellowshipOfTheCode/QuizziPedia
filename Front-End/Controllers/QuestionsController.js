@@ -68,6 +68,25 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
         });
 
+        $rootScope.$on("isItAnswered", function(event, args) { //SI
+          console.log("catturo2");
+          console.log($scope.objAnswer);
+          var ok= true;
+          $scope.objAnswer.forEach(
+            function(elem) {
+              console.log(elem);
+              if(elem == null) {
+                ok=false;
+              }
+            }
+          );
+
+          console.log(ok);
+
+          $rootScope.$emit("doYouWannaGoHome",ok);
+
+        });
+
         console.log($scope.variabile);
 
 };

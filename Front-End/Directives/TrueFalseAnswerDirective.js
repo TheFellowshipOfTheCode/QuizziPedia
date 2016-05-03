@@ -30,14 +30,19 @@ function TrueFalseAnswerDirective() {
 link.$inject = ['$scope'];
 
 function link ($scope) {
+
   $scope.isActiveTrue = false;
   $scope.isActiveFalse = false;
 
-  $scope.toggleActive = function() {
-    console.log("Entro toogle");
-    $scope.isActiveTrue = !$scope.isActiveTrue;
-    $scope.isActiveFalse = !$scope.isActiveFalse;
-    console.log(  $scope.isActive);
+  $scope.toggleActive = function(check) {
+    if(check) {
+      $scope.isActiveTrue = true;
+      $scope.isActiveFalse = false;
+    }
+    else {
+      $scope.isActiveTrue = false;
+      $scope.isActiveFalse = true;
+    }
 
   };
 }

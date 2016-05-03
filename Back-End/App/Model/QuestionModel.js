@@ -32,16 +32,14 @@ var questionSchema = new mongoose.Schema({
             attributesForEmptySpaces: {
                 wordNumber: Number
             }
-        }],
-        keywords: [String],
-        level: Number,
-        totalAnswers: Number,
-        correctAnswers: Number
-    }]
+        }]
+    }],
+    keywords: [String],
+    level: Number,
+    totalAnswers: Number,
+    correctAnswers: Number
 });
-/*
-questionSchema.statics.getQuestion=function(questionId,callback){
-    return  model('Question').findOne({'_id':{$in:questionId}},callback);
+
 questionSchema.statics.createQuestion=function(question, callback){
     var quest = new this();
     quest.makeWith=question.makeWith;
@@ -51,6 +49,6 @@ questionSchema.statics.createQuestion=function(question, callback){
 
 questionSchema.methods.getQuestion=function(questionId,callback){
     return Quiz.findOne({'_id':{$in:questionId}},callback);
-};*/
+};
 
 module.exports = mongoose.model('Question', questionSchema);

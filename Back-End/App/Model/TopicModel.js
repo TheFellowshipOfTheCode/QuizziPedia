@@ -29,9 +29,9 @@ var topicSchema = new mongoose.Schema({
     }]
 });
 
-topicSchema.methods.getNextQuestion=function(language, topic, keywords, levelUser, callback){
-    var questions = this.model('Topic').findOne({'name': topic});
-    return  questions.question.findOne({'language': language, 'keywords': keywords,'level': levelUser}, '_id makeWith language question', callback);
+topicSchema.statics.getNextQuestion=function(language, topic, keywords, levelUser, callback){
+    //var questions = this.findOne({'name': topic});
+    return  Question.findOne({'language': language, 'keywords': {$in:keywords}, 'level': levelUser}, 'language question keywords level', callback);
 };
 
 module.exports = mongoose.model('Topic', topicSchema);

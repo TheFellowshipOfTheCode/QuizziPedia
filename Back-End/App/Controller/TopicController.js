@@ -19,10 +19,10 @@
 var Topic = require('../Model/TopicModel');
 
 exports.getNextQuestion = function(req, res) {
-    Topic.getNextQuestion(req.params.lang, req.topic, req.keywords, req.level, function(err,next){
+    Topic.getNextQuestion(req.body.language, req.body.topic, req.body.keywords, req.body.level, function(err,question){
         if (err)
-            return handleError(err);
+            return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
         else
-            return res.send(next)
+            return res.send(question)
     })
 };

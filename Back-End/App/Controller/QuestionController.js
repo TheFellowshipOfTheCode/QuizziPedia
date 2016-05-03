@@ -32,3 +32,10 @@ exports.editQuestion = function(req, res) {
         else return res.send(question);
     })
 };
+
+exports.updateLevel = function(req, res) {
+    Question.updateLevel(req.body.questionId,req.body.userLevel,req.body.isCorrected, function(err, question){
+        if(err) return res.status(500).json({code:100, title: "Ok Domanda", message: "Livello domanda aggiornata"});
+        else return res.send({code:100, title: "Ok Domanda", message: "Livello domanda aggiornata"});
+    })
+};

@@ -90,7 +90,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
       })
         .when('/:lang/QML', {
             templateUrl: '/Views/EditorQMLView.html',
-            controller:"",
+            controller:"EditorQMLController",
             css: [
                 {
                     href: 'css/home-main.css'

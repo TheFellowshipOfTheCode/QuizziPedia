@@ -41,14 +41,45 @@ var questionSchema = new mongoose.Schema({
 });
 
 questionSchema.statics.getQuestion=function(questionId,callback) {
-    return model('Question').findOne({'_id': {$in: questionId}}, callback);
+    return this.findOne({'_id': {$in: questionId}}, callback);
 }
-questionSchema.statics.createQuestion=function(question, callback){
+
+questionSchema.statics.createQuestion=function(author,question, callback){
     var quest = new this();
+    quest.author=author;
     quest.makeWith=question.makeWith;
     quest.language=question.language;
+    quest.question=question.question;
     return quest.save(callback);
 };
+
+questionSchema.statics.editQuestion=function(question,callback){
+    return this.findOneAndUpdate(question._id, question, callback)
+}
+
+questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected){
+
+}
+
+questionSchema.statics.addKeyword=function(questionId,keyword,callback){
+
+}
+
+questionSchema.statics.addCorrect=function(questionId){
+    this.findOne({_id: questionId}, function(err, question){
+        if (err) { return next(err); }
+        question.correctAnswers += 1;
+        return question.save()
+    });
+}
+
+questionSchema.statics.addTotal=function(questionId){
+    this.findOne({_id: questionId}, function(err, question){
+        if (err) { return next(err); }
+        question.totalAnswers += 1;
+        return question.save()
+    });
+}
 
 questionSchema.methods.getQuestion=function(questionId,callback){
     return Quiz.findOne({'_id':{$in:questionId}},callback);

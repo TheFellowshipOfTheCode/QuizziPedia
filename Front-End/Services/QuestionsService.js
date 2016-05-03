@@ -28,8 +28,8 @@ function QuestionsService($http, $cookies, $q) {
 
 
 
-    function sendQuestion(question) {
-        if(question == undefined) return; //errore?
+    function sendQuestion(question, lang) {
+       // if(question == undefined) return; //errore?
         var deferred = $q.defer();
         
         

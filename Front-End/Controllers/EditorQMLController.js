@@ -23,28 +23,43 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
-    $scope.submitQuestion = function(){
+    $scope.submitQuestion = function(question){
         //qui andrà fatto il controllo col parser
         //var question = chiamata al parser che ritorna il JSON
-
-        QuestionsService.submitQuestion(question)
-            .then(function(result){
-                if(result) {
-                    $rootScope.question = new QuestionItemModel();
-                    //$location.path('/' + $routeParams.lang + '/home');
-                }
-            } ,function (err){
-                $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
-                alert = $mdDialog.alert()
-                    .title($scope.error.getTitle())
-                    .content($scope.error.getCode()+": "+$scope.error.getMessage())
-                    .ok('Ok');
-                $mdDialog
-                    .show( alert )
-                    .finally(function() {
-                        alert = undefined;
-                    });
-            });
+    /*
+        if(question == undefined){
+            $scope.error = new ErrorInfoModel();
+            alert = $mdDialog.alert()
+                .title("Errore con la domanda")
+                .content("Domanda Vuota!")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
+        }
+        */
+        //else {
+            QuestionsService.sendQuestion(question, $routeParams.lang)
+                .then(function (result) {
+                    if (result) {
+                        $rootScope.question = new QuestionItemModel();
+                        //$location.path('/' + $routeParams.lang + '/home');
+                    }
+                }, function (err) {
+                    $scope.error = new ErrorInfoModel();
+                    alert = $mdDialog.alert()
+                        .title("Errore")
+                        .content("La richiesta di inserimento domanda non è andata a buon fine")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                });
+        //}
     }
 
 

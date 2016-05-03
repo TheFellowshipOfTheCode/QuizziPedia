@@ -35,13 +35,13 @@
                         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
 
 
-                            <div text-angular ng-model="htmlVariable"></div>
+                            <div text-angular ng-model="question"></div>
 
 
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-sm="column" layout-margin>
                                     <md-button ng-click="" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLoadImageLangQML}}</md-button>
-                                    <md-button ng-click="" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
                                 </div>
                             </md-input-container>
 

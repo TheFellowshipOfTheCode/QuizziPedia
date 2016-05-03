@@ -45,7 +45,17 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                 .then(function (result) {
                     if (result) {
                         $rootScope.question = new QuestionItemModel();
-                        //$location.path('/' + $routeParams.lang + '/home');
+                        $scope.error = new ErrorInfoModel();
+                        alert = $mdDialog.alert()
+                            .title("Inserimento avvenuto con successo")
+                            .content("La domanda è stata inserita!")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
+                        $location.path('/' + $routeParams.lang + '/home');
                     }
                 }, function (err) {
                     $scope.error = new ErrorInfoModel();

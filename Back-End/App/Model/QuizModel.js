@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Question = require('./QuestionModel');
+var Question = require('./QuestionModel')
+
 
 var quizSchema = new mongoose.Schema({
     title: String,
@@ -22,15 +23,24 @@ var quizSchema = new mongoose.Schema({
     correctAnswers: Number
 });
 
-quizSchema.statics.getQuiz=function(quizId){
+
+
+quizSchema.statics.createQuiz = function(info, callback) {
+    Quiz.save({ title: info.title, correctAnswers: info.correctAnswers });
+}
+
+
+quizSchema.methods.getQuiz=function(quizId){
     var quizJson={};
-    quizJson.quiz=this.model('Quiz').findOne({'_id':quizId});
+    quizJson.quiz=Quiz.findOne({'_id':quizId});
     Question.getQuestion(quizJson.quiz.questions,function(err,questions){
         if (err) return handleError(err);
         quizJson.questions=questions;
         return quizJson;
     });
-};
 
-module.exports = mongoose.model('Quiz', quizSchema);
+}
+
+var Quiz = mongoose.model('Quiz', quizSchema);
+module.exports = Quiz;
 

@@ -1,19 +1,23 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Directives::UserBarDirective;
- * Description: directive contenente il componente che permette di effettuare
- * il redirect alla pagina di visualizzazione profilo. Permette di effettuare
- * il redirect alla pagina di visualizzazione profilo;
+ * Name: QuizziPedia::Front-End::Controllers:CreateQuestionnaireController;
+ * Description: ;
  * Relations with other classes:
- * + MenuBarDirective.
- * Creation data: 27-04-2016;
- * Author: Matteo Granzotto;
+ * +
+ * Creation data: 03-05-2016;
+ * Author: Simone Magagna;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: UserBarDirective_20160427;
+ * ID: CreateQuestionnaireController_20160503;
  * Update data: 27-04-2016;
- * Description: Creata la classe e scritto il file js;
- * Author: Matteo Granzotto.
+ * Description: Creata la classe;
+ * Author: Simone Magagna.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+
+app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
+
+CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', '$timeout','$mdSidenav', 'UserDetailsModel', 'ErrorInfoModel', 'MenuBarModel'];
+
+function CreateQuestionnaireController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, $timeout, $mdSidenav, UserDetailsModel, ErrorInfoModel, MenuBarModel) {}

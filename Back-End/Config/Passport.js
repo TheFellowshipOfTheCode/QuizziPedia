@@ -47,7 +47,8 @@ module.exports = function(passport) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
-                    if (user) {
+                    if (user) {console.log(user.username);
+                        console.log(user.email);
                         if (user.username == username && user.email == req.param('email'))
                             return done(null, false, {code:4,title:'Errore Registrazione',message: 'Username e Email già presente'});
                         else {
@@ -73,7 +74,7 @@ module.exports = function(passport) {
                         newUser.save(function(err) {
                             if (err)
                                 throw err;
-                            return done(null, newUser);
+                            return done(null, newUser,{code:1, title:'Registrazione', message: 'Registrazione avvenuta con successo'});
                         });
                     }
                 });

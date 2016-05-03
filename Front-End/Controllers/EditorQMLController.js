@@ -24,9 +24,25 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
     $scope.submitQuestion = function(question){
-        //qui andrà fatto il controllo col parser
-        //var question = chiamata al parser che ritorna il JSON
-    /*
+        //Parser della domanda
+        if(question == undefined){
+            alert = $mdDialog.alert()
+                .title("Errore con la domanda")
+                .content("Domanda Vuota!")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
+        }
+        else{
+        var result = jsonlint.parse(question);
+        if (result) {
+            var q = JSON.stringify(question, null, "  ");
+            return q;
+        }
+        console.log(questionParsed);
         if(question == undefined){
             $scope.error = new ErrorInfoModel();
             alert = $mdDialog.alert()
@@ -39,8 +55,9 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     alert = undefined;
                 });
         }
-        */
-        //else {
+
+        else {
+
             QuestionsService.sendQuestion(question, $routeParams.lang)
                 .then(function (result) {
                     if (result) {
@@ -69,10 +86,12 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                             alert = undefined;
                         });
                 });
-        //}
+        }
+        }
     }
 
-
-
+    $scope.goToWizard = function () {
+        $location.path('/'+$routeParams.lang+'/wizard');
+    };
 
 }

@@ -19,7 +19,7 @@
 
         <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
-            <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+            <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
 
                 <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
 
@@ -31,16 +31,17 @@
                         </div>
                     </md-toolbar>
 
+
+
+                    <h1 id="QMLtitle">Scrivi qui sotto il tuo codice QML</h1>
+                    <div id="contentQML">
+                        <textarea id="textArea" name="question" ng-model="question" style="width: 100%"></textarea>
+                    </div>
                     <div layout="row" layout-align="center center" >
                         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
-
-
-                            <div text-angular ng-model="question"></div>
-
-
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-sm="column" layout-margin>
-                                    <md-button ng-click="" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLoadImageLangQML}}</md-button>
+                                    <md-button ng-click="goToWizard()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.goToWizard}}</md-button>
                                     <md-button ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
                                 </div>
                             </md-input-container>

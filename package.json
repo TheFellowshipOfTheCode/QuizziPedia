@@ -50,6 +50,7 @@
     "bcrypt-nodejs": "0.0.3"
   },
   "devDependencies": {
+    "grunt-serve": "^0.1.6",
     "jasmine-core": "^2.3.4",
     "karma": "0.13.22",
     "karma-chrome-launcher": "0.2.3",

@@ -37,10 +37,26 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                 });
         }
         else{
-        var result = jsonlint.parse(question);
-        if (result) {
+            var result = '';
+            try{
+            result = jsonlint.parse(question);}
+            catch(e){
+                alert = $mdDialog.alert()
+                    .title("Errore con la domanda")
+                    .content("Ci sono degli errori nella sintassi!")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+                return;
+            }
+
+            if (result) {
             var q = JSON.stringify(question, null, "  ");
             console.log('q: ' + q);
+
             QuestionsService.sendQuestion(q, $routeParams.lang)
                 .then(function (result) {
                     if (result) {

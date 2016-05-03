@@ -41,10 +41,7 @@ describe("Create Question Test", function(){
             })
             .end(function(err,res){ 
                 if (!err && res.status == 200){
-                    res.body.makeWith.should.equal("qml");
-                    res.body.language.should.equal("ita");
-                    res.body.question[0].type.should.equal("VF");
-                    res.body.question[0].questionText.should.equal("ciao");
+                    res.body.message.should.equal("Domanda creata correttamente");
                 }
                 else
                     res.status.should.equal(500);

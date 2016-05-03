@@ -40,25 +40,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         var result = jsonlint.parse(question);
         if (result) {
             var q = JSON.stringify(question, null, "  ");
-            return q;
-        }
-        console.log(questionParsed);
-        if(question == undefined){
-            $scope.error = new ErrorInfoModel();
-            alert = $mdDialog.alert()
-                .title("Errore con la domanda")
-                .content("Domanda Vuota!")
-                .ok('Ok');
-            $mdDialog
-                .show(alert)
-                .finally(function () {
-                    alert = undefined;
-                });
-        }
-
-        else {
-
-            QuestionsService.sendQuestion(question, $routeParams.lang)
+            console.log('q: ' + q);
+            QuestionsService.sendQuestion(q, $routeParams.lang)
                 .then(function (result) {
                     if (result) {
                         $rootScope.question = new QuestionItemModel();

@@ -37,6 +37,10 @@ describe("Create Question Test", function(){
                             isItRight:true
                         }
                     }],
+                    keywords:[],
+                    level:500,
+                    totalAnswers:0,
+                    correctAnswers:0
                 }],
             })
             .end(function(err,res){ 

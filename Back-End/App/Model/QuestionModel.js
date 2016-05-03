@@ -47,50 +47,7 @@ questionSchema.statics.getQuestion=function(questionId,callback) {
 questionSchema.statics.createQuestion=function(author,question, callback){
     question.author = author
     var new_question = new this(question);
-    /*new_question.author=author;
-    new_question.makeWith=question.makeWith;
-    new_question.language=question.language;
-    new_question.question.answers = [{}];
-    for (var i in question.question) {
-        var questionarray = question.question[i];
-        new_question.question.push({
-            type: questionarray['type'],
-            questionText: questionarray['questionText'],
-            image: questionarray['image']
-        });
-        console.log(new_question)
-        for (var j in questionarray['answers']) {
-         var answersarray = questionarray['answers'][j]
-         new_question.question.answers.push({
-             text: answersarray['text'],
-             url: answersarray['url'],
-             attributesForTForMultiple: {isItRight: answersarray.attributesForTForMultiple['isItRight'] || ""},
-             //attributesForSorting: {position: (answersarray.attributesForSorting['position'] || "")},
-             attributesForLinking: {
-                 text1: answersarray.attributesForLinking['text1'],
-                 text2: answersarray.attributesForLinking['text2'],
-                 url1: answersarray.attributesForLinking['url1'],
-                 url2: answersarray.attributesForLinking['url2'],
-             },
-             attributesForClickableArea: {
-                 x: answersarray.attributesForClickableArea['x'],
-                 y: answersarray.attributesForClickableArea['y'],
-             },
-             attributesForEmptySpaces: {
-                 wordNumber: answersarray.attributesForEmptySpaces['wordNumber'],
-             },
-         })
-            new_question.question.answers.push(answersarray);
-         }
-        //console.log(new_question.question)
-
-
-
-        //
-        //  console.log(new_question.question)
-        //}
-    }*/
-    new_question.save(callback);
+    return new_question.save(callback);
 };
 
 questionSchema.statics.editQuestion=function(question,callback){

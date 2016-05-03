@@ -28,7 +28,7 @@ exports.createQuestion = function(req, res) {
 
 exports.editQuestion = function(req, res) {
     Question.editQuestion(req.body, function(err, question){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
         else return res.send(question);
     })
 };

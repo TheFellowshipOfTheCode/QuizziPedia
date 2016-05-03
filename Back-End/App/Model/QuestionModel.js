@@ -41,10 +41,6 @@ var questionSchema = new mongoose.Schema({
 });
 
 questionSchema.statics.getQuestion=function(questionId,callback) {
-    return model('Question').findOne({'_id': {$in: questionId}}, callback);
-}
-questionSchema.statics.createQuestion=function(question, callback){
-questionSchema.statics.getQuestion=function(questionId,callback) {
     return this.findOne({'_id': {$in: questionId}}, callback);
 }
 

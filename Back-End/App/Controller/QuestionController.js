@@ -19,10 +19,7 @@
 var Question = require('../Model/QuestionModel');
 
 exports.createQuestion = function(req, res) {
-    console.log(req.user.username),
-    console.log(req.body),
     Question.createQuestion(req.user._id,req.body, function(err, question){
-        console.log(err)
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
         else return res.send({code:90, title: "Ok Domanda", message: "Domanda creata correttamente"});
     })

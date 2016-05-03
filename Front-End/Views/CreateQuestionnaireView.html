@@ -1,0 +1,53 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::CreateQuestionnarieView;
+* Description:
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireView_20160305;
+* Update data: 03-05-2016;
+* Description: Creata la classe e scritto il file js;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<div layout="column" flex id="content" role="main" ng-controller="AppController">
+
+    <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding">{{listOfKeys.titleLangCreateQuestionnaire}}</h3>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <div layout="row" layout-align="center center" >
+                <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+
+                    <md-input-container class="md-block">
+                        <label>{{listOfKeys.nameLangSignUp}}</label>
+                        <input ng-model="quiz.nameQuestionnaire">
+                    </md-input-container>
+
+                    <topic-keywords-directive></topic-keywords-directive>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>

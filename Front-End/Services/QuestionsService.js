@@ -32,7 +32,7 @@ function QuestionsService($http, $cookies, $q) {
        // if(question == undefined) return; //errore?
         var deferred = $q.defer();
 
-       $http.post('/api/'+ lang + '/signin', question)
+       $http.post('/api/'+ lang + '/user/question', question)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error) {

@@ -41,6 +41,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             try{
             result = jsonlint.parse(question);}
             catch(e){
+                console.log(e);
                 alert = $mdDialog.alert()
                     .title("Errore con la domanda")
                     .content("Ci sono degli errori nella sintassi!")
@@ -54,9 +55,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             }
 
             if (result) {
-            var q = JSON.stringify(question, null, "  ");
+            var q = JSON.stringify(result, null, "  ");
             console.log('q: ' + q);
-
             QuestionsService.sendQuestion(q, $routeParams.lang)
                 .then(function (result) {
                     if (result) {

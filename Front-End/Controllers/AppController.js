@@ -30,7 +30,7 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
           .then(function(result){
               if(result.data != undefined) {
                   $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
-                  $location.path('/' + $routeParams.lang + '/home');
+                  //$location.path('/' + $routeParams.lang + '/home');
                   $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
               }
               else{

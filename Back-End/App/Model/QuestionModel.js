@@ -35,9 +35,9 @@ var questionSchema = new mongoose.Schema({
         }],
     }],
     keywords: [String],
-    level: Number,
-    totalAnswers: Number,
-    correctAnswers: Number
+    level: {type:Number, default: 500},
+    totalAnswers: {type:Number, default: 0},
+    correctAnswers: {type:Number, default: 0},
 });
 
 questionSchema.statics.getQuestion=function(questionId,callback) {

@@ -19,14 +19,15 @@ describe("Signin Test", function () {
     });
 })
 
-/*
+
 describe("Get Questions Test", function(){
     it("should get questions of an user", function(done){
         agent
-            .get('/api/:lang/user/questions')
-            .end(function(err,res){ console.log(res)
+            .get('/api/:lang/userquestions')
+            .expect('Content-Type', /json/)
+            .end(function(err,res){
                 if (!err && res.status == 200){
-                    res.body.message.should.equal("Domanda creata correttamente");
+                    res.status.should.equal(200);
                 }
                 else
                     res.status.should.equal(500);
@@ -36,7 +37,7 @@ describe("Get Questions Test", function(){
 
     })
 });
-*/
+
 
 describe("Create Question Test", function(){
     it("should create a question", function(done){

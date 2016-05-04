@@ -50,7 +50,7 @@ questionSchema.statics.createQuestion=function(author,question, callback){
     return new_question.save(callback);
 };
 
-questionSchema.statics.getQuestions=function(author, callback){console.log(author)
+questionSchema.statics.getQuestions=function(author, callback){
     return this.find({'author': author},'_id', callback);
 };
 

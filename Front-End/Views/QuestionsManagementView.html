@@ -22,16 +22,15 @@
 
     <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
         <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
-        <new-question-button-directive></new-question-button-directive>
-        </section>
-        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
 
             <md-toolbar class="md-primary toolbar">
                 <div class="md-toolbar-tools">
                     <span flex="" class="flex"></span>
-                    <h1 class="ng-binding">{{listOfKeys.titleLangQuestionsManagement}}</h1>
+                    <h2 class="ng-binding">{{listOfKeys.titleLangQuestionsManagement}}</h2>
                     <span flex="" class="flex"></span>
                 </div>
+                <new-question-button-directive></new-question-button-directive>
+
             </md-toolbar>
             <one-question-directive></one-question-directive>
         </section>

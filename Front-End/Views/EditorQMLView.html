@@ -42,7 +42,9 @@
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-sm="column" layout-margin>
                                     <md-button ng-click="goToWizard()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.goToWizard}}</md-button>
-                                    <md-button ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button ng-if="id == undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button ng-if="id != undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
+
                                 </div>
                             </md-input-container>
 

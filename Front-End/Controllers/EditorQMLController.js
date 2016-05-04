@@ -23,6 +23,8 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
+    $scope.id = $routeParams.idQuestion;
+
     if($routeParams.idQuestion){
         //console.log($routeParams.idQuestion);
         //metto dentro l'editor il testo

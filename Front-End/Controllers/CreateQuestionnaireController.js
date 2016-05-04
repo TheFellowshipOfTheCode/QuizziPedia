@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers:CreateQuestionnaireController;
+ * Name: QuizziPedia::Front-End::Controllers::CreateQuestionnaireController;
  * Description: ;
  * Relations with other classes:
  * +
@@ -18,7 +18,7 @@
 
 app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 
-CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout','$mdSidenav', 'QuizService', 'ErrorInfoModel'];
+CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'QuizService', 'ErrorInfoModel'];
 
 function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService) {
 
@@ -41,6 +41,10 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         }
     };
 
+    $scope.createQMLQuestion = function() {
+        $location.path('/'+$routeParams.lang+'/QML');
+    }
+
     $scope.createQuestionnaire = function() {
         QuizService.createQuestionnaire(quiz.name, quiz.keywords, quiz.selectedItem, $routeParams.lang)
             .then(function (result) {
@@ -54,13 +58,13 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                         .finally(function () {
                             alert = undefined;
                         });
-                    $location.path('/' + $routeParams.lang + '/createquestionnaireview');
+                    $location.path('/' + $routeParams.lang + '/home');
                 }
             }, function (err) {
                 if (err.data.code == 2) {
                     alert = $mdDialog.alert()
                         .title("Errore")
-                        .content("Creazione fallita")
+                        .content("Creazione questionario fallita!")
                         .ok('Chiudi');
                     $mdDialog
                         .show(alert)
@@ -68,7 +72,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                             alert = undefined;
                         });
                 }
-                $rootScope.error = new ErrorInfoModel("5", "Creazione fallita", "Creazione " +
+                $rootScope.error = new ErrorInfoModel("5", "Creazione fallita", "Creazione questionario " +
                     "non effettuata");
             })
     };

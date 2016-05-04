@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers:CreateQuestionnaireController;
+ * Name: QuizziPedia::Front-End::Services::QuizService;
  * Description: ;
  * Relations with other classes:
  * +
@@ -9,7 +9,7 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: CreateQuestionnaireController_20160503;
+ * ID: QuizServices_20160504;
  * Update data: 27-04-2016;
  * Description: Creata la classe;
  * Author: Simone Magagna.
@@ -22,12 +22,12 @@ QuizService.$inject = ['$http', '$cookies', '$q'];
 
 function QuizService($http, $cookies, $q) {
     var methods = {
-        createQuestionnaire: creaQuestionnaire
+        createQuestionnaire: createQuestionnaire
     };
 
     return methods;
 
-    function createQuestionnaire(name, keywords,selectedItem, lang) {
+    function createQuestionnaire(name, keywords, selectedItem, lang) {
         var deferred = $q.defer();
         var quizJSON = {name: name, keywords: keywords, selectedItem: selectedItem};
         $http.post('/api/' + lang + '/user/quiz', quizJSON)

@@ -49,6 +49,12 @@
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
+                            <md-button ng-click="createQMLQuestion()" class="md-raised md-primary" flex="50" flex-sm="100">+ {{listOfKeys.buttonLangCreateQMLQuestion}}</md-button>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container layout-align="center center">
+                        <div layout="row" layout-sm="column" layout-margin>
                             <md-button ng-disabled="userForm.$invalid" ng-click="createQuestionnaire()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
                         </div>
                     </md-input-container>

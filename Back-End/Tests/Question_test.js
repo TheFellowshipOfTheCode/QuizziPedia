@@ -67,6 +67,7 @@ describe("View Question Test", function(){
             .end(function(err,res){
                 if (!err && res.status == 200){
                     console.log(res.body);
+                    //console.log(res.body.question[1].answers); //la prova che il contenuto di answers si vede
                     res.body.language.should.equal("it");
                     res.body.level.should.equal(500);
                     //res.body.keywords.should.containDeep(["Strada","Guida"]);

@@ -34,12 +34,41 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         $scope.objAnswer=[]; //SI
 
 
+        /*set-up drag and drop questions*/
+        $scope.list1 = [];
+        $scope.list2 = [];
+
+        $scope.arrayDomande[0].answer.forEach(function(elem, key) {
+          $scope.list1.push({});
+          if(elem.text2 != undefined) {
+            $scope.list2.push({text2 : elem.text2});
+          }
+          else {
+            if(elem.url2 !=undefined) {
+              $scope.list2.push({url2 : elem.url2});
+            }
+          }
+        });
+        console.log($scope.list2);
+
+        $scope.dragnNDropQuestions= function(event, ui,index,typeDomanda,obj) {
+          console.log(index);
+          console.log(typeDomanda);
+          console.log(obj);
+          console.log("draggoandroppo");
+          $scope.addAnswer(index,typeDomanda,{"answerGiven": obj})
+        }
+
         $scope.addAnswer= function(index,typeDomanda,obj){  //SI
 
           //NO
           $scope.indice=index;
           $scope.tipodomanda=typeDomanda;
           $scope.rispostedate=obj;
+
+          console.log(index);
+          console.log(typeDomanda);
+          console.log(obj);
 
           //SI
           $scope.objAnswer[index]={"typeDomanda": typeDomanda, answerGiven: obj}

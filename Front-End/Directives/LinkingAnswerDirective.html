@@ -25,40 +25,43 @@
       </div>
       <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
 
-        {{d.answer}}
+    <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
 
-    <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+        <ul class="line">
+          <li class="inline" ng-repeat="item in list1">
 
-      <div class="layout-row" layout="row" layout-sm="row" >
-        <ul>
-          <li ng-repeat="a in d.answer">
-              <button  ng-if="a.text1 != undefined" class="md-primary md-raised md-button" type="button" name="button">
-                {{a.text1}}
-              </button>
-              <button  ng-if="a.url1 != undefined" class="md-primary md-raised md-button " type="button" name="button">
-                {{a.url1}}
-              </button>
+            <section class="object-section md-whiteframe-z1" layout-sm="column" layout-align="center">
+              <md-toolbar class="md-primary" layout="column" layout-align="center">
+                <div class="md-toolbar-tools  object-toolbar">
+                  <span flex="" class="flex"></span>
+                  <h3 ng-if="d.answer[$index].text1 != undefined" class="ng-binding">{{d.answer[$index].text1}}</h3>
+
+                    <image ng-if="d.answer[$index].url1 != undefined"  class="img-answer" ng-src="{{d.answer[$index].url1}}"/>
+                                   <span flex="" class="flex"></span>
+                </div>
+              </md-toolbar>
+                <div class="md-padding no-owerflow">
+                  <div class=" box-in md-whiteframe-z1" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,list1)' }" >
+                    <div class="zone md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.text2}}</div>
+                    <div class="zone md-primary md-raised md-button" ng-show="item.url2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
+                      <image class="img-answer" ng-src="{{item.url2}}"/>
+                    </div>
+                  </div>
+                </div>
+            </section>
+
           </li>
         </ul>
-        <ul>
-          <li ng-repeat="item in list1">
-            <div class="zone md-whiteframe-z1" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop :'prova1' }">
-              <div class="md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.text2}}</div>
-              <div class="md-primary md-raised md-button" ng-show="item.url2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.url2}}</div>
+        <ul class="line">
+          <li class="inline" ng-repeat="item in list2 " ng-model='list2' >
+            <div  class="zone md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2" style="margin-top:{{12*$index}}em !important">{{item.text2}}</div>
+            <div  class="zone md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2" style="margin-top:{{12*$index}}em !important">
+              <image class="img-answer" ng-src="{{item.url2}}"/>
             </div>
           </li>
         </ul>
-        </div>
-        <ul>
-          <li ng-repeat="item in list2 " ng-model='list2'>
-            <div  class="md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2">{{item.text2}}</div>
-            <div class="md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2">{{item.url2}}</div>
-          </li>
-        </ul>
       </div>
-
-
-
+      
       </div>
     </div>
 </section>

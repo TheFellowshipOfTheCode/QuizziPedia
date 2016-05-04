@@ -6,7 +6,7 @@ app.factory("QuestionItemModel", [function() {
           { "id": "D2", 	"level": 500,	"lang": "ita",
           "question":	[
 
-          {  "typeDomanda": "collegamento", "image": "/img/veroFalso/D0_1.png",
+          {  "typeDomanda": "collegamento", "image": "/img/veroFalso/D0_1.png", "questionText": "Unisci questi nemici storici.",
           "answer":
                  [
 
@@ -16,13 +16,24 @@ app.factory("QuestionItemModel", [function() {
                    },
 
                    {
-                        "url1": "/img/collegamento/D0_2.png",
+                        "url1": "/Images/collegamento/D2_2.jpg",
                         "text2": "olio"
                    },
 
                    {
-                        "url1": "/img/collegamento/D0_1.png",
-                        "url2": "/img/collegamento/D0_5.png"
+                        "url1": "/Images/collegamento/D2_1.jpg",
+                        "url2": "/Images/collegamento/D2_5.png"
+                   }
+                   ,
+
+                   {
+                        "url1": "/Images/collegamento/D2_2.jpg",
+                        "text2": "olio"
+                   },
+
+                   {
+                        "url1": "/Images/collegamento/D2_1.jpg",
+                        "url2": "/Images/collegamento/D2_5.png"
                    }
 
                  ]

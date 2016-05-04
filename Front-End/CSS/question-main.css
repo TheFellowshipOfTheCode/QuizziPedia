@@ -50,10 +50,53 @@ md-checkbox.md-checked ._md-icon {
 li {
   margin: 1em;
   list-style: none;
+
 }
 
 .zone {
-  min-width: 8em;
-  min-height: 3em;
+  min-width: 10em;
+  min-height: 10em;
+  display: list-item;
+  line-height: 10em;
+  z-index: 100;
+  position: absolute;
+}
+
+.img-answer {
+  width: 9em;
+  padding: 1em;
+  max-height: 10em;
+}
+.inline {
+  display: inline;
+  margin: 2em;
+}
+
+.line {
+  width: 15em;
+  text-align: center;
+  margin-left: 3em;
+}
+
+.box-in {
+  width: 11em;
+  height: 11em;
   display: inline-block;
+  max-height: 11em;
+}
+
+.object-toolbar {
+  max-height: 11em;
+  background-color: rgb(255,202,40) !important;
+  overflow: hidden;
+  min-height: 5em;
+}
+
+.object-section {
+  max-width: 14em;
+}
+
+.no-owerflow {
+  overflow: hidden;
+  z-index: -1;
 }

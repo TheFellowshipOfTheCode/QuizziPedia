@@ -30,16 +30,27 @@ function QuestionsService($http, $cookies, $q) {
 
 
 
-    function sendQuestion(question, lang) {
+    function sendQuestion(question, lang, id) {
        // if(question == undefined) return; //errore?
         var deferred = $q.defer();
+        if(id == undefined) {
 
-       $http.post('/api/'+ lang + '/userquestion', question)
-            .then(function(data) {
-                deferred.resolve(data);
-            }, function(error) {
-                deferred.reject(error);
-            });
+            $http.post('/api/' + lang + '/userquestion', question)
+                .then(function (data) {
+                    deferred.resolve(data);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+        }
+        else{
+            $http.put('/api/' + lang + '/userquestion', question)
+                .then(function(data) {
+                    deferred.resolve(data);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        }
         return deferred.promise;
     }
 
@@ -57,7 +68,7 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getQuestion(questionId, lang) {
-        // if(question == undefined) return; //errore?
+        console.log(questionId);
         var deferred = $q.defer();
 
         $http.get('/api/'+ lang + '/userquestion/' + questionId)

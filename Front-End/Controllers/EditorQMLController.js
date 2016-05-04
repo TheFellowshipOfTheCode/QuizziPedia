@@ -25,13 +25,13 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
 
     if($routeParams.idQuestion){
         //console.log($routeParams.idQuestion);
-        //metto dentro l'edito il testo
+        //metto dentro l'editor il testo
 
-        QuestionsService.getQuestion($routeParams.idQuestion)
+        QuestionsService.getQuestion($routeParams.idQuestion, $routeParams.lang)
             .then(function(result){
+                console.log(result);
                 var questionDownloaded = result.data;
-                console.log("singola:" + result);
-                $scope.question = questionDownloaded;
+                $scope.question = JSON.stringify(questionDownloaded);
             } ,function (err){
                 console.log(err);
                 $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
@@ -78,36 +78,38 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             }
 
             if (result) {
-            var q = JSON.stringify(result, null, "  ");
-            console.log('q: ' + q);
-            QuestionsService.sendQuestion(q, $routeParams.lang)
-                .then(function (result) {
-                    if (result) {
-                        $rootScope.question = new QuestionItemModel();
-                        $scope.error = new ErrorInfoModel();
-                        alert = $mdDialog.alert()
-                            .title("Inserimento avvenuto con successo")
-                            .content("La domanda è stata inserita!")
-                            .ok('Ok');
-                        $mdDialog
-                            .show(alert)
-                            .finally(function () {
-                                alert = undefined;
-                            });
-                        $location.path('/' + $routeParams.lang + '/home');
-                    }
-                }, function (err) {
-                    $scope.error = new ErrorInfoModel();
-                    alert = $mdDialog.alert()
-                        .title("Errore")
-                        .content("La richiesta di inserimento domanda non è andata a buon fine")
-                        .ok('Ok');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
+
+                    var q = JSON.stringify(result, null, "  ");
+                    console.log('q: ' + q);
+                    QuestionsService.sendQuestion(q, $routeParams.lang, $routeParams.idQuestion)
+                        .then(function (result) {
+                            if (result) {
+                                $rootScope.question = new QuestionItemModel();
+                                $scope.error = new ErrorInfoModel();
+                                alert = $mdDialog.alert()
+                                    .title("Inserimento avvenuto con successo")
+                                    .content("La domanda è stata inserita!")
+                                    .ok('Ok');
+                                $mdDialog
+                                    .show(alert)
+                                    .finally(function () {
+                                        alert = undefined;
+                                    });
+                                $location.path('/' + $routeParams.lang + '/home');
+                            }
+                        }, function (err) {
+                            $scope.error = new ErrorInfoModel();
+                            alert = $mdDialog.alert()
+                                .title("Errore")
+                                .content("La richiesta di inserimento domanda non è andata a buon fine")
+                                .ok('Ok');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
                         });
-                });
+
         }
         }
     }

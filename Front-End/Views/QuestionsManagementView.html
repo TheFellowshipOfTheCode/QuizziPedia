@@ -20,14 +20,16 @@
 
 <div layout="column" flex id="content" role="main" ng-controller="AppController" >
 
-    <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
-
+    <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+        <new-question-button-directive></new-question-button-directive>
+        </section>
         <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
 
             <md-toolbar class="md-primary toolbar">
                 <div class="md-toolbar-tools">
                     <span flex="" class="flex"></span>
-                    <h3 class="ng-binding">{{listOfKeys.titleLangQuestionsManagement}}</h3>
+                    <h1 class="ng-binding">{{listOfKeys.titleLangQuestionsManagement}}</h1>
                     <span flex="" class="flex"></span>
                 </div>
             </md-toolbar>

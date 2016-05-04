@@ -51,7 +51,7 @@ questionSchema.statics.createQuestion=function(author,question, callback){
 };
 
 questionSchema.statics.getQuestions=function(author, callback){
-    return this.find({'author': author},'_id', callback);
+    return this.find({'author': author},'_id makeWith language question.type question.questionText', callback);
 };
 
 questionSchema.statics.editQuestion=function(question,callback){

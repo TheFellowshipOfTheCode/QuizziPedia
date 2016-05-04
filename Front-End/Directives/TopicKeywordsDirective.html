@@ -17,16 +17,16 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-<md-input-container>
+<md-input-container class="md-block">
     <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
     <input ng-model="quiz.keyword">
 </md-input-container>
 
-<md-input-container>
+<md-input-container class="md-block" ng-controller="CreateQuestionnaireController" ng-app="app">
     <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
-    <md-select ng-model="">
-        <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
-        {{state.abbrev}}
-        </md-option>
+    <md-select ng-model="quiz.selectedItem" md-selected-text="getSelectedText()">
+        <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+            <md-option ng-value="item" ng-repeat="item in items">{{item}}</md-option>
+        </md-optgroup>
     </md-select>
 </md-input-container>

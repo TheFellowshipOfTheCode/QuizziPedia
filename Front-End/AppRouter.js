@@ -105,9 +105,43 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                 }
             ]
         })
+        .when('/:lang/QML/:idQuestion', {
+            templateUrl: '/Views/EditorQMLView.html',
+            controller:"EditorQMLController",
+            css: [
+                {
+                    href: 'css/home-main.css'
+                },
+                {
+                    href: 'css/home-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/home-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
         .when('/:lang/wizard', {
             templateUrl: '/Views/CreateWithWizardView.html',
             controller:"",
+            css: [
+                {
+                    href: 'css/home-main.css'
+                },
+                {
+                    href: 'css/home-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/home-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
+        .when('/:lang/questions', {
+            templateUrl: '/Views/QuestionsManagementView.html',
+            controller: "QuestionsManagementController",
             css: [
                 {
                     href: 'css/home-main.css'

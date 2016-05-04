@@ -23,6 +23,29 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
+    if($routeParams.idQuestion){
+        //console.log($routeParams.idQuestion);
+        //metto dentro l'edito il testo
+
+        QuestionsService.getQuestion($routeParams.idQuestion)
+            .then(function(result){
+                var questionDownloaded = result.data;
+                console.log("singola:" + result);
+                $scope.question = questionDownloaded;
+            } ,function (err){
+                console.log(err);
+                $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
+                alert = $mdDialog.alert()
+                    .title($scope.error.getTitle())
+                    .content($scope.error.getMessage())
+                    .ok('Ok');
+                $mdDialog
+                    .show( alert )
+                    .finally(function() {
+                        alert = undefined;
+                    });
+            });
+    }
     $scope.submitQuestion = function(question){
         //Parser della domanda
         if(question == undefined){

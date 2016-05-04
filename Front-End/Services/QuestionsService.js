@@ -21,7 +21,9 @@ AuthService.$inject = ['$http', '$cookies', '$q'];
 
 function QuestionsService($http, $cookies, $q) {
     var methods = {
-        sendQuestion: sendQuestion
+        sendQuestion: sendQuestion,
+        getUsersQuestions: getUsersQuestions,
+        getQuestion: getQuestion
     };
 
     return methods;
@@ -32,7 +34,33 @@ function QuestionsService($http, $cookies, $q) {
        // if(question == undefined) return; //errore?
         var deferred = $q.defer();
 
-       $http.post('/api/'+ lang + '/user/question', question)
+       $http.post('/api/'+ lang + '/userquestion', question)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getUsersQuestions(lang) {
+        // if(username == undefined) return; //errore?
+        var deferred = $q.defer();
+
+        $http.get('/api/' + lang +'/userquestion')
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getQuestion(questionId, lang) {
+        // if(question == undefined) return; //errore?
+        var deferred = $q.defer();
+
+        $http.get('/api/'+ lang + '/userquestion/' + questionId)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error) {

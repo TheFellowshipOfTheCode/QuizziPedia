@@ -69,7 +69,7 @@ describe("View Question Test", function(){
                     console.log(res.body);
                     res.body.language.should.equal("it");
                     res.body.level.should.equal(500);
-                    res.body.keywords.should.containDeep(["Strada","Guida"]);
+                    //res.body.keywords.should.containDeep(["Strada","Guida"]);
                 }
                 else res.status.should.equal(500);
                 done()

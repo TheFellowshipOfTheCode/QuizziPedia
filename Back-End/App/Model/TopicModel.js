@@ -28,11 +28,12 @@ var topicSchema = new mongoose.Schema({
         ref:'Question'
     }]
 });
+topicSchema.statics.findTopicByName=function(topic, callback){
+    return this.findOne({'name': topic}, callback);
+};
 
-topicSchema.statics.getNextQuestion=function(language, topic, keywords, levelUser, callback){
-    //var questions = this.findOne({'name': topic});
-    //console.log(questions);
-    return  Question.findOneRandom({'language': language, 'keywords': {$in:keywords}, 'level': levelUser}, 'language question keywords level', callback);
+topicSchema.statics.getNextQuestion=function(topic, language, keywords, levelUser, callback){
+    return  Question.findOneRandom({'_id':{$in:topic.question},'language': language, 'keywords': {$in:keywords}, 'level': levelUser}, '_id language question keywords level', callback);
 };
 
 module.exports = mongoose.model('Topic', topicSchema);

@@ -23,7 +23,7 @@ describe("Signin Test", function () {
 describe("Get Questions Test", function(){
     it("should get questions of an user", function(done){
         agent
-            .get('/api/:lang/userquestions')
+            .get('/api/:lang/userquestion')
             .expect('Content-Type', /json/)
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -33,16 +33,31 @@ describe("Get Questions Test", function(){
                     res.status.should.equal(500);
                 done()
             });
-        //done()
-
     })
 });
+
+describe("Get Question Test", function(){
+    it("should get question of an user", function(done){
+        agent
+            .get('/api/:lang/userquestion/5728c4504c16020e07c41449')
+            .expect(200)
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    res.status.should.equal(200);
+                }
+                else
+                    res.status.should.equal(500);
+                done()
+            });
+    })
+});
+
 
 
 describe("Create Question Test", function(){
     it("should create a question", function(done){
         agent
-            .post('/api/:lang/user/question')
+            .post('/api/:lang/userquestion')
             .send({
                 makeWith: "qml",
                 language: "ita",
@@ -78,7 +93,7 @@ describe("Create Question Test", function(){
 describe("Edit Question Test", function(){
     it("should edit a question", function(done){
         agent
-            .put('/api/:lang/user/question')
+            .put('/api/:lang/userquestion')
             .send({
                 _id: "5728c32a71e52d0307348f8f",
                 makeWith: "qml",

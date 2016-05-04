@@ -40,15 +40,15 @@ var questionSchema = new mongoose.Schema({
     correctAnswers: {type:Number, default: 0},
 });
 
-questionSchema.statics.getQuestion=function(questionId,callback) {
-    return this.findOne({'_id': {$in: questionId}}, callback);
-}
-
 questionSchema.statics.createQuestion=function(author,question, callback){
     question.author = author
     var new_question = new this(question);
     return new_question.save(callback);
 };
+
+questionSchema.statics.getQuestion=function(questionId,callback) {
+    return this.findOne({'_id': questionId}, callback);
+}
 
 questionSchema.statics.getQuestions=function(author, callback){
     return this.find({'author': author},'_id makeWith language question.type question.questionText', callback);

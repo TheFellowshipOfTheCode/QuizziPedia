@@ -13,12 +13,13 @@ module.exports = function(app){
         });
     });*/
     
-    app.route('/api/:lang/user/question')
+    app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)
-        .put(Question.editQuestion);
-
-    app.route('/api/:lang/userquestions')
+        .put(Question.editQuestion)
         .get(Question.getQuestions);
+
+    app.route('/api/:lang/userquestion/:questionId')
+        .get(Question.getQuestion);
 
     app.route('/api/:lang/user/training/questionstatistics')
         .put(Question.updatestatisticsQuestion);

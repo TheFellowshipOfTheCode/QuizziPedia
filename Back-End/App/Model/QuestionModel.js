@@ -1,44 +1,48 @@
 var mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
+
 var questionSchema = new mongoose.Schema({
     author: {
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    makeWith: String,
-    language: String,
+    makeWith: {type: String},
+    language: {type: String},
     question: [{
         type: {type: String},
         questionText: {type: String},
         image: {type: String},
         answers: [{
-            text: String,
-            url: String,
+            text: {type: String},
+            url: {type: String},
             attributesForTForMultiple: {
-                isItRight: Boolean
+                isItRight: {type: Boolean}
             },
             attributesForSorting: {
-                position: Number
+                position: {type: Number}
             },
             attributesForLinking: {
-                text1: String,
-                text2: String,
-                url1: String,
-                url2: String
+                text1: {type: String},
+                text2: {type: String},
+                url1: {type: String},
+                url2: {type: String}
             },
             attributesForClickableArea: {
-                x: Number,
-                y: Number
+                x: {type: Number},
+                y: {type: Number}
             },
             attributesForEmptySpaces: {
-                wordNumber: Number
+                wordNumber: {type: Number}
             }
         }]
     }],
     keywords: [String],
     level: {type:Number, default: 500},
     totalAnswers: {type:Number, default: 0},
-    correctAnswers: {type:Number, default: 0},
+    correctAnswers: {type:Number, default: 0}
 });
+
+questionSchema.plugin(random);
 
 questionSchema.statics.createQuestion=function(question, callback){
     var quest = new this();

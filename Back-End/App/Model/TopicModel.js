@@ -20,9 +20,9 @@ var mongoose = require('mongoose');
 var Question = require('./QuestionModel');
 
 var topicSchema = new mongoose.Schema({
-    name: String,
-    correctAnswers: Number,
-    totalAnswers: Number,
+    name: {type: String},
+    correctAnswers: {type: Number},
+    totalAnswers: {type: Number},
     question: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Question'
@@ -31,7 +31,8 @@ var topicSchema = new mongoose.Schema({
 
 topicSchema.statics.getNextQuestion=function(language, topic, keywords, levelUser, callback){
     //var questions = this.findOne({'name': topic});
-    return  Question.findOne({'language': language, 'keywords': {$in:keywords}, 'level': levelUser}, 'language question keywords level', callback);
+    //console.log(questions);
+    return  Question.findOneRandom({'language': language, 'keywords': {$in:keywords}, 'level': levelUser}, 'language question keywords level', callback);
 };
 
 module.exports = mongoose.model('Topic', topicSchema);

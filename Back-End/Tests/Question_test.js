@@ -62,13 +62,13 @@ describe("View Question Test", function(){
                 language: "it",
                 topic: "Patente",
                 keywords:["Strada","Guida"],
-                level:600
+                level:500
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
                     console.log(res.body);
                     res.body.language.should.equal("it");
-                    res.body.level.should.equal(600);
+                    res.body.level.should.equal(500);
                     res.body.keywords.should.containDeep(["Strada","Guida"]);
                 }
                 else res.status.should.equal(500);

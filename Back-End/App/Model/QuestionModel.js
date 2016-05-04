@@ -7,9 +7,9 @@ var questionSchema = new mongoose.Schema({
     makeWith: String,
     language: String,
     question: [{
-        type: String,
-        questionText: String,
-        image: String,
+        type: {type: String},
+        questionText: {type: String},
+        image: {type: String},
         answers: [{
             text: String,
             url: String,
@@ -35,9 +35,9 @@ var questionSchema = new mongoose.Schema({
         }]
     }],
     keywords: [String],
-    level: Number,
-    totalAnswers: Number,
-    correctAnswers: Number
+    level: {type:Number, default: 500},
+    totalAnswers: {type:Number, default: 0},
+    correctAnswers: {type:Number, default: 0},
 });
 
 questionSchema.statics.createQuestion=function(question, callback){

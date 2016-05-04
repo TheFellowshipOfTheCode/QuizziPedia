@@ -53,9 +53,7 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 }
 
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
-    var jsonQuizzes = new this();
-    jsonQuizzes = Quiz.find({'author': author}, callback);
-    return jsonQuizzes;
+    return this.find({'author': author}, callback);
 }
 
 

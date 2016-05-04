@@ -41,5 +41,19 @@ describe("Quiz tests", function() {
             })
     })
 
+    it("should return the desired quiz", function(done) {
+        agent
+            .get('/api/:lang/user/quiz/:quizId')
 
+            .end(function(err, res) {
+                if (!err && res.status == 200) {
+                    res.body.title.should.equal("questionario top");
+                    res.body.correctAnswers.should.equal(13);
+                }
+                else {
+                    res.status.should.equal(500);
+                }
+                done();
+            })
+    })
 })

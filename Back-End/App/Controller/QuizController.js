@@ -4,12 +4,18 @@ var quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
-    quiz.createQuiz(req.body, function(err, quiz) {
-        if (err) return res.status(500).json({ code: 321,
+    quiz.createQuiz(req.body, function(err) {
+        if (err) return res.status(500).json({
+            code: 2,
             title: 'quiz-insertion-error',
-            message: 'ciaociao' });
-        else return res.send(quiz) // usare send o json??
-    })
+            message: 'l\'inserimento del quiz è fallito'
+        });
+        else return res.status(200).json({
+            code: 3,
+            title: 'quiz-insertion-success',
+            message: 'l\'inserimento del quiz ha avuto successo'
+        });
+    });
 }
 
 exports.getQuiz = function (req, res, next) {

@@ -25,37 +25,36 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
         var domanda= new QuestionItemModel(); //SI viene passato un oggetto dal service e la domanda
 
-        $scope.arrayDomande=domanda.getCurrentPieceOfQuestions(cont);
+        downloadQuestion(cont);
 
-        console.log($scope.arrayDomande);
-
-        //var objAnswer= [];
-
-        $scope.objAnswer=[]; //SI
-
-
-        /*set-up drag and drop questions*/
-        $scope.list1 = [];
-        $scope.list2 = [];
-
-        $scope.arrayDomande[0].answer.forEach(function(elem, key) {
-          $scope.list1.push({});
-          if(elem.text2 != undefined) {
-            $scope.list2.push({text2 : elem.text2});
-          }
-          else {
-            if(elem.url2 !=undefined) {
-              $scope.list2.push({url2 : elem.url2});
+        $scope.splitTheText= function(index,text) {
+          delete $scope.list1;
+          delete $scope.list2;
+          $scope.list1 = [];
+          $scope.list2 = [];
+          console.log(text);
+          var tempText = text.split(" ");
+          $scope.arrayDomande[0].answer.forEach(function(elem) {
+            console.log(elem.parolaNumero);
+            $scope.list2.push({hideWord : tempText[elem.parolaNumero]});
+          });
+          $scope.arrayDomande[index].answer.forEach(
+            function (elem) {
+              tempText[elem.parolaNumero]= "##TODELETE##";
             }
-          }
-        });
-        console.log($scope.list2);
+          );
+
+          console.log($scope.list2);
+          $scope.emptySpaceText = tempText;
+        }
 
         $scope.dragnNDropQuestions= function(event, ui,index,typeDomanda,obj) {
           console.log(index);
           console.log(typeDomanda);
           console.log(obj);
           console.log("draggoandroppo");
+          console.log($scope.list1);
+          console.log($scope.list2);
           $scope.addAnswer(index,typeDomanda,{"answerGiven": obj})
         }
 
@@ -93,7 +92,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           delete $scope.arrayDomande;
           $scope.objAnswer=[];
           cont++;
-          $scope.arrayDomande=domanda.getCurrentPieceOfQuestions(cont);
+          downloadQuestion(cont);
 
         });
 
@@ -114,7 +113,33 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
         /**/
 
+        function downloadQuestion(cont) {
+          $scope.arrayDomande=domanda.getCurrentPieceOfQuestions(cont);
 
+          console.log($scope.arrayDomande);
+
+          //var objAnswer= [];
+
+          $scope.objAnswer=[]; //SI
+
+
+          /*set-up drag and drop questions*/
+          delete $scope.list1;
+          delete $scope.list2;
+          $scope.list1 = [];
+          $scope.list2 = [];
+          $scope.arrayDomande[0].answer.forEach(function(elem, key) {
+            $scope.list1.push({});
+            $scope.list2.push(elem);
+          });
+          console.log($scope.list2);
+          console.log($scope.list3);
+
+          delete $scope.emptySpaceText;
+          $scope.emptySpaceText = [];
+
+
+        }
 
 
 

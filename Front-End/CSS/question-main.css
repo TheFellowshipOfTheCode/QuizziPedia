@@ -100,3 +100,11 @@ li {
   overflow: hidden;
   z-index: -1;
 }
+
+.sort-images {
+  line-height: 10em;
+}
+
+.word {
+  margin-right: 0.5em;
+}

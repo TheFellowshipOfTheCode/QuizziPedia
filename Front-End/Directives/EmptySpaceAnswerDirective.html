@@ -1,0 +1,61 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+    <div class=" md-padding" ng-init="splitTheText($parent.$index, d.questionText)">
+      <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
+        <span class="text-center questionText">{{d.questionText}} </span>
+      </div>
+      <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
+        {{emptySpaceText}}
+    <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
+
+        <ul>
+
+          <!--<li class="md-primary md-raised md-button" ng-repeat="item in list2" data-drop="true" data-drag="true" ng-model="list2" jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,list2)'}" jqyoui-draggable="{index: {{$index}}, insertInline: true, direction:'jqyouiDirection'}" data-jqyoui-options="{revert: 'invalid'}" data-direction="{{item.jqyouiDirection}}">
+            <h1>{{item.text}}</h1>
+          </li> -->
+
+
+
+
+        </ul>
+        <span>
+          <span class="word" ng-repeat="elem in emptySpaceText track by $index" >
+             <span ng-if="elem != '##TODELETE##'"> {{elem}} </span>
+             <div ng-if="elem === '##TODELETE##'" class=" box-in md-whiteframe-z1" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$parent.$index,d.typeDomanda,list1)' }" >
+               <div class="zone md-primary md-raised md-button" ng-show="list1[$index].hideWord" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" >{{list1[$index].hideWord}}</div>
+             </div>
+
+          </span>
+        </span>
+
+          <ul class="line">
+            <li class="inline" ng-repeat="elem in list2 " ng-model='list2' >
+              <div  class="zone md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!elem.hideWord" style="margin-top:{{12*$index}}em !important">{{elem.hideWord}}</div>
+            </li>
+          </ul>
+
+
+      </div>
+
+      </div>
+    </div>
+</section>

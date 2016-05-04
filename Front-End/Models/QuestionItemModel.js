@@ -3,6 +3,77 @@ app.factory("QuestionItemModel", [function() {
     //simula tutti i campi della domanda, qui in moniera sbrigativa
     var QuestionItemModel= function() {
         var domanda=[
+          { "id": "D5", 	"level": 500,	"lang": "ita",
+          "question":	[
+
+            {
+        "typeDomanda": "spaziVuoti",
+        "questionText": "Giulio Cesare era un console dei dinosauri .",
+        "answer":
+        [
+          {
+             "parolaNumero": 2
+             },
+            {
+             "parolaNumero": 5
+             }]
+          }
+        ]
+      },
+          { "id": "D4", 	"level": 500,	"lang": "ita",
+          "question":	[
+
+            {
+        "typeDomanda": "ordinamentoImmagini",
+        "questionText": "Questi super eroi hanno un nome. Ordina le immagini in modo da poter mettere i super erori in ordine alfabetico.",
+        "answer":
+      [
+
+  		  {
+  			     "url": "/Images/domandeOrdinamentoImmagini/D4_1.jpg",
+  			     "position": 1
+  		  },
+
+  	    {
+  			     "url": "/Images/domandeOrdinamentoImmagini/D4_2.png",
+  			     "position": 2
+  		  }
+
+		  ]
+	  }
+        ]},
+          { "id": "D3", 	"level": 500,	"lang": "ita",
+          "question":	[
+
+            {
+        "typeDomanda": "ordinamentoStringhe",
+        "questionText": "Ordina questi numeri in modo decrescente.",
+        "answer":
+        [
+
+    		  {
+    			     "text": "1",
+    			     "position": 4
+    		  },
+
+    	    {
+    			     "text": "2",
+    			     "position": 3
+    		  },
+
+    	    {
+    			     "text": "7",
+    			     "position": 2
+    		  },
+
+          {
+    			     "text": "9",
+    			     "position": 1
+    		  }
+
+  		  ]
+  	  }
+        ]},
           { "id": "D2", 	"level": 500,	"lang": "ita",
           "question":	[
 

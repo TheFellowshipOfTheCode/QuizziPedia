@@ -41,6 +41,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
             });
       }
       else {
+        $scope.training.questionNumber++;
         $rootScope.$emit("loadNewQuestion");
       }
     });

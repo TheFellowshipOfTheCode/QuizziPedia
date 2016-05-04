@@ -51,6 +51,13 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
         $location.path('/'+$routeParams.lang+'/QML/' + idQuestion);
     };
 
+    $scope.goToWizardCreation = function(){
+        $location.path('/' + $routeParams.lang + '/wizard');
+    }
+
+    $scope.goToQMLCreation = function(){
+        $location.path('/' + $routeParams.lang + '/QML');
+    }
 
 
 

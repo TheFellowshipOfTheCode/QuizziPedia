@@ -60,6 +60,7 @@ questionSchema.statics.editQuestion=function(question,callback){
 
 questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,callback){
     this.findOne({_id:questionId}, function(err,question){
+        console.log(userLevel)
         if(err){
             return next(err);
         }
@@ -114,8 +115,10 @@ questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,cal
                 }
             }
         }
-        else{ // caso in cui la domanda sia piÃ¹ facile dell'abilitÃ  dell'utente
+        else{
+            // caso in cui la domanda sia più facile dell'abilità  dell'utente
             var scarto = userLevel - oldDifficult;
+            console.log(scarto)
             if(isCorrected == true){
                 if(scarto > 90){
                     question.level = oldDifficult - 2;
@@ -173,7 +176,7 @@ questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,cal
         else if(question.level < 0){
             question.level = 0;
         }
-        return question.save(callback);
+        return question.save(callback)
     })
 
 }
@@ -183,15 +186,12 @@ questionSchema.statics.addKeyword=function(questionId,keyword,callback){
 }
 
 questionSchema.statics.addCorrect=function(questionId,callback){
-    this.findOne({_id: questionId},function(err,question) {
-        question.correctAnswers += 1;
-        return question.save(callback)
-    })
+    this.findOneAndUpdate({_id: questionId},{ $inc: { correctAnswers: 1 }},callback)
 
 }
 
-questionSchema.statics.addTotal=function(questionId,callback){
-    this.Update({_id: questionId},{totalAnswers: totalAnswers+1}, callback)
+questionSchema.statics.addTotal=function(questionId,callback){ 
+    this.findOneAndUpdate({_id: questionId},{ $inc: { totalAnswers: 1 }},callback)
 }
 
 

@@ -21,7 +21,7 @@ module.exports = function(app){
     app.route('/api/:lang/userquestion/:questionId')
         .get(Question.getQuestion);
 
-    app.route('/api/:lang/user/training/questionstatistics')
+    app.route('/api/:lang/usertraining/questionstatistics')
         .put(Question.updatestatisticsQuestion);
 
     

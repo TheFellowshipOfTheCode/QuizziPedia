@@ -48,24 +48,18 @@ exports.editQuestion = function(req, res) {
 };
 
 exports.updatestatisticsQuestion = function(req, res) {
-  /*  Question.updateLevel(req.body.questionId,req.body.userLevel,req.body.isCorrected, function(err, cb){
+    Question.updateLevel(req.body.questionId,req.body.userLevel,req.body.isCorrected, function(err, cb){
         if(err) return res.status(500).json({code:133, title: "Errore Domanda", message: "Livello domanda non aggiornato"});
-        else return res.send({code:100, title: "Ok Domanda", message: "Livello domanda aggiornato"});
-    }) */
-    Question.addTotal(req.body.questionId, function(err,cb){
-        if(err)
-            return res.status(500).json({code:133, title: "Errore Domanda", message: "Contatore risposte non aggiornato"});
-        return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
-    })
-   /* if (req.body.IsCorrected) {
-        Question.addCorrect(req.body.questionId, function (err,cb) {
-            if (err)
-                return res.status(500).json({
-                    code: 133,
-                    title: "Errore Domanda",
-                    message: "Contatore risposte corrette non aggiornato"
-                });
+        Question.addTotal(req.body.questionId, function(err){
+            if(err)
+                return res.status(500).json({code:133, title: "Errore Domanda", message: "Contatore risposte non aggiornato"});
+            if (req.body.IsCorrected) {
+                Question.addCorrect(req.body.questionId, function (err) {
+                    if (err)
+                        return res.status(500).json({code: 133, title: "Errore Domanda",message: "Contatore risposte corrette non aggiornato"});
+                    return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
+                })
+            }
         })
-    }*/
-    return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
-};
+    })
+}

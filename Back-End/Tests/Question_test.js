@@ -125,14 +125,14 @@ describe("Edit Question Test", function(){
 });
 
 
-/*
-describe("Update Level Question Test", function(){
-    it("should update a question", function(done){
+
+describe("Update Statistics Question Test", function(){
+    it("should update statistics  question", function(done){
         agent
-            .put('/api/:lang/user/training/questionstatistics')
+            .put('/api/:lang/usertraining/questionstatistics')
             .send({
-                questionId : '57290236d04ef5c044faa246',
-                userLevel: 200,
+                questionId : '572901e8d04ef5c044faa243',
+                userLevel: 450,
                 IsCorrected : true,
             })
             .end(function(err,res){
@@ -148,4 +148,3 @@ describe("Update Level Question Test", function(){
     })
 });
 
-    */

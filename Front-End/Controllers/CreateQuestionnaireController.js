@@ -20,4 +20,12 @@ app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 
 CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', '$timeout','$mdSidenav', 'UserDetailsModel', 'ErrorInfoModel', 'MenuBarModel'];
 
-function CreateQuestionnaireController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, $timeout, $mdSidenav, UserDetailsModel, ErrorInfoModel, MenuBarModel) {}
+function CreateQuestionnaireController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, $timeout, $mdSidenav, UserDetailsModel, ErrorInfoModel, MenuBarModel) {
+
+app.directive('TopicKeywordsDirective', function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../Directives/TopicKeywordsDirective.html'
+        };
+    });
+}

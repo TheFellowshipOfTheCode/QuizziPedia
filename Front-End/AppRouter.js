@@ -93,14 +93,14 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"CreateQuestionnaireController",
             css: [
                 {
-                    href: 'css/home-main.css'
+                    href: 'css/auth-main.css'
                 },
                 {
-                    href: 'css/home-medium.css',
+                    href: 'css/auth-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/home-small.css',
+                    href: 'css/auth-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]

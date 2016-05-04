@@ -16,12 +16,12 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-app.directive('TopicKeywordsDirective', TopicKeywordsDirective);
+app.directive('topicKeywordsDirective', topicKeywordsDirective);
 
-function TopicKeywordsDirective() {
+function topicKeywordsDirective() {
     var directive = {
         restrict: 'E',
-        templateUrl: '../Directives/TopicKeywordsDirective.html'
+        templateUrl: '/Directives/TopicKeywordsDirective.html'
     };
     return directive;
 }

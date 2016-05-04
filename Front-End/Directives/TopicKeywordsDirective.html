@@ -17,25 +17,16 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
+<md-input-container>
+    <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
+    <input ng-model="quiz.keyword">
+</md-input-container>
 
-<div class="md-padding selectdemoBasicUsage">
-    <div>
-        <h1 class="md-title">{{listOfKeys.titleTopicKeywordsDirective}}</h1>
-        <div layout="row">
-
-            <md-input-container>
-                <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
-                <input ng-model="quiz.keyword">
-            </md-input-container>
-
-            <md-input-container>
-                <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
-                <md-select ng-model="">
-                    <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
-                        {{state.abbrev}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-    </div>
-</div>
+<md-input-container>
+    <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
+    <md-select ng-model="">
+        <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
+        {{state.abbrev}}
+        </md-option>
+    </md-select>
+</md-input-container>

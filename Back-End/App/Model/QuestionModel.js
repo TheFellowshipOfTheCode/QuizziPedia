@@ -50,9 +50,13 @@ questionSchema.statics.createQuestion=function(author,question, callback){
     return new_question.save(callback);
 };
 
+questionSchema.statics.getQuestions=function(author, callback){console.log(author)
+    return this.find({'author': author},'_id', callback);
+};
+
 questionSchema.statics.editQuestion=function(question,callback){
-    return this.findOneAndUpdate(question._id, question, callback)
-}
+    return this.findOneAndUpdate({'_id' : question._id}, question, callback)
+};
 
 questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,callback){
     this.findOne({_id:questionId}, function(err,question){
@@ -178,24 +182,17 @@ questionSchema.statics.addKeyword=function(questionId,keyword,callback){
 
 }
 
-questionSchema.statics.addCorrect=function(questionId){
-    this.findOne({_id: questionId}, function(err, question){
-        if (err) { return next(err); }
+questionSchema.statics.addCorrect=function(questionId,callback){
+    this.findOne({_id: questionId},function(err,question) {
         question.correctAnswers += 1;
-        return question.save()
-    });
+        return question.save(callback)
+    })
+
 }
 
-questionSchema.statics.addTotal=function(questionId){
-    this.findOne({_id: questionId}, function(err, question){
-        if (err) { return next(err); }
-        question.totalAnswers += 1;
-        return question.save()
-    });
+questionSchema.statics.addTotal=function(questionId,callback){
+    this.Update({_id: questionId},{totalAnswers: totalAnswers+1}, callback)
 }
 
-questionSchema.methods.getQuestion=function(questionId,callback){
-    return Quiz.findOne({'_id':{$in:questionId}},callback);
-};
 
 module.exports = mongoose.model('Question', questionSchema);

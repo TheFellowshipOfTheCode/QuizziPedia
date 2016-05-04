@@ -38,7 +38,7 @@ exports.getInfo = function(req, res, next) {
     userId=req.params.userId.replace(':','');
     user.findOne({'_id':userId},'name surname userImg experienceLevel', function(err,info){
         if (err)
-            return handleError(err);
+            return err;
         else
             return res.send(info);
     })

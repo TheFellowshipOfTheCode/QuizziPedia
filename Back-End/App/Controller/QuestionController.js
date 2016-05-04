@@ -25,16 +25,39 @@ exports.createQuestion = function(req, res) {
     })
 };
 
-exports.editQuestion = function(req, res) {
-    Question.editQuestion(req.body, function(err, question){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
-        else return res.send(question);
+exports.getQuestions = function(req, res) {
+    Question.getQuestions(req.user._id, function(err, questions){ console.log(req.user._id)
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "L'utente non ha creato nessuna domanda"});
+        else return res.send(questions);
     })
 };
 
-exports.updateLevel = function(req, res) {
-    Question.updateLevel(req.body.questionId,req.body.userLevel,req.body.isCorrected, function(err, question){
-        if(err) return res.status(500).json({code:133, title: "Errore Domanda", message: "Livello domanda non aggiornata"});
-        else return res.send({code:100, title: "Ok Domanda", message: "Livello domanda aggiornata"});
+exports.editQuestion = function(req, res) {
+    Question.editQuestion(req.body, function(err, question){
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
+        else return res.send({code:88, title: "Errore Domanda", message: "Domanda modificata correttamente"});
     })
+};
+
+exports.updatestatisticsQuestion = function(req, res) {
+  /*  Question.updateLevel(req.body.questionId,req.body.userLevel,req.body.isCorrected, function(err, cb){
+        if(err) return res.status(500).json({code:133, title: "Errore Domanda", message: "Livello domanda non aggiornato"});
+        else return res.send({code:100, title: "Ok Domanda", message: "Livello domanda aggiornato"});
+    }) */
+    Question.addTotal(req.body.questionId, function(err,cb){
+        if(err)
+            return res.status(500).json({code:133, title: "Errore Domanda", message: "Contatore risposte non aggiornato"});
+        return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
+    })
+   /* if (req.body.IsCorrected) {
+        Question.addCorrect(req.body.questionId, function (err,cb) {
+            if (err)
+                return res.status(500).json({
+                    code: 133,
+                    title: "Errore Domanda",
+                    message: "Contatore risposte corrette non aggiornato"
+                });
+        })
+    }*/
+    return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
 };

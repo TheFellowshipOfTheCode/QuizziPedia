@@ -12,6 +12,14 @@ module.exports = function(app){
             res.json(result);
         });
     });*/
+
     app.route('/api/:lang/user/question')
-        .post(Question.createQuestion);
+        .post(Question.createQuestion)
+        .put(Question.editQuestion);
+
+    app.route('/api/:lang/user/training/questionstatistics')
+        .put(Question.updatestatisticsQuestion);
+
+    app.route('/api/:lang/user/questions')
+        .get(Question.getQuestions);
 };

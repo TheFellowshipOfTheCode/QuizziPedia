@@ -7,7 +7,7 @@
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 ng-if="training != undefined && questionNumberOnTraining <= training.getNumberOfQuestions()" class="ng-binding">
+          <h3 ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="ng-binding">
             {{listOfKeys.questionNumberLang}} {{questionNumberOnTraining}}
             <span ng-if="training.getNumberOfQuestions() != 0">
              {{listOfKeys.ofLang}}
@@ -17,7 +17,7 @@
           <h3 ng-if="training === undefined" class="ng-binding">
             {{listOfKeys.training}}
           </h3>
-          <h3 ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions()" class="ng-binding">
+          <h3 ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="ng-binding">
             {{listOfKeys.endOfTraining}}
           </h3>
          <span flex="" class="flex"></span>
@@ -29,7 +29,7 @@
           <training-set-up-directive></training-set-up-directive>
         </div>
 
-        <div ng-controller="QuestionsController" ng-if="training != undefined && questionNumberOnTraining <= training.getNumberOfQuestions()">
+        <div ng-controller="QuestionsController" ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) ">
           <header-text-question-directive></header-text-question-directive>
           <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
             <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
@@ -48,7 +48,7 @@
 
         </div>
 
-        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions()">
+        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 ">
           concluso
         </div>
 
@@ -58,13 +58,13 @@
           </button>
         </div>
 
-        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
           <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining("","")'>
             {{listOfKeys.restartTraining}}
           </button>
         </div>
 
-        <div ng-if="training != undefined && questionNumberOnTraining <= training.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+        <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
           <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='newQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>

@@ -70,11 +70,19 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         $mdDialog
             .show( alert )
             .then(function() {
-              if($scope.questionNumberOnTraining+1 > $scope.training.getNumberOfQuestions())
+              if($scope.questionNumberOnTraining+1 > $scope.training.getNumberOfQuestions() )
               {
-                console.log("allenamento terminato");
+                console.log($scope.training.getNumberOfQuestions());
+                if($scope.training.getNumberOfQuestions() == 0) {
+                  $rootScope.$emit("loadNewQuestion");
+                  angular.element(".scrollable").scrollTop(0,0);
+                }
+                else {
+                  console.log("allenamento terminato1");
+                }
               }
               else {
+                console.log("continuo1");
                 $rootScope.$emit("loadNewQuestion");
                 angular.element(".scrollable").scrollTop(0,0);
               }
@@ -82,11 +90,19 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
             });
       }
       else {
-        if($scope.questionNumberOnTraining+1 > $scope.training.getNumberOfQuestions())
+        if($scope.questionNumberOnTraining+1 > $scope.training.getNumberOfQuestions() )
         {
-          console.log("allenamento terminato");
+          console.log($scope.training.getNumberOfQuestions());
+          if($scope.training.getNumberOfQuestions() == 0) {
+            $rootScope.$emit("loadNewQuestion");
+            angular.element(".scrollable").scrollTop(0,0);
+          }
+          else {
+            console.log("allenamento terminato1");
+          }
         }
         else {
+          console.log("continuo2");
           $rootScope.$emit("loadNewQuestion");
           angular.element(".scrollable").scrollTop(0,0);
         }

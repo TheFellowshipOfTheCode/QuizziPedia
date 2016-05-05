@@ -17,12 +17,12 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-<md-input-container class="md-block">
+<md-input-container class="md-block" ng-controller="AppController">
     <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
     <input ng-model="quiz.keyword">
 </md-input-container>
 
-<md-input-container class="md-block">
+<md-input-container class="md-block" ng-controller="AppController">
     <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
     <md-select ng-model="quiz.selectedItem" md-selected-text="getSelectedText()">
         <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>

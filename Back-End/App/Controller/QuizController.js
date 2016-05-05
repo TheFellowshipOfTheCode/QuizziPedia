@@ -4,6 +4,7 @@ var quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
+    console.log(req.body);
     quiz.createQuiz(req.user._id, req.body, function(err) {
         if (err) return res.status(500).json({
             code: 2,

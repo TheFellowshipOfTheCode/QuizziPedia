@@ -29,7 +29,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     };
 
     $scope.items = ['Scienze', 'Informatica', 'Storia'];
-    $scope.quiz.selectedItem;
+
     $scope.getSelectedText = function() {
         if ($scope.quiz.selectedItem !== undefined) {
             return $scope.quiz.selectedItem;

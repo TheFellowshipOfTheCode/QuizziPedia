@@ -31,7 +31,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     delete $scope.temporyObjectForView[index].list2;
     var list1 = [], list2 = [];
     var tempText = text.split(" ");
-    $scope.arrayDomande[index].answer.forEach(function(elem) {
+    $scope.question.getQuestion()[index].answer.forEach(function(elem) {
       list2.push({hideWord : tempText[elem.parolaNumero]});
       tempText[elem.parolaNumero]= "##TODELETE##";
     });
@@ -51,7 +51,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function used to save the elements selected in multiple choice answer*/
   $scope.save = function(index){
     var albumNameArray = [];
-    angular.forEach($scope.arrayDomande[index].answers, function(gived){
+    angular.forEach($scope.question.getQuestion()[index].answers, function(gived){
       if (gived.selected) albumNameArray.push(gived.text);
     });
     return albumNameArray;
@@ -61,15 +61,15 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
   $rootScope.$on("loadNewQuestion", function(event, args) {
-    delete $scope.arrayDomande;
     $scope.objAnswer=[];
     downloadNextQuestionTraining();
   });
 
   /*Funtion to check if a question is answered */
   $rootScope.$on("isItAnswered", function(event, args) {
+    console.log("catturo isItAnswered");
     var ok= true;
-     if(Object.keys($scope.objAnswer).length != Object.keys($scope.arrayDomande).length) {
+     if(Object.keys($scope.objAnswer).length != Object.keys($scope.question.getQuestion()).length) {
        ok = false;
      }
     var answer = $scope.objAnswer;
@@ -83,12 +83,11 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     QuestionsService
       .getNextQuestion($routeParams.lang,"Patente")
       .then(function(result){
-        $scope.question= new QuestionItemModel(result.data.id,"io", "non so", result.data.language, result.data.question);
-        $scope.arrayDomande=$scope.question.getQuestion();
+        $scope.question= new QuestionItemModel(result.data.id,"io", "non so", result.data.language, result.data.question,result.data.keywords);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
         $scope.temporyObjectForView= [];
-        $scope.arrayDomande.forEach(function(elem, index) {
+        $scope.question.getQuestion().forEach(function(elem, index) {
           var list1 = [], list2 = [];
           elem.answers.forEach(function(elem, key) {
             list1.push({});

@@ -20,15 +20,77 @@ app.factory('TrainingModeModel', TrainingModeModel);
 
 function TrainingModeModel() {
   //constructor
-  var TrainingModeModel = function ()
+  var TrainingModeModel = function (argument, keywords, numberOfQuestions)
   {
+    console.log(numberOfQuestions);
     // private variables
-    var lang_ = lang;
+    var argument_ = argument;
+    var keywords_ = keywords;
+    var numberOfQuestions_ = numberOfQuestions;
+    var rightAnswer_ = [];
+    var questions_ = [];
+
     // public functions
-    this.getSomething = function(){
-        return lang_;
+    this.setKeywords = function (keywords) {
+        keywords_ = keywords;
     };
-    
+
+    this.setArgument = function (argument) {
+        argument_ = argument;
+    };
+
+    this.setNumberOfQuestions = function (numberOfQuestions) {
+        numberOfQuestions_ = numberOfQuestions;
+    };
+
+    this.setQuestions = function (questions) {
+        questions_ = questions;
+    };
+
+    this.setRightAnswer = function () {
+        rightAnswer_=rightAnswer;
+    };
+
+    this.getKeywords = function () {
+        return keywords_;
+    };
+
+    this.getArgument = function () {
+        return argument;
+    };
+
+    this.getNumberOfQuestions = function () {
+        return numberOfQuestions_ ;
+    };
+
+    this.getQuestions = function () {
+        return questions_;
+    };
+
+    this.getRightAnswer = function () {
+        return rightAnswer_;
+    };
+
+    this.getResult = function () {
+
+    };
+
+    this.addQuestion = function(question){
+
+    };
+
+    this.removeQuestion = function(question){
+
+    };
+
+    this.addKeyword = function(key){
+
+    };
+
+    this.removeKeyword = function(key){
+
+    };
+
   }
   return TrainingModeModel;
 }

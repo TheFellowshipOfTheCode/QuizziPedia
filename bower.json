@@ -37,7 +37,9 @@
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
     "angular-css": "1.0.8",
-    "angular-dragdrop" : "*"
+    "angular-dragdrop" : "*",
+    "angular-number-picker" : "*"
+
   },
   "ignore": [
     "**/.*",

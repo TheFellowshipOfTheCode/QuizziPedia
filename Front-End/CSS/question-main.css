@@ -160,3 +160,9 @@ li {
 .text-center {
   margin: 1em;
 }
+
+.keywords {
+  display: inline;
+  line-height: 3.5em;
+  vertical-align: text-bottom;
+}

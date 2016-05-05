@@ -7,21 +7,33 @@
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 class="ng-binding">{{listOfKeys.questionNumberLang}} {{training.questionNumber}}
-            <span ng-if="training.numberOfQuestion != undefined">
+          <h3 ng-if="training != undefined && questionNumberOnTraining <= training.getNumberOfQuestions()" class="ng-binding">
+            {{listOfKeys.questionNumberLang}} {{questionNumberOnTraining}}
+            <span ng-if="training.getNumberOfQuestions() != 0">
              {{listOfKeys.ofLang}}
-             {{training.numberOfQuestion}}
+             {{training.getNumberOfQuestions()}}
            </span>
+          </h3>
+          <h3 ng-if="training === undefined" class="ng-binding">
+            {{listOfKeys.training}}
+          </h3>
+          <h3 ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions()" class="ng-binding">
+            {{listOfKeys.endOfTraining}}
           </h3>
          <span flex="" class="flex"></span>
         </div>
       </md-toolbar>
       <div class="md-padding">
 
-        <div ng-controller="QuestionsController">
-          <div ng-repeat="d in arrayDomande" ng-switch on="d.type">
-            <div ng-switch-when="veroFalso"> <True-false-answer-directive></True-false-answer-directive> </div>
-            <div ng-switch-when="rispostaMultipla"> <Multiple-choice-answer-directive></Multiple-choice-answer-directive> </div>
+        <div ng-if="training === undefined">
+          <training-set-up-directive></training-set-up-directive>
+        </div>
+
+        <div ng-controller="QuestionsController" ng-if="training != undefined && questionNumberOnTraining <= training.getNumberOfQuestions()">
+          <header-text-question-directive></header-text-question-directive>
+          <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
+            <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
+            <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
             <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
             <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
             <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
@@ -36,7 +48,23 @@
 
         </div>
 
-        <div class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions()">
+          concluso
+        </div>
+
+        <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining("","")'>
+            {{listOfKeys.goToTraining}}
+          </button>
+        </div>
+
+        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining("","")'>
+            {{listOfKeys.restartTraining}}
+          </button>
+        </div>
+
+        <div ng-if="training != undefined && questionNumberOnTraining <= training.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
           <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='newQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
@@ -44,6 +72,7 @@
             {{listOfKeys.buttonEndTrainingLang}}
           </button>
         </div>
+
       </div>
     </section>
   </div>

@@ -1,0 +1,40 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
+  {{infiniteQuestion}}
+  <fieldset ng-disabled="infiniteQuestion" >
+    <h-number class="question-picker" change="" value="numberOfQuestionsOnTraining.num" singular="{{listOfKeys.question}}" plural="{{listOfKeys.questions}}" min="0" max="{{stepQuestionsTraining}}" step="" ></h-number>
+  </fieldset>
+  <md-checkbox ng-model="infiniteQuestion" ng-change="setInfiniteQuestion(infiniteQuestion)">
+      {{listOfKeys.noStop}}
+    </md-checkbox>
+  <md-chips ng-model="ctrl.selectedVegetables" md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" md-require-match="ctrl.autocompleteDemoRequireMatch">
+        <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" placeholder="Search for a vegetable">
+          <span md-highlight-text="ctrl.searchText">{{item.name}} :: {{item.type}}</span>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>
+            <strong>{{$chip.name}}</strong>
+            <em>({{$chip.type}})</em>
+          </span>
+        </md-chip-template>
+      </md-chips>
+</section>

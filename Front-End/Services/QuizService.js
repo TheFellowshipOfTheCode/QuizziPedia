@@ -18,7 +18,7 @@
 
 app.factory('QuizService', QuizService);
 
-QuizService.$inject = ['$http', '$cookies', '$q'];
+AuthService.$inject = ['$http', '$cookies', '$q'];
 
 function QuizService($http, $cookies, $q) {
     var methods = {

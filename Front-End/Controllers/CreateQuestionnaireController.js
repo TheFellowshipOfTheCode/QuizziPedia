@@ -45,7 +45,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         $location.path('/'+$routeParams.lang+'/QML');
     }
 
-    $scope.createQuestionnaire = function() {
+    $scope.createQuestionnaire = function(quiz) {
         QuizService.createQuestionnaire(quiz.name, quiz.keywords, quiz.selectedItem, $routeParams.lang)
             .then(function (result) {
                 if (result) {

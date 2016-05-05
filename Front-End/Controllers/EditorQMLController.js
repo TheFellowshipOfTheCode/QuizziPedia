@@ -82,12 +82,13 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             if (result) {
 
                     var q = JSON.stringify(result, null, "  ");
-                    console.log('q: ' + q);
+                    //console.log('q: ' + q);
                     QuestionsService.sendQuestion(q, $routeParams.lang, $routeParams.idQuestion)
                         .then(function (result) {
                             if (result) {
-                                $rootScope.question = new QuestionItemModel();
-                                $scope.error = new ErrorInfoModel();
+                                console.log(q);
+                                $rootScope.question = new QuestionItemModel("", $rootScope.userLogged, "makeWith", q.lang, q.question); // da sistemare perche non carica (problema JSON forse)
+                                //console.log($rootScope.question.getMadeWith() + " " + $rootScope.question.getLanguage() + " " + $rootScope.question.getQuestion())
                                 alert = $mdDialog.alert()
                                     .title("Inserimento avvenuto con successo")
                                     .content("La domanda è stata inserita!")

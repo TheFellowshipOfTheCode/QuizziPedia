@@ -4,7 +4,7 @@ var User = require('./UserModel');
 
 
 var quizSchema = new mongoose.Schema({
-    title: String,
+    title: { type : String},
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -21,15 +21,15 @@ var quizSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    correctAnswers: Number
+    correctAnswers: { type: Number, default: 0 }
 });
 
 
 
-quizSchema.statics.createQuiz = function(info, callback) {
+quizSchema.statics.createQuiz = function(author, info, callback) {
     var quiz = new this();
     quiz.title = info.title;
-    quiz.correctAnswers = info.correctAnswers;
+    quiz.author = author;
     return quiz.save(callback);
 }
 

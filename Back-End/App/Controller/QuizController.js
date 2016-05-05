@@ -4,16 +4,16 @@ var quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
-    quiz.createQuiz(req.body, function(err) {
+    quiz.createQuiz(req.user._id, req.body, function(err) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'quiz-insertion-error',
             message: 'l\'inserimento del quiz è fallito'
         });
-        else return res.status(200).json({
+        else return res.send({
             code: 3,
             title: 'quiz-insertion-success',
-            message: 'l\'inserimento del quiz ha avuto successo'
+            message: 'l\'inserimento del quiz è avvenuto con successo'
         });
     });
 }

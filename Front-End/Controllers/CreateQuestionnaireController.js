@@ -48,11 +48,12 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     $scope.createQuestionnaire = function() {
         QuizService.createQuestionnaire(quiz.name, quiz.keywords, quiz.selectedItem, $routeParams.lang)
             .then(function (result) {
-                if (result.data.code == 3) {
+                if (result) {
+                    $scope.error = new ErrorInfoModel();
                     alert = $mdDialog.alert()
-                        .title('Creazione effettuata')
-                        .content('La creazione del questionario è avvenuta con successo!')
-                        .ok('Chiudi');
+                        .title("Inserimento avvenuto con successo")
+                        .content("Il questionario è stato creato!")
+                        .ok('Ok');
                     $mdDialog
                         .show(alert)
                         .finally(function () {
@@ -61,19 +62,16 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     $location.path('/' + $routeParams.lang + '/home');
                 }
             }, function (err) {
-                if (err.data.code == 2) {
-                    alert = $mdDialog.alert()
-                        .title("Errore")
-                        .content("Creazione questionario fallita!")
-                        .ok('Chiudi');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                }
-                $rootScope.error = new ErrorInfoModel("5", "Creazione fallita", "Creazione questionario " +
-                    "non effettuata");
-            })
-    };
+                $scope.error = new ErrorInfoModel();
+                alert = $mdDialog.alert()
+                    .title("Errore")
+                    .content("La richiesta di creazione questionario non è andata a buon fine")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+    }
 }

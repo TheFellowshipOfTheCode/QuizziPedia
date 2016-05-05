@@ -19,8 +19,7 @@
       <div class="md-padding">
 
         <div ng-controller="QuestionsController">
-
-          <div ng-repeat="d in arrayDomande" ng-switch on="d.typeDomanda">
+          <div ng-repeat="d in arrayDomande" ng-switch on="d.type">
             <div ng-switch-when="veroFalso"> <True-false-answer-directive></True-false-answer-directive> </div>
             <div ng-switch-when="rispostaMultipla"> <Multiple-choice-answer-directive></Multiple-choice-answer-directive> </div>
             <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
@@ -48,5 +47,5 @@
       </div>
     </section>
   </div>
-  
+
 </div>

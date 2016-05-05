@@ -28,34 +28,23 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         downloadQuestion(cont);
 
         $scope.splitTheText= function(index,text) {
-          delete $scope.list1;
-          delete $scope.list2;
-          $scope.list1 = [];
-          $scope.list2 = [];
-          console.log(text);
-          var tempText = text.split(" ");
-          $scope.arrayDomande[0].answer.forEach(function(elem) {
-            console.log(elem.parolaNumero);
-            $scope.list2.push({hideWord : tempText[elem.parolaNumero]});
-          });
-          $scope.arrayDomande[index].answer.forEach(
-            function (elem) {
-              tempText[elem.parolaNumero]= "##TODELETE##";
-            }
-          );
+          delete $scope.temporyObjectForView[index].list2;
 
-          console.log($scope.list2);
-          $scope.emptySpaceText = tempText;
+
+          var list1 = [], list2 = [];
+          var tempText = text.split(" ");
+          $scope.arrayDomande[index].answer.forEach(function(elem) {
+            list1.push("a");
+            list2.push({hideWord : tempText[elem.parolaNumero]});
+            tempText[elem.parolaNumero]= "##TODELETE##";
+          });
+
+          $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
+
         }
 
         $scope.dragnNDropQuestions= function(event, ui,index,typeDomanda,obj) {
-          console.log(index);
-          console.log(typeDomanda);
-          console.log(obj);
-          console.log("draggoandroppo");
-          console.log($scope.list1);
-          console.log($scope.list2);
-          $scope.addAnswer(index,typeDomanda,{"answerGiven": obj})
+          $scope.addAnswer(index,typeDomanda,obj)
         }
 
         $scope.addAnswer= function(index,typeDomanda,obj){  //SI
@@ -65,30 +54,20 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           $scope.tipodomanda=typeDomanda;
           $scope.rispostedate=obj;
 
-          console.log(index);
-          console.log(typeDomanda);
-          console.log(obj);
-
           //SI
           $scope.objAnswer[index]={"typeDomanda": typeDomanda, answerGiven: obj}
 
-          console.log($scope.objAnswer);
         };
 
         $scope.save = function(index){ //SI
-          console.log(index);
           var albumNameArray = [];
           angular.forEach($scope.arrayDomande[index].answer, function(gived){
-            console.log(gived);
             if (gived.selected) albumNameArray.push(gived.text);
           });
-          console.log(albumNameArray);
           return albumNameArray;
         };
 
         $rootScope.$on("loadNewQuestion", function(event, args) { //SI
-          console.log("catturo");
-          console.log(args);
           delete $scope.arrayDomande;
           $scope.objAnswer=[];
           cont++;
@@ -97,7 +76,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         });
 
         $rootScope.$on("isItAnswered", function(event, args) { //SI
-          console.log("cattreo2");
           var ok= true;
 
            if(Object.keys($scope.objAnswer).length != Object.keys($scope.arrayDomande).length) {
@@ -108,7 +86,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           $rootScope.$emit("doYouWannaGoOn",ok);
         });
 
-        console.log($scope.variabile);
 
 
         /**/
@@ -116,9 +93,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         function downloadQuestion(cont) {
           $scope.arrayDomande=domanda.getCurrentPieceOfQuestions(cont);
 
-          console.log($scope.arrayDomande);
-
-          //var objAnswer= [];
 
           $scope.objAnswer=[]; //SI
 
@@ -126,14 +100,20 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           /*set-up drag and drop questions*/
           delete $scope.list1;
           delete $scope.list2;
+          delete $scope.temporyObjectForView;
           $scope.list1 = [];
           $scope.list2 = [];
-          $scope.arrayDomande[0].answer.forEach(function(elem, key) {
-            $scope.list1.push({});
-            $scope.list2.push(elem);
+          $scope.temporyObjectForView= [];
+
+          $scope.arrayDomande.forEach(function(elem, index) {
+            var list1 = [], list2 = [];
+            elem.answer.forEach(function(elem, key) {
+              list1.push({});
+              list2.push(elem);
+
+            });
+            $scope.temporyObjectForView[index]={list1,list2};
           });
-          console.log($scope.list2);
-          console.log($scope.list3);
 
           delete $scope.emptySpaceText;
           $scope.emptySpaceText = [];

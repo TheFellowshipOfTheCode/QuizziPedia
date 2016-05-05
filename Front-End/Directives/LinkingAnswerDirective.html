@@ -28,7 +28,7 @@
     <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
 
         <ul class="line">
-          <li class="inline" ng-repeat="item in list1">
+          <li class="inline" ng-repeat="item in temporyObjectForView[$parent.$index].list1">
 
             <section class="object-section md-whiteframe-z1" layout-sm="column" layout-align="center">
               <md-toolbar class="md-primary" layout="column" layout-align="center">
@@ -41,9 +41,9 @@
                 </div>
               </md-toolbar>
                 <div class="md-padding no-owerflow">
-                  <div class=" box-in md-whiteframe-z1" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,list1)' }" >
-                    <div class="zone md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.text2}}</div>
-                    <div class="zone md-primary md-raised md-button" ng-show="item.url2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
+                  <div class=" box-in md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,temporyObjectForView[$parent.$index].list1)' }" >
+                    <div class="zone md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">{{item.text2}}</div>
+                    <div class="zone md-primary md-raised md-button" ng-show="item.url2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
                       <image class="img-answer" ng-src="{{item.url2}}"/>
                     </div>
                   </div>
@@ -53,9 +53,9 @@
           </li>
         </ul>
         <ul class="line">
-          <li class="inline" ng-repeat="item in list2 " ng-model='list2' >
-            <div  class="zone md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2" style="margin-top:{{12*$index}}em !important">{{item.text2}}</div>
-            <div  class="zone md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2" style="margin-top:{{12*$index}}em !important">
+          <li class="inline" ng-repeat="item in temporyObjectForView[$parent.$index].list2 " ng-model='temporyObjectForView[$parent.$index].list2' >
+            <div  class="zone md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2" style="margin-top:{{12*$index}}em !important">{{item.text2}}</div>
+            <div  class="zone md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2" style="margin-top:{{12*$index}}em !important">
               <image class="img-answer" ng-src="{{item.url2}}"/>
             </div>
           </li>

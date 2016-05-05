@@ -21,13 +21,12 @@
           <div ng-controller="QuestionsController">
 
                 <div ng-repeat="d in arrayDomande" ng-switch on="d.typeDomanda">
-                  {{d.typeDomanda}}
                   <div ng-switch-when="veroFalso"> <True-false-answer-directive></True-false-answer-directive> </div>
                   <div ng-switch-when="rispostaMultipla"> <Multiple-choice-answer-directive></Multiple-choice-answer-directive> </div>
                   <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
                   <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
                   <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
-                  <div ng-switch-when="spaziVuoti"> yolo <empty-space-answer-directive></empty-space-answer-directive> </div>
+                  <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
 
                 </div>
 

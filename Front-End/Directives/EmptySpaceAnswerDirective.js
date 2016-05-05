@@ -19,8 +19,9 @@
 app.directive('emptySpaceAnswerDirective', EmptySpaceAnswerDirective);
 
 function EmptySpaceAnswerDirective() {
-  return {
+  var directive = {
     restrict: 'E',
     templateUrl: 'Directives/EmptySpaceAnswerDirective.html'
   };
+  return directive;
 };

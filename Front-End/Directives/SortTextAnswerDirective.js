@@ -19,8 +19,9 @@
 app.directive('sortTextAnswerDirective', SortTextAnswerDirective);
 
 function SortTextAnswerDirective() {
-  return {
+  var directive = {
     restrict: 'E',
     templateUrl: 'Directives/SortTextAnswerDirective.html'
   };
+  return directive;
 };

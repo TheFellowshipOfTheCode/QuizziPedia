@@ -19,8 +19,9 @@
 app.directive('multipleChoiceAnswerDirective', multipleChoiceAnswerDirective);
 
 function multipleChoiceAnswerDirective() {
-  return {
+  var directive = {
     restrict: 'E',
-    templateUrl: 'Directives/MultipleChoiceAnswerDirective.html'
+    templateUrl: 'Directives/MultipleChoiceAnswerDirective.html',
   };
+  return directive;
 };

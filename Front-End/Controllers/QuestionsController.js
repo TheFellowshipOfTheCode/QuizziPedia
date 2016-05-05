@@ -21,6 +21,10 @@ app.controller('QuestionsController', QuestionsController);
 QuestionsController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'QuestionItemModel'];
 function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionItemModel ) {
 
+  angular.element("data-ng-view").bind("scroll", function() {
+    console.log("entro");
+  });
+
         var cont=0; //NO
 
         var domanda= new QuestionItemModel(); //SI viene passato un oggetto dal service e la domanda

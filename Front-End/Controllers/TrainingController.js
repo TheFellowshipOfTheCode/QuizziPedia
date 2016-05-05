@@ -30,19 +30,20 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         alert = $mdDialog.confirm()
             .title($rootScope.listOfKeys.attention)
             .content($rootScope.listOfKeys.areYouSureToGoOn)
-            .ok($rootScope.listOfKeys.yesLogoutMe)
-            .cancel($rootScope.listOfKeys.dontLogoutMe);
+            .ok($rootScope.listOfKeys.yesGoOn)
+            .cancel($rootScope.listOfKeys.dontGoOn);
         $mdDialog
             .show( alert )
             .then(function() {
               $scope.training.questionNumber++;
               $rootScope.$emit("loadNewQuestion");
-
+              angular.element(".scrollable").scrollTop(0,0);
             });
       }
       else {
         $scope.training.questionNumber++;
         $rootScope.$emit("loadNewQuestion");
+        angular.element(".scrollable").scrollTop(0,0);
       }
     });
 };

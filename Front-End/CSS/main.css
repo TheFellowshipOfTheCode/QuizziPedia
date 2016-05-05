@@ -1,9 +1,12 @@
-/*General*/
 * {
   margin: 0px;
   padding: 0px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+html {
+  overflow: hidden;
 }
 
 @font-face {
@@ -15,7 +18,6 @@ button, html, input, select, textarea {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
-/*Menu*/
 .logo > img {
   height: 150px;
   width: auto;
@@ -44,20 +46,20 @@ md-sidenav {
 }
 
 .menu .md-button {
-    border-radius: 0;
-    color: white;
-    cursor: pointer;
-    display: block;
-    align-items: inherit;
-    line-height: 40px;
-    margin: 0;
-    max-height: 40px;
-    overflow: hidden;
-    padding: 0px 16px;
-    text-align: left;
-    text-decoration: none;
-    white-space: normal;
-    width: 100%;
+  border-radius: 0;
+  color: white;
+  cursor: pointer;
+  display: block;
+  align-items: inherit;
+  line-height: 40px;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 0px 16px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%;
 }
 
 md-toolbar:not(.md-menu-toolbar) {
@@ -85,8 +87,6 @@ md-toolbar:not(.md-menu-toolbar) {
   display: block;
 }
 
-/*Ricerca*/
-
 search-directive {
   display: inline;
   width: 50%;
@@ -101,8 +101,6 @@ search-directive {
 
 }
 
-
-/*Footer*/
 .icon-footer {
   height: 24px;
   margin-bottom: 10px;

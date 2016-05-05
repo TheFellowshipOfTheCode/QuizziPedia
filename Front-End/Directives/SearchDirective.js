@@ -24,9 +24,9 @@
 app.directive('searchDirective', searchDirective);
 
 function searchDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/SearchDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/SearchDirective.html'
+  };
+  return directive;
 }

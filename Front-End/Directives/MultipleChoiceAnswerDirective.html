@@ -19,18 +19,22 @@
 -->
 
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
-    <div class=" md-padding">
-      <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
-        <span class="text-center questionText">{{d.questionText}} </span>
-      </div>
-      <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
-        <div ng-repeat="a in d.answer">
-          <div class="layout-row piece-of-question" layout="row" >
-          <md-checkbox class="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.typeDomanda,save($parent.$index) )'>
-            {{a.text}}
+  <div class=" md-padding">
+    <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
+      <span class="text-center questionText">{{d.questionText}} </span>
+      <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
+    </div>
+    <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
+      <div class="choice" ng-repeat="a in d.answer" >
+        <div class="layout-column layout-align-center-stretch" layout="column" layout-align="center">
+          <md-checkbox class="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.typeDomanda,save($parent.$index) )' ng-init="setDimension()" >
+            <div class="center">
+              {{a.text}}
+            </div>
           </md-checkbox>
-        </div>
+          <img class="question-image-container" ng-if="a.url!=undefined" ng-src="{{a.url}}" />
         </div>
       </div>
     </div>
+  </div>
 </section>

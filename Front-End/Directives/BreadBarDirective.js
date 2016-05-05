@@ -31,9 +31,9 @@
 app.directive('breadBarDirective', breadBarDirective);
 
 function breadBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/BreadBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/BreadBarDirective.html'
+  };
+  return directive;
 }

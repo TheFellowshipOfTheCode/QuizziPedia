@@ -21,9 +21,9 @@
 app.directive('signUpBarDirective', signUpBarDirective);
 
 function signUpBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/SignUpBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/SignUpBarDirective.html'
+  };
+  return directive;
 }

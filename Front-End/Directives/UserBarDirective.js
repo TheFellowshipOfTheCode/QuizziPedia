@@ -21,9 +21,9 @@
 app.directive('userBarDirective', userBarDirective);
 
 function userBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/UserBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/UserBarDirective.html'
+  };
+  return directive;
 }

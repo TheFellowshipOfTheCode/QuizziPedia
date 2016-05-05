@@ -19,8 +19,9 @@
 app.directive('linkingAnswerDirective', linkingAnswerDirective);
 
 function linkingAnswerDirective() {
-  return {
+  var directive = {
     restrict: 'E',
     templateUrl: 'Directives/LinkingAnswerDirective.html'
   };
+  return directive;
 };

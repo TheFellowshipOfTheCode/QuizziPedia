@@ -20,24 +20,18 @@
 
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
     <div class=" md-padding">
-      <div class="layout-align-center-stretch layout-row" layout="row" layout-align="center">
+      <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
         <span class="text-center questionText">{{d.questionText}} </span>
+        <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
       </div>
       <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
-        
-    <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
-
-        <ul>
-
-          <li class="box-in sort-images md-primary md-raised md-button" ng-repeat="item in temporyObjectForView[$parent.$index].list2" data-drop="true" data-drag="true" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,temporyObjectForView[$parent.$index].list2)'}" jqyoui-draggable="{index: {{$index}}, insertInline: true, direction:'jqyouiDirection'}" data-jqyoui-options="{revert: 'invalid'}" data-direction="{{item.jqyouiDirection}}">
-            <image class="img-answer" ng-src="{{item.url}}"/>
-          </li>
-
-        </ul>
-
-
-      </div>
-
+        <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
+          <ul>
+            <li class="box-in sort-images md-primary md-raised md-button" ng-repeat="item in temporyObjectForView[$parent.$index].list2" data-drop="true" data-drag="true" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,temporyObjectForView[$parent.$index].list2)'}" jqyoui-draggable="{index: {{$index}}, insertInline: true, direction:'jqyouiDirection'}" data-jqyoui-options="{revert: 'invalid'}" data-direction="{{item.jqyouiDirection}}">
+              <image class="img-answer" ng-src="{{item.url}}"/>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 </section>

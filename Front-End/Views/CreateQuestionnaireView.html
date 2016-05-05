@@ -45,7 +45,20 @@
                         </div>
                     </md-input-container>
 
-                    <topic-keywords-directive></topic-keywords-directive>
+                    <md-input-container class="md-block">
+                        <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
+                        <input ng-model="quiz.keyword">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
+                        <md-select ng-model="quiz.selectedItem" md-selected-text="getSelectedText()">
+                            <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+                                <md-option ng-value="item" ng-repeat="item in items">{{item}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>

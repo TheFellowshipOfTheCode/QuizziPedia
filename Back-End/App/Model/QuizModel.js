@@ -21,13 +21,16 @@ var quizSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    correctAnswers: { type: Number, default: 0 }
+    correctAnswers: { type: Number, default: 0 },
+    keyword: String,
+    topic: String
 });
 
 
 
 quizSchema.statics.createQuiz = function(author, info, callback) {
-    info.author = author;
+    console.log(info);
+    //info.author = author;
     var new_quiz = new this(info);
     return new_quiz.save(callback);
 }

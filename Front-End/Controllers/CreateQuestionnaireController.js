@@ -18,14 +18,14 @@
 
 app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 
-CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'QuizService', 'ErrorInfoModel'];
+CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'ErrorInfoModel', 'QuizService'];
 
 function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService) {
 
     $scope.quiz = {
         name: '',
-        keywords: '',
-        selectedItem: undefined
+        keyword: '',
+        selectedItem: ''
     };
 
     $scope.items = ['Scienze', 'Informatica', 'Storia'];
@@ -46,7 +46,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     }
 
     $scope.createQuestionnaire = function(quiz) {
-        QuizService.createQuestionnaire(quiz.name, quiz.keywords, quiz.selectedItem, $routeParams.lang)
+        QuizService.createQuestionnaire(quiz.name, quiz.keyword, quiz.selectedItem, $routeParams.lang)
             .then(function (result) {
                 if (result) {
                     $scope.error = new ErrorInfoModel();

@@ -18,7 +18,7 @@
 
 app.factory('QuizService', QuizService);
 
-AuthService.$inject = ['$http', '$cookies', '$q'];
+QuizService.$inject = ['$http', '$cookies', '$q'];
 
 function QuizService($http, $cookies, $q) {
     var methods = {
@@ -27,9 +27,12 @@ function QuizService($http, $cookies, $q) {
 
     return methods;
 
-    function createQuestionnaire(name, keywords, selectedItem, lang) {
+    function createQuestionnaire(name, keyword, selectedItem, lang) {
         var deferred = $q.defer();
-        var quizJSON = {name: name, keywords: keywords, selectedItem: selectedItem};
+        var quizJSON = {title: name, keyword: keyword, topic: selectedItem};
+        console.log(name);
+        console.log(keyword);
+        console.log(selectedItem);
         $http.post('/api/' + lang + '/user/quiz', quizJSON)
             .then(function(data) {
                 deferred.resolve(data);

@@ -62,7 +62,8 @@ describe("View Question Test", function(){
                 language: "it",
                 topic: "Patente",
                 keywords:["Strada","Guida"],
-                level:500
+                level:500,
+                arrayQuest:["5729c0fdc80eb653c3029c4e"]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

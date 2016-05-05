@@ -23,11 +23,13 @@ exports.getNextQuestion = function(req, res) {
         if (err)
             return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
         else
-            Topic.getNextQuestion(topic, req.body.language, req.body.keywords, req.body.level, function(err,question){
+            Topic.getNextQuestion(topic, req.body.arrayQuest, req.body.language, req.body.keywords, req.body.level, function(err,question){
                 if (err)
                     return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
                 else
-                    return res.send(question)
+                if(question)
+                    return res.send(question);
+                else module.exports.getNextQuestion(req,res);
             })
     })
 };

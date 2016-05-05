@@ -32,8 +32,23 @@ topicSchema.statics.findTopicByName=function(topic, callback){
     return this.findOne({'name': topic}, callback);
 };
 
-topicSchema.statics.getNextQuestion=function(topic, language, keywords, levelUser, callback){
-    return  Question.findOneRandom({'_id':{$in:topic.question},'language': language, 'keywords': {$in:keywords}, 'level': levelUser}, '_id language question keywords level', callback);
+topicSchema.statics.getNextQuestion=function(topic, alreadyAnswered, language, keywords, skillLevel, callback){
+    var randomNumber=1+Math.round(Math.random()*100);
+    if(randomNumber>=1 && randomNumber<=50){
+        var randomNumber2=1+Math.round(Math.random()*100);
+        if(randomNumber2>=1 && randomNumber2<=70)
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel, $lte: skillLevel+20}}, '_id language question keywords level', callback);
+        else
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-20, $lte: skillLevel-1}}, '_id language question keywords level', callback);
+    }
+    else if(randomNumber>=51 && randomNumber<=75)
+        return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel+21, $lte: skillLevel+60}}, '_id language question keywords level', callback);
+    else if(randomNumber>=76 && randomNumber<=85)
+        return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel+61, $lte: skillLevel+100}}, '_id language question keywords level', callback);
+    else if(randomNumber>=86 && randomNumber<=95)
+        return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-60, $lte: skillLevel-21}}, '_id language question keywords level', callback);
+    else
+        return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-100, $lte: skillLevel-61}}, '_id language question keywords level', callback);
 };
 
 module.exports = mongoose.model('Topic', topicSchema);

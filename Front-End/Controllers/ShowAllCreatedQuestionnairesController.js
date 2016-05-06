@@ -5,7 +5,8 @@ ShowAllCreatedQuestionnairesController.$inject = ['$scope', '$rootScope', '$rout
 function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService) {
 
 
-    $scope.showAllCreatedQuestionnaires = function() {
+
+        console.log("---------------------------------------------------------");
         QuizService.showAllCreatedQuestionnaires($rootScope.userLogged.getId(), $routeParams.lang)
             .then(function (result) {
                 if (result) {
@@ -31,7 +32,7 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
                         alert = undefined;
                     });
             });
-    }
+
 
 
 }

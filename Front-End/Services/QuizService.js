@@ -40,8 +40,9 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function showAllCreatedQuestionnaires(author, lang) {
+    function showAllCreatedQuestionnaires(id, lang) {
         var deferred = $q.defer();
+        var author = {author_id: id};
         $http.get('/api/' + lang + '/user/quiz', author)
             .then(function(personalQuizzes) {
                 deferred.resolve(personalQuizzes);

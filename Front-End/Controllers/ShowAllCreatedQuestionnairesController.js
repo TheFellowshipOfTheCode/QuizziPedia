@@ -5,5 +5,33 @@ ShowAllCreatedQuestionnairesController.$inject = ['$scope', '$rootScope', '$rout
 function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService) {
 
 
+    $scope.showAllCreatedQuestionnaires = function() {
+        QuizService.showAllCreatedQuestionnaires($rootScope.userLogged.getId(), $routeParams.lang)
+            .then(function (result) {
+                if (result) {
+                    $scope.personalQuizzes = result;
+                    // $location.path('/' + $routeParams.lang + '/questionnairemanagementview');
+                }
+            }, function (err) {
+                $scope.error = new ErrorInfoModel();
+                if($routeParams.lang === 'it') {
+                    alert = $mdDialog.alert()
+                        .title("Errore")
+                        .content("I questionari non possono essere visualizzati!")
+                        .ok('Ok');
+                } else {
+                    alert = $mdDialog.alert()
+                        .title("Error")
+                        .content("Questionnaires can't be showed!")
+                        .ok('Ok');
+                }
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+    }
+
 
 }

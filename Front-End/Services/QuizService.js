@@ -23,13 +23,14 @@ QuizService.$inject = ['$http', '$cookies', '$q'];
 function QuizService($http, $cookies, $q) {
     var methods = {
         createQuestionnaire: createQuestionnaire,
+        showAllCreatedQuestionnaires: showAllCreatedQuestionnaires
     };
 
     return methods;
 
-    function createQuestionnaire(title, keyword, topic, lang) {
+    function createQuestionnaire(title, author, keyword, topic, lang) {
         var deferred = $q.defer();
-        var quizJSON = {title: title, keyword: keyword, topic: topic};
+        var quizJSON = {title: title, author: author, keyword: keyword, topic: topic};
         $http.post('/api/' + lang + '/user/quiz', quizJSON)
             .then(function(data) {
                 deferred.resolve(data);
@@ -39,5 +40,14 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-
+    function showAllCreatedQuestionnaires(author, lang) {
+        var deferred = $q.defer();
+        $http.get('/api/' + lang + '/user/quiz', author)
+            .then(function(personalQuizzes) {
+                deferred.resolve(personalQuizzes);
+            }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
 }

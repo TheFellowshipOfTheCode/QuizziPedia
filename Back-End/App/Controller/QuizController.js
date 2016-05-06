@@ -5,7 +5,7 @@ var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
     console.log(req.body);
-    quiz.createQuiz("simone", req.body, function(err) {
+    quiz.createQuiz(req.body, function(err) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'quiz-insertion-error',
@@ -84,13 +84,16 @@ exports.searchQuiz = function (req, res, next) {
 }
 
 exports.getPersonalQuizzes = function (req, res, next) {
-    quiz.getPersonalQuizzes(req.body.author, function(err, quizzes) {
+    quiz.getPersonalQuizzes(req, function(err, personalQuizzes) {
         if (err) return res.status(500).json({
-            code: 354,
-            title: 'error occurred while getting quizzes',
-            message: 'arrivederci'
+            code: 2,
+            title: 'visualizzazione-quiz-fallita',
+            message: 'la visualizzazione dei quiz è fallita'
         });
-        else return res.send(quizzes);
+        else {
+            console.log(personalQuizzes);
+            return res.send(personalQuizzes);
+        }
     })
 
     /*quiz.getQuiz(req.body._id, function(err, quiz) {

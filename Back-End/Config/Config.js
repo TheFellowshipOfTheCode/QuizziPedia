@@ -56,7 +56,8 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(express.static(__dirname + '/../../Front-End'));
+    app.use('/', express.static(__dirname + '/../../Front-End'));
+    console.log(__dirname + '/../../Front-End');
     // required for passport
     app.use(session({
         secret: "cookie_secret",
@@ -73,6 +74,6 @@ module.exports = function(app) {
     require('../App/Routes/QuestionRouter.js')(app);
     require('../App/Routes/LangRouter.js')(app);
     app.get('/*',function(req,res){
-        res.sendFile(path.resolve('Front-End/index.html'));
+        res.sendFile(path.resolve('Front-End/Index.html'));
     });
 };

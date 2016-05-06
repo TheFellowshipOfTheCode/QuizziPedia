@@ -27,6 +27,10 @@ exports.createQuestion = function(req, res) {
     })
 };
 
+exports.uploadImage = function(req,res){
+    console.log(req.files)
+}
+
 
 exports.getQuestion = function(req, res) {
     console.log(req.param("questionId"))

@@ -14,7 +14,7 @@ module.exports = function(app){
         });
     });*/
     
-    app.route('/api/:lang/userquestion',uploading)
+    app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)
         .put(Question.editQuestion)
         .get(Question.getQuestions);
@@ -24,6 +24,9 @@ module.exports = function(app){
 
     app.route('/api/:lang/usertraining/questionstatistics')
         .put(Question.updatestatisticsQuestion);
+    
+    app.route('/api/:lang/uploadimage',uploading)
+        .post(Question.uploadImage)
 
     
 };

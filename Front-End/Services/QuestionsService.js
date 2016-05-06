@@ -17,13 +17,14 @@
 
 app.factory('QuestionsService', QuestionsService);
 
-AuthService.$inject = ['$http', '$cookies', '$q'];
+QuestionsService.$inject = ['$http', '$cookies', '$q'];
 
 function QuestionsService($http, $cookies, $q) {
     var methods = {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
-        getQuestion: getQuestion
+        getQuestion: getQuestion,
+        sendImageBE: sendImageBE
     };
 
     return methods;
@@ -78,5 +79,15 @@ function QuestionsService($http, $cookies, $q) {
                 deferred.reject(error);
             });
         return deferred.promise;
+    }
+
+    function sendImageBE(image, lang){
+        //console.log("immagine" + image);
+        $http.post('/api/' + lang + '/uploadimage', image)
+            .then(function() {
+                console.log("andata");
+            }, function(error){
+                console.log("errore");
+            });
     }
 }

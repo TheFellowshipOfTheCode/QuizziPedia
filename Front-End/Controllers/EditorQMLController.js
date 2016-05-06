@@ -23,14 +23,13 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
-    delete $scope.id;
+    //delete $scope.id;
     $scope.id = $routeParams.idQuestion;
-
-    if($routeParams.idQuestion){
+    if($scope.id){
         //console.log($routeParams.idQuestion);
         //metto dentro l'editor il testo
 
-        QuestionsService.getQuestion($routeParams.idQuestion, $routeParams.lang)
+        QuestionsService.getQuestion($scope.id, $routeParams.lang)
             .then(function(result){
                 console.log(result);
                 var questionDownloaded = result.data;
@@ -121,4 +120,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         $location.path('/'+$routeParams.lang+'/wizard');
     };
 
+    $scope.sendImage = function(image) {
+        console.log(image);
+        QuestionsService.sendImageBE(image, $routeParams.lang);
+    }
 }

@@ -29,15 +29,16 @@ exports.createQuestion = function(req, res) {
 
 
 exports.getQuestion = function(req, res) {
+    console.log(req.body)
     Question.getQuestion(req.param("questionId"), function(err, question){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Nessuna domanda trovata con l'id trovato"});
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Nessuna domanda trovata con l'id passato"});
         else return res.send(question);
     })
 };
 
 exports.getQuestions = function(req, res) {
     Question.getQuestions(req.user._id, function(err, questions){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "L'utente non ha creato nessuna domanda"});
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "La lista dell nessuna domanda"});
         else return res.send(questions);
     })
 };

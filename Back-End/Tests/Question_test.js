@@ -56,6 +56,7 @@ describe("Create Question Test", function(){
 */
 describe("View Question Test", function(){
     it("should view a question", function(done){
+        //this.timeout(5000);
         agent
             .post('/api/:lang/user/training/question')
             .send({
@@ -63,7 +64,7 @@ describe("View Question Test", function(){
                 topic: "Patente",
                 keywords:["Strada","Guida"],
                 level:500,
-                //alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
+                alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -73,7 +74,10 @@ describe("View Question Test", function(){
                     res.body.level.should.equal(500);
                     //res.body.keywords.should.containDeep(["Strada","Guida"]);
                 }
-                else res.status.should.equal(500);
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
                 done()
             })
     })

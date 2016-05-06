@@ -18,6 +18,8 @@
  *******************************************************************************/
 var Topic = require('../Model/TopicModel');
 
+var count = 0;
+
 exports.getNextQuestion = function(req, res) {
     Topic.findTopicByName(req.body.topic, function(err,topic){
         if (err)
@@ -29,7 +31,13 @@ exports.getNextQuestion = function(req, res) {
                 else
                 if(question)
                     return res.send(question);
-                else module.exports.getNextQuestion(req,res);
+                else {
+                    if(count<2){
+                        count++;
+                        module.exports.getNextQuestion(req,res);
+                    }
+                    else return res.status(500).json({code:757, title: "getNextQuestionError", message: "Non ci sono più domande che rispettino i parametri impostati per questo allenamento"});
+                }
             })
     })
 };

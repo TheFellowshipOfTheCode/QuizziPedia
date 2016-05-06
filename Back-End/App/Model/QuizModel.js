@@ -22,14 +22,10 @@ var quizSchema = new mongoose.Schema({
     correctAnswers: Number
 });
 
-quizSchema.statics.getQuiz=function(quizId){
-    var quizJson={};
-    quizJson.quiz=this.model('Quiz').findOne({'_id':quizId});
-    Question.getQuestion(quizJson.quiz.questions,function(err,questions){
-        if (err) return handleError(err);
-        quizJson.questions=questions;
-        return quizJson;
-    });
+quizSchema.statics.getQuiz=function(quizId,callback){
+    return this.findOne({'_id':quizId},'title questions',function (err, quiz){
+        Question.getQuestion(quiz.questions, callback)
+    })
 };
 
 module.exports = mongoose.model('Quiz', quizSchema);

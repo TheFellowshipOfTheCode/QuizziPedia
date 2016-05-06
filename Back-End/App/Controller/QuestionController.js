@@ -28,7 +28,7 @@ exports.createQuestion = function(req, res) {
 };
 
 exports.uploadImage = function(req,res){
-    console.log(req.files)
+    console.log(req)
 }
 
 

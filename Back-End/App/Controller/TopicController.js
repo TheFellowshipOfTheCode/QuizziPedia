@@ -62,10 +62,24 @@ exports.getKeywords = function(req, res) {
                 if (err)
                     return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
                 else {
-                    var k=keywords.keywords;
-                    console.log(k);
-                    return res.send(keywords);
+                    var arrayKeywords=[];
+                    keywords.forEach(function(k){
+                        arrayKeywords=arrayUnique(arrayKeywords.concat(k.keywords));
+                    });
+                    return res.send(arrayKeywords);
                 }
             })
     })
 };
+
+function arrayUnique(array) {
+    var a = array.concat();
+    for(var i=0; i<a.length; ++i) {
+        for(var j=i+1; j<a.length; ++j) {
+            if(a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+}

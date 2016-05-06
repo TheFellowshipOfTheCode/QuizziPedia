@@ -35,12 +35,12 @@
                 <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
 
                     <md-input-container class="md-block">
-                        <label>{{listOfKeys.nameCreateQuestionnaireView}}</label>
+                        <label>{{listOfKeys.titleCreateQuestionnaireView}}</label>
                         <input required="" type="text" name="name" ng-model="quiz.title">
 
                         <div ng-messages="userForm.name.$error" role="alert">
                             <div ng-message-exp="['required']">
-                                {{listOfKeys.nameQuestionnaire}}
+                                {{listOfKeys.titleQuestionnaire}}
                             </div>
                         </div>
                     </md-input-container>

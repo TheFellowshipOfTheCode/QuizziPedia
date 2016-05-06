@@ -24,9 +24,9 @@
 
 <md-input-container class="md-block" ng-controller="AppController">
     <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
-    <md-select ng-model="quiz.selectedItem" md-selected-text="getSelectedText()">
+    <md-select ng-model="quiz.topic" md-selected-text="getSelectedText()">
         <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-            <md-option ng-value="item" ng-repeat="item in items">{{item}}</md-option>
+            <md-option ng-value="topic" ng-repeat="topic in topics">{{topic}}</md-option>
         </md-optgroup>
     </md-select>
 </md-input-container>

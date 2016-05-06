@@ -25,14 +25,14 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     $scope.quiz = {
         title: '',
         keyword: '',
-        selectedItem: undefined
+        topic: undefined
     };
 
-    $scope.items = ['Scienze', 'Informatica', 'Storia'];
+    $scope.topics = ['Informatica', 'Storia', 'Italiano', 'Inglese', 'Matemtica', 'Logica', 'Fisica', 'Medicina', 'Filosofia'];
 
     $scope.getSelectedText = function() {
-        if ($scope.quiz.selectedItem !== undefined) {
-            return $scope.quiz.selectedItem;
+        if ($scope.quiz.topic !== undefined) {
+            return $scope.quiz.topic;
         } else {
             if($routeParams.lang === 'it')
                 return "Seleziona un argomento";
@@ -46,7 +46,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     }
 
     $scope.createQuestionnaire = function(quiz) {
-        QuizService.createQuestionnaire(quiz.title, quiz.keyword, quiz.selectedItem, $routeParams.lang)
+        QuizService.createQuestionnaire(quiz.title, quiz.keyword, quiz.topic, $routeParams.lang)
             .then(function (result) {
                 if (result) {
                     $scope.error = new ErrorInfoModel();
@@ -59,7 +59,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                         .finally(function () {
                             alert = undefined;
                         });
-                    $location.path('/' + $routeParams.lang + '/home');
+                    $location.path('/' + $routeParams.lang + '/questionnairemanagementview');
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel();

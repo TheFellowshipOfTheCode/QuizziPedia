@@ -27,9 +27,9 @@ function QuizService($http, $cookies, $q) {
 
     return methods;
 
-    function createQuestionnaire(title, keyword, selectedItem, lang) {
+    function createQuestionnaire(title, keyword, topic, lang) {
         var deferred = $q.defer();
-        var quizJSON = {title: title, keyword: keyword, topic: selectedItem};
+        var quizJSON = {title: title, keyword: keyword, topic: topic};
         $http.post('/api/' + lang + '/user/quiz', quizJSON)
             .then(function(data) {
                 deferred.resolve(data);

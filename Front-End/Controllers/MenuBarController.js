@@ -53,7 +53,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.goToQuizManagementPage = function () {
-    $location.path('/'+$routeParams.lang+'/'); // da completare
+    $location.path('/'+$routeParams.lang+'/questionnairemanagementview'); // da completare
   };
   $scope.logOut = function () {
     alert = $mdDialog.confirm()

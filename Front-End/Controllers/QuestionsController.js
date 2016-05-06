@@ -26,18 +26,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Scope function*/
 
-  /*Function used during the creation of an empty space question*/
-  $scope.splitTheText= function(index,text) {
-    delete $scope.temporyObjectForView[index].list2;
-    var list1 = [], list2 = [];
-    var tempText = text.split(" ");
-    $scope.question.getQuestion()[index].answer.forEach(function(elem) {
-      list2.push({hideWord : tempText[elem.parolaNumero]});
-      tempText[elem.parolaNumero]= "##TODELETE##";
-    });
-    $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
-  }
-
   /*Function used to drag and drop element on monitor*/
   $scope.dragnNDropQuestions= function(event, ui,index,typeDomanda,obj) {
     $scope.addAnswer(index,typeDomanda,obj)
@@ -83,18 +71,39 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     QuestionsService
       .getNextQuestion($routeParams.lang,"Patente")
       .then(function(result){
+        console.log(result);
         $scope.question= new QuestionItemModel(result.data.id,"io", "non so", result.data.language, result.data.question,result.data.keywords);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
         $scope.temporyObjectForView= [];
-        $scope.question.getQuestion().forEach(function(elem, index) {
+        $scope.question.getQuestion().forEach(function(elemA, index) {
           var list1 = [], list2 = [];
-          elem.answers.forEach(function(elem, key) {
-            list1.push({});
-            list2.push(elem);
+          var tempText;
+          var text;
+          if(elemA.type == "spaziVuoti") {
+            console.log(elemA);
+            text = elemA.questionText;
+            tempText = text.split(" ");
+          }
+          elemA.answers.forEach(function(elemB, key) {
+            if(elemA.type == "spaziVuoti") {
+              list2.push({hideWord : tempText[elemB.parolaNumero]});
+              tempText[elemB.parolaNumero]= "##TODELETE##";
+            }
+            else {
+              list1.push({});
+              list2.push(elemB);
+            }
 
           });
-          $scope.temporyObjectForView[index]={list1,list2};
+
+          if(elemA.type == "spaziVuoti") {
+            $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
+          }
+          else {
+            $scope.temporyObjectForView[index]={list1,list2};
+          }
+
         });
       },
       function (err) {

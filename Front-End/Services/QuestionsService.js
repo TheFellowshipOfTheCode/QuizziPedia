@@ -88,7 +88,7 @@ function QuestionsService($http, $cookies, $q) {
                 topic: topic,
                 keywords:["Strada","Guida"],
                 level:500,
-                alreadyAnswered:[]
+                alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
             })
             .then(function(data) {
                 deferred.resolve(data);

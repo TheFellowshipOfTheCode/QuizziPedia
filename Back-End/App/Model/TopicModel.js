@@ -28,6 +28,7 @@ var topicSchema = new mongoose.Schema({
         ref:'Question'
     }]
 });
+
 topicSchema.statics.findTopicByName=function(topic, callback){
     return this.findOne({'name': topic}, callback);
 };
@@ -52,7 +53,23 @@ topicSchema.statics.getNextQuestion=function(topic, alreadyAnswered, language, k
 };
 
 topicSchema.statics.getTopics=function(callback){
-    return this.find(callback);
+    return this.find({},'name',callback);
 };
+
+topicSchema.statics.getKeywords=function(topic, callback){
+    return  Question.find({'_id':{$in:topic.question}},'keywords',callback);
+};
+
+function arrayUnique(array) {
+    var a = array.concat();
+    for(var i=0; i<a.length; ++i) {
+        for(var j=i+1; j<a.length; ++j) {
+            if(a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+}
 
 module.exports = mongoose.model('Topic', topicSchema);

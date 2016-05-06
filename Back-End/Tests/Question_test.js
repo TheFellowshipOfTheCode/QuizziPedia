@@ -54,9 +54,9 @@ describe("Create Question Test", function(){
     })
 });
 */
-describe("View Question Test", function(){
-    it("should view a question", function(done){
-        //this.timeout(5000);
+describe("View NextQuestion Test", function(){
+    it("should view the next question of a training", function(done){
+        this.timeout(7000);
         agent
             .post('/api/:lang/user/training/question')
             .send({
@@ -73,6 +73,45 @@ describe("View Question Test", function(){
                     res.body.language.should.equal("it");
                     res.body.level.should.equal(500);
                     //res.body.keywords.should.containDeep(["Strada","Guida"]);
+                }
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
+
+describe("View Topics Test", function(){
+    it("should view topics", function(done){
+        //this.timeout(5000);
+        agent
+            .get('/api/:lang/topics')
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
+
+describe("View Keywords Test", function(){
+    it("should view the keywords of a topic", function(done){
+        this.timeout(7000);
+        agent
+            .post('/api/:lang/topic/keywords')
+            .send({
+                topic: "Patente"
+            })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
                 }
                 else {
                     console.log(res.body);

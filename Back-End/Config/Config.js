@@ -73,6 +73,6 @@ module.exports = function(app) {
     require('../App/Routes/QuestionRouter.js')(app);
     require('../App/Routes/LangRouter.js')(app);
     app.get('/*',function(req,res){
-      res.sendFile(path.resolve('Front-End/index.html'));
+      res.sendFile(path.resolve('Front-End/Index.html'));
     });
 };

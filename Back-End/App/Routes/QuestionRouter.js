@@ -9,4 +9,10 @@ module.exports = function(app){
 
     app.route('/api/:lang/user/question')
         .post(Question.createQuestion);
+
+    app.route('/api/:lang/topics')
+        .get(Topic.getTopics);
+
+    app.route('/api/:lang/topic/keywords')
+        .post(Topic.getKeywords);
 };

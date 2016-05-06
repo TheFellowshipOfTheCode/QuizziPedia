@@ -50,10 +50,17 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             .then(function (result) {
                 if (result) {
                     $scope.error = new ErrorInfoModel();
-                    alert = $mdDialog.alert()
-                        .title("Inserimento avvenuto con successo")
-                        .content("Il questionario è stato creato!")
-                        .ok('Ok');
+                    if($routeParams.lang === 'it') {
+                        alert = $mdDialog.alert()
+                            .title("Operazione completata con successo")
+                            .content("Il questionario è stato creato!")
+                            .ok('Ok');
+                    } else{
+                        alert = $mdDialog.alert()
+                            .title("Successfully completed operation")
+                            .content("Quiz is created!")
+                            .ok('Ok');
+                    }
                     $mdDialog
                         .show(alert)
                         .finally(function () {
@@ -63,10 +70,17 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel();
-                alert = $mdDialog.alert()
-                    .title("Errore")
-                    .content("La richiesta di creazione questionario non è andata a buon fine")
-                    .ok('Ok');
+                if($routeParams.lang === 'it') {
+                    alert = $mdDialog.alert()
+                        .title("Errore")
+                        .content("Il questionario non è stato crato!")
+                        .ok('Ok');
+                } else {
+                    alert = $mdDialog.alert()
+                        .title("Error")
+                        .content("Quiz is not created!")
+                        .ok('Ok');
+                }
                 $mdDialog
                     .show(alert)
                     .finally(function () {

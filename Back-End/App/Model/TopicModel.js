@@ -43,7 +43,7 @@ topicSchema.statics.getNextQuestion=function(topic, alreadyAnswered, language, k
             return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-20, $lte: skillLevel-1}}, '_id language question keywords level makeWith author', callback);
     }
     else if(randomNumber>=51 && randomNumber<=75)
-        return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords, }, 'level': {$gte: skillLevel+21, $lte: skillLevel+60}}, '_id language question keywords level makeWith author', callback);
+        return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel+21, $lte: skillLevel+60}}, '_id language question keywords level makeWith author', callback);
     else if(randomNumber>=76 && randomNumber<=85)
         return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel+61, $lte: skillLevel+100}}, '_id language question keywords level makeWith author', callback);
     else if(randomNumber>=86 && randomNumber<=95)

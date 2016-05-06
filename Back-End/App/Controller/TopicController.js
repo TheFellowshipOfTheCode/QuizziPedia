@@ -66,7 +66,7 @@ exports.getKeywords = function(req, res) {
                     keywords.forEach(function(k){
                         arrayKeywords=arrayUnique(arrayKeywords.concat(k.keywords));
                     });
-                    return res.send(arrayKeywords);
+                    return res.json(arrayKeywords);
                 }
             })
     })

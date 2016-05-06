@@ -22,7 +22,7 @@ QuizService.$inject = ['$http', '$cookies', '$q'];
 
 function QuizService($http, $cookies, $q) {
     var methods = {
-        createQuestionnaire: createQuestionnaire
+        createQuestionnaire: createQuestionnaire,
     };
 
     return methods;
@@ -38,4 +38,6 @@ function QuizService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
+
+
 }

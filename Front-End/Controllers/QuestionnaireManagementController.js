@@ -7,4 +7,8 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
     $scope.goToCreateQuestionnaire = function() {
         $location.path('/'+$routeParams.lang+'/createquestionnaireview');
     }
+
+    $scope.goToShowAllCreatedQuestionnaires = function() {
+        $location.path('/'+$routeParams.lang+'/showallcreatedquestionnairesview');
+    }
 }

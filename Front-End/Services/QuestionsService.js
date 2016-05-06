@@ -24,7 +24,9 @@ function QuestionsService($http, $cookies, $q) {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
         getQuestion: getQuestion,
-        getNextQuestion: getNextQuestion
+        getNextQuestion: getNextQuestion,
+        getKeywords : getKeywords,
+        getTopics : getTopics
     };
 
     return methods;
@@ -90,6 +92,28 @@ function QuestionsService($http, $cookies, $q) {
                 level:500,
                 alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
             })
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getKeywords(lang,topic) {
+        var deferred = $q.defer();
+        $http.post('/api/'+ lang + '/topic/keywords', {topic : topic})
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getTopics(lang) {
+        var deferred = $q.defer();
+        $http.get('/api/'+ lang + '/topics')
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error) {

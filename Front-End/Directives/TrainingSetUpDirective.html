@@ -19,22 +19,24 @@
 -->
 
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
-  {{infiniteQuestion}}
-  <fieldset ng-disabled="infiniteQuestion" >
-    <h-number class="question-picker" change="" value="numberOfQuestionsOnTraining.num" singular="{{listOfKeys.question}}" plural="{{listOfKeys.questions}}" min="0" max="{{stepQuestionsTraining}}" step="" ></h-number>
-  </fieldset>
-  <md-checkbox ng-model="infiniteQuestion" ng-change="setInfiniteQuestion(infiniteQuestion)">
-      {{listOfKeys.noStop}}
-    </md-checkbox>
-  <md-chips ng-model="ctrl.selectedVegetables" md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" md-require-match="ctrl.autocompleteDemoRequireMatch">
-        <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" placeholder="Search for a vegetable">
-          <span md-highlight-text="ctrl.searchText">{{item.name}} :: {{item.type}}</span>
+  <md-select placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="topic" md-on-open="loadKeywords()" style="min-width: 200px;" ng-change="loadKeywords(topic.name)">
+    {{topic.name}}
+      <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
+  </md-select>
+  <md-chips ng-model="selectedKeywords" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="autocompleteDemoRequireMatch">
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item" placeholder="{{listOfKeys.lookingForANewKey}}" md-no-cache="true">
+          <span md-highlight-text="searchText">{{item}}</span>
         </md-autocomplete>
         <md-chip-template>
           <span>
-            <strong>{{$chip.name}}</strong>
-            <em>({{$chip.type}})</em>
+            <strong>{{$chip}}</strong>
           </span>
         </md-chip-template>
-      </md-chips>
+    </md-chips>
+    <fieldset ng-disabled="infiniteQuestion" >
+      <h-number class="question-picker" change="" value="numberOfQuestionsOnTraining.num" singular="{{listOfKeys.question}}" plural="{{listOfKeys.questions}}" min="0" max="{{stepQuestionsTraining}}" step="" ></h-number>
+    </fieldset>
+    <md-checkbox ng-model="infiniteQuestion" ng-change="setInfiniteQuestion(infiniteQuestion)">
+        {{listOfKeys.noStop}}
+    </md-checkbox>
 </section>

@@ -18,8 +18,11 @@
 
 app.controller('TrainingController', TrainingController);
 
-TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel'];
-function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel ) {
+TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel', 'QuestionsService'];
+function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel, QuestionsService ) {
+
+  /*Private variables*/
+  var keepOnMind = 0;
 
   /*Public variables on Scope*/
   $scope.iQ = false;
@@ -28,17 +31,26 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     num: 1
   };
 
+  $scope.readonly = false;
+  $scope.selectedItem = null;
+  $scope.searchText = null;
+  loadTopics(function(data) {
+    $scope.topics = data;
+  });
+  $scope.autocompleteDemoRequireMatch = true;
+  $scope.selectedKeywords = [];
+
+  /*Functions on scope*/
   $scope.starTraining = function (argument, keywords) {
     if($scope.iQ) {
       $scope.numberOfQuestionsOnTraining = {
         num: 0
       };
     }
-    console.log($scope.numberOfQuestionsOnTraining.num);
     $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
   };
 
-  var keepOnMind = 0;
+
   $scope.setInfiniteQuestion = function(infiniteQuestion) {
     $scope.iQ=infiniteQuestion;
     if(infiniteQuestion) {
@@ -50,12 +62,59 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     }
   }
 
-  /*Scope functions*/
   /*Evet to check if a question is aswered*/
   $scope.newQuestion= function() {
     console.log("ci clicco");
     $rootScope.$emit("isItAnswered");
   };
+
+  // Search for keywords.
+  $scope.querySearch = querySearch;
+  function querySearch (query) {
+    var results = query ? $scope.keywords.filter(createFilterFor(query)) : [];
+    return results;
+  }
+
+  //Return the proper object when the append is called.
+  $scope.transformKey = transformKey;
+  function transformKey(key) {
+    // If it is an object, it's already a known key
+    if (angular.isObject(key)) {
+      return key;
+    }
+
+    // Otherwise, create a new one, only in autocompleteDemoRequireMatch = false;
+    return { name: key, type: $rootScope.listOfKeys.newOne }
+  }
+
+  $scope.loadKeywords = function (topic) {
+    if(topic != undefined) {
+    var keys;
+    QuestionsService
+      .getKeywords($routeParams.lang, topic)
+      .then(function(result){
+          keys = result.data;
+          console.log($scope.keywords);
+          delete $scope.keywords;
+          $scope.keywords = result.data;
+          console.log($scope.keywords);
+          $scope.selectedKeywords = [];
+          delete $chip;
+          //callback(keys);
+      } ,function (err){
+          $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+          alert = $mdDialog.alert()
+              .title($scope.error.getTitle())
+              .content($scope.error.getCode()+": "+$scope.error.getMessage())
+              .ok('Ok');
+          $mdDialog
+              .show( alert )
+              .finally(function() {
+                  alert = undefined;
+              });
+      });
+    }
+  }
 
   /*RootScope functions*/
   /*Event to go on during the training mode*/
@@ -111,88 +170,38 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   });
 
+  /*Private functions*/
 
-  /*Prove*/
-
-  var self = this;
-
-  self.readonly = false;
-  self.selectedItem = null;
-  self.searchText = null;
-  self.querySearch = querySearch;
-  self.vegetables = loadVegetables();
-  self.selectedVegetables = [];
-  $scope.numberChips = [];
-  self.numberChips2 = [];
-  self.numberBuffer = '';
-  self.autocompleteDemoRequireMatch = false;
-  self.transformChip = transformChip;
-
-  /**
-   * Return the proper object when the append is called.
-   */
-  function transformChip(chip) {
-    // If it is an object, it's already a known chip
-    if (angular.isObject(chip)) {
-      return chip;
-    }
-
-    // Otherwise, create a new one
-    return { name: chip, type: 'new' }
-  }
-
-  /**
-   * Search for vegetables.
-   */
-  function querySearch (query) {
-    var results = query ? self.vegetables.filter(createFilterFor(query)) : [];
-    return results;
-  }
-
-  /**
-   * Create filter function for a query string
-   */
+  //Create filter function for a query string
   function createFilterFor(query) {
     var lowercaseQuery = angular.lowercase(query);
-
-    return function filterFn(vegetable) {
-      return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
-          (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
+    return function (elem) {
+      if(angular.lowercase(elem).indexOf(lowercaseQuery)>=0)
+        return elem;
     };
-
-  }
-
-  function loadVegetables() {
-    var veggies = [
-      {
-        'name': 'Broccoli',
-        'type': 'Brassica'
-      },
-      {
-        'name': 'Cabbage',
-        'type': 'Brassica'
-      },
-      {
-        'name': 'Carrot',
-        'type': 'Umbelliferous'
-      },
-      {
-        'name': 'Lettuce',
-        'type': 'Composite'
-      },
-      {
-        'name': 'Spinach',
-        'type': 'Goosefoot'
-      }
-    ];
-
-    return veggies.map(function (veg) {
-      veg._lowername = veg.name.toLowerCase();
-      veg._lowertype = veg.type.toLowerCase();
-      return veg;
-    });
   }
 
 
+  function loadTopics(callback) {
+    QuestionsService
+      .getTopics($routeParams.lang)
+      .then(function(result){
+        console.log(result);
+        console.log(result.data);
+          topics = result.data;
+          callback(topics);
+      } ,function (err){
+          $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+          alert = $mdDialog.alert()
+              .title($scope.error.getTitle())
+              .content($scope.error.getCode()+": "+$scope.error.getMessage())
+              .ok('Ok');
+          $mdDialog
+              .show( alert )
+              .finally(function() {
+                  alert = undefined;
+              });
+      });
+  }
 
 };

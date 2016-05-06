@@ -23,6 +23,7 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
+    delete $scope.id;
     $scope.id = $routeParams.idQuestion;
 
     if($routeParams.idQuestion){
@@ -66,10 +67,10 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             try{
             result = jsonlint.parse(question);}
             catch(e){
-                console.log(e);
+                console.log(e.message);
                 alert = $mdDialog.alert()
                     .title("Errore con la domanda")
-                    .content("Ci sono degli errori nella sintassi!")
+                    .content(e.message)
                     .ok('Ok');
                 $mdDialog
                     .show(alert)
@@ -86,8 +87,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     QuestionsService.sendQuestion(q, $routeParams.lang, $routeParams.idQuestion)
                         .then(function (result) {
                             if (result) {
-                                $rootScope.question = new QuestionItemModel();
-                                $scope.error = new ErrorInfoModel();
+                                $rootScope.question = new QuestionItemModel("", $rootScope.userLogged, "makeWith", q.lang, q.question); // da sistemare perche non carica (problema JSON forse)
+                                //console.log($rootScope.question.getMadeWith() + " " + $rootScope.question.getLanguage() + " " + $rootScope.question.getQuestion())
                                 alert = $mdDialog.alert()
                                     .title("Inserimento avvenuto con successo")
                                     .content("La domanda è stata inserita!")

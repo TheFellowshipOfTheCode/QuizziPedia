@@ -35,7 +35,14 @@
 
                     <h1 id="QMLtitle">{{listOfKeys.writeHereLang}}</h1>
                     <div id="contentQML">
-                        <textarea id="textArea" name="question" ng-model="question" style="width: 100%"></textarea>
+                        <textarea class="lined" id="textArea" name="question" ng-model="question" style="width: 100%"></textarea>
+                        <script>
+                            $(function() {
+                                $(".lined").linedtextarea(
+                                        {selectedLine: 1}
+                                );
+                            });
+                        </script>
                     </div>
                     <div layout="row" layout-align="center center" >
                         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
@@ -57,3 +64,4 @@
             </div>
 
         </div>
+

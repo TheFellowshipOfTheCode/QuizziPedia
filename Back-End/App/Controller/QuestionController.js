@@ -30,7 +30,7 @@ exports.createQuestion = function(req, res) {
 
 exports.getQuestion = function(req, res) {
     Question.getQuestion(req.param("questionId"), function(err, question){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "L'utente non ha creato nessuna domanda"});
+        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Nessuna domanda trovata con l'id trovato"});
         else return res.send(question);
     })
 };

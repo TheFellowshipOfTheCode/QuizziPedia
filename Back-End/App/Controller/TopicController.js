@@ -32,7 +32,7 @@ exports.getNextQuestion = function(req, res) {
                 if(question)
                     return res.send(question);
                 else {
-                    if(count<2){
+                    if(count<15){
                         count++;
                         module.exports.getNextQuestion(req,res);
                     }

@@ -51,4 +51,8 @@ topicSchema.statics.getNextQuestion=function(topic, alreadyAnswered, language, k
         return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-100, $lte: skillLevel-61}}, '_id language question keywords level makeWith author', callback);
 };
 
+topicSchema.statics.getTopics=function(callback){
+    return this.find(callback);
+};
+
 module.exports = mongoose.model('Topic', topicSchema);

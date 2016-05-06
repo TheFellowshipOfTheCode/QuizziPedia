@@ -1,7 +1,7 @@
 //var TopicController = require("../Controller/TopicController");
 var Question = require("../Controller/QuestionController");
 var multer = require('multer')
-var uploading = multer({dest: __dirname + '../../uploadImage/', limits: {fileSize: 1000000, files:1}})
+var uploading = multer({dest:'../../uploadImage/', limits: {fileSize: 1000000, files:1}})
 
 module.exports = function(app){
     // API

@@ -29,30 +29,26 @@ exports.getNextQuestion = function(req, res) {
                 if (err)
                     return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
                 else {
-                    var equalKeywords = 0;
                     if (question) {
-                        question.keywords.forEach(function (k1) {
-                            req.body.keywords.forEach(function (k2) {
-                                if (k1 == k2) {
-                                    equalKeywords++;
-                                }
-                            });
-                        });
-                        if (question.keywords.length==equalKeywords) {
-                            count = 0;
-                            return res.send(question);
-                        }
+                        console.log(count);
+                        count = 0;
+                        return res.send(question);
                     }
-                    if(!question || question.keywords.length!=equalKeywords) {
-                        if (count < 20) {
+                    else {
+                        if(req.body.alreadyAnswered.length==topic.question.length)
+                            return res.status(500).json({
+                                code: 845,
+                                title: "Allenamento finito",
+                                message: "Non ci sono più domande sull'argomento scelto per questo allenamento"
+                            });
+                        else if (count < 15) {
                             count++;
                             module.exports.getNextQuestion(req, res);
                         }
-                        else return res.status(500).json({
-                            code: 757,
-                            title: "getNextQuestionError",
-                            message: "Non ci sono più domande che rispettino i parametri impostati per questo allenamento"
-                        });
+                        else {
+                            req.body.keywords=[];
+                            module.exports.getNextQuestion(req, res);
+                        }
                     }
                 }
             })
@@ -73,13 +69,13 @@ exports.getKeywords = function(req, res) {
         if (err)
             return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
         else
-            Topic.getKeywords(topic, function(err,keywords){
+            Topic.getQuestions(topic, function(err,questions){
                 if (err)
                     return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
                 else {
                     var arrayKeywords=[];
-                    keywords.forEach(function(k){
-                        arrayKeywords=arrayUnique(arrayKeywords.concat(k.keywords));
+                    questions.forEach(function(question){
+                        arrayKeywords=arrayUnique(arrayKeywords.concat(question.keywords));
                     });
                     return res.json(arrayKeywords);
                 }

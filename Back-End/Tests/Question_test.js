@@ -56,15 +56,15 @@ describe("Create Question Test", function(){
 */
 describe("View NextQuestion Test", function(){
     it("should view the next question of a training", function(done){
-        this.timeout(7000);
+        this.timeout(12000);
         agent
             .post('/api/:lang/user/training/question')
             .send({
                 language: "it",
                 topic: "Patente",
-                keywords:["Strada","Guida"],
+                keywords:["cane"],
                 level:500,
-                //alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
+                alreadyAnswered:[]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -105,7 +105,7 @@ describe("View Keywords Test", function(){
         agent
             .post('/api/:lang/topic/keywords')
             .send({
-                topic: "Religione"
+                topic: "Patente"
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

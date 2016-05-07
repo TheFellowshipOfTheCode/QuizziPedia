@@ -33,7 +33,7 @@
                 <div class="md-toolbar-tools  object-toolbar">
                   <span flex="" class="flex"></span>
                   <h3 ng-if="d.answers[$index].text1 != undefined" class="ng-binding">{{d.answers[$index].text1}}</h3>
-                  <image ng-if="d.answers[$index].url1 != undefined"  class="img-answer" ng-src="{{d.answers[$index].url1}}"/>
+                  <image ng-if="d.answers[$index].url1 != undefined"  class="img-answer img-question" ng-src="{{d.answers[$index].url1}}"/>
                   <span flex="" class="flex"></span>
                 </div>
               </md-toolbar>
@@ -52,10 +52,10 @@
         </ul>
         <ul class="line">
           <li class="inline" ng-repeat="item in temporyObjectForView[$parent.$index].list2 " ng-model='temporyObjectForView[$parent.$index].list2' >
-            <div class="zone md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2" style="margin-top:{{12*$index}}em !important">
+            <div class="zone zone-mobile md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2" style="margin-top:{{12*$index}}em !important">
               {{item.text2}}
             </div>
-            <div class="zone md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2" style="margin-top:{{12*$index}}em !important">
+            <div class="zone zone-mobile md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2" style="margin-top:{{12*$index}}em !important">
               <image class="img-answer" ng-src="{{item.url2}}"/>
             </div>
           </li>

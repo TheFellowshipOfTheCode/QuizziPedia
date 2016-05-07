@@ -7,6 +7,6 @@
   text-align: -webkit-center;
 }
 
-.center-it {
-  width: 90%;
+.button-answer {
+  max-width: 90% !important;
 }

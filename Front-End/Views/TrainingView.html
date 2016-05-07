@@ -55,23 +55,23 @@
           concluso
         </div>
 
-        <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords)'>
+        <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords)'>
             {{listOfKeys.goToTraining}}
           </button>
         </div>
 
-        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click=''>
+        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click=''>
             {{listOfKeys.restartTraining}}
           </button>
         </div>
 
-        <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='newQuestion()'>
+        <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='newQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
-          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click=''>
+          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click=''>
             {{listOfKeys.buttonEndTrainingLang}}
           </button>
         </div>

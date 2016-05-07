@@ -162,7 +162,13 @@ li {
 }
 
 .keywords {
-  display: inline;
-  line-height: 3.5em;
   vertical-align: text-bottom;
+  display: inline-flex;
+  min-width: 7em;
+}
+
+.text-to-order {
+  display: inline;
+  margin: auto;
+  margin-top: 1em;
 }

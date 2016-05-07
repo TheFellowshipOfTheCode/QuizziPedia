@@ -51,7 +51,11 @@
   float: left;
 }
 
-.keywords md-chips-wrap {
+.keywordsChip {
+  width: 100%;
+}
+
+.keywordsChip md-chips-wrap {
   margin: 1em;
 }
 
@@ -61,6 +65,10 @@
 
 .toolbar-section div {
   height: 2.5em;
+}
+
+.start-training {
+  margin: 0 !important;
 }
 
 /*prove*/

@@ -64,7 +64,7 @@ describe("View NextQuestion Test", function(){
                 topic: "Patente",
                 keywords:["Strada","Guida"],
                 level:500,
-                alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
+                //alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -85,7 +85,6 @@ describe("View NextQuestion Test", function(){
 
 describe("View Topics Test", function(){
     it("should view topics", function(done){
-        //this.timeout(5000);
         agent
             .get('/api/:lang/topics')
             .end(function(err,res){
@@ -103,11 +102,10 @@ describe("View Topics Test", function(){
 
 describe("View Keywords Test", function(){
     it("should view the keywords of a topic", function(done){
-        this.timeout(7000);
         agent
             .post('/api/:lang/topic/keywords')
             .send({
-                topic: "Patente"
+                topic: "Religione"
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

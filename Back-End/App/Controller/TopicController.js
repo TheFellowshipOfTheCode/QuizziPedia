@@ -28,17 +28,32 @@ exports.getNextQuestion = function(req, res) {
             Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function(err,question){
                 if (err)
                     return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
-                else
-                if(question) {
-                    count=0;
-                    return res.send(question);
-                }
                 else {
-                    if(count<15){
-                        count++;
-                        module.exports.getNextQuestion(req,res);
+                    var equalKeywords = 0;
+                    if (question) {
+                        question.keywords.forEach(function (k1) {
+                            req.body.keywords.forEach(function (k2) {
+                                if (k1 == k2) {
+                                    equalKeywords++;
+                                }
+                            });
+                        });
+                        if (question.keywords.length==equalKeywords) {
+                            count = 0;
+                            return res.send(question);
+                        }
                     }
-                    else return res.status(500).json({code:757, title: "getNextQuestionError", message: "Non ci sono più domande che rispettino i parametri impostati per questo allenamento"});
+                    if(!question || question.keywords.length!=equalKeywords) {
+                        if (count < 20) {
+                            count++;
+                            module.exports.getNextQuestion(req, res);
+                        }
+                        else return res.status(500).json({
+                            code: 757,
+                            title: "getNextQuestionError",
+                            message: "Non ci sono più domande che rispettino i parametri impostati per questo allenamento"
+                        });
+                    }
                 }
             })
     })

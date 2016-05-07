@@ -53,3 +53,25 @@ var user;
                 });
         });
     })
+
+describe("Update Statistics Test", function(){
+    it("should update the statistics of a user", function(done){
+        agent
+            .put('/api/:lang/user/statistics')
+            .send({
+                language: "it",
+                userId: "",
+                topic: "Patente",
+                isCorrected: true
+            })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});

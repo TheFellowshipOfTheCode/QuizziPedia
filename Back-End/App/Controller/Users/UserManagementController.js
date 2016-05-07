@@ -16,7 +16,7 @@ exports.updatePasswordUser = function(req, res, next) {
 
 };
 
-exports.updateStatisticUser = function(req, res, next) {
+exports.updateStatisticUser = function(req, res) {
 
 };
 

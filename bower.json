@@ -38,7 +38,8 @@
     "html5-boilerplate": "~5.2.0",
     "angular-css": "1.0.8",
     "angular-dragdrop" : "*",
-    "angular-number-picker" : "*"
+    "angular-number-picker" : "*",
+    "jquery-ui-touch-punch" : "*"
 
   },
   "ignore": [

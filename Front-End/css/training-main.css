@@ -21,7 +21,46 @@
  }
 
 .question-picker {
-  display: inline-table;
+  margin: 1em;
+}
+
+.question-picker .input-group {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.center-it {
+  width: 60%;
+  min-width: 200px;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.topics {
+  margin: 1em;
+}
+
+.questions md-checkbox {
+  float: left;
+  vertical-align: baseline;
+  line-height: 2.5em;
+  margin-left: 1em;
+}
+
+.questions fieldset {
+  float: left;
+}
+
+.keywords md-chips-wrap {
+  margin: 1em;
+}
+
+.toolbar-section {
+  min-height: 2.5em !important;
+}
+
+.toolbar-section div {
+  height: 2.5em;
 }
 
 /*prove*/

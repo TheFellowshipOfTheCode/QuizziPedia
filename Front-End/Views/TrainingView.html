@@ -3,7 +3,10 @@
 
   <div class=" training layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
 
-    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+    <div class="spinner" ng-if="trainingIsLoaded == false">
+      <img src="Images/Icons/reload.svg"/>
+    </div>
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center" ng-if="trainingIsLoaded == true">
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
@@ -31,21 +34,26 @@
 
         <div ng-controller="QuestionsController" >
           <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " >
-            <header-text-question-directive></header-text-question-directive>
-            <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
-              <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
-              <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
-              <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
-              <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
-              <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
-              <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
+            <div class="spinner" ng-if="question === undefined">
+              <img src="Images/Icons/reload.svg"/>
             </div>
-            <!-- da eliminare -->
-            <br/>
-            <br/>
-            <br/>
-            {{objAnswer}}
-            <br/>
+            <div ng-if="question != undefined">
+              <header-text-question-directive></header-text-question-directive>
+              <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
+                <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
+                <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
+                <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
+                <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
+                <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
+                <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
+              </div>
+              <!-- da eliminare -->
+              <br/>
+              <br/>
+              <br/>
+              {{objAnswer}}
+              <br/>
+            </div>
           </div>
         </div>
 

@@ -25,6 +25,10 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   var keepOnMind = 0;
 
   /*Public variables on Scope*/
+  $scope.trainingIsLoaded = false;
+  $timeout(function() {
+    $scope.trainingIsLoaded = true;
+  }, 500);
   $scope.iQ = false;
   $scope.questionNumberOnTraining = 1;
   $scope.numberOfQuestionsOnTraining = {

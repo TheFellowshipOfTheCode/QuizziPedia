@@ -44,7 +44,7 @@ md-checkbox.md-checked ._md-icon {
   background-color: white;
 }
 
-.button-answer {
+.button-answer, .button-answer-true-false {
   background-color: rgb(255,202,40) !important;
 }
 

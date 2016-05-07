@@ -81,6 +81,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function to download the new question of the training mode*/
   function downloadNextQuestionTraining(nextQuestion) {
+    delete $scope.question;
     console.log(nextQuestion);
     QuestionsService
       .getNextQuestion($routeParams.lang, nextQuestion)

@@ -18,9 +18,10 @@
 *******************************************************************************/
 -->
 
+{{selectedTopic}}
+
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
-  <md-select placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="topic" md-on-open="loadKeywords()" style="min-width: 200px;" ng-change="loadKeywords(topic.name)">
-    {{topic.name}}
+  <md-select placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="selectedTopic" style="min-width: 200px;" ng-change="loadKeywords(selectedTopic.name); updateSelectedTopic(selectedTopic.name)">
       <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
   </md-select>
   <md-chips ng-model="selectedKeywords" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="autocompleteDemoRequireMatch">

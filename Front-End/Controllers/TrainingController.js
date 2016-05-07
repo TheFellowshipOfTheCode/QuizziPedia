@@ -21,6 +21,9 @@ app.controller('TrainingController', TrainingController);
 TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel', 'QuestionsService'];
 function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel, QuestionsService ) {
 
+
+  console.log($rootScope.userLogged);
+
   /*Private variables*/
   var keepOnMind = 0;
 
@@ -30,7 +33,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.numberOfQuestionsOnTraining = {
     num: 1
   };
-
+  $scope.selectedTopicOnMind = "";
   $scope.readonly = false;
   $scope.selectedItem = null;
   $scope.searchText = null;
@@ -47,7 +50,24 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         num: 0
       };
     }
+    console.log(argument);
+    console.log(keywords);
     $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
+    /*{
+            language: lang,
+            topic: topic,
+            keywords:["Strada","Guida"],
+            level:500,
+            alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
+        }*/
+    $rootScope.$emit("loadNewQuestion", {
+      language  : $routeParams.lang,
+      topic: $scope.training.getArgument(),
+      keywords : $scope.training.getKeywords(),
+      level  : $rootScope.userLogged.getLevel(),
+      alreadyAnswered : [] }
+    );
+    console.log("arrivo qui");
   };
 
 
@@ -64,8 +84,15 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Evet to check if a question is aswered*/
   $scope.newQuestion= function() {
-    console.log("ci clicco");
+    //console.log("ci clicco");
     $rootScope.$emit("isItAnswered");
+  };
+
+  /*Function that store the topic choose*/
+  $scope.updateSelectedTopic= function(topic) {
+    $scope.selectedTopicOnMind = topic;
+    console.log(topic);
+    console.log($scope.selectedTopicOnMind);
   };
 
   // Search for keywords.
@@ -89,15 +116,16 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   $scope.loadKeywords = function (topic) {
     if(topic != undefined) {
+      console.log($scope.selectedTopicOnMind);
     var keys;
     QuestionsService
       .getKeywords($routeParams.lang, topic)
       .then(function(result){
           keys = result.data;
-          console.log($scope.keywords);
+          //console.log($scope.keywords);
           delete $scope.keywords;
           $scope.keywords = result.data;
-          console.log($scope.keywords);
+          //console.log($scope.keywords);
           $scope.selectedKeywords = [];
           delete $chip;
           //callback(keys);
@@ -119,7 +147,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   /*RootScope functions*/
   /*Event to go on during the training mode*/
   $rootScope.$on("doYouWannaGoOn", function(event, args) {
-    console.log("Emesso");
+    //console.log("Emesso");
       if(!args) {
         alert = $mdDialog.confirm()
             .title($rootScope.listOfKeys.attention)
@@ -131,18 +159,30 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
             .then(function() {
               if($scope.questionNumberOnTraining+1 > $scope.training.getNumberOfQuestions() )
               {
-                console.log($scope.training.getNumberOfQuestions());
+                //console.log($scope.training.getNumberOfQuestions());
                 if($scope.training.getNumberOfQuestions() == 0) {
-                  $rootScope.$emit("loadNewQuestion");
+                  $rootScope.$emit("loadNewQuestion", {
+                    language  : $routeParams.lang,
+                    topic: $scope.training.getArgument(),
+                    keywords : $scope.training.getKeywords(),
+                    level  : $rootScope.userLogged.getLevel(),
+                    alreadyAnswered : [] }
+                  );
                   angular.element(".scrollable").scrollTop(0,0);
                 }
                 else {
-                  console.log("allenamento terminato1");
+                  //console.log("allenamento terminato1");
                 }
               }
               else {
-                console.log("continuo1");
-                $rootScope.$emit("loadNewQuestion");
+                //console.log("continuo1");
+                $rootScope.$emit("loadNewQuestion", {
+                  language  : $routeParams.lang,
+                  topic: $scope.training.getArgument(),
+                  keywords : $scope.training.getKeywords(),
+                  level  : $rootScope.userLogged.getLevel(),
+                  alreadyAnswered : [] }
+                );
                 angular.element(".scrollable").scrollTop(0,0);
               }
               $scope.questionNumberOnTraining++;
@@ -151,18 +191,30 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       else {
         if($scope.questionNumberOnTraining+1 > $scope.training.getNumberOfQuestions() )
         {
-          console.log($scope.training.getNumberOfQuestions());
+          //console.log($scope.training.getNumberOfQuestions());
           if($scope.training.getNumberOfQuestions() == 0) {
-            $rootScope.$emit("loadNewQuestion");
+            $rootScope.$emit("loadNewQuestion",  {
+              language  : $routeParams.lang,
+              topic: $scope.training.getArgument(),
+              keywords : $scope.training.getKeywords(),
+              level  : $rootScope.userLogged.getLevel(),
+              alreadyAnswered : [] }
+            );
             angular.element(".scrollable").scrollTop(0,0);
           }
           else {
-            console.log("allenamento terminato1");
+            //console.log("allenamento terminato1");
           }
         }
         else {
-          console.log("continuo2");
-          $rootScope.$emit("loadNewQuestion");
+          //console.log("continuo2");
+          $rootScope.$emit("loadNewQuestion",  {
+            language  : $routeParams.lang,
+            topic: $scope.training.getArgument(),
+            keywords : $scope.training.getKeywords(),
+            level  : $rootScope.userLogged.getLevel(),
+            alreadyAnswered : [] }
+          );
           angular.element(".scrollable").scrollTop(0,0);
         }
         $scope.questionNumberOnTraining++;
@@ -186,8 +238,8 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     QuestionsService
       .getTopics($routeParams.lang)
       .then(function(result){
-        console.log(result);
-        console.log(result.data);
+        //console.log(result);
+        //console.log(result.data);
           topics = result.data;
           callback(topics);
       } ,function (err){

@@ -20,10 +20,13 @@
 
 <ul>
   <li class="keywords">
-    <span>{{listOfKeys.keywords}}: </span>
+    <span>{{listOfKeys.topic}}: </span>
   </li>
   <li class="md-primary md-raised md-button" >
-    <h1>{{training.getArgument()}}</h1>
+    <span>{{training.getArgument()}}</span>
+  </li>
+  <li class="keywords">
+    <span>{{listOfKeys.keywords}}: </span>
   </li>
   <li class="md-primary md-raised md-button" ng-repeat="item in question.getKeywords()">
     {{item}}

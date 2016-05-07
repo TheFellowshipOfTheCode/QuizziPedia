@@ -22,7 +22,8 @@ QuestionsController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', 
 function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionItemModel, QuestionsService ) {
 
   /*Initial set-up: at the first run of the controller*/
-  downloadNextQuestionTraining();
+  //downloadNextQuestionTraining();
+  console.log("sono qui");
 
   /*Scope function*/
 
@@ -48,9 +49,21 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*RootScope function*/
 
   /*Function used to load new question*/
+/*
+{
+        language: lang,
+        topic: topic,
+        keywords:["Strada","Guida"],
+        level:500,
+        alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
+    }
+*/
+
   $rootScope.$on("loadNewQuestion", function(event, args) {
+    console.log("catturato");
     $scope.objAnswer=[];
-    downloadNextQuestionTraining();
+    console.log(args);
+    downloadNextQuestionTraining(args);
   });
 
   /*Funtion to check if a question is answered */
@@ -67,9 +80,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Private question*/
 
   /*Function to download the new question of the training mode*/
-  function downloadNextQuestionTraining() {
+  function downloadNextQuestionTraining(nextQuestion) {
     QuestionsService
-      .getNextQuestion($routeParams.lang,"Patente")
+      .getNextQuestion($routeParams.lang, nextQuestion)
       .then(function(result){
         console.log(result);
         $scope.question= new QuestionItemModel(result.data.id,"io", "non so", result.data.language, result.data.question,result.data.keywords);

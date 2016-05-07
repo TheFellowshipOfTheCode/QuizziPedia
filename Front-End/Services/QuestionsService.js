@@ -83,15 +83,12 @@ function QuestionsService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function getNextQuestion(lang, topic) {
+    function getNextQuestion(lang, nextQuestion) {
+      console.log(nextQuestion);
+      var q = JSON.stringify(nextQuestion, null, "  ");
+      console.log(q);
         var deferred = $q.defer();
-        $http.post('/api/'+ lang + '/user/training/question', {
-                language: lang,
-                topic: topic,
-                keywords:["Strada","Guida"],
-                level:500,
-                alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
-            })
+        $http.post('/api/'+ lang + '/user/training/question', q)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error) {

@@ -29,37 +29,40 @@
           <training-set-up-directive></training-set-up-directive>
         </div>
 
-        <div ng-controller="QuestionsController" ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) ">
-          <header-text-question-directive></header-text-question-directive>
-          <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
-            <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
-            <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
-            <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
-            <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
-            <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
-            <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
+        <div ng-controller="QuestionsController" >
+          <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " >
+            <header-text-question-directive></header-text-question-directive>
+            <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
+              <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
+              <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
+              <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
+              <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
+              <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
+              <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
+            </div>
+            <!-- da eliminare -->
+            <br/>
+            <br/>
+            <br/>
+            {{objAnswer}}
+            <br/>
           </div>
-          <!-- da eliminare -->
-          <br/>
-          <br/>
-          <br/>
-          {{objAnswer}}
-          <br/>
-
         </div>
+
+        {{selectedTopic}}
 
         <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 ">
           concluso
         </div>
 
         <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining("","")'>
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords)'>
             {{listOfKeys.goToTraining}}
           </button>
         </div>
 
         <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click='starTraining("","")'>
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex-45" type="button" name="button" ng-click=''>
             {{listOfKeys.restartTraining}}
           </button>
         </div>

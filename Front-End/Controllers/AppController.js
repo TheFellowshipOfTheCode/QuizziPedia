@@ -32,11 +32,13 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
                     console.log(result.data);
                     $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
                     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+                    //$rootScope.$emit("userDownloaded", true);
                     $rootScope.$broadcast("userDownloaded", true);
                 }
                 else{
                     $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
                     AuthService.resetCookies();
+                    //$rootScope.$emit("userDownloaded", false);
                     $rootScope.$broadcast("userDownloaded", false);
                 }
             } ,function (err){

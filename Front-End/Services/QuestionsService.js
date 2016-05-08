@@ -82,9 +82,9 @@ function QuestionsService($http, $cookies, $q) {
     }
 
 
-    function uploadLogo (logo) {
+    function uploadImage (image) {
         var formData = new FormData();
-        formData.append("file", logo);
+        formData.append("file", image);
         return $http.post('/api/upload', formData, {
             headers: {'Content-Type': undefined},
             transformRequest: angular.identity

@@ -21,7 +21,7 @@
 <div layout="column" flex id="content" role="main" ng-controller="AppController" >
 
     <div layout="row" layout-align="center center" >
-        <form name="myForm" id="myForm" enctype="multipart/form-data" ng-submit="uploadLogo(imageFile)">
+        <form name="myForm" id="myForm" enctype="multipart/form-data" ng-submit="uploadImage(imageFile)">
             <input type="file" name="image" id="image" ngf-select ng-model="imageFile"  accept="image/*" ngf-max-size="2MB" >
             <img style="width:200px;" ng-show="myForm.image.$valid" ngf-thumbnail="imageFile" class="thumb">
             <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="imageFile = null" ng-show="imageFile">Remove</md-button>

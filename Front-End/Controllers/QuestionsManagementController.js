@@ -59,8 +59,8 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
         $location.path('/' + $routeParams.lang + '/QML');
     }
 
-    $scope.uploadLogo = function(logoFile) {
-        QuestionsService.uploadLogo(logoFile).success(function (uploadResponse) {
+    $scope.uploadImage = function(image) {
+        QuestionsService.uploadImage(image).success(function (uploadResponse) {
             // Handle response from server
             console.log(uploadResponse);
         }).error(function (error) {

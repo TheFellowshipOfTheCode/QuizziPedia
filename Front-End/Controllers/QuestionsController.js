@@ -18,8 +18,8 @@
 
 app.controller('QuestionsController', QuestionsController);
 
-QuestionsController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'QuestionItemModel', 'QuestionsService'];
-function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionItemModel, QuestionsService ) {
+QuestionsController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'QuestionItemModel', 'QuestionsService', 'Utils'];
+function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionItemModel, QuestionsService, Utils ) {
 
   /*Initial set-up: at the first run of the controller*/
   //downloadNextQuestionTraining();
@@ -49,15 +49,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*RootScope function*/
 
   /*Function used to load new question*/
-/*
-{
-        language: lang,
-        topic: topic,
-        keywords:["Strada","Guida"],
-        level:500,
-        alreadyAnswered:["5729c0fdc80eb653c3029c4e"]
-    }
-*/
 
   $rootScope.$on("loadNewQuestion", function(event, args) {
     console.log("catturato");
@@ -111,6 +102,12 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
             }
 
           });
+
+          console.log(list2);
+
+          list2 = Utils.shuffle(list2);
+
+          console.log(list2);
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};

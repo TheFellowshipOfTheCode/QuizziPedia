@@ -19,9 +19,9 @@
  *******************************************************************************/
 app.controller('EditorQMLController', EditorQMLController);
 
-EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog','Upload', 'QuestionItemModel', 'ErrorInfoModel'];
+EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
 
-function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog,Upload, QuestionItemModel, ErrorInfoModel){
+function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
 
     //delete $scope.id;
     $scope.id = $routeParams.idQuestion;

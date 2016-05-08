@@ -24,7 +24,7 @@ function QuestionsService($http, $cookies, $q) {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
         getQuestion: getQuestion,
-        uploadLogo: uploadLogo
+        uploadImage: uploadImage
     };
 
     return methods;

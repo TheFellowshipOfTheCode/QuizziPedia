@@ -21,9 +21,11 @@
 
 app.controller('QuestionsManagementController', QuestionsManagementController);
 
-QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog','Upload', 'QuestionItemModel', 'ErrorInfoModel'];
+QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
 
-function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, Upload, QuestionItemModel, ErrorInfoModel){
+function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
+    $scope.$on("userDownloaded", function(event, args) {
+        console.log("entra");
         var username = $rootScope.userLogged.getUsername();
         if(username){
         QuestionsService.getUsersQuestions($routeParams.lang)
@@ -46,6 +48,7 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
                     });
             });
         }
+        });
 
     $scope.editQuestion = function (idQuestion) {
         $location.path('/'+$routeParams.lang+'/QML/' + idQuestion);
@@ -59,14 +62,14 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
         $location.path('/' + $routeParams.lang + '/QML');
     }
 
-    $scope.uploadImage = function(image) {
-        QuestionsService.uploadImage(image).success(function (uploadResponse) {
-            // Handle response from server
-            console.log(uploadResponse);
-        }).error(function (error) {
-            // Handle error from server
-            console.log(error);
-        });
+    $scope.uploadImage = function(image){
+        QuestionsService.uploadImage(image)
+            .success(function(uploadResponse){
+                console.log(uploadResponse);
+            })
+            .error(function(error){
+                console.log(error);
+            })
     };
 
 

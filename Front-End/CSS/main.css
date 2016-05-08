@@ -128,6 +128,36 @@ footer ul  {
   padding-bottom: 0.5em;
 }
 
+/*
+TO BE REMOVED*/
+
+.homepage {
+    width: 90%;
+    margin: auto;
+}
+
+.sezione {
+    margin-top: 3em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.home-toolbar {
+    background-color: rgb(255,202,40) !important;
+}
+
+.md-padding {
+    min-height: 6em;
+    overflow: auto;
+}
+
+.search-div {
+    min-height: 6em;
+    overflow: auto;
+}
+
 #textArea{
     height: 500px;
 }
@@ -145,6 +175,7 @@ footer ul  {
 .btn-group{
     display: none;
 }
+
 
 /*Elenco domande utente*/
 #modifyQuestionButton{

@@ -72,11 +72,10 @@ function TrainingModeModel() {
     };
 
     this.getResult = function () {
-
     };
 
     this.addQuestion = function(question){
-
+      questions_.push(question);
     };
 
     this.removeQuestion = function(question){

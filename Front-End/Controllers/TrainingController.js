@@ -155,19 +155,42 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   });
 
+  /*Event to go on during the training mode*/
+  $rootScope.$on("saveTheQuestion", function(event, question) {
+    console.log("catturo: salvo la domanda");
+    console.log(question.getKeywords());
+    console.log(question.getId());
+      $scope.training.addQuestion(question);
+      console.log($scope.training.getQuestions());
+  });
+
+
   /*Private functions*/
+
+  function addId(elem) {
+    console.log(elem);
+    return elem.getId();
+  }
 
   /*Function that checks if yuo could go on or the trainging is over*/
   function checkIfICouldGoOn() {
+    var arryOfQuestionsAlreadyAnswered= [];
+    $scope.training.getQuestions().forEach(
+      function (elem) {
+        arryOfQuestionsAlreadyAnswered.push(elem.getId());
+      }
+    );
+    console.log(arryOfQuestionsAlreadyAnswered);
 
     if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
     {
+      //delete $scope.question;
       $rootScope.$emit("loadNewQuestion", {
         language  : $routeParams.lang,
         topic: $scope.training.getArgument(),
         keywords : $scope.training.getKeywords(),
         level  : $rootScope.userLogged.getLevel(),
-        alreadyAnswered : []
+        alreadyAnswered : arryOfQuestionsAlreadyAnswered
         }
       );
       angular.element(".scrollable").scrollTop(0,0);

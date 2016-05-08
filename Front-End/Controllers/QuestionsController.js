@@ -54,6 +54,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     console.log("catturato");
     $scope.objAnswer=[];
     console.log(args);
+    delete $scope.question;
     downloadNextQuestionTraining(args);
   });
 
@@ -72,13 +73,14 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function to download the new question of the training mode*/
   function downloadNextQuestionTraining(nextQuestion) {
-    delete $scope.question;
+    //delete $scope.question;
     console.log(nextQuestion);
     QuestionsService
       .getNextQuestion($routeParams.lang, nextQuestion)
       .then(function(result){
         console.log(result);
-        $scope.question= new QuestionItemModel(result.data.id,"io", "non so", result.data.language, result.data.question,result.data.keywords);
+        $scope.question= new QuestionItemModel(result.data._id,result.data.author, result.data.makeWith, result.data.language, result.data.question,result.data.keywords);
+        $rootScope.$emit("saveTheQuestion", $scope.question);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
         $scope.temporyObjectForView= [];

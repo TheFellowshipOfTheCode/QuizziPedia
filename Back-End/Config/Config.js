@@ -33,7 +33,7 @@ var passport= require('passport');
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, './uploadImage/'); // Le immagini verranno uploadate qui
+        callback(null, __dirname +'/../uploadImage/'); // Le immagini verranno uploadate qui
     },
     filename: function (req, file, callback) {
         var datetimestamp = Date.now();

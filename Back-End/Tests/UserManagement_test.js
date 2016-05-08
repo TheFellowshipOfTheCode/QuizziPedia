@@ -4,6 +4,7 @@ var request = require("supertest");
 var should = require("should")
 var agent = request.agent(app);
 var user;
+/*
     describe("Signin Test", function () {
         it("should signin and return a user object", function (done) {
             agent
@@ -53,15 +54,16 @@ var user;
                 });
         });
     })
-
+*/
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
         agent
             .put('/api/:lang/user/statistics')
             .send({
                 language: "it",
-                userId: "",
+                userId: "57275c6b008cdfb81994ba2a",
                 topic: "Patente",
+                difficultyLevel: 500,
                 isCorrected: true
             })
             .end(function(err,res){

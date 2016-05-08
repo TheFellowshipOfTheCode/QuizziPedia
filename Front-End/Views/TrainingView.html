@@ -70,7 +70,7 @@
         </div>
 
         <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click=''>
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='resetTraining()'>
             {{listOfKeys.restartTraining}}
           </button>
         </div>

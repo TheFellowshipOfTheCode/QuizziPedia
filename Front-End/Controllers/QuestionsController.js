@@ -23,7 +23,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Initial set-up: at the first run of the controller*/
   //downloadNextQuestionTraining();
-  console.log("sono qui");
+  //console.log("sono qui");
+
+  var contt= 0;
 
   /*Scope function*/
 
@@ -50,17 +52,21 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
 
-  $rootScope.$on("loadNewQuestion", function(event, args) {
+  var istA =$rootScope.$on("loadNewQuestion", function(event, args) {
     console.log("catturato");
     $scope.objAnswer=[];
-    console.log(args);
+    //console.log(args);
     delete $scope.question;
-    downloadNextQuestionTraining(args);
+    contt++;
+    downloadNextQuestionTraining(args, contt);
   });
 
+  $scope.$on('$destroy', istA);
+
+
   /*Funtion to check if a question is answered */
-  $rootScope.$on("isItAnswered", function(event, args) {
-    console.log("catturo isItAnswered");
+  var istB = $rootScope.$on("isItAnswered", function(event, args) {
+    //console.log("catturo isItAnswered");
     var ok= true;
      if(Object.keys($scope.objAnswer).length != Object.keys($scope.question.getQuestion()).length) {
        ok = false;
@@ -69,17 +75,24 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     $rootScope.$emit("doYouWannaGoOn",ok);
   });
 
+  $scope.$on('$destroy', istB);
+
+
+
+
   /*Private question*/
 
   /*Function to download the new question of the training mode*/
-  function downloadNextQuestionTraining(nextQuestion) {
+  function downloadNextQuestionTraining(nextQuestion, cont) {
     //delete $scope.question;
-    console.log(nextQuestion);
+    //console.log(nextQuestion);
+    console.log("C entro qui per la "+cont+" volta");
     QuestionsService
       .getNextQuestion($routeParams.lang, nextQuestion)
       .then(function(result){
-        console.log(result);
+        //console.log(result);
         $scope.question= new QuestionItemModel(result.data._id,result.data.author, result.data.makeWith, result.data.language, result.data.question,result.data.keywords);
+        console.log($scope.question);
         $rootScope.$emit("saveTheQuestion", $scope.question);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
@@ -89,7 +102,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           var tempText;
           var text;
           if(elemA.type == "spaziVuoti") {
-            console.log(elemA);
+            //console.log(elemA);
             text = elemA.questionText;
             tempText = text.split(" ");
           }
@@ -105,11 +118,11 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
           });
 
-          console.log(list2);
+          //console.log(list2);
 
           list2 = Utils.shuffle(list2);
 
-          console.log(list2);
+          //console.log(list2);
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};

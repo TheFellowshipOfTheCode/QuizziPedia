@@ -20,6 +20,11 @@ app.factory('QuestionsService', QuestionsService);
 AuthService.$inject = ['$http', '$cookies', '$q'];
 
 function QuestionsService($http, $cookies, $q) {
+
+    var cont=0;
+
+
+
     var methods = {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
@@ -84,9 +89,11 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getNextQuestion(lang, nextQuestion) {
-      console.log(nextQuestion);
+      //console.log(nextQuestion);
       var q = JSON.stringify(nextQuestion, null, "  ");
-      console.log(q);
+      //console.log(q);
+      cont++;
+      console.log("entro qui per la "+cont+" volta");
         var deferred = $q.defer();
         $http.post('/api/'+ lang + '/user/training/question', q)
             .then(function(data) {

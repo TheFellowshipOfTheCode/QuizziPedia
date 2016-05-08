@@ -21,32 +21,11 @@ app.controller('TrainingController', TrainingController);
 TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel', 'QuestionsService'];
 function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel, QuestionsService ) {
 
-  $rootScope.$on("userDownloaded", function(event, args) {
-        console.log("entra");
-        console.log(args);
-    });
-
   /*Private variables*/
   var keepOnMind = 0;
 
   /*Public variables on Scope*/
-  //console.log("entro");
-  //$rootScope.$destroy();
-  /*$scope.iQ = false;
-  $scope.questionNumberOnTraining = 1;
-  $scope.numberOfQuestionsOnTraining = {
-    num: 1
-  };
-  $scope.selectedTopicOnMind = undefined;
-  $scope.readonly = false;
-  $scope.selectedItem = undefined;
-  $scope.searchText = undefined;
-  $scope.topics = undefined;
-  $scope.autocompleteDemoRequireMatch = true;
-  $scope.selectedKeywords = [];*/
-
-  console.log("_----------------------------------------------------------");
-
+  $scope.traininIsFinished = false;
   $scope.trainingIsLoaded = false;
   $timeout(function() {
     $scope.trainingIsLoaded = true;
@@ -66,8 +45,9 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.autocompleteDemoRequireMatch = true;
   $scope.selectedKeywords = [];
 
-
   /*Functions on scope*/
+
+  /*Function to start the training*/
   $scope.starTraining = starTraining;
   function starTraining (argument, keywords) {
     if($scope.iQ) {
@@ -101,20 +81,29 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     }
   }
 
-  /*Function to set infinite question*/
+  /*Function to restart the training*/
   $scope.resetTraining = resetTraining;
   function resetTraining() {
-    $scope.$destroy();
+    var arg = $scope.training.getArgument(),
+    keys =  $scope.training.getKeywords(),
+    nums = $scope.training.getNumberOfQuestions();
+    delete $scope.training;
+    $scope.training = new TrainingModeModel(arg, keys, nums);
+    $scope.questionNumberOnTraining = 1;
+    $scope.traininIsFinished = false;
     $location.path("/"+$routeParams.lang+"/training");
+    window.onbeforeunload = function(event) {
+        return $rootScope.listOfKeys.areYouSureToLeaveTheTraining;
+    };
   }
 
-  /*Evet to check if a question is aswered*/
+  /*Function to get the new question*/
   $scope.newQuestion= newQuestion;
   function newQuestion() {
     $rootScope.$emit("isItAnswered");
   };
 
-  /*Function that store the topic choose*/
+  /*Function that stores the topic choose*/
   $scope.updateSelectedTopic= updateSelectedTopic;
   function updateSelectedTopic(topic) {
     $scope.selectedTopicOnMind = topic;
@@ -134,7 +123,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     if (angular.isObject(key)) {
       return key;
     }
-
     // Otherwise, create a new one, only in autocompleteDemoRequireMatch = false;
     return { name: key, type: $rootScope.listOfKeys.newOne }
   }
@@ -167,9 +155,46 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     }
   }
 
+  /*Function to go back to the set up page*/
+  $scope.goBackToSetUp = goBackToSetUp;
+  function goBackToSetUp() {
+    delete $scope.training;
+    $scope.questionNumberOnTraining = 1;
+    $scope.traininIsFinished = false;
+    $location.path("/"+$routeParams.lang+"/training");
+    window.onbeforeunload = null;
+    $scope.numberOfQuestionsOnTraining = {
+      num: 1
+    };
+    $scope.iQ = false;
+    delete $scope.keywords;
+    $scope.selectedKeywords = [];
+    delete $chip;
+  }
+
+
+  /*Function to finish the training*/
+  $scope.endTraining = endTraining;
+  function endTraining() {
+    alert = $mdDialog.confirm()
+        .title($rootScope.listOfKeys.buttonEndTrainingLang)
+        .content($rootScope.listOfKeys.endOfTheTrainingAreYouSure)
+        .ok("Ok")
+        .cancel($rootScope.listOfKeys.dontDoIt);
+    $mdDialog
+        .show( alert )
+        .finally(function() {
+            alert = undefined;
+        })
+        .then(function() {
+          $scope.traininIsFinished = true;
+          window.onbeforeunload = null;
+        });
+  }
+
   /*RootScope functions*/
   /*Event to go on during the training mode*/
-  var dYWGO = $rootScope.$on("doYouWannaGoOn", function(event, args) {
+  var doYouWannaGoOn = $rootScope.$on("doYouWannaGoOn", function(event, args) {
       if(!args) {
         alert = $mdDialog.confirm()
             .title($rootScope.listOfKeys.attention)
@@ -179,7 +204,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         $mdDialog
             .show( alert )
             .then(function() {
-              console.log("entro qui");
               checkIfICouldGoOn()
             });
       }
@@ -188,29 +212,23 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       }
 
   });
+  $scope.$on('$destroy', doYouWannaGoOn);
 
-  $scope.$on('$destroy', dYWGO);
 
-
-  /*Event to go on during the training mode*/
-  var sTQ = $rootScope.$on("saveTheQuestion", function(event, question) {
-    //console.log("catturo: salvo la domanda");
-    //console.log(question.getKeywords());
-    //console.log(question.getId());
+  /*Event to save the current question in the TrainingModeModel*/
+  var saveTheQuestion = $rootScope.$on("saveTheQuestion", function(event, question) {
       $scope.training.addQuestion(question);
-      //console.log($scope.training.getQuestions());
   });
+  $scope.$on('$destroy', saveTheQuestion);
 
-  $scope.$on('$destroy', sTQ);
-
-
+  /*Event to go back to the set up training*/
+  var backToTheSetUpTraining = $rootScope.$on("backToTheSetUpTraining", function(event, args) {
+      $scope.traininIsFinished = true;
+      window.onbeforeunload = null;
+  });
+  $scope.$on('$destroy', backToTheSetUpTraining);
 
   /*Private functions*/
-
-  function addId(elem) {
-    //console.log(elem);
-    return elem.getId();
-  }
 
   /*Function that checks if yuo could go on or the trainging is over*/
   function checkIfICouldGoOn() {
@@ -220,8 +238,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         arryOfQuestionsAlreadyAnswered.push(elem.getId());
       }
     );
-    //console.log(arryOfQuestionsAlreadyAnswered);
-
     if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
     {
       //delete $scope.question;
@@ -236,11 +252,10 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       angular.element(".scrollable").scrollTop(0,0);
     }
     else {
-      console.log("allenamento finito");
+      $scope.traininIsFinished = true;
       window.onbeforeunload = null;
     }
     $scope.questionNumberOnTraining++;
-
   }
 
   /*Create filter function for a query string*/

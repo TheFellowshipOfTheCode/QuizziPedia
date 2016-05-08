@@ -21,12 +21,6 @@ app.controller('QuestionsController', QuestionsController);
 QuestionsController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'QuestionItemModel', 'QuestionsService', 'Utils'];
 function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionItemModel, QuestionsService, Utils ) {
 
-  /*Initial set-up: at the first run of the controller*/
-  //downloadNextQuestionTraining();
-  //console.log("sono qui");
-
-  var contt= 0;
-
   /*Scope function*/
 
   /*Function used to drag and drop element on monitor*/
@@ -52,21 +46,16 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
 
-  var istA =$rootScope.$on("loadNewQuestion", function(event, args) {
-    console.log("catturato");
+  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args) {
     $scope.objAnswer=[];
-    //console.log(args);
     delete $scope.question;
-    contt++;
-    downloadNextQuestionTraining(args, contt);
+    downloadNextQuestionTraining(args);
   });
-
-  $scope.$on('$destroy', istA);
+  $scope.$on('$destroy', loadNewQuestion);
 
 
   /*Funtion to check if a question is answered */
-  var istB = $rootScope.$on("isItAnswered", function(event, args) {
-    //console.log("catturo isItAnswered");
+  var isItAnswered = $rootScope.$on("isItAnswered", function(event, args) {
     var ok= true;
      if(Object.keys($scope.objAnswer).length != Object.keys($scope.question.getQuestion()).length) {
        ok = false;
@@ -74,25 +63,16 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     var answer = $scope.objAnswer;
     $rootScope.$emit("doYouWannaGoOn",ok);
   });
-
-  $scope.$on('$destroy', istB);
-
-
-
+  $scope.$on('$destroy', isItAnswered);
 
   /*Private question*/
 
   /*Function to download the new question of the training mode*/
-  function downloadNextQuestionTraining(nextQuestion, cont) {
-    //delete $scope.question;
-    //console.log(nextQuestion);
-    console.log("C entro qui per la "+cont+" volta");
+  function downloadNextQuestionTraining(nextQuestion) {
     QuestionsService
       .getNextQuestion($routeParams.lang, nextQuestion)
       .then(function(result){
-        //console.log(result);
         $scope.question= new QuestionItemModel(result.data._id,result.data.author, result.data.makeWith, result.data.language, result.data.question,result.data.keywords);
-        console.log($scope.question);
         $rootScope.$emit("saveTheQuestion", $scope.question);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
@@ -102,7 +82,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           var tempText;
           var text;
           if(elemA.type == "spaziVuoti") {
-            //console.log(elemA);
             text = elemA.questionText;
             tempText = text.split(" ");
           }
@@ -118,11 +97,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
           });
 
-          //console.log(list2);
-
           list2 = Utils.shuffle(list2);
-
-          //console.log(list2);
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
@@ -145,6 +120,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
             .show( alert )
             .finally(function() {
                 alert = undefined;
+            })
+            .then(function(){
+              $rootScope.$emit("backToTheSetUpTraining");
             });
         }
     );

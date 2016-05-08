@@ -10,7 +10,7 @@
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="ng-binding">
+          <h3 ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="ng-binding">
             {{listOfKeys.questionNumberLang}} {{questionNumberOnTraining}}
             <span ng-if="training.getNumberOfQuestions() != 0">
              {{listOfKeys.ofLang}}
@@ -20,7 +20,7 @@
           <h3 ng-if="training === undefined" class="ng-binding">
             {{listOfKeys.training}}
           </h3>
-          <h3 ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="ng-binding">
+          <h3 ng-if="traininIsFinished == true " class="ng-binding">
             {{listOfKeys.endOfTraining}}
           </h3>
          <span flex="" class="flex"></span>
@@ -33,7 +33,7 @@
         </div>
 
         <div ng-controller="QuestionsController" >
-          <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " >
+          <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " >
             <div class="spinner" ng-if="question === undefined">
               <img src="Images/Icons/reload.svg"/>
             </div>
@@ -59,8 +59,8 @@
 
         {{selectedTopic}}
 
-        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 ">
-          concluso
+        <div ng-if="traininIsFinished == true ">
+          <end-training-directive></end-training-directive>
         </div>
 
         <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
@@ -69,17 +69,20 @@
           </button>
         </div>
 
-        <div ng-if="training != undefined && questionNumberOnTraining > training.getNumberOfQuestions() && training.getNumberOfQuestions() != 0 " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+        <div ng-if="traininIsFinished == true " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-sm="column" layout-align="center">
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='goBackToSetUp()'>
+            {{listOfKeys.goBackToSetUp}}
+          </button>
           <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='resetTraining()'>
             {{listOfKeys.restartTraining}}
           </button>
         </div>
 
-        <div ng-if="training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+        <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='newQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
-          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click=''>
+          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endTraining()'>
             {{listOfKeys.buttonEndTrainingLang}}
           </button>
         </div>

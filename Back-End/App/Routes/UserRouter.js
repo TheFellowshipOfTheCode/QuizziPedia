@@ -42,12 +42,12 @@ module.exports = function(app){
         .get(user.session.loggedin);
 
     app.route('/api/:lang/user/:userId')
-        .get(user.userManagement.getInfo)
+        .get(user.userManagement.getInfo);
 
     app.route('/api/:lang/user')
-        .delete(user.userManagement.deleteUser)
+        .delete(user.userManagement.deleteUser);
 
     app.route('/api/:lang/user/statistics')
-        .put(user.updateStatisticUser);
+        .put(user.userManagement.updateStatisticUser);
 
 };

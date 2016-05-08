@@ -24,7 +24,7 @@ function QuestionsService($http, $cookies, $q) {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
         getQuestion: getQuestion,
-        sendImageBE: sendImageBE
+        uploadLogo: uploadLogo
     };
 
     return methods;
@@ -81,13 +81,14 @@ function QuestionsService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function sendImageBE(image, lang){
-        //console.log("immagine" + image);
-        $http.post('/api/' + lang + '/uploadimage', image)
-            .then(function() {
-                console.log("andata");
-            }, function(error){
-                console.log("errore");
-            });
+
+    function uploadLogo (logo) {
+        var formData = new FormData();
+        formData.append("file", logo);
+        return $http.post('/api/upload', formData, {
+            headers: {'Content-Type': undefined},
+            transformRequest: angular.identity
+        });
     }
+
 }

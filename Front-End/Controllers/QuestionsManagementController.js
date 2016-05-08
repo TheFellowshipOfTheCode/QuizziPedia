@@ -21,9 +21,9 @@
 
 app.controller('QuestionsManagementController', QuestionsManagementController);
 
-QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
+QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog','Upload', 'QuestionItemModel', 'ErrorInfoModel'];
 
-function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
+function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, Upload, QuestionItemModel, ErrorInfoModel){
         var username = $rootScope.userLogged.getUsername();
         if(username){
         QuestionsService.getUsersQuestions($routeParams.lang)
@@ -59,6 +59,15 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
         $location.path('/' + $routeParams.lang + '/QML');
     }
 
+    $scope.uploadLogo = function(logoFile) {
+        QuestionsService.uploadLogo(logoFile).success(function (uploadResponse) {
+            // Handle response from server
+            console.log(uploadResponse);
+        }).error(function (error) {
+            // Handle error from server
+            console.log(error);
+        });
+    };
 
 
 }

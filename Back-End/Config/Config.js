@@ -30,6 +30,20 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash    = require('connect-flash');
 var passport= require('passport');
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './uploadImage/'); // Le immagini verranno uploadate qui
+    },
+    filename: function (req, file, callback) {
+        var datetimestamp = Date.now();
+        callback(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]); // Vogliamo che l'immagine salvata mantenga il nome originale
+    }
+});
+
+
+
+
 module.exports = function(app) {
 
 
@@ -51,12 +65,14 @@ module.exports = function(app) {
     app.set('views','../../Front-End/Views');
     app.set('view engine', 'html');
     // set up our express application
+
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
     app.use(bodyParser.urlencoded());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.static(__dirname + '/../../Front-End'));
+    app.use(multer({storage: storage}).single('file'));
     // required for passport
     app.use(session({
         secret: "cookie_secret",

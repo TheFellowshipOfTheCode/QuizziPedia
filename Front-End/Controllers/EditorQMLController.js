@@ -19,9 +19,9 @@
  *******************************************************************************/
 app.controller('EditorQMLController', EditorQMLController);
 
-EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
+EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog','Upload', 'QuestionItemModel', 'ErrorInfoModel'];
 
-function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
+function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog,Upload, QuestionItemModel, ErrorInfoModel){
 
     //delete $scope.id;
     $scope.id = $routeParams.idQuestion;
@@ -120,8 +120,25 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         $location.path('/'+$routeParams.lang+'/wizard');
     };
 
-    $scope.sendImage = function(image) {
-        console.log(image);
-        QuestionsService.sendImageBE(image, $routeParams.lang);
+
+    $scope.uploadPic = function() {
+        console.log()
+       /* file.upload = Upload.upload({
+            url: 'http://localhost:8080/api/upload',
+            data: {username: $scope.username, file: file},
+        });
+
+        file.upload.then(function (response) {
+            $timeout(function () {
+                file.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });*/
     }
+    
 }

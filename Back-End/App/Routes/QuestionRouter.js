@@ -1,7 +1,8 @@
 //var TopicController = require("../Controller/TopicController");
 var Question = require("../Controller/QuestionController");
-var multer = require('multer')
-var uploading = multer({dest:'../../uploadImage/', limits: {fileSize: 1000000, files:1}})
+
+
+// 'image' è il valore dell'attributo name dell'input
 
 module.exports = function(app){
     // API
@@ -13,6 +14,7 @@ module.exports = function(app){
             res.json(result);
         });
     });*/
+
     
     app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)
@@ -24,9 +26,9 @@ module.exports = function(app){
 
     app.route('/api/:lang/usertraining/questionstatistics')
         .put(Question.updatestatisticsQuestion);
-    
-    app.route('/api/:lang/uploadimage',uploading)
-        .post(Question.uploadImage)
+
+    app.route('/api/upload')
+        .post(Question.uploadImage);
 
     
 };

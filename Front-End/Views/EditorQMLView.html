@@ -16,16 +16,9 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-
         <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
             <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
-
-                <form method="POST" enctype="multipart/form-data">
-                    Select an image to upload:
-                    <input type="file" name="image" id="image">
-                    <md-button type="submit" value="Upload Image" ng-click="sendImage(image)"></md-button>
-                </form>
 
                 <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
 
@@ -36,8 +29,6 @@
                             <span flex="" class="flex"></span>
                         </div>
                     </md-toolbar>
-
-
 
                     <h1 id="QMLtitle">{{listOfKeys.writeHereLang}}</h1>
                     <div id="contentQML">
@@ -57,7 +48,6 @@
                                     <md-button ng-click="goToWizard()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.goToWizard}}</md-button>
                                     <md-button ng-if="id == undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
                                     <md-button ng-if="id != undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
-
                                 </div>
                             </md-input-container>
 

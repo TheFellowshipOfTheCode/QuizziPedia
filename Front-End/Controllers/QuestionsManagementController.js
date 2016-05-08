@@ -24,7 +24,7 @@ app.controller('QuestionsManagementController', QuestionsManagementController);
 QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
 
 function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
-    $scope.$on("userDownloaded", function(event, args) {
+    $rootScope.$on("userDownloaded", function(event, args) {
         console.log("entra");
         var username = $rootScope.userLogged.getUsername();
         if(username){

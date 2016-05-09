@@ -1,0 +1,151 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::CreateQuestionnaireView;
+* Description:
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireView_20160305;
+* Update data: 03-05-2016;
+* Description: Creata la classe;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<div layout="column" flex id="content" role="main" ng-controller="AppController">
+
+    <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding">{{listOfKeys.titleLangCreateQuestionnaire}}</h3>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <div layout="row" layout-align="center center" >
+                <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+
+                    <md-input-container class="md-block">
+                        <label>{{listOfKeys.titleCreateQuestionnaireView}}</label>
+                        <input required="" type="text" name="name" ng-model="quiz.title">
+
+                        <div ng-messages="userForm.name.$error" role="alert">
+                            <div ng-message-exp="['required']">
+                                {{listOfKeys.titleQuestionnaire}}
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <!--<topic-keywords-directive></topic-keywords-directive> -->
+                    <md-input-container class="md-block" ng-controller="AppController">
+                        <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
+                        <md-select ng-model="quiz.topic" md-selected-text="getSelectedText()">
+                            <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+                                <md-option ng-value="topic" ng-repeat="topic in topics">{{topic}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" ng-controller="AppController">
+                        <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
+                        <input ng-model="quiz.keyword">
+                    </md-input-container>
+
+                    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always">
+                        <md-tab label="Ricerca Domande" >
+                            <md-content class="md-padding">
+                                <md-autocomplete
+                                        ng-disabled="ctrl.isDisabled"
+                                        md-no-cache="ctrl.noCache"
+                                        md-selected-item="ctrl.selectedItem"
+                                        md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                        md-search-text="ctrl.searchText"
+                                        md-selected-item-change="ctrl.selectedItemChange(item)"
+                                        md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                        md-item-text="item.display"
+                                        md-min-length="0"
+                                        placeholder="Inserisci Titolo Domanda">
+                                    <md-item-template>
+                                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{ctrl.searchText}}" were found.
+                                        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <br/>
+                                <div layout="row" layout-align="center center">
+                                <md-checkbox ng-model="ctrl.simulateQuery"  >All</md-checkbox>
+                                <md-checkbox ng-model="ctrl.noCache"  >Yours</md-checkbox>
+                                </div>
+                                <md-card >
+                                    <md-card-content>
+                                        <h2>Domande</h2>
+                                        <md-list>
+                                            <md-item ng-repeat="item in activity | filter:search">
+                                                <md-item-content>
+                                                    <div class="md-tile-left inset" hide-sm>
+                                                        <user-avatar></user-avatar>
+                                                    </div>
+                                                    <div class="md-tile-content">
+                                                        <h3>{{item.what}}</h3>
+                                                        <h4>{{item.who}}</h4>
+                                                        <p>
+                                                            {{item.notes}}
+                                                        </p>
+                                                    </div>
+                                                </md-item-content>
+                                                <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                                                <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+                                            </md-item>
+                                            <md-divider></md-divider>
+                                            <md-item layout class="inset">
+                                                <md-button layout layout-align="start center" flex class="md-primary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg> More
+                                                </md-button>
+                                            </md-item>
+                                        </md-list>
+                                    </md-card-content>
+                                </md-card>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Creazione Domande" >
+                            <md-content class="md-padding">
+                                <h1 class="md-display-2"></h1>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+
+
+
+
+                    <md-input-container layout-align="center center">
+                        <div layout="row" layout-sm="column" layout-margin>
+                            <md-button ng-click="createQMLQuestion()" class="md-raised md-primary" flex="50" flex-sm="100">+ {{listOfKeys.buttonLangCreateQMLQuestion}}</md-button>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container layout-align="center center">
+                        <div layout="row" layout-sm="column" layout-margin>
+                            <md-button ng-disabled="userForm.$invalid" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
+                        </div>
+                    </md-input-container>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>

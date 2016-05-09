@@ -194,5 +194,9 @@ questionSchema.statics.addTotal=function(questionId,callback){
     this.findOneAndUpdate({_id: questionId},{ $inc: { totalAnswers: 1 }},callback)
 }
 
+questionSchema.statics.getAllQuestions = function(questionsID, keywords, lang, callback) {
+    this.find({_id: questionsID.question, keywords: keywords, language: lang}, callback)
+}
+
 
 module.exports = mongoose.model('Question', questionSchema);

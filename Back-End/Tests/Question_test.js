@@ -19,7 +19,22 @@ describe("Signin Test", function () {
     });
 })
 
+describe("Get All Questions Test", function () {
+    it("should return all questions of a topic", function (done) {
+        agent
+            .get('/api/it/allquestions/Religione/Dio,Porco')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    //res.body.equal("aferrara")
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500)
+                done()
+            });
+    });
+})
 
+/*
 describe("Get Questions Test", function(){
     it("should get questions of an user", function(done){
         agent
@@ -147,4 +162,4 @@ describe("Update Statistics Question Test", function(){
 
     })
 });
-
+*/

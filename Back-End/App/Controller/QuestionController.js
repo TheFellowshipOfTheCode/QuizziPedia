@@ -17,6 +17,7 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 var Question = require('../Model/QuestionModel');
+var Topic = require('../Model/TopicModel');
 
 exports.createQuestion = function(req, res) {
     Question.createQuestion(req.user._id,req.body, function(err, question){
@@ -65,5 +66,12 @@ exports.updatestatisticsQuestion = function(req, res) {
                 })
             }
         })
+    })
+}
+
+exports.getAllQuestions = function(req, res) {
+    Topic.getTopicQuestions(req.params.topicname, req.params.keywords.split(','), req.params.lang, function(err, questions) {
+        if (err) return res.status(500).json({code:95, title: "Errore Domande", message: "Domande non trovate"});
+        else return res.send(questions);
     })
 }

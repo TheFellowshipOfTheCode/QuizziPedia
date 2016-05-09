@@ -34,4 +34,11 @@ topicSchema.methods.getNextQuestion=function(language, topic, keywords, levelUse
     return  questions.question.findOne({'language': language, 'keywords': keywords,'level': levelUser}, '_id makeWith language question', callback);
 };
 
+topicSchema.statics.getTopicQuestions = function(topic, keywords, lang, callback) {
+    return this.findOne({name: topic}, 'question', function(err, questionsID) {
+        if (err) return;
+        else return Question.getAllQuestions(questionsID, keywords, lang, callback);
+    });
+}
+
 module.exports = mongoose.model('Topic', topicSchema);

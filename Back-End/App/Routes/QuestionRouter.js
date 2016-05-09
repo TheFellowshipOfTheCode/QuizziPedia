@@ -30,5 +30,6 @@ module.exports = function(app){
     app.route('/api/upload')
         .post(Question.uploadImage);
 
-    
+    app.route('/api/:lang/allquestions/:topicname/:keywords')
+        .get(Question.getAllQuestions);
 };

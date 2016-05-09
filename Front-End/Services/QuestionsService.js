@@ -89,7 +89,7 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getNextQuestion(lang, nextQuestion) {
-      //console.log(nextQuestion);
+      console.log(nextQuestion.alreadyAnswered);
       var q = JSON.stringify(nextQuestion, null, "  ");
       //console.log(q);
       cont++;

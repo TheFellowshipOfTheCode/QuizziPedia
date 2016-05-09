@@ -38,7 +38,7 @@
                 </div>
               </md-toolbar>
               <div class="md-padding no-owerflow">
-                <div class=" box-in md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.typeDomanda,temporyObjectForView[$parent.$index].list1)' }" >
+                <div class=" box-in md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.type,temporyObjectForView[$parent.$index].list1)' }" >
                   <div class="zone md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
                     {{item.text2}}
                   </div>

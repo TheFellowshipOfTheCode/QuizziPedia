@@ -24,13 +24,14 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Scope function*/
 
   /*Function used to drag and drop element on monitor*/
-  $scope.dragnNDropQuestions= function(event, ui,index,typeDomanda,obj) {
-    $scope.addAnswer(index,typeDomanda,obj)
+  $scope.dragnNDropQuestions= function(event, ui,index,type,obj) {
+    console.log(type);
+    $scope.addAnswer(index,type,obj)
   }
 
   /*Function used to create the array of answer given*/
-  $scope.addAnswer= function(index,typeDomanda,obj){
-    $scope.objAnswer[index]={"typeDomanda": typeDomanda, answerGiven: obj}
+  $scope.addAnswer= function(index,type,obj){
+    $scope.objAnswer[index]={"type": type, answerGiven: obj}
   };
 
   /*Function used to save the elements selected in multiple choice answer*/
@@ -47,6 +48,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function used to load new question*/
 
   var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args) {
+    checkAnswer($scope.question, $scope.objAnswer);
     $scope.objAnswer=[];
     delete $scope.question;
     downloadNextQuestionTraining(args);
@@ -57,9 +59,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Funtion to check if a question is answered */
   var isItAnswered = $rootScope.$on("isItAnswered", function(event, args) {
     var ok= true;
-     if(Object.keys($scope.objAnswer).length != Object.keys($scope.question.getQuestion()).length) {
-       ok = false;
-     }
+    if(Object.keys($scope.objAnswer).length != Object.keys($scope.question.getQuestion()).length) {
+     ok = false;
+    }
     var answer = $scope.objAnswer;
     $rootScope.$emit("doYouWannaGoOn",ok);
   });
@@ -127,4 +129,34 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         }
     );
   }
+
+  /*Function to check the given answers*/
+  function checkAnswer(question, answersGiven) {
+    console.log(question);
+    console.log(answersGiven);
+    if(question != undefined) {
+      if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
+        console.log("da correggere");
+        var partsOfQuestion = question.getQuestion();
+        partsOfQuestion.forEach(function(elem, index) {
+          console.log(elem);
+          console.log(answersGiven[index]);
+        });
+      }
+      else {
+       console.log("sbagliata secca");
+      }
+    }
+    /*switch(question.get) {
+      case n:
+          code block
+          break;
+      case n:
+          code block
+          break;
+      default:
+          default code block
+    }*/
+  }
+
 };

@@ -123,6 +123,9 @@ footer ul  {
 .madeBy {
   padding-top: 1em;
   padding-bottom: : 0.5em;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: gray;
 }
 
 .spinner {

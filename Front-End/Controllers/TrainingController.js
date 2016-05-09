@@ -55,12 +55,17 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         num: 0
       };
     }
+    var level = 500;
+    if($rootScope.userLogged != undefined) {
+      level = $rootScope.userLogged.getLevel();
+      console.log("entro");
+    }
     $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
     $rootScope.$emit("loadNewQuestion", {
       language  : $routeParams.lang,
       topic: $scope.training.getArgument(),
       keywords : $scope.training.getKeywords(),
-      level  : $rootScope.userLogged.getLevel(),
+      level  : level,
       alreadyAnswered : [] }
     );
     window.onbeforeunload = function(event) {
@@ -88,13 +93,9 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     keys =  $scope.training.getKeywords(),
     nums = $scope.training.getNumberOfQuestions();
     delete $scope.training;
-    $scope.training = new TrainingModeModel(arg, keys, nums);
     $scope.questionNumberOnTraining = 1;
     $scope.traininIsFinished = false;
-    $location.path("/"+$routeParams.lang+"/training");
-    window.onbeforeunload = function(event) {
-        return $rootScope.listOfKeys.areYouSureToLeaveTheTraining;
-    };
+    $scope.starTraining(arg, keys);
   }
 
   /*Function to get the new question*/
@@ -204,11 +205,12 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         $mdDialog
             .show( alert )
             .then(function() {
-              checkIfICouldGoOn()
+              checkIfICouldGoOn();
+
             });
       }
       else {
-        checkIfICouldGoOn()
+        checkIfICouldGoOn();
       }
 
   });
@@ -240,12 +242,15 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     );
     if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
     {
-      //delete $scope.question;
+      var level = 500;
+      if($rootScope.userLogged != undefined) {
+        level = $rootScope.userLogged.getLevel();
+      }
       $rootScope.$emit("loadNewQuestion", {
         language  : $routeParams.lang,
         topic: $scope.training.getArgument(),
         keywords : $scope.training.getKeywords(),
-        level  : $rootScope.userLogged.getLevel(),
+        level  : level,
         alreadyAnswered : arryOfQuestionsAlreadyAnswered
         }
       );

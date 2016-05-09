@@ -29,7 +29,7 @@
         <span class="center">
           <div class="div-inline" ng-repeat="elem in temporyObjectForView[$parent.$index].emptySpaceText track by $index" >
              <span class="word" ng-if="elem != '##TODELETE##'"> {{elem}} </span>
-             <div ng-if="elem === '##TODELETE##'" class="box-in-word-empty-answer-zone md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$parent.$index,d.typeDomanda,temporyObjectForView[$parent.$parent.$index].list1)' }" >
+             <div ng-if="elem === '##TODELETE##'" class="box-in-word-empty-answer-zone md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$parent.$index,d.type,temporyObjectForView[$parent.$parent.$index].list1)' }" >
                <div class="box-in-word-empty-answer md-primary md-raised md-button" ng-show="temporyObjectForView[$parent.$parent.$index].list1[$index].hideWord" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" >
                  {{temporyObjectForView[$parent.$parent.$index].list1[$index].hideWord}}
                </div>

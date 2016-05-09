@@ -27,7 +27,7 @@
     <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
       <div class="choice" ng-repeat="a in d.answers" >
         <div class="layout-column layout-align-center-stretch" layout="column" layout-align="center">
-          <md-checkbox class="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.typeDomanda,save($parent.$index) )' ng-init="setDimension()" >
+          <md-checkbox class="checkbox" ng-model="a.selected" ng-change='addAnswer($parent.$index,d.type,save($parent.$index) )' ng-init="setDimension()" >
             <div class="center">
               {{a.text}}
             </div>

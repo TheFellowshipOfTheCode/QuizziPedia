@@ -58,7 +58,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     var level = 500;
     if($rootScope.userLogged != undefined) {
       level = $rootScope.userLogged.getLevel();
-      console.log("entro");
     }
     $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
     $rootScope.$emit("loadNewQuestion", {
@@ -101,7 +100,16 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   /*Function to get the new question*/
   $scope.newQuestion= newQuestion;
   function newQuestion() {
-    $rootScope.$emit("isItAnswered");
+    alert = $mdDialog.confirm()
+        .title($rootScope.listOfKeys.attention)
+        .content($rootScope.listOfKeys.areYouSureToGoOn)
+        .ok($rootScope.listOfKeys.yesGoOn)
+        .cancel($rootScope.listOfKeys.dontGoOn);
+    $mdDialog
+        .show( alert )
+        .then(function() {
+          checkIfICouldGoOn();
+        });
   };
 
   /*Function that stores the topic choose*/
@@ -194,28 +202,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   }
 
   /*RootScope functions*/
-  /*Event to go on during the training mode*/
-  var doYouWannaGoOn = $rootScope.$on("doYouWannaGoOn", function(event, args) {
-      if(!args) {
-        alert = $mdDialog.confirm()
-            .title($rootScope.listOfKeys.attention)
-            .content($rootScope.listOfKeys.areYouSureToGoOn)
-            .ok($rootScope.listOfKeys.yesGoOn)
-            .cancel($rootScope.listOfKeys.dontGoOn);
-        $mdDialog
-            .show( alert )
-            .then(function() {
-              checkIfICouldGoOn();
-
-            });
-      }
-      else {
-        checkIfICouldGoOn();
-      }
-
-  });
-  $scope.$on('$destroy', doYouWannaGoOn);
-
 
   /*Event to save the current question in the TrainingModeModel*/
   var saveTheQuestion = $rootScope.$on("saveTheQuestion", function(event, question) {

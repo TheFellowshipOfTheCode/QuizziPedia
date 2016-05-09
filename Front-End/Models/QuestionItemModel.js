@@ -22,13 +22,14 @@ app.factory('QuestionItemModel', QuestionItemModel);
 
 function QuestionItemModel() {
 
-    var QuestionItemModel = function (id, author, madeWith, language, question,keywords) {
+    var QuestionItemModel = function (id, author, madeWith, language, question,keywords, level) {
         var id_ = id;
         var author_ = author;
         var madeWith_ = madeWith;
         var language_ = language;
         var question_ = question;
         var keywords_ = keywords;
+        var level_ = level;
 
         this.setAuthor = function (author) {
             author_ = author;
@@ -48,6 +49,10 @@ function QuestionItemModel() {
 
         this.setKeywords = function (keywords) {
             keywords_ = keywords;
+        };
+
+        this.setLevel = function (level) {
+            level_ = level;
         };
 
         this.getId = function () {
@@ -71,6 +76,10 @@ function QuestionItemModel() {
 
         this.getKeywords = function () {
             return keywords;
+        };
+
+        this.getLevel = function () {
+            return level_;
         };
 
         this.compareAnswers = function(givenAnswers){

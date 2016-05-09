@@ -24,48 +24,37 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Scope function*/
 
   /*Function used to drag and drop element on monitor*/
-  $scope.dragnNDropQuestions= function(event, ui,index,type,obj) {
-    console.log(type);
+  $scope.dragnNDropQuestions = dragnNDropQuestions;
+  function dragnNDropQuestions(event, ui,index,type,obj) {
     $scope.addAnswer(index,type,obj)
   }
 
   /*Function used to create the array of answer given*/
-  $scope.addAnswer= function(index,type,obj){
-    $scope.objAnswer[index]={"type": type, answerGiven: obj}
+  $scope.addAnswer = addAnswer;
+  function addAnswer(index,type,obj){
+    $scope.objAnswer[index]={"type": type, "answerGiven" :  obj}
   };
 
   /*Function used to save the elements selected in multiple choice answer*/
-  $scope.save = function(index){
+  $scope.save = save;
+  function save(index){
     var albumNameArray = [];
     angular.forEach($scope.question.getQuestion()[index].answers, function(gived){
       if (gived.selected) albumNameArray.push(gived.text);
     });
-    return albumNameArray;
+    return  albumNameArray;
   };
 
   /*RootScope function*/
 
   /*Function used to load new question*/
-
   var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args) {
-    checkAnswer($scope.question, $scope.objAnswer);
+    checkAnswer($scope.question, $scope.objAnswer, args.topic);
     $scope.objAnswer=[];
     delete $scope.question;
     downloadNextQuestionTraining(args);
   });
   $scope.$on('$destroy', loadNewQuestion);
-
-
-  /*Funtion to check if a question is answered */
-  var isItAnswered = $rootScope.$on("isItAnswered", function(event, args) {
-    var ok= true;
-    if(Object.keys($scope.objAnswer).length != Object.keys($scope.question.getQuestion()).length) {
-     ok = false;
-    }
-    var answer = $scope.objAnswer;
-    $rootScope.$emit("doYouWannaGoOn",ok);
-  });
-  $scope.$on('$destroy', isItAnswered);
 
   /*Private question*/
 
@@ -94,12 +83,22 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
             }
             else {
               list1.push({});
-              list2.push(elemB);
+              if(elemA.type == "collegamento"){
+                if(elemB.text2 != undefined) {
+                  list2.push({"text2":elemB.text2});
+                }
+                if(elemB.url2 != undefined) {
+                  list2.push({"url2" : elemB.url2});
+                }
+              }
+              else {
+                list2.push(elemB);
+              }
             }
 
           });
 
-          list2 = Utils.shuffle(list2);
+          $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
@@ -131,32 +130,129 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   }
 
   /*Function to check the given answers*/
-  function checkAnswer(question, answersGiven) {
-    console.log(question);
-    console.log(answersGiven);
+  function checkAnswer(question, answersGiven, topic) {
     if(question != undefined) {
       if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
-        console.log("da correggere");
         var partsOfQuestion = question.getQuestion();
+        var answerCheckA= true;
         partsOfQuestion.forEach(function(elem, index) {
-          console.log(elem);
-          console.log(answersGiven[index]);
+          var answerCheckB= true;
+          switch(elem.type) {
+            case "ordinamentoStringhe", "ordinamentoImmagini":
+                console.log("ordinamenti");
+                var answersCopy = elem.answers;
+                answersCopy.sort(function compare(a,b) {
+                  if (a.position < b.position)
+                    return -1;
+                  else if (a.position > b.position)
+                    return 1;
+                  else
+                    return 0;
+                });
+                answersCopy.forEach(function (answer, indexAnswerGiven) {
+                  if(answer.position != answersGiven[index].answerGiven[indexAnswerGiven].position && answerCheckB) {
+                    answerCheckB = false;
+                  }
+                });
+                console.log(answerCheckB);
+                break;
+            case "collegamento":
+                console.log("collegamento");
+                elem.answers.forEach(function (answer, indexAnswerGiven) {
+                  if(answer.text2 != undefined && (answersGiven[index].answerGiven[indexAnswerGiven].text2 === undefined || (answer.text2 != answersGiven[index].answerGiven[indexAnswerGiven].text2 && answerCheckB))) {
+                    answerCheckB = false;
+                  }
+                  if(answer.url2 != undefined && (answersGiven[index].answerGiven[indexAnswerGiven].url2 === undefined || (answer.url2 != answersGiven[index].answerGiven[indexAnswerGiven].url2 && answerCheckB))) {
+                    answerCheckB = false;
+                  }
+                });
+                console.log(answerCheckB);
+                break;
+            case "veroFalso":
+                console.log("veroFalso");
+                elem.answers.forEach(function (answer) {
+                  if(answer.isItRight != answersGiven[index].answerGiven && answerCheckB) {
+                    answerCheckB = false;
+                  }
+                });
+                console.log(answerCheckB);
+                break;
+            case "rispostaMultipla":
+                console.log("rispostaMultipla");
+                answersGiven[index].answerGiven.forEach(function (answerGived) {
+                  elem.answers.forEach(function (answer) {
+                    if(answerGived == answer.text) {
+                      if(answer.isItRight == false && answerCheckB) {
+                        answerCheckB = false;
+                      }
+                    }
+                  });
+                });
+                console.log(answerCheckB);
+                break;
+            case "spaziVuoti":
+                console.log("spaziVuoti");
+                var text1 = elem.questionText;
+                var tempText2 = text1.split(" ");
+                var answersSorted = elem.answers;
+                answersSorted.sort(function compare(a,b) {
+                  if (a.parolaNumero < b.parolaNumero)
+                    return -1;
+                  else if (a.parolaNumero > b.parolaNumero)
+                    return 1;
+                  else
+                    return 0;
+                });
+                var arrayCopy = answersGiven[index].answerGiven;
+                var arrayCopy = arrayCopy.filter(function () {
+                  if(elem != null) {
+                    return elem;
+                  }
+                });
+
+                answersSorted.forEach(function (answer, indexAnswerGiven) {
+                  if(tempText2[answer.parolaNumero] != arrayCopy[indexAnswerGiven].hideWord && answerCheckB) {
+                    answerCheckB = false;
+                  }
+                });
+                console.log(answerCheckB);
+                break;
+          }
+
+          if(answerCheckA) {
+            answerCheckA = answerCheckB;
+          }
+
         });
       }
       else {
-       console.log("sbagliata secca");
+       answerCheckA = false;
       }
+      console.log(answerCheckA);
+      if($rootScope.userLogged != undefined) {
+        QuestionsService.updateStatisticsUser($routeParams.lang,
+          {
+              language: $routeParams.lang,
+              userId: $rootScope.userLogged.getId(),
+              topic: topic,
+              difficultyLevel: $scope.question.getLevel(),
+              isCorrected: answerCheckA
+          }
+        );
+      }
+      /* Update question statistics
+      var level = 500;
+      if($rootScope.userLogged != undefined) {
+        level = $rootScope.userLogged.getLevel();
+      }
+      QuestionsService.updateStatisticsQuestion(
+        {
+            questionId: $scope.question.getId(),
+            userLevel: level,
+            isCorrected: answerCheckA
+        }
+      );*/
     }
-    /*switch(question.get) {
-      case n:
-          code block
-          break;
-      case n:
-          code block
-          break;
-      default:
-          default code block
-    }*/
   }
 
 };

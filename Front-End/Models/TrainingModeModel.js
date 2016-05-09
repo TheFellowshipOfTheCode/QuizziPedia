@@ -22,7 +22,6 @@ function TrainingModeModel() {
   //constructor
   var TrainingModeModel = function (argument, keywords, numberOfQuestions)
   {
-    console.log(numberOfQuestions);
     // private variables
     var argument_ = argument;
     var keywords_ = keywords;

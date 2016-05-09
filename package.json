@@ -48,8 +48,10 @@
     "mongoskin": "^1.3.20",
     "morgan": "~1.2.2",
     "multer": "^1.1.0",
+    "ng-file-upload": "^12.0.4",
     "passport": "~0.3.2",
-    "passport-local": "1.0.0"
+    "passport-local": "1.0.0",
+    "textarea": "^0.3.0"
   },
   "devDependencies": {
     "grunt-serve": "^0.1.6",

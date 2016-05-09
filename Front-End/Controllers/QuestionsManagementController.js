@@ -24,31 +24,43 @@ app.controller('QuestionsManagementController', QuestionsManagementController);
 QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
 
 function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
-    $rootScope.$on("userDownloaded", function(event, args) {
+    if($rootScope.userLogged != undefined){
+        loadQuestions();
+    }
+    else{
+        var ist = $rootScope.$on("userDownloaded", function(event, args) {
         console.log("entra");
+        if(args){
+            loadQuestions();
+        }
+        })
+        $scope.$on('$destroy', ist);
+    }
+
+    function loadQuestions(){
         var username = $rootScope.userLogged.getUsername();
         if(username){
-        QuestionsService.getUsersQuestions($routeParams.lang)
-            .then(function(result){
-                console.log(result);
-                if(result.data != undefined) {
-                    $scope.questions = result.data;
-                }
-            } ,function (err){
-                console.log(err);
-                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
-                alert = $mdDialog.alert()
-                    .title($scope.error.getTitle())
-                    .content($scope.error.getMessage())
-                    .ok('Ok');
-                $mdDialog
-                    .show( alert )
-                    .finally(function() {
-                        alert = undefined;
-                    });
-            });
+            QuestionsService.getUsersQuestions($routeParams.lang)
+                .then(function(result){
+                    console.log(result);
+                    if(result.data != undefined) {
+                        $scope.questions = result.data;
+                    }
+                } ,function (err){
+                    console.log(err);
+                    $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+                    alert = $mdDialog.alert()
+                        .title($scope.error.getTitle())
+                        .content($scope.error.getMessage())
+                        .ok('Ok');
+                    $mdDialog
+                        .show( alert )
+                        .finally(function() {
+                            alert = undefined;
+                        });
+                });
         }
-        });
+    };
 
     $scope.editQuestion = function (idQuestion) {
         $location.path('/'+$routeParams.lang+'/QML/' + idQuestion);

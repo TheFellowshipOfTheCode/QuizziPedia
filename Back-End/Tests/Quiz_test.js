@@ -24,7 +24,7 @@ describe("Signin Test", function () {
 describe("Quiz tests", function() {
     it("should create a quiz", function(done) {
         agent
-            .post('/api/:lang/user/quiz')
+            .post('/api/:lang/userquiz')
             .send({
                 title: "questionario top",
                 correctAnswers: 13

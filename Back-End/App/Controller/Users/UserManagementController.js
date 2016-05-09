@@ -17,23 +17,41 @@ exports.updatePasswordUser = function(req, res, next) {
 };
 
 exports.updateStatisticUser = function(req, res) {
-    user.updateTopicLevel(req.body.userId, req.body.topic, req.body.difficultyLevel, req.body.isCorrected, function(err) {
-        if(err)
-            return res.status(500).json({code:733, title: "Errore", message: "Livello utente non aggiornato"});
-        user.addTotal(req.body.userId, req.body.topic, function(err) {
-            if(err)
-                return res.status(500).json({code:734, title: "Errore", message: "Contatore risposte non aggiornato"});
-            if (req.body.isCorrected) {
-                user.addCorrect(req.body.userId, req.body.topic, function (err) {
-                    if (err)
-                        return res.status(500).json({code: 735, title: "Errore",message: "Contatore risposte corrette non aggiornato"});
-                    return res.send({code:250, title: "Ok Domanda", message: "Statistiche utente aggiornate correttamente"});
+    if(req.body.userId) {
+        user.updateTopicLevel(req.body.userId, req.body.userLevel, req.body.topic, req.body.difficultyLevel, req.body.isCorrected, function (err, userLevel) {
+            if (err)
+                return res.status(500).json({code: 733, title: "Errore", message: "Livello utente non aggiornato"});
+            user.addTotal(req.body.userId, req.body.topic, function (err) {
+                if (err)
+                    return res.status(500).json({
+                        code: 734,
+                        title: "Errore",
+                        message: "Contatore risposte non aggiornato"
+                    });
+                if (req.body.isCorrected) {
+                    user.addCorrect(req.body.userId, req.body.topic, function (err) {
+                        if (err)
+                            return res.status(500).json({
+                                code: 735,
+                                title: "Errore",
+                                message: "Contatore risposte corrette non aggiornato"
+                            });
+                        return res.send({
+                            code: 250,
+                            title: "Ok",
+                            message: "Statistiche utente aggiornate correttamente"
+                        });
                     })
                 }
-            else 
-                return res.send({code:250, title: "Ok Domanda", message: "Statistiche utente aggiornate correttamente"});
+                else
+                    return res.send({code: 250, title: "Ok", message: "Statistiche utente aggiornate correttamente"});
             })
         })
+    }
+    else {
+        var level = user.updateTopicLevel(req.body.userId, req.body.userLevel, req.body.topic, req.body.difficultyLevel, req.body.isCorrected);
+        return res.send({userLevel: level});
+    }
 };
 
 exports.updateSummary = function(req, res, next) {

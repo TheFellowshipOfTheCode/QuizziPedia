@@ -3,7 +3,9 @@ var QuizController = require('../Controller/QuizController.js');
 module.exports = function(app){
     app.route('/api/:lang/user/quiz')
         .post(QuizController.createQuiz)
-        .put(QuizController.editQuiz);
+        .put(QuizController.editQuiz)
+        .get(QuizController.getPersonalQuizzes);
+
 
     app.route('/api/:lang/user/quiz/:quizId')
         .get(QuizController.getQuiz);
@@ -16,7 +18,4 @@ module.exports = function(app){
 
     app.route('/api/:lang/user/quiz/activeUser')
         .post(QuizController.addActiveUser);
-
-    app.route('/api/:lang/user/quiz')
-        .get(QuizController.getPersonalQuizzes);
 }

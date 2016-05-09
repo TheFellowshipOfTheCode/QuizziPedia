@@ -85,7 +85,7 @@ exports.searchQuiz = function (req, res, next) {
 
 exports.getPersonalQuizzes = function (req, res, next) {
     console.log(req.body);
-    quiz.getPersonalQuizzes(req, function(err, personalQuizzes) {
+    quiz.getPersonalQuizzes(req.user._id, function(err, personalQuizzes) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'visualizzazione-quiz-fallita',

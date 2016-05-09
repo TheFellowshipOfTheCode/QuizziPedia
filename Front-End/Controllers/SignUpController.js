@@ -53,10 +53,11 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
             else {
                 AuthService.signUp(user.username, user.password, user.email, user.name, user.surname, $routeParams.lang)
                     .then(function (result) {
-                        if (result.data.code == 3) {
+                        //console.log(result.status);
+                        if (result.status == "200") {
                             alert = $mdDialog.alert()
                                 .title('Ciao ' + user.name + " " + user.surname)
-                                .content('La registrazione è avvenuta con successo!')
+                                .content("La regisrazione è andata a buon fine")
                                 .ok('Chiudi');
                             $mdDialog
                                 .show(alert)
@@ -68,17 +69,41 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
                     }, function (err) {
                         if (err.data.code == 2) {
                             alert = $mdDialog.alert()
-                                .title("C'è stato un errore con la registrazione")
-                                .content("L'username che hai usato esiste già!")
+                                .title(err.data.title)
+                                .content(err.data.message)
                                 .ok('Chiudi');
                             $mdDialog
                                 .show(alert)
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                         }
-                        $rootScope.error = new ErrorInfoModel("3", "La registrazione non è andata a buon fine", "Registrazione non " +
-                            "effettuata");
+                        if (err.data.code == 3) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+                        if (err.data.code == 4) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+
                     })
             }
         };

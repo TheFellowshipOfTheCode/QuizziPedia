@@ -23,7 +23,8 @@ QuizService.$inject = ['$http', '$cookies', '$q'];
 function QuizService($http, $cookies, $q) {
     var methods = {
         createQuestionnaire: createQuestionnaire,
-        showAllCreatedQuestionnaires: showAllCreatedQuestionnaires
+        showAllCreatedQuestionnaires: showAllCreatedQuestionnaires,
+        showAllQuestions: showAllQuestions
     };
 
     return methods;
@@ -39,7 +40,7 @@ function QuizService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
-
+    
     function showAllCreatedQuestionnaires(id, lang) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/user/quiz')
@@ -50,4 +51,16 @@ function QuizService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
+
+    function showAllQuestions(keywords, topic, lang) { 
+        var deferred = $q.defer();
+        $http.get('/api/' + lang + '/allquestions/'+topic+'/'+keywords)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+    
 }

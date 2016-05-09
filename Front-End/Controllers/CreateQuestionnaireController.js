@@ -22,6 +22,28 @@ CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams',
 
 function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService, UserDetailsModel) {
 
+    QuizService.showAllQuestions("Porco, Dio","Religione",$routeParams.lang)
+            .then(function(result){
+                console.log(result.data);
+                if(result.data != undefined) {
+                    $scope.questions = result.data;
+                }
+            } ,function (err){
+                console.log(err);
+                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+                alert = $mdDialog.alert()
+                    .title($scope.error.getTitle())
+                    .content($scope.error.getMessage())
+                    .ok('Ok');
+                $mdDialog
+                    .show( alert )
+                    .finally(function() {
+                        alert = undefined;
+                    });
+            });
+
+
+
     $scope.quiz = {
         title: '',
         author: $rootScope.userLogged.getId(),

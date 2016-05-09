@@ -195,7 +195,7 @@ questionSchema.statics.addTotal=function(questionId,callback){
 }
 
 questionSchema.statics.getAllQuestions = function(questionsID, keywords, lang, callback) {
-    this.find({_id: questionsID.question, keywords: keywords, language: lang}, callback)
+    this.find({_id: questionsID.question, keywords: {$in :keywords}, language: lang}, callback)
 }
 
 

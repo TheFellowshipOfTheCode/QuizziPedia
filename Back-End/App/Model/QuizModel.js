@@ -1,10 +1,16 @@
 var mongoose = require('mongoose');
 var Question = require('./QuestionModel');
+<<<<<<< HEAD
 var User = require('./UserModel');
 
 
 var quizSchema = new mongoose.Schema({
     title: { type : String},
+=======
+
+var quizSchema = new mongoose.Schema({
+    title: String,
+>>>>>>> origin/Questionari
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -21,6 +27,7 @@ var quizSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
+<<<<<<< HEAD
     correctAnswers: { type: Number, default: 0 },
     keyword: String,
     topic: String
@@ -75,4 +82,16 @@ quizSchema.statics.getQuiz=function(quizId, callback){
 
 var Quiz = mongoose.model('Quiz', quizSchema);
 module.exports = Quiz;
+=======
+    correctAnswers: Number
+});
+
+quizSchema.statics.getQuiz=function(quizId,callback){
+    return this.findOne({'_id':quizId},'title questions',function (err, quiz){
+        Question.getQuestion(quiz.questions, callback)
+    })
+};
+
+module.exports = mongoose.model('Quiz', quizSchema);
+>>>>>>> origin/Questionari
 

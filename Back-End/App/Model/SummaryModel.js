@@ -38,8 +38,10 @@ var summarySchema = new mongoose.Schema({
     mark: Number
 });
 
-summarySchema.statics.getQuiz=function(quizId){
-    return Quiz.getQuiz(quizId)
+summarySchema.statics.findSummary=function(summaryId,callback){
+    return this.findOne({'_id':summaryId}, function(err,summary){
+         Quiz.getQuiz(summary.quiz,callback)
+    });
 }
 
 

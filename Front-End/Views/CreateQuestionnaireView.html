@@ -120,7 +120,11 @@
                         </md-tab>
                         <md-tab label="Creazione Domande" >
                             <md-content class="md-padding">
-                                <h1 class="md-display-2"></h1>
+                                <div layout="row" layout-align="center center">
+                                        <md-button ng-click="createQMLQuestion()" class="md-raised md-primary" flex="80" flex-sm="100">
+                                            + {{listOfKeys.buttonLangCreateQMLQuestion}}
+                                        </md-button>
+                                </div>
                             </md-content>
                         </md-tab>
                     </md-tabs>
@@ -128,11 +132,7 @@
 
 
 
-                    <md-input-container layout-align="center center">
-                        <div layout="row" layout-sm="column" layout-margin>
-                            <md-button ng-click="createQMLQuestion()" class="md-raised md-primary" flex="50" flex-sm="100">+ {{listOfKeys.buttonLangCreateQMLQuestion}}</md-button>
-                        </div>
-                    </md-input-container>
+
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>

@@ -83,7 +83,6 @@ function QuestionsService($http, $cookies, $q) {
 
 
     function uploadImage (image) {
-        console.log(image)
         var formData = new FormData();
         formData.append("file", image);
         return $http.post('/api/upload', formData, {

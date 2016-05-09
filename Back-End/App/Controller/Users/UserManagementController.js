@@ -17,7 +17,7 @@ exports.updatePasswordUser = function(req, res, next) {
 };
 
 exports.updateStatisticUser = function(req, res) {
-    user.updateTopicLevel(req.body.userId, req.body.topic, req.body.difficultyLevel, req.body.isCorrected, function(err) {
+    user.updateTopicLevel(req.body.userId, req.body.topic, req.body.difficultyLevel, req.body.isCorrected, function(err,cb) {
         if(err)
             return res.status(500).json({code:733, title: "Errore", message: "Livello utente non aggiornato"});
         user.addTotal(req.body.userId, req.body.topic, function(err) {

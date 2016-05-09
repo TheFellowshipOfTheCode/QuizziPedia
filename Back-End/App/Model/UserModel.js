@@ -192,7 +192,7 @@ userSchema.statics.updateTopicLevel=function(userId, topic, difficultyLevel, isC
             }
         });
         console.log(user.statistics);
-        return user.save(user)
+        return user.save(callback)
     })
 };
 
@@ -207,7 +207,7 @@ userSchema.statics.addCorrect = function(userId, topic, callback) {
             }
         });
         console.log(user.statistics);
-        //user.save()
+        return user.save(callback)
     })
 };
 
@@ -222,7 +222,7 @@ userSchema.statics.addTotal=function(userId, topic, callback) {
             }
         });
         console.log(user.statistics);
-        //user.save()
+        return user.save(callback)
     })
 };
 

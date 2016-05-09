@@ -21,38 +21,43 @@ var Topic = require('../Model/TopicModel');
 var count = 0;
 
 exports.getNextQuestion = function(req, res) {
-    Topic.findTopicByName(req.body.topic, function(err,topic){
-        if (err)
-            return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
-        else
-            Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function(err,question){
-                if (err)
-                    return res.status(500).json({code:757, title: "getNextQuestionError", message: "error"});
-                else {
-                    if (question) {
-                        console.log(count);
-                        count = 0;
-                        return res.send(question);
-                    }
+    if(!req.body.topic){
+        return res.status(500).json({code:741, title: "getNextQuestionError", message: "Nessun argomento inserito"});
+    }
+    else {
+        Topic.findTopicByName(req.body.topic, function (err, topic) {
+            if (err)
+                return res.status(500).json({code: 757, title: "getNextQuestionError", message: "error"});
+            else
+                Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function (err, question) {
+                    if (err)
+                        return res.status(500).json({code: 757, title: "getNextQuestionError", message: "error"});
                     else {
-                        if(req.body.alreadyAnswered.length==topic.question.length)
-                            return res.status(500).json({
-                                code: 845,
-                                title: "Allenamento finito",
-                                message: "Non ci sono più domande sull'argomento scelto per questo allenamento"
-                            });
-                        else if (count < 15) {
-                            count++;
-                            module.exports.getNextQuestion(req, res);
+                        if (question) {
+                            console.log(count);
+                            count = 0;
+                            return res.send(question);
                         }
                         else {
-                            req.body.keywords=[];
-                            module.exports.getNextQuestion(req, res);
+                            if (req.body.alreadyAnswered.length == topic.question.length)
+                                return res.status(500).json({
+                                    code: 845,
+                                    title: "Allenamento finito",
+                                    message: "Non ci sono più domande sull'argomento scelto per questo allenamento"
+                                });
+                            else if (count < 15) {
+                                count++;
+                                module.exports.getNextQuestion(req, res);
+                            }
+                            else {
+                                req.body.keywords = [];
+                                module.exports.getNextQuestion(req, res);
+                            }
                         }
                     }
-                }
-            })
-    })
+                })
+        })
+    }
 };
 
 exports.getTopics = function(req, res) {

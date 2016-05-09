@@ -37,8 +37,11 @@ exports.deleteUser = function(req, res, next) {
 exports.getInfo = function(req, res, next) {
     userId=req.params.userId.replace(':','');
     user.findOne({'_id':userId},'name surname userImg experienceLevel', function(err,info){
-        if (err)
-            return handleError(err);
+        if (err) return res.status(522).json({
+            code: 2,
+            title: 'visualizzazione-quiz-fallita',
+            message: 'la visualizzazione dei quiz è fallita'
+        });
         else
             return res.send(info);
     })

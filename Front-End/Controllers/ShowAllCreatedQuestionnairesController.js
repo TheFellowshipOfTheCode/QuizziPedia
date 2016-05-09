@@ -7,6 +7,8 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
 
 
         console.log("---------------------------------------------------------");
+        console.log($rootScope.userLogged.getId());
+        console.log("---------------------------------------------------------");
         QuizService.showAllCreatedQuestionnaires($rootScope.userLogged.getId(), $routeParams.lang)
             .then(function (result) {
                 if (result) {

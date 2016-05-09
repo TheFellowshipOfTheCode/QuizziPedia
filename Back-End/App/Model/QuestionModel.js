@@ -15,25 +15,20 @@ var questionSchema = new mongoose.Schema({
         answers: [{
             text: {type: String},
             url: {type: String},
-            attributesForTForMultiple: {
-                isItRight: {type: Boolean}
-            },
-            attributesForSorting: {
-                position: {type: Number}
-            },
-            attributesForLinking: {
-                text1: {type: String},
-                text2: {type: String},
-                url1: {type: String},
-                url2: {type: String}
-            },
-            attributesForClickableArea: {
-                x: {type: Number},
-                y: {type: Number}
-            },
-            attributesForEmptySpaces: {
-                wordNumber: {type: Number}
-            }
+            //attributo per VF e Multipla
+            isItRight: {type: Boolean},
+            //attributo ordinamenti
+            position: {type: Number},
+            //attributi collegamento
+            text1: {type: String},
+            text2: {type: String},
+            url1: {type: String},
+            url2: {type: String},
+            //attributi area cliccabile
+            x: {type: Number},
+            y: {type: Number},
+            //attributo spazi vuoti
+            wordNumber: {type: Number}
         }]
     }],
     keywords: [String],

@@ -61,8 +61,8 @@ describe("Update Statistics Test", function(){
             .put('/api/:lang/user/statistics')
             .send({
                 language: "it",
-                userId: "",
-                userLevel: 500,
+                userId: "57275c6b008cdfb81994ba2a",
+                userLevel: "",
                 topic: "Patente",
                 difficultyLevel: 500,
                 isCorrected: true

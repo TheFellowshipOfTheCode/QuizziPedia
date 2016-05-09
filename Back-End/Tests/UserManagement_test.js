@@ -57,7 +57,6 @@ var user;
 */
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
-        this.timeout(7000);
         agent
             .put('/api/:lang/user/statistics')
             .send({

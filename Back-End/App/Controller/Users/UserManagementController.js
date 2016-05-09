@@ -30,6 +30,8 @@ exports.updateStatisticUser = function(req, res) {
                     return res.send({code:250, title: "Ok Domanda", message: "Statistiche utente aggiornate correttamente"});
                     })
                 }
+            else 
+                return res.send({code:250, title: "Ok Domanda", message: "Statistiche utente aggiornate correttamente"});
             })
         })
 };

@@ -93,7 +93,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"EditorQMLController",
             css: [
                 {
-                    href: 'css/home-main.css'
+                    href: 'css/main.css'
                 },
                 {
                     href: 'css/home-medium.css',
@@ -110,8 +110,9 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"EditorQMLController",
             css: [
                 {
-                    href: 'css/home-main.css'
+                    href: 'css/main.css'
                 },
+
                 {
                     href: 'css/home-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'

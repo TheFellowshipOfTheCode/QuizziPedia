@@ -1,5 +1,5 @@
 
-.homepage {
+.questionspage {
     width: 90%;
     margin: auto;
 }
@@ -43,3 +43,37 @@
 .btn-group{
     display: none;
 }
+#textArea{
+    height: 500px;
+}
+
+#contentQML{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+#QMLtitle{
+    padding-left: 27%;
+}
+
+/*Pulsanti Editor*/
+.btn-group{
+    display: none;
+}
+
+
+/*Elenco domande utente*/
+#modifyQuestionButton{
+    padding-top: 2%;
+    padding-bottom: 3%;
+}
+
+#modifyQuestionTitle{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#newQuestionButtons{
+    padding-bottom: 3%;
+}
+

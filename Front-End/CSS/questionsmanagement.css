@@ -13,3 +13,21 @@
     padding-bottom: 3%;
 }
 
+#textArea{
+    height: 500px;
+}
+
+#contentQML{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+#QMLtitle{
+    padding-left: 27%;
+}
+
+/*Pulsanti Editor*/
+.btn-group{
+    display: none;
+}
+

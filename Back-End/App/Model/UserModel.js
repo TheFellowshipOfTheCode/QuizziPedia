@@ -83,7 +83,7 @@ userSchema.statics.updateTopicLevel=function(userId, topic, difficultyLevel, isC
             return next(err);
         }
         user.statistics.forEach(function(statistic){
-            if(statistic.topicName==topic){
+            if(statistic.topicName==topic) {
                 var differentLevel = statistic.topicLevel - difficultyLevel;
                 // caso in cui la domanda sia più facile dell'abilità dell'utente:
                 if (differentLevel <= 100 && differentLevel > 0) {
@@ -191,8 +191,7 @@ userSchema.statics.updateTopicLevel=function(userId, topic, difficultyLevel, isC
                     statistic.topicLevel = 0;
             }
         });
-        console.log(user.statistics);
-        return user.save(callback)
+        return user.save(callback);
     })
 };
 
@@ -206,7 +205,6 @@ userSchema.statics.addCorrect = function(userId, topic, callback) {
                 statistic.correctAnswers++;
             }
         });
-        console.log(user.statistics);
         return user.save(callback)
     })
 };
@@ -221,7 +219,6 @@ userSchema.statics.addTotal=function(userId, topic, callback) {
                 statistic.totalAnswers++;
             }
         });
-        console.log(user.statistics);
         return user.save(callback)
     })
 };

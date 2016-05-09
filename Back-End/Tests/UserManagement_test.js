@@ -57,6 +57,7 @@ var user;
 */
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
+        this.timeout(7000);
         agent
             .put('/api/:lang/user/statistics')
             .send({
@@ -68,7 +69,7 @@ describe("Update Statistics Test", function(){
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
-                    console.log(res.body);
+                    res.body.message.should.equal("Statistiche utente aggiornate correttamente");
                 }
                 else {
                     res.status.should.equal(500);
@@ -77,3 +78,5 @@ describe("Update Statistics Test", function(){
             })
     })
 });
+
+

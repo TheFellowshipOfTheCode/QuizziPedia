@@ -17,11 +17,6 @@
  *------------------------------------------------------------------------------
  ******************************************************************************/
 
-app.factory('LangService', ['$http', '$q', '$cookie', function($http, $q, $cookie) {
-
-
-}]);
-
 app.factory('LangService', LangService);
 
 LangService.$inject = ['$http', '$q', 'ErrorInfoModel'];

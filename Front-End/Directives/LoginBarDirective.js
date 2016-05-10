@@ -21,9 +21,9 @@
 app.directive('loginBarDirective', loginBarDirective);
 
 function loginBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/LoginBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/LoginBarDirective.html'
+  };
+  return directive;
 }

@@ -31,9 +31,9 @@
 app.directive('menuBarDirective', menuBarDirective);
 
 function menuBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/MenuBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/MenuBarDirective.html'
+  };
+  return directive;
 }

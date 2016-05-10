@@ -20,7 +20,7 @@ var userSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Summaries'
         }],
-        privilege: String,
+        privilege: String
     }
 );
 
@@ -77,5 +77,260 @@ userSchema.statics.getUsers=function(searchword,callback,errback){
 
 }
 
+userSchema.statics.updateTopicLevel=function(userId, userLevel, topic, difficultyLevel, isCorrected, callback) {
+    if(!userId) {
+        var difference = userLevel - difficultyLevel;
+        if (difference <= 100 && difference > 0) {
+            if (isCorrected == false) {
+                if (difference > 90)
+                    userLevel = userLevel - 21;
+                else if (difference > 80)
+                    userLevel = userLevel - 20;
+                else if (difference > 70)
+                    userLevel = userLevel - 19;
+                else if (difference > 60)
+                    userLevel = userLevel - 18;
+                else if (difference > 50)
+                    userLevel = userLevel - 17;
+                else if (difference > 40)
+                    userLevel = userLevel - 16;
+                else if (difference > 30)
+                    userLevel = userLevel - 15;
+                else if (difference > 20)
+                    userLevel = userLevel - 14;
+                else if (difference > 10)
+                    userLevel = userLevel - 13;
+                else if (difference > 0)
+                    userLevel = userLevel - 12;
+            }
+            else {
+                if (difference > 90)
+                    userLevel = userLevel + 1;
+                else if (difference > 80)
+                    userLevel = userLevel + 2;
+                else if (difference > 70)
+                    userLevel = userLevel + 3;
+                else if (difference > 60)
+                    userLevel = userLevel + 4;
+                else if (difference > 50)
+                    userLevel = userLevel + 5;
+                else if (difference > 40)
+                    userLevel = userLevel + 6;
+                else if (difference > 30)
+                    userLevel = userLevel + 7;
+                else if (difference > 20)
+                    userLevel = userLevel + 8;
+                else if (difference > 10)
+                    userLevel = userLevel + 9;
+                else if (difference > 0)
+                    userLevel = userLevel + 10;
+            }
+        }
+        else {
+            // caso in cui la domanda sia più difficile dell'abilità  dell'utente
+            var difference = difficultyLevel - userLevel;
+            if (isCorrected == false) {
+                if (difference > 90)
+                    userLevel = userLevel - 1;
+                else if (difference > 80)
+                    userLevel = userLevel - 2;
+                else if (difference > 70)
+                    userLevel = userLevel - 3;
+                else if (difference > 60)
+                    userLevel = userLevel - 4;
+                else if (difference > 50)
+                    userLevel = userLevel - 5;
+                else if (difference > 40)
+                    userLevel = userLevel - 6;
+                else if (difference > 30)
+                    userLevel = userLevel - 7;
+                else if (difference > 20)
+                    userLevel = userLevel - 8;
+                else if (difference > 10)
+                    userLevel = userLevel - 9;
+                else if (difference > 0)
+                    userLevel = userLevel - 10;
+                else if (difference == 0)
+                    userLevel = userLevel - 11;
+            }
+            else {
+                if (difference > 90)
+                    userLevel = userLevel + 21;
+                else if (difference > 80)
+                    userLevel = userLevel + 20;
+                else if (difference > 70)
+                    userLevel = userLevel + 19;
+                else if (difference > 60)
+                    userLevel = userLevel + 18;
+                else if (difference > 50)
+                    userLevel = userLevel + 17;
+                else if (difference > 40)
+                    userLevel = userLevel + 16;
+                else if (difference > 30)
+                    userLevel = userLevel + 15;
+                else if (difference > 20)
+                    userLevel = userLevel + 14;
+                else if (difference > 10)
+                    userLevel = userLevel + 13;
+                else if (difference > 0)
+                    userLevel = userLevel + 12;
+                else if (difference == 0)
+                    userLevel = userLevel + 11;
+            }
+        }
+        // controllo che il livello non sia oltre i limiti
+        if (userLevel > 1000)
+            userLevel = 1000;
+        else if (userLevel < 0)
+            userLevel = 0;
+        return userLevel;
+    }
+
+    else {
+        this.findOne({'_id': userId}, function (err, user) {
+            if (err) {
+                return next(err);
+            }
+            user.statistics.forEach(function (statistic) {
+                if (statistic.topicName == topic) {
+                    var difference = statistic.topicLevel - difficultyLevel;
+                    // caso in cui la domanda sia più facile dell'abilità dell'utente:
+                    if (difference <= 100 && difference > 0) {
+                        if (isCorrected == false) {
+                            if (difference > 90)
+                                statistic.topicLevel = statistic.topicLevel - 21;
+                            else if (difference > 80)
+                                statistic.topicLevel = statistic.topicLevel - 20;
+                            else if (difference > 70)
+                                statistic.topicLevel = statistic.topicLevel - 19;
+                            else if (difference > 60)
+                                statistic.topicLevel = statistic.topicLevel - 18;
+                            else if (difference > 50)
+                                statistic.topicLevel = statistic.topicLevel - 17;
+                            else if (difference > 40)
+                                statistic.topicLevel = statistic.topicLevel - 16;
+                            else if (difference > 30)
+                                statistic.topicLevel = statistic.topicLevel - 15;
+                            else if (difference > 20)
+                                statistic.topicLevel = statistic.topicLevel - 14;
+                            else if (difference > 10)
+                                statistic.topicLevel = statistic.topicLevel - 13;
+                            else if (difference > 0)
+                                statistic.topicLevel = statistic.topicLevel - 12;
+                        }
+                        else {
+                            if (difference > 90)
+                                statistic.topicLevel = statistic.topicLevel + 1;
+                            else if (difference > 80)
+                                statistic.topicLevel = statistic.topicLevel + 2;
+                            else if (difference > 70)
+                                statistic.topicLevel = statistic.topicLevel + 3;
+                            else if (difference > 60)
+                                statistic.topicLevel = statistic.topicLevel + 4;
+                            else if (difference > 50)
+                                statistic.topicLevel = statistic.topicLevel + 5;
+                            else if (difference > 40)
+                                statistic.topicLevel = statistic.topicLevel + 6;
+                            else if (difference > 30)
+                                statistic.topicLevel = statistic.topicLevel + 7;
+                            else if (difference > 20)
+                                statistic.topicLevel = statistic.topicLevel + 8;
+                            else if (difference > 10)
+                                statistic.topicLevel = statistic.topicLevel + 9;
+                            else if (difference > 0)
+                                statistic.topicLevel = statistic.topicLevel + 10;
+                        }
+                    }
+                    else {
+                        // caso in cui la domanda sia più difficile dell'abilità  dell'utente
+                        var difference = difficultyLevel - statistic.topicLevel;
+                        if (isCorrected == false) {
+                            if (difference > 90)
+                                statistic.topicLevel = statistic.topicLevel - 1;
+                            else if (difference > 80)
+                                statistic.topicLevel = statistic.topicLevel - 2;
+                            else if (difference > 70)
+                                statistic.topicLevel = statistic.topicLevel - 3;
+                            else if (difference > 60)
+                                statistic.topicLevel = statistic.topicLevel - 4;
+                            else if (difference > 50)
+                                statistic.topicLevel = statistic.topicLevel - 5;
+                            else if (difference > 40)
+                                statistic.topicLevel = statistic.topicLevel - 6;
+                            else if (difference > 30)
+                                statistic.topicLevel = statistic.topicLevel - 7;
+                            else if (difference > 20)
+                                statistic.topicLevel = statistic.topicLevel - 8;
+                            else if (difference > 10)
+                                statistic.topicLevel = statistic.topicLevel - 9;
+                            else if (difference > 0)
+                                statistic.topicLevel = statistic.topicLevel - 10;
+                            else if (difference == 0)
+                                statistic.topicLevel = statistic.topicLevel - 11;
+                        }
+                        else {
+                            if (difference > 90)
+                                statistic.topicLevel = statistic.topicLevel + 21;
+                            else if (difference > 80)
+                                statistic.topicLevel = statistic.topicLevel + 20;
+                            else if (difference > 70)
+                                statistic.topicLevel = statistic.topicLevel + 19;
+                            else if (difference > 60)
+                                statistic.topicLevel = statistic.topicLevel + 18;
+                            else if (difference > 50)
+                                statistic.topicLevel = statistic.topicLevel + 17;
+                            else if (difference > 40)
+                                statistic.topicLevel = statistic.topicLevel + 16;
+                            else if (difference > 30)
+                                statistic.topicLevel = statistic.topicLevel + 15;
+                            else if (difference > 20)
+                                statistic.topicLevel = statistic.topicLevel + 14;
+                            else if (difference > 10)
+                                statistic.topicLevel = statistic.topicLevel + 13;
+                            else if (difference > 0)
+                                statistic.topicLevel = statistic.topicLevel + 12;
+                            else if (difference == 0)
+                                statistic.topicLevel = statistic.topicLevel + 11;
+                        }
+                    }
+                    // controllo che il livello non sia oltre i limiti
+                    if (statistic.topicLevel > 1000)
+                        statistic.topicLevel = 1000;
+                    else if (statistic.topicLevel < 0)
+                        statistic.topicLevel = 0;
+                }
+            });
+            return user.save(callback);
+        })
+    }
+};
+
+userSchema.statics.addCorrect = function(userId, topic, callback) {
+    this.findOne({'_id': userId}, function(err,user) {
+        if (err) {
+            return next(err);
+        }
+        user.statistics.forEach(function (statistic) {
+            if (statistic.topicName == topic) {
+                statistic.correctAnswers++;
+            }
+        });
+        return user.save(callback)
+    })
+};
+
+userSchema.statics.addTotal=function(userId, topic, callback) {
+    this.findOne({'_id': userId}, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        user.statistics.forEach(function (statistic) {
+            if (statistic.topicName == topic) {
+                statistic.totalAnswers++;
+            }
+        });
+        return user.save(callback)
+    })
+};
 
 module.exports = mongoose.model('User', userSchema);

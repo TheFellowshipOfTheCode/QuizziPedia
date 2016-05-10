@@ -1,0 +1,37 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-1dp center-it questions end-training" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
+    <md-toolbar class="toolbar-section toolbar ">
+      <div class="md-toolbar-tools">
+        <span flex="" class="flex"></span>
+        <span>{{listOfKeys.stopTraining}}</span>
+        <span flex="" class="flex"></span>
+      </div>
+    </md-toolbar>
+
+    <div class="center">
+      <h3> {{listOfKeys.resultOfTrainingLang}}:</h2>
+      <h1>{{training.getResult()}} / {{training.getNumberOfQuestionsAnswered()}}</h1>
+      <h3> {{listOfKeys.questions}}.</h2>
+      <canvas doughnutchart options="myChartOptionsDoughnut" data="myChartDataDoughnut" width="300" height="300"></canvas>
+    </div>
+
+</section>

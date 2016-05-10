@@ -20,18 +20,62 @@ var mongoose = require('mongoose');
 var Question = require('./QuestionModel');
 
 var topicSchema = new mongoose.Schema({
-    name: String,
-    correctAnswers: Number,
-    totalAnswers: Number,
+    name: {type: String},
+    correctAnswers: {type: Number},
+    totalAnswers: {type: Number},
     question: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Question'
     }]
 });
 
-topicSchema.methods.getNextQuestion=function(language, topic, keywords, levelUser, callback){
-    var questions = this.model('Topic').findOne({'name': topic});
-    return  questions.question.findOne({'language': language, 'keywords': keywords,'level': levelUser}, '_id makeWith language question', callback);
+topicSchema.statics.findTopicByName=function(topic, callback){
+    return this.findOne({'name': topic}, callback);
+};
+
+topicSchema.statics.getNextQuestion=function(topic, alreadyAnswered, language, keywords, skillLevel, callback){
+    var randomNumber=1+Math.round(Math.random()*100);
+    if(randomNumber>=1 && randomNumber<=50){
+        var randomNumber2=1+Math.round(Math.random()*100);
+        if(randomNumber2>=1 && randomNumber2<=70)
+            if(keywords.length==0)
+                return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'level': {$gte: skillLevel, $lte: skillLevel+20}}, '_id language question keywords level makeWith author', callback);
+            else
+                return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel, $lte: skillLevel+20}}, '_id language question keywords level makeWith author', callback);
+        else
+            if(keywords.length==0)
+                return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'level': {$gte: skillLevel-20, $lte: skillLevel-1}}, '_id language question keywords level makeWith author', callback);
+            else
+                return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-20, $lte: skillLevel-1}}, '_id language question keywords level makeWith author', callback);
+    }
+    else if(randomNumber>=51 && randomNumber<=75)
+        if(keywords.length==0)
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'level': {$gte: skillLevel+21, $lte: skillLevel+60}}, '_id language question keywords level makeWith author', callback);
+        else
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel+21, $lte: skillLevel+60}}, '_id language question keywords level makeWith author', callback);
+    else if(randomNumber>=76 && randomNumber<=85)
+        if(keywords.length==0)
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'level': {$gte: skillLevel+61, $lte: skillLevel+100}}, '_id language question keywords level makeWith author', callback);
+        else
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel+61, $lte: skillLevel+100}}, '_id language question keywords level makeWith author', callback);
+    else if(randomNumber>=86 && randomNumber<=95)
+        if(keywords.length==0)
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'level': {$gte: skillLevel-60, $lte: skillLevel-21}}, '_id language question keywords level makeWith author', callback);
+        else
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-60, $lte: skillLevel-21}}, '_id language question keywords level makeWith author', callback);
+    else
+        if(keywords.length==0)
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'level': {$gte: skillLevel-100, $lte: skillLevel-61}}, '_id language question keywords level makeWith author', callback);
+        else
+            return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-100, $lte: skillLevel-61}}, '_id language question keywords level makeWith author', callback);
+};
+
+topicSchema.statics.getTopics=function(callback){
+    return this.find({},'name',callback);
+};
+
+topicSchema.statics.getQuestions=function(topic, callback){
+    return  Question.find({'_id':{$in:topic.question}},'keywords',callback);
 };
 
 topicSchema.statics.getTopicQuestions = function(topic, keywords, lang, callback) {

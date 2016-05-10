@@ -53,7 +53,9 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password};
         $http.post('/api/'+ lang + '/signin', userJSON)
             .then(function(data) {
-                $cookies.putObject('logged', true );
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() + 1);
+                $cookies.putObject('logged', true , {'expires': expireDate} );
                 deferred.resolve(data);
             }, function(error) {
             deferred.reject(error);

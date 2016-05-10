@@ -21,9 +21,9 @@
 app.directive('questionnaireManagementBarDirective', questionnaireManagementBarDirective);
 
 function questionnaireManagementBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/QuestionnaireManagementBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/QuestionnaireManagementBarDirective.html'
+  };
+  return directive;
 }

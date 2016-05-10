@@ -1,0 +1,57 @@
+.button-go-to-training {
+  margin-top: 1em;
+  text-align: -webkit-right;
+}
+
+.search-zone {
+  text-align: -webkit-center;
+}
+
+.center-it {
+  width: 90%;
+}
+
+.box-in {
+    display: block;
+}
+
+.div-inline {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+.question-image-container {
+    padding: 0em;
+    margin-top: 1em;
+}
+
+@media screen and (max-width: 580px) {
+
+  .object-section {
+      max-width: 14em;
+      float: left;
+  }
+
+  .zone {
+    min-width: 8em;
+    min-height: 8em;
+    line-height: 8em;
+  }
+
+  .img-answer {
+      width: 9em;
+      padding: 0em;
+      width: 7em;
+      max-height: 10em;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .order-text-element {
+    display: block;
+    min-width: 100%;
+  }
+
+}

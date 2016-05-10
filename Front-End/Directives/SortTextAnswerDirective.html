@@ -1,0 +1,37 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+    <div class=" md-padding">
+      <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
+        <span class="text-center questionText">{{d.questionText}} </span>
+        <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
+      </div>
+      <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
+        <div class="text-to-order layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+          <ul>
+            <li class="md-primary md-raised md-button order-text-element" ng-repeat="item in temporyObjectForView[$parent.$index].list2" data-drop="true" data-drag="true" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.type,temporyObjectForView[$parent.$index].list2)'}" jqyoui-draggable="{index: {{$index}}, insertInline: true, direction:'jqyouiDirection'}" data-jqyoui-options="{revert: 'invalid'}" data-direction="{{item.jqyouiDirection}}">
+              <h1>{{item.text}}</h1>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</section>

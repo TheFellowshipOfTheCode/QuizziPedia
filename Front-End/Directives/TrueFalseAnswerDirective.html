@@ -1,0 +1,37 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::;
+* Description: ;
+* Relations with other classes:
+* +
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: _20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+
+  <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+      <div class="md-padding">
+        <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
+          <div class="text-center questionText">{{d.answers[0].text}} </div>
+          <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
+        </div>
+        <div class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
+          <button  ng-class="{true: 'button-answer-true-false'}[isActiveTrue]" class="answer-button  md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.type, true); toggleActive(true)'>
+            {{listOfKeys.trueButton}}
+          </button>
+          <button ng-class="{true: 'button-answer-true-false'}[isActiveFalse]" class="answer-button md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.type, false); toggleActive(false)'>
+            {{listOfKeys.falseButton}}
+          </button>
+        </div>
+      </div>
+  </section>

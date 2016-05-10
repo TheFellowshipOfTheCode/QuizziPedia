@@ -238,6 +238,25 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
           ]
       })
 
+        .when('/:lang/search/:tosearch', {
+            templateUrl: '/Views/ResultsView.html',
+            controller: "SearchController",
+            css: [
+                {
+
+                    href: 'css/'
+                },
+                {
+                    href: 'css/',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
+
       .otherwise({
         redirectTo: '/it/home'
       })

@@ -1,0 +1,33 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::ResultsView
+* Description: view contenente i riusltati della ricerca
+*
+* Relations with other classes:
+*
+* Creation data: 10-05-2016
+* Author: Alberto Ferrara
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: ResultsView_20160510;
+* Update data: 10-05-2016;
+* Description: creazione view;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<div layout="column" flex id="content" role="main" ng-controller="AppController" >
+    <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+            <p><h3>Utenti ricercati</h3></p>
+            <user-results-directive></user-results-directive>
+            <p><h3>Questionari ricercati</h3></p>
+            <subscribe-result-directive></subscribe-result-directive>
+        </section>
+
+    </div>
+
+</div>
+

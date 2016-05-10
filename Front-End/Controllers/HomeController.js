@@ -22,4 +22,9 @@ function HomeController ($scope, $location, $routeParams) {
   $scope.trainingMode = function(){
     $location.path("/"+$routeParams.lang+"/training");
   };
+  
+  $scope.search = function(){
+    var tosearch = document.getElementById("lookingfor").value;
+    $location.path("/" + $routeParams.lang + "/search/" + tosearch);
+  }
 }

@@ -24,8 +24,8 @@
 -->
 
 <div class="input-group search-group">
-  <input type="text" class="form-control" placeholder="{{listOfKeys.searchFor}}">
+  <input type="text" class="form-control" id="lookingfor" name="lookingfor" placeholder="{{listOfKeys.searchFor}}">
   <span class="input-group-btn">
-    <button class="btn btn-default" type="button">{{listOfKeys.makeSearch}}</button>
+    <button class="btn btn-default" ng-click="search()" type="button">{{listOfKeys.makeSearch}}</button>
   </span>
 </div>

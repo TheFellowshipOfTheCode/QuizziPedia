@@ -1,0 +1,32 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::UserDetailsDirective;
+ * Description: rappresenta un utente ricercato;
+ * Relations with other classes:
+ * +
+ * Creation data: 10-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: UserDetailsDirective_20160510
+ * Update data: 10-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<section id="modifyQuestionTitle" ng-repeat="u in users" class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+    <md-toolbar class="md-primary home-toolbar">
+        <div class="text-center">
+            <h3 class="ng-binding">Utente: {{u}}</h3>
+        </div>
+    </md-toolbar>
+    <div class="text-center" class="md-padding">
+        <div id="modifyQuestionButton" class="button-go-to-training layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
+            <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="editQuestion(u._id)">{{listOfKeys.profileButton}}</button>
+        </div>
+    </div>
+</section>

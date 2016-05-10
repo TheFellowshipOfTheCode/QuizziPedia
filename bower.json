@@ -45,7 +45,8 @@
     "angular-number-picker" : "*",
     "jquery-ui-touch-punch" : "*",
     "chartjs" : "*",
-    "angles" : "*"
+    "angles" : "*",
+    "juicy-ace-editor"  : "*"
   },
   "ignore": [
     "**/.*",

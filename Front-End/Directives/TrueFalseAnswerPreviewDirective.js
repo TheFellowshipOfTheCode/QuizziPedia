@@ -19,7 +19,7 @@
 app.directive('trueFalseAnswerPreviewDirective', TrueFalseAnswerPreviewDirective);
 
 
-function TrueFalseAnswerDirective() {
+function TrueFalseAnswerPreviewDirective() {
   return {
     restrict: 'E',
     templateUrl: 'Directives/TrueFalseAnswerPreviewDirective.html'

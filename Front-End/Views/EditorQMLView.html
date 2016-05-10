@@ -9,18 +9,18 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: EditorQMLView_20160503;
+* class: EditorQMLView_20160503;
 * Update data: 03-05-2016;
 * Description: creazione view;
 * Author: Alberto Ferrara.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-        <div layout="column" flex id="content" role="main" ng-controller="AppController">
+        <div layout="column" flex class="content" role="main" ng-controller="AppController">
 
             <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
 
-                <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+                <section class="question-creation sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
 
                     <md-toolbar class="md-primary toolbar">
                         <div class="md-toolbar-tools">
@@ -30,24 +30,27 @@
                         </div>
                     </md-toolbar>
 
-                    <h1 id="QMLtitle">{{listOfKeys.writeHereLang}}</h1>
-                    <div id="contentQML">
-                        <textarea class="lined" id="textArea" name="question" ng-model="question" style="width: 100%"></textarea>
+                    <h1 class="QMLtitle">{{listOfKeys.writeHereLang}}</h1>
+                    <div class="contentQML">
+                      <!-- da cambiare
+                        <textarea class="lined" name="question" ng-model="question" style="height: 768px; width"></textarea>
                         <script>
                             $(function() {
                                 $(".lined").linedtextarea(
                                         {selectedLine: 1}
                                 );
                             });
-                        </script>
-                    </div>
+                        </script>-->
+                        <juicy-ace-editor style="height:500px">{{question}}</juicy-ace-editor>
+
+                      </div>
                     <div layout="row" layout-align="center center" >
                         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-sm="column" layout-margin>
                                     <md-button ng-click="goToWizard()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.goToWizard}}</md-button>
-                                    <md-button ng-if="id == undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
-                                    <md-button ng-if="id != undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
+                                    <md-button ng-if="class == undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button ng-if="class != undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
                                 </div>
                             </md-input-container>
 
@@ -60,4 +63,3 @@
             </div>
 
         </div>
-

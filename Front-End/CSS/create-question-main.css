@@ -41,16 +41,19 @@
     overflow: auto;
 }
 
-#textArea{
-    height: 500px;
+.textArea{
+    min-height: 500px;
+    min-width: 768px;
+    width: 90%;
+    margin: auto;
 }
 
-#contentQML{
+.contentQML{
     padding-right: 10%;
     padding-left: 10%;
 }
 
-#QMLtitle{
+.QMLtitle{
     padding-left: 27%;
 }
 
@@ -58,16 +61,13 @@
 .btn-group{
     display: none;
 }
-#textArea{
-    height: 500px;
-}
 
-#contentQML{
+.contentQML{
     padding-right: 10%;
     padding-left: 10%;
 }
 
-#QMLtitle{
+.QMLtitle{
     padding-left: 27%;
 }
 
@@ -88,7 +88,7 @@
   width: 80%;
 }
 
-#newQuestionButtons{
+.newQuestionButtons{
     padding-bottom: 3%;
 }
 
@@ -116,7 +116,7 @@
 }
 
 .odd{
-  background-color: #edebe8;
+  background-color: .edebe8;
 }
 
 .even {

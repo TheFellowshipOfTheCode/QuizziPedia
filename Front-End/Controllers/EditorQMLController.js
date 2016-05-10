@@ -33,7 +33,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             .then(function(result){
                 console.log(result);
                 var questionDownloaded = result.data;
-                $scope.question = JSON.stringify(questionDownloaded);
+
+                $scope.question = JSON.stringify(questionDownloaded, null, 2);
             } ,function (err){
                 console.log(err);
                 $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
@@ -121,6 +122,6 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
     };
 
 
-    
-    
+
+
 }

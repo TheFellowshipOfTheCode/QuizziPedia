@@ -49,26 +49,22 @@
 }
 
 .contentQML{
-    padding-right: 10%;
-    padding-left: 10%;
+    margin: auto;
+    width: 80%;
 }
 
 .QMLtitle{
-    padding-left: 27%;
+  margin: auto;
+  width: 90%;
+  text-align: center;
+  font-size: 3em;
+  margin-top: 1em;
+  margin-bottom:1em;
 }
 
 /*Pulsanti Editor*/
 .btn-group{
     display: none;
-}
-
-.contentQML{
-    padding-right: 10%;
-    padding-left: 10%;
-}
-
-.QMLtitle{
-    padding-left: 27%;
 }
 
 /*Pulsanti Editor*/

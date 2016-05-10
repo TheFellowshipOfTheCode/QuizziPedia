@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
+
 var questionSchema = new mongoose.Schema({
     author: {
         type:mongoose.Schema.Types.ObjectId,
@@ -34,6 +36,8 @@ var questionSchema = new mongoose.Schema({
     totalAnswers: {type:Number, default: 0},
     correctAnswers: {type:Number, default: 0},
 });
+
+questionSchema.plugin(random);
 
 questionSchema.statics.createQuestion=function(author,question, callback){
     question.author = author
@@ -185,7 +189,7 @@ questionSchema.statics.addCorrect=function(questionId,callback){
 
 }
 
-questionSchema.statics.addTotal=function(questionId,callback){ 
+questionSchema.statics.addTotal=function(questionId,callback){
     this.findOneAndUpdate({_id: questionId},{ $inc: { totalAnswers: 1 }},callback)
 }
 

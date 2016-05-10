@@ -24,12 +24,14 @@ function QuestionsService($http, $cookies, $q) {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
         getQuestion: getQuestion,
+        getNextQuestion: getNextQuestion,
+        getKeywords : getKeywords,
+        getTopics : getTopics,
+        updateStatisticsUser : updateStatisticsUser,
+        updateStatisticsQuestion : updateStatisticsQuestion,
         uploadImage: uploadImage
     };
-
     return methods;
-
-
 
     function sendQuestion(question, lang, id) {
        // if(question == undefined) return; //errore?
@@ -73,6 +75,62 @@ function QuestionsService($http, $cookies, $q) {
         var deferred = $q.defer();
 
         $http.get('/api/'+ lang + '/userquestion/' + questionId)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getNextQuestion(lang, nextQuestion) {
+            var q = JSON.stringify(nextQuestion, null, "  ");
+            var deferred = $q.defer();
+            $http.post('/api/'+ lang + '/user/training/question', q)
+                .then(function(data) {
+                    deferred.resolve(data);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        }
+
+    function getKeywords(lang,topic) {
+        var deferred = $q.defer();
+        $http.post('/api/'+ lang + '/topic/keywords', {topic : topic})
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getTopics(lang) {
+        var deferred = $q.defer();
+        $http.get('/api/'+ lang + '/topics')
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function updateStatisticsUser(lang, updateTheStatistics) {
+        var deferred = $q.defer();
+        $http.put('/api/'+ lang + '/user/statistics', updateTheStatistics)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function updateStatisticsQuestion(lang, updateTheStatistics) {
+        var deferred = $q.defer();
+        $http.put('/api/'+ lang + '/usertraining/questionstatistics', updateTheStatistics)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error) {

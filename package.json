@@ -51,7 +51,9 @@
     "ng-file-upload": "^12.0.4",
     "passport": "~0.3.2",
     "passport-local": "1.0.0",
-    "textarea": "^0.3.0"
+    "bcrypt-nodejs": "0.0.3",
+    "textarea": "^0.3.0",
+    "mongoose-simple-random" : "*"
   },
   "devDependencies": {
     "grunt-serve": "^0.1.6",
@@ -64,6 +66,8 @@
     "karma-ng-html2js-preprocessor": "^0.2.2",
     "mocha": "2.x.x",
     "protractor": "^2.1.0",
-    "shelljs": "^0.2.6"
+    "shelljs": "^0.2.6",
+    "supertest" : "*",
+    "should" : "*"
   }
 }

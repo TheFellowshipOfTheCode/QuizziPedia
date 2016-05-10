@@ -34,7 +34,7 @@ describe("Get All Questions Test", function () {
     });
 })
 
-/*
+
 describe("Get Questions Test", function(){
     it("should get questions of an user", function(done){
         agent
@@ -89,7 +89,7 @@ describe("Create Question Test", function(){
                     }],
                 }],
             })
-            .end(function(err,res){ 
+            .end(function(err,res){
                 if (!err && res.status == 200){
                     res.body.message.should.equal("Domanda creata correttamente");
                 }
@@ -162,4 +162,69 @@ describe("Update Statistics Question Test", function(){
 
     })
 });
-*/
+
+describe("View NextQuestion Test", function(){
+    it("should view the next question of a training", function(done){
+        this.timeout(12000);
+        agent
+            .post('/api/:lang/user/training/question')
+            .send({
+                language: "it",
+                topic: "Patente",
+                keywords:["cane"],
+                level:500,
+                alreadyAnswered:[]
+            })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                    //console.log(res.body.question[1].answers); //la prova che il contenuto di answers si vede
+                    res.body.language.should.equal("it");
+                    res.body.level.should.equal(500);
+                    //res.body.keywords.should.containDeep(["Strada","Guida"]);
+                }
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
+
+describe("View Topics Test", function(){
+    it("should view topics", function(done){
+        agent
+            .get('/api/:lang/topics')
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
+
+describe("View Keywords Test", function(){
+    it("should view the keywords of a topic", function(done){
+        agent
+            .post('/api/:lang/topic/keywords')
+            .send({
+                topic: "Patente"
+            })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});

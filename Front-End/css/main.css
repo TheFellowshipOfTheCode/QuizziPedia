@@ -1,9 +1,12 @@
-/*General*/
 * {
   margin: 0px;
   padding: 0px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+html {
+  overflow: hidden;
 }
 
 @font-face {
@@ -15,8 +18,6 @@ button, html, input, select, textarea {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
-
-/*Menu*/
 .logo > img {
   height: 150px;
   width: auto;
@@ -45,20 +46,20 @@ md-sidenav {
 }
 
 .menu .md-button {
-    border-radius: 0;
-    color: white;
-    cursor: pointer;
-    display: block;
-    align-items: inherit;
-    line-height: 40px;
-    margin: 0;
-    max-height: 40px;
-    overflow: hidden;
-    padding: 0px 16px;
-    text-align: left;
-    text-decoration: none;
-    white-space: normal;
-    width: 100%;
+  border-radius: 0;
+  color: white;
+  cursor: pointer;
+  display: block;
+  align-items: inherit;
+  line-height: 40px;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 0px 16px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%;
 }
 
 md-toolbar:not(.md-menu-toolbar) {
@@ -86,8 +87,6 @@ md-toolbar:not(.md-menu-toolbar) {
   display: block;
 }
 
-/*Ricerca*/
-
 search-directive {
   display: inline;
   width: 50%;
@@ -102,8 +101,6 @@ search-directive {
 
 }
 
-
-/*Footer*/
 .icon-footer {
   height: 24px;
   margin-bottom: 10px;
@@ -125,116 +122,15 @@ footer ul  {
 
 .madeBy {
   padding-top: 1em;
-  padding-bottom: 0.5em;
+  padding-bottom: : 0.5em;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: gray;
 }
 
-/*
-TO BE REMOVED*/
-
-.homepage {
-    width: 90%;
-    margin: auto;
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 15em;
 }
-
-.sezione {
-    margin-top: 3em;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.home-toolbar {
-    background-color: rgb(255,202,40) !important;
-}
-
-.md-padding {
-    min-height: 6em;
-    overflow: auto;
-}
-
-.search-div {
-    min-height: 6em;
-    overflow: auto;
-}
-
-
-.questionspage {
-    width: 90%;
-    margin: auto;
-}
-
-.sezione {
-    margin-top: 3em;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.home-toolbar {
-    background-color: rgb(255,202,40) !important;
-}
-
-.md-padding {
-    min-height: 6em;
-    overflow: auto;
-}
-
-.search-div {
-    min-height: 6em;
-    overflow: auto;
-}
-
-#textArea{
-    height: 500px;
-}
-
-#contentQML{
-    padding-right: 10%;
-    padding-left: 10%;
-}
-
-#QMLtitle{
-    padding-left: 27%;
-}
-
-/*Pulsanti Editor*/
-.btn-group{
-    display: none;
-}
-#textArea{
-    height: 500px;
-}
-
-#contentQML{
-    padding-right: 10%;
-    padding-left: 10%;
-}
-
-#QMLtitle{
-    padding-left: 27%;
-}
-
-/*Pulsanti Editor*/
-.btn-group{
-    display: none;
-}
-
-
-/*Elenco domande utente*/
-#modifyQuestionButton{
-    padding-top: 2%;
-    padding-bottom: 3%;
-}
-
-#modifyQuestionTitle{
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-#newQuestionButtons{
-    padding-bottom: 3%;
-}
-
-

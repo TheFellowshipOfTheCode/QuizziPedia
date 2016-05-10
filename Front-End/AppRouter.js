@@ -109,14 +109,14 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"EditorQMLController",
             css: [
                 {
-                    href: 'css/main.css'
+                    href: 'css/create-questionmain.css'
                 },
                 {
-                    href: 'css/home-medium.css',
+                    href: 'css/create-question-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/home-small.css',
+                    href: 'css/create-question-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]
@@ -142,15 +142,15 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"EditorQMLController",
             css: [
                 {
-                    href: 'css/main.css'
+                    href: 'css/create-question-main.css'
                 },
 
                 {
-                    href: 'css/home-medium.css',
+                    href: 'css/create-question-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/home-small.css',
+                    href: 'css/create-question-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]
@@ -176,14 +176,14 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"",
             css: [
                 {
-                    href: 'css/home-main.css'
+                    href: 'css/create-question-main.css'
                 },
                 {
-                    href: 'css/home-medium.css',
+                    href: 'css/create-question-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/home-small.css',
+                    href: 'css/create-question-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]
@@ -193,19 +193,46 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller: "QuestionsManagementController",
             css: [
                 {
-                    href: 'css/home-main.css'
+                    href: 'css/create-question-main.css'
                 },
                 {
-                    href: 'css/home-medium.css',
+                    href: 'css/create-question-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/home-small.css',
+                    href: 'css/create-question-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]
         })
-
+        .when('/:lang/training', {
+        templateUrl: '/Views/TrainingView.html',
+        controller:"TrainingController",
+        css: [
+            {
+              href: 'css/training-main.css'
+            },
+            {
+              href: 'css/training-medium.css',
+              media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+            },
+            {
+              href: 'css/training-small.css',
+              media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+            },
+            {
+              href: 'css/question-main.css'
+            },
+            {
+              href: 'css/question-medium.css',
+              media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+            },
+            {
+              href: 'css/question-small.css',
+              media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+            }
+          ]
+      })
       .otherwise({
         redirectTo: '/it/home'
       })

@@ -57,15 +57,18 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css">
+
     <link href="css/main.css" rel="stylesheet" />
-    <link href="CSS/main.css" rel="stylesheet" />
-    <link href="CSS/jquery-linedtextarea.css" rel="stylesheet"/>
-    <link href="CSS/textAngular.css" rel="stylesheet"/>
+    <link href="css/jquery-linedtextarea.css" rel="stylesheet"/>
+    <link href="css/textAngular.css" rel="stylesheet"/>
     <!-- Media query CSS -->
     <link type="text/css" rel="stylesheet" href="css/main-medium.css" media="handheld, screen and (max-width:960px), only screen and (max-device-width:960px)">
     <link type="text/css" rel="stylesheet" href="css/main-small.css" media="handheld, screen and (max-width:480px), only screen and (max-device-width:480px)">
     <!-- JS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -77,6 +80,11 @@
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+    <script src="bower_components/angular-number-picker/angular-number-picker.min.js"></script>
+    <script src="bower_components/chartjs/Chart.min.js"></script>
+    <script src="bower_components/angles/angles.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
@@ -95,19 +103,16 @@
     <script src="Libreries/questionCheck/custom.js"></script>
     <script src="Libreries/jquery-linedtextarea.js"></script>
 
-
-
   </head>
   <!-- Principal container of the application -->
   <body data-ng-app="QuizziPedia" class="docs-body layout-row" ng-controller="MenuBarController">
     <menu-bar-directive></menu-bar-directive>
     <div layout="column" tabindex="-1" role="main" flex="" class="layout-column flex">
       <bread-bar-directive></bread-bar-directive>
-      <md-content layout="column" flex="" class="_md layout-column flex">
+      <md-content layout="column" flex="" class="_md layout-column flex scrollable">
         <div  layout-fill="" layout-align="top center">
           <!-- AngularJS's views -->
           <div data-ng-view>
-            Caricamento...
           </div>
           <footer-directive></footer-directive>
         </div>
@@ -121,6 +126,8 @@
     <script src="Services/LangService.js"></script>
     <script src="Services/QuizService.js"></script>
     <script src="Services/QuestionsService.js"></script>
+    <script src="Services/Utils.js"></script>
+
     <!-- Models -->
     <script src="Models/LangModel.js"></script>
     <script src="Models/MenuBarModel.js"></script>
@@ -128,6 +135,8 @@
     <script src="Models/ErrorInfoModel.js"></script>
     <script src="Models/QuestionnaireModel.js"></script>
     <script src="Models/QuestionItemModel.js"></script>
+    <script src="Models/TrainingModeModel.js"></script>
+
     <!-- Controllers -->
     <!--<script src="Controllers/SearchController.js"></script>-->
     <script src="Controllers/MenuBarController.js"></script>
@@ -139,11 +148,15 @@
     <script src="Controllers/CreateQuestionnaireController.js"></script>
     <script src="Controllers/QuestionnaireManagementController.js"></script>
     <script src="Controllers/ShowAllCreatedQuestionnairesController.js"></script>
-    <!-- Directives -->
-    <script src="Directives/TopicKeywordsDirective.js"></script>
+    <script src="Controllers/TrainingController.js"></script>
+    <script src="Controllers/QuestionsController.js"></script>
     <script src="Controllers/EditorQMLController.js"></script>
     <script src="Controllers/QuestionsManagementController.js"></script>
+
     <!-- Directives -->
+    <script src="Directives/TopicKeywordsDirective.js"></script>
+    <script src="Directives/OneQuestionDirective.js"></script>
+    <script src="Directives/NewQuestionButtonDirective.js"></script>
     <script src="Directives/MenuBarDirective.js"></script>
     <script src="Directives/LoginBarDirective.js"></script>
     <script src="Directives/SignUpBarDirective.js"></script>
@@ -155,7 +168,14 @@
     <script src="Directives/FooterDirective.js"></script>
     <script src="Directives/SearchDirective.js"></script>
     <script src="Directives/BreadBarDirective.js"></script>
-    <script src="Directives/OneQuestionDirective.js"></script>
-    <script src="Directives/NewQuestionButtonDirective.js"></script>
+    <script src="Directives/MultipleChoiceAnswerDirective.js"></script>
+    <script src="Directives/TrueFalseAnswerDirective.js"></script>
+    <script src="Directives/LinkingAnswerDirective.js"></script>
+    <script src="Directives/SortTextAnswerDirective.js"></script>
+    <script src="Directives/SortImagesAnswerDirective.js"></script>
+    <script src="Directives/EmptySpaceAnswerDirective.js"></script>
+    <script src="Directives/HeaderTextQuestionDirective.js"></script>
+    <script src="Directives/TrainingSetUpDirective.js"></script>
+    <script src="Directives/EndTrainingDirective.js"></script>
   </body>
 </html>

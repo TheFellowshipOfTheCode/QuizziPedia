@@ -4,23 +4,19 @@ var quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
-   var author=req.user._id;
-    quiz.createQuiz(req.body, function(err) {
+    req.body.author=req.user._id;
+    quiz.createQuiz(req.body, function(err,quiz) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'quiz-insertion-error',
             message: 'l\'inserimento del quiz è fallito'
         });
-        else return res.send({
-            code: 3,
-            title: 'quiz-insertion-success',
-            message: 'l\'inserimento del quiz è avvenuto con successo'
-        });
+        else return res.send(quiz);
     });
 }
 
 exports.getQuiz = function (req, res, next) {
-    quiz.getQuiz(req.body._id, function(err, quiz) {
+    quiz.getQuiz(req.params.quizId, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,
             title: 'Errore Questionario',

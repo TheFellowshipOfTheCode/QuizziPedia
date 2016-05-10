@@ -46,7 +46,7 @@ questionSchema.statics.createQuestion=function(author,question, callback){
     return new_question.save(callback);
 };
 
-questionSchema.statics.getQuestion=function(questionId,callback) {
+questionSchema.statics.getQuestion=function(questionId,callback) { 
     return this.findOne({'_id': questionId},'makeWith language question', callback);
 }
 

@@ -23,14 +23,12 @@ var quizSchema = new mongoose.Schema({
     }],
     active: {type:Boolean, default:false},
     correctAnswers: { type: Number, default: 0 },
-    keyword: String,
-    topic: String
 });
 
 
 
 quizSchema.statics.createQuiz = function(info, callback) {
-    console.log(info);
+    console.log(info)
     var new_quiz = new this(info);
     return new_quiz.save(callback);
 }
@@ -61,27 +59,23 @@ quizSchema.statics.getPersonalQuizzes = function(author, callback) {
 
 quizSchema.statics.getQuiz=function(quizId,callback){
     return this.findOne({'_id':quizId},'title questions active',function (err, quiz){
-        if (quiz.active)
-            return Question.getQuestion(quiz.questions, callback)
+        if (!quiz.active){
+            var questions_quiz=[];
+            quiz.questions.forEach(function(elem) {
+                    Question.getQuestion(elem,function(err,question){
+                        questions_quiz.push(question);
+                        if(questions_quiz.length==quiz.questions.length){
+                            quiz.questions=questions_quiz
+                            return callback(err,quiz)
+                        }
+                    })
+            })
+        }
         else
             return callback(new Error("Questionario non abilitato"))
     })
 };
 
-/*
-quizSchema.statics.getQuiz=function(quizId, callback){
-    var quizJson = new this();
-    quizJson = Quiz.findOne({'_id':quizId}, callback);
-    return quizJson;
-
-
-    Question.getQuestion(quizJson.quiz.questions,function(err,questions){
-        if (err) return handleError(err);
-        quizJson.questions=questions;
-        return quizJson;
-    });
-
-}*/
 
 var Quiz = mongoose.model('Quiz', quizSchema);
 module.exports = Quiz;

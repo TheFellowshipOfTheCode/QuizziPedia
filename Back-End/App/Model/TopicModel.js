@@ -41,4 +41,9 @@ topicSchema.statics.getTopicQuestions = function(topic, keywords, lang, callback
     });
 }
 
+topicSchema.statics.getTopic= function(lang, callback) {
+    return this.find({}, 'name', callback);
+}
+
+
 module.exports = mongoose.model('Topic', topicSchema);

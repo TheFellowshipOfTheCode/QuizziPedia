@@ -11,27 +11,22 @@ var questionSchema = new mongoose.Schema({
         questionText: {type: String},
         image: {type: String},
         answers: [{
-            text: String,
-            url: String,
-            attributesForTForMultiple: {
-                isItRight: Boolean
-            },
-            attributesForSorting: {
-                position: Number
-            },
-            attributesForLinking: {
-                text1: String,
-                text2: String,
-                url1: String,
-                url2: String
-            },
-            attributesForClickableArea: {
-                x: Number,
-                y: Number
-            },
-            attributesForEmptySpaces: {
-                wordNumber: Number
-            }
+            text: {type: String},
+            url: {type: String},
+            //attributo per VF e Multipla
+            isItRight: {type: Boolean},
+            //attributo ordinamenti
+            position: {type: Number},
+            //attributi collegamento
+            text1: {type: String},
+            text2: {type: String},
+            url1: {type: String},
+            url2: {type: String},
+            //attributi area cliccabile
+            x: {type: Number},
+            y: {type: Number},
+            //attributo spazi vuoti
+            wordNumber: {type: Number}
         }],
     }],
     keywords: [String],

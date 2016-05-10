@@ -24,10 +24,22 @@ function QuizService($http, $cookies, $q) {
     var methods = {
         createQuestionnaire: createQuestionnaire,
         showAllCreatedQuestionnaires: showAllCreatedQuestionnaires,
-        showAllQuestions: showAllQuestions
+        showAllQuestions: showAllQuestions,
+        getTopic: getTopic
     };
 
     return methods;
+
+    function getTopic(lang) {
+        var deferred = $q.defer();
+        $http.get('/api/' + lang + '/topic')
+            .then(function(topic) {
+                deferred.resolve(topic);
+            }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
 
     function createQuestionnaire(title, author, keyword, topic, lang) {
         var deferred = $q.defer();

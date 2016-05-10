@@ -4,7 +4,7 @@ var quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
-    console.log(req.body);
+   var author=req.user._id;
     quiz.createQuiz(req.body, function(err) {
         if (err) return res.status(500).json({
             code: 2,
@@ -20,14 +20,14 @@ exports.createQuiz = function (req, res) {
 }
 
 exports.getQuiz = function (req, res, next) {
-    /*quiz.getQuiz(req.body._id, function(err, quiz) {
+    quiz.getQuiz(req.body._id, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,
-            title: 'quiz-getting-error',
-            message: 'byebyebye'
+            title: 'Errore Questionario',
+            message: 'Questionario non attivo'
         });
         else return res.send(quiz)
-    })*/
+    })
 }
 
 

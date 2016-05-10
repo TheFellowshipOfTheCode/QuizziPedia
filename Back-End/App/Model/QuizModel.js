@@ -21,6 +21,7 @@ var quizSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
+    active: {type:Boolean, default:false},
     correctAnswers: { type: Number, default: 0 },
     keyword: String,
     topic: String
@@ -59,8 +60,11 @@ quizSchema.statics.getPersonalQuizzes = function(author, callback) {
 }
 
 quizSchema.statics.getQuiz=function(quizId,callback){
-    return this.findOne({'_id':quizId},'title questions',function (err, quiz){
-        Question.getQuestion(quiz.questions, callback)
+    return this.findOne({'_id':quizId},'title questions active',function (err, quiz){
+        if (quiz.active)
+            return Question.getQuestion(quiz.questions, callback)
+        else
+            return callback(new Error("Questionario non abilitato"))
     })
 };
 

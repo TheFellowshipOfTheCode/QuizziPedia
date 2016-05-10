@@ -45,61 +45,57 @@
                         </div>
                     </md-input-container>
 
-                    <!--<topic-keywords-directive></topic-keywords-directive> -->
-                    <md-input-container class="md-block" ng-controller="AppController">
+                    <md-input-container class="md-block">
                         <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
-                        <md-select ng-model="quiz.topic" md-selected-text="getSelectedText()">
+                        <md-select ng-model="topic" md-selected-text="getSelectedText()">
                             <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-                                <md-option ng-value="topic" ng-repeat="topic in topics">{{topic}}</md-option>
+                                <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
                             </md-optgroup>
                         </md-select>
                     </md-input-container>
 
-                    <md-input-container class="md-block" ng-controller="AppController">
+                    <md-input-container class="md-block">
                         <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
-                        <input ng-model="quiz.keyword">
+                        <input ng-model="keyword">
                     </md-input-container>
+
+                    <md-card >
+                        <md-card-content>
+                            <h2>Domande inserite</h2>
+                            <md-list>
+                               <md-item ng-repeat="question_selected in questions_selected" >
+                                    <md-item-content>
+                                        <h3>{{question_selected.question[0].type}}</h3>
+                                        <h4>{{question_selected.question[0].questionText}}</h4>
+                                    </md-item-content>
+                                </md-item>
+                            </md-list>
+                        </md-card-content>
+                    </md-card>
 
                     <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always">
                         <md-tab label="Ricerca Domande" >
-                            <md-content class="md-padding">
-                                <md-autocomplete
-                                        ng-disabled="ctrl.isDisabled"
-                                        md-no-cache="ctrl.noCache"
-                                        md-selected-item="ctrl.selectedItem"
-                                        md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                                        md-search-text="ctrl.searchText"
-                                        md-selected-item-change="ctrl.selectedItemChange(item)"
-                                        md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                        md-item-text="item.display"
-                                        md-min-length="0"
-                                        placeholder="Inserisci Titolo Domanda">
-                                    <md-item-template>
-                                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                                    </md-item-template>
-                                    <md-not-found>
-                                        No states matching "{{ctrl.searchText}}" were found.
-                                        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
-                                    </md-not-found>
-                                </md-autocomplete>
+                            <div layout="row" layout-align="center center">
+                            <md-content class="md-padding" flex="100">
+                                <md-input-container class="md-block" >
+                                    <label>Search</label>
+                                    <input ng-model="search">
+                                </md-input-container>
                                 <br/>
-                                <div layout="row" layout-align="center center">
-                                <md-checkbox ng-model="ctrl.simulateQuery"  >All</md-checkbox>
-                                <md-checkbox ng-model="ctrl.noCache"  >Yours</md-checkbox>
-                                </div>
+
+                                <md-checkbox ng-model="ctrl.noCache">Yours</md-checkbox>
                                 <md-card >
                                     <md-card-content>
                                         <h2>Domande</h2>
                                         <md-list>
-                                          <md-item ng-repeat="question in questions" > <!--| filter:search"-->
-                                                <md-item-content>
-                                                    <div class="md-tile-left inset" hide-sm>
-                                                        <user-avatar></user-avatar>
-                                                    </div>
-                                                    <div class="md-tile-content">
-                                                        <h3>{{question.makeWith}}</h3>
-                                                        <h4>{{question.language}}</h4>
-                                                    </div>
+                                          <md-item ng-repeat="question in questions | filter:search" >
+                                                <md-item-content >
+                                                    <md-checkbox ng-click="deleteQuestion(question)">
+                                                        <div class="md-tile-content">
+                                                            <h3>{{question.question[0].type}}</h3>
+                                                            <h4>{{question.question[0].questionText}}</h4>
+                                                        </div>
+                                                    </md-checkbox>
                                                 </md-item-content>
                                                 <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
                                                 <md-divider hide-gt-sm ng-if="!$last"></md-divider>
@@ -115,6 +111,7 @@
                                     </md-card-content>
                                 </md-card>
                             </md-content>
+                            </div>
                         </md-tab>
                         <md-tab label="Creazione Domande" >
                             <md-content class="md-padding">

@@ -14,7 +14,8 @@ module.exports = function(app){
             res.json(result);
         });
     });*/
-
+    app.route('/api/:lang/topic')
+        .get(Question.getTopic)
     
     app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)

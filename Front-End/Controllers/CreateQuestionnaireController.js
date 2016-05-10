@@ -42,7 +42,28 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     });
             });
 
+    QuizService.getTopic($routeParams.lang)
+        .then(function(result){
+            console.log(result.data);
+            if(result.data != undefined) {
+                $scope.topics = result.data;
 
+            }
+        } ,function (err){
+            console.log(err);
+            $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+            alert = $mdDialog.alert()
+                .title($scope.error.getTitle())
+                .content($scope.error.getMessage())
+                .ok('Ok');
+            $mdDialog
+                .show( alert )
+                .finally(function() {
+                    alert = undefined;
+                });
+        });
+
+    $scope.questions_selected=[];
 
     $scope.quiz = {
         title: '',
@@ -51,7 +72,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         topic: undefined
     };
 
-    $scope.topics = ['Informatica', 'Storia', 'Italiano', 'Inglese', 'Matemtica', 'Logica', 'Fisica', 'Medicina', 'Filosofia'];
+
 
     $scope.getSelectedText = function() {
         if ($scope.quiz.topic !== undefined) {
@@ -63,6 +84,15 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                 return "Selected an argument";
         }
     };
+    
+    $scope.deleteQuestion=function(question){
+        $scope.questions_selected.push(question);
+        var idx = $scope.questions.indexOf(question);
+        if (idx > -1) {
+            $scope.questions.splice(idx, 1);
+        }
+    }
+    
 
     $scope.createQMLQuestion = function() {
         $location.path('/'+$routeParams.lang+'/QML');

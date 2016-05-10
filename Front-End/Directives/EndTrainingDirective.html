@@ -22,13 +22,16 @@
     <md-toolbar class="toolbar-section toolbar ">
       <div class="md-toolbar-tools">
         <span flex="" class="flex"></span>
-        <span>{{listOfKeys.chooseQuestionLang}} resoconto</span>
+        <span>{{listOfKeys.stopTraining}}</span>
         <span flex="" class="flex"></span>
       </div>
     </md-toolbar>
 
-  <div class="">
-    finito!!
-  </div>
+    <div class="center">
+      <h3> {{listOfKeys.resultOfTrainingLang}}:</h2>
+      <h1>{{training.getResult()}} / {{training.getNumberOfQuestionsAnswered()}}</h1>
+      <h3> {{listOfKeys.questions}}.</h2>
+      <canvas doughnutchart options="myChartOptionsDoughnut" data="myChartDataDoughnut" width="300" height="300"></canvas>
+    </div>
 
 </section>

@@ -27,6 +27,7 @@ function TrainingModeModel() {
     var keywords_ = keywords;
     var numberOfQuestions_ = numberOfQuestions;
     var rightAnswer_ = [];
+    var numOfRightAnswer = 0;
     var questions_ = [];
 
     // public functions
@@ -62,6 +63,11 @@ function TrainingModeModel() {
         return numberOfQuestions_ ;
     };
 
+    this.getNumberOfQuestionsAnswered = function () {
+      console.log(questions_.length);
+        return questions_.length;
+    };
+
     this.getQuestions = function () {
         return questions_;
     };
@@ -71,10 +77,19 @@ function TrainingModeModel() {
     };
 
     this.getResult = function () {
+      return numOfRightAnswer;
     };
 
     this.addQuestion = function(question){
       questions_.push(question);
+    };
+
+    this.addResult = function(result){
+      console.log(result);
+      if(result) {
+        numOfRightAnswer++;
+      }
+      console.log(numOfRightAnswer);
     };
 
     this.removeQuestion = function(question){

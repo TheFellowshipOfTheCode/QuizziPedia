@@ -196,6 +196,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
             alert = undefined;
         })
         .then(function() {
+          graphResultAfterFinishedATraining();
           $scope.traininIsFinished = true;
           window.onbeforeunload = null;
         });
@@ -211,10 +212,17 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Event to go back to the set up training*/
   var backToTheSetUpTraining = $rootScope.$on("backToTheSetUpTraining", function(event, args) {
+      graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;
       window.onbeforeunload = null;
   });
   $scope.$on('$destroy', backToTheSetUpTraining);
+
+  /*Event to go back to the set up training*/
+  var addResult = $rootScope.$on("addResult", function(event, args) {
+      $scope.training.addResult(args)
+  });
+  $scope.$on('$destroy', addResult);
 
   /*Private functions*/
 
@@ -243,6 +251,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       angular.element(".scrollable").scrollTop(0,0);
     }
     else {
+      graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;
       window.onbeforeunload = null;
     }
@@ -277,6 +286,25 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
                   alert = undefined;
               });
       });
+  }
+
+  function graphResultAfterFinishedATraining(){
+    $scope.myChartDataDoughnut = [
+          {
+              value: $scope.training.getResult(),
+              color: "#FDB45C",
+              label: $rootScope.listOfKeys.questionsRight
+          },
+          {
+              value : $scope.training.getNumberOfQuestionsAnswered() - $scope.training.getResult(),
+              color : "#F7464A",
+              label: $rootScope.listOfKeys.questionsWrong
+          }
+      ];
+      $scope.myChartOptionsDoughnut = {
+          egmentShowStroke : false,
+          animateScale : true
+      };
   }
 
 };

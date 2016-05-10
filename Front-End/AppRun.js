@@ -22,7 +22,7 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-var app = angular.module('QuizziPedia', ['ngRoute', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngCookies', 'angularCSS', 'ngDragDrop', 'angularNumberPicker' ]);
+var app = angular.module('QuizziPedia', ['ngRoute', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngCookies', 'angularCSS', 'ngDragDrop', 'angularNumberPicker','angles' ]);
 
 var InitialSetting = function ($mdThemingProvider) {
 

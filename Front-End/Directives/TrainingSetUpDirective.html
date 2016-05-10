@@ -43,7 +43,9 @@
       </div>
     </md-toolbar>
     <md-select class="topics" placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="selectedTopic" style="min-width: 200px;" ng-change="loadKeywords(selectedTopic.name); updateSelectedTopic(selectedTopic.name)">
+      <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
         <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
+      </md-optgroup>
     </md-select>
   </div>
   <div class="center-it md-whiteframe-1dp">

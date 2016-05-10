@@ -138,8 +138,8 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         partsOfQuestion.forEach(function(elem, index) {
           var answerCheckB= true;
           switch(elem.type) {
-            case "ordinamentoStringhe", "ordinamentoImmagini":
-                console.log("ordinamenti");
+            case "ordinamentoStringhe":
+            case "ordinamentoImmagini":
                 var answersCopy = elem.answers;
                 answersCopy.sort(function compare(a,b) {
                   if (a.position < b.position)
@@ -225,9 +225,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
         });
       }
-      else {
-       answerCheckA = false;
-      }
+      $rootScope.$emit("addResult", answerCheckA);
       console.log(answerCheckA);
       if($rootScope.userLogged != undefined) {
         QuestionsService.updateStatisticsUser($routeParams.lang,

@@ -39,7 +39,9 @@
     "angular-css": "1.0.8",
     "angular-dragdrop" : "*",
     "angular-number-picker" : "*",
-    "jquery-ui-touch-punch" : "*"
+    "jquery-ui-touch-punch" : "*",
+    "chartjs" : "*",
+    "angles" : "*"
 
   },
   "ignore": [

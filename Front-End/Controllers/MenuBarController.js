@@ -38,21 +38,27 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   }
 
   $scope.logIn = function () {
+    resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/login');
   };
   $scope.signUp = function () {
+    resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/signup');
   };
   $scope.goToUserPage = function () {
+    resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.goToUserManagementPage = function () {
+    resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.goToQuestionsManagementPage = function () {
+    resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.goToQuizManagementPage = function () {
+    resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.logOut = function () {
@@ -70,9 +76,14 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
           AuthService.logout($rootScope.userLogged.getUsername());
           delete $rootScope.userLogged;
           $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
+          resetRefreshBlocking();
           $location.path('/'+$routeParams.lang+'/home');
         });
   };
+
+  $scope.backToHome = function () {
+    resetRefreshBlocking();
+  }
 
   /*Variable for animations*/
   $scope.toggleLeft = buildDelayedToggler('left');
@@ -106,5 +117,9 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $mdSidenav(navID)
         .toggle();
     }
+  }
+
+  function resetRefreshBlocking () {
+    window.onbeforeunload = null;
   }
 }

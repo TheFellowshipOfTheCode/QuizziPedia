@@ -74,3 +74,7 @@
 .end-training {
   margin-top: 3em;
 }
+
+.select-container {
+  display: block;
+}

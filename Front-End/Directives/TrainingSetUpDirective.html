@@ -42,11 +42,16 @@
         <span flex="" class="flex"></span>
       </div>
     </md-toolbar>
-    <md-select class="topics" placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="selectedTopic" style="min-width: 200px;" ng-change="loadKeywords(selectedTopic.name); updateSelectedTopic(selectedTopic.name)">
-      <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-        <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
-      </md-optgroup>
-    </md-select>
+    <md-input-container class="select-container">
+      <md-select class="topics" name="myForm" placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="selectedTopic" ng-change="loadKeywords(selectedTopic.name); updateSelectedTopic(selectedTopic.name)">
+        <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+          <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
+        </md-optgroup>
+      </md-select>
+      <div class="errors topics" ng-messages="myForm.selectedTopic.$error" ng-if="problemWithTopic === true">
+        {{listOfKeys.genericObbligatoryFiled}}
+      </div>
+    </md-input-container>
   </div>
   <div class="center-it md-whiteframe-1dp">
     <md-toolbar class="toolbar-section toolbar">

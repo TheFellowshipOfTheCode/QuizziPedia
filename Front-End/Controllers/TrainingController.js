@@ -44,32 +44,41 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   });
   $scope.autocompleteDemoRequireMatch = true;
   $scope.selectedKeywords = [];
+  $scope.problemWithTopic = false;
+  $scope.stopToGoBack = false;
 
   /*Functions on scope*/
 
   /*Function to start the training*/
   $scope.starTraining = starTraining;
   function starTraining (argument, keywords) {
-    if($scope.iQ) {
-      $scope.numberOfQuestionsOnTraining = {
-        num: 0
+    $scope.stopToGoBack = true;
+    if($scope.selectedTopicOnMind != ""){
+      if($scope.iQ) {
+        $scope.numberOfQuestionsOnTraining = {
+          num: 0
+        };
+      }
+      var level = 500;
+      if($rootScope.userLogged != undefined) {
+        level = $rootScope.userLogged.getLevel();
+      }
+      $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
+      $rootScope.$emit("loadNewQuestion", {
+        language  : $routeParams.lang,
+        topic: $scope.training.getArgument(),
+        keywords : $scope.training.getKeywords(),
+        level  : level,
+        alreadyAnswered : [] }
+      );
+      window.onbeforeunload = function(event) {
+          return $rootScope.listOfKeys.areYouSureToLeaveTheTraining;
       };
     }
-    var level = 500;
-    if($rootScope.userLogged != undefined) {
-      level = $rootScope.userLogged.getLevel();
+    else {
+      $scope.problemWithTopic = true;
     }
-    $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
-    $rootScope.$emit("loadNewQuestion", {
-      language  : $routeParams.lang,
-      topic: $scope.training.getArgument(),
-      keywords : $scope.training.getKeywords(),
-      level  : level,
-      alreadyAnswered : [] }
-    );
-    window.onbeforeunload = function(event) {
-        return $rootScope.listOfKeys.areYouSureToLeaveTheTraining;
-    };
+    console.log($scope.problemWithTopic);
   };
 
   /*Function to set infinite question*/
@@ -116,6 +125,9 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.updateSelectedTopic= updateSelectedTopic;
   function updateSelectedTopic(topic) {
     $scope.selectedTopicOnMind = topic;
+    if(topic != undefined && topic != "") {
+      $scope.problemWithTopic = false;
+    }
   };
 
   /* Search for keywords */
@@ -176,6 +188,8 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       num: 1
     };
     $scope.iQ = false;
+    $scope.selectedTopicOnMind = "";
+    $scope.problemWithTopic = false;
     delete $scope.keywords;
     $scope.selectedKeywords = [];
     delete $chip;
@@ -196,6 +210,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
             alert = undefined;
         })
         .then(function() {
+          $scope.stopToGoBack = false;
           graphResultAfterFinishedATraining();
           $scope.traininIsFinished = true;
           window.onbeforeunload = null;
@@ -203,6 +218,13 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   }
 
   /*RootScope functions*/
+
+  $scope.$on('$locationChangeStart', function (event, next, current) {
+          if ($scope.stopToGoBack && !confirm($rootScope.listOfKeys.doYouWannaGoBakLang)) {
+              event.preventDefault();
+          }
+  });
+
 
   /*Event to save the current question in the TrainingModeModel*/
   var saveTheQuestion = $rootScope.$on("saveTheQuestion", function(event, question) {
@@ -212,6 +234,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Event to go back to the set up training*/
   var backToTheSetUpTraining = $rootScope.$on("backToTheSetUpTraining", function(event, args) {
+      $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;
       window.onbeforeunload = null;
@@ -251,6 +274,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       angular.element(".scrollable").scrollTop(0,0);
     }
     else {
+      $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;
       window.onbeforeunload = null;

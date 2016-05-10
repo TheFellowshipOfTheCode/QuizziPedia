@@ -133,19 +133,4 @@ footer ul  {
   justify-content: center;
   align-items: center;
   min-height: 15em;
-<<<<<<< HEAD:Front-End/css/main.css
-=======
-}
-
-.splash {
-  display: none;
-}
-
-[ng-cloak].splash {
-  background-color: #428bca;
-  width: 100%;
-  text-align: center;
-  color: white;
-  display: block !important;
->>>>>>> Visualizzazione:Front-End/css/main.css
 }

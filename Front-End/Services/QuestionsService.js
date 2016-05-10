@@ -17,10 +17,9 @@
 
 app.factory('QuestionsService', QuestionsService);
 
-AuthService.$inject = ['$http', '$cookies', '$q'];
+QuestionsService.$inject = ['$http', '$cookies', '$q'];
 
 function QuestionsService($http, $cookies, $q) {
-
     var methods = {
         sendQuestion: sendQuestion,
         getUsersQuestions: getUsersQuestions,
@@ -29,16 +28,16 @@ function QuestionsService($http, $cookies, $q) {
         getKeywords : getKeywords,
         getTopics : getTopics,
         updateStatisticsUser : updateStatisticsUser,
-        updateStatisticsQuestion : updateStatisticsQuestion
+        updateStatisticsQuestion : updateStatisticsQuestion,
+        uploadImage: uploadImage
     };
     return methods;
-
 
     function sendQuestion(question, lang, id) {
        // if(question == undefined) return; //errore?
         var deferred = $q.defer();
         if(id == undefined) {
-
+            console.log("q" + question);
             $http.post('/api/' + lang + '/userquestion', question)
                 .then(function (data) {
                     deferred.resolve(data);
@@ -72,6 +71,7 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getQuestion(questionId, lang) {
+        console.log(questionId);
         var deferred = $q.defer();
 
         $http.get('/api/'+ lang + '/userquestion/' + questionId)
@@ -84,16 +84,16 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getNextQuestion(lang, nextQuestion) {
-        var q = JSON.stringify(nextQuestion, null, "  ");
-        var deferred = $q.defer();
-        $http.post('/api/'+ lang + '/user/training/question', q)
-            .then(function(data) {
-                deferred.resolve(data);
-            }, function(error) {
-                deferred.reject(error);
-            });
-        return deferred.promise;
-    }
+            var q = JSON.stringify(nextQuestion, null, "  ");
+            var deferred = $q.defer();
+            $http.post('/api/'+ lang + '/user/training/question', q)
+                .then(function(data) {
+                    deferred.resolve(data);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        }
 
     function getKeywords(lang,topic) {
         var deferred = $q.defer();
@@ -137,6 +137,16 @@ function QuestionsService($http, $cookies, $q) {
                 deferred.reject(error);
             });
         return deferred.promise;
+    }
+
+
+    function uploadImage (image) {
+        var formData = new FormData();
+        formData.append("file", image);
+        return $http.post('/api/upload', formData, {
+            headers: {'Content-Type': undefined},
+            transformRequest: angular.identity
+        });
     }
 
 }

@@ -88,7 +88,124 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
-      .when('/:lang/training', {
+        .when('/:lang/createquestionnaireview', {
+            templateUrl: '/Views/CreateQuestionnaireView.html',
+            controller:"CreateQuestionnaireController",
+            css: [
+                {
+                    href: 'css/auth-main.css'
+                },
+                {
+                    href: 'css/auth-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/auth-small.css'
+                }
+            ]
+        })
+        .when('/:lang/QML', {
+            templateUrl: '/Views/EditorQMLView.html',
+            controller:"EditorQMLController",
+            css: [
+                {
+                    href: 'css/create-questionmain.css'
+                },
+                {
+                    href: 'css/create-question-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/create-question-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
+        .when('/:lang/questionnairemanagementview', {
+            templateUrl: '/Views/QuestionnaireManagementView.html',
+            controller: "QuestionnaireManagementController",
+            css: [
+                {
+                    href: 'css/auth-main.css'
+                },
+                {
+                    href: 'css/auth-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/auth-small.css'
+                }
+            ]
+        })
+        .when('/:lang/QML/:idQuestion', {
+            templateUrl: '/Views/EditorQMLView.html',
+            controller:"EditorQMLController",
+            css: [
+                {
+                    href: 'css/create-question-main.css'
+                },
+
+                {
+                    href: 'css/create-question-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/create-question-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
+        .when('/:lang/showallcreatedquestionnairesview', {
+            templateUrl: '/Views/ShowAllCreatedQuestionnairesView.html',
+            controller: "ShowAllCreatedQuestionnairesController",
+            css: [
+                {
+                    href: 'css/auth-main.css'
+                },
+                {
+                    href: 'css/auth-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/auth-small.css'
+                }
+            ]
+        })
+        .when('/:lang/wizard', {
+            templateUrl: '/Views/CreateWithWizardView.html',
+            controller:"",
+            css: [
+                {
+                    href: 'css/create-question-main.css'
+                },
+                {
+                    href: 'css/create-question-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/create-question-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
+        .when('/:lang/questions', {
+            templateUrl: '/Views/QuestionsManagementView.html',
+            controller: "QuestionsManagementController",
+            css: [
+                {
+                    href: 'css/create-question-main.css'
+                },
+                {
+                    href: 'css/create-question-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/create-question-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
+        .when('/:lang/training', {
         templateUrl: '/Views/TrainingView.html',
         controller:"TrainingController",
         css: [
@@ -118,7 +235,9 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
       })
       .otherwise({
         redirectTo: '/it/home'
-      });
-  };
+      })
+    }
+
+
 
 app.config(AppRouter);

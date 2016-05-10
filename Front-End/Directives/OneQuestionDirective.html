@@ -18,19 +18,65 @@
 *******************************************************************************/
 -->
 
-<section id="modifyQuestionTitle" ng-repeat="q in questions" class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
-    <md-toolbar class="md-primary home-toolbar">
-        <div class="text-center">
-            <h3 class="ng-binding">Domanda creata con: {{q.makeWith}}</h3>
-        </div>
+<md-toolbar class="modifyQuestionTitle toolbar-section toolbar-top">
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Ci sono {{questions.length}}
+        <span ng-if="questions.length==1"> domanda. </span>
+        <span ng-if="questions.length>1"> domande. </span>
+      </span>
+    </h2>
+    <span flex=""></span>
+    <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <span> Page {{currentPage+1}} of {{numberOfPages(questions.length)}}</span>
+  </div>
+</md-toolbar>
+
+<section class="modifyQuestionTitle md-whiteframe-1dp" ng-repeat="q in questions | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
+
+  <md-toolbar class="toolbar-section">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>{{$index+1+pageSize*currentPage}}) Domanda creata con {{q.makeWith}}</span>
+        </h2>
+        <span flex=""></span>
+        <md-button class="md-raised" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
+          {{listOfKeys.modifyButtonOneQuestion}}
+        </md-button>
+      </div>
     </md-toolbar>
-    <div class="text-center" class="md-padding">
-        <p><h3>Tipologia della domanda: </h3>{{q.question[0].type}}</p>
-        <p class="text-center"><h3>Testo della domanda:</h3> {{q.question[0].questionText}}</p>
-        <div id="modifyQuestionButton" class="button-go-to-training layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
-            <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
-                <span>{{listOfKeys.modifyButtonOneQuestion}}</span>
-            </button>
-        </div>
+
+    <!-- <md-toolbar class="md-tollbar-tools toolbar-section">
+        <span>
+            <h3 class="ng-binding">Domanda creata con: {{q.makeWith}}</h3>
+        </span>
+        <md-button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
+            <span>{{listOfKeys.modifyButtonOneQuestion}}</span>
+        </md-button>
+    </md-toolbar> -->
+
+    <div class="md-padding">
+      <ul>
+        <li ng-repeat="d in q.question" ng-switch on="d.type" class="md-whiteframe-1dp li-question" ng-class-odd="'odd'" ng-class-even="'even'">
+          <p class="question-type">Tipologia della domanda: {{d.type}}</p>
+          <p class="inline-text">Testo della domanda:</p>
+          <div class="inline-text" ng-switch-when="veroFalso"> <true-false-answer-preview-directive></true-false-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="rispostaMultipla"> <multiple-choice-answer-preview-directive></multiple-choice-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="collegamento"> <linking-answer-preview-directive></linking-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="ordinamentoStringhe"> <sort-text-answer-preview-directive></sort-text-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="ordinamentoImmagini">  <sort-images-answer-preview-directive></sort-images-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="spaziVuoti"> <empty-space-answer-preview-directive></empty-space-answer-preview-directive> </div>
+        </li>
+      </ul>
     </div>
 </section>
+
+<md-toolbar class="modifyQuestionTitle toolbar-section toolbar-bottom">
+  <div class="md-toolbar-tools">
+    <span flex=""></span>
+    <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <span> Page {{currentPage+1}} of {{numberOfPages(questions.length)}}</span>
+  </div>
+</md-toolbar>

@@ -20,6 +20,15 @@
 
 
 <div id="newQuestionButtons" class="text-center" class="md-padding">
-    <md-button class="md-button md-raised md-primary" ng-href="" ng-click="goToWizardCreation()" target="_blank">{{listOfKeys.creationWizard}}</md-button>
-    <md-button class="md-button md-raised md-primary" ng-href="" ng-click="goToQMLCreation()" target="_blank">{{listOfKeys.creationQML}}</md-button>
+    <md-toolbar class="modifyQuestionTitle toolbar-section toolbar-bottom">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Crea una nuova domanda
+          </span>
+        </h2>
+        <span flex=""></span>
+        <md-button class="md-button md-raised md-primary" ng-href="" ng-click="goToWizardCreation()" target="_blank">{{listOfKeys.creationWizard}}</md-button>
+        <md-button class="md-button md-raised md-primary" ng-href="" ng-click="goToQMLCreation()" target="_blank">{{listOfKeys.creationQML}}</md-button>
+      </div>
+    </md-toolbar>
 </div>

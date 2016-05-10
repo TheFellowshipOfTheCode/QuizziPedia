@@ -46,6 +46,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.selectedKeywords = [];
   $scope.problemWithTopic = false;
   $scope.stopToGoBack = false;
+  $scope.temporaryLevel = 500;
 
   /*Functions on scope*/
 
@@ -59,9 +60,12 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
           num: 0
         };
       }
-      var level = 500;
+      var level;
       if($rootScope.userLogged != undefined) {
         level = $rootScope.userLogged.getLevel();
+      }
+      else {
+        level = $scope.temporaryLevel;
       }
       $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
       $rootScope.$emit("loadNewQuestion", {
@@ -259,9 +263,12 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     );
     if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
     {
-      var level = 500;
+      var level;
       if($rootScope.userLogged != undefined) {
         level = $rootScope.userLogged.getLevel();
+      }
+      else {
+        level = $scope.temporaryLevel;
       }
       $rootScope.$emit("loadNewQuestion", {
         language  : $routeParams.lang,

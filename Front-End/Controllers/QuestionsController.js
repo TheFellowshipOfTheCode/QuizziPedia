@@ -49,7 +49,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
   var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args) {
-    checkAnswer($scope.question, $scope.objAnswer, args.topic);
+    checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
     $scope.objAnswer=[];
     delete $scope.question;
     downloadNextQuestionTraining(args);
@@ -57,8 +57,8 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   $scope.$on('$destroy', loadNewQuestion);
 
   /*Function used to load new question*/
-  var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, args) {
-    checkAnswer($scope.question, $scope.objAnswer, args.topic);
+  var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, args, level) {
+    checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
   });
   $scope.$on('$destroy', checkAnswerEvent);
 
@@ -136,7 +136,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   }
 
   /*Function to check the given answers*/
-  function checkAnswer(question, answersGiven, topic) {
+  function checkAnswer(question, answersGiven, topic, level) {
     if(question != undefined) {
       if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
         var partsOfQuestion = question.getQuestion();

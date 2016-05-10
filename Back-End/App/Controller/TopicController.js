@@ -25,20 +25,30 @@ exports.getNextQuestion = function(req, res) {
         return res.status(500).json({code:741, title: "getNextQuestionError", message: "Nessun argomento inserito"});
     }
     else {
-        Topic.findTopicByName(req.body.topic, function (err, topic) {
+        Topic.findTopicByName(req.body.topic, function(err,topic){
             if (err)
-                return res.status(500).json({code: 757, title: "getNextQuestionError", message: "error"});
+                return res.status(500).json({code:721, title: "getNextQuestionError", message: "error"});
             else
-                Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function (err, question) {
+                Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function(err,question){
                     if (err)
-                        return res.status(500).json({code: 757, title: "getNextQuestionError", message: "error"});
+                        return res.status(500).json({code:766, title: "getNextQuestionError", message: "error"});
                     else {
+                        var equalKeywords = 0;
                         if (question) {
-                            console.log(count);
-                            count = 0;
-                            return res.send(question);
+                            question.keywords.forEach(function (k1) {
+                                req.body.keywords.forEach(function (k2) {
+                                    if (k1 == k2) {
+                                        equalKeywords++;
+                                    }
+                                });
+                            });
+                            if (req.body.keywords.length==equalKeywords || req.body.keywords.length==0) {
+                                console.log(count);
+                                count = 0;
+                                return res.send(question);
+                            }
                         }
-                        else {
+                        if(!question || req.body.keywords.length!=equalKeywords) {
                             if (req.body.alreadyAnswered.length == topic.question.length)
                                 return res.status(500).json({
                                     code: 845,

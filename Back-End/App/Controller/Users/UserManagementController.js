@@ -36,15 +36,17 @@ exports.updateStatisticUser = function(req, res) {
                                 title: "Errore",
                                 message: "Contatore risposte corrette non aggiornato"
                             });
-                        return res.send({
-                            code: 250,
-                            title: "Ok",
-                            message: "Statistiche utente aggiornate correttamente"
+                        userLevel.statistics.forEach(function(stat){
+                            if(stat.topicName==req.body.topic)
+                                res.send({userLevel: stat.topicLevel});
                         });
                     })
                 }
-                else
-                    return res.send({code: 250, title: "Ok", message: "Statistiche utente aggiornate correttamente"});
+                else {
+                    userLevel.statistics.forEach(function(stat){
+                        if(stat.topicName==req.body.topic)
+                            res.send({userLevel: stat.topicLevel});
+                    });                }
             })
         })
     }

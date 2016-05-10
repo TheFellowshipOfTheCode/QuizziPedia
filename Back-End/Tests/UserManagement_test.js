@@ -63,9 +63,9 @@ describe("Update Statistics Test", function(){
                 language: "it",
                 userId: "57275c6b008cdfb81994ba2a",
                 userLevel: "",
-                topic: "Patente",
+                topic: "Religione",
                 difficultyLevel: 500,
-                isCorrected: true
+                isCorrected: false
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

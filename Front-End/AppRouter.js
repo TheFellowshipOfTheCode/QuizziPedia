@@ -109,7 +109,8 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"EditorQMLController",
             css: [
                 {
-                    href: 'css/create-questionmain.css'
+
+                    href: 'css/create-question-main.css'
                 },
                 {
                     href: 'css/create-question-medium.css',
@@ -142,6 +143,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller:"EditorQMLController",
             css: [
                 {
+
                     href: 'css/create-question-main.css'
                 },
 
@@ -193,6 +195,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller: "QuestionsManagementController",
             css: [
                 {
+
                     href: 'css/create-question-main.css'
                 },
                 {
@@ -205,6 +208,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                 }
             ]
         })
+
         .when('/:lang/training', {
         templateUrl: '/Views/TrainingView.html',
         controller:"TrainingController",
@@ -233,6 +237,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
+
       .otherwise({
         redirectTo: '/it/home'
       })

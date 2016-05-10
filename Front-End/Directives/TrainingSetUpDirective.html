@@ -45,7 +45,7 @@
     <md-input-container class="select-container">
       <md-select class="topics" name="myForm" placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="selectedTopic" ng-change="loadKeywords(selectedTopic.name); updateSelectedTopic(selectedTopic.name)">
         <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-          <md-option ng-value="topic" ng-repeat="topic in topics track by $index">{{topic.name}}</md-option>
+          <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
         </md-optgroup>
       </md-select>
       <div class="errors topics" ng-messages="myForm.selectedTopic.$error" ng-if="problemWithTopic === true">

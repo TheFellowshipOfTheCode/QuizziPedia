@@ -37,6 +37,7 @@ var questionSchema = new mongoose.Schema({
     correctAnswers: {type:Number, default: 0},
 });
 
+
 questionSchema.plugin(random);
 
 questionSchema.statics.createQuestion=function(author,question, callback){

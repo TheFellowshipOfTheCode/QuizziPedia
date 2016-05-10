@@ -18,6 +18,7 @@ button, html, input, select, textarea {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
+
 .logo > img {
   height: 150px;
   width: auto;
@@ -122,7 +123,8 @@ footer ul  {
 
 .madeBy {
   padding-top: 1em;
-  padding-bottom: : 0.5em;
+
+  padding-bottom: 0.5em;
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: gray;
@@ -134,3 +136,4 @@ footer ul  {
   align-items: center;
   min-height: 15em;
 }
+

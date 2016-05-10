@@ -54,13 +54,13 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.goToQuestionsManagementPage = function () {
-    resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/questions');
+    $location.path('/'+$routeParams.lang+'/questions'); 
   };
   $scope.goToQuizManagementPage = function () {
     resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/questionnairemanagementview'); // da completare
   };
+
   $scope.logOut = function () {
     alert = $mdDialog.confirm()
         .title($rootScope.listOfKeys.logOut)

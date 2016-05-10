@@ -4,8 +4,10 @@ var Question = require("../Controller/QuestionController");
 module.exports = function(app){
     // API
     
-    app.route('/api/:lang/topic')
+    app.route('/api/:lang/topics')
         .get(Question.getTopic)
+
+   
 
     app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)
@@ -23,6 +25,7 @@ module.exports = function(app){
 
     app.route('/api/:lang/allquestions/:topicname/:keywords')
         .get(Question.getAllQuestions);
+
 
     app.route('/api/:lang/user/training/question')
         .post(Topic.getNextQuestion);

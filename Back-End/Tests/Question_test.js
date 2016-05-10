@@ -35,21 +35,7 @@ describe("Get All Questions Test", function () {
 })
 
 
-describe("Get Questions Test", function(){
-    it("should get questions of an user", function(done){
-        agent
-            .get('/api/:lang/userquestion')
-            .expect('Content-Type', /json/)
-            .end(function(err,res){
-                if (!err && res.status == 200){
-                    res.status.should.equal(200);
-                }
-                else
-                    res.status.should.equal(500);
-                done()
-            });
-    })
-});
+
 
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
@@ -89,7 +75,7 @@ describe("Create Question Test", function(){
                     }],
                 }],
             })
-            .end(function(err,res){
+            .end(function(err,res){ 
                 if (!err && res.status == 200){
                     res.body.message.should.equal("Domanda creata correttamente");
                 }
@@ -228,3 +214,29 @@ describe("View Keywords Test", function(){
             })
     })
 });
+
+
+
+
+describe("Update Statistics Question Test", function(){
+    it("should update statistics  question", function(done){
+        agent
+            .put('/api/:lang/usertraining/questionstatistics')
+            .send({
+                questionId : '572901e8d04ef5c044faa243',
+                userLevel: 450,
+                IsCorrected : true,
+            })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    res.body.message.should.equal("Statistiche domande aggiornate correttamente");
+                }
+                else
+                    res.status.should.equal(500);
+                done()
+            })
+
+
+    })
+});
+

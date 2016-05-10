@@ -274,6 +274,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       angular.element(".scrollable").scrollTop(0,0);
     }
     else {
+      $rootScope.$emit("checkAnswerEvent",$scope.training.getArgument());
       $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;

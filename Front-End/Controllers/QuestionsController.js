@@ -56,6 +56,12 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   });
   $scope.$on('$destroy', loadNewQuestion);
 
+  /*Function used to load new question*/
+  var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, args) {
+    checkAnswer($scope.question, $scope.objAnswer, args.topic);
+  });
+  $scope.$on('$destroy', checkAnswerEvent);
+
   /*Private question*/
 
   /*Function to download the new question of the training mode*/

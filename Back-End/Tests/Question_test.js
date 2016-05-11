@@ -57,20 +57,126 @@ describe("Create Question Test", function(){
             .post('/api/:lang/userquestion')
             .send({
                 makeWith: "qml",
-                language: "ita",
-                question: [{
-                    type: "VF",
-                    questionText: "ciao",
-                    image: "",
-                    answers: [{
-                        text:"ciao",
-                        url:"",
-                        attributesForTForMultiple:{
-                            isItRight:true
-                        }
-                    }]
-                }],
-                topic: "Geografia"
+                language: "it",
+                question: [
+                    {
+                        type: "ordinamentoImmagini",
+                        questionText: "Questi super eroi hanno un nome. Ordina le immagini in modo da poter mettere i super erori in ordine alfabetico.",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                url: "/Images/domandeOrdinamentoImmagini/D4_1.jpg",
+                                position: 1
+                            },
+                            {
+                                url: "/Images/domandeOrdinamentoImmagini/D4_2.png",
+                                position: 2
+                            }
+                        ]
+                    },
+                    {
+                        type: "spaziVuoti",
+                        questionText: "Giulio Cesare era un console dei dinosauri .",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                parolaNumero: 4
+                            },
+                            {
+                                parolaNumero: 1
+                            }
+                        ]
+                    },
+                    {
+                        type: "ordinamentoStringhe",
+                        questionText: "Ordina questi numeri in modo decrescente.",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                text: "1",
+                                position: 4
+                            },
+                            {
+                                text: "2",
+                                position: 3
+                            },
+                            {
+                                text: "7",
+                                position: 2
+                            },
+                            {
+                                text: "9",
+                                position: 1
+                            }
+                        ]
+                    },
+                    {
+                        type: "collegamento",
+                        image: "/Images/veroFalso/prova.png",
+                        questionText: "Unisci questi nemici storici.",
+                        answers: [
+                            {
+                                text1: "cane",
+                                text2: "gatto"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_2.jpg",
+                                text2: "olio"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_1.jpg",
+                                url2: "/Images/collegamento/D2_5.png"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_2.jpg",
+                                text2: "olio"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_1.jpg",
+                                url2: "/Images/collegamento/D2_5.png"
+                            }
+                        ]
+                    },
+                    {
+                        type: "veroFalso",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                text: "In Inghilterra la guida è destra.",
+                                isItRight: false
+                            }
+                        ]
+                    },
+                    {
+                        type: "rispostaMultipla",
+                        questionText: "Quali di questi numeri è pari?",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                text: "1",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: false
+                            },
+                            {
+                                text: "2",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: true
+                            },
+                            {
+                                text: "7",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: false
+                            },
+                            {
+                                text: "9",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: false
+                            }
+                        ]
+                    }
+                ],
+                keywords: ["Cane", "Gatto"],
+                topic: "Animali"
             })
             .end(function(err,res){ 
                 if (!err && res.status == 200){
@@ -140,7 +246,7 @@ describe("Update Statistics Question Test", function(){
 
     })
 });
-
+*/
 describe("View NextQuestion Test", function(){
     it("should view the next question of a training", function(done){
         this.timeout(15000);
@@ -169,7 +275,7 @@ describe("View NextQuestion Test", function(){
             })
     })
 });
-
+/*
 describe("View Topics Test", function(){
     it("should view topics", function(done){
         agent

@@ -53,7 +53,6 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 }
 
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
-    console.log("model")
     return this.find({ author: author}, callback);
 }
 
@@ -63,7 +62,7 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 
 quizSchema.statics.getQuiz=function(quizId,callback){
     return this.findOne({'_id':quizId},'title questions active',function (err, quiz){
-        if (!quiz.active){
+        if (quiz.active){
             var questions_quiz=[];
             quiz.questions.forEach(function(elem) {
                     Question.getQuestion(elem,function(err,question){

@@ -85,14 +85,21 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         }
     };
     
-    $scope.deleteQuestion=function(question){
+    $scope.addQuestion=function(question){
         $scope.questions_selected.push(question);
         var idx = $scope.questions.indexOf(question);
         if (idx > -1) {
             $scope.questions.splice(idx, 1);
         }
     }
-    
+
+    $scope.deleteQuestion=function(question){
+        $scope.questions.push(question);
+        var idx = $scope.questions_selected.indexOf(question);
+        if (idx > -1) {
+            $scope.questions_selected.splice(idx, 1);
+        }
+    }
 
     $scope.createQMLQuestion = function() {
         $location.path('/'+$routeParams.lang+'/QML');

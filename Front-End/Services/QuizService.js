@@ -32,7 +32,7 @@ function QuizService($http, $cookies, $q) {
 
     function getTopic(lang) {
         var deferred = $q.defer();
-        $http.get('/api/' + lang + '/topic')
+        $http.get('/api/' + lang + '/topics')
             .then(function(topic) {
                 deferred.resolve(topic);
             }, function(error){

@@ -61,7 +61,6 @@ questionSchema.statics.editQuestion=function(question,callback){
 
 questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,callback){
     this.findOne({_id:questionId}, function(err,question){
-        console.log(userLevel)
         if(err){
             return next(err);
         }
@@ -119,7 +118,6 @@ questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,cal
         else{
             // caso in cui la domanda sia più facile dell'abilità  dell'utente
             var scarto = userLevel - oldDifficult;
-            console.log(scarto)
             if(isCorrected == true){
                 if(scarto > 90){
                     question.level = oldDifficult - 1;

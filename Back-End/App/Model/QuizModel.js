@@ -58,7 +58,7 @@ quizSchema.statics.getPersonalQuizzes = function(author, callback) {
 }
 
 quizSchema.statics.searchQuiz=function(tosearch, callback){
-    return this.find({'title':  new RegExp(tosearch, "i") }, callback);
+    return this.find({'title':  new RegExp(tosearch, "i") },'title', callback);
 };
 
 quizSchema.statics.getQuiz=function(quizId,callback){

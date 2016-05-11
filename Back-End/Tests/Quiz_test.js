@@ -19,7 +19,7 @@ describe("Signin Test", function () {
             });
     });
 })
-
+/*
 describe("Get topic Test", function() {
     it("should return topic", function (done) {
         agent
@@ -33,8 +33,8 @@ describe("Get topic Test", function() {
             })
     })
 });
-
-
+*/
+/*
 describe("Quiz tests", function() {
     it("should create a quiz", function (done) {
         agent
@@ -74,12 +74,11 @@ describe("Quiz tests", function() {
             })
     })
 })
-
+*/
 describe("Search Quiz Test", function () {
-    it("should return questions Test", function (done) {
+    it("should return quiz Test", function (done) {
         agent
-            .post('/api/it/searchquiz')
-            .send({tosearch:'ciao'})
+            .get('/api/it/searchquiz/PHP')
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     console.log(res.body);

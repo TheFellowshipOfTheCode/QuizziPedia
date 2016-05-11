@@ -27,7 +27,7 @@ exports.getQuiz = function (req, res, next) {
 }
 
 exports.searchQuiz=function(req, res, next) {
-    Quiz.searchQuiz(req.params.keyword, function(err, quiz){
+    Quiz.searchQuiz(req.params.keyword, function(err, quiz){ console.log(req.params.keyword)
         if(err) return res.status(500).json({code:88, title: "Errore Quiz", message: "Nessuna quiz trovato"});
         else return res.send(quiz);
     })
@@ -79,10 +79,6 @@ exports.addActiveUser = function (req, res, next) {
 }
 
 exports.updateStatistic = function (req, res, next) {
-
-}
-
-exports.searchQuiz = function (req, res, next) {
 
 }
 

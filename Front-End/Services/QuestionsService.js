@@ -29,7 +29,8 @@ function QuestionsService($http, $cookies, $q) {
         getTopics : getTopics,
         updateStatisticsUser : updateStatisticsUser,
         updateStatisticsQuestion : updateStatisticsQuestion,
-        uploadImage: uploadImage
+        uploadImage: uploadImage,
+        updateStatisticsTopic : updateStatisticsTopic
     };
     return methods;
 
@@ -130,6 +131,18 @@ function QuestionsService($http, $cookies, $q) {
         return deferred.promise;
     }
 
+    function updateStatisticsTopic(lang, updateTheStatistics) {
+      console.log(updateTheStatistics);
+        var deferred = $q.defer();
+        $http.put('/api/'+ lang + '/topic/statistics', updateTheStatistics)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
     function  updateStatisticsQuestion(lang, updateTheStatistics) {
       console.log(updateTheStatistics);
       console.log("entro staistics question ");
@@ -156,5 +169,6 @@ function QuestionsService($http, $cookies, $q) {
             transformRequest: angular.identity
         });
     }
+
 
 }

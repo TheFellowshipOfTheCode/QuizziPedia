@@ -116,6 +116,8 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
           });
 
+          list2 = Utils.shuffle(list2);
+
           $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
 
           if(elemA.type == "spaziVuoti") {
@@ -334,6 +336,19 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
       .then(function(result){
         console.log(result);
       });
+
+      QuestionsService.updateStatisticsTopic($routeParams.lang,
+        {
+            language: $routeParams.lang,
+            topic: topic,
+            isCorrected: answerCheckA
+        }
+      )
+      .then(function(result){
+        console.log(result);
+      });
+
+
     }
   }
 

@@ -65,6 +65,9 @@ exports.updatestatisticsQuestion = function(req, res) {
                     return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
                 })
             }
+            else
+                return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
+            
         })
     })
 }

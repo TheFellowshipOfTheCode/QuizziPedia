@@ -72,47 +72,47 @@ questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,cal
             var scarto = oldDifficult - userLevel;
             if(isCorrected == true){
                 if(scarto > 90){
-                    question.level = oldDifficult + 11;
+                    question.level = oldDifficult + 21;
                 }else if(scarto > 80){
-                    question.level = oldDifficult + 10;
+                    question.level = oldDifficult + 20;
                 }else if(scarto > 70){
-                    question.level = oldDifficult + 9;
+                    question.level = oldDifficult + 19;
                 }else if(scarto > 60){
-                    question.level = oldDifficult + 8;
+                    question.level = oldDifficult + 18;
                 }else if(scarto > 50){
-                    question.level = oldDifficult + 7;
+                    question.level = oldDifficult + 17;
                 }else if(scarto > 40){
-                    question.level = oldDifficult + 6;
+                    question.level = oldDifficult + 16;
                 }else if(scarto > 30){
-                    question.level = oldDifficult + 5;
+                    question.level = oldDifficult + 15;
                 }else if(scarto > 20){
-                    question.level = oldDifficult + 4;
+                    question.level = oldDifficult + 14;
                 }else if(scarto > 10){
-                    question.level = oldDifficult + 3;
+                    question.level = oldDifficult + 13;
                 }else if(scarto > 0){
-                    question.level = oldDifficult + 2;
+                    question.level = oldDifficult + 12;
                 }
             } else{
                 if(scarto > 90){
-                    question.level = oldDifficult - 2;
+                    question.level = oldDifficult - 1;
                 }else if(scarto > 80){
-                    question.level = oldDifficult - 3;
+                    question.level = oldDifficult - 2;
                 }else if(scarto > 70){
-                    question.level = oldDifficult - 4;
+                    question.level = oldDifficult - 3;
                 }else if(scarto > 60){
-                    question.level = oldDifficult - 5;
+                    question.level = oldDifficult - 4;
                 }else if(scarto > 50){
-                    question.level = oldDifficult - 6;
+                    question.level = oldDifficult - 5;
                 }else if(scarto > 40){
-                    question.level = oldDifficult - 7;
+                    question.level = oldDifficult - 6;
                 }else if(scarto > 30){
-                    question.level = oldDifficult - 8;
+                    question.level = oldDifficult - 7;
                 }else if(scarto > 20){
-                    question.level = oldDifficult - 9;
+                    question.level = oldDifficult - 8;
                 }else if(scarto > 10){
-                    question.level = oldDifficult - 10;
+                    question.level = oldDifficult - 9;
                 }else if(scarto > 0){
-                    question.level = oldDifficult - 11;
+                    question.level = oldDifficult - 10;
                 }
             }
         }
@@ -122,51 +122,51 @@ questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,cal
             console.log(scarto)
             if(isCorrected == true){
                 if(scarto > 90){
-                    question.level = oldDifficult - 2;
-                }else if(scarto > 80){
-                    question.level = oldDifficult - 3;
-                }else if(scarto > 70){
-                    question.level = oldDifficult - 4;
-                }else if(scarto > 60){
-                    question.level = oldDifficult - 5;
-                }else if(scarto > 50){
-                    question.level = oldDifficult - 6;
-                }else if(scarto > 40){
-                    question.level = oldDifficult - 7;
-                }else if(scarto > 30){
-                    question.level = oldDifficult - 8;
-                }else if(scarto > 20){
-                    question.level = oldDifficult - 9;
-                }else if(scarto > 10){
-                    question.level = oldDifficult - 10;
-                }else if(scarto > 0){
-                    question.level = oldDifficult - 11;
-                }else if(scarto == 0){
                     question.level = oldDifficult - 1;
+                }else if(scarto > 80){
+                    question.level = oldDifficult - 2;
+                }else if(scarto > 70){
+                    question.level = oldDifficult - 3;
+                }else if(scarto > 60){
+                    question.level = oldDifficult - 4;
+                }else if(scarto > 50){
+                    question.level = oldDifficult - 5;
+                }else if(scarto > 40){
+                    question.level = oldDifficult - 6;
+                }else if(scarto > 30){
+                    question.level = oldDifficult - 7;
+                }else if(scarto > 20){
+                    question.level = oldDifficult - 8;
+                }else if(scarto > 10){
+                    question.level = oldDifficult - 9;
+                }else if(scarto > 0){
+                    question.level = oldDifficult - 10;
+                }else if(scarto == 0){
+                    question.level = oldDifficult - 11;
                 }
             } else{
                 if(scarto > 90){
-                    question.level = oldDifficult + 11;
+                    question.level = oldDifficult + 21;
                 }else if(scarto > 80){
-                    question.level = oldDifficult + 10;
+                    question.level = oldDifficult + 20;
                 }else if(scarto > 70){
-                    question.level = oldDifficult + 9;
+                    question.level = oldDifficult + 19;
                 }else if(scarto > 60){
-                    question.level = oldDifficult + 8;
+                    question.level = oldDifficult + 18;
                 }else if(scarto > 50){
-                    question.level = oldDifficult + 7;
+                    question.level = oldDifficult + 17;
                 }else if(scarto > 40){
-                    question.level = oldDifficult + 6;
+                    question.level = oldDifficult + 16;
                 }else if(scarto > 30){
-                    question.level = oldDifficult + 5;
+                    question.level = oldDifficult + 15;
                 }else if(scarto > 20){
-                    question.level = oldDifficult + 4;
+                    question.level = oldDifficult + 14;
                 }else if(scarto > 10){
-                    question.level = oldDifficult + 3;
+                    question.level = oldDifficult + 13;
                 }else if(scarto > 0){
-                    question.level = oldDifficult + 2;
+                    question.level = oldDifficult + 12;
                 }else if(scarto == 0){
-                    question.level = oldDifficult + 1;
+                    question.level = oldDifficult + 11;
                 }
             }
         }

@@ -86,8 +86,8 @@ describe("Update Statistics Test", function(){
                 userId: "57275c6b008cdfb81994ba2a",
                 userLevel: "",
                 topic: "Religione",
-                difficultyLevel: 500,
-                isCorrected: true
+                difficultyLevel: 555,
+                isCorrected: false
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

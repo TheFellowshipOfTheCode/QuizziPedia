@@ -114,8 +114,11 @@ exports.updateStatisticTopic = function(req, res) {
                         title: "Errore",
                         message: "Contatore risposte corrette non aggiornato"
                     });
+                return res.send({code:100, title: "Ok", message: "Statistiche argomento aggiornate correttamente"});
             })
         }
+        else
+            return res.send({code:100, title: "Ok", message: "Statistiche argomento aggiornate correttamente"});
     })
 };
 

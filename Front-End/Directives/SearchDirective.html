@@ -23,7 +23,7 @@
 *******************************************************************************/
 -->
 
-<div class="input-group search-group">
+<div class="input-group search-group" ng-controller="HomeController">
   <input type="text" class="form-control" id="lookingfor" name="lookingfor" placeholder="{{listOfKeys.searchFor}}">
   <span class="input-group-btn">
     <button class="btn btn-default" ng-click="search()" type="button">{{listOfKeys.makeSearch}}</button>

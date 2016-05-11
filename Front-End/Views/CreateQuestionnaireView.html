@@ -66,13 +66,13 @@
                                <md-item ng-repeat="question_selected in questions_selected" >
                                     <md-item-content >
                                         <div layout="row" layout-align="space-around center">
-                                            <div class="md-list-item-text" >
+                                            <md-input-container >
                                                 <h3>{{question_selected.question[0].type}}</h3>
                                                 <h4>{{question_selected.question[0].questionText}}</h4>
-                                            </div>
-                                            <div class="md-list-item-text" >
+                                            </md-input-container>
+                                            <md-input-container >
                                                 <md-button class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
-                                            </div>
+                                            </md-input-container>
                                         </div>
                                     </md-item-content>
                                     <md-divider md-inset></md-divider>
@@ -85,21 +85,24 @@
                         <md-tab label="Ricerca Domande" >
                             <div layout="row" layout-align="center center">
                             <md-content class="md-padding" flex="100">
-                                <md-input-container class="md-block" >
-                                    <label>Search</label>
-                                    <input ng-model="search">
-                                </md-input-container>
-                                <br/>
+                                <div layout="row" layout-align="space-around center">
+                                    <md-input-container flex="80" >
+                                        <label>Search</label>
+                                        <input ng-model="search.keyword">
+                                    </md-input-container>
+                                    <md-input-container  >
+                                        <md-checkbox ng-model="search.yours">Yours</md-checkbox>
+                                    </md-input-container>
+                                </div>
 
-                                <md-checkbox ng-model="ctrl.noCache">Yours</md-checkbox>
                                     <md-list>
                                         <md-list-item class="md-3-line" ng-repeat="question in questions | filter:search">
                                                 <div layout="row" layout-align="space-around center">
-                                                    <div class="md-list-item-text" >
+                                                    <div  flex="80" >
                                                         <h3>{{question.question[0].type}}</h3>
                                                         <h4>{{question.question[0].questionText}}</h4>
                                                     </div>
-                                                    <div class="md-list-item-text" >
+                                                    <div >
                                                         <md-button class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
                                                     </div>
                                                 </div>

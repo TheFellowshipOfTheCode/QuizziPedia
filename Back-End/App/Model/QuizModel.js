@@ -5,6 +5,8 @@ var User = require('./UserModel');
 
 var quizSchema = new mongoose.Schema({
     title: { type : String},
+    topic: String,
+    keywords: String,
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -23,6 +25,7 @@ var quizSchema = new mongoose.Schema({
     }],
     active: {type:Boolean, default:false},
     correctAnswers: { type: Number, default: 0 },
+
 });
 
 
@@ -61,7 +64,7 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 };
 
 quizSchema.statics.getQuiz=function(quizId,callback){
-    return this.findOne({'_id':quizId},'title questions active',function (err, quiz){
+    return this.findOne({'_id':quizId},'title keywords topic questions active',function (err, quiz){
         if (quiz.active){
             var questions_quiz=[];
             quiz.questions.forEach(function(elem) {

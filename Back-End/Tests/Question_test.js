@@ -70,7 +70,7 @@ describe("Create Question Test", function(){
                         }
                     }]
                 }],
-                topic: "Religione"
+                topic: "Geografia"
             })
             .end(function(err,res){ 
                 if (!err && res.status == 200){

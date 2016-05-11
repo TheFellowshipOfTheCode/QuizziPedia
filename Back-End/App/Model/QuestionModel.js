@@ -9,10 +9,12 @@ var questionSchema = new mongoose.Schema({
     makeWith: String,
     language: String,
     question: [{
+        _id:false,
         type: {type: String},
         questionText: {type: String},
         image: {type: String},
         answers: [{
+            _id:false,
             text: {type: String},
             url: {type: String},
             //attributo per VF e Multipla

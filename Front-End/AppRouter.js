@@ -237,26 +237,52 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
-
-        .when('/:lang/search/:tosearch', {
-            templateUrl: '/Views/ResultsView.html',
-            controller: "SearchController",
+      .when('/:lang/quiz/:id', {
+            templateUrl: '/Views/FillingQuestionnaireView.html',
+            controller:"FillingQuestionnaireController",
             css: [
                 {
-
-                    href: 'css/search-main.css'
+                  href: 'css/quiz-main.css'
                 },
                 {
-                    href: 'css/search-medium.css',
-                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                  href: 'css/quiz-medium.css',
+                  media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/search-small',
-                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                  href: 'css/quiz-small.css',
+                  media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                },
+                {
+                  href: 'css/question-main.css'
+                },
+                {
+                  href: 'css/question-medium.css',
+                  media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                  href: 'css/question-small.css',
+                  media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
-            ]
-        })
+              ]
+      })  
+      .when('/:lang/search/:tosearch', {
+          templateUrl: '/Views/ResultsView.html',
+          controller: "SearchController",
+          css: [
+              {
 
+                  href: 'css/search-main.css'
+              },
+              {
+                  href: 'css/search-medium.css',
+                  media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+              },
+              {
+                  href: 'css/search-small',
+                  media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+              }
+          ]
+      })
       .otherwise({
         redirectTo: '/it/home'
       })

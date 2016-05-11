@@ -10,10 +10,11 @@ var userSchema = new mongoose.Schema(
         username: String,
         password: String,
         statistics: [{
+            _id:false,
             topicName: String,
-            topicLevel: Number,
-            correctAnswers: Number,
-            totalAnswers: Number
+            topicLevel: {type:Number, default:500},
+            correctAnswers: {type:Number, default:0},
+            totalAnswers: {type:Number, default:0}
         }],
         experienceLevel: Number,
         quizSummaries:[{

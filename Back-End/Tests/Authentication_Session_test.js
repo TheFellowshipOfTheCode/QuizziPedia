@@ -9,8 +9,8 @@ var agent = request.agent(app);
             var userJSON = {
                 'name': 'matteo',
                 'surname': 'granzotto',
-                'email': 'atteo.granzotto@gmail.com',
-                'username': 'anzotto',
+                'email': 'asasas.granzotto@gmail.com',
+                'username': 'sassa',
                 'password': 'ciaociao'
             }
             request(app)
@@ -19,8 +19,9 @@ var agent = request.agent(app);
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end(function (err, res) {
-                    if (!err && res.status == 200) 
-                        res.body.message.should.equal("Registrazione effettuata")
+                    if (!err && res.status == 200) {
+                        res.body.message.should.equal("Registrazione avvenuta con successo")
+                    }
                     else
                         res.body.message.should.equal("Registrazione non effettuata")
                     done()

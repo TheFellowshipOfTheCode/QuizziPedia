@@ -16,7 +16,7 @@ var userSchema = new mongoose.Schema(
             correctAnswers: {type:Number, default:0},
             totalAnswers: {type:Number, default:0}
         }],
-        experienceLevel: Number,
+        experienceLevel: {type:Number, default:1},
         quizSummaries:[{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Summaries'

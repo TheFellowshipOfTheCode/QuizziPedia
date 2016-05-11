@@ -33,10 +33,8 @@ describe("Get All Questions Test", function () {
             });
     });
 })
-*/
 
 
-/*
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
         agent
@@ -52,9 +50,7 @@ describe("Get Question Test", function(){
             });
     })
 });
-
-
-
+*/
 describe("Create Question Test", function(){
     it("should create a question", function(done){
         agent
@@ -72,8 +68,9 @@ describe("Create Question Test", function(){
                         attributesForTForMultiple:{
                             isItRight:true
                         }
-                    }],
+                    }]
                 }],
+                topic: "Religione"
             })
             .end(function(err,res){ 
                 if (!err && res.status == 200){
@@ -87,10 +84,7 @@ describe("Create Question Test", function(){
 
     })
 });
-
-
-
-
+/*
 describe("Edit Question Test", function(){
     it("should edit a question", function(done){
         agent
@@ -124,8 +118,6 @@ describe("Edit Question Test", function(){
 
     })
 });
-
-
 
 describe("Update Statistics Question Test", function(){
     it("should update statistics  question", function(done){
@@ -215,9 +207,6 @@ describe("View Keywords Test", function(){
     })
 });
 
-*/
-
-
 describe("Update Statistics Question Test", function(){
     it("should update statistics  question", function(done){
         agent
@@ -240,4 +229,4 @@ describe("Update Statistics Question Test", function(){
 
     })
 });
-
+*/

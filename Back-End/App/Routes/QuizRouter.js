@@ -6,7 +6,6 @@ module.exports = function(app){
         .put(QuizController.editQuiz)
         .get(QuizController.getPersonalQuizzes);
 
-
     app.route('/api/:lang/userquiz/:quizId')
         .get(QuizController.getQuiz);
 

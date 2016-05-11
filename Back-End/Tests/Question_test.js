@@ -215,7 +215,7 @@ describe("View Keywords Test", function(){
     })
 });
 
-
+*/
 
 
 describe("Update Statistics Question Test", function(){
@@ -223,12 +223,13 @@ describe("Update Statistics Question Test", function(){
         agent
             .put('/api/:lang/usertraining/questionstatistics')
             .send({
-                questionId : '572901e8d04ef5c044faa243',
-                userLevel: 450,
-                IsCorrected : true,
+                questionId : '5729c0fdc80eb653c3029c2e',
+                userLevel: 500,
+                IsCorrected : false,
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
+                    console.log(res.body)
                     res.body.message.should.equal("Statistiche domande aggiornate correttamente");
                 }
                 else
@@ -240,4 +241,3 @@ describe("Update Statistics Question Test", function(){
     })
 });
 
-*/

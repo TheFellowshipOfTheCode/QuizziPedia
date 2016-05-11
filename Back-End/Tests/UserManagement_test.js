@@ -61,7 +61,7 @@ describe("Search Users Test", function(){
         agent
             .post('/api/it/searchuser')
             .send({
-                tosearch: "Alberto"
+                tosearch: "matteo"
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

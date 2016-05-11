@@ -92,9 +92,8 @@ topicSchema.statics.getTopic= function(lang, callback) {
 topicSchema.statics.addCorrect = function(topic, callback) {
     this.findOne({'name': topic}, function(err, topic) {
         if (err) {
-            return err;
+            return next(err);
         }
-        console.log("corr");
         topic.correctAnswers++;
         return topic.save(callback)
     })
@@ -103,9 +102,8 @@ topicSchema.statics.addCorrect = function(topic, callback) {
 topicSchema.statics.addTotal=function(topic, callback) {
     this.findOne({'name': topic}, function(err, topic) {
         if (err) {
-            return err;
+            return next(err);
         }
-        console.log("tot");
         topic.totalAnswers++;
         return topic.save(callback)
     })

@@ -5,6 +5,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
 var User        = require('../App/Model/UserModel');
+var Topic = require('../App/Model/TopicModel');
 
 
 // expose this function to our app using module.exports
@@ -68,9 +69,19 @@ module.exports = function(passport) {
                         newUser.email    	  = req.param('email');
                         newUser.surname 	  = req.param('surname');
                         newUser.name    	  = req.param('name');
-                        newUser.privilege     = 'normal'
+                        newUser.privilege     = 'normal';
+                        Topic.find({},function(err,topics){
+                            if(err)
+                                throw err;
+                            topics.forEach(function(topic){
+                                newUser.statistics.push({
+                                    topicName: topic.name
+                                });
+                            });
+                        });
                         // save the user
                         newUser.save(function(err) {
+                            console.log(newUser);
                             if (err)
                                 throw err;
                             return done(null, newUser,{code:1, title:'Registrazione', message: 'Registrazione avvenuta con successo'});

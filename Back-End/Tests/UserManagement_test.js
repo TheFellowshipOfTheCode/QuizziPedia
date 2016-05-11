@@ -55,6 +55,27 @@ var user;
         });
     })
 */
+
+describe("Search Users Test", function(){
+    it("should return user", function(done){
+        agent
+            .post('/api/it/searchuser')
+            .send({
+                tosearch: "Alberto"
+            })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
+
+/*
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
         agent
@@ -78,5 +99,5 @@ describe("Update Statistics Test", function(){
             })
     })
 });
-
+*/
 

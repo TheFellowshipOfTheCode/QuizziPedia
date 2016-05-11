@@ -63,6 +63,7 @@ userSchema.methods.updateSummary=function(summaryId){
 
 }
 
+
 userSchema.methods.getSummary=function(summaryId,callback,errback){
     User.findOne({ 'username': this.username, 'quizSummaries': summaryId },'quizSummaries', quizSummary);
     Summaries.findOne({'_id': quizSummary.quizSummaries},'quiz givenAnswers', Summary);
@@ -73,8 +74,8 @@ userSchema.methods.getSummaries=function(callback,errback){
     return this.model('User').find({ 'quizSummaries': this.quizSummaries }, callback);
 }
 
-userSchema.statics.getUsers=function(searchword,callback,errback){
-
+userSchema.statics.getUsers=function(searchword,callback){
+    return this.find({$or:[{ 'name': searchword},{'surname':searchword}]},'name surname username', callback);
 }
 
 userSchema.statics.updateTopicLevel=function(userId, userLevel, topic, difficultyLevel, isCorrected, callback) {

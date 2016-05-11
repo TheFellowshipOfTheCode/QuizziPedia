@@ -7,7 +7,8 @@ module.exports = function(app){
     app.route('/api/:lang/topics')
         .get(Question.getTopic)
 
-   
+    app.route('/api/:lang/searchquestion')
+        .post(Question.searchQuestion);
 
     app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)

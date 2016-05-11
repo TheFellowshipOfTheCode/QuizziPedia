@@ -84,16 +84,28 @@
                                 <br/>
 
                                 <md-checkbox ng-model="ctrl.noCache">Yours</md-checkbox>
+
+                                    <md-list>
+                                        <md-list-item class="md-3-line" ng-repeat="question in questions | filter:search">
+                                            <div class="md-list-item-text">
+                                                <h3>{{question.question[0].type}}</h3>
+                                                <h4>{{question.question[0].questionText}}</h4>
+                                            </div>
+                                            <md-divider md-inset></md-divider>
+                                        </md-list-item>
+                                    </md-list>
+
+                                <!--
                                 <md-card >
                                     <md-card-content>
                                         <h2>Domande</h2>
                                         <md-list>
+
                                           <md-item ng-repeat="question in questions | filter:search" >
                                                 <md-item-content >
                                                     <md-checkbox ng-click="deleteQuestion(question)">
                                                         <div class="md-tile-content">
-                                                            <h3>{{question.question[0].type}}</h3>
-                                                            <h4>{{question.question[0].questionText}}</h4>
+
                                                         </div>
                                                     </md-checkbox>
                                                 </md-item-content>
@@ -109,7 +121,7 @@
                                             </md-item>
                                         </md-list>
                                     </md-card-content>
-                                </md-card>
+                                </md-card>-->
                             </md-content>
                             </div>
                         </md-tab>

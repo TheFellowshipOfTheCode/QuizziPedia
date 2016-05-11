@@ -46,6 +46,9 @@ module.exports = function(app){
 
     app.route('/api/:lang/user')
         .delete(user.userManagement.deleteUser);
+    
+    app.route('/api/:lang/searchuser')
+        .post(user.userManagement.searchUser);
 
     app.route('/api/:lang/user/statistics')
         .put(user.userManagement.updateStatisticUser);

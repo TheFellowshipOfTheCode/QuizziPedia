@@ -18,7 +18,7 @@ describe("Signin Test", function () {
             });
     });
 })
-
+/*
 describe("Get All Questions Test", function () {
     it("should return all questions of a topic", function (done) {
         agent
@@ -33,10 +33,23 @@ describe("Get All Questions Test", function () {
             });
     });
 })
+*/
 
-
-
-
+describe("Search Questions Test", function () {
+    it("should return questions Test", function (done) {
+        agent
+            .post('/api/it/searchquestion')
+            .send({tosearch:'ciao'})
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500)
+                done()
+            });
+    });
+})
+/*
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
         agent
@@ -240,3 +253,4 @@ describe("Update Statistics Question Test", function(){
     })
 });
 
+*/

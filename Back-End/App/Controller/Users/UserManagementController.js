@@ -5,6 +5,13 @@ var quiz = require('../../Model/QuizModel');
 var error = require('../../Model/ErrorModel');
 
 
+exports.searchUser=function(req, res) {
+    user.getUsers(req.body.tosearch, function(err, users){
+        if(err) return res.status(500).json({code:88, title: "Errore Utente", message: "Nessuna utente trovato"});
+        else return res.send(users);
+    })
+};
+
 exports.updateDataUser = function(req, res, next) {
     req.user.editUser(req.content,function(err){
         if (err) return res.status(500).json(error.findOne({code:700}));

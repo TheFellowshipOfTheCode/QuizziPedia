@@ -76,7 +76,7 @@ userSchema.methods.getSummaries=function(callback,errback){
 }
 
 userSchema.statics.getUsers=function(searchword,callback){
-    return this.find({$or:[{ 'name': searchword.toLowerCase()},{'surname':searchword}]},'name surname username', callback);
+    return this.find({$or:[{ 'name':  new RegExp(searchword, "i")},{'surname':new RegExp(searchword, "i")}]},'name surname username', callback);
 }
 
 userSchema.statics.updateTopicLevel=function(userId, userLevel, topic, difficultyLevel, isCorrected, callback) {

@@ -89,25 +89,25 @@ topicSchema.statics.getTopic= function(lang, callback) {
     return this.find({}, 'name', callback);
 }
 
-topicSchema.statics.addCorrect = function(topic) {
+topicSchema.statics.addCorrect = function(topic, callback) {
     this.findOne({'name': topic}, function(err, topic) {
         if (err) {
             return err;
         }
         console.log("corr");
         topic.correctAnswers++;
-        topic.save()
+        return topic.save(callback)
     })
 };
 
-topicSchema.statics.addTotal=function(topic) {
+topicSchema.statics.addTotal=function(topic, callback) {
     this.findOne({'name': topic}, function(err, topic) {
         if (err) {
             return err;
         }
         console.log("tot");
         topic.totalAnswers++;
-        topic.save()
+        return topic.save(callback)
     })
 };
 

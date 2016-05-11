@@ -98,6 +98,27 @@ exports.getKeywords = function(req, res) {
     })
 };
 
+exports.updateStatisticTopic = function(req, res) {
+    Topic.addTotal(req.body.topic, function(err){
+        if (err)
+            return res.status(500).json({
+                code: 711,
+                title: "Errore",
+                message: "Contatore risposte corrette non aggiornato"
+            });
+        if(req.body.isCorrected) {
+            Topic.addCorrect(req.body.topic, function (err) {
+                if (err)
+                    return res.status(500).json({
+                        code: 722,
+                        title: "Errore",
+                        message: "Contatore risposte corrette non aggiornato"
+                    });
+            })
+        }
+    })
+};
+
 function arrayUnique(array) {
     var a = array.concat();
     for(var i=0; i<a.length; ++i) {

@@ -6,7 +6,7 @@ var error = require('../../Model/ErrorModel');
 
 
 exports.searchUser=function(req, res) {
-    user.getUsers(req.body.tosearch, function(err, users){
+    user.getUsers(req.params.keyword, function(err, users){
         if(err) return res.status(500).json({code:88, title: "Errore Utente", message: "Nessuna utente trovato"});
         else return res.send(users);
     })

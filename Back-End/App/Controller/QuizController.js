@@ -27,7 +27,7 @@ exports.getQuiz = function (req, res, next) {
 }
 
 exports.searchQuiz=function(req, res, next) {
-    Quiz.searchQuiz(req.body.tosearch, function(err, quiz){
+    Quiz.searchQuiz(req.params.keyword, function(err, quiz){
         if(err) return res.status(500).json({code:88, title: "Errore Quiz", message: "Nessuna quiz trovato"});
         else return res.send(quiz);
     })

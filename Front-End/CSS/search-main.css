@@ -86,9 +86,21 @@
 }
 
 .divided{
-    margin-left: 5%;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .blancBackground{
     background-color: whitesmoke;
+    margin: 1px;
 }
+
+.go-to-user-button{
+    min-width: 180px;
+}
+
+.subscribe-button{
+    min-width: 180px;
+    max-width: 200px;
+}
+

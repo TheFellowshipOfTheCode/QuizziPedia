@@ -18,11 +18,11 @@
  *******************************************************************************/
 -->
 
-<section ng-repeat="q in quizzes" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
-    <md-toolbar>
-        <div class="text-center">
-            <h3 class="ng-binding">Nome: </h3>{{q.title}}
-            <p><button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="">{{listOfKeys.registrationButton}}</button></p>
-        </div>
-    </md-toolbar>
-</section>
+<div ng-repeat="q in quizzes" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
+    <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
+        <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="">{{listOfKeys.registrationButton}}</button>
+        <p class="ng-binding divided"> {{listOfKeys.QuizTitleResult}}: {{q.title}} </p>
+    </div>
+</div>
+
+

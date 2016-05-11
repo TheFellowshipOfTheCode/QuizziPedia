@@ -20,10 +20,9 @@
 
 <section ng-repeat="u in users" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
         <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-            <span class="ng-binding divided"><h3>Nome: </h3> {{u.name}} </span>
-            <span class="ng-binding divided"> <h3>Cognome: </h3>{{u.surname}}  </span>
-            <span class="ng-binding divided"> <h3>Username: </h3>{{u.username}}  </span>
-            <span flex="" class="flex"></span>
-            <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple " type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
+            <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
+            <span class="ng-binding divided"><h3>{{listOfKeys.UserNameResult}}: </h3> {{u.name}} </span>
+            <span class="ng-binding divided"> <h3>{{listOfKeys.UserSurnameResult}}: </h3>{{u.surname}}  </span>
+            <span class="ng-binding divided"> <h3>{{listOfKeys.UserUsernameResult}}: </h3>{{u.username}}  </span>
         </div>
 </section>

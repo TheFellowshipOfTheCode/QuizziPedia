@@ -48,7 +48,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*RootScope function*/
 
   /*Function used to load new question*/
-  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args) {
+  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, level) {
     checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
     $scope.objAnswer=[];
     delete $scope.question;
@@ -57,8 +57,8 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   $scope.$on('$destroy', loadNewQuestion);
 
   /*Function used to load new question*/
-  var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, args, level) {
-    checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
+  var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, topic, level) {
+    checkAnswer($scope.question, $scope.objAnswer, topic, level);
   });
   $scope.$on('$destroy', checkAnswerEvent);
 
@@ -69,7 +69,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
     QuestionsService
       .getNextQuestion($routeParams.lang, nextQuestion)
       .then(function(result){
-        $scope.question= new QuestionItemModel(result.data._id,result.data.author, result.data.makeWith, result.data.language, result.data.question,result.data.keywords);
+        $scope.question= new QuestionItemModel(result.data._id,result.data.author, result.data.makeWith, result.data.language, result.data.question,result.data.keywords, result.data.level);
         $rootScope.$emit("saveTheQuestion", $scope.question);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
@@ -138,6 +138,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function to check the given answers*/
   function checkAnswer(question, answersGiven, topic, level) {
     if(question != undefined) {
+      console.log(question.getLevel());
       if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
         var partsOfQuestion = question.getQuestion();
         var answerCheckA= true;
@@ -233,29 +234,43 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
       }
       $rootScope.$emit("addResult", answerCheckA);
       console.log(answerCheckA);
+      console.log($scope.question.getLevel());
+      var userdId = "";
       if($rootScope.userLogged != undefined) {
-        QuestionsService.updateStatisticsUser($routeParams.lang,
-          {
-              language: $routeParams.lang,
-              userId: $rootScope.userLogged.getId(),
-              topic: topic,
-              difficultyLevel: $scope.question.getLevel(),
-              isCorrected: answerCheckA
-          }
-        );
+        userdId = $rootScope.userLogged.getId();
       }
-      /* Update question statistics
-      var level = 500;
-      if($rootScope.userLogged != undefined) {
-        level = $rootScope.userLogged.getLevel();
-      }
-      QuestionsService.updateStatisticsQuestion(
+
+      QuestionsService.updateStatisticsUser($routeParams.lang,
+        {
+            language: $routeParams.lang,
+            userId: userdId,
+            userLevel: level,
+            topic: topic,
+            difficultyLevel: question.getLevel(),
+            isCorrected: answerCheckA
+        }
+      )
+      .then(function(result){
+        console.log(result);
+        if($rootScope.userLogged != undefined) {
+          $rootScope.userLogged.setLevel(result.data.userLevel);
+        }
+        else {
+          $rootScope.$emit("updateTemporaryLevel", result.data.userLevel);
+        }
+      });
+
+
+      QuestionsService.updateStatisticsQuestion($routeParams.lang,
         {
             questionId: $scope.question.getId(),
             userLevel: level,
             isCorrected: answerCheckA
         }
-      );*/
+      )
+      .then(function(result){
+        console.log(result);
+      });
     }
   }
 

@@ -223,6 +223,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*RootScope functions*/
 
+  /*Event to not allow the use of back button*/
   $scope.$on('$locationChangeStart', function (event, next, current) {
           if ($scope.stopToGoBack && !confirm($rootScope.listOfKeys.doYouWannaGoBakLang)) {
               event.preventDefault();
@@ -235,6 +236,12 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       $scope.training.addQuestion(question);
   });
   $scope.$on('$destroy', saveTheQuestion);
+
+  /*Event to save the current question in the TrainingModeModel*/
+  var updateTemporaryLevel = $rootScope.$on("updateTemporaryLevel", function(event, levelT) {
+      $scope.temporaryLevel = levelT;
+  });
+  $scope.$on('$destroy', updateTemporaryLevel);
 
   /*Event to go back to the set up training*/
   var backToTheSetUpTraining = $rootScope.$on("backToTheSetUpTraining", function(event, args) {
@@ -261,15 +268,15 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         arryOfQuestionsAlreadyAnswered.push(elem.getId());
       }
     );
+    var level;
+    if($rootScope.userLogged != undefined) {
+      level = $rootScope.userLogged.getLevel();
+    }
+    else {
+      level = $scope.temporaryLevel;
+    }
     if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
     {
-      var level;
-      if($rootScope.userLogged != undefined) {
-        level = $rootScope.userLogged.getLevel();
-      }
-      else {
-        level = $scope.temporaryLevel;
-      }
       $rootScope.$emit("loadNewQuestion", {
         language  : $routeParams.lang,
         topic: $scope.training.getArgument(),
@@ -281,7 +288,10 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       angular.element(".scrollable").scrollTop(0,0);
     }
     else {
-      $rootScope.$emit("checkAnswerEvent",$scope.training.getArgument());
+      console.log("entro qui");
+      console.log($scope.training.getArgument());
+      console.log(level);
+      $rootScope.$emit("checkAnswerEvent",$scope.training.getArgument(), level);
       $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;

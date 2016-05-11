@@ -82,7 +82,7 @@ function QuestionsService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
-    
+
     function getNextQuestion(lang, nextQuestion) {
             var q = JSON.stringify(nextQuestion, null, "  ");
             var deferred = $q.defer();
@@ -119,6 +119,7 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function updateStatisticsUser(lang, updateTheStatistics) {
+      console.log(updateTheStatistics);
         var deferred = $q.defer();
         $http.put('/api/'+ lang + '/user/statistics', updateTheStatistics)
             .then(function(data) {
@@ -129,17 +130,23 @@ function QuestionsService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function updateStatisticsQuestion(lang, updateTheStatistics) {
+    function  updateStatisticsQuestion(lang, updateTheStatistics) {
+      console.log(updateTheStatistics);
+      console.log("entro staistics question ");
         var deferred = $q.defer();
         $http.put('/api/'+ lang + '/usertraining/questionstatistics', updateTheStatistics)
             .then(function(data) {
+              console.log("ok");
+              console.log(data);
                 deferred.resolve(data);
             }, function(error) {
+              console.log("no ok");
+              console.log(error);
                 deferred.reject(error);
             });
         return deferred.promise;
     }
-    
+
 
     function uploadImage (image) {
         var formData = new FormData();

@@ -78,14 +78,15 @@ module.exports = function(passport) {
                                     topicName: topic.name
                                 });
                             });
+                            // save the user
+                            newUser.save(function(err) {
+                                console.log(newUser);
+                                if (err)
+                                    throw err;
+                                return done(null, newUser,{code:1, title:'Registrazione', message: 'Registrazione avvenuta con successo'});
+                            });
                         });
-                        // save the user
-                        newUser.save(function(err) {
-                            console.log(newUser);
-                            if (err)
-                                throw err;
-                            return done(null, newUser,{code:1, title:'Registrazione', message: 'Registrazione avvenuta con successo'});
-                        });
+
                     }
                 });
             });

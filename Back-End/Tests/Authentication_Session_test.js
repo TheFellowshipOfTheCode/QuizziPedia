@@ -9,8 +9,8 @@ var agent = request.agent(app);
             var userJSON = {
                 'name': 'matteo',
                 'surname': 'granzotto',
-                'email': 'asasas.granzotto@gmail.com',
-                'username': 'sassa',
+                'email': 'cada.granzotto@gmail.com',
+                'username': 'dada',
                 'password': 'ciaociao'
             }
             request(app)

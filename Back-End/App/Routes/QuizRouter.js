@@ -10,6 +10,9 @@ module.exports = function(app){
     app.route('/api/:lang/userquiz/:quizId')
         .get(QuizController.getQuiz);
 
+    app.route('/api/:lang/searchquiz')
+        .post(QuizController.searchQuiz);
+
     app.route('/api/:lang/userquiz/addUser')
         .post(QuizController.addUser);
 

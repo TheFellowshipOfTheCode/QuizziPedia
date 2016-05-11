@@ -54,9 +54,6 @@ questionSchema.statics.getQuestions=function(author, callback){
     return this.find({'author': author},'_id makeWith language question.type question.questionText', callback);
 };
 
-questionSchema.statics.searchQuestion=function(tosearch, callback){
-    return this.find({$or:[{'question.questionText': tosearch},{'keyword': tosearch}]},'_id makeWith language question.type question.questionText', callback);
-};
 
 questionSchema.statics.editQuestion=function(question,callback){
     return this.findOneAndUpdate({'_id' : question._id}, question, callback)

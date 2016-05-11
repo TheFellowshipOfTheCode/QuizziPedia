@@ -74,6 +74,21 @@ describe("Quiz tests", function() {
             })
     })
 })
+
+describe("Search Quiz Test", function () {
+    it("should return questions Test", function (done) {
+        agent
+            .post('/api/it/searchquiz')
+            .send({tosearch:'ciao'})
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500)
+                done()
+            });
+    });
+})
     
     /*
 

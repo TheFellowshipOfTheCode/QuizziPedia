@@ -30,12 +30,6 @@ exports.uploadImage=function(req, res, next) {
         res.json({message:"ok"});
 };
 
-exports.searchQuestion=function(req, res, next) {
-    Question.searchQuestion(req.body.tosearch, function(err, question){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Nessuna domanda trovata con la parola passato"});
-        else return res.send(question);
-    })
-};
 
 exports.getQuestion = function(req, res) {
     Question.getQuestion(req.param("questionId"), function(err, question){

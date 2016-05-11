@@ -1,11 +1,11 @@
 
 var user = require('../Model/UserModel.js');
-var quiz = require('../Model/QuizModel.js');
+var Quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
 
 exports.createQuiz = function (req, res) {
     req.body.author=req.user._id;
-    quiz.createQuiz(req.body, function(err,quiz) {
+    Quiz.createQuiz(req.body, function(err,quiz) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'quiz-insertion-error',
@@ -16,7 +16,7 @@ exports.createQuiz = function (req, res) {
 }
 
 exports.getQuiz = function (req, res, next) {
-    quiz.getQuiz(req.params.quizId, function(err, quiz) {
+    Quiz.getQuiz(req.params.quizId, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,
             title: 'Errore Questionario',
@@ -25,6 +25,13 @@ exports.getQuiz = function (req, res, next) {
         else return res.send(quiz)
     })
 }
+
+exports.searchQuiz=function(req, res, next) {
+    Quiz.searchQuiz(req.body.tosearch, function(err, quiz){
+        if(err) return res.status(500).json({code:88, title: "Errore Quiz", message: "Nessuna quiz trovato"});
+        else return res.send(quiz);
+    })
+};
 
 
 exports.editQuiz = function (req, res, next) {
@@ -39,7 +46,7 @@ exports.editQuiz = function (req, res, next) {
 }
 
 exports.addUser = function (req, res, next) {
-    quiz.addUser(req.body._id, function(err, userId) {
+    Quiz.addUser(req.body._id, function(err, userId) {
         if (err) return res.status(500).json({
             code: 331,
             title: 'addUser-error',
@@ -50,7 +57,7 @@ exports.addUser = function (req, res, next) {
 }
 
 exports.removeUser = function (req, res, next) {
-    quiz.removeUser(req.body._id, function(err, userId) {
+    Quiz.removeUser(req.body._id, function(err, userId) {
         if (err) return res.status(500).json({
             code: 331,
             title: 'removeUser-error',
@@ -61,7 +68,7 @@ exports.removeUser = function (req, res, next) {
 }
 
 exports.addActiveUser = function (req, res, next) {
-    quiz.addActiveUser(req.body._id, function(err, userId) {
+    Quiz.addActiveUser(req.body._id, function(err, userId) {
         if (err) return res.status(500).json({
             code: 344,
             title: 'addActiveUser-error',
@@ -81,7 +88,7 @@ exports.searchQuiz = function (req, res, next) {
 
 exports.getPersonalQuizzes = function (req, res, next) {
     console.log(req.body);
-    quiz.getPersonalQuizzes(req.user._id, function(err, personalQuizzes) {
+    Quiz.getPersonalQuizzes(req.user._id, function(err, personalQuizzes) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'visualizzazione-quiz-fallita',

@@ -57,6 +57,10 @@ quizSchema.statics.getPersonalQuizzes = function(author, callback) {
     return this.find({ author: author}, callback);
 }
 
+quizSchema.statics.searchQuiz=function(tosearch, callback){
+    return this.find({'title': tosearch}, callback);
+};
+
 quizSchema.statics.getQuiz=function(quizId,callback){
     return this.findOne({'_id':quizId},'title questions active',function (err, quiz){
         if (!quiz.active){

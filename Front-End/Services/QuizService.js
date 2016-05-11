@@ -44,7 +44,7 @@ function QuizService($http, $cookies, $q) {
     function createQuestionnaire(title, author, keyword, topic, lang) {
         var deferred = $q.defer();
         var quizJSON = {title: title, author: author, keyword: keyword, topic: topic};
-        $http.post('/api/' + lang + '/user/quiz', quizJSON)
+        $http.post('/api/' + lang + '/userquiz', quizJSON)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){
@@ -55,7 +55,7 @@ function QuizService($http, $cookies, $q) {
     
     function showAllCreatedQuestionnaires(id, lang) {
         var deferred = $q.defer();
-        $http.get('/api/' + lang + '/user/quiz')
+        $http.get('/api/' + lang + '/userquiz')
             .then(function(personalQuizzes) {
                 deferred.resolve(personalQuizzes);
             }, function(error){

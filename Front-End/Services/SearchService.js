@@ -23,15 +23,11 @@ function SearchService($http, $cookies, $q) {
     var methods = {
         searchUsers: searchUsers,
         searchQuestionnaire: searchQuestionnaire
-
     };
     return methods;
 
     function searchUsers(tosearch, lang) {
-        //console.log(tosearch);
-        // if(tosearch == undefined) return; //errore?
         var deferred = $q.defer();
-        //console.log("search: " + tosearch);
         $http.get('/api/' + lang + '/searchuser/' + tosearch)
             .then(function (data) {
                 deferred.resolve(data);
@@ -43,17 +39,14 @@ function SearchService($http, $cookies, $q) {
 
 
      function searchQuestionnaire(tosearch, lang) {
-     // if(tosearch == undefined) return; //errore?
-     var deferred = $q.defer();
-     //console.log("search: " + tosearch);
-     $http.get('/api/' + lang + '/searchquiz/' + tosearch)
-     .then(function (data) {
-     deferred.resolve(data);
-     }, function (error) {
-
-         deferred.reject(error);
-     });
+        var deferred = $q.defer();
+        $http.get('/api/' + lang + '/searchquiz/' + tosearch)
+            .then(function (data) {
+                 deferred.resolve(data);
+            }, function (error) {
+                console.log("err: "+ error);
+               deferred.reject(error);
+             });
          return deferred.promise;
      }
-
 }

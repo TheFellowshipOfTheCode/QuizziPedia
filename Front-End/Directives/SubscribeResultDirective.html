@@ -18,19 +18,11 @@
  *******************************************************************************/
 -->
 
-<section id="modifyQuestionTitle" ng-repeat="q in quizzes" class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
-    <md-toolbar class="md-primary home-toolbar">
+<section ng-repeat="q in quizzes" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
+    <md-toolbar>
         <div class="text-center">
-            <h3 class="ng-binding">Nome: {{q.name}}</h3>
-            <h3 class="ng-binding">Autore: {{q.author}}</h3>
-            <h3 class="ng-binding">Topic: {{q.topic}}</h3>
-            <h3 class="ng-binding">Keywords: {{q.keywords}}</h3>
-            <h3 class="ng-binding">ID: {{q.id}}</h3>
+            <h3 class="ng-binding">Nome: </h3>{{q.title}}
+            <p><button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="">{{listOfKeys.registrationButton}}</button></p>
         </div>
     </md-toolbar>
-    <div class="text-center" class="md-padding">
-        <div id="modifyQuestionButton" class="button-go-to-training layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
-            <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="" aria-label="{{listOfKeys.registrationButton}}"></button>
-        </div>
-    </div>
 </section>

@@ -37,12 +37,13 @@
                     <h3 class="ng-binding text-center">{{listOfKeys.userSearched}}</h3>
                     <user-results-directive></user-results-directive>
             </md-toolbar>
+            <h3 class="text-center messageVoid" ng-if="users.length == 0">Nessun utente trovato</h3>
             <md-toolbar class="md-primary toolbar">
                     <span flex="" class="flex"></span>
                     <h3 class="ng-binding text-center">{{listOfKeys.quizzesSearched}}</h3>
                     <subscribe-result-directive></subscribe-result-directive>
             </md-toolbar>
-
+            <h3 class="text-center messageVoid" ng-if="quizzes.length == 0">Nessun questionario trovato</h3>
         </section>
 
     </div>

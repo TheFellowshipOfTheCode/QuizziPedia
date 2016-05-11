@@ -30,51 +30,54 @@ app.controller('SearchController', SearchController);
 SearchController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel', 'SearchService'];
 
 function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog, QuestionItemModel, ErrorInfoModel, SearchService) {
+
     //Caricamento utenti
     SearchService.searchUsers($routeParams.tosearch, $routeParams.lang)
-        .then(function(result){
-            if(result.data != undefined) {
+        .then(function (result) {
+            if (result.data != undefined) {
                 $scope.users = result.data;
-                console.log($scope.users);
             }
-            else{
+            else {
                 //Devo segnalare che non ho trovato questionari
+                delete $scope.users;
             }
-        } ,function (err){
+        }, function (err) {
             $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento utenti non andato a buon fine");
             alert = $mdDialog.alert()
                 .title($scope.error.getTitle())
                 .content($scope.error.getMessage())
                 .ok('Ok');
             $mdDialog
-                .show( alert )
-                .finally(function() {
-                    alert = undefined;
-                });
-        });
-
-    //Caricamento quesitonari
-    SearchService.searchQuestionnaire($routeParams.tosearch, $routeParams.lang)
-        .then(function(result){
-            if(result.data != undefined) {
-                $scope.quizzes = result.data;
-            }
-            else{
-                //Devo segnalare che non ho trovato questionari
-            }
-        } ,function (err){
-            console.log(err);
-            $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari non andato a buon fine");
-            alert = $mdDialog.alert()
-                .title($scope.error.getTitle())
-                .content($scope.error.getMessage())
-                .ok('Ok');
-            $mdDialog
-                .show( alert )
-                .finally(function() {
+                .show(alert)
+                .finally(function () {
                     alert = undefined;
                 });
         });
 
 
-}
+        //Caricamento questionari
+        SearchService.searchQuestionnaire($routeParams.tosearch, $routeParams.lang)
+            .then(function (result) {
+                if (result.data != undefined) {
+                    $scope.quizzes = result.data;
+                }
+                else {
+                    //Devo segnalare che non ho trovato questionari
+                    delete $scope.quizzes;
+                }
+            }, function (err) {
+                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari non andato a buon fine");
+                alert = $mdDialog.alert()
+                    .title($scope.error.getTitle())
+                    .content($scope.error.getMessage())
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+
+
+    }
+

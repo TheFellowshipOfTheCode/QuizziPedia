@@ -101,3 +101,15 @@
 .md-primary{
     margin-bottom: 5%;
 }
+
+.buttonContainer{
+    background-color: white;
+}
+
+.md-button{
+    margin-top: 2%;
+}
+
+.messageVoid{
+    margin-bottom: 4%;
+}

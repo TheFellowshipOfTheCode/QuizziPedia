@@ -83,9 +83,9 @@ describe("Update Statistics Test", function(){
             .put('/api/:lang/user/statistics')
             .send({
                 language: "it",
-                userId: "57275c6b008cdfb81994ba2a",
+                userId: "572639ee3ad3319e15d36e71",
                 userLevel: "",
-                topic: "Religione",
+                topic: "Animali",
                 difficultyLevel: 555,
                 isCorrected: false
             })

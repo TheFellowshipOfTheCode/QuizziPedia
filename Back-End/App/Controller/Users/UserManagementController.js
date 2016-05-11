@@ -1,4 +1,4 @@
-
+var topic = require('../../Model/TopicModel');
 var user = require('../../Model/UserModel');
 var summary = require('../../Model/SummaryModel');
 var quiz = require('../../Model/QuizModel');
@@ -35,6 +35,7 @@ exports.updateStatisticUser = function(req, res) {
                         title: "Errore",
                         message: "Contatore risposte non aggiornato"
                     });
+                topic.addTotal(req.body.topic);
                 if (req.body.isCorrected) {
                     user.addCorrect(req.body.userId, req.body.topic, function (err) {
                         if (err)
@@ -43,6 +44,7 @@ exports.updateStatisticUser = function(req, res) {
                                 title: "Errore",
                                 message: "Contatore risposte corrette non aggiornato"
                             });
+                        topic.addCorrect(req.body.topic);
                         userLevel.statistics.forEach(function(stat){
                             if(stat.topicName==req.body.topic)
                                 res.send({userLevel: stat.topicLevel});
@@ -58,6 +60,9 @@ exports.updateStatisticUser = function(req, res) {
         })
     }
     else {
+        topic.addTotal(req.body.topic);
+        if(req.body.isCorrected)
+            topic.addCorrect(req.body.topic);
         var level = user.updateTopicLevel(req.body.userId, req.body.userLevel, req.body.topic, req.body.difficultyLevel, req.body.isCorrected);
         return res.send({userLevel: level});
     }

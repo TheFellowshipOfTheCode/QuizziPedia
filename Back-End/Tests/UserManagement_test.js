@@ -75,9 +75,10 @@ describe("Search Users Test", function(){
     })
 });
 
-/*
+
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
+        this.timeout(10000);
         agent
             .put('/api/:lang/user/statistics')
             .send({
@@ -86,7 +87,7 @@ describe("Update Statistics Test", function(){
                 userLevel: "",
                 topic: "Religione",
                 difficultyLevel: 500,
-                isCorrected: false
+                isCorrected: true
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -99,5 +100,4 @@ describe("Update Statistics Test", function(){
             })
     })
 });
-*/
 

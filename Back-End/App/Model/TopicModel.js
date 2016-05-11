@@ -89,5 +89,27 @@ topicSchema.statics.getTopic= function(lang, callback) {
     return this.find({}, 'name', callback);
 }
 
+topicSchema.statics.addCorrect = function(topic) {
+    this.findOne({'name': topic}, function(err, topic) {
+        if (err) {
+            return err;
+        }
+        console.log("corr");
+        topic.correctAnswers++;
+        topic.save()
+    })
+};
+
+topicSchema.statics.addTotal=function(topic) {
+    this.findOne({'name': topic}, function(err, topic) {
+        if (err) {
+            return err;
+        }
+        console.log("tot");
+        topic.totalAnswers++;
+        topic.save()
+    })
+};
+
 
 module.exports = mongoose.model('Topic', topicSchema);

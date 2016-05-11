@@ -3,37 +3,36 @@
 
   <div class=" training layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
 
-    <div class="spinner" ng-if="trainingIsLoaded == false">
+    <div class="spinner" ng-if="quizIsLoaded == false">
       <img src="Images/Icons/reload.svg"/>
     </div>
-    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center" ng-if="trainingIsLoaded == true">
+
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center" ng-if="quizIsLoaded == true">
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="ng-binding">
-            {{listOfKeys.questionNumberLang}} {{questionNumberOnTraining}}
-            <span ng-if="training.getNumberOfQuestions() != 0">
+          <h3 ng-if="quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " class="ng-binding">
+            {{listOfKeys.questionNumberLang}} {{questionNumberOnQuiz}}
              {{listOfKeys.ofLang}}
-             {{training.getNumberOfQuestions()}}
-           </span>
+             {{quiz.getNumberOfQuestions()}}
           </h3>
-          <h3 ng-if="training === undefined" class="ng-binding">
-            {{listOfKeys.training}}
+          <h3 ng-if="quiz != undefined" class="ng-binding">
+            Nome del questionario - sempre
           </h3>
-          <h3 ng-if="traininIsFinished == true " class="ng-binding">
-            {{listOfKeys.endOfTraining}}
+          <h3 ng-if="quizIsFinished == true " class="ng-binding">
+            Fine del questionario
           </h3>
          <span flex="" class="flex"></span>
         </div>
       </md-toolbar>
       <div class="md-padding">
 
-        <div ng-if="training === undefined">
-          <training-set-up-directive></training-set-up-directive>
+        <div ng-if="quizIsLoaded == true && started == false">
+          <info-questionnaire-directive></info-questionnaire-directive>
         </div>
 
         <div ng-controller="QuestionsController" >
-          <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " >
+          <div ng-if="started == true && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " >
             <div class="spinner" ng-if="question === undefined">
               <img src="Images/Icons/reload.svg"/>
             </div>
@@ -51,33 +50,28 @@
           </div>
         </div>
 
-        {{selectedTopic}}
-
-        <div ng-if="traininIsFinished == true ">
+        <div ng-if="started == false && quizIsFinished == true ">
           <end-training-directive></end-training-directive>
         </div>
 
-        <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+        <div ng-if="start == true && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords)'>
             {{listOfKeys.goToTraining}}
           </button>
         </div>
 
-        <div ng-if="traininIsFinished == true " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-sm="column" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='goBackToSetUp()'>
-            {{listOfKeys.goBackToSetUp}}
+        <div ng-if="started == true && start == false && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='nextQuestion()'>
+            {{listOfKeys.buttonNextQuestionLang}}
           </button>
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='resetTraining()'>
-            {{listOfKeys.restartTraining}}
+          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endQuiz()'>
+            Termina il questionario
           </button>
         </div>
 
-        <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='newQuestion()'>
-            {{listOfKeys.buttonNextQuestionLang}}
-          </button>
-          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endTraining()'>
-            {{listOfKeys.buttonEndTrainingLang}}
+        <div ng-if="start == false && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='goToHome()'>
+            torna a home
           </button>
         </div>
 

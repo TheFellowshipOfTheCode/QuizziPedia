@@ -25,7 +25,8 @@ function QuizService($http, $cookies, $q) {
         createQuestionnaire: createQuestionnaire,
         showAllCreatedQuestionnaires: showAllCreatedQuestionnaires,
         showAllQuestions: showAllQuestions,
-        getTopic: getTopic
+        getTopic: getTopic,
+        getQuiz : getQuiz
     };
 
     return methods;
@@ -52,7 +53,7 @@ function QuizService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
-    
+
     function showAllCreatedQuestionnaires(id, lang) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/userquiz')
@@ -64,7 +65,7 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function showAllQuestions(keywords, topic, lang) { 
+    function showAllQuestions(keywords, topic, lang) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/allquestions/'+topic+'/'+keywords)
             .then(function(data) {
@@ -74,5 +75,18 @@ function QuizService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
-    
+
+    function getQuiz(lang, quizId) {
+      console.log(quizId);
+      var deferred = $q.defer();
+      $http.get('/api/' + lang + '/userquiz/'+quizId)
+          .then(function(data) {
+            console.log(data);
+              deferred.resolve(data);
+          }, function(error){
+              deferred.reject(error);
+          });
+      return deferred.promise;
+    }
+
 }

@@ -21,12 +21,17 @@
 <section id="modifyQuestionTitle" ng-repeat="u in users" class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
     <md-toolbar class="md-primary home-toolbar">
         <div class="text-center">
-            <h3 class="ng-binding">Utente: {{u}}</h3>
+            <span flex="" class="flex"></span>
+            <h3 class="ng-binding">Nome: {{u.name}}</h3>
+            <span flex="" class="flex"></span>
+            <h3 class="ng-binding">Cognome: {{u.surname}}</h3>
+            <span flex="" class="flex"></span>
+            <h3 class="ng-binding">Username: {{u.username}}</h3>
         </div>
     </md-toolbar>
     <div class="text-center" class="md-padding">
         <div id="modifyQuestionButton" class="button-go-to-training layout-sm-column layout-align-center-stretch layout-row" layout="row" layout-sm="column" layout-align="center">
-            <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="editQuestion(u._id)">{{listOfKeys.profileButton}}</button>
+            <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
         </div>
     </div>
 </section>

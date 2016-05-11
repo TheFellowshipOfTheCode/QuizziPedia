@@ -244,14 +244,14 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             css: [
                 {
 
-                    href: 'css/'
+                    href: 'css/search-main.css'
                 },
                 {
-                    href: 'css/',
+                    href: 'css/search-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/',
+                    href: 'css/search-small',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]

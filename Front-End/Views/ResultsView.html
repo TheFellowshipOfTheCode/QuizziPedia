@@ -18,13 +18,31 @@
 *******************************************************************************/
 -->
 
+
 <div layout="column" flex id="content" role="main" ng-controller="AppController" >
+
+    <!-- <div class="questionspage" layout="row" layout-align="center center" >
+       <form name="myForm" id="myForm" enctype="multipart/form-data" ng-submit="uploadImage(imageFile)">
+            <input type="file" name="image" id="image" ngf-select ng-model="imageFile"  accept="image/*" ngf-max-size="2MB" >
+            <img style="width:200px;" ng-show="myForm.image.$valid" ngf-thumbnail="imageFile" class="thumb">
+            <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="imageFile = null" ng-show="imageFile">Remove</md-button>
+            <md-button class="md-raised md-primary" flex="50" flex-sm="100" type="submit" ng-disabled="!myForm.$valid" >Conferma</md-button>
+        </form>
+    </div> -->
+
     <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
-        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
-            <p><h3>Utenti ricercati</h3></p>
-            <user-results-directive></user-results-directive>
-            <p><h3>Questionari ricercati</h3></p>
-            <subscribe-result-directive></subscribe-result-directive>
+        <section class="search md-whiteframe-z1" layout-sm="column" layout-align="center">
+            <md-toolbar class="md-primary toolbar">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding text-center">{{listOfKeys.userSearched}}</h3>
+                    <user-results-directive></user-results-directive>
+            </md-toolbar>
+            <md-toolbar class="md-primary toolbar">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding text-center">{{listOfKeys.quizzesSearched}}</h3>
+                    <subscribe-result-directive></subscribe-result-directive>
+            </md-toolbar>
+
         </section>
 
     </div>

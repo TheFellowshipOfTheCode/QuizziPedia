@@ -25,7 +25,8 @@ function QuizService($http, $cookies, $q) {
         createQuestionnaire: createQuestionnaire,
         showAllCreatedQuestionnaires: showAllCreatedQuestionnaires,
         showAllQuestions: showAllQuestions,
-        getTopic: getTopic
+        getTopic: getTopic,
+        getQuiz : getQuiz
     };
 
     return methods;
@@ -75,7 +76,7 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function getQuiz(quizId) {
+    function getQuiz(lang, quizId) {
       console.log(quizId);
       var deferred = $q.defer();
       $http.get('/api/' + lang + '/userquiz/'+quizId)

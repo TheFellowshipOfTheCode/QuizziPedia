@@ -23,6 +23,7 @@
  *******************************************************************************/
 
 var user = require('../Controller/UserController');
+var topic = require('../Controller/TopicController')
 
 module.exports = function(app){
 
@@ -52,5 +53,10 @@ module.exports = function(app){
 
     app.route('/api/:lang/user/statistics')
         .put(user.userManagement.updateStatisticUser);
+
+    // REST per il topicmodel
+
+    app.route('/api/:lang/topic/statistics')
+        .put(topic.updateStatisticTopic);
 
 };

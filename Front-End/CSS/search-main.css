@@ -35,26 +35,6 @@
     overflow: auto;
 }
 
-.textArea{
-    min-height: 500px;
-    min-width: 768px;
-    width: 90%;
-    margin: auto;
-}
-
-.contentQML{
-    margin: auto;
-    width: 80%;
-}
-
-.QMLtitle{
-    margin: auto;
-    width: 90%;
-    text-align: center;
-    font-size: 3em;
-    margin-top: 1em;
-    margin-bottom:1em;
-}
 .btn-group{
     display: none;
 }
@@ -70,16 +50,6 @@
 .inline-text {
     margin-top: 0.5em;
     display: inline;
-}
-
-.question-type {
-    padding-top: 0.5em;
-}
-
-.li-question {
-    list-style: none;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
 }
 
 .odd{
@@ -102,14 +72,23 @@
     margin-bottom: 5%;
 }
 
-.buttonContainer{
-    background-color: white;
-}
-
 .md-button{
     margin-top: 2%;
 }
 
 .messageVoid{
     margin-bottom: 4%;
+}
+
+.titleSearched{
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.divided{
+    margin-left: 5%;
+}
+
+.blancBackground{
+    background-color: whitesmoke;
 }

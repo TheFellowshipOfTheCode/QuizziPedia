@@ -19,13 +19,12 @@
 -->
 
 <section ng-repeat="u in users" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
-    <md-toolbar>
-        <div class="text-center">
+        <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
             <span flex="" class="flex"></span>
-            <h3 class="ng-binding">Nome: </h3> {{u.name}}
-            <h3 class="ng-binding">Cognome:</h3> {{u.surname}}
-            <h3 class="ng-binding">Username: </h3> {{u.username}}
-            <p><button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button></p>
+            <span class="ng-binding divided"><h3>Nome: </h3> {{u.name}} </span>
+            <span class="ng-binding divided"> <h3>Cognome: </h3>{{u.surname}}  </span>
+            <span class="ng-binding divided"> <h3>Username: </h3>{{u.username}}  </span>
+            <button class="md-primary md-raised md-button md-ink-ripple flex-100" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
+            <span flex="" class="flex"></span>
         </div>
-    </md-toolbar>
 </section>

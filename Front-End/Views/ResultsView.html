@@ -34,13 +34,13 @@
         <section class="search md-whiteframe-z1" layout-sm="column" layout-align="center">
             <md-toolbar class="md-primary toolbar">
                     <span flex="" class="flex"></span>
-                    <h3 class="ng-binding text-center">{{listOfKeys.userSearched}}</h3>
+                    <span class="ng-binding text-center titleSearched">{{listOfKeys.userSearched}}</span>
                     <user-results-directive></user-results-directive>
             </md-toolbar>
             <h3 class="text-center messageVoid" ng-if="users.length == 0">Nessun utente trovato</h3>
             <md-toolbar class="md-primary toolbar">
                     <span flex="" class="flex"></span>
-                    <h3 class="ng-binding text-center">{{listOfKeys.quizzesSearched}}</h3>
+                    <h3 class="ng-binding text-center titleSearched">{{listOfKeys.quizzesSearched}}</h3>
                     <subscribe-result-directive></subscribe-result-directive>
             </md-toolbar>
             <h3 class="text-center messageVoid" ng-if="quizzes.length == 0">Nessun questionario trovato</h3>

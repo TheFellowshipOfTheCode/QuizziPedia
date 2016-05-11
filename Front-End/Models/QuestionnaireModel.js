@@ -23,9 +23,9 @@ function QuestionnaireModel() {
     var QuestionnaireModel = function (author, name, keyword, argument, questions, id) {
         var author = author;
         var name_ = name;
-        var keyword = keyword;
-        var argument = argument;
-        var questions = [];
+        var keyword_ = keyword;
+        var argument_ = argument;
+        var questions_ = questions;
         var id_ = id;
 
         this.setAuthor = function (author) {
@@ -70,11 +70,16 @@ function QuestionnaireModel() {
             return questions;
         };
 
+        this.getNumberOfQuestions = function () {
+            return questions_.length;
+        };
+
         this.insertQuestion = function(question) {
             questions.push(question);
         };
 
         this.removeQuestion = function(id) {
+          // da cambiare
             qLength = questions.length;
             for(var i = 0; i < qLength; i++) {
                 if(questions[i].id === id) {

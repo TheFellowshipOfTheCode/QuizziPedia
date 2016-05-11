@@ -23,15 +23,18 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
 
   /*actions to do on the start of the loading of teh page*/
 
-  $scope.$on('$viewContentLoaded', function(){
-    $scope.downloadQuiz();
+  var userDownloaded = $rootScope.$on('userDownloaded', function(event, args){
+    console.log(args);
+    if(args) {
+      $scope.downloadQuiz();
+    }
   });
+  $scope.$on('$destroy', userDownloaded);
 
   /*Private variables*/
   var keepOnMind = 0;
 
   /*Public variables on Scope*/
-  $scope.quizIsFinished = false;
 
   $scope.iQ = false;
   $scope.numberOfQuestionsOnTraining = {
@@ -54,7 +57,13 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
   $timeout(function() {
     $scope.quizIsLoaded = true;
   }, 500);
+  $scope.startQuiz= false;
+  $scope.noStart= false;
+  $scope.started= false;
+  $scope.quizIsLoaded = true;
+  $scope.quizIsFinished = false;
 
+  var questions = [];
   /*Functions on scope*/
 
   /* This function downloads the questionnaire */
@@ -63,10 +72,26 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     console.log("entro");
     console.log($routeParams.lang);
     console.log($routeParams.id);
+    console.log($rootScope.userLogged.getId());
+
     QuizService
       .getQuiz($routeParams.lang, $routeParams.id)
       .then(function(result){
           console.log(result);
+          //$scope.quiz=result.data;
+           //function (author, name, keyword, argument, questions, id)
+          $scope.quiz= new QuestionnaireModel(result.data.author, result.data.title, result.data.keywords, result.data.topic, result.data.questions, result.data._id);
+          questions = $scope.quiz.getQuestions();
+          console.log(questions);
+          $scope.quizIsLoaded = true;
+          if(result.data.active == true){
+            $scope.startQuiz= true;
+          }
+          else {
+            $scope.noStart= true;
+          }
+          console.log($scope.startQuiz);
+          console.log($scope.noStart);
       } ,function (err){
           $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
           alert = $mdDialog.alert()
@@ -83,10 +108,15 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
   };
 
   /*Function to start the quiz*/
-  $scope.startQuiz = startQuiz;
-  function startQuiz () {
+  $scope.startQuizClick = startQuizClick;
+  function startQuizClick () {
+    console.log("entro");
     $scope.stopToGoBack = true;
-
+    $scope.started = true;
+    $scope.startQuiz = false;
+    console.log(questions);
+    console.log(questions[0]);
+    $rootScope.$emit("loadNewQuestionQuiz", questions[0], 0)
   };
 
   /*Function to get the next question*/

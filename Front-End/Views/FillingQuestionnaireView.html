@@ -33,10 +33,12 @@
 
         <div ng-controller="QuestionsController" >
           <div ng-if="started == true && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " >
+            {{question}}
             <div class="spinner" ng-if="question === undefined">
               <img src="Images/Icons/reload.svg"/>
             </div>
             <div ng-if="question != undefined">
+              {{question}}
               <header-text-question-directive></header-text-question-directive>
               <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
                 <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
@@ -53,14 +55,14 @@
         <div ng-if="started == false && quizIsFinished == true ">
           <end-training-directive></end-training-directive>
         </div>
-
-        <div ng-if="start == true && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords)'>
-            {{listOfKeys.goToTraining}}
+        {{startQuiz}} {{started}}
+        <div ng-if="startQuiz == true && started == false && quiz != undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='startQuizClick()'>
+            inizia questionario
           </button>
         </div>
 
-        <div ng-if="started == true && start == false && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+        <div ng-if="started == true && startQuiz == false && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='nextQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
@@ -69,7 +71,7 @@
           </button>
         </div>
 
-        <div ng-if="start == false && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+        <div ng-if="startQuiz == false && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='goToHome()'>
             torna a home
           </button>

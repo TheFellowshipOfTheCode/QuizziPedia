@@ -57,6 +57,18 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   $scope.$on('$destroy', loadNewQuestion);
 
   /*Function used to load new question*/
+  var loadNewQuestionQuiz =$rootScope.$on("loadNewQuestionQuiz", function(event, question, number) {
+    if(number>0) {
+      checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
+    }
+    console.log(question);
+    $scope.objAnswer=[];
+    delete $scope.question;
+    loadNextQuestionQuiz(question);
+  });
+  $scope.$on('$destroy', loadNewQuestionQuiz);
+
+  /*Function used to load new question*/
   var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, topic, level) {
     checkAnswer($scope.question, $scope.objAnswer, topic, level);
   });
@@ -134,6 +146,57 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         }
     );
   }
+
+  /*Function to download the new question of the training mode*/
+  function loadNextQuestionQuiz(question) {
+    console.log(question);
+        $scope.question= new QuestionItemModel(question._id, question.author, question.makeWith, question.language, question.question, question.keywords, question.level);
+        console.log($scope.question);
+        $scope.objAnswer=[];
+        delete $scope.temporyObjectForView;
+        $scope.temporyObjectForView= [];
+        $scope.question.getQuestion().forEach(function(elemA, index) {
+          var list1 = [], list2 = [];
+          var tempText;
+          var text;
+          if(elemA.type == "spaziVuoti") {
+            text = elemA.questionText;
+            tempText = text.split(" ");
+          }
+          elemA.answers.forEach(function(elemB, key) {
+            if(elemA.type == "spaziVuoti") {
+              list2.push({hideWord : tempText[elemB.parolaNumero]});
+              tempText[elemB.parolaNumero]= "##TODELETE##";
+            }
+            else {
+              list1.push({});
+              if(elemA.type == "collegamento"){
+                if(elemB.text2 != undefined) {
+                  list2.push({"text2":elemB.text2});
+                }
+                if(elemB.url2 != undefined) {
+                  list2.push({"url2" : elemB.url2});
+                }
+              }
+              else {
+                list2.push(elemB);
+              }
+            }
+
+          });
+
+          $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+
+          if(elemA.type == "spaziVuoti") {
+            $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
+          }
+          else {
+            $scope.temporyObjectForView[index]={list1,list2};
+          }
+
+        });
+      }
+
 
   /*Function to check the given answers*/
   function checkAnswer(question, answersGiven, topic, level) {

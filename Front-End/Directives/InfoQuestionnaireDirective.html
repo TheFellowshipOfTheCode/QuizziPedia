@@ -17,7 +17,8 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-
+entro
+{{startQuiz}}
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
   <div class="center-it questions md-whiteframe-1dp" ng-if="no-auth == true">
     <md-toolbar class="toolbar-section toolbar">
@@ -28,7 +29,7 @@
       </div>
     </md-toolbar>
   </div>
-  <div class="center-it md-whiteframe-1dp" ng-if="no-start == true">
+  <div class="center-it md-whiteframe-1dp" ng-if="noStart == true">
     <md-toolbar class="toolbar-section toolbar">
       <div class="md-toolbar-tools">
         <span flex="" class="flex"></span>
@@ -37,16 +38,17 @@
       </div>
     </md-toolbar>
   </div>
-  <div class="center-it md-whiteframe-1dp" ng-if="starQuiz == true">
+  <div class="center-it md-whiteframe-1dp" ng-if="startQuiz == true">
     <md-toolbar class="toolbar-section toolbar">
       <div class="md-toolbar-tools">
         <span flex="" class="flex"></span>
-        <span>Il titolo del questionario</span>
+        <span>{{quiz.getName()}}</span>
         <span flex="" class="flex"></span>
       </div>
     </md-toolbar>
     <div class="">
-      Informazioni sul questioanario
+      Topic: {{quiz.getArgument()}} </br>
+      Parole chiavi: {{quiz.getKeyword()}}
     </div>
   </div>
 

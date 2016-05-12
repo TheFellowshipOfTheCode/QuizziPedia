@@ -44,17 +44,19 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                //console.log("quiz: " + $scope.quizzes);
            }, function (err) {
                console.log(err);
-               $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari utente non andato a buon fine");
-               alert = $mdDialog.alert()
-                   .title($scope.error.getTitle())
-                   .content($scope.error.getMessage())
-                   .ok('Ok');
-               $mdDialog
-                   .show(alert)
-                   .finally(function () {
-                       alert = undefined;
-                   });
-           });
+               //controllo per evitare il popup in caso l'utente non abbia svolto questionari
+               if(err.data.code != "914") {
+                   $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari utente non andato a buon fine");
+                   alert = $mdDialog.alert()
+                       .title($scope.error.getTitle())
+                       .content($scope.error.getMessage())
+                       .ok('Ok');
+                   $mdDialog
+                       .show(alert)
+                       .finally(function () {
+                           alert = undefined;
+                       });
+               } });
         }
 }
 

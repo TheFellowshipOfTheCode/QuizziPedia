@@ -49,7 +49,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     });
             });
     }
-    $scope.submitQuestion = function(question){
+    $scope.submitQuestion = function(){
+        var question = document.getElementById('Juiceeditor').value;
         //Parser della domanda
         if(question == undefined){
             alert = $mdDialog.alert()
@@ -101,6 +102,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                 $location.path('/' + $routeParams.lang + '/home');
                             }
                         }, function (err) {
+                            console.log(err);
                             $scope.error = new ErrorInfoModel();
                             alert = $mdDialog.alert()
                                 .title("Errore")

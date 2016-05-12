@@ -13,6 +13,11 @@
 * Description: Scritta la classe;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
+* ID: HomeView_20160512;
+* Update data: 12-05-2016;
+* Description: Scritta funzione search;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
 *******************************************************************************/
 
 app.controller('HomeController', HomeController);
@@ -25,6 +30,8 @@ function HomeController ($scope, $location, $routeParams) {
   
   $scope.search = function(){
     var tosearch = document.getElementById("lookingfor").value;
-    $location.path("/" + $routeParams.lang + "/search/" + tosearch);
+    if(tosearch){
+        $location.path("/" + $routeParams.lang + "/search/" + tosearch);
+    }
   }
 }

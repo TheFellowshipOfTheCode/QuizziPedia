@@ -38,7 +38,7 @@ function QuestionsService($http, $cookies, $q) {
        // if(question == undefined) return; //errore?
         var deferred = $q.defer();
         if(id == undefined) {
-            console.log("q" + question);
+            console.log("questionService" + question);
             $http.post('/api/' + lang + '/userquestion', question)
                 .then(function (data) {
                     deferred.resolve(data);

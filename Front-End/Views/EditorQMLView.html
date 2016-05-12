@@ -41,7 +41,7 @@
                                 );
                             });
                         </script>-->
-                        <juicy-ace-editor style="min-height:500px" mode="ace/mode/json">{{question}}</juicy-ace-editor>
+                        <juicy-ace-editor id="Juiceeditor" style="min-height:500px" mode="ace/mode/json">{{question}}</juicy-ace-editor>
 
                       </div>
                     <div layout="row" layout-align="center center" >
@@ -49,8 +49,8 @@
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-sm="column" layout-margin>
                                     <md-button ng-click="goToWizard()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.goToWizard}}</md-button>
-                                    <md-button ng-if="class == undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
-                                    <md-button ng-if="class != undefined" ng-click="submitQuestion(question)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
+                                    <md-button ng-if="id == undefined" ng-click="submitQuestion()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button ng-if="id != undefined" ng-click="submitQuestion()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
                                 </div>
                             </md-input-container>
 

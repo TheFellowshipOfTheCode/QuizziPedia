@@ -29,7 +29,7 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         AuthService.giveMe($routeParams.lang)
             .then(function(result){
                 if(result.data != false) {
-                    $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
+                    $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, result.data.statistics , result.data.experienceLevel, result.data.privilege, result.data._id);
                     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
                     $rootScope.$emit("userDownloaded", true);
 

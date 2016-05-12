@@ -87,6 +87,7 @@ function TrainingModeModel() {
     this.addResult = function(result){
       console.log(result);
       if(result) {
+        console.log("entro");
         numOfRightAnswer++;
       }
       console.log(numOfRightAnswer);

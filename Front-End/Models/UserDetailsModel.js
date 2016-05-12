@@ -64,6 +64,22 @@ function UserDetailsModel() {
             levelUser_ = level;
         };
 
+        this.setLevelByTopic = function (topic, level, answer) {
+            statistics_ = statistics_.filter(function (obj) {
+
+              if(obj.topicName == topic) {
+                console.log(obj);
+                obj.topicLevel = level;
+                obj.totalAnswers= parseInt(obj.totalAnswers)+1;
+                if(answer) {
+                  obj.correctAnswer= obj.correctAnswers+1;
+                }
+              }
+              return obj;
+            });
+            console.log(statistics);
+        };
+
         this.setPrivilege = function (privilege) {
             privilege_ = privilege;
         };
@@ -98,6 +114,16 @@ function UserDetailsModel() {
 
         this.getLevel = function () {
             return levelUser_;
+        };
+
+        this.getLevelByTopic = function (topic) {
+          console.log(topic);
+          var obj = statistics_.filter(function ( obj ) {
+            return obj.topicName == topic;
+          })[0];
+          console.log(obj);
+          return obj.topicLevel;
+
         };
 
         this.getPrivilege = function () {

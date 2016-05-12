@@ -49,6 +49,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
   var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, level) {
+    console.log(args);
     checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
     $scope.objAnswer=[];
     delete $scope.question;
@@ -118,7 +119,12 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
           list2 = Utils.shuffle(list2);
 
-          $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+          if(elemA.type != "veroFalso" && elemA.type != "rispostaMultipla") {
+            $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+          }
+          else {
+            $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  []};
+          }
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
@@ -242,6 +248,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                 break;
             case "veroFalso":
                 console.log("veroFalso");
+                if(answersGiven[0] === undefined) {
+                  answerCheckB = false;
+                }
                 elem.answers.forEach(function (answer) {
                   if(answer.isItRight != answersGiven[index].answerGiven && answerCheckB) {
                     answerCheckB = false;
@@ -251,6 +260,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                 break;
             case "rispostaMultipla":
                 console.log("rispostaMultipla");
+                if(answersGiven === undefined) {
+                  answerCheckB = false;
+                }
                 answersGiven[index].answerGiven.forEach(function (answerGived) {
                   elem.answers.forEach(function (answer) {
                     if(answerGived == answer.text) {
@@ -318,7 +330,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
       .then(function(result){
         console.log(result);
         if($rootScope.userLogged != undefined) {
-          $rootScope.userLogged.setLevel(result.data.userLevel);
+          console.log(topic);
+          $rootScope.userLogged.setLevelByTopic(topic,result.data.userLevel, answerCheckA);
+          console.log($rootScope.userLogged.getLevelByTopic(topic));
         }
         else {
           $rootScope.$emit("updateTemporaryLevel", result.data.userLevel);

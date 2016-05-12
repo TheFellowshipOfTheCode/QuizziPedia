@@ -62,7 +62,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       }
       var level;
       if($rootScope.userLogged != undefined) {
-        level = $rootScope.userLogged.getLevel();
+        level = $rootScope.userLogged.getLevelByTopic(argument);
       }
       else {
         level = $scope.temporaryLevel;
@@ -270,7 +270,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     );
     var level;
     if($rootScope.userLogged != undefined) {
-      level = $rootScope.userLogged.getLevel();
+      level = $rootScope.userLogged.getLevelByTopic($scope.training.getArgument());
     }
     else {
       level = $scope.temporaryLevel;
@@ -291,7 +291,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       console.log("entro qui");
       console.log($scope.training.getArgument());
       console.log(level);
-      $rootScope.$emit("checkAnswerEvent",$scope.training.getArgument(), level);
+      $rootScope.$emit("checkAnswerEvent", $scope.training.getArgument(), level);
       $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();
       $scope.traininIsFinished = true;

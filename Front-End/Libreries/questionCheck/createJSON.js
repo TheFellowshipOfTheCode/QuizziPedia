@@ -1,9 +1,22 @@
-/**
- * Created by break_000 on 12/05/2016.
- */
-
-createJSON = function(corpo, res, tipologia){
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Libreries::createJSON;
+ * Description: questo file contiene le funzioni che permettono la generazione
+ * del json a partire da un testo validato dal parser QML;
+ * Creation data: 27-04-2016;
+ * Author: Matteo Gnoato.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: Config_20160427;
+ * Update data: 27-04-2016;
+ * Description: Creata funzione che crea la parte json dei campi comuni
+ * a tutte le ;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+createJSON = function(corpo, res, tipologia, topic){
     var campiComuni = "\"makeWith\" : \"QML\",\"language\" : " + "it" + ",";
+    campiComuni = campiComuni + "\"topic\" : \"" + topic + "\" ," ;
     var jsonKey;
     if(corpo.hasOwnProperty('keywords')){
         jsonKey = "\"keywords\" : [ ";

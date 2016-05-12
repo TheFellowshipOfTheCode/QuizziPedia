@@ -80,7 +80,6 @@ exports.getQuizzes = function(req, res) {
                                 message: "Utente non trovato"
                             });
                         else {
-                            console.log(summary);
                             quiz.findOne({'_id': summary.quiz}, function (err, quiz) {
                                 summaries.push({
                                     'title': quiz.title,
@@ -96,7 +95,7 @@ exports.getQuizzes = function(req, res) {
                 });
             }
             else
-                return res.status(500).json({code:914, title: "Errore Utente", message: "Nessuno Questionario compilato "});
+                return res.send({});
         }
     })
 

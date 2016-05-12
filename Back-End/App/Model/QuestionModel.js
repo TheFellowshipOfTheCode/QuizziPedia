@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
-
+var async = require('async');
 var questionSchema = new mongoose.Schema({
     author: {
         type:mongoose.Schema.Types.ObjectId,
@@ -196,7 +196,30 @@ questionSchema.statics.addTotal=function(questionId,callback){
 }
 
 questionSchema.statics.getAllQuestions = function(questionsID, keywords, lang, callback) {
-    this.find({_id: questionsID.question, keywords: {$in :keywords}, language: lang}, callback)
+    if (keywords[0]!='null')
+        this.find({_id: questionsID.question,language: lang,keywords: {$in :keywords}}, callback)
+    else{
+        var questions_array = [];
+        var this1=this;
+
+        if (questionsID.length) {
+            var i=questionsID.length
+            questionsID.forEach(function (questionID) {
+                this1.find({_id: {$in: questionID.question}, language: lang}, function (err, q) {
+                    q.forEach(function (question) {
+                        questions_array.push(question);
+                    })
+                    i--;
+                    if (i == 0)
+                        callback(null, questions_array)
+                })
+            })
+        }
+        else {
+            this1.find({_id: {$in: questionsID.question}, language: lang}, callback)
+        }
+
+    }
 }
 
 

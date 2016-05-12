@@ -31,7 +31,6 @@ var quizSchema = new mongoose.Schema({
 
 
 quizSchema.statics.createQuiz = function(info, callback) {
-    console.log(info)
     var new_quiz = new this(info);
     return new_quiz.save(callback);
 }

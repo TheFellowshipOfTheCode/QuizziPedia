@@ -32,7 +32,7 @@
             </md-toolbar>
 
             <div layout="row" layout-align="center center" >
-                <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+                <form name="quizForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
 
                     <md-input-container class="md-block">
                         <label>{{listOfKeys.titleCreateQuestionnaireView}}</label>
@@ -47,9 +47,9 @@
 
                     <md-input-container class="md-block">
                         <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
-                        <md-select ng-model="topic" md-selected-text="getSelectedText()">
+                        <md-select ng-model="quiz.topic" ng-change="showAllQuestions(quiz.topic,null)">
                             <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-                                <md-option ng-value="topic" ng-repeat="topic in topics">{{topic.name}}</md-option>
+                                <md-option ng-value="topic.name"   ng-repeat="topic in topics">{{topic.name}}</md-option>
                             </md-optgroup>
                         </md-select>
                     </md-input-container>
@@ -62,20 +62,19 @@
                                     <h4 >Domande inserite</h4>
                                 </md-card-title-text>
                             </md-card-title>
-                            <md-list  >
-                               <md-item ng-repeat="question_selected in questions_selected" >
+                            <md-list >
+                               <md-item class="md-3-line" ng-repeat="question_selected in questions_selected" >
                                     <md-item-content >
                                         <div layout="row" layout-align="space-around center">
-                                            <md-input-container >
-                                                <h3>{{question_selected.question[0].type}}</h3>
-                                                <h4>{{question_selected.question[0].questionText}}</h4>
-                                            </md-input-container>
+                                            <div flex="50">
+                                                <h4>{{question_selected.question[0].type}}</h4>
+                                                <h5>{{question_selected.question[0].questionText}}</h5>
+                                            </div>
                                             <md-input-container >
                                                 <md-button class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
                                             </md-input-container>
                                         </div>
                                     </md-item-content>
-                                    <md-divider md-inset></md-divider>
                                 </md-item>
                             </md-list>
                         </md-card-content>
@@ -88,55 +87,35 @@
                                 <div layout="row" layout-align="space-around center">
                                     <md-input-container flex="80" >
                                         <label>Search</label>
-                                        <input ng-model="search.keyword">
+                                        <input ng-model="search">
                                     </md-input-container>
                                     <md-input-container  >
-                                        <md-checkbox ng-model="search.yours">Yours</md-checkbox>
+                                        <md-checkbox ng-model="filter[userLogged.getId()]">Yours</md-checkbox>
                                     </md-input-container>
                                 </div>
-
+                                <md-card ng-if="questions.length>0" >
+                                    <md-card-title>
+                                        <md-card-title-text >
+                                            <h4 >Domande Trovate</h4>
+                                        </md-card-title-text>
+                                    </md-card-title>
                                     <md-list>
-                                        <md-list-item class="md-3-line" ng-repeat="question in questions | filter:search">
+                                        <md-item class="md-3-line" ng-repeat="question in filtered=(questions | filter:filterByYours | filter:search)">
+                                            <md-item-content >
                                                 <div layout="row" layout-align="space-around center">
-                                                    <div  flex="80" >
-                                                        <h3>{{question.question[0].type}}</h3>
-                                                        <h4>{{question.question[0].questionText}}</h4>
+                                                    <div flex="50" >
+                                                        <h4>{{question.question[0].type}}</h4>
+                                                        <h5>{{question.question[0].questionText}}</h5>
                                                     </div>
-                                                    <div >
+                                                    <md-input-container >
                                                         <md-button class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
-                                                    </div>
+                                                    </md-input-container>
                                                 </div>
-                                            <md-divider md-inset></md-divider>
-                                        </md-list-item>
+                                            </md-item-content>
+                                        </md-item>
                                     </md-list>
+                                </md-card>
 
-                                <!--
-                                <md-card >
-                                    <md-card-content>
-                                        <h2>Domande</h2>
-                                        <md-list>
-
-                                          <md-item ng-repeat="question in questions | filter:search" >
-                                                <md-item-content >
-                                                    <md-checkbox ng-click="deleteQuestion(question)">
-                                                        <div class="md-tile-content">
-
-                                                        </div>
-                                                    </md-checkbox>
-                                                </md-item-content>
-                                                <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
-                                                <md-divider hide-gt-sm ng-if="!$last"></md-divider>
-                                          </md-item>
-
-                                            <md-divider></md-divider>
-                                            <md-item layout class="inset">
-                                                <md-button layout layout-align="start center" flex class="md-primary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg> More
-                                                </md-button>
-                                            </md-item>
-                                        </md-list>
-                                    </md-card-content>
-                                </md-card>-->
                             </md-content>
                             </div>
                         </md-tab>
@@ -158,7 +137,7 @@
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
-                            <md-button ng-disabled="userForm.$invalid" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
+                            <md-button ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
                         </div>
                     </md-input-container>
 

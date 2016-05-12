@@ -43,9 +43,9 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function createQuestionnaire(title, author, keyword, topic, lang) {
+    function createQuestionnaire(title, author, keyword, topic, questions ,lang) {
         var deferred = $q.defer();
-        var quizJSON = {title: title, author: author, keyword: keyword, topic: topic};
+        var quizJSON = {title: title, author: author, keyword: keyword, questions:questions, topic: topic};
         $http.post('/api/' + lang + '/userquiz', quizJSON)
             .then(function(data) {
                 deferred.resolve(data);
@@ -66,7 +66,7 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function showAllQuestions(keywords, topic, lang) {
+    function showAllQuestions(topic, keywords, lang) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/allquestions/'+topic+'/'+keywords)
             .then(function(data) {

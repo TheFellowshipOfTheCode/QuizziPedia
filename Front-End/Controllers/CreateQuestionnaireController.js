@@ -21,27 +21,7 @@ app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'ErrorInfoModel', 'QuizService', 'UserDetailsModel'];
 
 function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService, UserDetailsModel) {
-
-    QuizService.showAllQuestions("Porco, Dio","Religione",$routeParams.lang)
-            .then(function(result){
-                console.log(result.data);
-                if(result.data != undefined) {
-                    $scope.questions = result.data;
-                }
-            } ,function (err){
-                console.log(err);
-                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
-                alert = $mdDialog.alert()
-                    .title($scope.error.getTitle())
-                    .content($scope.error.getMessage())
-                    .ok('Ok');
-                $mdDialog
-                    .show( alert )
-                    .finally(function() {
-                        alert = undefined;
-                    });
-            });
-
+    
     QuizService.getTopic($routeParams.lang)
         .then(function(result){
             console.log(result.data);
@@ -63,30 +43,55 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                 });
         });
 
+    $scope.showAllQuestions=function(topic,keyword) {
+        QuizService.showAllQuestions(topic, keyword, $routeParams.lang)
+            .then(function (result) {
+                console.log(result.data);
+                if (result.data != undefined) {
+                    $scope.questions = result.data;
+                }
+            }, function (err) {
+                console.log(err);
+                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+                alert = $mdDialog.alert()
+                    .title($scope.error.getTitle())
+                    .content($scope.error.getMessage())
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+    }
+    $scope.showAllQuestions(null,null)
     $scope.questions_selected=[];
 
     $scope.quiz = {
         title: '',
         author: $rootScope.userLogged.getId(),
         keyword: '',
-        topic: undefined
+        topic: undefined,
+        questions: []
     };
 
+    $scope.filter = {};
+    $scope.filterByYours = function (question) {
+        return $scope.filter[question.author] || noFilter($scope.filter);
+    };
 
-
-    $scope.getSelectedText = function() {
-        if ($scope.quiz.topic !== undefined) {
-            return $scope.quiz.topic;
-        } else {
-            if($routeParams.lang === 'it')
-                return "Seleziona un argomento";
-            else
-                return "Selected an argument";
+    function noFilter(filterObj) {
+        for (var key in filterObj) {
+            if (filterObj[key]) {
+                return false;
+            }
         }
-    };
+        return true;
+    }
     
     $scope.addQuestion=function(question){
         $scope.questions_selected.push(question);
+        $scope.quiz.questions.push(question._id);
         var idx = $scope.questions.indexOf(question);
         if (idx > -1) {
             $scope.questions.splice(idx, 1);
@@ -98,6 +103,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         var idx = $scope.questions_selected.indexOf(question);
         if (idx > -1) {
             $scope.questions_selected.splice(idx, 1);
+            $scope.quiz.questions.push(idx,1)
         }
     }
 
@@ -106,7 +112,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     }
 
     $scope.createQuestionnaire = function(quiz) {
-        QuizService.createQuestionnaire(quiz.title, quiz.author, quiz.keyword, quiz.topic, $routeParams.lang)
+        QuizService.createQuestionnaire(quiz.title, quiz.author, quiz.keyword, quiz.topic,quiz.questions, $routeParams.lang)
             .then(function (result) {
                 if (result) {
                     $scope.error = new ErrorInfoModel();

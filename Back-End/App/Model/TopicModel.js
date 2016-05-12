@@ -79,10 +79,17 @@ topicSchema.statics.getQuestions=function(topic, callback){
 };
 
 topicSchema.statics.getTopicQuestions = function(topic, keywords, lang, callback) {
-    return this.findOne({name: topic}, 'question', function(err, questionsID) {
-        if (err) return;
-        else return Question.getAllQuestions(questionsID, keywords, lang, callback);
-    });
+   if (topic=='null')
+        return this.find({}, 'question', function(err, questionsID) {
+            if (err) return callback;
+            else return Question.getAllQuestions(questionsID, keywords, lang, callback);
+        })
+   else{
+        return this.findOne({name: topic}, 'question', function(err, questionsID) {
+            if (err) return callback;
+            else return Question.getAllQuestions(questionsID, keywords, lang, callback);
+        });
+   }
 }
 
 topicSchema.statics.getTopic= function(lang, callback) {

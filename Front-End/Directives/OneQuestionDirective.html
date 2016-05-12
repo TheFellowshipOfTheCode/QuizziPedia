@@ -21,15 +21,15 @@
 <md-toolbar class="modifyQuestionTitle toolbar-section toolbar-top">
   <div class="md-toolbar-tools">
     <h2>
-      <span>Ci sono {{questions.length}}
-        <span ng-if="questions.length==1"> domanda. </span>
-        <span ng-if="questions.length>1"> domande. </span>
+      <span ng-if="questions.length==0"> Ci sono 0 domande. </span>
+      <span ng-if="questions.length==1"> C'è {{questions.length}} domanda. </span>
+        <span ng-if="questions.length>1"> Ci sono {{questions.length}} domande. </span>
       </span>
     </h2>
     <span flex=""></span>
-    <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
-    <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
-    <span> Page {{currentPage+1}} of {{numberOfPages(questions.length)}}</span>
+    <md-button ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <span ng-if="questions.length != 0"> Page {{currentPage+1}} of {{numberOfPages(questions.length)}}</span>
   </div>
 </md-toolbar>
 

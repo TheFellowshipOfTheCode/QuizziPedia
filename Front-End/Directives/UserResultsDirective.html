@@ -18,11 +18,27 @@
  *******************************************************************************/
 -->
 
-<section ng-repeat="u in users" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
-        <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-            <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
-            <span class="ng-binding divided"><h3>{{listOfKeys.UserNameResult}}: </h3> {{u.name}} </span>
-            <span class="ng-binding divided"> <h3>{{listOfKeys.UserSurnameResult}}: </h3>{{u.surname}}  </span>
-            <span class="ng-binding divided"> <h3>{{listOfKeys.UserUsernameResult}}: </h3>{{u.username}}  </span>
-        </div>
+<md-toolbar class="toolbar-section toolbar-top">
+    <div class="md-toolbar-tools">
+        <h2>
+        <span ng-if="users.length==0"> Ci sono 0 utenti. </span>
+        <span ng-if="users.length==1"> C'è {{users.length}} utente. </span>
+        <span ng-if="users.length>1"> Ci sono {{users.length}} utenti. </span>
+      </span>
+        </h2>
+        <span flex=""></span>
+        <md-button ng-if="users.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+        <md-button ng-if="users.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(users.length)-1" ng-click="goOn()">>></md-button>
+        <span ng-if="users.length != 0"> Page {{currentPage+1}} of {{numberOfPages(users.length)}}</span>
+    </div>
+
+</md-toolbar>
+
+<section ng-if="users != undefined" class="md-whiteframe-1dp" ng-repeat="u in users | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
+       <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
+           <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
+           <span class="ng-binding divided"> {{listOfKeys.UserNameResult}}: <h3>{{u.name}} </h3></span>
+            <span class="ng-binding divided"> {{listOfKeys.UserSurnameResult}}: <h3>{{u.surname}} </h3> </span>
+            <span class="ng-binding divided"> {{listOfKeys.UserUsernameResult}}: <h3>{{u.username}} </h3> </span>
+       </div>
 </section>

@@ -18,7 +18,23 @@
  *******************************************************************************/
 -->
 
-<div ng-repeat="q in quizzes" class="md-whiteframe-z1" layout-sm="column" layout-align="center">
+<md-toolbar class="toolbar-section toolbar-top">
+    <div class="md-toolbar-tools">
+        <h2>
+        <span ng-if="quizzes.length==0"> Ci sono 0 questionari. </span>
+        <span ng-if="quizzes.length==1"> C'è {{quizzes.length}} questionario. </span>
+        <span ng-if="quizzes.length>1"> Ci sono {{quizzes.length}} questionari. </span>
+      </span>
+        </h2>
+        <span flex=""></span>
+        <md-button ng-if="quizzes.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+        <md-button ng-if="quizzes.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(quizzes.length)-1" ng-click="goOn()">>></md-button>
+        <span ng-if="quizzes.length != 0"> Page {{currentPage+1}} of {{numberOfPages(quizzes.length)}}</span>
+
+    </div>
+</md-toolbar>
+
+<div ng-if="quizzes != undefined" class="md-whiteframe-1dp" ng-repeat="q in quizzes | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
     <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
         <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="">{{listOfKeys.registrationButton}}</button>
         <p class="ng-binding divided quiz-title"> {{listOfKeys.QuizTitleResult}}: {{q.title}} </p>

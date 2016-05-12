@@ -10,31 +10,9 @@ var summarySchema = new mongoose.Schema({
     givenAnswers:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Question',
-        answers: [{
-            text: String,
-            url: String,
-            attributesForTForMultiple: {
-                isItRight: Boolean
-            },
-            attributesForSorting: {
-                position: Number
-            },
-            attributesForLinking: {
-                text1: String,
-                text2: String,
-                url1: String,
-                url2: String
-            },
-            attributesForClickableArea: {
-                x: Number,
-                y: Number
-            },
-            attributesForEmptySpaces: {
-                wordNumber: Number
-            }
-        }]
+        isCorrected: boolean
     }],
-    date: Date,
+    date: {type: Date, default: Date.now},
     mark: Number
 });
 
@@ -42,6 +20,20 @@ summarySchema.statics.findSummary=function(summaryId,callback){
     return this.findOne({'_id':summaryId}, function(err,summary){
          Quiz.getQuiz(summary.quiz,callback)
     });
+}
+
+summarySchema.statics.createSummary = function(quiz_id, answers, callback) {
+    var new_summary = new this();
+    new_summary.quiz = quiz_id;
+    new_summary.givenAnswers = answers;
+    var corrected = 0;
+    new_summary.givenAnswers.forEach(function(answer) {
+        if(answer.isCorrected)
+            corrected++;
+    });
+    new_summary.mark = Math.round(corrected/new_summary.givenAnswers.length()*100)/10;
+    // creazione del nuovo summary
+    return new_summary.save(callback);
 }
 
 

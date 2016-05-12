@@ -23,7 +23,8 @@
  *******************************************************************************/
 
 var user = require('../Controller/UserController');
-var topic = require('../Controller/TopicController')
+var topic = require('../Controller/TopicController');
+var summary = require('../Controller/SummaryController');
 
 module.exports = function(app){
 
@@ -58,5 +59,8 @@ module.exports = function(app){
 
     app.route('/api/:lang/topic/statistics')
         .put(topic.updateStatisticTopic);
+
+    app.route('/api/:lang/user/quiz/summary')
+        .post(summary.createSummary);
 
 };

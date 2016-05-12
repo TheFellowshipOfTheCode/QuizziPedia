@@ -104,7 +104,30 @@ createJSONrispostaMultipla = function(corpo){
 }
 
 createJSONordinamentoStringhe = function(corpo){
-
+    var jsonString = "\"question\" : [{ \"type\" : \"ordinamentoStringhe\" ,";
+    if(corpo.hasOwnProperty('questionText')){
+        jsonString = jsonString + "\"questionText\" : " + corpo.questionText + ",";
+    }
+    if(corpo.hasOwnProperty('image')){
+        jsonString = jsonString + "\"image\" : " + corpo.image + ",";
+    }
+    jsonString = jsonString + "\"answers\" : [{"
+    var count = 0;
+    for(key in corpo.answer){
+        count++;
+    }
+    var i = 1;
+    for(key in corpo.answer){
+        jsonString = jsonString + "\"text\" : " + key.getElementsByName('text') + ",";
+        jsonString = jsonString + "\"position\" : " + key.getElementsByName('position');
+        if(i == count){
+            jsonString = jsonString + "}]";
+        }
+        else{
+            jsonString = jsonString + "},";
+        }
+        i++;
+    }
 }
 
 createJSONcollegamentoElementi = function(corpo){

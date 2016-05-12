@@ -71,7 +71,7 @@ quizSchema.statics.getQuiz=function(quizId,callback){
                     Question.getQuestion(elem,function(err,question){
                         questions_quiz.push(question);
                         if(questions_quiz.length==quiz.questions.length){
-                            quiz.questions=questions_quiz
+                            quiz.questions=questions_quiz.reverse();
                             return callback(err,quiz)
                         }
                     })

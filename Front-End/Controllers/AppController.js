@@ -22,8 +22,8 @@
 
 app.controller('AppController', AppController);
 
-AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel'];
-function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
+AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel', 'Utils', '$cookies', '$window'];
+function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel, Utils, $cookies, $window) {
     var lang;
     if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
         AuthService.giveMe($routeParams.lang)
@@ -59,6 +59,106 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         });
     }
 
+
+    if(localStorage.sessionBrowser != sessionStorage.sessionBrowser) {
+    alert = $mdDialog.confirm()
+        .title("1")
+        .content("2")
+        .ok("OK")
+        .cancel("NO");
+    $mdDialog
+        .show( alert )
+        .then(function() {
+          localStorage.sessionBrowser = sessionStorage.sessionBrowser;
+        }, function (err){
+            window.open('','_self').close()
+          });
+    }
+
+    if(!localStorage.numberOfPages) {
+      localStorage.numberOfPages = 1;
+    }
+
+    if (!sessionStorage.sessionBrowser) { // no
+      var random = Math.random().toString();
+      sessionStorage.sessionBrowser = random;
+      localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
+      if(!localStorage.sessionBrowser) { // no
+        localStorage.sessionBrowser = sessionStorage.sessionBrowser;
+        console.log("Ok sei nella pagina dell'applicazione principale");
+      }
+      else { //si
+          console.log("non si possono avere due pagine dell'applicazione");
+      }
+    }
+    else { // si
+      if(localStorage.sessionBrowser) { // si
+        if(localStorage.sessionBrowser == sessionStorage.sessionBrowser) { //si
+          console.log("Ok sei nella pagina dell'applicazione principale");
+          localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
+        }
+        else { // no
+          console.log("non si possono avere due pagine dell'applicazione");
+          localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
+        }
+      }
+      else { // no
+        localStorage.sessionBrowser = sessionStorage.sessionBrowser;
+        localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
+        console.log("Setto nuova app principale");
+        console.log("Ok sei nella pagina dell'applicazione principale");
+      }
+    }
+
+    console.log(sessionStorage.sessionBrowser);
+    console.log(localStorage.sessionBrowser);
+    console.log($cookies.get("sessionBrowser"));
+    console.log(localStorage.numberOfPages);
+
+    $(window).unload(function() {
+      localStorage.numberOfPages = parseInt(localStorage.numberOfPages) - 1;
+      if(localStorage.numberOfPages == 0) {
+        delete localStorage.sessionBrowser;
+        console.log("cancello localStorage.sessionBrowser");
+      }
+      else {
+        console.log("non cancello localStorage.sessionBrowser");
+      }
+    });
+
+    var onFocus = function(){
+      if(localStorage.sessionBrowser != sessionStorage.sessionBrowser) {
+      alert = $mdDialog.confirm()
+          .title($rootScope.listOfKeys.attention)
+          .content($rootScope.listOfKeys.areYouSureToGoOn)
+          .ok($rootScope.listOfKeys.yesGoOn)
+          .cancel($rootScope.listOfKeys.dontGoOn);
+      $mdDialog
+          .show( alert )
+          .then(function() {
+            localStorage.sessionBrowser = sessionStorage.sessionBrowser;
+          }, function (err){
+            window.open('','_self').close();
+          });
+      }
+    }
+    $window.onfocus = onFocus;
+
+    /*$(window).onfocus = function () {
+      if(localStorage.sessionBrowser != sessionStorage.sessionBrowser) {
+      alert = $mdDialog.confirm()
+          .title($rootScope.listOfKeys.attention)
+          .content($rootScope.listOfKeys.areYouSureToGoOn)
+          .ok($rootScope.listOfKeys.yesGoOn)
+          .cancel($rootScope.listOfKeys.dontGoOn);
+      $mdDialog
+          .show( alert )
+          .then(function() {
+            localStorage.sessionBrowser = sessionStorage.sessionBrowser;
+          });
+      }
+    };*/
+
     function getLang (lang) {
         var setOfKeywords = LangService.getKeywords(lang);
         return setOfKeywords.then(function(data){
@@ -77,4 +177,17 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         }
     }
 
+
+
+}
+
+String.prototype.hashCode = function(){
+  var hash = 0;
+  if (this.length == 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    char = this.charCodeAt(i);
+    hash = ((hash<<5)-hash)+char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
 }

@@ -140,7 +140,7 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
             $scope.questionNumberOnQuiz++;
             console.log($scope.questionNumberOnQuiz);
             console.log(questions[$scope.questionNumberOnQuiz]);
-            $rootScope.$emit("loadNewQuestionQuiz", questions[$scope.questionNumberOnQuiz], $scope.questionNumberOnQuiz);
+            $rootScope.$emit("loadNewQuestionQuiz", questions[$scope.questionNumberOnQuiz], $scope.questionNumberOnQuiz, $scope.quiz.getArgument(), $rootScope.userLogged.getLevel());
             angular.element(".scrollable").scrollTop(0,0);
           }
           else {

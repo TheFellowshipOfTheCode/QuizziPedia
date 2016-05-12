@@ -57,9 +57,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   $scope.$on('$destroy', loadNewQuestion);
 
   /*Function used to load new question*/
-  var loadNewQuestionQuiz =$rootScope.$on("loadNewQuestionQuiz", function(event, question, number) {
+  var loadNewQuestionQuiz =$rootScope.$on("loadNewQuestionQuiz", function(event, question, number, topic, level) {
     if(number>0) {
-      //checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
+      checkAnswer($scope.question, $scope.objAnswer, topic, level);
     }
     console.log(question);
     $scope.objAnswer=[];

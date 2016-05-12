@@ -20,16 +20,16 @@
 
 
 <md-toolbar class="toolbar-section toolbar-top user-details" layout="row" layout-sm="row" layout-xs="row">
-        <span class="ng-binding divided"> {{listOfKeys.UserUsername}}</span>
-        <span class="ng-binding divided"> {{listOfKeys.UserName}}</span>
-        <span class="ng-binding divided"> {{listOfKeys.UserSurname}} </span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.UserUsername}}</h3></span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.UserName}}</h3></span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.UserSurname}} </h3></span>
         <!--<span class="ng-binding divided"> {{listOfKeys.UserImage}}: <img src="{{user.image}}"/> </span>-->
 </md-toolbar>
 
 <section layout-sm="column" layout-align="center">
         <div class="md-toolbar-tools toolbar-section">
                 <span class="ng-binding divided"> {{user.getUsername()}}</span>
-                <span class="ng-binding divided">  {{user.getName()}}</span>
-                <span class="ng-binding divided">  {{user.getSurname()}} </span>
+                <span class="ng-binding divided"> {{user.getName()}}</span>
+                <span class="ng-binding divided"> {{user.getSurname()}} </span>
         </div>
 </section>

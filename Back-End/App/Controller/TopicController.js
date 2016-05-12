@@ -43,7 +43,6 @@ exports.getNextQuestion = function(req, res) {
                                 });
                             });
                             if (req.body.keywords.length==equalKeywords || req.body.keywords.length==0) {
-                                console.log(count);
                                 count = 0;
                                 return res.send(question);
                             }

@@ -1,0 +1,43 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::QuestionnaireDoneDetailsDirective;
+ * Description: rappresenta i questionari eseguiti da un utente;
+ * Relations with other classes:
+ * +
+ * Creation data: 12-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionnaireDoneDetailsDirective_20160512
+ * Update data: 12-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<md-toolbar ng-if="quizzes != undefined" class="toolbar-section toolbar-top quizzes-done" layout="row" layout-sm="row" layout-xs="row">
+    <span class="divided"> {{listOfKeys.QuizName}}:</span>
+    <span class="divided">{{listOfKeys.QuizAuthor}}:</span>
+    <span class="divided"> {{listOfKeys.QuizTopic}}:</span>
+    <span class="divided"> {{listOfKeys.QuizMark}}:</span>
+</md-toolbar>
+<section ng-if="quizzes != undefined" ng-repeat="quiz in quizzes" layout-sm="column" layout-align="center">
+    <div class="md-toolbar-tools toolbar-section">
+    <span class="ng-binding divided"> {{quiz.title}} </span>
+    <span class="ng-binding divided">  {{quiz.author}}</span>
+    <span class="ng-binding divided">  {{quiz.topic}} </span>
+    <span class="ng-binding divided"> {{quiz.mark}} </span>
+    </div>
+</section>
+
+<md-toolbar ng-if="quizzes == 0 || quizzes == undefined" class="toolbar-section toolbar-top">
+    <div class="md-toolbar-tools">
+        <h2>
+            <span> Ci sono 0 questionari svolti. </span>
+            </span>
+        </h2>
+    </div>
+</md-toolbar>

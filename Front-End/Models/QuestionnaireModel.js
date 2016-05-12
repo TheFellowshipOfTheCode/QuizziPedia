@@ -49,6 +49,9 @@ function QuestionnaireModel() {
             id_ = id;
         };
 
+        this.getAuthor = function () {
+            return author_;
+        };
 
         this.getName = function () {
             return name_;

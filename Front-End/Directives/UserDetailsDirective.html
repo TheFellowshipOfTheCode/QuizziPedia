@@ -1,0 +1,35 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::UserDetailsDirective;
+ * Description: rappresenta i dati di un utente;
+ * Relations with other classes:
+ * +
+ * Creation data: 12-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: UserDetailsDirective_20160512
+ * Update data: 12-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+
+<md-toolbar class="toolbar-section toolbar-top user-details" layout="row" layout-sm="row" layout-xs="row">
+        <span class="ng-binding divided"> {{listOfKeys.UserUsername}}</span>
+        <span class="ng-binding divided"> {{listOfKeys.UserName}}</span>
+        <span class="ng-binding divided"> {{listOfKeys.UserSurname}} </span>
+        <!--<span class="ng-binding divided"> {{listOfKeys.UserImage}}: <img src="{{user.image}}"/> </span>-->
+</md-toolbar>
+
+<section layout-sm="column" layout-align="center">
+        <div class="md-toolbar-tools toolbar-section">
+                <span class="ng-binding divided"> {{user.getUsername()}}</span>
+                <span class="ng-binding divided">  {{user.getName()}}</span>
+                <span class="ng-binding divided">  {{user.getSurname()}} </span>
+        </div>
+</section>

@@ -33,7 +33,7 @@
   </div>
 </md-toolbar>
 
-<section ng-if="questions != undefined" class="modifyQuestionTitle md-whiteframe-1dp" ng-repeat="q in questions | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
+<section ng-if="questions.length != 0" class="md-whiteframe-1dp" ng-repeat="q in questions | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
 
   <md-toolbar class="toolbar-section">
       <div class="md-toolbar-tools">
@@ -72,7 +72,7 @@
     </div>
 </section>
 
-<md-toolbar class="modifyQuestionTitle toolbar-section toolbar-bottom">
+<md-toolbar ng-if="questions.length != 0" class="modifyQuestionTitle toolbar-section toolbar-bottom">
   <div class="md-toolbar-tools">
     <span flex=""></span>
     <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>

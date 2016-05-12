@@ -285,7 +285,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
       })
         .when('/:lang/userpage', {
             templateUrl: '/Views/UserView.html',
-            controller: "SearchController",
+            controller: "UserDetailsController",
             css: [
                 {
 

@@ -52,7 +52,7 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
 
   /*Si*/
   $scope.quizIsLoaded = false;
-  $scope.questionNumberOnQuiz = 1;
+  $scope.questionNumberOnQuiz = 0;
   $scope.quizIsLoaded = false;
   $timeout(function() {
     $scope.quizIsLoaded = true;
@@ -116,7 +116,8 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     $scope.startQuiz = false;
     console.log(questions);
     console.log(questions[0]);
-    $rootScope.$emit("loadNewQuestionQuiz", questions[0], 0)
+    $rootScope.$emit("loadNewQuestionQuiz", questions[0], 0);
+    //$scope.questionNumberOnQuiz++;
   };
 
   /*Function to get the next question*/
@@ -130,7 +131,26 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     $mdDialog
         .show( alert )
         .then(function() {
-          checkIfICouldGoOn();
+          //checkIfICouldGoOn();
+          console.log("prossima domanda");
+          console.log($scope.questionNumberOnQuiz);
+          console.log($scope.quiz.getNumberOfQuestions());
+          if($scope.questionNumberOnQuiz+1 < $scope.quiz.getNumberOfQuestions() )
+          {
+            $scope.questionNumberOnQuiz++;
+            console.log($scope.questionNumberOnQuiz);
+            console.log(questions[$scope.questionNumberOnQuiz]);
+            $rootScope.$emit("loadNewQuestionQuiz", questions[$scope.questionNumberOnQuiz], $scope.questionNumberOnQuiz);
+            angular.element(".scrollable").scrollTop(0,0);
+          }
+          else {
+            console.log("finito il questionario");
+            //$rootScope.$emit("checkAnswerEvent",$scope.training.getArgument(), level);
+            $scope.stopToGoBack = false;
+            //graphResultAfterFinishedATraining();
+            $scope.quizIsFinished = true;
+            window.onbeforeunload = null;
+          }
         });
   };
 

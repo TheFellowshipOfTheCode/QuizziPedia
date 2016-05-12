@@ -60,29 +60,122 @@ describe("Create Question Test", function(){
                 language: "it",
                 question: [
                     {
-                        type: "ordinamentoStringhe",
-                        questionText: "Ordina questi animali dal più grande al più piccolo.",
+                        type: "ordinamentoImmagini",
+                        questionText: "Questi super eroi hanno un nome. Ordina le immagini in modo da poter mettere i super erori in ordine alfabetico.",
+                        image: "/Images/veroFalso/prova.png",
                         answers: [
                             {
-                                text: "Elefante",
-                                position: 2
-                            },
-                            {
-                                text: "Cane",
-                                position: 3
-                            },
-                            {
-                                text: "Balena",
+                                url: "/Images/domandeOrdinamentoImmagini/D4_1.jpg",
                                 position: 1
                             },
                             {
-                                text: "Formica",
+                                url: "/Images/domandeOrdinamentoImmagini/D4_2.png",
+                                position: 2
+                            }
+                        ]
+                    },
+                    {
+                        type: "spaziVuoti",
+                        questionText: "Giulio Cesare era un console dei dinosauri .",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                parolaNumero: 4
+                            },
+                            {
+                                parolaNumero: 1
+                            }
+                        ]
+                    },
+                    {
+                        type: "ordinamentoStringhe",
+                        questionText: "Ordina questi numeri in modo decrescente.",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                text: "1",
                                 position: 4
+                            },
+                            {
+                                text: "2",
+                                position: 3
+                            },
+                            {
+                                text: "7",
+                                position: 2
+                            },
+                            {
+                                text: "9",
+                                position: 1
+                            }
+                        ]
+                    },
+                    {
+                        type: "collegamento",
+                        image: "/Images/veroFalso/prova.png",
+                        questionText: "Unisci questi nemici storici.",
+                        answers: [
+                            {
+                                text1: "cane",
+                                text2: "gatto"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_2.jpg",
+                                text2: "olio"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_1.jpg",
+                                url2: "/Images/collegamento/D2_5.png"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_2.jpg",
+                                text2: "olio"
+                            },
+                            {
+                                url1: "/Images/collegamento/D2_1.jpg",
+                                url2: "/Images/collegamento/D2_5.png"
+                            }
+                        ]
+                    },
+                    {
+                        type: "veroFalso",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                text: "In Inghilterra la guida è destra.",
+                                isItRight: false
+                            }
+                        ]
+                    },
+                    {
+                        type: "rispostaMultipla",
+                        questionText: "Quali di questi numeri è pari?",
+                        image: "/Images/veroFalso/prova.png",
+                        answers: [
+                            {
+                                text: "1",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: false
+                            },
+                            {
+                                text: "2",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: true
+                            },
+                            {
+                                text: "7",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: false
+                            },
+                            {
+                                text: "9",
+                                url: "/Images/veroFalso/prova.png",
+                                isItRight: false
                             }
                         ]
                     }
                 ],
-                keywords: [""],
+                keywords: ["Cane", "Gatto"],
                 topic: "Animali"
             })
             .end(function(err,res){ 

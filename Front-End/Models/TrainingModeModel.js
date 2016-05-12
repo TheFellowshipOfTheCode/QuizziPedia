@@ -47,7 +47,7 @@ function TrainingModeModel() {
         questions_ = questions;
     };
 
-    this.setRightAnswer = function () {
+    this.setRightAnswer = function (rightAnswer) {
         rightAnswer_=rightAnswer;
     };
 

@@ -53,6 +53,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   /*Function to start the training*/
   $scope.starTraining = starTraining;
   function starTraining (argument, keywords) {
+    console.log("----------------------------------------");
     $scope.stopToGoBack = true;
     if($scope.selectedTopicOnMind != ""){
       if($scope.iQ) {
@@ -68,12 +69,13 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         level = $scope.temporaryLevel;
       }
       $scope.training = new TrainingModeModel(argument, keywords, $scope.numberOfQuestionsOnTraining.num);
+      $scope.training.setRightAnswer(0);
       $rootScope.$emit("loadNewQuestion", {
         language  : $routeParams.lang,
         topic: $scope.training.getArgument(),
         keywords : $scope.training.getKeywords(),
         level  : level,
-        alreadyAnswered : [] }
+        alreadyAnswered : [] }, $scope.questionNumberOnTraining
       );
       window.onbeforeunload = function(event) {
           return $rootScope.listOfKeys.areYouSureToLeaveTheTraining;
@@ -105,6 +107,11 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     keys =  $scope.training.getKeywords(),
     nums = $scope.training.getNumberOfQuestions();
     delete $scope.training;
+    delete $scope.question;
+    console.log($scope.training);
+    if($scope.training === undefined) {
+      console.log("vuoto");
+    }
     $scope.questionNumberOnTraining = 1;
     $scope.traininIsFinished = false;
     $scope.starTraining(arg, keys);
@@ -254,6 +261,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Event to go back to the set up training*/
   var addResult = $rootScope.$on("addResult", function(event, args) {
+    console.log(args);
       $scope.training.addResult(args)
   });
   $scope.$on('$destroy', addResult);
@@ -283,7 +291,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         keywords : $scope.training.getKeywords(),
         level  : level,
         alreadyAnswered : arryOfQuestionsAlreadyAnswered
-        }
+      }, $scope.questionNumberOnTraining
       );
       angular.element(".scrollable").scrollTop(0,0);
     }

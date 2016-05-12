@@ -48,9 +48,12 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*RootScope function*/
 
   /*Function used to load new question*/
-  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, level) {
+  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, number) {
     console.log(args);
-    checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
+    console.log(number);
+    if(number>1) {
+      checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
+    }
     $scope.objAnswer=[];
     delete $scope.question;
     downloadNextQuestionTraining(args);
@@ -60,6 +63,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function used to load new question*/
   var loadNewQuestionQuiz =$rootScope.$on("loadNewQuestionQuiz", function(event, question, number, topic, level) {
     if(number>0) {
+      console.log("entro a correggere");
       checkAnswer($scope.question, $scope.objAnswer, topic, level);
     }
     console.log(question);
@@ -260,7 +264,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                 break;
             case "rispostaMultipla":
                 console.log("rispostaMultipla");
-                if(answersGiven === undefined) {
+                console.log(answersGiven);
+                if(answersGiven[index].answerGiven.length == 0 || answersGiven[index].answerGiven== undefined) {
+                  console.log("+ undefined");
                   answerCheckB = false;
                 }
                 answersGiven[index].answerGiven.forEach(function (answerGived) {

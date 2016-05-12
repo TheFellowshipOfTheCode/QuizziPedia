@@ -60,7 +60,7 @@ module.exports = function(app){
     app.route('/api/:lang/topic/statistics')
         .put(topic.updateStatisticTopic);
 
-    /*app.route('/api/:lang/user/quiz/summary', )
-        .post(summary.createSummary);*/
+    app.route('/api/:lang/user/quiz/summary')
+        .post(summary.createSummary);
 
 };

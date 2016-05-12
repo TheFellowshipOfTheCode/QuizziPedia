@@ -8,8 +8,10 @@ var summarySchema = new mongoose.Schema({
         ref:'Quiz'
     },
     givenAnswers:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Question',
+        _id:false,
+        question:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'Question'},
         isCorrected: Boolean
     }],
     date: {type: Date, default: Date.now},
@@ -31,7 +33,7 @@ summarySchema.statics.createSummary = function(quiz_id, answers, callback) {
         if(answer.isCorrected)
             corrected++;
     });
-    new_summary.mark = Math.round(corrected/new_summary.givenAnswers.length()*100)/10;
+    new_summary.mark = Math.round(corrected/new_summary.givenAnswers.length*100)/10;
     // creazione del nuovo summary
     return new_summary.save(callback);
 }

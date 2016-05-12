@@ -69,26 +69,34 @@ exports.getQuizzes = function(req, res) {
         if(err)
             return res.status(500).json({code:478, title: "Errore Utente", message: "Utente non trovato"});
         else {
-            var summaries=[];
-            user.quizSummaries.forEach(function(summaryId){
-                Summary.findOne({'_id':summaryId}, function(err,summary){
-                    if(err)
-                        return res.status(500).json({code:478, title: "Errore Utente", message: "Utente non trovato"});
-                    else {
-                        console.log(summary._id);
-                        quiz.findOne({'_id':summary.quiz}, function(err,quiz){
-                            summaries.push({
-                                'title': quiz.title,
-                                'author': quiz.author,
-                                'topic': quiz.topic,
-                                'mark': summary.mark
+            if(user.quizSummaries.length!=0) {
+                var summaries = [];
+                user.quizSummaries.forEach(function (summaryId) {
+                    Summary.findOne({'_id': summaryId}, function (err, summary) {
+                        if (err)
+                            return res.status(500).json({
+                                code: 478,
+                                title: "Errore Utente",
+                                message: "Utente non trovato"
                             });
-                            if(summaries.length==user.quizSummaries.length)
-                                return res.send(summaries);
-                        })
-                    }
-                })
-            });
+                        else {
+                            console.log(summary);
+                            quiz.findOne({'_id': summary.quiz}, function (err, quiz) {
+                                summaries.push({
+                                    'title': quiz.title,
+                                    'author': quiz.author,
+                                    'topic': quiz.topic,
+                                    'mark': summary.mark
+                                });
+                                if (summaries.length == user.quizSummaries.length)
+                                    return res.send(summaries);
+                            })
+                        }
+                    })
+                });
+            }
+            else
+                return res.status(500).json({code:914, title: "Errore Utente", message: "Nessuno Questionario compilato "});
         }
     })
 

@@ -7,17 +7,17 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'alberto.ferrara@gmail.com', password: 'ciaociao'})
+            .send({username: 'userpro@gmail.com', password: 'userpro1'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("aferrara");
+                    res.body.user.username.should.equal("userpro");
                 else
                     res.status.should.equal(500);
                 done()
             });
     });
 });
-/*
+
 describe("Create Summary Test", function(){
     it("should create a summary of a quiz", function(done){
         //this.timeout(15000);
@@ -26,7 +26,7 @@ describe("Create Summary Test", function(){
             .send({
                 language: "it",
                 quiz: "573233c36697ad7203eebac2",
-                answers:[{question:{'_id':"5729c0fdc80eb653c3029c2e"},'isCorrected':false},{question:{'_id':"57343f882aad4ba97602fbb4"},'isCorrected':false}]
+                answers:[{question:{'_id':"5729c0fdc80eb653c3029c2e"},'isCorrected':false},{question:{'_id':"57343f882aad4ba97602fbb4"},'isCorrected':true}]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -40,7 +40,7 @@ describe("Create Summary Test", function(){
             })
     })
 });
-*/
+
 describe("View Summaries Test", function(){
     it("should view summaries of a user", function(done){
         this.timeout(15000);

@@ -10,7 +10,7 @@ var summarySchema = new mongoose.Schema({
     givenAnswers:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Question',
-        isCorrected: boolean
+        isCorrected: Boolean
     }],
     date: {type: Date, default: Date.now},
     mark: Number

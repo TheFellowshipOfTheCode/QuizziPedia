@@ -70,12 +70,14 @@ quizSchema.statics.getQuiz=function(quizId,callback){
             quiz.questions.forEach(function(elem) {
                     Question.getQuestion(elem,function(err,question){
                         questions_quiz.push(question);
+                        if(questions_quiz.length==quiz.questions.length){
+                            var qR = questions_quiz.reverse();
+                            quiz.questions=qR;
+                            return callback(err,quiz);
+                        }
                     })
             });
-            if(questions_quiz.length==quiz.questions.length){
-                quiz.questions=questions_quiz;
-                return callback(err,quiz)
-            }
+
         }
         else
             return callback(new Error("Questionario non abilitato"))
@@ -85,8 +87,3 @@ quizSchema.statics.getQuiz=function(quizId,callback){
 
 var Quiz = mongoose.model('Quiz', quizSchema);
 module.exports = Quiz;
-
-
-
-
-

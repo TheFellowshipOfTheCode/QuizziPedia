@@ -12,7 +12,7 @@
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
           <h3 ng-if="quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " class="ng-binding">
-            {{listOfKeys.questionNumberLang}} {{questionNumberOnQuiz}}
+            {{listOfKeys.questionNumberLang}} {{questionNumberOnQuiz+1}}
              {{listOfKeys.ofLang}}
              {{quiz.getNumberOfQuestions()}}
           </h3>

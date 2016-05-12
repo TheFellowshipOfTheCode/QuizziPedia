@@ -1,3 +1,27 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Libreries::questionCheck::collegamentoImmagini;
+ * Description: questo file contiene la funzione che permette la validazione
+ * del testo scritto in QML per la tipologia specifica
+ * Creation data: 27-04-2016;
+ * Author: Matteo Gnoato.
+ ********************************************************************************
+ * Updates history
+ * -------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Inseriti messaggi d'errore specifici
+ * Autore: Matteo Gnoato.
+ * -------------------------------------------------------------------------------
+ *  * Update data: 28-04-2016;
+ * Description: Risolto bug nella lettura dei campi obbligatori
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione ordinamentoImmagini
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ ********************************************************************************/
+
+
 ordinamentoImmagini = function(corpo,res){
     var campiObbligatori = false;
     var campiFacoltativi = true;

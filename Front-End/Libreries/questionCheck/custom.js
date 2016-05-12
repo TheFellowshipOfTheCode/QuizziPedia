@@ -1,3 +1,29 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Libreries::questionCheck::custom;
+ * Description: questo file contiene la funzione che permette la validazione
+ * del testo scritto in QML per la tipologia specifica
+ * Creation data: 27-04-2016;
+ * Author: Matteo Gnoato.
+ ********************************************************************************
+ * Updates history
+ * -------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Inseriti tutti i casi di domanda custom specifica, inseriti
+ * inoltre dei messaggi d'errore specifici per i casi in cui manchino dei campi
+ * obbligatori nel testo QML
+ * Autore: Matteo Gnoato.
+ * -------------------------------------------------------------------------------
+ *  * Update data: 28-04-2016;
+ * Description: creata funzione richiamaFunzione, inseriti parzialmente
+ * i casi specifici per la verifica della domanda custom
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione custom
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ ********************************************************************************/
+
 custom = function(corpo,res){
     var campiObbligatori = false;
     var campiFacoltativi = true;

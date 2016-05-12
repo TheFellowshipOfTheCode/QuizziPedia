@@ -7,13 +7,57 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: Config_20160427;
+ *  * Update data: 28-04-2016;
+ * Description: Creata funzione createCustom che creea la parte
+ * JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ *  * Update data: 28-04-2016;
+ * Description: Creata funzione createCollegamentoelementi che creea la parte
+ * JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione createSpaziVuoti che creea la parte
+ * JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione createAreaCliccabile che creea la parte
+ * JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione createOrdinamentoStringhe che creea la parte
+ * JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ *  * Update data: 28-04-2016;
+ * Description: Creata funzione createOrdinamentoImmagini che creea la parte
+ * JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione createRispostaMultipla che creea
+ * la parte JSON riguardante la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione createVF che creea la parte JSON riguardante
+ * la tipologia specifica della domanda;
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
  * Update data: 27-04-2016;
  * Description: Creata funzione che crea la parte json dei campi comuni
- * a tutte le ;
+ * a tutte le tipologie di domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+
+
+
+
+
 createJSON = function(corpo, res, tipologia, topic){
     var campiComuni = "\"makeWith\" : \"QML\",\"language\" : " + "it" + ",";
     campiComuni = campiComuni + "\"topic\" : \"" + topic + "\" ," ;

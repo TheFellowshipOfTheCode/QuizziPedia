@@ -29,7 +29,6 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         AuthService.giveMe($routeParams.lang)
             .then(function(result){
                 if(result.data != false) {
-                    //console.log(result.data);
                     $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, "" , result.data.experienceLevel, result.data.privilege, result.data._id);
                     $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
                     $rootScope.$emit("userDownloaded", true);
@@ -58,106 +57,6 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
             $rootScope.listOfKeys= data.getListOfKeys();
         });
     }
-
-
-    if(localStorage.sessionBrowser != sessionStorage.sessionBrowser) {
-    alert = $mdDialog.confirm()
-        .title("1")
-        .content("2")
-        .ok("OK")
-        .cancel("NO");
-    $mdDialog
-        .show( alert )
-        .then(function() {
-          localStorage.sessionBrowser = sessionStorage.sessionBrowser;
-        }, function (err){
-            window.open('','_self').close()
-          });
-    }
-
-    if(!localStorage.numberOfPages) {
-      localStorage.numberOfPages = 1;
-    }
-
-    if (!sessionStorage.sessionBrowser) { // no
-      var random = Math.random().toString();
-      sessionStorage.sessionBrowser = random;
-      localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
-      if(!localStorage.sessionBrowser) { // no
-        localStorage.sessionBrowser = sessionStorage.sessionBrowser;
-        console.log("Ok sei nella pagina dell'applicazione principale");
-      }
-      else { //si
-          console.log("non si possono avere due pagine dell'applicazione");
-      }
-    }
-    else { // si
-      if(localStorage.sessionBrowser) { // si
-        if(localStorage.sessionBrowser == sessionStorage.sessionBrowser) { //si
-          console.log("Ok sei nella pagina dell'applicazione principale");
-          localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
-        }
-        else { // no
-          console.log("non si possono avere due pagine dell'applicazione");
-          localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
-        }
-      }
-      else { // no
-        localStorage.sessionBrowser = sessionStorage.sessionBrowser;
-        localStorage.numberOfPages = parseInt(localStorage.numberOfPages) + 1;
-        console.log("Setto nuova app principale");
-        console.log("Ok sei nella pagina dell'applicazione principale");
-      }
-    }
-
-    console.log(sessionStorage.sessionBrowser);
-    console.log(localStorage.sessionBrowser);
-    console.log($cookies.get("sessionBrowser"));
-    console.log(localStorage.numberOfPages);
-
-    $(window).unload(function() {
-      localStorage.numberOfPages = parseInt(localStorage.numberOfPages) - 1;
-      if(localStorage.numberOfPages == 0) {
-        delete localStorage.sessionBrowser;
-        console.log("cancello localStorage.sessionBrowser");
-      }
-      else {
-        console.log("non cancello localStorage.sessionBrowser");
-      }
-    });
-
-    var onFocus = function(){
-      if(localStorage.sessionBrowser != sessionStorage.sessionBrowser) {
-      alert = $mdDialog.confirm()
-          .title($rootScope.listOfKeys.attention)
-          .content($rootScope.listOfKeys.areYouSureToGoOn)
-          .ok($rootScope.listOfKeys.yesGoOn)
-          .cancel($rootScope.listOfKeys.dontGoOn);
-      $mdDialog
-          .show( alert )
-          .then(function() {
-            localStorage.sessionBrowser = sessionStorage.sessionBrowser;
-          }, function (err){
-            window.open('','_self').close();
-          });
-      }
-    }
-    $window.onfocus = onFocus;
-
-    /*$(window).onfocus = function () {
-      if(localStorage.sessionBrowser != sessionStorage.sessionBrowser) {
-      alert = $mdDialog.confirm()
-          .title($rootScope.listOfKeys.attention)
-          .content($rootScope.listOfKeys.areYouSureToGoOn)
-          .ok($rootScope.listOfKeys.yesGoOn)
-          .cancel($rootScope.listOfKeys.dontGoOn);
-      $mdDialog
-          .show( alert )
-          .then(function() {
-            localStorage.sessionBrowser = sessionStorage.sessionBrowser;
-          });
-      }
-    };*/
 
     function getLang (lang) {
         var setOfKeywords = LangService.getKeywords(lang);

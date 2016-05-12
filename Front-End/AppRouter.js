@@ -283,6 +283,24 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
               }
           ]
       })
+        .when('/:lang/userpage', {
+            templateUrl: '/Views/UserView.html',
+            controller: "SearchController",
+            css: [
+                {
+
+                    href: 'css/userview-main.css'
+                },
+                {
+                    href: 'css/userview-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/userview-small',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
       .otherwise({
         redirectTo: '/it/home'
       })

@@ -8,17 +8,17 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'aferrara', password: 'ciaociao'})
+            .send({username: 'userpro@gmail.com', password: 'userpro1'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    if (res.body.success == false)
-                        res.body.message.should.equal("Login non effettuato")
-                    else
-                        res.body.user.username.should.equal("aferrara")
+                    res.body.user.username.should.equal("userpro");
+                else
+                    res.status.should.equal(500);
                 done()
             });
     });
-})
+});
+
 /*
 describe("Get topic Test", function() {
     it("should return topic", function (done) {

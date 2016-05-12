@@ -8,16 +8,17 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'alberto.ferrara@gmail.com', password: 'ciaociao'})
+            .send({username: 'userpro@gmail.com', password: 'userpro1'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("aferrara")
+                    res.body.user.username.should.equal("userpro");
                 else
-                    res.status.should.equal(500)
+                    res.status.should.equal(500);
                 done()
             });
     });
-})
+});
+
 /*
 describe("Get All Questions Test", function () {
     it("should return all questions of a topic", function (done) {

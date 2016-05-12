@@ -48,9 +48,9 @@ userSchema.methods.setImg=function(image,errback){
 
 }
 
-userSchema.methods.updateStatistics=function(statistics,callback){
-
-}
+userSchema.statics.getUser=function(userId,callback){
+    return this.findOne({'_id':userId}, callback)
+};
 
 userSchema.methods.upLevel=function(callback){
 
@@ -72,7 +72,7 @@ userSchema.methods.getSummary=function(summaryId,callback,errback){
 }
 
 userSchema.methods.getSummaries=function(callback,errback){
-    return this.model('User').find({ 'quizSummaries': this.quizSummaries }, callback);
+    return this.find({ 'quizSummaries': this.quizSummaries }, callback);
 }
 
 userSchema.statics.getUsers=function(searchword,callback){

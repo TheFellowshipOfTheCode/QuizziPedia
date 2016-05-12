@@ -17,7 +17,7 @@ describe("Signin Test", function () {
             });
     });
 });
-
+/*
 describe("Create Summary Test", function(){
     it("should create a summary of a quiz", function(done){
         //this.timeout(15000);
@@ -26,8 +26,26 @@ describe("Create Summary Test", function(){
             .send({
                 language: "it",
                 quiz: "573233c36697ad7203eebac2",
-                answers:[{question:{'_id':"5729c0fdc80eb653c3029c2e"},'isCorrected':true},{question:{'_id':"57343f882aad4ba97602fbb4"},'isCorrected':true}]
+                answers:[{question:{'_id':"5729c0fdc80eb653c3029c2e"},'isCorrected':false},{question:{'_id':"57343f882aad4ba97602fbb4"},'isCorrected':false}]
             })
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    console.log(res.body);
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
+*/
+describe("View Summaries Test", function(){
+    it("should view summaries of a user", function(done){
+        this.timeout(15000);
+        agent
+            .post('/api/:lang/user/donequizzes')
             .end(function(err,res){
                 if (!err && res.status == 200){
                     console.log(res.body);

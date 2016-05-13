@@ -23,12 +23,14 @@ UserDetailsController.$inject = ['$scope', '$rootScope', '$routeParams', '$locat
 
 function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService) {
     //console.log($rootScope.userLogged.getUsername());
-    delete $scope.subscribedQuizzes;
-    delete $scope.quizzes;
+
+    $scope.quizzes = undefined;
+    $scope.subscribedQuizzes = undefined;
 
     if($rootScope.userLogged != undefined){
         $scope.user = $rootScope.userLogged;
         loadDoneQuizzes();
+
         loadAbilitatedQuizzes()
     }
     else{
@@ -45,7 +47,11 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadDoneQuizzes() {
         QuizService.getDoneQuestionnaire($routeParams.lang)
             .then(function (result) {
-                $scope.quizzes = result.data;
+                if(result.data.length != undefined){
+                     $scope.quizzes = result.data;}
+                else{
+                    delete $scope.quizzes;
+                }
                 //console.log("quiz: " + $scope.quizzes);
             }, function (err) {
                 console.log(err);
@@ -55,8 +61,13 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadAbilitatedQuizzes() {
         QuizService.getSubscribedQuestionnaire($routeParams.lang)
             .then(function (result) {
-                $scope.subscribedQuizzes = result.data;
-                console.log("quiz: " + $scope.subscribedQuizzes);
+                console.log(result.data.length);
+                if(result.data.length >0){
+                    $scope.subscribedQuizzes = result.data;}
+                else{
+                    delete $scope.subscribedQuizzes;
+                }
+
             }, function (err) {
                 console.log(err);
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");

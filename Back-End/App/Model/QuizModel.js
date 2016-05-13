@@ -72,17 +72,16 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 }
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {
-    return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
-        var i=quiz.length;
-        quiz.forEach(function(elem,index){
-            User.getUser(elem.author,function(err,author){
-                quiz[index].author=author.name
-            })
-            i--;
-            if (i==0){
-                callback(null,quiz)
-            }
-        })
+    return this.find({registeredUsers: userId},'title topic author',function(err,quiz) {
+        var i = quiz.length;
+        /*quiz.forEach(function(elem,index){
+         User.getUser(elem.author,function(err,author){
+         quiz[index].author=author.name
+         })
+         i--;
+         if (i==0){*/
+        callback(null, quiz)
+        // }
     });
 }
 

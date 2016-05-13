@@ -79,12 +79,10 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 quizSchema.statics.getQuizSubscribers=function(quizId, callback){
 
     return this.findOne({'_id': quizId },'registeredUsers', function(err, users){
-         var i=users.registeredUsers.length;
          users.registeredUsers.forEach(function(user,index){
             User.getUser(user,function(err,subscriber) {
                 users.registeredUsers[index] = subscriber.name
-                i--;
-                if (i == 0)
+                if (index+1 == users.registeredUsers.length)
                     return callback(null, users.registeredUsers)
             });
          })

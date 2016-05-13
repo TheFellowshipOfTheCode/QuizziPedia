@@ -1,3 +1,21 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Controllers::QuizController;
+ * Description: classe che gestisce la logica applicativa riguardante la
+ * visualizzazione e la gestione dei questionari;
+ * Relations with other classes:
+ * + IN	QuizRouter;
+ * + OUT QuizModel.
+ * Creation data: 02-05-2016;
+ * Author: Mattia Varotto.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuizController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Creata classe e aggiunti metodi principali;
+ * Autore: Mattia Varotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
 
 var user = require('../Model/UserModel.js');
 var Quiz = require('../Model/QuizModel.js');

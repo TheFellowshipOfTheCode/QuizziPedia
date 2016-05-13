@@ -8,7 +8,7 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'userpro@gmail.com', password: 'userpro1'})
+            .send({username: 'blundert', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     res.body.user.username.should.equal("userpro");
@@ -103,7 +103,7 @@ describe("Get Quiz subscribe Test", function () {
             });
     });
 })
-
+/*
 describe("Get Quiz subscribers Test", function () {
     it("should return subscribers of a Quiz Test", function (done) {
         agent
@@ -116,7 +116,7 @@ describe("Get Quiz subscribers Test", function () {
                 done()
             });
     });
-})
+})*/
     /*
 
     it("should return the desired quiz", function(done) {

@@ -55,10 +55,14 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {
     return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
+        console.log("quiz:" + quiz);
         var author_array=[]
+        console.log(quiz.author);
         var i=quiz.length;
         quiz.forEach(function(elem){
+            console.log(elem.author);
             User.getUser(elem.author,function(err,author){
+                console.log(author);
                 author_array.push(author.name)
             })
             i--;
@@ -98,6 +102,7 @@ quizSchema.statics.getQuiz=function(quizId,callback){
             return callback(new Error("Questionario non abilitato"))
     })
 };
+
 
 
 var Quiz = mongoose.model('Quiz', quizSchema);

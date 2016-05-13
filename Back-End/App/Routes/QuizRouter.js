@@ -12,7 +12,7 @@ module.exports = function(app){
     app.route('/api/:lang/searchquiz/:keyword')
         .get(QuizController.searchQuiz);
 
-    app.route('/api/:lang/userquiz/subscribe')
+    app.route('/api/:lang/usersubscribe')
         .get(QuizController.getQuizSubscribe)
         .post(QuizController.addUser);
     

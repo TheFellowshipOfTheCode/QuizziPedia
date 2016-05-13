@@ -46,6 +46,7 @@ exports.editQuiz = function (req, res, next) {
 }
 
 exports.getQuizSubscribe=function(req,res,next){
+    console.log("entra");
     Quiz.getQuizSubscribe(req.user._id,function(err,quiz) {
         if (err) return res.status(500).json({
             code: 331,

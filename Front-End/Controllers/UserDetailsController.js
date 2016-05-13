@@ -25,15 +25,15 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     //console.log($rootScope.userLogged.getUsername());
     if($rootScope.userLogged != undefined){
         $scope.user = $rootScope.userLogged;
-        loadDoneQuizzes();
-        //loadAbilitatedQuizzes()
+        //loadDoneQuizzes();
+        loadAbilitatedQuizzes()
     }
     else{
         var ist = $rootScope.$on("userDownloaded", function(event, args) {
             if(args){
                 $scope.user = $rootScope.userLogged;
-                loadDoneQuizzes();
-                //loadAbilitatedQuizzes()
+                //loadDoneQuizzes();
+                loadAbilitatedQuizzes()
             }
         });
         $scope.$on('$destroy', ist);

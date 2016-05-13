@@ -46,7 +46,6 @@ exports.editQuiz = function (req, res, next) {
 }
 
 exports.addUser = function (req, res, next) {
-    console.log(req.user)
     Quiz.addUser(req.body.quizId, req.user._id, function (err, userId) {
         if (err) return res.status(500).json({
             code: 331,

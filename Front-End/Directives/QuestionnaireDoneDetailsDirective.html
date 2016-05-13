@@ -19,10 +19,10 @@
 -->
 
 <md-toolbar ng-if="quizzes != undefined" class="toolbar-section toolbar-top quizzes-done" layout="row" layout-sm="row" layout-xs="row">
-    <span class="divided"> <h3>{{listOfKeys.QuizName}} </h3></span>
-    <span class="divided"><h3>{{listOfKeys.QuizAuthor}} </h3></span>
-    <span class="divided"><h3> {{listOfKeys.QuizTopic}} </h3></span>
-    <span class="divided"> <h3>{{listOfKeys.QuizMark}} </h3></span>
+    <span class="divided"> <h3>{{listOfKeys.quizName}} </h3></span>
+    <span class="divided"><h3>{{listOfKeys.quizAuthor}} </h3></span>
+    <span class="divided"><h3> {{listOfKeys.quizTopic}} </h3></span>
+    <span class="divided"> <h3>{{listOfKeys.quizMark}} </h3></span>
 </md-toolbar>
 <section ng-if="quizzes != undefined" ng-repeat="quiz in quizzes" layout-sm="column" layout-align="center">
     <div class="md-toolbar-tools toolbar-section">

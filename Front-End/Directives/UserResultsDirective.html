@@ -37,8 +37,8 @@
 <section ng-if="users != undefined" class="md-whiteframe-1dp" ng-repeat="u in users | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
        <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
            <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
-           <span class="ng-binding divided"> {{listOfKeys.UserNameResult}}: <h3>{{u.name}} </h3></span>
-            <span class="ng-binding divided"> {{listOfKeys.UserSurnameResult}}: <h3>{{u.surname}} </h3> </span>
-            <span class="ng-binding divided"> {{listOfKeys.UserUsernameResult}}: <h3>{{u.username}} </h3> </span>
+           <span class="ng-binding divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
+            <span class="ng-binding divided"> {{listOfKeys.userSurnameResult}}: <h3>{{u.surname}} </h3> </span>
+            <span class="ng-binding divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
        </div>
 </section>

@@ -36,7 +36,7 @@
 
 <div ng-if="quizzes != undefined" class="md-whiteframe-1dp" ng-repeat="q in quizzes | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
     <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-        <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="">{{listOfKeys.registrationButton}}</button>
+        <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="registrationToQuiz(q._id)">{{listOfKeys.registrationButton}}</button>
         <p class="ng-binding divided quiz-title"> {{listOfKeys.QuizTitleResult}}: <h3>{{q.title}} </h3></p>
     </div>
 </div>

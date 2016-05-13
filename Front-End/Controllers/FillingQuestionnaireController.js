@@ -80,12 +80,13 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
           console.log(result);
           //$scope.quiz=result.data;
            //function (author, name, keyword, argument, questions, id)
-           console.log(result.data.keywords);
+           console.log(result);
           $scope.quiz= new QuestionnaireModel(result.data.author, result.data.title, result.data.keywords, result.data.topic, result.data.questions, result.data._id);
           questions = $scope.quiz.getQuestions();
           console.log($scope.quiz.getKeyword());
           console.log(questions);
           $scope.quizIsLoaded = true;
+
           if(result.data.active == true){
             $scope.startQuiz= true;
           }
@@ -150,6 +151,27 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
             $rootScope.$emit("checkAnswerEvent",$scope.quiz.getArgument(), $scope.userLogged.getLevelByTopic($scope.quiz.getArgument()));
             $scope.stopToGoBack = false;
             graphResultAfterFinishedATraining();
+
+            /*
+            {
+                            language: "it",
+                            quiz: "573233c36697ad7203eebac2",
+                            answers:[{question:{'_id':"5729c0fdc80eb653c3029c2e"},'isCorrected':true},{question:{'_id':"57343f882aad4ba97602fbb4"},'isCorrected':true}]
+                        }
+            */
+
+            QuizService.setQuizResult($routeParams.lang,
+              {
+                  language: $routeParams.lang,
+                  quiz: $scope.quiz.getId(),
+                  answers: $scope.quiz.getResultSummary()
+              }
+            )
+            .then(function(result){
+              console.log(result.data.mark);
+              $scope.quiz.setMark(result.data.mark);
+            });
+
             $scope.quizIsFinished = true;
             window.onbeforeunload = null;
           }

@@ -33,12 +33,10 @@
 
         <div ng-controller="QuestionsController" >
           <div ng-if="started == true && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " >
-            {{question}}
             <div class="spinner" ng-if="question === undefined">
               <img src="Images/Icons/reload.svg"/>
             </div>
             <div ng-if="question != undefined">
-              {{question}}
               <header-text-question-directive></header-text-question-directive>
               <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
                 <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
@@ -49,7 +47,7 @@
                 <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
               </div>
             </div>
-          </div>
+          </div>  {{objAnswer}}
         </div>
 
         <div ng-if="quizIsFinished == true ">

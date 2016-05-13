@@ -29,6 +29,7 @@ function QuestionnaireModel() {
         var id_ = id;
         var results = [];
         var numOfRightAnswer = 0;
+        var mark_ = 0;
 
         this.setAuthor = function (author) {
             author_ = author;
@@ -49,6 +50,10 @@ function QuestionnaireModel() {
 
         this.setId = function (id) {
             id_ = id;
+        };
+
+        this.setMark = function (mark) {
+            mark_ = mark;
         };
 
         this.getAuthor = function () {
@@ -77,6 +82,10 @@ function QuestionnaireModel() {
 
         this.getResult = function () {
           return numOfRightAnswer;
+        };
+
+        this.getMark = function () {
+            return mark_;
         };
 
         this.getResultById = function (id) {

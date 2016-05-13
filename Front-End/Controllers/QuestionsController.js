@@ -125,9 +125,11 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           list2 = Utils.shuffle(list2);
 
           if(elemA.type != "veroFalso" && elemA.type != "rispostaMultipla") {
+            console.log("faccio ->>>> "+elemA.type );
             $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
           }
           else {
+            console.log("faccio !!! ->>>> "+elemA.type );
             $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  []};
           }
 
@@ -198,7 +200,16 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
           });
 
-          $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+          list2 = Utils.shuffle(list2);
+
+          if(elemA.type != "veroFalso" && elemA.type != "rispostaMultipla") {
+            console.log("faccio ->>>> "+elemA.type );
+            $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+          }
+          else {
+            console.log("faccio !!! ->>>> "+elemA.type );
+            $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  []};
+          }
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
@@ -206,6 +217,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           else {
             $scope.temporyObjectForView[index]={list1,list2};
           }
+
 
         });
       }

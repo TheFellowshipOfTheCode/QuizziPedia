@@ -4,7 +4,7 @@
  * Relations with other classes:
  * +
  * Creation data: 12-05-2016;
- * Author: Matteo Granzotto;
+ * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history

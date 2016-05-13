@@ -30,7 +30,9 @@ function QuizService($http, $cookies, $q) {
         getDoneQuestionnaire : getDoneQuestionnaire,
         subscribeQuestionnaire: subscribeQuestionnaire,
         getSubscribedQuestionnaire: getSubscribedQuestionnaire,
-        setQuizResult:setQuizResult
+        setQuizResult:setQuizResult,
+        getUsersForThisQuestionnaire:getUsersForThisQuestionnaire,
+        approveSubscribeQuestionnaire:approveSubscribeQuestionnaire
     };
 
     return methods;
@@ -142,6 +144,29 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
+    function getUsersForThisQuestionnaire(quizId, lang){
+        var deferred = $q.defer();
+        $http.get('/api/'+ lang + '/userquizsubscribe/' + quizId)
+            .then(function(data) {
+                console.log(data);
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
 
+    function approveSubscribeQuestionnaire(userId, quizId, lang){
+        var params = {userId:userId, quizId:quizId};
+        var deferred = $q.defer();
+        $http.post('/api/'+ lang + '/userquizactiveUser' , params)
+            .then(function(data) {
+                //console.log(data);
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
 
 }

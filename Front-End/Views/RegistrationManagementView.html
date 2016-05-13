@@ -1,0 +1,62 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::RegistrationManagementView
+* Description: view contenente gli utenti iscritti ad un questionario
+*
+* Relations with other classes:
+*
+* Creation data: 13-05-2016
+* Author: Alberto Ferrara
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: RegistrationManagementView_20160513;
+* Update data: 13-05-2016;
+* Description: creazione view;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<div layout="column" flex id="content" role="main" ng-controller="AppController" >
+
+    <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+        <section class="user-view md-whiteframe-z1" layout-sm="column" layout-align="center">
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h2 class="ng-binding">{{listOfKeys.titleLangRegistrationManagement}}</h2>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <md-toolbar class="toolbar-section toolbar-top">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span ng-if="subscribedUsers.length == undefined"> Ci sono 0 iscritti. </span>
+                        <span ng-if="subscribedUsers.length == 1"> C'è {{subscribedUsers.length}} iscritto. </span>
+                        <span ng-if="subscribedUsers.length > 1"> Ci sono {{subscribedUsers.length}} iscritti. </span>
+                        </span>
+                    </h2>
+                    <span flex=""></span>
+                    <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+                    <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(subscribedUsers.length)-1 || subscribedUsers.length == undefined" ng-click="goOn()">>></md-button>
+                    <span ng-if="subscribedUsers.length > 0"> Page {{currentPage+1}} of {{numberOfPages(subscribedUsers.length)}}</span>
+
+                </div>
+            </md-toolbar>
+
+            <div ng-if="subscribedUsers != undefined" class="md-whiteframe-1dp" ng-repeat="u in subscribedUsers | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
+                <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
+                    <span class="ng-binding divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
+                    <span class="ng-binding divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
+                    <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="subscribeQuestionnaire(u._id)">{{listOfKeys.buttonAddLang}}</button>
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+
+</div>

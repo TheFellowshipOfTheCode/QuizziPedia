@@ -301,6 +301,24 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                 }
             ]
         })
+        .when('/:lang/managementsubscription/:idQuiz', {
+            templateUrl: '/Views/RegistrationManagementView.html',
+            controller: "RegistrationManagementController",
+            css: [
+                {
+
+                    href: 'css/subscription-management-main.css'
+                },
+                {
+                    href: 'css/subscription-management-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/subscription-management-small',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
       .otherwise({
         redirectTo: '/it/home'
       })

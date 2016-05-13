@@ -53,7 +53,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   /*Function to start the training*/
   $scope.starTraining = starTraining;
   function starTraining (argument, keywords) {
-    console.log("----------------------------------------");
+    //console.log("----------------------------------------");
     $scope.stopToGoBack = true;
     if($scope.selectedTopicOnMind != ""){
       if($scope.iQ) {
@@ -84,7 +84,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     else {
       $scope.problemWithTopic = true;
     }
-    console.log($scope.problemWithTopic);
+    //console.log($scope.problemWithTopic);
   };
 
   /*Function to set infinite question*/
@@ -108,9 +108,9 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     nums = $scope.training.getNumberOfQuestions();
     delete $scope.training;
     delete $scope.question;
-    console.log($scope.training);
+    //console.log($scope.training);
     if($scope.training === undefined) {
-      console.log("vuoto");
+      //console.log("vuoto");
     }
     $scope.questionNumberOnTraining = 1;
     $scope.traininIsFinished = false;
@@ -261,7 +261,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Event to go back to the set up training*/
   var addResult = $rootScope.$on("addResult", function(event, id, args) {
-    console.log(args);
+    //console.log(args);
       $scope.training.addResult(args)
   });
   $scope.$on('$destroy', addResult);
@@ -296,9 +296,9 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       angular.element(".scrollable").scrollTop(0,0);
     }
     else {
-      console.log("entro qui");
-      console.log($scope.training.getArgument());
-      console.log(level);
+      //console.log("entro qui");
+      //console.log($scope.training.getArgument());
+      //console.log(level);
       $rootScope.$emit("checkAnswerEvent", $scope.training.getArgument(), level);
       $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();

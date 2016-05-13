@@ -46,7 +46,8 @@ exports.editQuiz = function (req, res, next) {
 }
 
 exports.addUser = function (req, res, next) {
-    Quiz.addUser(req.body.quizId,req.user._id, function (err, userId) {
+    console.log(req.user)
+    Quiz.addUser(req.body.quizId, req.user._id, function (err, userId) {
         if (err) return res.status(500).json({
             code: 331,
             title: 'addUser-error',

@@ -76,7 +76,6 @@
                                         <md-input-container >
                                             <md-button class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
                                         </md-input-container>
-                                        </div>
 
                                     </md-item-content>
                                 </md-item>
@@ -108,7 +107,7 @@
                             </md-card-title-text>
                         </md-card-title>
                         <md-list>
-                            <md-item class="md-3-line" ng-repeat="question in filtered=(questions  | filter:filterByYours | filter:search)">
+                            <md-item class="md-3-line" ng-repeat="question in filtered=(filteredQuestions  | filter:filterByYours | filter:search)">
                                 <md-item-content >
                                     <div layout="row" layout-align="space-around center">
                                         <div flex="60" >
@@ -124,6 +123,12 @@
                                     </div>
                                 </md-item-content>
                             </md-item>
+                            <pagination
+                                    ng-model="currentPage"
+                                    total-items="questions.length"
+                                    max-size="maxSize"
+                                    boundary-links="true">
+                            </pagination>
                         </md-list>
                     </md-card>
 

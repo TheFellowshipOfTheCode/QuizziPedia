@@ -250,15 +250,15 @@ describe("Update Statistics Question Test", function(){
 */
 describe("View NextQuestion Test", function(){
     it("should view the next question of a training", function(done){
-        this.timeout(15000);
+        this.timeout(20000);
         agent
             .post('/api/:lang/user/training/question')
             .send({
                 language: "it",
                 topic: "Patente",
-                keywords:["Strada"],
-                level:647,
-                alreadyAnswered:[]
+                keywords:["Strada","Guida"],
+                level:500,
+                alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

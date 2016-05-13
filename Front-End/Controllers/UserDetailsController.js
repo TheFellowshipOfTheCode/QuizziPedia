@@ -70,6 +70,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
 
             }, function (err) {
                 console.log(err);
+                if(err.data.code!="331") {
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");
                     alert = $mdDialog.alert()
                         .title($scope.error.getTitle())
@@ -80,7 +81,9 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                         .finally(function () {
                             alert = undefined;
                         });
-                 });
+                }
+            });
+
     }
 }
 

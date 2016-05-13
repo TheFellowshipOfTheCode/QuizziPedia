@@ -23,49 +23,51 @@ UserDetailsController.$inject = ['$scope', '$rootScope', '$routeParams', '$locat
 
 function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService) {
     //console.log($rootScope.userLogged.getUsername());
+
+    $scope.quizzes = undefined;
+    $scope.subscribedQuizzes = undefined;
+
     if($rootScope.userLogged != undefined){
         $scope.user = $rootScope.userLogged;
         loadDoneQuizzes();
-        //loadAbilitatedQuizzes()
+
+        loadAbilitatedQuizzes()
     }
     else{
         var ist = $rootScope.$on("userDownloaded", function(event, args) {
             if(args){
                 $scope.user = $rootScope.userLogged;
                 loadDoneQuizzes();
-                //loadAbilitatedQuizzes()
+                loadAbilitatedQuizzes()
             }
         });
         $scope.$on('$destroy', ist);
     }
 
     function loadDoneQuizzes() {
-       QuizService.getDoneQuestionnaire($routeParams.lang)
-           .then(function (result) {
-               $scope.quizzes = result.data;
-               //console.log("quiz: " + $scope.quizzes);
-           }, function (err) {
-               console.log(err);
-               //controllo per evitare il popup in caso l'utente non abbia svolto questionari
-               if(err.data.code != "914") {
-                   $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari utente non andato a buon fine");
-                   alert = $mdDialog.alert()
-                       .title($scope.error.getTitle())
-                       .content($scope.error.getMessage())
-                       .ok('Ok');
-                   $mdDialog
-                       .show(alert)
-                       .finally(function () {
-                           alert = undefined;
-                       });
-               } });
-        }
+        QuizService.getDoneQuestionnaire($routeParams.lang)
+            .then(function (result) {
+                if(result.data.length != undefined){
+                     $scope.quizzes = result.data;}
+                else{
+                    delete $scope.quizzes;
+                }
+                //console.log("quiz: " + $scope.quizzes);
+            }, function (err) {
+                console.log(err);
+            })
+    }
 
     function loadAbilitatedQuizzes() {
         QuizService.getSubscribedQuestionnaire($routeParams.lang)
             .then(function (result) {
-                $scope.subscribedQuizzes = result.data;
-                //console.log("quiz: " + $scope.subscribedQuizzes);
+                console.log(result.data.length);
+                if(result.data.length >0){
+                    $scope.subscribedQuizzes = result.data;}
+                else{
+                    delete $scope.subscribedQuizzes;
+                }
+
             }, function (err) {
                 console.log(err);
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");

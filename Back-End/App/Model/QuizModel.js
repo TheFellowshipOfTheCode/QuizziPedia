@@ -39,7 +39,7 @@ quizSchema.statics.editQuiz = function(info, callback) {
 
 }
 
-quizSchema.statics.addUser = function(quizId,userId, callback) {
+quizSchema.statics.subscribeUser = function(quizId,userId, callback) {
     this.update({_id:quizId},{$push:{registeredUsers:userId}},callback);
 }
 
@@ -55,19 +55,17 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {
     return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
-        var author_array=[]
-        var i=quiz.length;
-        quiz.forEach(function(elem){
+      /*  var i=quiz.length;
+        quiz.forEach(function(elem,index){
             User.getUser(elem.author,function(err,author){
-                author_array.push(author.name)
+                quiz[index].author=author.name
             })
             i--;
-            if (i==0){
-                quiz.author=author_array;
+            if (i==0){*/
                 callback(null,quiz)
-            }
+           // }
         })
-    });
+    //});
 }
 
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
@@ -78,26 +76,44 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
     return this.find({'title':  new RegExp(tosearch, "i") },'title', callback);
 };
 
-quizSchema.statics.getQuiz=function(quizId,callback){
-    return this.findOne({'_id':quizId},'title keywords topic questions active',function (err, quiz){
-        if (quiz.active){
-            var questions_quiz=[];
-            quiz.questions.forEach(function(elem) {
-                    Question.getQuestion(elem,function(err,question){
-                        questions_quiz.push(question);
-                        if(questions_quiz.length==quiz.questions.length){
-                            var qR = questions_quiz.reverse();
-                            quiz.questions=qR;
-                            return callback(err,quiz);
-                        }
-                    })
+quizSchema.statics.getQuizSubscribers=function(quizId, callback){
+    return this.findOne({'_id': quizId },'registeredUsers', function(err, registeredUsers){
+         var i=registeredUsers.length;
+         registeredUsers.forEach(function(user,index){
+            User.getUser(user,function(err,subscriber) {
+                registeredUsers[index] = subscriber
+                i--;
+                if (i == 0)
+                    return callback(null, registeredUsers)
             });
-
-        }
-        else
-            return callback(new Error("Questionario non abilitato"))
+         })
     })
 };
+
+quizSchema.statics.getQuiz=function(quizId,userId,callback){
+    return this.findOne({'_id':quizId,'activeUsers':userId},'title keywords topic questions active',function (err, quiz){
+        if (quiz)
+            if (quiz.active){
+                var questions_quiz=[];
+                quiz.questions.forEach(function(elem) {
+                        Question.getQuestion(elem,function(err,question){
+                            questions_quiz.push(question);
+                            if(questions_quiz.length==quiz.questions.length){
+                                var qR = questions_quiz.reverse();
+                                quiz.questions=qR;
+                                return callback(err,quiz);
+                            }
+                        })
+                });
+    
+            }
+            else
+                return callback(new Error("Questionario non abilitato"))
+        else
+            return callback(new Error("Utente non autorizzato"))
+    })
+};
+
 
 
 var Quiz = mongoose.model('Quiz', quizSchema);

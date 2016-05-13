@@ -1,3 +1,21 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Controllers::QuizController;
+ * Description: classe che gestisce la logica applicativa riguardante la
+ * visualizzazione e la gestione dei questionari;
+ * Relations with other classes:
+ * + IN	QuizRouter;
+ * + OUT QuizModel.
+ * Creation data: 02-05-2016;
+ * Author: Mattia Varotto.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuizController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Creata classe e aggiunti metodi principali;
+ * Autore: Mattia Varotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
 
 var user = require('../Model/UserModel.js');
 var Quiz = require('../Model/QuizModel.js');
@@ -16,13 +34,28 @@ exports.createQuiz = function (req, res) {
 }
 
 exports.getQuiz = function (req, res, next) {
-    Quiz.getQuiz(req.params.quizId, function(err, quiz) {
+    Quiz.getQuiz(req.params.quizId,req.user._id, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,
             title: 'Errore Questionario',
-            message: 'Questionario non attivo'
+            message: err.message
         });
-        else return res.send(quiz)
+       else 
+            res.send(quiz)
+            
+    })
+}
+
+exports.getQuizSubscribers=function (req, res, next) {
+    Quiz.getQuizSubscribers(req.params.quizId,function(err, subscribers) {
+        if (err) return res.status(500).json({
+            code: 323,
+            title: 'Errore Questionario',
+            message: "Errore Questionario"
+        });
+        else
+            res.send(subscribers)
+
     })
 }
 
@@ -56,8 +89,8 @@ exports.getQuizSubscribe=function(req,res,next){
     })
 }
 
-exports.addUser = function (req, res, next) {
-    Quiz.addUser(req.body.quizId, req.user._id, function (err, userId) {
+exports.subscribeUser = function (req, res, next) {
+    Quiz.subscribeUser(req.body.quizId, req.user._id, function (err, userId) {
         if (err) return res.status(500).json({
             code: 331,
             title: 'addUser-error',

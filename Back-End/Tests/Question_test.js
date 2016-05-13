@@ -255,10 +255,10 @@ describe("View NextQuestion Test", function(){
             .post('/api/:lang/user/training/question')
             .send({
                 language: "it",
-                topic: "Patente",
-                keywords:["Strada","Guida"],
+                topic: "Informatica",
+                keywords:[],
                 level:500,
-                alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
+                alreadyAnswered:[]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){
@@ -273,22 +273,7 @@ describe("View NextQuestion Test", function(){
     })
 });
 /*
-describe("View Topics Test", function(){
-    it("should view topics", function(done){
-        agent
-            .get('/api/:lang/topics')
-            .end(function(err,res){
-                if (!err && res.status == 200){
-                    console.log(res.body);
-                }
-                else {
-                    console.log(res.body);
-                    res.status.should.equal(500);
-                }
-                done()
-            })
-    })
-});
+
 
 describe("View Keywords Test", function(){
     it("should view the keywords of a topic", function(done){

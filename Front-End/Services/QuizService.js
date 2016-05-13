@@ -29,7 +29,8 @@ function QuizService($http, $cookies, $q) {
         getQuiz : getQuiz,
         getDoneQuestionnaire : getDoneQuestionnaire,
         subscribeQuestionnaire: subscribeQuestionnaire,
-        getSubscribedQuestionnaire: getSubscribedQuestionnaire
+        getSubscribedQuestionnaire: getSubscribedQuestionnaire,
+        setQuizResult:setQuizResult
     };
 
     return methods;
@@ -97,7 +98,6 @@ function QuizService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.post('/api/' + lang + '/user/donequizzes')
             .then(function(data) {
-                console.log(data);
                 deferred.resolve(data);
             }, function(error){
                 deferred.reject(error);
@@ -108,7 +108,7 @@ function QuizService($http, $cookies, $q) {
     function subscribeQuestionnaire(quizId, lang){
         var subscribe = {quizId: quizId};
         var deferred = $q.defer();
-        $http.post('/api/' + lang + '/userquiz/subscribe', subscribe)
+        $http.post('/api/' + lang + '/usersubscribe', subscribe)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){
@@ -119,10 +119,24 @@ function QuizService($http, $cookies, $q) {
 
     function getSubscribedQuestionnaire(lang){
         var deferred = $q.defer();
-        $http.get('/api/' + lang + '/userquiz/subscribed')
+        $http.get('/api/' + lang + '/usersubscribe')
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function setQuizResult(lang, resultOfQuiz) {
+        var q = JSON.stringify(resultOfQuiz, null, "  ");
+        var deferred = $q.defer();
+        console.log(q);
+        $http.post('/api/'+ lang + '/user/quiz/summary', q)
+            .then(function(data) {
+              console.log(data);
+                deferred.resolve(data);
+            }, function(error) {
                 deferred.reject(error);
             });
         return deferred.promise;

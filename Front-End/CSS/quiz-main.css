@@ -79,6 +79,13 @@
   display: block;
 }
 
+.center-it-end {
+  width: 90% !important;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 .center-it-quiz {
   width: 95%;
   margin-top: 2em;
@@ -87,4 +94,30 @@
 
 .keywords {
   min-width: 10em !important;
+}
+
+.inline-text {
+  margin-top: 0.5em;
+  display: inline;
+}
+
+.odd{
+  background-color: #edebe8 !important;
+}
+
+.even {
+  background-color: white !important;
+}
+
+.red{
+  background-color: #F7464A !important;
+  margin-top: 0.5em !important;
+  color: white !important;
+}
+
+
+.green {
+  background-color: #86FC72 !important;
+  margin-top: 0.5em !important;
+  color: white !important;
 }

@@ -112,11 +112,11 @@
 }
 
 .odd{
-  background-color: .edebe8;
+  background-color: #edebe8 !important;
 }
 
 .even {
-  background-color: white;
+  background-color: white !important;
 }
 
 .toolbar-top {
@@ -126,4 +126,9 @@
 .toolbar-bottom {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.question-edit {
+  width: 80%;
+  margin: auto;
 }

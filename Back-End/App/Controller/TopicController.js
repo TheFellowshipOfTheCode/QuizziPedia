@@ -50,14 +50,13 @@ exports.getNextQuestion = function(req, res) {
                                 }
                             }
                             if (!question || req.body.keywords.length != equalKeywords) {
-                                if (req.body.alreadyAnswered.length == topic.question.length)
+                                if (req.body.alreadyAnswered.length == topic.question.length || !q)
                                     return res.status(500).json({
                                         code: 845,
                                         title: "Allenamento finito",
                                         message: "Non ci sono più domande sull'argomento scelto per questo allenamento"
                                     });
                                 else if (q) {
-                                    console.log("ciao");
                                     module.exports.getNextQuestion(req, res);
                                 }
                                 else {

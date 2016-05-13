@@ -256,9 +256,9 @@ describe("View NextQuestion Test", function(){
             .send({
                 language: "it",
                 topic: "Patente",
-                keywords:["Strada","Guida"],
-                level:500,
-                alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
+                keywords:["Strada"],
+                level:647,
+                alreadyAnswered:[]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

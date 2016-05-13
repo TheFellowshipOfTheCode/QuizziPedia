@@ -57,7 +57,7 @@ quizSchema.statics.getQuizSubscribe=function(userId, callback) {
     return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
         console.log("quiz:" + quiz);
         var author_array=[]
-        console.log(quiz.author);
+        console.log("autore questionario" + quiz.author);
         var i=quiz.length;
         quiz.forEach(function(elem){
             console.log(elem.author);

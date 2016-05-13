@@ -3,9 +3,6 @@
 
   <div class=" training layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
 
-    <div class="spinner" ng-if="quizIsLoaded == false">
-      <img src="Images/Icons/reload.svg"/>
-    </div>
 
     <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center" ng-if="quizIsLoaded == true">
       <md-toolbar class="md-primary toolbar">
@@ -16,16 +13,23 @@
              {{listOfKeys.ofLang}}
              {{quiz.getNumberOfQuestions()}}
           </h3>
-          <h3 ng-if="quiz != undefined && quizIsFinished == false" class="ng-binding">
+          <h3 ng-if="quiz != undefined && quizIsFinished == false && started==false " class="ng-binding">
             {{quiz.getName()}}
           </h3>
           <h3 ng-if="quizIsFinished == true " class="ng-binding">
             {{listOfKeys.endOfQuiz}}
           </h3>
+          <h3 ng-if="(noStart == true || noAuth == true ) && startQuiz == false " class="ng-binding">
+            {{listOfKeys.genericError}}
+          </h3>
          <span flex="" class="flex"></span>
         </div>
       </md-toolbar>
       <div class="md-padding">
+
+        <div class="spinner" ng-if="noStart == false && noAuth == false && startQuiz == false && started == false">
+          <img src="Images/Icons/reload.svg"/>
+        </div>
 
         <div ng-if="quizIsLoaded == true && started == false">
           <info-questionnaire-directive></info-questionnaire-directive>
@@ -47,7 +51,7 @@
                 <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
               </div>
             </div>
-          </div>  {{objAnswer}}
+          </div> 
         </div>
 
         <div ng-if="quizIsFinished == true ">

@@ -64,7 +64,6 @@ function TrainingModeModel() {
     };
 
     this.getNumberOfQuestionsAnswered = function () {
-      console.log(questions_.length);
         return questions_.length;
     };
 
@@ -85,12 +84,9 @@ function TrainingModeModel() {
     };
 
     this.addResult = function(result){
-      console.log(result);
       if(result) {
-        console.log("entro");
         numOfRightAnswer++;
       }
-      console.log(numOfRightAnswer);
     };
 
     this.removeQuestion = function(question){

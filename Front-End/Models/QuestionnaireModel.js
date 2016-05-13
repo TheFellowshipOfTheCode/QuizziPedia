@@ -89,13 +89,15 @@ function QuestionnaireModel() {
         };
 
         this.getResultById = function (id) {
-          console.log(id);
           var obj = results.filter(function ( obj ) {
-            console.log(obj);
             return obj.question._id == id;
           })[0];
-          console.log(obj);
-          return obj.isCorrected;
+          if(obj) {
+            return obj.isCorrected;
+          }
+          else {
+            return false;
+          }
         };
 
         this.getResultSummary = function () {
@@ -112,12 +114,9 @@ function QuestionnaireModel() {
 
         this.addResult = function(id, res){
           results.push({"question": {"_id":id }, "isCorrected" : res});
-          console.log(results);
           if(res) {
-            console.log("entro");
             numOfRightAnswer++;
           }
-          console.log(numOfRightAnswer);
         };
 
         this.removeQuestion = function(id) {

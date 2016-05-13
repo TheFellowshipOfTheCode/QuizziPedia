@@ -136,3 +136,12 @@
 .mark-mark {
   margin-top: -0.25em;
 }
+
+.error-quiz-log {
+  margin: auto;
+  display: table;
+  font-size: 1.5em;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  text-align: center;
+}

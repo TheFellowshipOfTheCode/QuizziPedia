@@ -68,7 +68,6 @@ function UserDetailsModel() {
             statistics_ = statistics_.filter(function (obj) {
 
               if(obj.topicName == topic) {
-                console.log(obj);
                 obj.topicLevel = level;
                 obj.totalAnswers= parseInt(obj.totalAnswers)+1;
                 if(answer) {
@@ -77,7 +76,6 @@ function UserDetailsModel() {
               }
               return obj;
             });
-            console.log(statistics);
         };
 
         this.setPrivilege = function (privilege) {
@@ -117,11 +115,9 @@ function UserDetailsModel() {
         };
 
         this.getLevelByTopic = function (topic) {
-          console.log(topic);
           var obj = statistics_.filter(function ( obj ) {
             return obj.topicName == topic;
           })[0];
-          console.log(obj);
           return obj.topicLevel;
 
         };

@@ -18,23 +18,11 @@
 *******************************************************************************/
 -->
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
-  <div class="center-it questions md-whiteframe-1dp" ng-if="noAuth == true">
-    <md-toolbar class="toolbar-section toolbar">
-      <div class="md-toolbar-tools">
-        <span flex="" class="flex"></span>
-        <span>Non sei autorizzato a fare questo questionario</span>
-        <span flex="" class="flex"></span>
-      </div>
-    </md-toolbar>
+  <div class="center-it error-quiz-log " ng-if="noAuth == true">
+        <span>{{listOfKeys.noAuthToDoQuiz}}</span>
   </div>
-  <div class="center-it md-whiteframe-1dp" ng-if="noStart == true">
-    <md-toolbar class="toolbar-section toolbar">
-      <div class="md-toolbar-tools">
-        <span flex="" class="flex"></span>
-        <span>Il questionario non è ancora iniziato, torna fra un po'.</span>
-        <span flex="" class="flex"></span>
-      </div>
-    </md-toolbar>
+  <div class="center-it error-quiz-log" ng-if="noStart == true">
+        <span>{{listOfKeys.quizIsNotStarted}}</span>
   </div>
   <div class="center-it md-whiteframe-1dp" ng-if="startQuiz == true">
     <md-toolbar class="toolbar-section toolbar">

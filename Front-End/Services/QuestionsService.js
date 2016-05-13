@@ -35,10 +35,8 @@ function QuestionsService($http, $cookies, $q) {
     return methods;
 
     function sendQuestion(question, lang, id) {
-       // if(question == undefined) return; //errore?
         var deferred = $q.defer();
         if(id == undefined) {
-            console.log("questionService" + question);
             $http.post('/api/' + lang + '/userquestion', question)
                 .then(function (data) {
                     deferred.resolve(data);
@@ -59,7 +57,6 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getUsersQuestions(lang) {
-        // if(username == undefined) return; //errore?
         var deferred = $q.defer();
 
         $http.get('/api/' + lang +'/userquestion')
@@ -72,7 +69,6 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function getQuestion(questionId, lang) {
-        console.log(questionId);
         var deferred = $q.defer();
 
         $http.get('/api/'+ lang + '/userquestion/' + questionId)
@@ -87,10 +83,8 @@ function QuestionsService($http, $cookies, $q) {
     function getNextQuestion(lang, nextQuestion) {
             var q = JSON.stringify(nextQuestion, null, "  ");
             var deferred = $q.defer();
-            console.log(q);
             $http.post('/api/'+ lang + '/user/training/question', q)
                 .then(function(data) {
-                  console.log(data);
                     deferred.resolve(data);
                 }, function(error) {
                     deferred.reject(error);
@@ -113,7 +107,6 @@ function QuestionsService($http, $cookies, $q) {
        var deferred = $q.defer();
         $http.get('/api/'+ lang + '/topics')
             .then(function(data) {
-                console.log(data);
                 deferred.resolve(data);
             }, function(error) {
                 deferred.reject(error);
@@ -122,7 +115,6 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function updateStatisticsUser(lang, updateTheStatistics) {
-      console.log(updateTheStatistics);
         var deferred = $q.defer();
         $http.put('/api/'+ lang + '/user/statistics', updateTheStatistics)
             .then(function(data) {
@@ -134,7 +126,6 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function updateStatisticsTopic(lang, updateTheStatistics) {
-      console.log(updateTheStatistics);
         var deferred = $q.defer();
         $http.put('/api/'+ lang + '/topic/statistics', updateTheStatistics)
             .then(function(data) {
@@ -146,17 +137,11 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function  updateStatisticsQuestion(lang, updateTheStatistics) {
-      console.log(updateTheStatistics);
-      console.log("entro staistics question ");
         var deferred = $q.defer();
         $http.put('/api/'+ lang + '/usertraining/questionstatistics', updateTheStatistics)
             .then(function(data) {
-              console.log("ok");
-              console.log(data);
                 deferred.resolve(data);
             }, function(error) {
-              console.log("no ok");
-              console.log(error);
                 deferred.reject(error);
             });
         return deferred.promise;

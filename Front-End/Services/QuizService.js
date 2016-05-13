@@ -72,7 +72,6 @@ function QuizService($http, $cookies, $q) {
     }
 
     function showAllQuestions(topic, keywords, lang) {
-        console.log("ciao")
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/allquestions/'+topic+'/'+keywords)
             .then(function(data) {
@@ -84,11 +83,9 @@ function QuizService($http, $cookies, $q) {
     }
 
     function getQuiz(lang, quizId) {
-      console.log(quizId);
       var deferred = $q.defer();
       $http.get('/api/' + lang + '/userquiz/'+quizId)
           .then(function(data) {
-            console.log(data);
               deferred.resolve(data);
           }, function(error){
               deferred.reject(error);
@@ -133,10 +130,8 @@ function QuizService($http, $cookies, $q) {
     function setQuizResult(lang, resultOfQuiz) {
         var q = JSON.stringify(resultOfQuiz, null, "  ");
         var deferred = $q.defer();
-        console.log(q);
         $http.post('/api/'+ lang + '/user/quiz/summary', q)
             .then(function(data) {
-              console.log(data);
                 deferred.resolve(data);
             }, function(error) {
                 deferred.reject(error);
@@ -148,7 +143,6 @@ function QuizService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.get('/api/'+ lang + '/userquizsubscribe/' + quizId)
             .then(function(data) {
-                console.log(data);
                 deferred.resolve(data);
             }, function(error) {
                 deferred.reject(error);
@@ -161,7 +155,6 @@ function QuizService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.post('/api/'+ lang + '/userquizactiveUser' , params)
             .then(function(data) {
-                //console.log(data);
                 deferred.resolve(data);
             }, function(error) {
                 deferred.reject(error);

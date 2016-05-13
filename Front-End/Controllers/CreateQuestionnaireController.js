@@ -43,6 +43,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                 });
         });
     
+    
     $scope.showAllQuestions=function(topic,keyword) {
         QuizService.showAllQuestions(topic, keyword, $routeParams.lang)
             .then(function (result) {
@@ -65,18 +66,9 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     $scope.showAllQuestions(null,null)
     
     $scope.questions_selected=[];
-    $scope.filteredQuestions = [];
-    $scope.currentPage = 1;
-    $scope.numPerPage = 10;
-    $scope.maxSize = 5;
+
 
     
-    $scope.$watch('currentPage + numPerPage', function() {
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-            , end = begin + $scope.numPerPage;
-
-        $scope.filteredQuestions = $scope.questions.slice(begin, end);
-    });
 
 
 

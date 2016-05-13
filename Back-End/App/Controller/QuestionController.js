@@ -82,7 +82,6 @@ exports.updatestatisticsQuestion = function(req, res) {
 
 exports.getAllQuestions = function(req, res) {
     Topic.getTopicQuestions(req.params.topicname, req.params.keywords.split(','), req.params.lang, function(err, questions) {
-        console.log(questions)
         if (err) return res.status(500).json({code:95, title: "Errore Domande", message: "Domande non trovate"});
         else return res.send(questions);
     })

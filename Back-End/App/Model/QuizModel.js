@@ -53,6 +53,23 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
     params.quiz.save(callback);
 }
 
+quizSchema.statics.getQuizSubscribe=function(userId, callback) {
+    return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
+        var author_array=[]
+        var i=quiz.length;
+        quiz.forEach(function(elem){
+            User.getUser(elem.author,function(err,author){
+                author_array.push(author.name)
+            })
+            i--;
+            if (i==0){
+                quiz.author=author_array;
+                callback(null,quiz)
+            }
+        })
+    });
+}
+
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
     return this.find({ author: author}, callback);
 }

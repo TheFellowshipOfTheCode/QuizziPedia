@@ -54,7 +54,6 @@
                         </md-select>
                     </md-input-container>
 
-
                     <md-card ng-if="questions_selected.length>0" >
                         <md-card-content>
                             <md-card-title>
@@ -63,25 +62,27 @@
                                 </md-card-title-text>
                             </md-card-title>
                             <md-list >
-                               <md-item class="md-3-line" ng-repeat="question_selected in  questions_selected" >
+                                <md-item class="md-3-line" ng-repeat="question_selected in  questions_selected" >
                                     <md-item-content >
                                         <div layout="row" layout-align="space-around center">
-                                        <div flex="60" >
-                                            <h4>{{$index+1}}) Domanda creata con {{question_selected.makeWith}}</h4>
-                                            <div  ng-repeat="q in question_selected.question">
-                                                <h5>Tipologia: {{q.type}}</h5>
-                                                <p>Testo: {{q.questionText}}</p>
+                                            <div flex="60" >
+                                                <h4>{{$index+1}}) Domanda creata con {{question_selected.makeWith}}</h4>
+                                                <div  ng-repeat="q in question_selected.question">
+                                                    <h5>Tipologia: {{q.type}}</h5>
+                                                    <p>Testo: {{q.questionText}}</p>
+                                                </div>
                                             </div>
+                                            <md-input-container >
+                                                <md-button class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
+                                            </md-input-container>
                                         </div>
-                                        <md-input-container >
-                                            <md-button class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
-                                        </md-input-container>
-
                                     </md-item-content>
                                 </md-item>
                             </md-list>
                         </md-card-content>
                     </md-card>
+
+
 
                     <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always">
                         <md-tab label="Ricerca Domande" >
@@ -100,21 +101,22 @@
                             </div>
                         </md-tab>
                     </md-tabs>
-                    <md-card ng-if="questions.length>0"  >
+
+                    <md-card>
                         <md-card-title>
                             <md-card-title-text >
-                                    <h4 class="text-center">Domande Trovate</h4>
+                                <h4 class="text-center">Domande Trovate</h4>
                             </md-card-title-text>
                         </md-card-title>
                         <md-list>
-                            <md-item class="md-3-line" ng-repeat="question in filtered=(filteredQuestions  | filter:filterByYours | filter:search)">
+                            <md-item class="md-3-line" ng-repeat="question in filtered=(questions  | filter:filterByYours | filter:search)">
                                 <md-item-content >
                                     <div layout="row" layout-align="space-around center">
                                         <div flex="60" >
                                             <h4>{{$index+1}}) Domanda creata con {{question.makeWith}}</h4>
                                             <div  ng-repeat="q in question.question">
-                                                 <h5>Tipologia: {{q.type}}</h5>
-                                                 <p>Testo: {{q.questionText}}</p>
+                                                <h5>Tipologia: {{q.type}}</h5>
+                                                <p>Testo: {{q.questionText}}</p>
                                             </div>
                                         </div>
                                         <md-input-container >
@@ -123,14 +125,10 @@
                                     </div>
                                 </md-item-content>
                             </md-item>
-                            <pagination
-                                    ng-model="currentPage"
-                                    total-items="questions.length"
-                                    max-size="maxSize"
-                                    boundary-links="true">
-                            </pagination>
+
                         </md-list>
                     </md-card>
+
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>

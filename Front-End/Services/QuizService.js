@@ -69,6 +69,7 @@ function QuizService($http, $cookies, $q) {
     }
 
     function showAllQuestions(topic, keywords, lang) {
+        console.log("ciao")
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/allquestions/'+topic+'/'+keywords)
             .then(function(data) {

@@ -19,9 +19,9 @@
  *******************************************************************************/
 app.controller('EditorQMLController', EditorQMLController);
 
-EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel'];
+EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'QuestionItemModel', 'ErrorInfoModel' , 'QuestionsService'];
 
-function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel){
+function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, QuestionItemModel, ErrorInfoModel, QuestionsService){
 
     //delete $scope.id;
     $scope.id = $routeParams.idQuestion;
@@ -66,8 +66,9 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         else{
             var result = '';
             try{
-
-            result = jsonlint.parse(question);}
+                result = jsonlint.parse(question);
+                console.log("result: " + result);
+            }
             catch(e){
                 console.log(e.message);
                 alert = $mdDialog.alert()
@@ -83,42 +84,67 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             }
 
             if (result) {
+                    console.log("result è valido");
                     var res = '';
-                    var resultQML = controlloQML(result, res);
-                    if(resultQML){
-                        //var q = JSON.stringify(result, null, "  ");
-                    console.log('resultQML: ' + resultQML);
-                    QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
-                        .then(function (result) {
-                            if (result) {
-                                $rootScope.question = new QuestionItemModel("", $rootScope.userLogged, "makeWith", q.lang, q.question); // da sistemare perche non carica (problema JSON forse)
-                                //console.log($rootScope.question.getMadeWith() + " " + $rootScope.question.getLanguage() + " " + $rootScope.question.getQuestion())
-                                alert = $mdDialog.alert()
-                                    .title("Inserimento avvenuto con successo")
-                                    .content("La domanda è stata inserita!")
-                                    .ok('Ok');
-                                $mdDialog
-                                    .show(alert)
-                                    .finally(function () {
-                                        alert = undefined;
-                                    });
-                                $location.path('/' + $routeParams.lang + '/home');
-                            }
-                        }, function (err) {
-                            console.log(err);
-                            $scope.error = new ErrorInfoModel();
-                            alert = $mdDialog.alert()
-                                .title("Errore")
-                                .content("La richiesta di inserimento domanda non è andata a buon fine")
-                                .ok('Ok');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                        });
+                QuestionsService
+                    .getTopics($routeParams.lang)
+                    .then(function(result){
+                        var topics = result.data;
+                        //callback(topics);
 
-        }}
+                        // inserire qua
+                        var resultQML = controlloQML(question, res, topics);
+                        if(resultQML){
+                            //var q = JSON.stringify(result, null, "  ");
+
+                            console.log(resultQML);
+                            QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
+                                .then(function (result) {
+                                    if (result) {
+                                        // $rootScope.question = new QuestionItemModel("", $rootScope.userLogged, "makeWith", q.lang, q.question); // da sistemare perche non carica (problema JSON forse)
+                                        //console.log($rootScope.question.getMadeWith() + " " + $rootScope.question.getLanguage() + " " + $rootScope.question.getQuestion())
+                                        alert = $mdDialog.alert()
+                                            .title("Inserimento avvenuto con successo")
+                                            .content("La domanda è stata inserita!")
+                                            .ok('Ok');
+                                        $mdDialog
+                                            .show(alert)
+                                            .finally(function () {
+                                                alert = undefined;
+                                            });
+                                        $location.path('/' + $routeParams.lang + '/home');
+                                    }
+                                }, function (err) {
+                                    console.log(err);
+                                    $scope.error = new ErrorInfoModel();
+                                    alert = $mdDialog.alert()
+                                        .title("Errore")
+                                        .content("La richiesta di inserimento domanda non è andata a buon fine")
+                                        .ok('Ok');
+                                    $mdDialog
+                                        .show(alert)
+                                        .finally(function () {
+                                            alert = undefined;
+                                        });
+                                });
+
+                        }
+
+                    } ,function (err){
+                        $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+                        alert = $mdDialog.alert()
+                            .title($scope.error.getTitle())
+                            .content($scope.error.getCode()+": "+$scope.error.getMessage())
+                            .ok('Ok');
+                        $mdDialog
+                            .show( alert )
+                            .finally(function() {
+                                alert = undefined;
+                            });
+                    });
+
+
+            }
         }
     }
 

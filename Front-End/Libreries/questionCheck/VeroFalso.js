@@ -46,7 +46,7 @@ veroFalso = function(corpo,res){
                 console.log("campo answer non trovato");
                 }
             // controllo campi
-            var facoltativiString = ["type","answer","image", "keywords"];
+            var facoltativiString = ["type","answer","image", "keywords", "topic"];
             var key;
             for(key in corpo) {
                 var giusto = false;
@@ -79,6 +79,7 @@ veroFalso = function(corpo,res){
                 return true;
             }
             else{
+                console.log("campi obbligatori o campi sconosciuti")
                 return false;
             }
 }

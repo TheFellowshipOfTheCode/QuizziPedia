@@ -18,7 +18,7 @@ var questionSchema = new mongoose.Schema({
             text: {type: String},
             url: {type: String},
             //attributo per VF e Multipla
-            isItRight: {type: Boolean},
+            isItRight: {type: String},
             //attributo ordinamenti
             position: {type: Number},
             //attributi collegamento

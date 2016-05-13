@@ -7,12 +7,16 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Update data: 13-05-2016;
+ * Description: Risolto problemi di formazione valida del json finale
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
  * Description: Creata funzione createCustom che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Update data: 28-04-2016;
  * Description: Creata funzione createCollegamentoelementi che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
@@ -59,8 +63,10 @@
 
 
 createJSON = function(corpo, res, tipologia, topic){
-    var campiComuni = "\"makeWith\" : \"QML\",\"language\" : " + "it" + ",";
-    campiComuni = campiComuni + "\"topic\" : \"" + topic + "\" ," ;
+    var campiComuni = "{ \n " +
+        "\"makeWith\" : \"qml\" , \n" +
+        " \"language\" : " + "\"it\"" + ", \n";
+    campiComuni = campiComuni + "\"topic\" : \"" + topic + "\" , \n " ;
     var jsonKey;
     if(corpo.hasOwnProperty('keywords')){
         jsonKey = "\"keywords\" : [ ";
@@ -80,7 +86,7 @@ createJSON = function(corpo, res, tipologia, topic){
         }
         jsonKey = jsonKey + "],";
     }
-    var jsonStatistic = "\"level\" : 500, \"totalAnswers\" : 0, \"correctAnswers\" : 0})"
+    var jsonStatistic = "\"level\" : 500, \"totalAnswers\" : 0, \"correctAnswers\" : 0}"
 
     if(tipologia == "veroFalso") {
         var jsonString = createJsonVF(corpo, res);
@@ -107,17 +113,19 @@ createJSON = function(corpo, res, tipologia, topic){
         var jsonString = createJSONcustom(corpo);
     }
 
-    jsonString = campiComuni + jsonString +  jsonStatistic;
-    console.log("jsonString: " + jsonString);
+    jsonString = campiComuni + jsonString ; //+  jsonStatistic;
+    var fine = JSON.parse(jsonString);
+    console.log(fine);
+    return fine;
 }
 
 createJsonVF = function(corpo, res){
-    var jsonString = "\"question\":[{\"type\" : \"veroFalso\"" + ",";
+    var jsonString = "\n \"question\" :[ \n { \n \"type\" : \"veroFalso\"" + ", \n ";
     if(corpo.hasOwnProperty('image')){
-        jsonString =  jsonString + "\"image\" : " + corpo.image + ",";
+        jsonString =  jsonString + "\n \"image\" : \" " + corpo.image + "\" , \n";
     }
-    jsonString = jsonString + "\"answers\" : [{\"text\" :" + corpo.answers.text + ",";
-    jsonString = jsonString + "\"isItRight : \"" + "\"" + corpo.answers.isItRight + "\"" + "}]}],";
+    jsonString = jsonString + " \n \"answers\" : [ \n { \n \"text\" : \"" + corpo.answer[0].text + "\" , \n";
+    jsonString = jsonString + " \n \"isItRight\" : " + corpo.answer[0].isItRight + "\n" + "} \n] \n} \n]} \n";
     return jsonString;
 }
 
@@ -328,5 +336,4 @@ createJSONcustom = function(corpo){
         }
     }
     return jsonString;
-
 }

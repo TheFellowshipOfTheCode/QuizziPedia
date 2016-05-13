@@ -66,6 +66,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         else{
             var result = '';
             try{
+
             result = jsonlint.parse(question);}
             catch(e){
                 console.log(e.message);
@@ -82,10 +83,12 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             }
 
             if (result) {
-
-                    var q = JSON.stringify(result, null, "  ");
-                    console.log('q: ' + q);
-                    QuestionsService.sendQuestion(q, $routeParams.lang, $routeParams.idQuestion)
+                    var res = '';
+                    var resultQML = controlloQML(result, res);
+                    if(resultQML){
+                        //var q = JSON.stringify(result, null, "  ");
+                    console.log('resultQML: ' + resultQML);
+                    QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                         .then(function (result) {
                             if (result) {
                                 $rootScope.question = new QuestionItemModel("", $rootScope.userLogged, "makeWith", q.lang, q.question); // da sistemare perche non carica (problema JSON forse)
@@ -115,7 +118,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                 });
                         });
 
-        }
+        }}
         }
     }
 

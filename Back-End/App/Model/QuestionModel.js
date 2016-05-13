@@ -195,7 +195,7 @@ questionSchema.statics.addTotal=function(questionId,callback){
     this.findOneAndUpdate({_id: questionId},{ $inc: { totalAnswers: 1 }},callback)
 }
 
-questionSchema.statics.getAllQuestions = function(questionsID, keywords, lang, callback) {
+questionSchema.statics.getAllQuestions = function(questionsID, keywords, lang, callback) { console.log(questionsID)
     if (keywords[0]!='null')
         this.find({_id: questionsID.question,language: lang,keywords: {$in :keywords}}, callback)
     else{

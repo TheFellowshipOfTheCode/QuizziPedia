@@ -69,6 +69,7 @@ function QuizService($http, $cookies, $q) {
     }
 
     function showAllQuestions(topic, keywords, lang) {
+        console.log("ciao")
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/allquestions/'+topic+'/'+keywords)
             .then(function(data) {
@@ -107,7 +108,7 @@ function QuizService($http, $cookies, $q) {
     function subscribeQuestionnaire(quizId, lang){
         var subscribe = {quizId: quizId};
         var deferred = $q.defer();
-        $http.post('/api/' + lang + '/userquiz/addUser', subscribe)
+        $http.post('/api/' + lang + '/userquiz/subscribe', subscribe)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){

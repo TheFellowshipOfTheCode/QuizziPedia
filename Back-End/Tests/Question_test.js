@@ -176,8 +176,8 @@ describe("Create Question Test", function(){
                         ]
                     }
                 ],
-                keywords: ["Cane", "Gatto"],
-                topic: "Animali"
+                keywords: ["4"],
+                topic: "Architettura"
             })
             .end(function(err,res){ 
                 if (!err && res.status == 200){

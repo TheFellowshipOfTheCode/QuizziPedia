@@ -30,7 +30,7 @@ var questionSchema = new mongoose.Schema({
             x: {type: Number},
             y: {type: Number},
             //attributo spazi vuoti
-            wordNumber: {type: Number}
+            parolaNumero: {type: Number}
         }],
     }],
     keywords: [String],

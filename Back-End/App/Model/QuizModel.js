@@ -54,18 +54,18 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 }
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {
-    return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
-      /*  var i=quiz.length;
+    return this.find({registeredUsers: userId},'title topic author').lean().exec(function(err,quiz){
         quiz.forEach(function(elem,index){
             User.getUser(elem.author,function(err,author){
-                quiz[index].author=author.name
+                if(author) {
+                    quiz[index].author=author.name
+                }
+                if (index+1==quiz.length){
+                    callback(null,quiz)
+                }
             })
-            i--;
-            if (i==0){*/
-                callback(null,quiz)
-           // }
         })
-    //});
+    });
 }
 
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
@@ -77,7 +77,6 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 };
 
 quizSchema.statics.getQuizSubscribers=function(quizId, callback){
-
     return this.findOne({'_id': quizId },'registeredUsers', function(err, users){
          users.registeredUsers.forEach(function(user,index){
             User.getUser(user,function(err,subscriber) {

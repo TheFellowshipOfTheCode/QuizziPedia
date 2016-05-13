@@ -77,14 +77,15 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 };
 
 quizSchema.statics.getQuizSubscribers=function(quizId, callback){
-    return this.findOne({'_id': quizId },'registeredUsers', function(err, registeredUsers){
-         var i=registeredUsers.length;
-         registeredUsers.forEach(function(user,index){
+
+    return this.findOne({'_id': quizId },'registeredUsers', function(err, users){
+         var i=users.registeredUsers.length;
+         users.registeredUsers.forEach(function(user,index){
             User.getUser(user,function(err,subscriber) {
-                registeredUsers[index] = subscriber
+                users.registeredUsers[index] = subscriber.name
                 i--;
                 if (i == 0)
-                    return callback(null, registeredUsers)
+                    return callback(null, users.registeredUsers)
             });
          })
     })

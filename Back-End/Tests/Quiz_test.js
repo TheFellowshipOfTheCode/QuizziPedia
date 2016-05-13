@@ -74,7 +74,7 @@ describe("Quiz tests", function() {
             })
     })
 })
-*/
+
 describe("Search Quiz Test", function () {
     it("should return quiz Test", function (done) {
         agent
@@ -88,7 +88,20 @@ describe("Search Quiz Test", function () {
             });
     });
 })
-    
+*/
+describe("Get Quiz subscribers Test", function () {
+    it("should return subscribers of a Quiz Test", function (done) {
+        agent
+            .get('/api/:lang/userquizsubscribe/572c4c350c1776e00f48065a')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500)
+                done()
+            });
+    });
+})
     /*
 
     it("should return the desired quiz", function(done) {

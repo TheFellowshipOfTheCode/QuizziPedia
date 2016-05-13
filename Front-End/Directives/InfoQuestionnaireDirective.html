@@ -17,8 +17,6 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
-entro
-{{startQuiz}}
 <section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
   <div class="center-it questions md-whiteframe-1dp" ng-if="no-auth == true">
     <md-toolbar class="toolbar-section toolbar">
@@ -42,13 +40,35 @@ entro
     <md-toolbar class="toolbar-section toolbar">
       <div class="md-toolbar-tools">
         <span flex="" class="flex"></span>
-        <span>{{quiz.getName()}}</span>
+        <span>{{listOfKeys.generalInfoQuiz}}</span>
         <span flex="" class="flex"></span>
       </div>
     </md-toolbar>
-    <div class="">
-      Topic: {{quiz.getArgument()}} </br>
-      Parole chiavi: {{quiz.getKeyword()}}
+    <div class="center-it-quiz">
+      <ul>
+        <li class="keywords">
+          <span>{{listOfKeys.topic}}: </span>
+        </li>
+        <li class="md-primary md-raised md-button" >
+          <span>{{quiz.getArgument()}}</span>
+        </li>
+      </ul>
+      <ul>
+        <li class="keywords">
+          <span>{{listOfKeys.keywords}}: </span>
+        </li>
+        <li class="md-primary md-raised md-button" ng-repeat="item in quiz.getKeyword() track by $index">
+          {{item}}
+        </li>
+      </ul>
+      <ul>
+        <li class="keywords">
+          <span>{{listOfKeys.numberOfQuestions}}: </span>
+        </li>
+        <li class="md-primary md-raised md-button" >
+          <span>{{quiz.getNumberOfQuestions()}}</span>
+        </li>
+      </ul>
     </div>
   </div>
 

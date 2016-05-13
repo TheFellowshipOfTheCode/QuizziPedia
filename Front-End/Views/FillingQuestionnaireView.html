@@ -11,16 +11,16 @@
       <md-toolbar class="md-primary toolbar">
         <div class="md-toolbar-tools">
           <span flex="" class="flex"></span>
-          <h3 ng-if="quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " class="ng-binding">
+          <h3 ng-if="started == true && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " class="ng-binding">
             {{listOfKeys.questionNumberLang}} {{questionNumberOnQuiz+1}}
              {{listOfKeys.ofLang}}
              {{quiz.getNumberOfQuestions()}}
           </h3>
-          <h3 ng-if="quiz != undefined" class="ng-binding">
-            Nome del questionario - sempre
+          <h3 ng-if="quiz != undefined && quizIsFinished == false" class="ng-binding">
+            {{quiz.getName()}}
           </h3>
           <h3 ng-if="quizIsFinished == true " class="ng-binding">
-            Fine del questionario
+            {{listOfKeys.endOfQuiz}}
           </h3>
          <span flex="" class="flex"></span>
         </div>
@@ -52,10 +52,9 @@
           </div>
         </div>
 
-        <div ng-if="started == false && quizIsFinished == true ">
-          <end-training-directive></end-training-directive>
+        <div ng-if="quizIsFinished == true ">
+          <end-quiz-directive></end-quiz-directive>
         </div>
-        {{startQuiz}} {{started}}
         <div ng-if="startQuiz == true && started == false && quiz != undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='startQuizClick()'>
             inizia questionario

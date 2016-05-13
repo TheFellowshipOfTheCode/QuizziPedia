@@ -80,8 +80,10 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
           console.log(result);
           //$scope.quiz=result.data;
            //function (author, name, keyword, argument, questions, id)
+           console.log(result.data.keywords);
           $scope.quiz= new QuestionnaireModel(result.data.author, result.data.title, result.data.keywords, result.data.topic, result.data.questions, result.data._id);
           questions = $scope.quiz.getQuestions();
+          console.log($scope.quiz.getKeyword());
           console.log(questions);
           $scope.quizIsLoaded = true;
           if(result.data.active == true){
@@ -145,9 +147,9 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
           }
           else {
             console.log("finito il questionario");
-            //$rootScope.$emit("checkAnswerEvent",$scope.training.getArgument(), level);
+            $rootScope.$emit("checkAnswerEvent",$scope.quiz.getArgument(), $scope.userLogged.getLevelByTopic($scope.quiz.getArgument()));
             $scope.stopToGoBack = false;
-            //graphResultAfterFinishedATraining();
+            graphResultAfterFinishedATraining();
             $scope.quizIsFinished = true;
             window.onbeforeunload = null;
           }
@@ -170,6 +172,7 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
         })
         .then(function() {
           $scope.stopToGoBack = false;
+          $rootScope.$emit("checkAnswerEvent",$scope.quiz.getArgument(), $scope.userLogged.getLevelByTopic($scope.quiz.getArgument()));
           graphResultAfterFinishedAQuiz();
           $scope.quizIsFinished = true;
           window.onbeforeunload = null;
@@ -186,64 +189,25 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
   });
 
   /*Event to go back to the set up training*/
-  var addResult = $rootScope.$on("addResult", function(event, args) {
-      $scope.quiz.addResult(args)
+  var addResult = $rootScope.$on("addResult", function(event, id, args) {
+      $scope.quiz.addResult(id,args)
   });
   $scope.$on('$destroy', addResult);
 
   /*Private functions*/
 
-  /*Function that checks if yuo could go on or the trainging is over*/
-  function checkIfICouldGoOn() {
-    var arryOfQuestionsAlreadyAnswered= [];
-    $scope.training.getQuestions().forEach(
-      function (elem) {
-        arryOfQuestionsAlreadyAnswered.push(elem.getId());
-      }
-    );
-    var level;
-    if($rootScope.userLogged != undefined) {
-      level = $rootScope.userLogged.getLevel();
-    }
-    else {
-      level = $scope.temporaryLevel;
-    }
-    if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
-    {
-      $rootScope.$emit("loadNewQuestion", {
-        language  : $routeParams.lang,
-        topic: $scope.training.getArgument(),
-        keywords : $scope.training.getKeywords(),
-        level  : level,
-        alreadyAnswered : arryOfQuestionsAlreadyAnswered
-        }
-      );
-      angular.element(".scrollable").scrollTop(0,0);
-    }
-    else {
-      console.log("entro qui");
-      console.log($scope.training.getArgument());
-      console.log(level);
-      $rootScope.$emit("checkAnswerEvent",$scope.training.getArgument(), level);
-      $scope.stopToGoBack = false;
-      graphResultAfterFinishedATraining();
-      $scope.traininIsFinished = true;
-      window.onbeforeunload = null;
-    }
-    $scope.questionNumberOnTraining++;
-  }
-
+  /* */
   function graphResultAfterFinishedATraining(){
     $scope.myChartDataDoughnut = [
           {
-              value: $scope.training.getResult(),
-              color: "#FDB45C",
-              label: $rootScope.listOfKeys.questionsQuizRight
+              value: $scope.quiz.getResult(),
+              color: "#86FC72",
+              label: $rootScope.listOfKeys.questionsRight
           },
           {
-              value : $scope.training.getNumberOfQuestionsAnswered() - $scope.training.getResult(),
+              value : $scope.quiz.getNumberOfQuestions() - $scope.quiz.getResult(),
               color : "#F7464A",
-              label: $rootScope.listOfKeys.questionsQuizWrong
+              label: $rootScope.listOfKeys.questionsWrong
           }
       ];
       $scope.myChartOptionsDoughnut = {

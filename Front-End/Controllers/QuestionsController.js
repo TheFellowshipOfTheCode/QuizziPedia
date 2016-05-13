@@ -75,6 +75,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
   var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, topic, level) {
+    console.log('arrivo qua a correggere l=-ultima domadna ');
     checkAnswer($scope.question, $scope.objAnswer, topic, level);
   });
   $scope.$on('$destroy', checkAnswerEvent);
@@ -315,7 +316,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
         });
       }
-      $rootScope.$emit("addResult", answerCheckA);
+      $rootScope.$emit("addResult", $scope.question.getId(), answerCheckA);
       console.log(answerCheckA);
       console.log($scope.question.getLevel());
       var userdId = "";

@@ -260,7 +260,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.$on('$destroy', backToTheSetUpTraining);
 
   /*Event to go back to the set up training*/
-  var addResult = $rootScope.$on("addResult", function(event, args) {
+  var addResult = $rootScope.$on("addResult", function(event, id, args) {
     console.log(args);
       $scope.training.addResult(args)
   });
@@ -342,7 +342,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     $scope.myChartDataDoughnut = [
           {
               value: $scope.training.getResult(),
-              color: "#FDB45C",
+              color: "#86FC72",
               label: $rootScope.listOfKeys.questionsRight
           },
           {

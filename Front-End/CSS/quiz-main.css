@@ -78,3 +78,13 @@
 .select-container {
   display: block;
 }
+
+.center-it-quiz {
+  width: 95%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.keywords {
+  min-width: 10em !important;
+}

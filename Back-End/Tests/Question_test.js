@@ -255,10 +255,10 @@ describe("View NextQuestion Test", function(){
             .post('/api/:lang/user/training/question')
             .send({
                 language: "it",
-                topic: "Patente",
-                keywords:["Strada","Guida"],
+                topic: "Religione",
+                keywords:[],
                 level:500,
-                alreadyAnswered:["5729c0fdc80eb653c3029c4e","5729c0fdc80eb653c3029c2e"]
+                alreadyAnswered:[]
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

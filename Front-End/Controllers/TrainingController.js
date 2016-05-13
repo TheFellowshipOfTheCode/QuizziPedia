@@ -260,7 +260,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.$on('$destroy', backToTheSetUpTraining);
 
   /*Event to go back to the set up training*/
-  var addResult = $rootScope.$on("addResult", function(event, args) {
+  var addResult = $rootScope.$on("addResult", function(event, id, args) {
     console.log(args);
       $scope.training.addResult(args)
   });

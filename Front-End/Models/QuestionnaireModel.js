@@ -27,6 +27,8 @@ function QuestionnaireModel() {
         var argument_ = argument;
         var questions_ = questions;
         var id_ = id;
+        var results = [];
+        var numOfRightAnswer = 0;
 
         this.setAuthor = function (author) {
             author_ = author;
@@ -73,12 +75,30 @@ function QuestionnaireModel() {
             return questions;
         };
 
+        this.getResult = function () {
+          return numOfRightAnswer;
+        };
+
+        this.getResultSummary = function () {
+          return results;
+        };
+
         this.getNumberOfQuestions = function () {
             return questions_.length;
         };
 
         this.insertQuestion = function(question) {
             questions.push(question);
+        };
+
+        this.addResult = function(id, res){
+          results.push({"question": {"_id":id }, "isCorrected" : res});
+          console.log(results);
+          if(res) {
+            console.log("entro");
+            numOfRightAnswer++;
+          }
+          console.log(numOfRightAnswer);
         };
 
         this.removeQuestion = function(id) {

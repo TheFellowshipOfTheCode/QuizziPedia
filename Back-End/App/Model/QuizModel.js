@@ -82,24 +82,27 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
     return this.find({'title':  new RegExp(tosearch, "i") },'title', callback);
 };
 
-quizSchema.statics.getQuiz=function(quizId,callback){
-    return this.findOne({'_id':quizId},'title keywords topic questions active',function (err, quiz){
-        if (quiz.active){
-            var questions_quiz=[];
-            quiz.questions.forEach(function(elem) {
-                    Question.getQuestion(elem,function(err,question){
-                        questions_quiz.push(question);
-                        if(questions_quiz.length==quiz.questions.length){
-                            var qR = questions_quiz.reverse();
-                            quiz.questions=qR;
-                            return callback(err,quiz);
-                        }
-                    })
-            });
-
-        }
+quizSchema.statics.getQuiz=function(quizId,userId,callback){
+    return this.findOne({'_id':quizId,'activeUsers':userId},'title keywords topic questions active',function (err, quiz){
+        if (quiz)
+            if (quiz.active){
+                var questions_quiz=[];
+                quiz.questions.forEach(function(elem) {
+                        Question.getQuestion(elem,function(err,question){
+                            questions_quiz.push(question);
+                            if(questions_quiz.length==quiz.questions.length){
+                                var qR = questions_quiz.reverse();
+                                quiz.questions=qR;
+                                return callback(err,quiz);
+                            }
+                        })
+                });
+    
+            }
+            else
+                return callback(new Error("Questionario non abilitato"))
         else
-            return callback(new Error("Questionario non abilitato"))
+            return callback(new Error("Utente non autorizzato"))
     })
 };
 

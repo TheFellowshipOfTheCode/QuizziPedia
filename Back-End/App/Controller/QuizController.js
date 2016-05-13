@@ -16,7 +16,7 @@ exports.createQuiz = function (req, res) {
 }
 
 exports.getQuiz = function (req, res, next) {
-    Quiz.getQuiz(req.params.quizId, function(err, quiz) {
+    Quiz.getQuiz(req.params.quizId,req.user._id, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,
             title: 'Errore Questionario',

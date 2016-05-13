@@ -46,13 +46,17 @@ exports.editQuiz = function (req, res, next) {
 }
 
 exports.addUser = function (req, res, next) {
-    Quiz.addUser(req.body._id, function(err, userId) {
+    Quiz.addUser(req.body.quizId,req.user._id, function (err, userId) {
         if (err) return res.status(500).json({
             code: 331,
             title: 'addUser-error',
             message: 'error occurred while adding user'
         });
-        else return res.send(userId)
+        else return res.send({
+            code: 331,
+            title: "Registrazione Utente Questionario OK",
+            message: "L'utente si è registrato correttamente al questionario"
+        })
     })
 }
 

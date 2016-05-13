@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
-var async = require('async');
+
 var questionSchema = new mongoose.Schema({
     author: {
         type:mongoose.Schema.Types.ObjectId,

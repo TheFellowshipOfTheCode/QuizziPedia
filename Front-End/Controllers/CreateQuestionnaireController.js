@@ -42,16 +42,14 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     alert = undefined;
                 });
         });
-
+    
     $scope.showAllQuestions=function(topic,keyword) {
         QuizService.showAllQuestions(topic, keyword, $routeParams.lang)
             .then(function (result) {
-                console.log(result.data);
                 if (result.data != undefined) {
                     $scope.questions = result.data;
                 }
             }, function (err) {
-                console.log(err);
                 $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
                 alert = $mdDialog.alert()
                     .title($scope.error.getTitle())
@@ -65,7 +63,13 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             });
     }
     $scope.showAllQuestions(null,null)
+
+    
     $scope.questions_selected=[];
+    
+
+
+
 
     $scope.quiz = {
         title: '',

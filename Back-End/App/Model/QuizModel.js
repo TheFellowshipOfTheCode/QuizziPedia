@@ -39,9 +39,8 @@ quizSchema.statics.editQuiz = function(info, callback) {
 
 }
 
-quizSchema.statics.addUser = function(userId, callback) {
-    params.quiz.registeredUsers.push(userId);
-    params.quiz.save(callback);
+quizSchema.statics.addUser = function(quizId,userId, callback) {
+    this.update({_id:quizId},{$pushAll:{registeredUsers:userId}},callback);
 }
 
 quizSchema.statics.removeUser = function(userId, callback) {

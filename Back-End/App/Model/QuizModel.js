@@ -60,6 +60,7 @@ quizSchema.statics.addActiveUser = function(quizId,userId, callback) {
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {
     return this.find({registeredUsers: userId},'title topic author').lean().exec(function(err,quiz){
+        if (quiz)
         quiz.forEach(function(elem,index){
             User.getUser(elem.author,function(err,author){
                 if(author) {
@@ -70,6 +71,8 @@ quizSchema.statics.getQuizSubscribe=function(userId, callback) {
                 }
             })
         })
+        else
+            callback(new Error("Errore l'utente non è iscritto d alcun questionario"));
     });
 }
 

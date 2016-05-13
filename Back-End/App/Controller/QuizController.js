@@ -27,7 +27,7 @@ exports.createQuiz = function (req, res) {
         if (err) return res.status(500).json({
             code: 2,
             title: 'quiz-insertion-error',
-            message: 'l\'inserimento del quiz è fallito'
+            message: "l'inserimento del quiz è fallito"
         });
         else return res.send(quiz);
     });
@@ -83,7 +83,7 @@ exports.getQuizSubscribe=function(req,res,next){
         if (err) return res.status(500).json({
             code: 331,
             title: 'Iscrizione Utente Questionario Error',
-            message: "Errore ottenimento lista questionari registrati"
+            message: err.message
         });
         else return res.send(quiz)
     })

@@ -40,13 +40,14 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     }
 
     function loadDoneQuizzes() {
-       QuizService.getDoneQuestionnaire($routeParams.lang)
-           .then(function (result) {
-               $scope.quizzes = result.data;
-               //console.log("quiz: " + $scope.quizzes);
-           }, function (err) {
-               console.log(err);
-        }
+        QuizService.getDoneQuestionnaire($routeParams.lang)
+            .then(function (result) {
+                $scope.quizzes = result.data;
+                //console.log("quiz: " + $scope.quizzes);
+            }, function (err) {
+                console.log(err);
+            })
+    }
 
     function loadAbilitatedQuizzes() {
         QuizService.getSubscribedQuestionnaire($routeParams.lang)

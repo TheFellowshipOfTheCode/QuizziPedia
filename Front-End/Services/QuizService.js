@@ -108,7 +108,7 @@ function QuizService($http, $cookies, $q) {
     function subscribeQuestionnaire(quizId, lang){
         var subscribe = {quizId: quizId};
         var deferred = $q.defer();
-        $http.post('/api/' + lang + '/userquiz/subscribe', subscribe)
+        $http.post('/api/' + lang + '/usersubscribe', subscribe)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){

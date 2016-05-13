@@ -29,7 +29,8 @@ function QuizService($http, $cookies, $q) {
         getQuiz : getQuiz,
         getDoneQuestionnaire : getDoneQuestionnaire,
         subscribeQuestionnaire: subscribeQuestionnaire,
-        getSubscribedQuestionnaire: getSubscribedQuestionnaire
+        getSubscribedQuestionnaire: getSubscribedQuestionnaire,
+        setQuizResult:setQuizResult
     };
 
     return methods;

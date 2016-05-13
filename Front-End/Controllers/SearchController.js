@@ -83,6 +83,15 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
         QuizService.subscribeQuestionnaire(quizId, $routeParams.lang)
             .then(function (result) {
                 console.log("risultato ok:" + result);
+                alert = $mdDialog.alert()
+                    .title("Registrazione avvenuta con successo")
+                    .content("Ti sei appena iscritto al questionario!")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
             }, function (err) {
                 console.log("errore: " + err);
             });

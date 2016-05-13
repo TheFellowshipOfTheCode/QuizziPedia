@@ -23,6 +23,9 @@ UserDetailsController.$inject = ['$scope', '$rootScope', '$routeParams', '$locat
 
 function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService) {
     //console.log($rootScope.userLogged.getUsername());
+    delete $scope.subscribedQuizzes;
+    delete $scope.quizzes;
+
     if($rootScope.userLogged != undefined){
         $scope.user = $rootScope.userLogged;
         loadDoneQuizzes();
@@ -53,7 +56,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
         QuizService.getSubscribedQuestionnaire($routeParams.lang)
             .then(function (result) {
                 $scope.subscribedQuizzes = result.data;
-                //console.log("quiz: " + $scope.subscribedQuizzes);
+                console.log("quiz: " + $scope.subscribedQuizzes);
             }, function (err) {
                 console.log(err);
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");

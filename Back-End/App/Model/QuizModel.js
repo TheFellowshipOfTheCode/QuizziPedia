@@ -48,9 +48,14 @@ quizSchema.statics.removeUser = function(userId, callback) {
     params.quiz.save(callback);
 }
 
-quizSchema.statics.addActiveUser = function(userId, callback) {
-    params.quiz.activeUsers.push(userId);
-    params.quiz.save(callback);
+quizSchema.statics.addActiveUser = function(quizId,userId, callback) {
+    this.findOne({_id:quizId},function(err,quiz){
+        quiz.activeUsers.push(userId)
+        var index =  quiz.registeredUsers.indexOf(userId);
+        if (index > -1)
+            quiz.registeredUsers.splice(index, 1);
+        quiz.save(callback);
+    })
 }
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {

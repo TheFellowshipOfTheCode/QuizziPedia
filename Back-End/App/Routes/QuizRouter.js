@@ -23,6 +23,6 @@ module.exports = function(app){
     app.route('/api/:lang/userquiz/removeUser')
         .put(QuizController.removeUser);
 
-    app.route('/api/:lang/userquiz/activeUser')
+    app.route('/api/:lang/userquizactiveUser')
         .post(QuizController.addActiveUser);
 }

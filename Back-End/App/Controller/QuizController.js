@@ -116,7 +116,7 @@ exports.removeUser = function (req, res, next) {
 }
 
 exports.addActiveUser = function (req, res, next) {
-    Quiz.addActiveUser(req.body._id, function(err, userId) {
+    Quiz.addActiveUser(req.body.quizId,req.body.userId, function(err, userId) {
         if (err) return res.status(500).json({
             code: 344,
             title: 'addActiveUser-error',

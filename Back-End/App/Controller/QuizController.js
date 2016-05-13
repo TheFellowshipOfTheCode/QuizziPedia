@@ -46,6 +46,19 @@ exports.getQuiz = function (req, res, next) {
     })
 }
 
+exports.getQuizSubscribers=function (req, res, next) {
+    Quiz.getQuizSubscribers(req.params.quizId,function(err, subscribers) {
+        if (err) return res.status(500).json({
+            code: 323,
+            title: 'Errore Questionario',
+            message: "Errore Questionario"
+        });
+        else
+            res.send(subscribers)
+
+    })
+}
+
 exports.searchQuiz=function(req, res, next) {
     Quiz.searchQuiz(req.params.keyword, function(err, quiz){ console.log(req.params.keyword)
         if(err) return res.status(500).json({code:88, title: "Errore Quiz", message: "Nessuna quiz trovato"});
@@ -76,8 +89,8 @@ exports.getQuizSubscribe=function(req,res,next){
     })
 }
 
-exports.addUser = function (req, res, next) {
-    Quiz.addUser(req.body.quizId, req.user._id, function (err, userId) {
+exports.subscribeUser = function (req, res, next) {
+    Quiz.subscribeUser(req.body.quizId, req.user._id, function (err, userId) {
         if (err) return res.status(500).json({
             code: 331,
             title: 'addUser-error',

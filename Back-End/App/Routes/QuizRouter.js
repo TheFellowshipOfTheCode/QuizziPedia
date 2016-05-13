@@ -14,7 +14,10 @@ module.exports = function(app){
 
     app.route('/api/:lang/usersubscribe')
         .get(QuizController.getQuizSubscribe)
-        .post(QuizController.addUser);
+        .post(QuizController.subscribeUser);
+
+    app.route('/api/:lang/userquizsubscribe/:quizId')
+        .get(QuizController.getQuizSubscribers)
     
 
     app.route('/api/:lang/userquiz/removeUser')

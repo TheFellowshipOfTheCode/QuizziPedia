@@ -39,7 +39,7 @@ quizSchema.statics.editQuiz = function(info, callback) {
 
 }
 
-quizSchema.statics.addUser = function(quizId,userId, callback) {
+quizSchema.statics.subscribeUser = function(quizId,userId, callback) {
     this.update({_id:quizId},{$push:{registeredUsers:userId}},callback);
 }
 
@@ -74,6 +74,20 @@ quizSchema.statics.getPersonalQuizzes = function(author, callback) {
 
 quizSchema.statics.searchQuiz=function(tosearch, callback){
     return this.find({'title':  new RegExp(tosearch, "i") },'title', callback);
+};
+
+quizSchema.statics.getQuizSubscribers=function(quizId, callback){
+    return this.findOne({'registeredUsers': quizId },'registeredUsers', function(err, registeredUsers){
+         var i=registeredUsers.length;
+         registeredUsers.forEach(function(user,index){
+            User.getUser(user,function(err,subscriber) {
+                registeredUsers[index] = subscriber
+                i--;
+                if (i == 0)
+                    return callback(null, registeredUsers)
+            });
+         })
+    })
 };
 
 quizSchema.statics.getQuiz=function(quizId,userId,callback){

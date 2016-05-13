@@ -80,9 +80,9 @@ quizSchema.statics.getQuizSubscribers=function(quizId, callback){
     return this.findOne({'_id': quizId },'registeredUsers', function(err, users){
          users.registeredUsers.forEach(function(user,index){
             User.getUser(user,function(err,subscriber) {
-                users.registeredUsers[index] = subscriber.name
+                users.registeredUsers[index]={_id :subscriber._id, name:subscriber.name, username:subscriber.username}
                 if (index+1 == users.registeredUsers.length)
-                    return callback(null, users.registeredUsers)
+                    callback(null, users.registeredUsers)
             });
          })
     })

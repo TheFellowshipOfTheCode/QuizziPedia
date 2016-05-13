@@ -17,8 +17,7 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 var Topic = require('../Model/TopicModel');
-
-var count = 0;
+var Question = require('../Model/QuestionModel');
 
 exports.getNextQuestion = function(req, res) {
     if(!req.body.topic){
@@ -29,41 +28,44 @@ exports.getNextQuestion = function(req, res) {
             if (err)
                 return res.status(500).json({code:721, title: "getNextQuestionError", message: "error"});
             else
-                Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function(err,question){
+                Question.findOne({'_id':{$in:topic.question, $nin:req.body.alreadyAnswered},'language': req.body.language, 'keywords': {$in:req.body.keywords}, 'level': {$gte: req.body.level-100, $lte: req.body.level+100}}, '_id language question keywords level makeWith author', function(err,q) {
                     if (err)
-                        return res.status(500).json({code:766, title: "getNextQuestionError", message: "error"});
-                    else {
-                        var equalKeywords = 0;
-                        if (question) {
-                            question.keywords.forEach(function (k1) {
-                                req.body.keywords.forEach(function (k2) {
-                                    if (k1 == k2) {
-                                        equalKeywords++;
-                                    }
+                        return res.status(500).json({code:733, title: "getNextQuestionError", message: "error"});
+                    Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function (err, question) {
+                        if (err)
+                            return res.status(500).json({code: 766, title: "getNextQuestionError", message: "error"});
+                        else {
+                            var equalKeywords = 0;
+                            if (question) {
+                                question.keywords.forEach(function (k1) {
+                                    req.body.keywords.forEach(function (k2) {
+                                        if (k1 == k2) {
+                                            equalKeywords++;
+                                        }
+                                    });
                                 });
-                            });
-                            if (req.body.keywords.length==equalKeywords || req.body.keywords.length==0) {
-                                count = 0;
-                                return res.send(question);
+                                if (req.body.keywords.length == equalKeywords || req.body.keywords.length == 0) {
+                                    count = 0;
+                                    return res.send(question);
+                                }
+                            }
+                            if (!question || req.body.keywords.length != equalKeywords) {
+                                if (req.body.alreadyAnswered.length == topic.question.length || !q)
+                                    return res.status(500).json({
+                                        code: 845,
+                                        title: "Allenamento finito",
+                                        message: "Non ci sono più domande sull'argomento scelto per questo allenamento"
+                                    });
+                                else if (q) {
+                                    module.exports.getNextQuestion(req, res);
+                                }
+                                else {
+                                    req.body.keywords = [];
+                                    module.exports.getNextQuestion(req, res);
+                                }
                             }
                         }
-                        if(!question || req.body.keywords.length!=equalKeywords) {
-                            if (req.body.alreadyAnswered.length == topic.question.length)
-                                return res.status(500).json({
-                                    code: 845,
-                                    title: "Allenamento finito",
-                                    message: "Non ci sono più domande sull'argomento scelto per questo allenamento"
-                                });
-                            else if (count < 15) {
-                                count++;
-                                module.exports.getNextQuestion(req, res);
-                            }
-                            else {
-                                req.body.keywords = [];
-                                module.exports.getNextQuestion(req, res);
-                            }
-                        }
-                    }
+                    })
                 })
         })
     }

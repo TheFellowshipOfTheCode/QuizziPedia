@@ -250,7 +250,7 @@ describe("Update Statistics Question Test", function(){
 */
 describe("View NextQuestion Test", function(){
     it("should view the next question of a training", function(done){
-        this.timeout(15000);
+        this.timeout(20000);
         agent
             .post('/api/:lang/user/training/question')
             .send({

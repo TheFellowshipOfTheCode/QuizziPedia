@@ -6,7 +6,7 @@ var User = require('./UserModel');
 var quizSchema = new mongoose.Schema({
     title: { type : String},
     topic: String,
-    keywords: String,
+    keywords: [String],
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

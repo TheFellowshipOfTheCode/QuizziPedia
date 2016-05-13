@@ -48,10 +48,9 @@
                 <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
               </div>
             </div>
-          </div>
+          </div> {{objAnswer}}
         </div>
 
-        {{selectedTopic}}
 
         <div ng-if="traininIsFinished == true ">
           <end-training-directive></end-training-directive>

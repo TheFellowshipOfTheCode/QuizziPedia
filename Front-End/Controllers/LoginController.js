@@ -35,7 +35,7 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
         AuthService.signIn(username, password, $routeParams.lang)
             .then(function(result){
                 if(result.data.user != undefined) {
-                    $rootScope.userLogged = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, "", result.data.user.username, "" , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
+                    $rootScope.userLogged = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, "", result.data.user.username, result.data.user.statistics , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
                     $location.path('/' + $routeParams.lang + '/home');
                 }
             } ,function (err){

@@ -9,7 +9,6 @@ controlloQML = function(req, res, topics) {
         if(corpo.hasOwnProperty('topic')) {
             var topic = corpo.topic;
             var trovato = false;
-            console.log(topics);
             for (i = 0 ; i < topics.length ; i++ ) {
                 if (corpo.topic == topics[i].name) {
                     trovato = true;

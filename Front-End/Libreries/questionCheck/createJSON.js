@@ -70,23 +70,18 @@ createJSON = function(corpo, res, tipologia, topic){
     var jsonKey;
     if(corpo.hasOwnProperty('keywords')){
         jsonKey = "\"keywords\" : [ ";
-        count = 0;
-        for(key in corpo.keywords){
-            count++;
-        }
-        i = 1;
-        for(key in corpo.keywords){
-            if(i == count){
-                jsonKey = jsonKey + "\"" + key.getElementsByName('keywords') + "\"";
+        for(i = 0 ; i < corpo.keywords.length ; i++){
+            if(i == corpo.keywords.length-1){
+                jsonKey = jsonKey + "\"" + corpo.keywords[i] + "\"";
             }
             else{
-                jsonKey = jsonKey + "\"" + key.getElementsByName('keywords') + "\" ,";
+                jsonKey = jsonKey + "\"" + corpo.keywords[i] + "\" ,";
             }
-            i++;
         }
-        jsonKey = jsonKey + "],";
+        jsonKey = jsonKey + "]";
     }
-    var jsonStatistic = "\"level\" : 500, \"totalAnswers\" : 0, \"correctAnswers\" : 0}"
+   // var jsonStatistic = "\n \"level\" : 500, \n \"totalAnswers\" : 0, \n \"correctAnswers\" : 0 \n }";
+    var jsonStatistic = "\n }";
 
     if(tipologia == "veroFalso") {
         var jsonString = createJsonVF(corpo, res);
@@ -113,7 +108,8 @@ createJSON = function(corpo, res, tipologia, topic){
         var jsonString = createJSONcustom(corpo);
     }
 
-    jsonString = campiComuni + jsonString ; //+  jsonStatistic;
+    jsonString = campiComuni + jsonString + jsonKey +  jsonStatistic;
+    console.log(jsonString);
     var fine = JSON.parse(jsonString);
     console.log(fine);
     return fine;
@@ -125,7 +121,7 @@ createJsonVF = function(corpo, res){
         jsonString =  jsonString + "\n \"image\" : \" " + corpo.image + "\" , \n";
     }
     jsonString = jsonString + " \n \"answers\" : [ \n { \n \"text\" : \"" + corpo.answer[0].text + "\" , \n";
-    jsonString = jsonString + " \n \"isItRight\" : " + corpo.answer[0].isItRight + "\n" + "} \n] \n} \n]} \n";
+    jsonString = jsonString + " \n \"isItRight\" : " + corpo.answer[0].isItRight + "\n" + "} \n] \n} \n], \n";
     return jsonString;
 }
 

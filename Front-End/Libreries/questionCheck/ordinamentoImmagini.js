@@ -67,21 +67,6 @@ ordinamentoImmagini = function(corpo,res){
             break;
         }
     }
-    // controllo se ci sono keyword inserite
-    var i = 1;
-    if(corpo.hasOwnProperty('keywords')){
-        var key;
-        for(key in corpo.keywords[0]){
-            if(key == "keyword_" + i){
-                i++;
-            }
-            else{
-                campiFacoltativi = false;
-                console.log("keywords non valide");
-                break;
-            }
-        }
-    }
     if(campiFacoltativi && campiObbligatori){
         return true;
     }

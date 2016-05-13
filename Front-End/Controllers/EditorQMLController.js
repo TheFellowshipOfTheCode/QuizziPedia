@@ -90,14 +90,11 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .getTopics($routeParams.lang)
                     .then(function(result){
                         var topics = result.data;
-                        //callback(topics);
 
                         // inserire qua
                         var resultQML = controlloQML(question, res, topics);
                         if(resultQML){
-                            //var q = JSON.stringify(result, null, "  ");
-
-                            console.log(resultQML);
+                            console.log("resultQML: " + resultQML);
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
                                     if (result) {

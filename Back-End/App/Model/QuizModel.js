@@ -1,21 +1,3 @@
-/*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Models::QuizModel;
- * Description: classe che modella i questionari all'interno dell'applicazione;
- * Relations with other classes:
- * + OUT QuestionModel;
- * + OUT UserModel.
- * Creation data: 02-05-2016;
- * Author: Mattia Varotto.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuizModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe e aggiunti metodi principali;
- * Autore: Mattia Varotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
-
 var mongoose = require('mongoose');
 var Question = require('./QuestionModel');
 var User = require('./UserModel');
@@ -72,17 +54,18 @@ quizSchema.statics.addActiveUser = function(userId, callback) {
 }
 
 quizSchema.statics.getQuizSubscribe=function(userId, callback) {
-    return this.find({registeredUsers: userId},'title topic author',function(err,quiz) {
-        var i = quiz.length;
-        /*quiz.forEach(function(elem,index){
-         User.getUser(elem.author,function(err,author){
-         quiz[index].author=author.name
-         })
-         i--;
-         if (i==0){*/
-        callback(null, quiz)
-        // }
-    });
+    return this.find({registeredUsers: userId},'title topic author',function(err,quiz){
+      /*  var i=quiz.length;
+        quiz.forEach(function(elem,index){
+            User.getUser(elem.author,function(err,author){
+                quiz[index].author=author.name
+            })
+            i--;
+            if (i==0){*/
+                callback(null,quiz)
+           // }
+        })
+    //});
 }
 
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {

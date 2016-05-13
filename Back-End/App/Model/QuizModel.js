@@ -40,6 +40,7 @@ quizSchema.statics.editQuiz = function(info, callback) {
 }
 
 quizSchema.statics.addUser = function(quizId,userId, callback) {
+    console.log(userId)
     this.update({_id:quizId},{$pushAll:{registeredUsers:userId}},callback);
 }
 

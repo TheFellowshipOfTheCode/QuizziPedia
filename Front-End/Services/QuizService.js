@@ -28,7 +28,8 @@ function QuizService($http, $cookies, $q) {
         getTopic: getTopic,
         getQuiz : getQuiz,
         getDoneQuestionnaire : getDoneQuestionnaire,
-        subscribeQuestionnaire:subscribeQuestionnaire
+        subscribeQuestionnaire: subscribeQuestionnaire,
+        getSubscribedQuestionnaire: getSubscribedQuestionnaire
     };
 
     return methods;
@@ -114,5 +115,18 @@ function QuizService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
+
+    function getSubscribedQuestionnaire(lang){
+        var deferred = $q.defer();
+        $http.get('/api/' + lang + '/userquiz/subscribed')
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+
 
 }

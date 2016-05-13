@@ -25,19 +25,21 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     //console.log($rootScope.userLogged.getUsername());
     if($rootScope.userLogged != undefined){
         $scope.user = $rootScope.userLogged;
-        loadQuizzes();
+        loadDoneQuizzes();
+        loadAbilitatedQuizzes()
     }
     else{
         var ist = $rootScope.$on("userDownloaded", function(event, args) {
             if(args){
                 $scope.user = $rootScope.userLogged;
-                loadQuizzes();
+                loadDoneQuizzes();
+                loadAbilitatedQuizzes()
             }
         });
         $scope.$on('$destroy', ist);
     }
 
-    function loadQuizzes() {
+    function loadDoneQuizzes() {
        QuizService.getDoneQuestionnaire($routeParams.lang)
            .then(function (result) {
                $scope.quizzes = result.data;
@@ -58,5 +60,25 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                        });
                } });
         }
+
+    function loadAbilitatedQuizzes() {
+        QuizService.getSubscribedQuestionnaire($routeParams.lang)
+            .then(function (result) {
+                $scope.subscribedQuizzes = result.data;
+                //console.log("quiz: " + $scope.subscribedQuizzes);
+            }, function (err) {
+                console.log(err);
+                    $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari utente non andato a buon fine");
+                    alert = $mdDialog.alert()
+                        .title($scope.error.getTitle())
+                        .content($scope.error.getMessage())
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                 });
+    }
 }
 

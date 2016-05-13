@@ -77,7 +77,7 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 };
 
 quizSchema.statics.getQuizSubscribers=function(quizId, callback){
-    return this.findOne({'registeredUsers': quizId },'registeredUsers', function(err, registeredUsers){
+    return this.findOne({'_id': quizId },'registeredUsers', function(err, registeredUsers){
          var i=registeredUsers.length;
          registeredUsers.forEach(function(user,index){
             User.getUser(user,function(err,subscriber) {

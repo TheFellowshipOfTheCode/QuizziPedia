@@ -116,13 +116,16 @@ exports.removeUser = function (req, res, next) {
 }
 
 exports.addActiveUser = function (req, res, next) {
-    Quiz.addActiveUser(req.body.quizId,req.body.userId, function(err, userId) {
+    Quiz.addActiveUser(req.body.quizId,req.body.userId, function(err) {
         if (err) return res.status(500).json({
             code: 344,
             title: 'addActiveUser-error',
             message: 'error occurred while adding activeUser'
         });
-        else return res.send(userId)
+        else return res.send({
+            code: 354,
+            title: 'Abilitazione Utente ok',
+            message: 'Abilitazione iscritto avvenuta'})
     })
 }
 

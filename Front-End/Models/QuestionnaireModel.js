@@ -79,6 +79,16 @@ function QuestionnaireModel() {
           return numOfRightAnswer;
         };
 
+        this.getResultById = function (id) {
+          console.log(id);
+          var obj = results.filter(function ( obj ) {
+            console.log(obj);
+            return obj.question._id == id;
+          })[0];
+          console.log(obj);
+          return obj.isCorrected;
+        };
+
         this.getResultSummary = function () {
           return results;
         };

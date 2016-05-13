@@ -128,6 +128,20 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
+    function setQuizResult(lang, resultOfQuiz) {
+        var q = JSON.stringify(resultOfQuiz, null, "  ");
+        var deferred = $q.defer();
+        console.log(q);
+        $http.post('/api/'+ lang + '/user/quiz/summary', q)
+            .then(function(data) {
+              console.log(data);
+                deferred.resolve(data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
 
 
 }

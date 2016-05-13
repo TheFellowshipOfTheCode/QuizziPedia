@@ -342,7 +342,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     $scope.myChartDataDoughnut = [
           {
               value: $scope.training.getResult(),
-              color: "#FDB45C",
+              color: "#86FC72",
               label: $rootScope.listOfKeys.questionsRight
           },
           {

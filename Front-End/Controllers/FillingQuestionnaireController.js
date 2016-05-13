@@ -201,7 +201,7 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     $scope.myChartDataDoughnut = [
           {
               value: $scope.quiz.getResult(),
-              color: "#FDB45C",
+              color: "#86FC72",
               label: $rootScope.listOfKeys.questionsRight
           },
           {

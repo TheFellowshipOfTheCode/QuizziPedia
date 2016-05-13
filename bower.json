@@ -42,7 +42,7 @@
     "ng-file-upload": "^12.0.4",
     "angular-file-model": "^0.3.1",
     "angular-dragdrop" : "*",
-    "angular-number-picker" : "*",
+    "angular-number-picker" : "1.2.6",
     "jquery-ui-touch-punch" : "*",
     "chartjs" : "*",
     "angles" : "*",

@@ -48,12 +48,16 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*RootScope function*/
 
   /*Function used to load new question*/
-  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, number) {
+  var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, restart) {
     //console.log(args);
-    //console.log(number);
-    if(number>1) {
+   //console.log(number);
+   if(restart) {
+     delete $scope.question;
+   }
+    //if(number>0) {
+    console.log($scope.question);
       checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
-    }
+    //}
     $scope.objAnswer=[];
     delete $scope.question;
     downloadNextQuestionTraining(args);
@@ -235,7 +239,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           switch(elem.type) {
             case "ordinamentoStringhe":
             case "ordinamentoImmagini":
-            console.log("ordinamento");
+           //console.log("ordinamento");
                 var answersCopy = elem.answers;
                 answersCopy.sort(function compare(a,b) {
                   if (a.position < b.position)
@@ -250,10 +254,10 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log(answerCheckB);
+               //console.log(answerCheckB);
                 break;
             case "collegamento":
-                console.log("collegamento");
+               //console.log("collegamento");
                 elem.answers.forEach(function (answer, indexAnswerGiven) {
                   if(answer.text2 != undefined && (answersGiven[index].answerGiven[indexAnswerGiven].text2 === undefined || (answer.text2 != answersGiven[index].answerGiven[indexAnswerGiven].text2 && answerCheckB))) {
                     answerCheckB = false;
@@ -262,29 +266,37 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log(answerCheckB);
+               //console.log(answerCheckB);
                 break;
             case "veroFalso":
-                console.log("veroFalso");
-                if(answersGiven[0] === undefined) {
+               //console.log("veroFalso");
+               //console.log(answersGiven[index]);
+                if(answersGiven[index] === undefined) {
+                 //console.log("ENTRO QUA");
                   answerCheckB = false;
                 }
                 elem.answers.forEach(function (answer) {
-                  if(answer.isItRight != answersGiven[index].answerGiven && answerCheckB) {
+                 //console.log(answer);
+                 //console.log(answersGiven[index].answerGiven);
+                  if(answer.isItRight.toString() !== answersGiven[index].answerGiven.toString() && answerCheckB) {
+                   //console.log("entro qua 2");
                     answerCheckB = false;
                   }
                 });
-                console.log(answerCheckB);
+               //console.log(answerCheckB);
                 break;
             case "rispostaMultipla":
-                console.log("rispostaMultipla");
+               //console.log("rispostaMultipla");
                 //console.log(answersGiven);
                 if(answersGiven[index].answerGiven.length == 0 || answersGiven[index].answerGiven== undefined) {
                   //console.log("+ undefined");
                   answerCheckB = false;
                 }
                 answersGiven[index].answerGiven.forEach(function (answerGived) {
+                 //console.log(answerGived);
+
                   elem.answers.forEach(function (answer) {
+                   //console.log(answer.text);
                     if(answerGived == answer.text) {
                       if(answer.isItRight == false && answerCheckB) {
                         answerCheckB = false;
@@ -292,10 +304,10 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     }
                   });
                 });
-                console.log(answerCheckB);
+               //console.log(answerCheckB);
                 break;
             case "spaziVuoti":
-                console.log("spaziVuoti");
+               //console.log("spaziVuoti");
                 var text1 = elem.questionText;
                 var tempText2 = text1.split(" ");
                 var answersSorted = elem.answers;
@@ -319,7 +331,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log(answerCheckB);
+               //console.log(answerCheckB);
                 break;
           }
 
@@ -330,7 +342,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         });
       }
       $rootScope.$emit("addResult", $scope.question.getId(), answerCheckA);
-      console.log(answerCheckA);
+     //console.log(answerCheckA);
       //console.log($scope.question.getLevel());
       var userdId = "";
       if($rootScope.userLogged != undefined) {

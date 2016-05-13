@@ -52,7 +52,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Function to start the training*/
   $scope.starTraining = starTraining;
-  function starTraining (argument, keywords) {
+  function starTraining (argument, keywords, restart) {
     //console.log("----------------------------------------");
     $scope.stopToGoBack = true;
     if($scope.selectedTopicOnMind != ""){
@@ -75,7 +75,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         topic: $scope.training.getArgument(),
         keywords : $scope.training.getKeywords(),
         level  : level,
-        alreadyAnswered : [] }, $scope.questionNumberOnTraining
+        alreadyAnswered : [] }, $scope.questionNumberOnTraining, restart
       );
       window.onbeforeunload = function(event) {
           return $rootScope.listOfKeys.areYouSureToLeaveTheTraining;
@@ -108,13 +108,14 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     nums = $scope.training.getNumberOfQuestions();
     delete $scope.training;
     delete $scope.question;
+    console.log($scope.question);
     //console.log($scope.training);
     if($scope.training === undefined) {
       //console.log("vuoto");
     }
     $scope.questionNumberOnTraining = 1;
     $scope.traininIsFinished = false;
-    $scope.starTraining(arg, keys);
+    $scope.starTraining(arg, keys, true);
   }
 
   /*Function to get the new question*/
@@ -221,6 +222,14 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
             alert = undefined;
         })
         .then(function() {
+          var level;
+          if($rootScope.userLogged != undefined) {
+            level = $rootScope.userLogged.getLevelByTopic($scope.training.getArgument());
+          }
+          else {
+            level = $scope.temporaryLevel;
+          }
+          $rootScope.$emit("checkAnswerEvent", $scope.training.getArgument(), level);
           $scope.stopToGoBack = false;
           graphResultAfterFinishedATraining();
           $scope.traininIsFinished = true;
@@ -291,7 +300,7 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
         keywords : $scope.training.getKeywords(),
         level  : level,
         alreadyAnswered : arryOfQuestionsAlreadyAnswered
-      }, $scope.questionNumberOnTraining
+      }, $scope.questionNumberOnTrainingend, false
       );
       angular.element(".scrollable").scrollTop(0,0);
     }

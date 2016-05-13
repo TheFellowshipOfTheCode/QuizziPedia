@@ -48,7 +48,7 @@
                 <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
               </div>
             </div>
-          </div> 
+          </div> {{objAnswer}}
         </div>
 
 
@@ -57,7 +57,7 @@
         </div>
 
         <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords)'>
+          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords, false)'>
             {{listOfKeys.goToTraining}}
           </button>
         </div>

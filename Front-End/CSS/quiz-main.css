@@ -121,3 +121,18 @@
   margin-top: 0.5em !important;
   color: white !important;
 }
+
+.mark {
+  margin-top: -2.75em;
+  padding-bottom: 2em;
+  font-size: 6em;
+  background-color: initial;
+}
+
+.mark-lang {
+  font-size: 0.33em !important;
+}
+
+.mark-mark {
+  margin-top: -0.25em;
+}

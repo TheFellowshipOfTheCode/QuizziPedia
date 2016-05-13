@@ -49,8 +49,8 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
   var loadNewQuestion =$rootScope.$on("loadNewQuestion", function(event, args, number) {
-    console.log(args);
-    console.log(number);
+    //console.log(args);
+    //console.log(number);
     if(number>1) {
       checkAnswer($scope.question, $scope.objAnswer, args.topic, args.level);
     }
@@ -63,10 +63,10 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function used to load new question*/
   var loadNewQuestionQuiz =$rootScope.$on("loadNewQuestionQuiz", function(event, question, number, topic, level) {
     if(number>0) {
-      console.log("entro a correggere");
+      //console.log("entro a correggere");
       checkAnswer($scope.question, $scope.objAnswer, topic, level);
     }
-    console.log(question);
+    //console.log(question);
     $scope.objAnswer=[];
     delete $scope.question;
     loadNextQuestionQuiz(question);
@@ -75,7 +75,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function used to load new question*/
   var checkAnswerEvent =$rootScope.$on("checkAnswerEvent", function(event, topic, level) {
-    console.log('arrivo qua a correggere l=-ultima domadna ');
+    //console.log('arrivo qua a correggere l=-ultima domadna ');
     checkAnswer($scope.question, $scope.objAnswer, topic, level);
   });
   $scope.$on('$destroy', checkAnswerEvent);
@@ -125,9 +125,11 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           list2 = Utils.shuffle(list2);
 
           if(elemA.type != "veroFalso" && elemA.type != "rispostaMultipla") {
+            //console.log("faccio ->>>> "+elemA.type );
             $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
           }
           else {
+            //console.log("faccio !!! ->>>> "+elemA.type );
             $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  []};
           }
 
@@ -162,9 +164,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function to download the new question of the training mode*/
   function loadNextQuestionQuiz(question) {
-    console.log(question);
+    //console.log(question);
         $scope.question= new QuestionItemModel(question._id, question.author, question.makeWith, question.language, question.question, question.keywords, question.level);
-        console.log($scope.question);
+        //console.log($scope.question);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;
         $scope.temporyObjectForView= [];
@@ -198,7 +200,16 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
           });
 
-          $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+          list2 = Utils.shuffle(list2);
+
+          if(elemA.type != "veroFalso" && elemA.type != "rispostaMultipla") {
+            //console.log("faccio ->>>> "+elemA.type );
+            $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  list2};
+          }
+          else {
+            //console.log("faccio !!! ->>>> "+elemA.type );
+            $scope.objAnswer[index]={"type": elemA.type, "answerGiven" :  []};
+          }
 
           if(elemA.type == "spaziVuoti") {
             $scope.temporyObjectForView[index]={list1,list2, emptySpaceText : tempText};
@@ -207,6 +218,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
             $scope.temporyObjectForView[index]={list1,list2};
           }
 
+
         });
       }
 
@@ -214,7 +226,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function to check the given answers*/
   function checkAnswer(question, answersGiven, topic, level) {
     if(question != undefined) {
-      console.log(question.getLevel());
+      //console.log(question.getLevel());
       if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
         var partsOfQuestion = question.getQuestion();
         var answerCheckA= true;
@@ -223,6 +235,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           switch(elem.type) {
             case "ordinamentoStringhe":
             case "ordinamentoImmagini":
+            console.log("ordinamento");
                 var answersCopy = elem.answers;
                 answersCopy.sort(function compare(a,b) {
                   if (a.position < b.position)
@@ -265,9 +278,9 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                 break;
             case "rispostaMultipla":
                 console.log("rispostaMultipla");
-                console.log(answersGiven);
+                //console.log(answersGiven);
                 if(answersGiven[index].answerGiven.length == 0 || answersGiven[index].answerGiven== undefined) {
-                  console.log("+ undefined");
+                  //console.log("+ undefined");
                   answerCheckB = false;
                 }
                 answersGiven[index].answerGiven.forEach(function (answerGived) {
@@ -318,7 +331,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
       }
       $rootScope.$emit("addResult", $scope.question.getId(), answerCheckA);
       console.log(answerCheckA);
-      console.log($scope.question.getLevel());
+      //console.log($scope.question.getLevel());
       var userdId = "";
       if($rootScope.userLogged != undefined) {
         userdId = $rootScope.userLogged.getId();
@@ -335,11 +348,11 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         }
       )
       .then(function(result){
-        console.log(result);
+        //console.log(result);
         if($rootScope.userLogged != undefined) {
-          console.log(topic);
+          //console.log(topic);
           $rootScope.userLogged.setLevelByTopic(topic,result.data.userLevel, answerCheckA);
-          console.log($rootScope.userLogged.getLevelByTopic(topic));
+          //console.log($rootScope.userLogged.getLevelByTopic(topic));
         }
         else {
           $rootScope.$emit("updateTemporaryLevel", result.data.userLevel);
@@ -355,7 +368,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         }
       )
       .then(function(result){
-        console.log(result);
+        //console.log(result);
       });
 
       QuestionsService.updateStatisticsTopic($routeParams.lang,
@@ -366,7 +379,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
         }
       )
       .then(function(result){
-        console.log(result);
+        //console.log(result);
       });
 
 

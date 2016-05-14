@@ -115,7 +115,17 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         var combination = "noAuth";
         console.log((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1));
         console.log($rootScope.userLogged != undefined);
-        if((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1) && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() != "")
+        if((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1) && $rootScope.userLogged != undefined )
+        {
+            console.log("Redirect to home");
+            $location.path('/'+$routeParams.lang+'/home');
+        }
+        if(variableOfPath.indexOf("questionnairemanagement") != -1  && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() == "normal")
+        {
+            console.log("Redirect to home");
+            $location.path('/'+$routeParams.lang+'/home');
+        }
+        if((variableOfPath.indexOf("search") != -1 || variableOfPath.indexOf("questions") != -1 || variableOfPath.indexOf("questionnairemanagement") != -1 ||  variableOfPath.indexOf("userpage") != -1 || variableOfPath.indexOf("quiz") != -1) && $rootScope.userLogged === undefined)
         {
             console.log("Redirect to home");
             $location.path('/'+$routeParams.lang+'/home');

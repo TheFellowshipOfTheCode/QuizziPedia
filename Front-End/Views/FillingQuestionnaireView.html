@@ -68,13 +68,13 @@
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
           <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endQuiz()'>
-            Termina il questionario
+            {{listOfKeys.endQuizLang}}
           </button>
         </div>
 
         <div ng-if="startQuiz == false && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='goToHome()'>
-            torna a home
+            {{listOfKeys.backToHome}}
           </button>
         </div>
 

@@ -25,7 +25,7 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
                 if (result.data.length > 0) {
                     $scope.personalQuizzes = result.data;
                     //console.log($scope.personalQuizzes);
-                    // $location.path('/' + $routeParams.lang + '/questionnairemanagementview');
+                    // $location.path('/' + $routeParams.lang + '/questionnairemanagement');
                 }
                 else {
                     delete $scope.personalQuizzes;

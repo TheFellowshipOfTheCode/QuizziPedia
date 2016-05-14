@@ -26,7 +26,7 @@
 </md-toolbar>
 -->
 
-<section class="md-whiteframe-1dp"  layout-sm="row" layout-align="center" >
+<section class="md-whiteframe-1dp padding-bottom toolbar-top"  layout-sm="row" layout-align="center" >
     <md-toolbar  class="toolbar-section quizzes-done quizzipedia-color" layout="row" layout-sm="row" layout-xs="row">
       <span flex=""></span>
         <h3>{{listOfKeys.statisticsLang}} </h3>
@@ -35,10 +35,10 @@
     <div class="md-toolbar-tools no-padding">
 
     </div>
-    <div class="center">
+    <div class="center padding-bottom">
       <h3> {{listOfKeys.resultOfTrainingLang}}
       {{publicRightAnswers}} / {{puclicTotalAnswers}}
        {{listOfKeys.questions}}.</h3>
-      <canvas doughnutchart options="myChartOptionsDoughnut" data="myChartDataDoughnut" width="300" height="300" class="center-it"></canvas>
+      <canvas ng-if="puclicTotalAnswers>=1" doughnutchart options="myChartOptionsDoughnut" data="myChartDataDoughnut" width="300" height="300" class="center-it padding-bottom""></canvas>
     </div>
 </section>

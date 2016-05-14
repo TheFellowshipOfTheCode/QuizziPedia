@@ -212,3 +212,7 @@
 .center {
   text-align: center;
 }
+
+.padding-bottom {
+  padding-bottom: 1em;
+}

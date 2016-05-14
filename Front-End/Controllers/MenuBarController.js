@@ -58,7 +58,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.goToQuizManagementPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/questionnairemanagementview'); // da completare
+    $location.path('/'+$routeParams.lang+'/questionnairemanagement'); // da completare
   };
 
   $scope.logOut = function () {

@@ -88,7 +88,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             }
           ]
       })
-        .when('/:lang/createquestionnaireview', {
+        .when('/:lang/createquestionnaire', {
             templateUrl: '/Views/CreateQuestionnaireView.html',
             controller:"CreateQuestionnaireController",
             css: [
@@ -122,7 +122,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                 }
             ]
         })
-        .when('/:lang/questionnairemanagementview', {
+        .when('/:lang/questionnairemanagement', {
             templateUrl: '/Views/QuestionnaireManagementView.html',
             controller: "QuestionnaireManagementController",
             css: [
@@ -157,7 +157,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                 }
             ]
         })
-        .when('/:lang/showallcreatedquestionnairesview', {
+        .when('/:lang/showallcreatedquestionnaires', {
             templateUrl: '/Views/ShowAllCreatedQuestionnairesView.html',
             controller: "ShowAllCreatedQuestionnairesController",
             css: [
@@ -264,7 +264,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                   media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
               ]
-      })  
+      })
       .when('/:lang/search/:tosearch', {
           templateUrl: '/Views/ResultsView.html',
           controller: "SearchController",

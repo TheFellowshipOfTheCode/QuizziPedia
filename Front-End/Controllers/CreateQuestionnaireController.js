@@ -152,7 +152,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                         .finally(function () {
                             alert = undefined;
                         });
-                    $location.path('/' + $routeParams.lang + '/questionnairemanagementview');
+                    $location.path('/' + $routeParams.lang + '/questionnairemanagement');
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel();

@@ -6,10 +6,10 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
     
 
     $scope.goToCreateQuestionnaire = function() {
-        $location.path('/'+$routeParams.lang+'/createquestionnaireview');
+        $location.path('/'+$routeParams.lang+'/createquestionnaire');
     }
 
     $scope.goToShowAllCreatedQuestionnaires = function() {
-        $location.path('/'+$routeParams.lang+'/showallcreatedquestionnairesview');
+        $location.path('/'+$routeParams.lang+'/showallcreatedquestionnaires');
     }
 }

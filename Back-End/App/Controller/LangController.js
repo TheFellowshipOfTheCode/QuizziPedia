@@ -1,34 +1,28 @@
-var Variables = require("../Model/LangModel.js");
+var LangModel = require("../Model/LangModel.js");
 
-var getVarlist = function(language,callback) {
-  Variables.find({lang:language}, function(err, documents) {
-    if (err) {
-      throw err;
-    }
-    callback(documents);
-  });
+
+exports.getVarlist=function(req,res,next){
+  console.log(req.params.lang)
+  LangModel.getVarlist(req.params.lang,function(err,result){
+    console.log(result)
+    if(err)
+      return res.status(500).json({code: 1601, title: "getVarlistErrror", message: "error"});
+    return res.send(result);
+  })
 }
 
-var getLang = function(callback) {
-  Variables.distinct("correctWord", "lang", function(err, documents) {
-    if (err) {
-      throw err;
-    }
-    console.log(documents);
-    callback(documents);
-  });
+exports.getLang=function(req,res,next){
+  LangModel.getLang(function(err,result){
+    if(err)
+      return res.status(500).json({code: 1601, title: "getLangErrror", message: "error"});
+    return res.send(result);
+  })
 }
 
-var getSlang = function(language, callback) {
-  Variables.find({correctWord: language},'lang', function(err, documents) {
-    if (err) {
-      throw err;
-    }
-    console.log(documents);
-    callback(documents);
-  });
-}
-
-exports.getSlang = getSlang;
-exports.getLang = getLang;
-exports.getVarlist = getVarlist;
+exports.getSlang=function(req,res,next){ {
+  LangModel.getSlang(req.params.language,function(err,result){
+    if(err)
+      return res.status(500).json({code: 1601, title: "getSlangErrror", message: "error"});
+    return res.send(result);
+  })
+}}

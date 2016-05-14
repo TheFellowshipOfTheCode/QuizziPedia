@@ -10,19 +10,19 @@
                     <h3 class="ng-binding">{{listOfKeys.titleShowAllCreatedQuestionnaires}}</h3>
                     <span flex="" class="flex"></span>
                 </div>
-            </md-toolbar>
 
-            <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
-                <md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                    <span>{{ personalQuizzes }}</span>
-                </md-whiteframe>
-                <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                    <span>.md-whiteframe-2dp</span>
-                </md-whiteframe>
-                <md-whiteframe class="md-whiteframe-3dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
-                    <span>.md-whiteframe-3dp</span>
-                </md-whiteframe>
-            </div>
+            </md-toolbar>
+            <section>
+                    <span ng-if="personalQuizzes == undefined"><h3> Non hai quiz a cui sei iscritto. </h3></span>
+            </section>
+                <section ng-if="personalQuizzes != undefined" class="md-whiteframe-1dp" ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center">
+                    <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
+                        <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="goToQuiz(q._id)">{{listOfKeys.goToSubscribeManagement}}</button>
+                        <span class="ng-binding divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>
+                        <span class="ng-binding divided"> {{listOfKeys.quizTopicResult}}: <h3>{{q.topic}} </h3> </span>
+                    </div>
+                </section>
+
 
 
         </section>

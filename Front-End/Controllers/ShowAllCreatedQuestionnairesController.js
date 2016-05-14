@@ -5,19 +5,34 @@ ShowAllCreatedQuestionnairesController.$inject = ['$scope', '$rootScope', '$rout
 function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService) {
 
 
+    if($rootScope.userLogged != undefined){
+        showAllQuizzes($rootScope.userLogged, $routeParams.lang);
+    }
+    else{
+        var ist = $rootScope.$on("userDownloaded", function(event, args) {
+            if(args){
+                showAllQuizzes($rootScope.userLogged, $routeParams.lang);
+            }
+        });
+        $scope.$on('$destroy', ist);
+    }
 
-        console.log("---------------------------------------------------------");
-        console.log($rootScope.userLogged.getId());
-        console.log("---------------------------------------------------------");
-        QuizService.showAllCreatedQuestionnaires($rootScope.userLogged.getId(), $routeParams.lang)
+
+
+    function showAllQuizzes(user, lang) {
+        QuizService.showAllCreatedQuestionnaires(user, lang)
             .then(function (result) {
-                if (result) {
-                    $scope.personalQuizzes = result;
+                if (result.data.length > 0) {
+                    $scope.personalQuizzes = result.data;
+                    //console.log($scope.personalQuizzes);
                     // $location.path('/' + $routeParams.lang + '/questionnairemanagementview');
+                }
+                else {
+                    delete $scope.personalQuizzes;
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel();
-                if($routeParams.lang === 'it') {
+                if ($routeParams.lang === 'it') {
                     alert = $mdDialog.alert()
                         .title("Errore")
                         .content("I questionari non possono essere visualizzati!")
@@ -35,6 +50,8 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
                     });
             });
 
-
-
+    }
+    $scope.goToQuiz = function(quizId) {
+        $location.path('/' + $routeParams.lang + '/managementsubscription/' + quizId);
+    }
 }

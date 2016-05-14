@@ -51,7 +51,7 @@
                 <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
 
         <div ng-if="quizIsFinished == true ">
@@ -59,7 +59,7 @@
         </div>
         <div ng-if="startQuiz == true && started == false && quiz != undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='startQuizClick()'>
-            inizia questionario
+            {{listOfKeys.startQuizLang}}
           </button>
         </div>
 

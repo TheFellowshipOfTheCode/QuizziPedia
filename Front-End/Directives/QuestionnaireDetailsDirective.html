@@ -45,10 +45,10 @@
   </div>
 </md-toolbar>
 
-<md-toolbar ng-if="subscribedQuizzes == undefined" class="toolbar-section toolbar-top">
+<md-toolbar ng-if="subscribedQuizzes == undefined" class="toolbar-section toolbar-top toolbar-bottom">
     <div class="no-quiz" class="md-toolbar-tools">
         <h3>
-            <span> Ci sono 0 questionari a cui ti sei iscritto. </span>
+            <span>{{listOfKeys.thereIsNoSubscribedQuiz}} </span>
         </h3>
     </div>
 </md-toolbar>

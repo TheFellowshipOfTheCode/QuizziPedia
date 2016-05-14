@@ -124,7 +124,7 @@ consistenzaVeroFalso = function(corpo){
         console.log("campo answer non trovato");
     }
     // controllo campi
-    var facoltativiString = ["type","answer","image", "keywords"];
+    var facoltativiString = ["type","answer","image", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -199,7 +199,7 @@ consistenzaRispostaMultipla = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText","url", "keywords"];
+    var facoltativiString = ["type","answer","questionText","url", "keywords" , "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -253,7 +253,7 @@ consistenzaOrdinamentoStringhe = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer" ,"url", "keywords"];
+    var facoltativiString = ["type","questionText","answer" ,"url", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -306,7 +306,7 @@ consistenzaOrdinamentoImmagini = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer","url", "keywords"];
+    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -355,7 +355,7 @@ consistenzaRiempimentoSpaziVutoi = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText", "keywords"];
+    var facoltativiString = ["type","answer","questionText", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -430,7 +430,7 @@ consistenzaCollegamentoElementi = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer","url", "keywords"];
+    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -510,7 +510,7 @@ consistenzaAreaCliccabile = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText","url", "keywords"];
+    var facoltativiString = ["type","answer","questionText","url", "keywords" , "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -531,9 +531,3 @@ consistenzaAreaCliccabile = function(corpo){
         return false;
     }
 }
-
-/*
-* question : array di domande
-*  in question: text, url, attributeForTforMultiple : isItRight, attributeForSorting
-*  attributesForLinking, attributesForCliccableArea, attributesForEmptySpaces,
-* */

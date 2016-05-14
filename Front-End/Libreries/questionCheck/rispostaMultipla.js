@@ -75,7 +75,7 @@ rispostaMultipla = function(corpo,res){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText","url", "keywords"];
+    var facoltativiString = ["type","answer","questionText","url", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -86,6 +86,7 @@ rispostaMultipla = function(corpo,res){
         }
         if (!giusto) {
             campiFacoltativi = false;
+            console.log("inserite keyword sconosciute");
             break;
         }
     }
@@ -93,6 +94,7 @@ rispostaMultipla = function(corpo,res){
         return true;
     }
     else{
+        console.log("passato per di qua");
         return false;
     }
 }

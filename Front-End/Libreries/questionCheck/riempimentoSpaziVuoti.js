@@ -49,7 +49,7 @@ riempimentoSpaziVuoti = function(corpo,res){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText", "keywords"];
+    var facoltativiString = ["type","answer","questionText", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;

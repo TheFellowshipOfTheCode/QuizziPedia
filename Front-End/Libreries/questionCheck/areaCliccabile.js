@@ -80,7 +80,7 @@ areaCliccabile = function(corpo,res){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText","url", "keywords"];
+    var facoltativiString = ["type","answer","questionText","url", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;

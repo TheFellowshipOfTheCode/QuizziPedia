@@ -53,7 +53,7 @@ ordinamentoStringhe = function(corpo,res){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer" ,"url", "keywords"];
+    var facoltativiString = ["type","questionText","answer" ,"url", "keywords", "topic"];
     var key;
     for(key in corpo) {
         var giusto = false;

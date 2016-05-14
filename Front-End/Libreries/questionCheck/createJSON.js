@@ -77,7 +77,7 @@ createJSON = function(corpo, res, tipologia, topic){
         "\"makeWith\" : \"qml\" , \n" +
         " \"language\" : " + "\"it\"" + ", \n";
     campiComuni = campiComuni + "\"topic\" : \"" + topic + "\" , \n " ;
-    var jsonKey;
+    var jsonKey = "";
     if(corpo.hasOwnProperty('keywords')){
         jsonKey = " , \n \"keywords\" : \n [ ";
         for(i = 0 ; i < corpo.keywords.length ; i++){
@@ -97,25 +97,25 @@ createJSON = function(corpo, res, tipologia, topic){
         var jsonString = createJSONVF(corpo, res);
     }
     else if(tipologia ==  "rispostaMultipla"){
-        var jsonString = createJSONrispostaMultipla(corpo);
+        var jsonString = createJSONrispostaMultipla(corpo, res);
     }
     else if(tipologia == "ordinamentoStringhe"){
-        var jsonString = createJSONordinamentoStringhe(corpo);
+        var jsonString = createJSONordinamentoStringhe(corpo, res);
     }
     else if(tipologia == "collegamentoElementi"){
-        var jsonString = createJSONcollegamentoElementi(corpo);
+        var jsonString = createJSONcollegamentoElementi(corpo, res);
     }
     else if(tipologia == "ordinamentoImmagini"){
-        var jsonString = createJSONordinamentoImmagini(corpo);
+        var jsonString = createJSONordinamentoImmagini(corpo, res);
     }
     else if(tipologia == "areaCliccabile"){
-        var jsonStirng = createJSONareaCliccabile(corpo);
+        var jsonStirng = createJSONareaCliccabile(corpo, res);
     }
     else if(tipologia == "riempimentoSpaziVuoti"){
-        var jsonString = createJSONriepimentoSpaziVuoti(corpo);
+        var jsonString = createJSONriepimentoSpaziVuoti(corpo, res);
     }
     else if(tipologia == "custom"){
-        var jsonString = createJSONcustom(corpo);
+        var jsonString = createJSONcustom(corpo, res);
     }
 
     jsonString = campiComuni + jsonString + jsonKey +  jsonStatistic;
@@ -145,13 +145,13 @@ createJSONrispostaMultipla = function(corpo){
     }
     jsonString = jsonString + " \n \"answers\" : [{";
     for(i = 0 ;i < corpo.answer.length ; i++){
-        if(key.hasOwnProperty('text')){
+        if(corpo.answer[i].hasOwnProperty('text')){
             jsonString = jsonString + " \n \"text\" : " + "\"" + corpo.answer[i].text + "\",";
         }
-        if(key.hasOwnProperty('url')){
+        if(corpo.answer[i].hasOwnProperty('url')){
             jsonString = jsonString + " \n \"url\" :" + "\"" + corpo.answer[i].url + "\",";
         }
-        if(key.hasOwnProperty('isItRight')){
+        if(corpo.answer[i].hasOwnProperty('isItRight')){
             jsonString = jsonString + " \n \"isItRight\" : " +  corpo.answer[i].isItRight ;
         }
         if(i == corpo.answer.length -1) {

@@ -19,13 +19,14 @@ controlloQML = function(req, res, topics) {
                 if (corpo.type == tipologiaDomande[0]) {
                     success = veroFalso(corpo, res);
                     if (success) {
-                        console.log("il parser ha validato e adesso richiamo la funzione createJSON");
                         return createJSON(corpo, res, "veroFalso", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[1]) {
+                    console.log("controlloQML: prima di controllare campi di risposta multipla");
                     success = rispostaMultipla(corpo, res);
                     if (success) {
+                        console.log("tipologia risposta multipla validata");
                         return createJSON(corpo, res, "rispostaMultipla", topic);
                     }
                 }

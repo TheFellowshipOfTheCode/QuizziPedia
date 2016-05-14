@@ -22,8 +22,8 @@
 
 app.controller('AppController', AppController);
 
-AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel', 'Utils', '$cookies', '$window', '$mdBottomSheet'];
-function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel, Utils, $cookies, $window, $mdBottomSheet) {
+AppController.$inject = ['$rootScope', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel', 'Utils'];
+function AppController ($rootScope, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
     var lang;
     if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
         AuthService.giveMe($routeParams.lang)

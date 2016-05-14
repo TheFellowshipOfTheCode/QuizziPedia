@@ -46,7 +46,8 @@
     "jquery-ui-touch-punch" : "*",
     "chartjs" : "*",
     "angles" : "*",
-    "juicy-ace-editor"  : "*"
+    "juicy-ace-editor"  : "*",
+    "angular-bootstrap" : "*"
   },
   "ignore": [
     "**/.*",

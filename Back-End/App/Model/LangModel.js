@@ -25,6 +25,19 @@ var LangSchema = new Schema({},
   strict: false
 });
 
-var Lang = mongoose.model('LangSchema', LangSchema, 'Variables');
 
-module.exports = Lang;
+LangSchema.statics.getVarlist = function(language, callback) {
+  return this.find({lang:language}, callback);
+}
+
+LangSchema.statics.getLang = function(callback) {
+  return this.distinct("correctWord", "lang",callback);
+}
+
+LangSchema.statics.getSlang = function(language, callback) {
+  return this.find({correctWord: language},'lang',callback)
+}
+
+module.exports = mongoose.model('LangSchema', LangSchema, 'Variables');
+
+

@@ -22,34 +22,49 @@ app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav','filterFilter', 'ErrorInfoModel', 'QuizService', 'UserDetailsModel'];
 
 function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav,filterFilter, ErrorInfoModel, QuizService, UserDetailsModel) {
-    
-    QuizService.getTopic($routeParams.lang)
-        .then(function(result){
-            console.log(result.data);
-            if(result.data != undefined) {
-                $scope.topics = result.data;
 
-            }
-        } ,function (err){
-            console.log(err);
-            $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
-            alert = $mdDialog.alert()
-                .title($scope.error.getTitle())
-                .content($scope.error.getMessage())
-                .ok('Ok');
-            $mdDialog
-                .show( alert )
-                .finally(function() {
-                    alert = undefined;
-                });
-        });
+  /*Variabili*/
+  $scope.questions_selected=[];
 
+  $scope.quiz = {
+      title: '',
+      author: $rootScope.userLogged.getId(),
+      keyword: '',
+      topic: undefined,
+      questions: []
+  };
 
+  $scope.filter = {};
+
+  /*Costruttore*/
+  QuizService.getTopic($routeParams.lang)
+      .then(function(result){
+          console.log(result.data);
+          if(result.data != undefined) {
+              $scope.topics = result.data;
+
+          }
+      } ,function (err){
+          console.log(err);
+          $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+          alert = $mdDialog.alert()
+              .title($scope.error.getTitle())
+              .content($scope.error.getMessage())
+              .ok('Ok');
+          $mdDialog
+              .show( alert )
+              .finally(function() {
+                  alert = undefined;
+              });
+    });
+
+    $scope.showAllQuestions(null,null);
+
+    /*Funzioni pubbliche*/
     $scope.resetFilters = function () {
         // needs to be a function or it won't trigger a $watch
         $scope.search = {};
     };
-
 
     $scope.showAllQuestions=function(topic,keyword) {
         QuizService.showAllQuestions(topic, keyword, $routeParams.lang)
@@ -60,7 +75,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     $scope.numPerPage = 10;
                     $scope.totalItems = $scope.questions.length;
                     $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
-                    
+
                     $scope.$watch('search', function(newVal, oldVal) {
                         $scope.filtered = filterFilter($scope.questions, newVal);
                         $scope.totalItems = $scope.filtered.length;
@@ -82,33 +97,14 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     });
             });
     }
-    $scope.showAllQuestions(null,null)
-    
-    
-    $scope.questions_selected=[];
 
-    $scope.quiz = {
-        title: '',
-        author: $rootScope.userLogged.getId(),
-        keyword: '',
-        topic: undefined,
-        questions: []
-    };
 
-    $scope.filter = {};
     $scope.filterByYours = function (question) {
         return $scope.filter[question.author] || noFilter($scope.filter);
     };
 
-    function noFilter(filterObj) {
-        for (var key in filterObj) {
-            if (filterObj[key]) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
+
+
     $scope.addQuestion=function(question){
         $scope.questions_selected.push(question);
         $scope.quiz.questions.push(question._id);
@@ -175,17 +171,14 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             });
     }
 
-
-
-
-  /*  $scope.questions.$promise.then(function () {
-        $scope.totalItems = $scope.questions.length;
-        $scope.$watch('currentPage + itemsPerPage', function() {
-            var begin = (($scope.currentPage - 1) * $scope.numPerPage),
-                end = begin + $scope.numPerPage;;
-
-            $scope.filteredQuestions = $scope.questions.slice(begin, end);
-        });
-    });*/
+    /*Funzioni private*/
+    function noFilter(filterObj) {
+        for (var key in filterObj) {
+            if (filterObj[key]) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

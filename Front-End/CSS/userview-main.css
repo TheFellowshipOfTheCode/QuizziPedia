@@ -128,8 +128,8 @@
     margin-bottom: 1em;
 }
 
-.divided{
-    margin-left: 2%;
+.capitalized{
+   text-transform: capitalize;
 }
 
 .user-details{
@@ -142,3 +142,69 @@
 .no-quiz{
     margin-left: 1%
  }
+
+ user-details-directive, questionnaire-details-directive, questionnaire-done-details-directive, statistics-directive {
+  margin: auto;
+  width: 80%;
+  display: block;
+ }
+
+ .user-section-text {
+   font-size: 1.8em;
+ }
+
+ .name {
+   margin-right: 0.3em;
+   font-size: 2em;
+ }
+
+ .img-user-container {
+   display: inline-block;
+   margin-top: 1em;
+    margin-right: 3em;
+ }
+
+ .img-user {
+   width: 12em;
+   max-height: 14em;
+   margin-top: -5em;
+ }
+
+.user-container {
+  display: inline-block;
+  line-height: 3em;
+}
+
+.user-container-section {
+  margin-top: 2em;
+}
+
+.quizzipedia-color {
+  background-color: rgb(255,202,40) !important;
+}
+
+.a-quarter {
+  width: 25%;
+  margin: 0px;
+  text-align: center
+}
+
+.no-padding {
+  padding-left: 0px;
+}
+
+.no-wrap {
+  word-wrap: break-word;
+}
+
+.vertical-align {
+  margin-top: 0.75em;
+  margin-right: 0.5em;
+}
+
+.center-it {
+  margin: auto;
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

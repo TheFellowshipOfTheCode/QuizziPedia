@@ -31,17 +31,32 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
         $scope.user = $rootScope.userLogged;
         loadDoneQuizzes();
 
-        loadAbilitatedQuizzes()
+        loadAbilitatedQuizzes();
+        graphResultAfterFinishedATraining($scope.user.getStatistics());
     }
     else{
         var ist = $rootScope.$on("userDownloaded", function(event, args) {
             if(args){
                 $scope.user = $rootScope.userLogged;
                 loadDoneQuizzes();
-                loadAbilitatedQuizzes()
+                loadAbilitatedQuizzes();
+                graphResultAfterFinishedATraining($scope.user.getStatistics());
             }
         });
         $scope.$on('$destroy', ist);
+    }
+
+
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            graphResultAfterFinishedATraining($scope.user.getStatistics());
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    $scope.goToQuiz = function (id) {
+      console.log("entro");
+      $location.path("/"+$routeParams.lang+"/quiz/"+id)
     }
 
     function loadDoneQuizzes() {
@@ -85,5 +100,35 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
             });
 
     }
-}
 
+    function graphResultAfterFinishedATraining(statistics){
+      console.log(statistics);
+      var rightAnswers = 0;
+      var totalAnswers = 0;
+      statistics.forEach(function(elem) {
+        rightAnswers = parseInt(rightAnswers) + parseInt(elem.correctAnswers);
+        totalAnswers = parseInt(totalAnswers) + parseInt(elem.totalAnswers);
+
+      });
+      
+      $scope.publicRightAnswers = rightAnswers;
+      $scope.puclicTotalAnswers = totalAnswers;
+
+      $scope.myChartDataDoughnut = [
+            {
+                value: rightAnswers,
+                color: "#86FC72",
+                label: $rootScope.listOfKeys.questionsRight
+            },
+            {
+                value : totalAnswers - rightAnswers,
+                color : "#F7464A",
+                label: $rootScope.listOfKeys.questionsWrong
+            }
+        ];
+        $scope.myChartOptionsDoughnut = {
+            egmentShowStroke : false,
+            animateScale : true
+        };
+    }
+}

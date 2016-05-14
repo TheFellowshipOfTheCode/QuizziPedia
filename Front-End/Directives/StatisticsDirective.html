@@ -26,23 +26,14 @@
 </md-toolbar>
 -->
 
+<section class="md-whiteframe-1dp"  layout-sm="row" layout-align="center" >
+    <md-toolbar  class="toolbar-section quizzes-done quizzipedia-color" layout="row" layout-sm="row" layout-xs="row">
+      <span flex=""></span>
+        <h3>{{listOfKeys.statisticsLang}} </h3>
+        <span flex=""></span>
+    </md-toolbar>
+    <div class="md-toolbar-tools no-padding">
 
-<section class="user-container-section" layout-sm="column" layout-align="center">
-        <div class="img-user-container">
-                <image ng-if="user.getUserImg()==false"  class="img-user" ng-src="/Images/Icons/user-default.png"/>
-                <image ng-if="user.getUserImg()==true"  class="img-user" ng-src="user.getUserImg()"/>
-        </div>
-        <div class="user-container">
-          <div class="">
-                  <span class="capitalized user-section-text name"> {{user.getName()}}</span>
-                  <span class="capitalized user-section-text name"> {{user.getSurname()}} </span>
-          </div>
-          <div class="">
-            <span class="username user-section-text"> @{{user.getUsername()}}</span>
-          </div>
-          <div class="">
-            <span class="user-section-text"> {{listOfKeys.levelLang}} {{user.getLevel()}}</span>
-          </div>
-        </div>
-
+    </div>
+    <canvas doughnutchart options="myChartOptionsDoughnut" data="myChartDataDoughnut" width="300" height="300" class="center-it"></canvas>
 </section>

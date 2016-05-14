@@ -95,7 +95,7 @@ function QuizService($http, $cookies, $q) {
 
     function getDoneQuestionnaire(lang){
         var deferred = $q.defer();
-        $http.post('/api/' + lang + '/user/donequizzes')
+        $http.get('/api/' + lang + '/user/donequizzes')
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){
@@ -120,6 +120,7 @@ function QuizService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/usersubscribe')
             .then(function(data) {
+              console.log(data);
                 deferred.resolve(data);
             }, function(error){
                 deferred.reject(error);

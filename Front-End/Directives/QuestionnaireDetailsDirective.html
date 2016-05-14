@@ -18,18 +18,32 @@
  *******************************************************************************/
 -->
 
-<md-toolbar ng-if="subscribedQuizzes != undefined" class="toolbar-section toolbar-top quizzes-done" layout="row" layout-sm="row" layout-xs="row">
-    <span class="divided"> <h3>{{listOfKeys.quizName}} </h3></span>
-    <span class="divided"><h3>{{listOfKeys.quizAuthor}} </h3></span>
-    <span class="divided"><h3> {{listOfKeys.quizTopic}} </h3></span>
+<md-toolbar ng-if="subscribedQuizzes != undefined" class="toolbar-section quizzes-done quizzipedia-color" layout="row" layout-sm="row" layout-xs="row">
+    <span class="divided"> <h3>{{listOfKeys.subscribedQuizzesLang}} </h3></span>
+    <span flex=""></span>
 </md-toolbar>
-<section ng-if="subscribedQuizzes != undefined" ng-repeat="quiz in subscribedQuizzes" layout-sm="column" layout-align="center">
-    <div class="md-toolbar-tools toolbar-section">
-        <span class="ng-binding divided"> {{quiz.title}} </span>
-        <span class="ng-binding divided">  {{quiz.author}}</span>
-        <span class="ng-binding divided">  {{quiz.topic}} </span>
+<md-toolbar ng-if="subscribedQuizzes != undefined" class="toolbar-section" layout="row" layout-sm="row" layout-xs="row">
+    <span class="a-quarter"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter"> {{listOfKeys.quizTopic}}   </span>
+</md-toolbar>
+
+<section class="md-whiteframe-1dp" ng-if="subscribedQuizzes != undefined" ng-repeat="quiz in subscribedQuizzes | startFrom:currentPage*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div class="md-toolbar-tools no-padding">
+      <span class="a-quarter no-wrap "><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
+      <span class="a-quarter no-wrap ">  {{quiz.author}}</span>
+      <span class="a-quarter no-wrap ">  {{quiz.topic}} </span>
     </div>
 </section>
+
+<md-toolbar ng-if="subscribedQuizzes != undefined" class="toolbar-section toolbar-top">
+  <div class="md-toolbar-tools">
+    <span flex=""></span>
+    <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(subscribedQuizzes.length)-1" ng-click="goOn()">>></md-button>
+    <span>{{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(subscribedQuizzes.length)}}</span>
+  </div>
+</md-toolbar>
 
 <md-toolbar ng-if="subscribedQuizzes == undefined" class="toolbar-section toolbar-top">
     <div class="no-quiz" class="md-toolbar-tools">

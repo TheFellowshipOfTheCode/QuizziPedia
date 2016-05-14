@@ -29,15 +29,19 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         AuthService.giveMe($routeParams.lang)
             .then(function(result){
                 if(result.data != false) {
-                    $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, "", result.data.username, result.data.statistics , result.data.experienceLevel, result.data.privilege, result.data._id);
-                    $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
-                    $rootScope.$emit("userDownloaded", true);
+                  var profileImg = false;
+                  if(result.data.userImg != undefined) {
+                    profileImg=result.data.user.userImg;
+                  }
+                  $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, profileImg, result.data.username, result.data.statistics , result.data.experienceLevel, result.data.privilege, result.data._id);
+                  $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
+                  $rootScope.$emit("userDownloaded", true);
 
                 }
                 else{
-                    $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
-                    AuthService.resetCookies();
-                    $rootScope.$emit("userDownloaded", false);
+                  $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
+                  AuthService.resetCookies();
+                  $rootScope.$emit("userDownloaded", false);
                 }
             } ,function (err){
                 $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
@@ -55,6 +59,7 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         lang = getLang($routeParams.lang);
         lang.then(function(data){
             $rootScope.listOfKeys= data.getListOfKeys();
+            $rootScope.$emit("langDownloaded", true);
         }, function(err) {
           $location.path("/it/home");
           lang = getLang("it");

@@ -1,15 +1,20 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Controllers::UserDetailsController;
  * Description: questa classe permette di recuperare i dati dell'utente;
- * Relations with other classes:
- * +
+ *
+ *
  * Creation data: 12-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: SearchController_20160512;
+ * ID: UserDetailsController_20160513;
+ * Update data: 13-05-2016;
+ * Description: Completata stesura della classe e di tutti i suoi metodi;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: UserDetailsController_20160512;
  * Update data: 12-05-2016;
  * Description: Creata e iniziata stesura della classe;
  * Author: Alberto Ferrara.
@@ -22,15 +27,12 @@ app.controller('UserDetailsController', UserDetailsController);
 UserDetailsController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'QuizService'];
 
 function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService) {
-    //console.log($rootScope.userLogged.getUsername());
-
     $scope.quizzes = undefined;
     $scope.subscribedQuizzes = undefined;
 
     if($rootScope.userLogged != undefined){
         $scope.user = $rootScope.userLogged;
         loadDoneQuizzes();
-
         loadAbilitatedQuizzes();
         graphResultAfterFinishedATraining($scope.user.getStatistics());
     }
@@ -55,7 +57,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     $scope.$on('$destroy', langDownloaded);
 
     $scope.goToQuiz = function (id) {
-      console.log("entro");
       $location.path("/"+$routeParams.lang+"/quiz/"+id)
     }
 
@@ -67,16 +68,13 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 else{
                     delete $scope.quizzes;
                 }
-                //console.log("quiz: " + $scope.quizzes);
             }, function (err) {
-                console.log(err);
             })
     }
 
     function loadAbilitatedQuizzes() {
         QuizService.getSubscribedQuestionnaire($routeParams.lang)
             .then(function (result) {
-                console.log(result.data.length);
                 if(result.data.length >0){
                     $scope.subscribedQuizzes = result.data;}
                 else{
@@ -84,7 +82,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 }
 
             }, function (err) {
-                console.log(err);
                 if(err.data.code!="331") {
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");
                     alert = $mdDialog.alert()
@@ -102,7 +99,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     }
 
     function graphResultAfterFinishedATraining(statistics){
-      console.log(statistics);
       var rightAnswers = 0;
       var totalAnswers = 0;
       statistics.forEach(function(elem) {

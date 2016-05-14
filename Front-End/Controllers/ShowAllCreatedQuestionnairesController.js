@@ -1,10 +1,32 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Controllers::ShowAllCreatedQuestionnairesController;
+ * Description: questa classe permette di gestire la visualizzazione di tutti i
+ * questionari creati da un utente;
+ *
+ *
+ * Creation data: 27-04-2016;
+ * Author: Mattia Varotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: ShowAllCreatedQuestionnairesController_20160513;
+ * Update data: 13-05-2016;
+ * Description: Completata stesura della classe;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: ShowAllCreatedQuestionnairesController_20160427;
+ * Update data: 27-04-2016;
+ * Description: Creata la classe;
+ * Author: Mattia Varotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+
 app.controller('ShowAllCreatedQuestionnairesController', ShowAllCreatedQuestionnairesController);
+ShowAllCreatedQuestionnairesController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'QuizService'];
 
-ShowAllCreatedQuestionnairesController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'ErrorInfoModel', 'QuizService'];
-
-function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel, QuizService) {
-
-
+function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParams, $location, $mdDialog, ErrorInfoModel, QuizService) {
     if($rootScope.userLogged != undefined){
         showAllQuizzes($rootScope.userLogged, $routeParams.lang);
     }
@@ -17,15 +39,11 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
         $scope.$on('$destroy', ist);
     }
 
-
-
     function showAllQuizzes(user, lang) {
         QuizService.showAllCreatedQuestionnaires(user, lang)
             .then(function (result) {
                 if (result.data.length > 0) {
                     $scope.personalQuizzes = result.data;
-                    //console.log($scope.personalQuizzes);
-                    // $location.path('/' + $routeParams.lang + '/questionnairemanagement');
                 }
                 else {
                     delete $scope.personalQuizzes;
@@ -51,6 +69,7 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
             });
 
     }
+    
     $scope.goToQuiz = function(quizId) {
         $location.path('/' + $routeParams.lang + '/managementsubscription/' + quizId);
     }

@@ -2,9 +2,6 @@
  * Name: QuizziPedia::Front-End::Controllers::LoginController;
  * Description: questa classe permette di gestire l'autenticazione dell'utente al sistema;
  *
- * Relations with other classes:
- * + LoginModelView
- * + AuthService
  *
  * Creation data: 28-04-2016;
  * Author: Alberto Ferrara;
@@ -19,7 +16,7 @@
  *-------------------------------------------------------------------------------
  * ID: LoginController_20160428
  * Update data: 28-04-2016
- * Description: Creato il controller;
+ * Description: Creato il controller con i metodi per eseguire la login;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

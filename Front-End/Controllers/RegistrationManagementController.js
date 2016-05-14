@@ -11,6 +11,11 @@
  *-------------------------------------------------------------------------------
  * ID: SearchController_20160513;
  * Update data: 13-05-2016;
+ * Description: Inseriti tutti i metodi per la gestione delle iscrizioni;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: SearchController_20160513;
+ * Update data: 13-05-2016;
  * Description: Creata e iniziata stesura della classe;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
@@ -22,7 +27,6 @@ app.controller('RegistrationManagementController', RegistrationManagementControl
 RegistrationManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'QuizService'];
 
 function RegistrationManagementController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, QuizService) {
-    //console.log($rootScope.userLogged.getUsername());
 
     $scope.currentPage = 0;
     $scope.pageSize = 15;
@@ -34,7 +38,6 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
     function getUserForThisQuestionnaire(quizId) {
         QuizService.getUsersForThisQuestionnaire(quizId, $routeParams.lang)
             .then(function (result) {
-                //console.log(result.data.length);
                 if(result.data.length >0){
                     $scope.subscribedUsers = result.data;}
                 else{
@@ -42,7 +45,6 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                 }
 
             }, function (err) {
-                console.log(err);
                 $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento utenti registrati non andato a buon fine");
                 alert = $mdDialog.alert()
                     .title($scope.error.getTitle())

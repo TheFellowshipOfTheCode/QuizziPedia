@@ -9,6 +9,11 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: SingUpController_20160504
+* Update data: 04-05-2016
+* Description: Completata la stesura della classe
+* Author: Alberto Ferrara
+*-------------------------------------------------------------------------------
 * ID: SingUpController_20160502
 * Update data: 02-05-2016
 * Description: Aggiornamento finale funzione signUp, inserimento mdDialog
@@ -22,9 +27,9 @@
 *******************************************************************************/
 app.controller('SignUpController', SignUpController);
 
-SignUpController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', '$timeout','$mdSidenav', 'UserDetailsModel', 'ErrorInfoModel', 'MenuBarModel'];
+SignUpController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', 'ErrorInfoModel'];
 
-function SignUpController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, $cookies, $timeout, $mdSidenav, UserDetailsModel, ErrorInfoModel, MenuBarModel) {
+function SignUpController ($scope, $rootScope, $routeParams, AuthService, $location, $mdDialog, ErrorInfoModel) {
         $scope.user = {
             name: '',
             surname: '',
@@ -53,7 +58,6 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
             else {
                 AuthService.signUp(user.username, user.password, user.email, user.name, user.surname, $routeParams.lang)
                     .then(function (result) {
-                        //console.log(result.status);
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
                                 .title('Ciao ' + user.name + " " + user.surname)

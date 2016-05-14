@@ -17,6 +17,30 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
+
+<style>
+
+    .pagination a:hover,
+    .pagination .active a {
+        background-color: #FFC107 !important;
+        color: #ffffff;
+        border-color: transparent;
+    }
+
+    .pagination :not(.disabled):not(.active) a{
+        color: lightgrey;
+    }
+
+    .pagination .disabled span,
+    .pagination .disabled a:hover {
+        color: #999999;
+        background-color: transparent;
+        cursor: default;
+    }
+
+
+
+</style>
 <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
     <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
@@ -125,13 +149,20 @@
                                     </div>
                                 </md-item-content>
                             </md-item>
-                            <uib-pagination
-                                    ng-model="currentPage"
-                                    total-items="(questions | filter:search).length"
-                                    max-size="maxSize"
-                                    items-per-page="numPerPage"
-                                    boundary-links="true">
-                            </uib-pagination>
+                            <div layout="row" layout-align="center center">
+                                <uib-pagination class="text-center pagination-sm"
+                                        ng-model="currentPage"
+                                        total-items="(questions | filter:search).length"
+                                        max-size="maxSize"
+                                        items-per-page="numPerPage"
+                                        boundary-links="true"
+                                                previous-text="&lsaquo;"
+                                                next-text="&rsaquo;"
+                                                first-text="&laquo;"
+                                                last-text="&raquo;"
+                                >
+                                </uib-pagination>
+                            </div>
                         </md-list>
                     </md-card>
 

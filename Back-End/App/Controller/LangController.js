@@ -2,9 +2,7 @@ var LangModel = require("../Model/LangModel.js");
 
 
 exports.getVarlist=function(req,res,next){
-  console.log(req.params.lang)
   LangModel.getVarlist(req.params.lang,function(err,result){
-    console.log(result)
     if(err)
       return res.status(500).json({code: 1601, title: "getVarlistErrror", message: "error"});
     return res.send(result);

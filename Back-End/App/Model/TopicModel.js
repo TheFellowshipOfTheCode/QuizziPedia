@@ -1,9 +1,6 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::TopicModel;
+ * Name: QuizziPedia::Back-End::App::Models::TopicModel;
  * Description: classe che modella gli argomenti all’interno delle domande;
- * Relations with other classes:
- * + IN	TopicController;
- * + OUT QuestionModel.
  * Creation data: 02-05-2016;
  * Author: Marco Prelaz.
  ********************************************************************************
@@ -12,6 +9,26 @@
  * ID: TopicModel_20160502;
  * Update data: 02-05-2016;
  * Description: Creata classe;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 03-05-2016;
+ * Description: Aggiunto un primo prototipo della funzione getNextQuestion;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160502;
+ * Update data: 04-05-2016;
+ * Description: Aggiunta la funzione getKeywords;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160502;
+ * Update data: 05-05-2016;
+ * Description:  getNextQuestion è stata perfezionata;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160502;
+ * Update data: 06-05-2016;
+ * Description: Aggiunta le funzioni addCorrect e addTotal;
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
@@ -70,10 +87,6 @@ topicSchema.statics.getNextQuestion=function(topic, alreadyAnswered, language, k
             return  Question.findOneRandom({'_id':{$in:topic.question, $nin:alreadyAnswered},'language': language, 'keywords': {$in:keywords}, 'level': {$gte: skillLevel-100, $lte: skillLevel-61}}, '_id language question keywords level makeWith author', callback);
 };
 
-topicSchema.statics.getTopics=function(callback){
-    return this.find({},'name',callback);
-};
-
 topicSchema.statics.getQuestions=function(topic, callback){
     return  Question.find({'_id':{$in:topic.question}},'keywords',callback);
 };
@@ -83,18 +96,18 @@ topicSchema.statics.getTopicQuestions = function(topic, keywords, lang, callback
         return this.find({}, 'question', function(err, questionsID) {
             if (err) return callback;
             else return Question.getAllQuestions(questionsID, keywords, lang, callback);
-        })
+        });
    else{
         return this.findOne({name: topic}, 'question', function(err, questionsID) {
             if (err) return callback;
             else return Question.getAllQuestions(questionsID, keywords, lang, callback);
         });
    }
-}
+};
 
 topicSchema.statics.getTopic= function(lang, callback) {
     return this.find({}, 'name', callback);
-}
+};
 
 topicSchema.statics.addCorrect = function(topic, callback) {
     this.findOne({'name': topic}, function(err, topic) {

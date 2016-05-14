@@ -1,3 +1,26 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Controllers::UserManagementController;
+ * Description: classe che gestisce la logica applicativa riguardante la
+ * visualizzazione e la modifica dei dati dell’utente. Rappresenta il
+ * ConcreteHandler del design pattern Chain of responsibility. Utilizza
+ * Passport;
+ * Creation data: 01-05-2016;
+ * Author: Franco Berton.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160501;
+ * Update data: 01-05-2016;
+ * Description: Creata classe;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 08-05-2016;
+ * Description: Aggiunta la funzione updateStatisticUser;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
 var topic = require('../../Model/TopicModel');
 var user = require('../../Model/UserModel');
 var Summary = require('../../Model/SummaryModel');

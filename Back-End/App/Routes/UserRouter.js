@@ -4,12 +4,6 @@
  * alla gestione della sessione e alla cronologia dei questionari svolti da un
  * utente. Componente ConcreteHandler del design pattern Chain of
  * responsibility. Utilizza il modulo Passport;
- * Relations with other classes:
- * + IN	Server;
- * + OUT ErrorHandler;
- * + OUT NotFoundHandler;
- * + OUT UserController;
- * + OUT SummaryController.
  * Creation data: 27-04-2016;
  * Author: Franco Berton.
  ********************************************************************************
@@ -17,7 +11,7 @@
  *-------------------------------------------------------------------------------
  * ID: UserRouter_20160427;
  * Update data: 27-04-2016;
- * Description: Creata classe e inseriti tutti metodi;
+ * Description: Creata classe e aggiunte prime REST;
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
@@ -57,8 +51,6 @@ module.exports = function(app){
 
     app.route('/api/:lang/user/donequizzes')
         .post(user.userManagement.getQuizzes);
-
-    // REST per il topicmodel
 
     app.route('/api/:lang/topic/statistics')
         .put(topic.updateStatisticTopic);

@@ -1,6 +1,32 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Models::UserModel;
+ * Description: classe che modella la creazione e la gestione dei dati utente;
+ * Creation data: 01-05-2016;
+ * Author: Franco Berton.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160501;
+ * Update data: 01-05-2016;
+ * Description: Creata classe e aggiunto lo userSchema;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 07-05-2016;
+ * Description: Aggiunta la funzione updateTopicLevel;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 08-05-2016;
+ * Description: Aggiunta le funzioni addCorrect e addTotal;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-//var Summaries=require('./SummaryModel');
+//var Summaries = require('./SummaryModel');
+
 var userSchema = new mongoose.Schema(
     {
         name: String,
@@ -25,28 +51,25 @@ var userSchema = new mongoose.Schema(
     }
 );
 
-// methods ======================
-// generating a hash
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// checking if password is valid
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
 userSchema.methods.editUser=function(content,callback,errback){
     return User.update({username: this.username},content, callback);
-}
+};
 
 userSchema.methods.editPassword=function(password,errback){
 
-}
+};
 
 userSchema.methods.setImg=function(image,errback){
 
-}
+};
 
 userSchema.statics.getUser=function(userId,callback){
     return this.findOne({'_id':userId}, callback)
@@ -54,30 +77,30 @@ userSchema.statics.getUser=function(userId,callback){
 
 userSchema.methods.upLevel=function(callback){
 
-}
+};
 
 userSchema.methods.deleteUser=function(callback){
     return this.model('User').findByIdAndRemove(this._id , callback);
-}
+};
 
 userSchema.methods.updateSummary=function(summaryId){
 
-}
+};
 
 
 userSchema.methods.getSummary=function(summaryId,callback,errback){
     User.findOne({ 'username': this.username, 'quizSummaries': summaryId },'quizSummaries', quizSummary);
     Summaries.findOne({'_id': quizSummary.quizSummaries},'quiz givenAnswers', Summary);
     return
-}
+};
 
 userSchema.methods.getSummaries=function(callback,errback){
     return this.find({ 'quizSummaries': this.quizSummaries }, callback);
-}
+};
 
 userSchema.statics.getUsers=function(searchword,callback){
     return this.find({$or:[{ 'name':  new RegExp(searchword, "i")},{'surname':new RegExp(searchword, "i")}]},'name surname username', callback);
-}
+};
 
 userSchema.statics.updateTopicLevel=function(userId, userLevel, topic, difficultyLevel, isCorrected, callback) {
     if(!userId) {

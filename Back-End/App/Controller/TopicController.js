@@ -2,9 +2,6 @@
  * Name: QuizziPedia::Back-End::App::Controllers::TopicController;
  * Description: classe che gestisce la logica applicativa riguardante la
  * visualizzazione e la modifica degli argomenti delle domande;
- * Relations with other classes:
- * + IN	QuestionRouter;
- * + OUT TopicModel.
  * Creation data: 02-05-2016;
  * Author: Marco Prelaz.
  ********************************************************************************
@@ -13,6 +10,28 @@
  * ID: TopicController_20160502;
  * Update data: 02-05-2016;
  * Description: Creata classe;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicController_20160503;
+ * Update data: 03-05-2016;
+ * Description: Aggiunto un primo prototipo della funzione getNextQuestion;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicController_20160504;
+ * Update data: 04-05-2016;
+ * Description: Aggiunte la funzione getKeywords e la funzione di supporto
+ * arrayUnique;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicController_20160506;
+ * Update data: 06-05-2016;
+ * Description: Aggiunta la funzione updateStatisticTopic e getNextQuestion è
+ * stata migliorata;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicController_20160513;
+ * Update data: 13-05-2016;
+ * Description: getNextQuestion perfezionata;
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
@@ -35,7 +54,6 @@ exports.getNextQuestion = function(req, res) {
                     'keywords': {$in: req.body.keywords},
                     'level': {$gte: req.body.level - 100, $lte: req.body.level + 100}
                 }, '_id language question keywords level makeWith author', function (err, q) {
-                    console.log(q)
                     if (err)
                         return res.status(500).json({code: 733, title: "getNextQuestionError", message: "error"});
                     Topic.getNextQuestion(topic, req.body.alreadyAnswered, req.body.language, req.body.keywords, req.body.level, function (err, question) {

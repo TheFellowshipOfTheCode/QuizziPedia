@@ -26,8 +26,8 @@
 
 app.controller('MenuBarController',MenuBarController);
 
-MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel'];
-function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel) {
+MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel', '$mdBottomSheet'];
+function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel, $mdBottomSheet) {
 
   /* Scope variables and function*/
   if($rootScope.userLogged != undefined) {
@@ -54,7 +54,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
     $location.path('/'+$routeParams.lang+'/'); // da completare
   };
   $scope.goToQuestionsManagementPage = function () {
-    $location.path('/'+$routeParams.lang+'/questions'); 
+    $location.path('/'+$routeParams.lang+'/questions');
   };
   $scope.goToQuizManagementPage = function () {
     resetRefreshBlocking();
@@ -84,6 +84,17 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   $scope.backToHome = function () {
     resetRefreshBlocking();
   }
+
+  $scope.showListBottomSheet = function() {
+    $scope.alert = '';
+    $mdBottomSheet.show({
+      templateUrl: '../Directives/ChangeLangDirective.html',
+      controller: "AppController"
+    }).then(function(clickedItem) {
+    });
+  };
+
+
 
   /*Variable for animations*/
   $scope.toggleLeft = buildDelayedToggler('left');

@@ -22,8 +22,8 @@
 
 app.controller('AppController', AppController);
 
-AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel', 'Utils', '$cookies', '$window'];
-function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel, Utils, $cookies, $window) {
+AppController.$inject = ['$scope','$rootScope', '$mdDialog', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel', 'Utils', '$cookies', '$window', '$mdBottomSheet'];
+function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel, Utils, $cookies, $window, $mdBottomSheet) {
     var lang;
     if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
         AuthService.giveMe($routeParams.lang)
@@ -55,10 +55,18 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         lang = getLang($routeParams.lang);
         lang.then(function(data){
             $rootScope.listOfKeys= data.getListOfKeys();
-        });
+        }, function(err) {
+          $location.path("/it/home");
+          lang = getLang("it");
+          lang.then(function(data){
+              $rootScope.listOfKeys= data.getListOfKeys();
+          });
+        }
+      );
     }
 
     function getLang (lang) {
+        checkLang();
         var setOfKeywords = LangService.getKeywords(lang);
         return setOfKeywords.then(function(data){
             return new LangModel(lang, data);
@@ -76,17 +84,37 @@ function AppController ($scope, $rootScope, $mdDialog, $location, $routeParams, 
         }
     }
 
+    function checkLang() {
+      if($rootScope.supportedLang === undefined) {
+      LangService
+        .getSupportedLang()
+        .then(function(langsupported){
+          $rootScope.supportedLang = langsupported;
+
+        });
+
+      }
+    }
+
+    $scope.goToNewLang= goToNewLang;
+    function goToNewLang(lang) {
+      console.log(lang);
+      console.log("entro");
+      $mdBottomSheet.hide();
+      $rootScope.isDownloading=true;
+      LangService
+        .getSlang(lang)
+        .then(function(lang){
+          $location.path("/"+lang[0].lang+"/home");
+          lang = getLang(lang[0].lang);
+          lang.then(function(data){
+              $rootScope.isDownloading=false;
+              $rootScope.listOfKeys= data.getListOfKeys();
+          });
+        });
+
+    }
 
 
-}
 
-String.prototype.hashCode = function(){
-  var hash = 0;
-  if (this.length == 0) return hash;
-  for (i = 0; i < this.length; i++) {
-    char = this.charCodeAt(i);
-    hash = ((hash<<5)-hash)+char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash;
 }

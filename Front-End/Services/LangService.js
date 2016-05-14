@@ -24,7 +24,9 @@ LangService.$inject = ['$http', '$q', 'ErrorInfoModel'];
 function LangService($http, $q, ErrorInfoModel) {
 
   var methods = {
-    getKeywords : getKeywords
+    getKeywords : getKeywords,
+    getSupportedLang : getSupportedLang,
+    getSlang : getSlang
   };
   return methods;
 
@@ -33,6 +35,31 @@ function LangService($http, $q, ErrorInfoModel) {
     $http.get('/api/' + lang)
      .success(function(data) {
           deferred.resolve(data[0].variables);
+     }).error(function(msg, code) {
+        deferred.reject(msg);
+     });
+    return deferred.promise;
+  }
+
+  function getSupportedLang() {
+    var deferred = $q.defer();
+    $http.get('/api/supported/lang/give/me')
+     .success(function(data) {
+        console.log(data);
+          deferred.resolve(data);
+     }).error(function(msg, code) {
+        deferred.reject(msg);
+     });
+    return deferred.promise;
+  }
+
+  function getSlang(lang) {
+    console.log(lang);
+    var deferred = $q.defer();
+    $http.get('/api/supported/lang/give/me/'+lang)
+     .success(function(data) {
+        console.log(data);
+          deferred.resolve(data);
      }).error(function(msg, code) {
         deferred.reject(msg);
      });

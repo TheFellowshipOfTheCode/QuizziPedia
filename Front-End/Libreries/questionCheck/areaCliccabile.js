@@ -34,16 +34,18 @@ areaCliccabile = function(corpo,res){
                 if(corpo.resolution.hasOwnProperty('x') && corpo.resolution.hasOwnProperty('y')){
                     if(corpo.hasOwnProperty('answer')){
                         var key;
-                        for(key in corpo.answer){
-                            if(key.hasOwnProperty('x') && key.hasOwnProperty('y')){
+                        for(i = 0; i < corpo.answer.length ; i++){
+                            if(corpo.answer[i].hasOwnProperty('x') && corpo.answer[i].hasOwnProperty('y')){
                                 campiObbligatori = true;
                                 // controllo che non ci siano altri campi inseriti
                                 var facoltativi = ["x","y","text"];
                                 var valido = false;
-                                for(var j=0 ; j < facoltativi.length ; j++){
-                                    if(key == facoltativi[j]){
-                                        valido = true;
-                                        break;
+                                for(var j=0 ; j < facoltativi.length ; j++) {
+                                    for (key in corpo.answer[i]) {
+                                        if (key == facoltativi[j]) {
+                                            valido = true;
+                                            break;
+                                        }
                                     }
                                 }
                                 if(!valido){
@@ -80,7 +82,7 @@ areaCliccabile = function(corpo,res){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText","url", "keywords", "topic"];
+    var facoltativiString = ["type","answer","questionText","url", "keywords", "topic", "resolution", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -90,6 +92,7 @@ areaCliccabile = function(corpo,res){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }

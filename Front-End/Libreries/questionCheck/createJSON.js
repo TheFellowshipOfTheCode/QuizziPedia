@@ -109,7 +109,7 @@ createJSON = function(corpo, res, tipologia, topic){
         var jsonString = createJSONordinamentoImmagini(corpo, res);
     }
     else if(tipologia == "areaCliccabile"){
-        var jsonStirng = createJSONareaCliccabile(corpo, res);
+        var jsonString = createJSONareaCliccabile(corpo, res);
     }
     else if(tipologia == "riempimentoSpaziVuoti"){
         var jsonString = createJSONriepimentoSpaziVuoti(corpo, res);
@@ -177,13 +177,14 @@ createJSONordinamentoStringhe = function(corpo){
     for(i = 0 ; i < corpo.answer.length ; i++){
         jsonString = jsonString + "\"text\" : " + "\"" + corpo.answer[i].text + "\",";
         jsonString = jsonString + "\"position\" : " + "\"" + corpo.answer[i].position + "\"";
-        if(i == corpo.answer.lenght -1){
-            jsonString = jsonString + "}]";
+        if(i == corpo.answer.length -1){
+            jsonString = jsonString + "}";
         }
         else{
             jsonString = jsonString + "}, \n {";
         }
     }
+    jsonString = jsonString + "]}]";
     return jsonString;
 }
 
@@ -192,32 +193,33 @@ createJSONcollegamentoElementi = function(corpo){
     jsonString = jsonString + " \n \"questionText\" : " + "\"" + corpo.questionText + "\",";
     jsonString = jsonString + " \n \"answers\" : \n [ \n {";
     for(i=0 ; i < corpo.answer.length ; i++){
-        if(key.hasOwnProperty('text1')){
+        if(corpo.answer[i].hasOwnProperty('text1')){
             jsonString = jsonString + " \n \"text1\" : \"" + corpo.answer[i].text1 + "\" ,";
         }
-        if(key.hasOwnProperty('text2')){
+        if(corpo.answer[i].hasOwnProperty('text2')){
             jsonString = jsonString + " \n \"text2\" : \"" + corpo.answer[i].text2 + "\"";
         }
-        if(key.hasOwnProperty('url1')){
+        if(corpo.answer[i].hasOwnProperty('url1')){
             jsonString = jsonString + " \n \"url1\" : \"" + corpo.answer[i].url1 + "\" ,";
         }
-        if(key.hasOwnProperty('url2')){
+        if(corpo.answer[i].hasOwnProperty('url2')){
             jsonString = jsonString + " \n \"url2\" : \"" + corpo.answer[i].url2 + "\"";
         }
         if(i == corpo.answer.length -1){
-            jsonString = jsonString + "}]";
+            jsonString = jsonString + " \n }";
         }
         else{
-            jsonString = jsonString + "}, \n {";
+            jsonString = jsonString + " \n }, \n {";
         }
     }
+    jsonString = jsonString + "]}]";
     return jsonString;
 }
 
 createJSONordinamentoImmagini = function(corpo){
     var jsonString = "\"question\" : [{ \"type\" : \"ordinamentoImmagini\" ,";
     jsonString = jsonString + "\"quesitonText\" : \"" + corpo.questionText + "\" ,";
-    jsonString = jsonString + "\"answer\" : [{";
+    jsonString = jsonString + "\"answers\" : [{";
     for(i = 0 ; i < corpo.answer.length ; i++){
         jsonString = jsonString + "\"url\" \"" + corpo.answer[i].url + "\" ,";
         jsonString = jsonString + "\"position\" \"" + corpo.answer[i].position + "\"";
@@ -233,23 +235,25 @@ createJSONordinamentoImmagini = function(corpo){
 }
 
 createJSONareaCliccabile = function(corpo){
-    var jsonString = "\"question\" : [{ \"type\" : \"areaCliccabile\" ,";
-    jsonString = jsonString + "\"quesitonText\" : \"" + corpo.questionText + "\" ,";
-    jsonString = jsonString + "\"image\" : \"" + corpo.image + "\" ,";
-    jsonString = jsonString + "\"answer\" : [{";
+    var jsonString = "\"question\" : \n[ \n{\n \"type\" : \"areaCliccabile\" ,";
+    jsonString = jsonString + "\n \"questionText\" : \"" + corpo.questionText + "\" ,";
+    jsonString = jsonString + " \n \"image\" : \"" + corpo.image + "\" ,";
+    jsonString = jsonString + " \n \"resolution\" : { \n \"x\" : " + corpo.resolution.x + ", \n \"y\" : " + corpo.resolution.y + "\n }, \n";
+    jsonString = jsonString + " \n \"answers\" : [ \n { ";
     for(i=0 ; i < corpo.answer.length ; i++){
         jsonString = jsonString + " \n \"x\" : \"" + corpo.answer[i].x + "\" ,";
         jsonString = jsonString + " \n  \"y\" : \"" + corpo.answer[i].y + "\"";
-        if(key.hasOwnProperty('text')){
-            jsonString = jsonString + ", \n \"text\" : \" " + corpo.answer[i].text + "\" ,";
+        if(corpo.answer[i].hasOwnProperty('text')){
+            jsonString = jsonString + ", \n \"text\" : \" " + corpo.answer[i].text + "\"";
         }
         if(i == corpo.answer.length -1){
-            jsonString = jsonString + "}]";
+            jsonString = jsonString + " \n } \n ]";
         }
         else{
-            jsonString = jsonString + "}, \n {";
+            jsonString = jsonString + " \n }, \n {";
         }
     }
+    jsonString = jsonString + "}]";
     return jsonString;
 }
 

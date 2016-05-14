@@ -49,8 +49,10 @@ controlloQML = function(req, res, topics) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[5]) {
+                    console.log("chiamo funzione area cliccabile");
                     success = areaCliccabile(corpo, res);
                     if (success) {
+                        console.log("parser ha validato, adesso creo il JSON");
                         return createJSON(corpo, res, "areaCliccabile", topic);
                     }
                 }

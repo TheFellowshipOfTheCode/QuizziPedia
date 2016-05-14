@@ -22,7 +22,7 @@
  ********************************************************************************/
 
 
-ordinamentoElementi = function(corpo,res){
+collegamentoElementi = function(corpo,res){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -39,19 +39,19 @@ ordinamentoElementi = function(corpo,res){
                 if(count == 2){
                     // ora devo controllare che gli elementi siano validi
                     // nel caso di associazione di 2 stringhe
-                    if(corpo.answer[k].hasOwnProperty('text_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('text_' + k+1 + '_B')){
+                    if(corpo.answer[k].hasOwnProperty('text1') && corpo.answer[k].hasOwnProperty('text2')){
                         valido = true;
                     }
                     // nel caso di associazione stringa - immagine
-                    else if(corpo.answer[k].hasOwnProperty('text_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('url_' + k+1 + '_B')){
+                    else if(corpo.answer[k].hasOwnProperty('text1') && corpo.answer[k].hasOwnProperty('url2')){
                         valido = true;
                     }
                     // nel caso di associazione immagine stringa
-                    else if(corpo.answer[k].hasOwnProperty('url_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('text_' + k+1 + '_B')){
+                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('text2')){
                         valido = true;
                     }
                     // nel caso di associazione tra 2 immagini
-                    else if(corpo.answer[k].hasOwnProperty('url_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('url_' + k+1 + '_B')){
+                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
                         valido = true;
                     } else{
                         console.log("errore nell'associazioni degli elementi");

@@ -33,8 +33,7 @@ ordinamentoStringhe = function(corpo,res){
             for(var k = 0; k < corpo.answer.length ; k++){
                 if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[0])){
                     if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[1])){
-                        // qua bisogna controllare il tipo di "position" che deve essere un numero,
-                        // meglio se si riesce anche a controllare che la numerazione sia giusta
+                        campiObbligatori = true;
                     }
                     else{
                         console.log("campo position mancante");

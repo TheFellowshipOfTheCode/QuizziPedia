@@ -88,41 +88,7 @@ exports.updateStatisticUser = function(req, res) {
 };
 
     
-   /* user.getUser(req.user._id, function(err,user){
-        if(err)
-            return res.status(500).json({code:478, title: "Errore Utente", message: "Utente non trovato"});
-        else {
-            if(user.quizSummaries.length!=0) {
-                var summaries = [];
-                user.quizSummaries.forEach(function (summaryId) {
-                    Summary.findOne({'_id': summaryId}, function (err, summary) {
-                        if (err)
-                            return res.status(500).json({
-                                code: 478,
-                                title: "Errore Utente",
-                                message: "Utente non trovato"
-                            });
-                        else {
-                            quiz.findOne({'_id': summary.quiz}, function (err, quiz) {
-                                summaries.push({
-                                    'title': quiz.title,
-                                    'author': quiz.author,
-                                    'topic': quiz.topic,
-                                    'mark': summary.mark
-                                });
-                                if (summaries.length == user.quizSummaries.length)
-                                    return res.send(summaries);
-                            })
-                        }
-                    })
-                });
-            }
-            else
-                return res.send({});
-        }
-    }) */
-
-//};
+ 
 
 exports.deleteUser = function(req, res, next) {
     req.user.deleteUser(function(err,user){

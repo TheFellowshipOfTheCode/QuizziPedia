@@ -41,15 +41,15 @@ exports.getQuizzes = function(req, res) {
     if (req.user.quizSummaries.length>0){
         var quiz_summary=[]
         req.user.quizSummaries.forEach(function(quizSummary,index){
-            Summary.findSummary(quizSummary,req.user_id, function(err, elem){
+            Summary.findSummary(quizSummary, function(err, elem){
                 if (err){
                     console.log(err)
                     return res.status(500).json({code:333, title:"Errore Riepiloghi", message:"Riepiloghi Err",})
                 }
-                User.getUser(elem.author,function(err,user){
-                    elem.author=user.name
+                User.getUser(elem.author, function(err,user){
+                    elem.author=user.username
                     quiz_summary.push(elem)
-                    if (index+1==req.user.quizSummaries)
+                    if (index+1==req.user.quizSummaries.length)
                         res.send(quiz_summary);
                 })
                 

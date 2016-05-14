@@ -121,6 +121,9 @@ quizSchema.statics.getQuiz=function(quizId,userId,callback){
 };
 
 
+quizSchema.statics.getQuiz2=function(quizId,callback) {
+    return this.findOne({'_id': quizId}, 'title author', callback)
+}
 
 var Quiz = mongoose.model('Quiz', quizSchema);
 module.exports = Quiz;

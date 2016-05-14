@@ -1,3 +1,24 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Models::QuestionModel;
+ * Description: classe che modella i dati relativi alle domande all’interno
+ * dell’applicazione;
+ * Creation data: 02-05-2016;
+ * Author: Marco Prelaz.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionModel_20160502;
+ * Update data: 02-05-2016;
+ * Description: Creata classe;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionModel_20160509;
+ * Update data: 09-05-2016;
+ * Description: Modificato il questionSchema;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
 var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
 

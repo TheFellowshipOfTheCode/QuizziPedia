@@ -1,18 +1,21 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::TopicController;
+ * Name: QuizziPedia::Back-End::App::Controllers::QuestionController;
  * Description: classe che gestisce la logica applicativa riguardante la
- * visualizzazione e la modifica degli argomenti delle domande;
- * Relations with other classes:
- * + IN	QuestionRouter;
- * + OUT TopicModel.
+ * visualizzazione, la creazione e la modifica delle domande presenti
+ * nell’applicazione;
  * Creation data: 02-05-2016;
  * Author: Marco Prelaz.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: TopicController_20160502;
+ * ID: QuestionController_20160502;
  * Update data: 02-05-2016;
  * Description: Creata classe;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionController_20160510;
+ * Update data: 10-05-2016;
+ * Description: Modificata la funzione createQuestion;
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

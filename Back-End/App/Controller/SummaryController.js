@@ -2,17 +2,19 @@
  * Name: QuizziPedia::Back-End::App::Controllers::SummaryController;
  * Description: classe che gestisce la logica applicativa riguardante la
  * visualizzazione e la modifica dei riepiloghi dei questionari;
- * Relations with other classes:
- * + IN	UserRouter;
- * + OUT SummaryModel.
- * Creation data: 12-05-2016;
+ * Creation data: 04-05-2016;
  * Author: Marco Prelaz.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: SummaryController_20160504;
+ * Update data: 04-05-2016;
+ * Description: Creata classe;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
  * ID: SummaryController_20160512;
  * Update data: 12-05-2016;
- * Description: Creata classe;
+ * Description: Aggiunto il metodo createSummary;
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

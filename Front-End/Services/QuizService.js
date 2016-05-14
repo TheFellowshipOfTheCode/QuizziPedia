@@ -95,7 +95,7 @@ function QuizService($http, $cookies, $q) {
 
     function getDoneQuestionnaire(lang){
         var deferred = $q.defer();
-        $http.get('/api/' + lang + '/user/donequizzes')
+        $http.get('/api/' + lang + '/userdonequizzes')
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){

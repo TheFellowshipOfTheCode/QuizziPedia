@@ -28,12 +28,10 @@
 
 <md-bottom-sheet class="md-list md-has-header" ng-cloak>
   <md-subheader>{{listOfKeys.changeLang}}</md-subheader>
-  <md-list layout="row" >
+  <md-list layout="row" ng-if="supportedLang != undefined" >
     <md-list-item ng-repeat="item in supportedLang">
-
       <md-button
           ng-click="goToNewLang(item)"
-          md-autofocus="$index == 2"
           class="md-list-item-content white" >
         <span class="md-primary md-raised md-button md-ink-ripple">{{ item }}</span>
       </md-button>

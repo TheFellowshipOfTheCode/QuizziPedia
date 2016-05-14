@@ -83,13 +83,15 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
 
   $scope.backToHome = function () {
     resetRefreshBlocking();
+    console.log($rootScope.systemLang);
+    $location.path('/'+$rootScope.systemLang+'/home');
   }
 
   $scope.showListBottomSheet = function() {
     $scope.alert = '';
     $mdBottomSheet.show({
       templateUrl: '../Directives/ChangeLangDirective.html',
-      controller: "AppController"
+      controller: "LangController"
     }).then(function(clickedItem) {
     });
   };

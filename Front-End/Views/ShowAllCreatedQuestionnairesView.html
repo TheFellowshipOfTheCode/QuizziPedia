@@ -13,7 +13,7 @@
 
             </md-toolbar>
             <section>
-                    <span ng-if="personalQuizzes == undefined"><h3> Non hai quiz a cui sei iscritto. </h3></span>
+                    <span ng-if="personalQuizzes == undefined"><h3> {{listOfKeys.noQuizCreatedLang}} </h3></span>
             </section>
                 <section ng-if="personalQuizzes != undefined" class="md-whiteframe-1dp" ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center">
                     <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">

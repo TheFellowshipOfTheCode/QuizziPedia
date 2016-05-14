@@ -35,3 +35,27 @@ exports.createSummary = function(req, res) {
         }
     })
 };
+
+exports.getQuizzes = function(req, res) {
+    console.log(req.user.quizSummaries)
+    if (req.user.quizSummaries.length>0){
+        var quiz_summary=[]
+        req.user.quizSummaries.forEach(function(quizSummary,index){
+            Summary.findSummary(quizSummary,req.user_id, function(err, elem){
+                if (err){
+                    console.log(err)
+                    return res.status(500).json({code:333, title:"Errore Riepiloghi", message:"Riepiloghi Err",})
+                }
+                User.getUser(elem.author,function(err,user){
+                    elem.author=user.name
+                    quiz_summary.push(elem)
+                    if (index+1==req.user.quizSummaries)
+                        res.send(quiz_summary);
+                })
+                
+            })
+            
+        })
+    }
+
+    }

@@ -87,8 +87,8 @@ exports.updateStatisticUser = function(req, res) {
     }
 };
 
-exports.getQuizzes = function(req, res) {
-    user.getUser(req.user._id, function(err,user){
+    
+   /* user.getUser(req.user._id, function(err,user){
         if(err)
             return res.status(500).json({code:478, title: "Errore Utente", message: "Utente non trovato"});
         else {
@@ -120,9 +120,9 @@ exports.getQuizzes = function(req, res) {
             else
                 return res.send({});
         }
-    })
+    }) */
 
-};
+//};
 
 exports.deleteUser = function(req, res, next) {
     req.user.deleteUser(function(err,user){

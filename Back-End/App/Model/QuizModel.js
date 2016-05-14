@@ -64,7 +64,7 @@ quizSchema.statics.getQuizSubscribe=function(userId, callback) {
         quiz.forEach(function(elem,index){
             User.getUser(elem.author,function(err,author){
                 if(author) {
-                    quiz[index].author=author.name
+                    quiz[index].author=author.username
                 }
                 if (index+1==quiz.length){
                     callback(null,quiz)
@@ -114,9 +114,9 @@ quizSchema.statics.getQuiz=function(quizId,userId,callback){
     
             }
             else
-                return callback(new Error("Questionario non abilitato"))
+                callback(new Error("Questionario non abilitato"))
         else
-            return callback(new Error("Utente non autorizzato"))
+            callback(new Error("Utente non autorizzato"))
     })
 };
 

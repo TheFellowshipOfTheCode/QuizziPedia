@@ -7,17 +7,17 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'userpro@gmail.com', password: 'userpro1'})
+            .send({username: 'blundert', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("userpro");
+                    res.body.user.username.should.equal("blundert");
                 else
                     res.status.should.equal(500);
                 done()
             });
     });
 });
-
+/*
 describe("Create Summary Test", function(){
     it("should create a summary of a quiz", function(done){
         //this.timeout(15000);
@@ -39,13 +39,13 @@ describe("Create Summary Test", function(){
                 done()
             })
     })
-});
+}); */
 
 describe("View Summaries Test", function(){
     it("should view summaries of a user", function(done){
         this.timeout(15000);
         agent
-            .post('/api/:lang/user/donequizzes')
+            .get('/api/:lang/userdonequizzes')
             .end(function(err,res){
                 if (!err && res.status == 200){
                     console.log(res.body);

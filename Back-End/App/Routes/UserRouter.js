@@ -49,8 +49,8 @@ module.exports = function(app){
     app.route('/api/:lang/user/statistics')
         .put(user.userManagement.updateStatisticUser);
 
-    app.route('/api/:lang/user/donequizzes')
-        .post(user.userManagement.getQuizzes);
+    app.route('/api/:lang/userdonequizzes')
+        .get(summary.getQuizzes);
 
     app.route('/api/:lang/topic/statistics')
         .put(topic.updateStatisticTopic);

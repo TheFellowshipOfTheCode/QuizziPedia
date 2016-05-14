@@ -37,9 +37,9 @@ var summarySchema = new mongoose.Schema({
     mark: Number
 });
 
-summarySchema.statics.findSummary=function(summaryId,callback){
+summarySchema.statics.findSummary=function(summaryId,userId,callback){
     return this.findOne({'_id':summaryId}, function(err,summary){
-         Quiz.getQuiz(summary.quiz,callback)
+         Quiz.getQuiz(summary.quiz,userId,callback)
     });
 }
 

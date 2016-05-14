@@ -59,6 +59,7 @@ riempimentoSpaziVuoti = function(corpo,res){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }

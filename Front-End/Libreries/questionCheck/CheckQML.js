@@ -4,7 +4,7 @@ controlloQML = function(req, res, topics) {
 
     var corpo = JSON.parse(req);
     var success;
-    var tipologiaDomande = ["veroFalso", "rispostaMultipla", "ordinamentoStringhe", "ordinamentoImmagini", "collegamentoElementi", "areaCliccabile", "riempimentoSpaziVuoti", "custom"];
+    var tipologiaDomande = ["veroFalso", "rispostaMultipla", "ordinamentoStringhe", "ordinamentoImmagini", "collegamentoElementi", "areaCliccabile", "spaziVuoti", "custom"];
     if (corpo.hasOwnProperty('type')) {
         if(corpo.hasOwnProperty('topic')) {
             var topic = corpo.topic;
@@ -49,16 +49,17 @@ controlloQML = function(req, res, topics) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[5]) {
-                    console.log("chiamo funzione area cliccabile");
+
                     success = areaCliccabile(corpo, res);
                     if (success) {
-                        console.log("parser ha validato, adesso creo il JSON");
                         return createJSON(corpo, res, "areaCliccabile", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[6]) {
+                    console.log("chiamo funzione spazi vuoti");
                     success = riempimentoSpaziVuoti(corpo, res);
                     if (success) {
+                        console.log("parser ha validato, adesso creo il JSON");
                         return createJSON(corpo, res, "riempimentoSpaziVuoti", topic);
                     }
                 }

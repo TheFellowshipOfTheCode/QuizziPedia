@@ -270,6 +270,7 @@ createJSONriepimentoSpaziVuoti = function(corpo){
             jsonString = jsonString + "}, \n {";
         }
     }
+    jsonString = jsonString + "}]";
     return jsonString;
 }
 

@@ -22,8 +22,8 @@
 
 app.controller('LangController', LangController);
 
-LangController.$inject = ['$location', '$mdBottomSheet', 'LangService', '$rootScope'];
-function LangController ($location, $mdBottomSheet, LangService, $rootScope) {
+LangController.$inject = ['$location', '$mdBottomSheet', 'LangService', '$rootScope', '$scope'];
+function LangController ($location, $mdBottomSheet, LangService, $rootScope, $scope) {
 
   $scope.goToNewLang= goToNewLang;
   function goToNewLang(lang) {

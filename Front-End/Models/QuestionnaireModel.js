@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Models:QuestionnaireModel;
  * Description: ;
- * Relations with other classes:
- * +
+ *
+ * 
  * Creation data: 03-05-2016;
  * Author: Simone Magagna;
  * License: MIT.

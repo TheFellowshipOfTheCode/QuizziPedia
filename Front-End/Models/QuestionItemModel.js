@@ -2,14 +2,17 @@
  * Name: QuizziPedia::Front-End::Models::QuestionItemModel;
  * Description: rappresenta una domanda.
  *
- * Relations with other classes:
- * +
- *
+ * 
  * Creation data: 03-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionItemModel_05052016
+ * Update data: 05-05-2016
+ * Description: Ultimato il model con tutti i metodi setter e getter;
+ * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  * ID: QuestionItemModel_03052016
  * Update data: 03-05-2016

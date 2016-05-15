@@ -1,14 +1,18 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::AuthService;
- * Description: questa classe permette di gestire la registrazione e l’autenticazione di un utente.
- * Relations with other classes:
- * + LoginController
- * + PasswordForgotController
- * + SignUpController
+ * Description: questa classe permette di gestire la registrazione e
+ * l’autenticazione di un utente.
+ *
+ *
  * Creation data: 27-04-2016
  * Author: Alberto Ferrara
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: AuthService_20160504
+ * Update data: 04-05-2016
+ * Description: Ultimata la classe con tutti i metodi.
+ * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: AuthService_20160502
  * Update data: 02-05-2016

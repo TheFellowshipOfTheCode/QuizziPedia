@@ -3,8 +3,8 @@
  * Description: questa classe permette di gestire la lingua nella quale si è
  * scelto di utilizzare l’applicazione. Fornisce delle funzionalità per
  * recuperare la giusta traduzione delle pagine;
- * Relations with other classes:
- * + AppRun.
+ *
+ *
  * Creation data: 27-04-2016;
  * Author: Matteo Granzotto.
  *******************************************************************************
@@ -45,7 +45,6 @@ function LangService($http, $q, ErrorInfoModel) {
     var deferred = $q.defer();
     $http.get('/api/supported/lang/give/me')
      .success(function(data) {
-        console.log(data);
           deferred.resolve(data);
      }).error(function(msg, code) {
         deferred.reject(msg);
@@ -54,11 +53,9 @@ function LangService($http, $q, ErrorInfoModel) {
   }
 
   function getSlang(lang) {
-    console.log(lang);
     var deferred = $q.defer();
     $http.get('/api/supported/lang/give/me/'+lang)
      .success(function(data) {
-        console.log(data);
           deferred.resolve(data);
      }).error(function(msg, code) {
         deferred.reject(msg);

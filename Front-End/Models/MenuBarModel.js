@@ -4,8 +4,8 @@
 * dinamica della barra menù posizionata in modo fisso su ogni pagina. Viene
 * utilizzata per memorizzare i dati necessari per la creazione dinamica della
 * barra menù posizionata in modo fisso su ogni pagina;
-* Relations with other classes:
-* + MenuBarController.
+ *
+ * 
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.

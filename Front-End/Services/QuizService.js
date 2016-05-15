@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::QuizService;
- * Description: ;
- * Relations with other classes:
- * +
+ * Description: service che gestisce le richieste per i questionari;
+ *
+ *
  * Creation data: 03-05-2016;
  * Author: Simone Magagna;
  * License: MIT.

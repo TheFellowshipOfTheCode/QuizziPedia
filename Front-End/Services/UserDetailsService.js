@@ -1,12 +1,17 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::UserDetailsService;
  * Description: questa classe permette di gestire il recupero dei dati utente.
- * Relations with other classes:
- * +
+ *
+ *
  * Creation data: 12-05-2016
  * Author: Alberto Ferrara
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionsService_14052016
+ * Update data: 14-05-2016
+ * Description: Ultimato il service con il metodo per ottenere i dettagli dell'utente
+ * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: QuestionsService_12052016
  * Update data: 12-05-2016

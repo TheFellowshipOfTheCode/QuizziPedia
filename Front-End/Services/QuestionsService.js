@@ -1,12 +1,17 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::QuestionsService;
  * Description: questa classe permette di gestire l'inserimento di una domanda.
- * Relations with other classes:
- * +
+ *
+ *
  * Creation data: 03-05-2016
  * Author: Alberto Ferrara
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionsService_07052016
+ * Update data: 07-05-2016
+ * Description: Ultimato il file con tutti i metodi.
+ * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: QuestionsService_03052016
  * Update data: 03-05-2016

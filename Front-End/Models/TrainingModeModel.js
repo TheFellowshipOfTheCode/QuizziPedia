@@ -1,8 +1,8 @@
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Models::;
-* Description:
-* Relations with other classes:
-* +
+* Name: QuizziPedia::Front-End::Models::TrainingModelModel;
+* Description: rappresenta un allenamento.
+ *
+ *
 * Creation data: 03-05-2016;
 * Author: Matteo Granzotto;
 * License: MIT.

@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::SearchService;
  * Description: questa classe permette di gestire il recuper per una ricerca.
- * Relations with other classes:
- * +
+ *
+ * 
  * Creation data: 11-05-2016
  * Author: Alberto Ferrara
  ********************************************************************************

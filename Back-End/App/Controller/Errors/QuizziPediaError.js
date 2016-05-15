@@ -2,21 +2,19 @@
  * Name: QuizziPedia::Back-End::App::Controllers::Errors::QuizziPediaError
  * Description: classe che contiene gli errori e costruisce i messaggi
  * d'errore.
- * Relations with other classes:
- * + IN ErrorsHandler
- * Creation data: 27-04-2016
+ * Creation data: 03-05-2016
  * Author: Mattia Varotto
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: QuizziPediaError_20160427
- * Update data: 28-04-2016
+ * Update data: 04-05-2016
  * Description: aggiunti i metodi getCode(), getTitle(), getMessage(), toJSON()
  * e toString(); il metodo toJSON() è ancora da definire.
  * Autore: Mattia Varotto
  *-------------------------------------------------------------------------------
  * ID: QuizziPediaError_20160427
- * Update data: 29-04-2016
+ * Update data: 03-05-2016
  * Description: definito il metodo toJSON().
  * Autore: Mattia Varotto
  *******************************************************************************/

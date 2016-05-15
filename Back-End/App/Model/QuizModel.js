@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::App::Models::QuizModel;
+ * Description: classe che modella i questionari all'interno dell'applicazione;
+ * Creation data: 02-05-2016;
+ * Author: Mattia Varotto.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuizController_20160502;
+ * Update data: 05-05-2016;
+ * Description: aggiunti metodi della classe e aggiornato lo schema;
+ * Autore: Mattia Varotto.
+ *-------------------------------------------------------------------------------
+ * ID: QuizController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Creata classe;
+ * Autore: Mattia Varotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
 var mongoose = require('mongoose');
 var Question = require('./QuestionModel');
 var User = require('./UserModel');

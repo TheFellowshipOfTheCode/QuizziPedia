@@ -1,19 +1,14 @@
 /*******************************************************************************
  * Name: QuizziPedia::Back-End::App::Models::SummaryModel;
  * Description: classe che modella i riepiloghi all'interno dell'applicazione;
- * Relations with other classes:
- * + OUT QuestionModel;
- * + OUT QuizModel;
- * + IN UserModel;
- * + SummaryController.
  * Creation data: 02-05-2016;
  * Author: Mattia Varotto.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: SummaryModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe e aggiunti metodi principali;
+ * Update data: 04-05-2016;
+ * Description: Creata classe e aggiunti metodi findSummary() e createSummary();
  * Autore: Mattia Varotto.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

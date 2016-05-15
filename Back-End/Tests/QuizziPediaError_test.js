@@ -1,21 +1,19 @@
 /*******************************************************************************
  * Name: QuizziPediaError_test
  * Description: classe che contiene i test per la classe QuizziPediaError.
- * Relations with other classes:
- * + QuizziPediaError
- * Creation data: 28-04-2016
+ * Creation data: 04-05-2016
  * Author: Mattia Varotto
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuizziPediaError_test_20160428
- * Update data: 28-04-2016
+ * ID: QuizziPediaError_test_20160504
+ * Update data: 05-05-2016
  * Description: aggiunti i test per i metodi getCode(), getTitle(), getMessage(),
  * toJSON() e toString(); il test per il metodo toJSON() è ancora da definire.
  * Autore: Mattia Varotto
  *-------------------------------------------------------------------------------
- * ID: QuizziPediaError_test_20160428
- * Update data: 29-04-2016
+ * ID: QuizziPediaError_test_20160504
+ * Update data: 04-05-2016
  * Description: definito il test per il metodo toJSON().
  * Autore: Mattia Varotto
  *******************************************************************************/

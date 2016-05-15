@@ -43,8 +43,10 @@ controlloQML = function(req, res, topics) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[4]) {
+                    console.log("chiamo funzione collegamento Elementi");
                     success = collegamentoElementi(corpo, res);
                     if (success) {
+                        console.log("parser ha validato il collegamento elementi e adesso creo il JSON");
                         return createJSON(corpo, res, "collegamentoElementi", topic);
                     }
                 }
@@ -59,7 +61,7 @@ controlloQML = function(req, res, topics) {
                     console.log("chiamo funzione spazi vuoti");
                     success = riempimentoSpaziVuoti(corpo, res);
                     if (success) {
-                        console.log("parser ha validato, adesso creo il JSON");
+                        console.log("parser ha validato gli spazi vuoti, adesso creo il JSON");
                         return createJSON(corpo, res, "riempimentoSpaziVuoti", topic);
                     }
                 }

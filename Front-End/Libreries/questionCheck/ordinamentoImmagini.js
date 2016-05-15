@@ -35,6 +35,7 @@ ordinamentoImmagini = function(corpo,res){
                     if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[1])){
                         // qua bisogna controllare il tipo di "position" che deve essere un numero,
                         // meglio se si riesce anche a controllare che la numerazione sia giusta
+                        campiObbligatori = true;
                     }
                     else{
                         console.log("campo position mancante");

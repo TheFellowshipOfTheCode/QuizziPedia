@@ -28,18 +28,18 @@ custom = function(corpo,res){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
-    // in una domanda custom i campi obbligatori sono almeno i campi che possono formare una domanda consistente
-    // bisogna inserire delle keyword che indicano il tipo di domanda che si sta creando
+                                                                                                                        // in una domanda custom i campi obbligatori sono almeno i campi che possono formare una domanda consistente
+                                                                                                                        // bisogna inserire delle keyword che indicano il tipo di domanda che si sta creando
 
     var consistente = false;
-    // la variabile consistente diventa true quando il parser riesce a concludere una definizione consistente di una tipologia di domanda
-    // se la variabile resta false la domanda custom nonha uno schema valido, quidni ritorno false dando un errore semantico
+                                                                                                                        // la variabile consistente diventa true quando il parser riesce a concludere una definizione consistente di una tipologia di domanda
+                                                                                                                        // se la variabile resta false la domanda custom nonha uno schema valido, quidni ritorno false dando un errore semantico
 
-    //per prima cosa controllo il tipo di domanda principale che si vuole realizzare
+                                                                                                                        //per prima cosa controllo il tipo di domanda principale che si vuole realizzare
     if(corpo.hasOwnProperty('question')) {
-        // la variabile valido serve per testare se oltre alla prima tipologia di domanda (che deve essere consisntente) le altre, se ci sono, siano ben formate
-        // quindi viene settata a true inizialmente, perchè il caso base è che non si sono altre tipologie inserite, se invece ce ne sono di mal formate, la variabile viene settata false dalla fuznione di controllo consistenza
-        // e il parser termina con un errore di semantica
+                                                                                                                        // la variabile valido serve per testare se oltre alla prima tipologia di domanda (che deve essere consisntente) le altre, se ci sono, siano ben formate
+                                                                                                                        // quindi viene settata a true inizialmente, perchè il caso base è che non si sono altre tipologie inserite, se invece ce ne sono di mal formate, la variabile viene settata false dalla fuznione di controllo consistenza
+                                                                                                                        // e il parser termina con un errore di semantica
         var valido = true;
         // controllo che la domanda dentro l'array question abbia il type
         for(var k = 0; k < corpo.question.length ; k++) {
@@ -134,6 +134,7 @@ consistenzaVeroFalso = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }
@@ -159,12 +160,12 @@ consistenzaRispostaMultipla = function(corpo){
                 if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[0])){
                     if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[1])){
                         if(corpo.answer[k].isItRight == "true" || corpo.answer[k].isItRight == "false"){
-                            // se arrivo qua i campi obbligatori ci sono tutti
+                                                                                                                        // se arrivo qua i campi obbligatori ci sono tutti
                             campiObbligatori = true;
-                            // devo controllare però i campi facoltativi di ogni answer
-                            for(g in corpo.answer[k]) { // per ogni oggetto nell'array answer in posizione k
-                                var giusto = false; // se questa diventa true la keyword è giusta
-                                for (var j = 0; j < keywordAnswer.length; j++) { // per ogni keyword possibile
+                                                                                                                        // devo controllare però i campi facoltativi di ogni answer
+                            for(g in corpo.answer[k]) {                                                                 // per ogni oggetto nell'array answer in posizione k
+                              var giusto = false;                                                                       // se questa diventa true la keyword è giusta
+                                for (var j = 0; j < keywordAnswer.length; j++) {                                        // per ogni keyword possibile
                                     if (g == keywordAnswer[j]) {
                                         giusto = true;
                                     }
@@ -209,6 +210,7 @@ consistenzaRispostaMultipla = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }
@@ -233,8 +235,9 @@ consistenzaOrdinamentoStringhe = function(corpo){
             for(var k = 0; k < corpo.answer.length ; k++){
                 if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[0])){
                     if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[1])){
-                        // qua bisogna controllare il tipo di "position" che deve essere un numero,
-                        // meglio se si riesce anche a controllare che la numerazione sia giusta
+                                                                                                                        // qua bisogna controllare il tipo di "position" che deve essere un numero,
+                                                                                                                        // meglio se si riesce anche a controllare che la numerazione sia giusta
+                        campiObbligatori = true;
                     }
                     else{
                         console.log("campo position mancante");
@@ -263,6 +266,7 @@ consistenzaOrdinamentoStringhe = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }
@@ -286,8 +290,9 @@ consistenzaOrdinamentoImmagini = function(corpo){
             for(var k = 0; k < corpo.answer.length ; k++){
                 if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[0])){
                     if(corpo.answer[k].hasOwnProperty(obbligatorieAnswer[1])){
-                        // qua bisogna controllare il tipo di "position" che deve essere un numero,
-                        // meglio se si riesce anche a controllare che la numerazione sia giusta
+                                                                                                                        // qua bisogna controllare il tipo di "position" che deve essere un numero,
+                                                                                                                        // meglio se si riesce anche a controllare che la numerazione sia giusta
+                        campiObbligatori = true;
                     }
                     else{
                         console.log("campo position mancante");
@@ -316,6 +321,7 @@ consistenzaOrdinamentoImmagini = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }
@@ -365,6 +371,7 @@ consistenzaRiempimentoSpaziVutoi = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }
@@ -382,32 +389,32 @@ consistenzaCollegamentoElementi = function(corpo){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
-    // controllo campi obbligatori
+                                                                                                                        // controllo campi obbligatori
     if(corpo.hasOwnProperty('questionText')) {
         if (corpo.hasOwnProperty('answer')) {
-            var valido = false; // indica se le associazioni sono valide
+            var valido = false;                                                                                         // indica se le associazioni sono valide
             for(var k = 0; k < corpo.answer.length ; k++){
-                // controllo che ogni oggetto ha 2 campi
+                                                                                                                        // controllo che ogni oggetto ha 2 campi
                 var key, count = 0;
                 for(key in corpo.answer[k]){
                     count++;
                 }
                 if(count == 2){
-                    // ora devo controllare che gli elementi siano validi
-                    // nel caso di associazione di 2 stringhe
-                    if(corpo.answer[k].hasOwnProperty('text_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('text_' + k+1 + '_B')){
+                                                                                                                        // ora devo controllare che gli elementi siano validi
+                                                                                                                        // nel caso di associazione di 2 stringhe
+                    if(corpo.answer[k].hasOwnProperty('text1') && corpo.answer[k].hasOwnProperty('text2')){
                         valido = true;
                     }
-                    // nel caso di associazione stringa - immagine
-                    else if(corpo.answer[k].hasOwnProperty('text_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('url_' + k+1 + '_B')){
+                                                                                                                        // nel caso di associazione stringa - immagine
+                    else if(corpo.answer[k].hasOwnProperty('text1') && corpo.answer[k].hasOwnProperty('url2')){
                         valido = true;
                     }
-                    // nel caso di associazione immagine stringa
-                    else if(corpo.answer[k].hasOwnProperty('url_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('text_' + k+1 + '_B')){
+                                                                                                                        // nel caso di associazione immagine stringa
+                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('text2')){
                         valido = true;
                     }
-                    // nel caso di associazione tra 2 immagini
-                    else if(corpo.answer[k].hasOwnProperty('url_' + k+1 + '_A') && corpo.answer[k].hasOwnProperty('url_' + k+1 + '_B')){
+                                                                                                                        // nel caso di associazione tra 2 immagini
+                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
                         valido = true;
                     } else{
                         console.log("errore nell'associazioni degli elementi");
@@ -440,6 +447,7 @@ consistenzaCollegamentoElementi = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }
@@ -467,7 +475,7 @@ consistenzaAreaCliccabile = function(corpo){
                         for(key in corpo.answer){
                             if(key.hasOwnProperty('x') && key.hasOwnProperty('y')){
                                 campiObbligatori = true;
-                                // controllo che non ci siano altri campi inseriti
+                                                                                                                        // controllo che non ci siano altri campi inseriti
                                 var facoltativi = ["x","y","text"];
                                 var valido = false;
                                 for(var j=0 ; j < facoltativi.length ; j++){
@@ -510,7 +518,7 @@ consistenzaAreaCliccabile = function(corpo){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText","url", "keywords" , "topic"];
+    var facoltativiString = ["type","answer","questionText","url", "keywords" , "topic" ,"resolution" , "image"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -520,6 +528,7 @@ consistenzaAreaCliccabile = function(corpo){
             }
         }
         if (!giusto) {
+            console.log("inseriti campi sconosciuti");
             campiFacoltativi = false;
             break;
         }

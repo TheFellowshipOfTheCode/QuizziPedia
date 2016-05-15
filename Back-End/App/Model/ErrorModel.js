@@ -2,15 +2,13 @@
  * Name: QuizziPedia::Back-End::App::Models::ErrorModel
  * Description: classe che rappresenta le informazioni di un errore che si è
  * verificato eseguendo una determianta operazione.
- * Relations with other classes:
- * + IN ErrorHandler
- * Creation data: 27-04-2016
+ * Creation data: 03-05-2016
  * Author: Mattia Varotto
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: ErrorModel_20160427
- * Update data: 28-04-2016
+ * ID: ErrorModel_20160503
+ * Update data: 03-05-2016
  * Description: definito il modello e aggiunti i metodi getCode(), getTitle() e
  * get Message().
  * Autore: Mattia Varotto

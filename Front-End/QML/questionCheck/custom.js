@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::custom;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::custom;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -56,12 +56,28 @@ custom = function(corpo,res){
                 }
             }
             else {
-                console.log("campo type inesistente nell'array question");
+                alert = $mdDialog.alert()
+                    .title("Errore: campi obbligatori mancanti")
+                    .content("campo \"type\" non trovato, prego inserire un campo \"type\" valido")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
             }
         }
     }
     else{
-        console.log("le domande di tipologia custom devono avere un array 'question' contenenti le domande");
+        alert = $mdDialog.alert()
+            .title("Errore: struttura errata")
+            .content("le domande di tipologia custom devono avere un array 'question' contenenti le domande interne")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     if(campiFacoltativi && campiObbligatori){
@@ -112,16 +128,40 @@ consistenzaVeroFalso = function(corpo){
             }
             else{
                 campiObbligatori = false;
-                console.log("campo isItRight non valido");
+                alert = $mdDialog.alert()
+                    .title("Errore generico")
+                    .content("contenuto del campo 'isItRight' non valido, inserire \"true\" o \"false\"")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
             }
         }
         else{
             campiObbligatori = false;
-            console.log("campo text o isItRight mancante");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'text' o 'isItRight' mancanti, prego inserire dei campi validi")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     }
     else {
-        console.log("campo answer non trovato");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valdo")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
     }
     // controllo campi
     var facoltativiString = ["type","answer","image", "keywords", "topic"];
@@ -134,7 +174,15 @@ consistenzaVeroFalso = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }
@@ -173,30 +221,78 @@ consistenzaRispostaMultipla = function(corpo){
                                 // controllo la variabile giusto
                                 if(!giusto){
                                     // se arrivo qua la keyword non ha riscontrato un match con le parole target
-                                    console.log(g + " non è una parola chiave");
+                                    alert = $mdDialog.alert()
+                                        .title("Errore generico")
+                                        .content("inseriti campi sconosciuti")
+                                        .ok('Ok');
+                                    $mdDialog
+                                        .show(alert)
+                                        .finally(function () {
+                                            alert = undefined;
+                                        });
                                     campiFacoltativi = false;
                                     break;
                                 }
                             }
                         }
                         else{
-                            console.log("valore di isItRight non valido");
+                            alert = $mdDialog.alert()
+                                .title("Errore generico")
+                                .content("valore di 'isItRight' non valido, prego inserire un \"true\" o \"false\"")
+                                .ok('Ok');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
                         }
                     }
                     else{
-                        console.log("campo isItRight mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'isItRight' mancante, prego inserire un campo \"isItRight\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }
                 else{
-                    console.log("campo text mancante");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'text' non trovato, prego inserire un campo \"text\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -210,7 +306,15 @@ consistenzaRispostaMultipla = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }
@@ -240,19 +344,51 @@ consistenzaOrdinamentoStringhe = function(corpo){
                         campiObbligatori = true;
                     }
                     else{
-                        console.log("campo position mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'position' non trovato, prego inserire un campo \"position\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }
                 else{
-                    console.log("campo text mancante");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'text' non trovato, prego inserire un campo \"text\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -266,7 +402,15 @@ consistenzaOrdinamentoStringhe = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }
@@ -295,19 +439,51 @@ consistenzaOrdinamentoImmagini = function(corpo){
                         campiObbligatori = true;
                     }
                     else{
-                        console.log("campo position mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'position' non trovato, prego inserire un campo \"position\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }
                 else{
-                    console.log("campo url mancante");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'url' non trovato, prego inserire un campo \"url\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -321,7 +497,15 @@ consistenzaOrdinamentoImmagini = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }
@@ -347,17 +531,41 @@ consistenzaRiempimentoSpaziVutoi = function(corpo){
                     campiObbligatori = true;
                 }
                 else{
-                    console.log("campo parolaNumero mancante");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'parolaNumero' non trovato, prego inserire un campo \"parolaNumero\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     return false;
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             return false;
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -371,7 +579,15 @@ consistenzaRiempimentoSpaziVutoi = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }
@@ -417,10 +633,26 @@ consistenzaCollegamentoElementi = function(corpo){
                     else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
                         valido = true;
                     } else{
-                        console.log("errore nell'associazioni degli elementi");
+                        alert = $mdDialog.alert()
+                            .title("Errore: struttura errata")
+                            .content("errore nell'associazione degli elementi")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }else{
-                    console.log("gli elementi nelle answer devono essere sempre in coppia");
+                    alert = $mdDialog.alert()
+                        .title("Errore: struttura errata")
+                        .content("gli elementi nelle 'answer' devono essere sempre in coppia")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     valido = false;
                     break;
                 }
@@ -430,10 +662,26 @@ consistenzaCollegamentoElementi = function(corpo){
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -447,7 +695,15 @@ consistenzaCollegamentoElementi = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }
@@ -485,36 +741,92 @@ consistenzaAreaCliccabile = function(corpo){
                                     }
                                 }
                                 if(!valido){
-                                    console.log("campi in answer sconosciuti");
+                                    alert = $mdDialog.alert()
+                                        .title("Errore generico")
+                                        .content("campo in 'answer' sconosciuti")
+                                        .ok('Ok');
+                                    $mdDialog
+                                        .show(alert)
+                                        .finally(function () {
+                                            alert = undefined;
+                                        });
                                     return false;
                                 }
                             }
                             else{
-                                console.log("coordinate non valide");
+                                alert = $mdDialog.alert()
+                                    .title("Errore: struttura errata")
+                                    .content("coordinate non valide")
+                                    .ok('Ok');
+                                $mdDialog
+                                    .show(alert)
+                                    .finally(function () {
+                                        alert = undefined;
+                                    });
                                 return false;
                             }
                         }
                     }
                     else{
-                        console.log("campo answer mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                         return false;
                     }
                 }
                 else{
-                    console.log("il campo risoluzione necessita di 2 coordinate X e Y");
+                    alert = $mdDialog.alert()
+                        .title("Errore: struttura errata")
+                        .content("campo 'resolution' necessita di 2 coordinate, \"x\" e \"y\"")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     return false;
                 }
             }
             else{
-                console.log("campo resolution mancante");
+                alert = $mdDialog.alert()
+                    .title("Errore: campi obbligatori mancanti")
+                    .content("campo 'resolution' non trovato, prego inserire un campo \"resolution\" valido")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
                 return false;
             }
         } else{
-            console.log("campo image mancante");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'image' non trovato, prego inserire un campo \"image\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             return false;
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -528,7 +840,15 @@ consistenzaAreaCliccabile = function(corpo){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }

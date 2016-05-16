@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::riempimentospaziVuoti;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::riempimentospaziVuoti;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -35,17 +35,41 @@ riempimentoSpaziVuoti = function(corpo,res){
                      campiObbligatori = true;
                     }
                     else{
-                        console.log("campo parolaNumero mancante");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'parolaNumero' non trovato, prego inserire un campo \"parolaNumero\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     return false;
                     }
                 }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             return false;
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\"  valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -59,7 +83,15 @@ riempimentoSpaziVuoti = function(corpo,res){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }

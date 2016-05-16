@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::rispostaMultipla;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::rispostaMultipla;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -48,30 +48,79 @@ rispostaMultipla = function(corpo,res){
                                 // controllo la variabile giusto
                                 if(!giusto){
                                     // se arrivo qua la keyword non ha riscontrato un match con le parole target
-                                    console.log(g + " non è una parola chiave");
+                                    alert = $mdDialog.alert()
+                                        .title("Errore generico")
+                                        .content("inseriti campi sconosciuti")
+                                        .ok('Ok');
+                                    $mdDialog
+                                        .show(alert)
+                                        .finally(function () {
+                                            alert = undefined;
+                                        });
                                     campiFacoltativi = false;
                                     break;
                                 }
                             }
                         }
                         else{
-                            console.log("valore di isItRight non valido");
+                            alert = $mdDialog.alert()
+                                .title("Errore generico")
+                                .content("valore di \"isItRight\ non valido, prego inserire \"true\" o \"false\"")
+                                .ok('Ok');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
                         }
                     }
                     else{
-                        console.log("campo isItRight mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'isItRight' non trovato, prego inserire un campo \"isItRight\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }
                 else{
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'text' non trovato, prego inserire un campo \"text\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     console.log("campo text mancante");
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -85,8 +134,16 @@ rispostaMultipla = function(corpo,res){
             }
         }
         if (!giusto) {
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
-            console.log("inserite keyword sconosciute");
             break;
         }
     }
@@ -94,7 +151,6 @@ rispostaMultipla = function(corpo,res){
         return true;
     }
     else{
-        console.log("passato per di qua");
         return false;
     }
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::collegamentoImmagini;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::collegamentoImmagini;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -38,19 +38,51 @@ ordinamentoImmagini = function(corpo,res){
                         campiObbligatori = true;
                     }
                     else{
-                        console.log("campo position mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'position' non trovato, prego inserire un campo \"position\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }
                 else{
-                    console.log("campo url mancante");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'url' non trovato, prego inserire un campo \"url\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'quiestionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -64,6 +96,15 @@ ordinamentoImmagini = function(corpo,res){
             }
         }
         if (!giusto) {
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }

@@ -1,4 +1,25 @@
-
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::QML::questionCheck::CheckQML;
+ * Description: questo file contiene la funzione che permette la validazione
+ * del testo scritto in QML
+ * Creation data: 27-04-2016;
+ * Author: Matteo Gnoato.
+ ********************************************************************************
+ * Updates history
+ * -------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Inseriti messaggi d'errore specifici
+ * Autore: Matteo Gnoato.
+ * -------------------------------------------------------------------------------
+ *  * Update data: 28-04-2016;
+ * Description: Risolto problemi di incosistenza della funzione
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ * Update data: 28-04-2016;
+ * Description: Creata funzione controlloQML
+ * Autore: Matteo Gnoato.
+ *-------------------------------------------------------------------------------
+ ********************************************************************************/
 
 controlloQML = function(req, res, topics) {
 
@@ -23,10 +44,8 @@ controlloQML = function(req, res, topics) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[1]) {
-                    console.log("controlloQML: prima di controllare campi di risposta multipla");
                     success = rispostaMultipla(corpo, res);
                     if (success) {
-                        console.log("tipologia risposta multipla validata");
                         return createJSON(corpo, res, "rispostaMultipla", topic);
                     }
                 }
@@ -43,10 +62,8 @@ controlloQML = function(req, res, topics) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[4]) {
-                    console.log("chiamo funzione collegamento Elementi");
                     success = collegamentoElementi(corpo, res);
                     if (success) {
-                        console.log("parser ha validato il collegamento elementi e adesso creo il JSON");
                         return createJSON(corpo, res, "collegamentoElementi", topic);
                     }
                 }
@@ -58,10 +75,8 @@ controlloQML = function(req, res, topics) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[6]) {
-                    console.log("chiamo funzione spazi vuoti");
                     success = riempimentoSpaziVuoti(corpo, res);
                     if (success) {
-                        console.log("parser ha validato gli spazi vuoti, adesso creo il JSON");
                         return createJSON(corpo, res, "riempimentoSpaziVuoti", topic);
                     }
                 }
@@ -73,25 +88,56 @@ controlloQML = function(req, res, topics) {
                 }
                 else {
                     success = false;
-                    console.log("tipologia di domanda sconosciuta");
+                    alert = $mdDialog.alert()
+                        .title("Errore generico")
+                        .content("tipologia di domanda sconosciuta")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                 }
                 return success;
             }
             else {
+                alert = $mdDialog.alert()
+                    .title("Errore generico")
+                    .content("Topic sconosciuto")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
                 res = "topic sconosciuto";
                 console.log(res);
                 return false;
             }
         }
         else{
-            res = "topic non trovato";
-            console.log(res);
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo \"topic\" non trovato, prego inserire un campo \"topic\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             return false;
         }
     }
     else{
-        res = "type non trovato";
-        console.log(res);
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo \"type\" non trovato, prego inserire un campo \"type\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
 }

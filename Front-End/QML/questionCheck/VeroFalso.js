@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::VeroFalso;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::VeroFalso;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -33,17 +33,41 @@ veroFalso = function(corpo,res){
                         campiObbligatori = true;
                     }
                     else{
+                        alert = $mdDialog.alert()
+                            .title("Errore generico")
+                            .content("campo 'isItRight' non valido, prego inserire \"true\" o \"false\"")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                         campiObbligatori = false;
-                        console.log("campo isItRight non valido");
                     }
                 }
                 else{
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'text' o 'isItRight' non trovato, prego inserire un campo \"text\" o \"isItRight\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     campiObbligatori = false;
-                    console.log("campo text o isItRight mancante");
                 }
             }
             else {
-                console.log("campo answer non trovato");
+                alert = $mdDialog.alert()
+                    .title("Errore: campi obbligatori mancanti")
+                    .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
                 }
             // controllo campi
             var facoltativiString = ["type","answer","image", "keywords", "topic"];
@@ -56,6 +80,15 @@ veroFalso = function(corpo,res){
                     }
                 }
                 if (!giusto) {
+                    alert = $mdDialog.alert()
+                        .title("Errore generico")
+                        .content("inseriti campi sconosciuti")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     campiFacoltativi = false;
                     break;
                 }
@@ -64,7 +97,6 @@ veroFalso = function(corpo,res){
                 return true;
             }
             else{
-                console.log("campi obbligatori o campi sconosciuti")
                 return false;
             }
 }

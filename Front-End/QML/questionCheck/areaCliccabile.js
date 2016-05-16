@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::areaCliccabile;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::areaCliccabile;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -49,36 +49,92 @@ areaCliccabile = function(corpo,res){
                                     }
                                 }
                                 if(!valido){
-                                    console.log("campi in answer sconosciuti");
+                                    alert = $mdDialog.alert()
+                                        .title("Errore: campi sconosciuti")
+                                        .content("hai inserito dei campi sconosciuti nell' array Answer")
+                                        .ok('Ok');
+                                    $mdDialog
+                                        .show(alert)
+                                        .finally(function () {
+                                            alert = undefined;
+                                        });
                                     return false;
                                 }
                             }
                             else{
-                                console.log("coordinate non valide");
+                                alert = $mdDialog.alert()
+                                    .title("Errore: coordinate non valide")
+                                    .content("Le coordinate inserite nell'array Answer non sono valide")
+                                    .ok('Ok');
+                                $mdDialog
+                                    .show(alert)
+                                    .finally(function () {
+                                        alert = undefined;
+                                    });
                                 return false;
                             }
                         }
                     }
                     else{
-                        console.log("campo answer mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("nessun campo Answer trovato, prego inserire un array di Answer")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                         return false;
                     }
                 }
                 else{
-                    console.log("il campo risoluzione necessita di 2 coordinate X e Y");
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi non validi")
+                        .content("il campo \"risoluzione\" necessita di 2 coordinate valide, \"x\" e \"y\"")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     return false;
                 }
             }
             else{
-                console.log("campo resolution mancante");
+                alert = $mdDialog.alert()
+                    .title("Errore: campi obbligatori mancanti")
+                    .content("campo \"resolution\" non trovato, prego inserire un campo \"resolution\" valido")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
                 return false;
             }
         } else{
-            console.log("campo image mancante");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo \"image\" non trovato, prego inserire un campo \"image\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             return false;
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campo obbligatori mancanti")
+            .content("campo \"questionText\" non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -92,7 +148,15 @@ areaCliccabile = function(corpo,res){
             }
         }
         if (!giusto) {
-            console.log("inseriti campi sconosciuti");
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }

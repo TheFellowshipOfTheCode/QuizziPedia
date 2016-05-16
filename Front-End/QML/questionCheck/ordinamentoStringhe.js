@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::questionCheck::ordinamentoStringhe;
+ * Name: QuizziPedia::Front-End::QML::questionCheck::ordinamentoStringhe;
  * Description: questo file contiene la funzione che permette la validazione
  * del testo scritto in QML per la tipologia specifica
  * Creation data: 27-04-2016;
@@ -36,19 +36,52 @@ ordinamentoStringhe = function(corpo,res){
                         campiObbligatori = true;
                     }
                     else{
-                        console.log("campo position mancante");
+                        alert = $mdDialog.alert()
+                            .title("Errore: campi obbligatori mancanti")
+                            .content("campo 'position' non trovato, prego inserire un campo \"position\" valido")
+                            .ok('Ok');
+                        $mdDialog
+                            .show(alert)
+                            .finally(function () {
+                                alert = undefined;
+                            });
                     }
                 }
                 else{
+                    alert = $mdDialog.alert()
+                        .title("Errore: campi obbligatori mancanti")
+                        .content("campo 'text' non trovato, prego inserire un campo \"text\" valido")
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
                     console.log("campo text mancante");
                 }
             }
         }
         else {
-            console.log("campo answer non trovato");
+            alert = $mdDialog.alert()
+                .title("Errore: campi obbligatori mancanti")
+                .content("campo 'answer' non trovato, prego inserire un campo \"answer\" valido")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
         }
     } else{
-        console.log("campo questionText mancante");
+        alert = $mdDialog.alert()
+            .title("Errore: campi obbligatori mancanti")
+            .content("campo 'questionText' non trovato, prego inserire un campo \"questionText\" valido")
+            .ok('Ok');
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
         return false;
     }
     // controllo campi facoltativi
@@ -62,6 +95,15 @@ ordinamentoStringhe = function(corpo,res){
             }
         }
         if (!giusto) {
+            alert = $mdDialog.alert()
+                .title("Errore generico")
+                .content("inseriti campi sconosciuti")
+                .ok('Ok');
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
             campiFacoltativi = false;
             break;
         }

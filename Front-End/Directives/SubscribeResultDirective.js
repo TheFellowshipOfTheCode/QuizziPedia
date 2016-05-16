@@ -1,8 +1,6 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::SubscribeResultDirective;
  * Description: rappresenta un questionario ricercato;
- * Relations with other classes:
- * +
  * Creation data: 10-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.

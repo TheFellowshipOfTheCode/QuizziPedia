@@ -1,8 +1,6 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::UserDetailsDirective;
- * Description: rappresenta i dati di un utente;
- * Relations with other classes:
- * +
+ * Description: directive per la visualizzazione delle statistiche di un utente;
  * Creation data: 12-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.

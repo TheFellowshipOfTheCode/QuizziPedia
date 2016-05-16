@@ -1,8 +1,6 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::UserResultsDirective;
  * Description: rappresenta un utente ricercato;
- * Relations with other classes:
- * +
  * Creation data: 10-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
@@ -11,7 +9,7 @@
  *-------------------------------------------------------------------------------
  * ID: UserResultsDirective_20160510
  * Update data: 10-05-2016
- * Description: Creata la classe e scritto il file js;
+ * Description: Creata la classe e ultimato i metodi: goOn(), goBack(), numberOfPages() rigthColor();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

@@ -1,27 +1,21 @@
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Views::SingUpController
-* Description:
-* Relations with other classes:
-* + SignUpView
-* + AuthService
-* Creation data: 27-04-2016
+* Description: controller che gestisce l'operazione di registrazione;
+*
+*
+* Creation data: 17-04-2016
 * Author: Simone Magagna
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: SingUpController_20160504
-* Update data: 04-05-2016
-* Description: Completata la stesura della classe
+* ID: SingUpController_20160417
+* Update data: 17-05-2016
+* Description: Inserimento funzione signUp(), logIn();
 * Author: Alberto Ferrara
 *-------------------------------------------------------------------------------
-* ID: SingUpController_20160502
-* Update data: 02-05-2016
-* Description: Aggiornamento finale funzione signUp, inserimento mdDialog
-* Author: Alberto Ferrara
-*-------------------------------------------------------------------------------
-* ID: SingUpController_20160427
-* Update data: 27-04-2016
-* Description: creazione
+* ID: SingUpController_20160417
+* Update data: 17-04-2016
+* Description: creazione della classe;
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/

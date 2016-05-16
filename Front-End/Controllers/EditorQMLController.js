@@ -9,14 +9,15 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: EditorQMLController_20160513
- * Update data: 03-05-2016
- * Description: Aggiornato il controller alla versiona finale;
+ * ID: EditorQMLController_20160510
+ * Update data: 10-05-2016
+ * Description: Aggiornato il controller alla versiona finalecon il metodo
+ * goToWizard();
  * Author: Alberto Ferrara.
  * *-------------------------------------------------------------------------------
- * ID: EditorQMLController_20160510
- * Update data: 03-05-2016
- * Description: Aggiunti i metodi per le varie operazioni;
+ * ID: EditorQMLController_20160505
+ * Update data: 05-05-2016
+ * Description: Aggiunti i metodi submitQuestion();
  * Author: Alberto Ferrara.
  * -------------------------------------------------------------------------------
  * ID: EditorQMLController_20160503

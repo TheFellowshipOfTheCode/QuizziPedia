@@ -1,22 +1,21 @@
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Views::PasswordForgotController
-* Description:
-* Relations with other classes:
-* + PasswordForgoView
-* + AuthService
-* Creation data: 27-04-2016
+* Description: controller che gestisce il recupero della password;
+*
+*
+* Creation data: 26-04-2016
 * Author: Simone Magagna
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: PasswordForgotController_20160502;
-* Update data: 02-05-2016;
-* Description: Riscritta la classe con le promesse;
+* ID: PasswordForgotController_20160505;
+* Update data: 05-05-2016;
+* Description: Aggiunti i metodi logIn() e passwordForgot();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: PasswordForgotController_20160427
-* Update data: 27-04-2016
-* Description: creazione
+* ID: PasswordForgotController_20160426
+* Update data: 26-04-2016
+* Description: creazione della classe;
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/

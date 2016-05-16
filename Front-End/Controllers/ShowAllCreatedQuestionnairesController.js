@@ -10,9 +10,10 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: ShowAllCreatedQuestionnairesController_20160513;
- * Update data: 13-05-2016;
- * Description: Completata stesura della classe;
+ * ID: ShowAllCreatedQuestionnairesController_20160512;
+ * Update data: 12-05-2016;
+ * Description: Completata stesura della classe con i metodi showAllQuizzes(),
+ * goToQuiz();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  * ID: ShowAllCreatedQuestionnairesController_20160427;

@@ -7,15 +7,21 @@
  * License: MIT.
  ********************************************************************************
  * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: AppController_20160505;
+ * Update data: 05-05-2016;
+ * Description: Completata la stesura della classe, scritti i metodi getLang(),
+ * checkLang() e getUrl();
+ * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: AppController_20160502;
  * Update data: 02-05-2016;
- * Description: Scritta la gestione dell'autorizzazione dell'utente;
+ * Description: Aggiornata la gestione dell'autorizzazione dell'utente;
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: AppController_20160430;
- * Update data: 30-04-2016;
- * Description: Scritta la classe;
+ * Update data: 20-04-2016;
+ * Description: Scritta la classe e la gestione dell'autenticazione;
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

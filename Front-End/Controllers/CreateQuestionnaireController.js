@@ -1,17 +1,29 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Controllers::CreateQuestionnaireController;
- * Description: ;
- * Relations with other classes:
- * +
+ * Description: Controller che gestisce la creazione dei questionari;
+ *
+ *
  * Creation data: 03-05-2016;
  * Author: Simone Magagna;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: CreateQuestionnaireController_20160503;
- * Update data: 27-04-2016;
- * Description: Creata la classe;
+ * ID: CreateQuestionnaireController_20160504;
+ * Update data: 04-05-2016;
+ * Description: Ultimata la classe ci metodi createQMLQuestion(),
+ * createQuestionnaire() e noFilter();
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: AppController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Scritti i metodi getTopic(), resetFilters(), filterByYours(),
+ * addQuestion(), deleteQuestion();
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: CreateQuestionnaireController_2016426;
+ * Update data: 26-04-2016;
+ * Description: Creata la classe e i metodi showAllQuestions();
  * Author: Simone Magagna.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
@@ -56,33 +68,30 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
               });
     });
 
+    $scope.showAllQuestions(null,null);
+
     /*Funzioni pubbliche*/
     $scope.resetFilters = function () {
         // needs to be a function or it won't trigger a $watch
         $scope.search = {};
     };
 
-    $scope.update = function()
-    {
-        $scope.filtered = filterFilter($scope.questions, $scope.search);
-        $scope.totalItems = $scope.filtered.length;
-        $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
-    }
-
-    $scope.updateSearch = function () {
-        $scope.filtered = filterFilter($scope.questions, $scope.search);
-        $scope.maxSize  = Math.ceil($scope.questions / $scope.numPerPage);
-    };
-
-    $scope.currentPage= 1;
-    $scope.numPerPage = 10;
-
     $scope.showAllQuestions=function(topic,keyword) {
         QuizService.showAllQuestions(topic, keyword, $routeParams.lang)
             .then(function (result) {
                 if (result.data != undefined) {
                     $scope.questions = result.data;
-                    $scope.update();
+                    $scope.currentPage= 1;
+                    $scope.numPerPage = 10;
+                    $scope.totalItems = $scope.questions.length;
+                    $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
+
+                    $scope.$watch('search', function(newVal, oldVal) {
+                        $scope.filtered = filterFilter($scope.questions, newVal);
+                        $scope.totalItems = $scope.filtered.length;
+                        $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
+                        $scope.currentPage = 1;
+                    },true);
 
                 }
             }, function (err) {
@@ -98,7 +107,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     });
             });
     }
-    $scope.showAllQuestions(null,null);
+
 
     $scope.filterByYours = function (question) {
         return $scope.filter[question.author] || noFilter($scope.filter);

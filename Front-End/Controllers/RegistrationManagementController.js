@@ -1,21 +1,26 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Controllers::RegistrationManagementController;
  * Description: questa classe permette di gestire le iscrizioni ad un quiz;
- * Relations with other classes:
- * +
- * Creation data: 13-05-2016;
+ *
+ *
+ * Creation data: 10-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: SearchController_20160513;
+ * ID: RegistrationManagementController_20160513;
  * Update data: 13-05-2016;
- * Description: Inseriti tutti i metodi per la gestione delle iscrizioni;
+ * Description: Inseriti i metodi numberOfPages(), rightColor(), subscribeQuestionnaire();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
- * ID: SearchController_20160513;
- * Update data: 13-05-2016;
+ * ID: RegistrationManagementController_20160511;
+ * Update data: 11-05-2016;
+ * Description: Inseriti i metodi getUserForThisQuestionnaire(), goOn(), goBack();
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: RegistrationManagementController_20160510;
+ * Update data: 10-05-2016;
  * Description: Creata e iniziata stesura della classe;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------

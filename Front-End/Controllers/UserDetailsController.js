@@ -11,7 +11,8 @@
  *-------------------------------------------------------------------------------
  * ID: UserDetailsController_20160513;
  * Update data: 13-05-2016;
- * Description: Completata stesura della classe e di tutti i suoi metodi;
+ * Description: Inseriti i metodi loadDoneQuizzes(), loadAbilitatedQuizzes(),
+ * graphResultAfterFinishedATraining();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  * ID: UserDetailsController_20160512;

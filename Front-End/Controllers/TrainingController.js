@@ -1,16 +1,34 @@
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Controllers::;
-* Description: ;
-* Relations with other classes:
-* +
-* Creation data: 03-05-2016;
+* Name: QuizziPedia::Front-End::Controllers::TrainingController;
+* Description: controller che gestisce la modalità allenamento;
+ *
+ *
+* Creation data: 01-05-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: TrainingController_20160505;
+ * Update data: 05-05-2016;
+ * Description: Inseriti i metodi checkIfICouldGoOn(), createFilterFor(),
+ * loadTopics(), graphResultAfterFinishedATraining();
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: TrainingController_20160504;
+ * Update data: 04-05-2016;
+ * Description: Inseriti i metodi newQuestion(), updateSelectedTopic(), querySearch()
+ * , transformKey(), loadKeywords() e goBackToSetUp();
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: TrainingController_20160503;
+ * Update data: 03-05-2016;
+ * Description: Inseriti i metodi starTraining(), setInfiniteQuestion() e
+ * resetTraining();
+ * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: _20160503;
-* Update data: 03-05-2016;
+* ID: TrainingController_20160503;
+* Update data: 01-05-2016;
 * Description: Creata la classe;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------

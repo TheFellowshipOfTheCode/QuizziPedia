@@ -3,7 +3,7 @@
  * Description: questa classe permette di gestire l'autenticazione dell'utente al sistema;
  *
  *
- * Creation data: 28-04-2016;
+ * Creation data: 27-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
@@ -11,12 +11,12 @@
  *-------------------------------------------------------------------------------
  * ID: LoginController_20160502;
  * Update data: 02-05-2016;
- * Description: Scritto il gestore degli errori;
+ * Description: Scritto il metodo goToPasswordForgotPage();
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
- * ID: LoginController_20160428
- * Update data: 28-04-2016
- * Description: Creato il controller con i metodi per eseguire la login;
+ * ID: LoginController_20160427
+ * Update data: 27-04-2016
+ * Description: Creato il controller con i metodi logIn();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

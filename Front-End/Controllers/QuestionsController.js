@@ -1,6 +1,6 @@
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Controllers::;
-* Description: ;
+* Name: QuizziPedia::Front-End::Controllers::QuestionsController;
+* Description: gestisce la visualizzazione delle domande;
 * Relations with other classes:
 * +
 * Creation data: 03-05-2016;
@@ -8,8 +8,20 @@
 * License: MIT.
 ********************************************************************************
 * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionsController_20160505;
+ * Update data: 05-05-2016;
+ * Description: Aggiunti i metodi updateStatisticsUser(), updateStatisticsQuestion(),
+ * updateStatisticsTopic();
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionsController_20160504;
+ * Update data: 04-05-2016;
+ * Description: Aggiunti i metodi dragnNDropQuestions(), addAnswer(), save(),
+ * downloadNextQuestionTraining(), loadNextQuestionQuiz(), checkQuestions();
+ * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: _20160503;
+* ID: QuestionsController_20160503;
 * Update data: 03-05-2016;
 * Description: Creata la classe;
 * Author: Matteo Granzotto.

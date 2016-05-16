@@ -11,14 +11,14 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
- * ID: SearchController_20160512;
- * Update data: 12-05-2016;
- * Description: Completata stesura della classe con tutti i suoi metodi;
+ * ID: SearchController_20160504;
+ * Update data: 04-05-2016;
+ * Description: Inserito il metodo registrationToQuiz();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
- * ID: SearchController_20160510;
- * Update data: 10-05-2016;
- * Description: Iniziata stesura della classe;
+ * ID: SearchController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Inseriti i metodi searchUsers() e searchQuestionnaire();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  * ID: SearchController_20160427;

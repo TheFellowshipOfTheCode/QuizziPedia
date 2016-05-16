@@ -1,15 +1,27 @@
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Controllers::;
-* Description: ;
-* Relations with other classes:
-* +
+* Name: QuizziPedia::Front-End::Controllers::FillingQuestionnaireController;
+* Description: Controller che permette di gestire la compilazione dei questionari;
+*
+*
 * Creation data: 03-05-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: _20160503;
+* ID: FillingQuestionnaireController_20160510;
+* Update data: 10-05-2016;
+* Description: Aggiunte le funzioni goToHome(), endQuiz() e
+* graphResultAfterFinishedATraining();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: FillingQuestionnaireController_20160505;
+* Update data: 05-05-2016;
+* Description: Aggiunte le funzioni downloadQuiz(), startQuizClick() e
+ * nextQuestion();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: FillingQuestionnaireController_20160503;
 * Update data: 03-05-2016;
 * Description: Creata la classe;
 * Author: Matteo Granzotto.

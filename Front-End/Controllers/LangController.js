@@ -1,20 +1,22 @@
 /*******************************************************************************
- * Nome: QuizziPedia::Front-End::Controllers::AppController;
+ * Nome: QuizziPedia::Front-End::Controllers::LangController;
  * Description: questa classe permette di gestire la lingua dell'applicazione e
  * tiene aggiornate le direttive di BreadBarDirective, MenuBarDirective;
- * Creation data: 30-04-2016;
+ *
+ * 
+ * Creation data: 26-04-2016;
  * Author: Matteo Granzotto;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: AppController_20160502;
+ * ID: LangController_20160502;
  * Update data: 02-05-2016;
- * Description: Scritta la gestione dell'autorizzazione dell'utente;
+ * Description: Scritta la funzione goToNewLang();
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
- * ID: AppController_20160430;
- * Update data: 30-04-2016;
+ * ID: LangController_20160426;
+ * Update data: 26-04-2016;
  * Description: Scritta la classe;
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------

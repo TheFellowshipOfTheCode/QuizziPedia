@@ -3,23 +3,30 @@
 * Description: questa classe permette di gestire il menù fisso per ogni pagina;
 * Fornisce le funzionalità per aggiornare, a seconda della pagina, il contenuto
 * del menù;
-* Relations with other classes:
-* + AuthService;
-* + MenuBarModel.
+*
+*
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: MenuBarController_20160505;
+* Update data: 05-05-2016;
+* Description: Aggiunti i metodi goToUserPage(), goToUserManagementPage(),
+* goToQuestionsManagementPage() e goToQuizManagementPage();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
 * ID: MenuBarController_20160502;
 * Update data: 02-05-2016;
-* Description: Pulito il codice;
+* Description: Aggiunti i metodi buildDelayedToggler(), debounce() e
+* backToHome();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: MenuBarController_20160427;
-* Update data: 27-04-2016;
-* Description: Creata la classe;
+* ID: MenuBarController_20160425;
+* Update data: 25-04-2016;
+* Description: Creata la classe e i metodi logIn(), signUp(), logOut(),
+* showListBottomSheet(), resetRefreshBlocking(), buildToggler();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/

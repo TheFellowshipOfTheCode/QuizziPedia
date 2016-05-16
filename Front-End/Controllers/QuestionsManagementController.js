@@ -9,12 +9,17 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: LoginController_20160510
- * Update data: 10-05-2016
- * Description: Scritti i metodi per eseguire la gestione delle domande;
+ * ID: QuestionsManagementController_20160511
+ * Update data: 11-05-2016
+ * Description: Scritti i metodi goToWizardCreation() e goToQMLCreation();
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
- * ID: LoginController_20160504
+ * ID: QuestionsManagementController_20160510
+ * Update data: 10-05-2016
+ * Description: Scritti i metodi loadQuestions(), editQuestion(), uploadImage();
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionsManagementController_20160504
  * Update data: 04-05-2016
  * Description: Creato il controller;
  * Author: Alberto Ferrara.

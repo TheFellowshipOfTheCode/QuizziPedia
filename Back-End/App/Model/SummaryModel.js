@@ -6,7 +6,7 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: SummaryModel_20160502;
+ * ID: SummaryModel_20160504;
  * Update data: 04-05-2016;
  * Description: Creata classe e aggiunti metodi findSummary() e createSummary();
  * Autore: Mattia Varotto.

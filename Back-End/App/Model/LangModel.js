@@ -6,12 +6,12 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuizziPedia::Back-End::App::Model::LangModel
+ * ID: QuizziPedia::Back-End::App::Model::LangModel_20160427
  * Update data: 27-04-2016
  * Description: Aggiunti i metodi getLang(), getSlang()
  * Autore: Matteo Gnoato
  *-------------------------------------------------------------------------------
- * ID: QuizziPedia::Back-End::App::Model::LangModel
+ * ID: QuizziPedia::Back-End::App::Model::LangModel_20160427
  * Update data: 27-04-2016
  * Description: Creata connessione con mongoose, creata la definizione dello schema
  * Aggiunto metodo getVarlist.

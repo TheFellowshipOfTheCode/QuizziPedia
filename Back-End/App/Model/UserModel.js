@@ -6,14 +6,14 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
+ * ID: TopicModel_20160505;
  * Update data: 05-05-2016;
- * Description: Aggiunta le funzioni addCorrect, addTotal, generateHash,
+ * Description: Aggiunte le funzioni addCorrect, addTotal, generateHash,
  * validPassword, editUser, editPassword, setImg, getUser, upLevel,
  * deleteUser, updateSummary, getSummary, getUser, addCorrect, addTotal
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
+ * ID: TopicModel_20160505;
  * Update data: 05-05-2016;
  * Description: Aggiunta la funzione updateTopicLevel;
  * Autore: Marco Prelaz.

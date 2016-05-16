@@ -6,14 +6,14 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuizController_20160502;
+ * ID: QuizController_20160505;
  * Update data: 05-05-2016;
  * Description: aggiunti metodi createQuiz(), editQuiz(), subscribeUser(),
  * removeUser(), addActiveUser(), getQuizSubscribe(), getPersonalQuizzes(),
  * searchQuiz(), getQuiz(), getQuiz2()
  * Autore: Mattia Varotto.
  *-------------------------------------------------------------------------------
- * ID: QuizController_20160502;
+ * ID: QuizController_20160505;
  * Update data: 05-05-2016;
  * Description: aggiunti metodi della classe e aggiornato lo schema;
  * Autore: Mattia Varotto.

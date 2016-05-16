@@ -12,6 +12,11 @@
  *------------------------------------------------------------------------------
  * ID: LangService_20160427;
  * Update data: 27-04-2016;
+ * Description: Aggiunti i metodi getKeywords(), getSupportedLang e getSLang();
+ * Autore: Matteo Granzotto.
+ *------------------------------------------------------------------------------
+ * ID: LangService_20160427;
+ * Update data: 27-04-2016;
  * Description: Creato il file;
  * Autore: Matteo Granzotto.
  *------------------------------------------------------------------------------

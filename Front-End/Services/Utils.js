@@ -1,14 +1,21 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Services::;
- * Description:
- * Relations with other classes:
- * Creation data: 27-04-2016;
+ * Name: QuizziPedia::Front-End::Services::Utils;
+ * Description: questa classe contiene tutte le funzionalità che non appartengono
+ * a nessuna classe in particolare, ma sono in comune.
+ *
+ *
+ * Creation data: 09-05-2016;
  * Author: Matteo Granzotto.
  *******************************************************************************
  * Updates history
  *------------------------------------------------------------------------------
- * ID: LangService_20160427;
- * Update data: 27-04-2016;
+ * ID: Utils_20160509;
+ * Update data: 09-05-2016;
+ * Description: Inserito il metodo shuffle();
+ * Autore: Matteo Granzotto.
+ *------------------------------------------------------------------------------
+ * ID: Utils_20160509;
+ * Update data: 09-05-2016;
  * Description: Creato il file;
  * Autore: Matteo Granzotto.
  *------------------------------------------------------------------------------

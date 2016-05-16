@@ -8,9 +8,17 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuestionsService_07052016
- * Update data: 07-05-2016
- * Description: Ultimato il file con tutti i metodi.
+ * ID: QuestionsService_09052016
+ * Update data: 09-05-2016
+ * Description: Inseriti i metodi getTopics(), updateStatisticsUser(),
+ * updateStatisticsQuestion(), updateStatisticsQuestion(), uploadImge() e
+ * updateStatisticsTopic().
+ * Autore: Alberto Ferrara
+ *-------------------------------------------------------------------------------
+ * ID: QuestionsService_04052016
+ * Update data: 04-05-2016
+ * Description: Inseriti i metodi sendQuestion(), getUsersQuestions(),
+ * getQuestion(), getNextQuestion() e getKeywords().
  * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: QuestionsService_03052016

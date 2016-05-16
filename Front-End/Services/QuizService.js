@@ -3,14 +3,32 @@
  * Description: service che gestisce le richieste per i questionari;
  *
  *
- * Creation data: 03-05-2016;
+ * Creation data: 01-05-2016;
  * Author: Simone Magagna;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: QuizServices_20160504;
- * Update data: 27-04-2016;
+ * Update data: 04-05-2016;
+ * Description: Inseriti i metodi getUsersForThisQuestionnaire() e
+ * approveSubscribeQuestionnaire();
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: QuizServices_20160503;
+ * Update data: 03-05-2016;
+ * Description: Inseriti i metodi getTopic(), getQuiz(), getDoneQuestionnaire(),
+ * subscribeQuestionnaire(), getSubscribedQuestionnaire(), setQuizResult();
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: QuizServices_20160502;
+ * Update data: 02-05-2016;
+ * Description: Inseriti i metodi createQuestionnaire(), showAllCreatedQuestionnaires(),
+ * showAllQuestions();
+ * Author: Simone Magagna.
+ *-------------------------------------------------------------------------------
+ * ID: QuizServices_20160501;
+ * Update data: 01-05-2016;
  * Description: Creata la classe;
  * Author: Simone Magagna.
  *-------------------------------------------------------------------------------

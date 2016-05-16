@@ -11,7 +11,8 @@
  *-------------------------------------------------------------------------------
  * ID: AuthService_20160504
  * Update data: 04-05-2016
- * Description: Ultimata la classe con tutti i metodi.
+ * Description: Ultimata la classe con i metodi getNewPassword(), giveMe(),
+ * resetCookies() e isLogged().
  * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: AuthService_20160502

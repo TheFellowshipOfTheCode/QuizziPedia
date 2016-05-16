@@ -1,15 +1,25 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::SearchService;
- * Description: questa classe permette di gestire il recuper per una ricerca.
+ * Description: questa classe permette di gestire il recupero per una ricerca.
  *
  * 
- * Creation data: 11-05-2016
+ * Creation data: 09-05-2016
  * Author: Alberto Ferrara
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: SearchService_11052016
- * Update data: 11-05-2016
+ * ID: SearchService_12052016
+ * Update data: 12-05-2016
+ * Description: Inserito il metodo searchQuestionnaire().
+ * Autore: Alberto Ferrara
+ *-------------------------------------------------------------------------------
+ * ID: SearchService_10052016
+ * Update data: 10-05-2016
+ * Description: Inserito il metodo searchUsers().
+ * Autore: Alberto Ferrara
+ *-------------------------------------------------------------------------------
+ * ID: SearchService_09052016
+ * Update data: 09-05-2016
  * Description: Creato il file.
  * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------

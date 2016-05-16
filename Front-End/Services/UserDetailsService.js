@@ -8,9 +8,9 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuestionsService_14052016
- * Update data: 14-05-2016
- * Description: Ultimato il service con il metodo per ottenere i dettagli dell'utente
+ * ID: QuestionsService_13052016
+ * Update data: 13-05-2016
+ * Description: Ultimato il service con il metodo getUserDetails();
  * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: QuestionsService_12052016

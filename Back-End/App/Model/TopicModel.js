@@ -7,18 +7,8 @@
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: TopicModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
- * Update data: 03-05-2016;
- * Description: Aggiunto un primo prototipo della funzione getNextQuestion;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160502;
- * Update data: 04-05-2016;
- * Description: Aggiunta la funzione getKeywords;
+ * Update data: 06-05-2016;
+ * Description: Aggiunta le funzioni addCorrect e addTotal;
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: TopicModel_20160502;
@@ -27,8 +17,18 @@
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: TopicModel_20160502;
- * Update data: 06-05-2016;
- * Description: Aggiunta le funzioni addCorrect e addTotal;
+ * Update data: 04-05-2016;
+ * Description: Aggiunta la funzione getKeywords;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 03-05-2016;
+ * Description: Aggiunto un primo prototipo della funzione getNextQuestion;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160502;
+ * Update data: 02-05-2016;
+ * Description: Creata classe;
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

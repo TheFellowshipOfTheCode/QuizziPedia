@@ -8,13 +8,27 @@
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: QuestionModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
+ * Update data: 09-05-2016;
+ * Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
+ * editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
+ * getAllQuestions()
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: QuestionModel_20160509;
  * Update data: 09-05-2016;
  * Description: Modificato il questionSchema;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionModel_20160502;
+ * Update data: 02-05-2016;
+ * Description: Creata classe;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionModel_20160502;
+ * Update data: 02-05-2016;
+ * Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
+ * editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
+ * getAllQuestions()
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

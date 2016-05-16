@@ -8,7 +8,7 @@
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: ErrorModel_20160503
- * Update data: 03-05-2016
+ * Update data: 13-05-2016
  * Description: definito il modello e aggiunti i metodi getCode(), getTitle() e
  * get Message().
  * Autore: Mattia Varotto

@@ -1,15 +1,17 @@
 /*******************************************************************************
  * Name: QuizziPedia::Back-End::App::Models::LangModel
  * Description: scrivere una piccola descrizione della classe (riassunto da DDP).
- * Relations with other classes:
- * + NomeAltraClasse1
- * + NomeAltraClasse2
  * Creation data: 27-04-2016
  * Author: Matteo Gnoato
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuizziPedia::Back-End::App::Model::LangModel_20160427
+ * ID: QuizziPedia::Back-End::App::Model::LangModel
+ * Update data: 27-04-2016
+ * Description: Aggiunti i metodi getLang(), getSlang()
+ * Autore: Matteo Gnoato
+ *-------------------------------------------------------------------------------
+ * ID: QuizziPedia::Back-End::App::Model::LangModel
  * Update data: 27-04-2016
  * Description: Creata connessione con mongoose, creata la definizione dello schema
  * Aggiunto metodo getVarlist.

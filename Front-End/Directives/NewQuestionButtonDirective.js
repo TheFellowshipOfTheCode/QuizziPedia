@@ -1,8 +1,6 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::NewQuestionButtonDirective;
  * Description: contiene i pulsanti per la creazione delle domande
- * Relations with other classes:
- * +
  * Creation data: 04-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.

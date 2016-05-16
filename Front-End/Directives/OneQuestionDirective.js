@@ -1,8 +1,10 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::OneQuestionDirective;
- * Description: rappresenta una domanda creata dall'utente;
- * Relations with other classes:
- * +
+ * Description: rappresenta il componente grafico che visualizza all’utente
+ l’anteprima della domanda che ha creato. Eseguendo l’azione di click sul
+ pulsante di modifica sarà possibile modificare tale domanda. All’interno di
+ QuestionsManagementsView verranno stampati a video tanti componenti quanti
+ presenti nello $scope isolato ad esso associato;
  * Creation data: 04-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.

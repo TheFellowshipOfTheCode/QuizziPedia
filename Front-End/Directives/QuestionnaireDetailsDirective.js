@@ -1,8 +1,7 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::QuestionnaireDetailsDirective;
- * Description: rappresenta i questionari abilitati per un utente;
- * Relations with other classes:
- * +
+ * Description: rappresenta il componente grafico che permette all’utente di
+    visualizzare la lista di questionari che può compilare;
  * Creation data: 13-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.

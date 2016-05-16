@@ -1,15 +1,14 @@
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Directives::;
-* Description: ;
-* Relations with other classes:
-* +
+* Name: QuizziPedia::Front-End::Directives::EndTrainingDirective;
+* Description: directive che permette all’utente di visualizzare il resoconto
+ al termine di un allenamento;
 * Creation data: 03-05-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: _20160503;
+* ID: EndTrainingDirective_20160503;
 * Update data: 03-05-2016;
 * Description: Creata la direttiva;
 * Author: Matteo Granzotto.

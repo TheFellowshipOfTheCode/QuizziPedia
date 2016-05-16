@@ -12,12 +12,12 @@
  * Description: Inseriti messaggi d'errore specifici
  * Autore: Matteo Gnoato.
  * -------------------------------------------------------------------------------
- * Id: rispostaMultipla_20160427
+ * Id: VeroFalso_20160427
  * Update data: 27-04-2016;
  * Description: Risolto bug nella lettura dei campi obbligatori
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Id: rispostaMultipla_20160427
+ * Id: VeroFalso_20160427
  * Update data: 27-04-2016;
  * Description: Creata funzione veroFalso
  * Autore: Matteo Gnoato.

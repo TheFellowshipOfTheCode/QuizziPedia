@@ -6,18 +6,18 @@
  * Author: Mattia Varotto
  ********************************************************************************
  * Updates history
+ * *-------------------------------------------------------------------------------
+ * ID: QuizziPediaError_20160427
+ * Update data: 03-05-2016
+ * Description: definito il metodo toJSON().
+ * Autore: Mattia Varotto
  *-------------------------------------------------------------------------------
  * ID: QuizziPediaError_20160427
  * Update data: 04-05-2016
  * Description: aggiunti i metodi getCode(), getTitle(), getMessage(), toJSON()
  * e toString(); il metodo toJSON() è ancora da definire.
  * Autore: Mattia Varotto
- *-------------------------------------------------------------------------------
- * ID: QuizziPediaError_20160427
- * Update data: 03-05-2016
- * Description: definito il metodo toJSON().
- * Autore: Mattia Varotto
- *******************************************************************************/
+  *******************************************************************************/
 "use strict";
 
 module.exports = class QuizziPediaError  {

@@ -15,8 +15,8 @@
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  * ID: TopicModel_20160503;
- * Update data: 08-05-2016;
- * Description: Aggiunta la funzione updateStatisticUser;
+ * Update data: 01-05-2016;
+ * Description: Create le funzioni: searchUser(), updateDataUser(); updatePasswordUser();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

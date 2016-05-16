@@ -4,10 +4,6 @@
  * controllare la consistenza dell'oggetto session durante la sessione associata
  * all'utente autenticato. È un componente ConcreteHandler del design pattern
  * Chain of responsibility;
- * Relations with other classes:
- * + IN	UserController;
- * + OUT Session;
- * + OUT UserModel.
  * Creation data: 27-04-2016;
  * Author: Franco Berton.
  ********************************************************************************
@@ -16,6 +12,11 @@
  * ID: SessionController_20160427;
  * Update data: 27-04-2016;
  * Description: Creata classe e inserita la funzione;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ * * ID: SessionController_20160427;
+ * Update data: 02-05-2016;
+ * Description: Creato il metodo loggedin();
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

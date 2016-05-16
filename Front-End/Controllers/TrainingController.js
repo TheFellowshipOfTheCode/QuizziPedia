@@ -263,7 +263,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Event to add results*/
   var addResult = $rootScope.$on("addResult", function(event, id, args) {
-    //console.log(args);
       $scope.training.addResult(args)
   });
   $scope.$on('$destroy', addResult);

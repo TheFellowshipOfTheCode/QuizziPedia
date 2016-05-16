@@ -62,7 +62,7 @@ exports.getQuizSubscribers=function (req, res, next) {
 }
 
 exports.searchQuiz=function(req, res, next) {
-    Quiz.searchQuiz(req.params.keyword, function(err, quiz){ console.log(req.params.keyword)
+    Quiz.searchQuiz(req.params.keyword, function(err, quiz){
         if(err) return res.status(500).json({code:88, title: "Errore Quiz", message: "Nessuna quiz trovato"});
         else return res.send(quiz);
     })
@@ -136,7 +136,6 @@ exports.updateStatistic = function (req, res, next) {
 }
 
 exports.getPersonalQuizzes = function (req, res, next) {
-    console.log(req.body);
     Quiz.getPersonalQuizzes(req.user._id, function(err, personalQuizzes) {
         if (err) return res.status(500).json({
             code: 2,
@@ -144,7 +143,6 @@ exports.getPersonalQuizzes = function (req, res, next) {
             message: 'la visualizzazione dei quiz è fallita'
         });
         else {
-            console.log(personalQuizzes);
             return res.send(personalQuizzes);
         }
     })

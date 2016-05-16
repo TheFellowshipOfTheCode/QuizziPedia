@@ -73,11 +73,7 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
       );
     }
     else {
-      console.log("devo cammbiare lingua di nuovo");
-      console.log($rootScope.systemLang);
-      console.log($routeParams.lang);
       if($rootScope.systemLang != $routeParams.lang) {
-        console.log("sono diverse");
         lang = getLang($routeParams.lang);
         lang.then(function(data){
             $rootScope.systemLang = $routeParams.lang;
@@ -93,9 +89,7 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
         });
       }
       else {
-        console.log("ok è apposto");
         $rootScope.isDownloading=false;
-        console.log($rootScope.isDownloading);
       }
     }
 
@@ -109,25 +103,18 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
 
     function checkUrl(path) {
         var pathLocal = path+ '';
-        console.log(pathLocal);
         var variableOfPath= pathLocal.split("/");
-        console.log(variableOfPath);
         var combination = "noAuth";
-        console.log((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1));
-        console.log($rootScope.userLogged != undefined);
         if((variableOfPath.indexOf("login") != -1 || variableOfPath.indexOf("signup") != -1) && $rootScope.userLogged != undefined )
         {
-            console.log("Redirect to home");
             $location.path('/'+$routeParams.lang+'/home');
         }
         if(variableOfPath.indexOf("questionnairemanagement") != -1  && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() == "normal")
         {
-            console.log("Redirect to home");
             $location.path('/'+$routeParams.lang+'/home');
         }
         if((variableOfPath.indexOf("search") != -1 || variableOfPath.indexOf("questions") != -1 || variableOfPath.indexOf("questionnairemanagement") != -1 ||  variableOfPath.indexOf("userpage") != -1 || variableOfPath.indexOf("quiz") != -1) && $rootScope.userLogged === undefined)
         {
-            console.log("Redirect to home");
             $location.path('/'+$routeParams.lang+'/home');
         }
     }

@@ -44,7 +44,6 @@ function SearchService($http, $cookies, $q) {
             .then(function (data) {
                  deferred.resolve(data);
             }, function (error) {
-                console.log("err: "+ error);
                deferred.reject(error);
              });
          return deferred.promise;

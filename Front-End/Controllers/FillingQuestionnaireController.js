@@ -146,7 +146,6 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
             }
           )
           .then(function(result){
-            console.log(result.data.mark);
             $scope.quiz.setMark(result.data.mark);
           });
           $scope.quizIsFinished = true;
@@ -199,7 +198,6 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
   }
   else {
     var userDownloaded = $rootScope.$on('userDownloaded', function(event, args){
-      console.log(args);
       if(args) {
         $scope.downloadQuiz();
       }

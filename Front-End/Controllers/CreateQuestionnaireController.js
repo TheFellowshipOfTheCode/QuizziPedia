@@ -39,13 +39,11 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
   /*Costruttore*/
   QuizService.getTopic($routeParams.lang)
       .then(function(result){
-          console.log(result.data);
           if(result.data != undefined) {
               $scope.topics = result.data;
 
           }
       } ,function (err){
-          console.log(err);
           $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
           alert = $mdDialog.alert()
               .title($scope.error.getTitle())

@@ -11,6 +11,11 @@
  * Description: Creata classe e aggiunti metodi.
  * Autore: Mattia Varotto
  *-------------------------------------------------------------------------------
+ * ID: ErrorsHandler_20160503
+ * Update data: 04-05-2016
+ * Description: Creati metodi: insertError(), handleError().
+ * Autore: Mattia Varotto
+ *-------------------------------------------------------------------------------
  *******************************************************************************/
 "use strict";
 var QuizziPediaError = require('../Controller/Errors/QuizziPediaError.js');

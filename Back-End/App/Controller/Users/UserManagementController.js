@@ -19,6 +19,16 @@
  * Description: Create le funzioni: searchUser(), updateDataUser(); updatePasswordUser();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 02-05-2016;
+ * Description: Create le funzioni: updateStatisticsUser(), deleteUser(), getInfo(), getSummary();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: TopicModel_20160503;
+ * Update data: 03-05-2016;
+ * Description: Create le funzioni: getSummaries(), getUser(), getStatistics();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
  *******************************************************************************/
 
 var topic = require('../../Model/TopicModel');

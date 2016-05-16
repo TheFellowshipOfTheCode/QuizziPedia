@@ -14,7 +14,7 @@
  *-------------------------------------------------------------------------------
  * ID: SummaryController_20160512;
  * Update data: 12-05-2016;
- * Description: Aggiunto il metodo createSummary;
+ * Description: Creati metodi: createSummary() getQuizzes();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

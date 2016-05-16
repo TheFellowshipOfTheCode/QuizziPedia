@@ -14,8 +14,18 @@
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: QuestionController_20160510;
- * Update data: 10-05-2016;
- * Description: Modificata la funzione createQuestion;
+ * Update data: 03-05-2016;
+ * Description: Creati metodi: createQuestion(), uploadImage(), getQuestion();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionController_20160510;
+ * Update data: 04-05-2016;
+ * Description: Creati metodi: getQuestions(), editQuestion(), updatestatisticsQuestion();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionController_20160510;
+ * Update data: 05-05-2016;
+ * Description: Creati metodi: getAllQuestions(), getTopic();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

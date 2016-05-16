@@ -24,7 +24,7 @@
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: TopicController_20160506;
- * Update data: 06-05-2016;
+ * Update data: 05-05-2016;
  * Description: Aggiunta la funzione updateStatisticTopic e getNextQuestion è
  * stata migliorata;
  * Autore: Marco Prelaz.

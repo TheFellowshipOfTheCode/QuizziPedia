@@ -146,14 +146,5 @@ exports.getPersonalQuizzes = function (req, res, next) {
             return res.send(personalQuizzes);
         }
     })
-
-    /*quiz.getQuiz(req.body._id, function(err, quiz) {
-     if (err) return res.status(500).json({
-     code: 323,
-     title: 'quiz-getting-error',
-     message: 'byebyebye'
-     });
-     else return res.send(quiz)
-     })*/
 }
 

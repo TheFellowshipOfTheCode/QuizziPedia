@@ -115,7 +115,7 @@
                                 <div layout="row" layout-align="space-around center">
                                     <md-input-container flex="80" >
                                         <label>Search</label>
-                                        <input ng-model="search">
+                                        <input ng-model="search" ng-change="updateSearch()">
                                     </md-input-container>
                                     <md-input-container  >
                                         <md-checkbox ng-model="filter[userLogged.getId()]">Yours</md-checkbox>

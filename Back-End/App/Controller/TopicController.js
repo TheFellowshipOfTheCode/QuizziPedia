@@ -171,6 +171,21 @@ exports.updateStatisticTopic = function(req, res) {
     })
 };
 
+exports.getAllQuestions = function(req, res) {
+    Topic.getTopicQuestions(req.params.topicname, req.params.keywords.split(','), req.params.lang, function(err, questions) {
+        if (err) return res.status(500).json({code:95, title: "Errore Domande", message: "Domande non trovate"});
+        else return res.send(questions);
+    })
+}
+
+exports.getTopic = function(req, res) {
+    Topic.getTopic(req.params.lang, function(err, topic) {
+        if (err) return res.status(500).json({code:95, title: "Errore Topic", message: "Topic non presenti"});
+        else return res.send(topic);
+    })
+}
+
+
 function arrayUnique(array) {
     var a = array.concat();
     for(var i=0; i<a.length; ++i) {

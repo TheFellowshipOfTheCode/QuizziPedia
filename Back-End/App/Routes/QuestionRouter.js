@@ -21,7 +21,7 @@ var Question = require("../Controller/QuestionController");
 module.exports = function(app){
 
     app.route('/api/:lang/topics')
-        .get(Question.getTopic);
+        .get(Topic.getTopic);
 
     app.route('/api/:lang/userquestion')
         .post(Question.createQuestion)
@@ -38,7 +38,7 @@ module.exports = function(app){
         .post(Question.uploadImage);
 
     app.route('/api/:lang/allquestions/:topicname/:keywords')
-        .get(Question.getAllQuestions);
+        .get(Topic.getAllQuestions);
 
     app.route('/api/:lang/user/training/question')
         .post(Topic.getNextQuestion);

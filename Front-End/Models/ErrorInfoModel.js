@@ -3,20 +3,25 @@
  * Description: rappresenta le informazioni di un errore che si è verificato eseguendo una determinata operazione;
  *
  * 
- * Creation data: 28-04-2016;
+ * Creation data: 22-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: ErrorInfoModel_20160428
+ * ID: ErrorInfoModel_20160423
  * Update data: 28-04-2016
- * Description: Ultimato il model con tutti i metodi;
+ * Description: Aggiornato il model con tutti i metodi getter;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
- * ID: ErrorInfoModel_20160427
+ * ID: ErrorInfoModel_20160422
+ * Update data: 28-04-2016
+ * Description: Aggiornato il model con tutti i metodi setter;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: ErrorInfoModel_20160422
  * Update data: 27-04-2016
- * Description: Creato il model;
+ * Description: Creata la classe;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

@@ -1,22 +1,23 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Models::UserDetailsModel;
- * Description: rappresenta un utente. Contiene tutte le informazioni necessarie alla pre- sentazione del contenuto
- * di un utente sia nella visualizzazione che nella gestione di un profilo;
+ * Description: rappresenta un utente. Contiene tutte le informazioni necessarie
+ * alla presentazione del contenuto di un utente sia nella visualizzazione che
+ * nella gestione di un profilo;
  *
  * 
- * Creation data: 28-04-2016;
+ * Creation data: 25-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: UserDetailsModel_20160430
- * Update data: 30-04-2016
+ * ID: UserDetailsModel_20160427
+ * Update data: 27-04-2016
  * Description: Ultimato il model con tutti i metodi getter e setter;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
- * ID: UserDetailsModel_20160427
- * Update data: 28-04-2016
+ * ID: UserDetailsModel_20160425
+ * Update data: 25-04-2016
  * Description: Creato il model;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------

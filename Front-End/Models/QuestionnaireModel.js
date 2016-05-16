@@ -1,16 +1,28 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Models:QuestionnaireModel;
- * Description: ;
+ * Description: model che rappresenta un questionario;
  *
  * 
- * Creation data: 03-05-2016;
+ * Creation data: 02-05-2016;
  * Author: Simone Magagna;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: QuestionnaireModel_20160504;
- * Update data: 27-04-2016;
+ * ID: QuestionnaireModel_20160503;
+ * Update data: 03-05-2016;
+ * Description: inseriti i metodi addResult(), removeQuestion(), addQuestion(),
+ * getNumberOfQuestions(), getNumberOfQuestions(), getResultSummary() e
+ * getResultById();
+ * Author: Simone Magagna.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionnaireModel_20160502;
+ * Update data: 02-05-2016;
+ * Description: inseriti i metodi setter e getter;
+ * Author: Simone Magagna.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionnaireModel_20160502;
+ * Update data: 02-05-2016;
  * Description: Creata la classe;
  * Author: Simone Magagna.
  *-------------------------------------------------------------------------------

@@ -10,10 +10,15 @@
 * License: MIT.
 ********************************************************************************
 * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: LangModel_20160427;
+ * Update data: 27-04-2016;
+ * Description: Inseriti i metodi getter;
+ * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: LangModel_20160429;
-* Update data: 29-04-2016;
-* Description: Scritta la classe;
+* ID: LangModel_20160427;
+* Update data: 27-04-2016;
+* Description: Inseriti i metodi setter;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 * ID: LangModel_20160427;

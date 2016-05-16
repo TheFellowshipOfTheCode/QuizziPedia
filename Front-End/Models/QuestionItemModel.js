@@ -11,7 +11,12 @@
  *-------------------------------------------------------------------------------
  * ID: QuestionItemModel_05052016
  * Update data: 05-05-2016
- * Description: Ultimato il model con tutti i metodi setter e getter;
+ * Description: Inseriti i metodi getter;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionItemModel_05052016
+ * Update data: 05-05-2016
+ * Description: Inseriti i metodi setter;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  * ID: QuestionItemModel_03052016

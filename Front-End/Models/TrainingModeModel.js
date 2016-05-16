@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Models::TrainingModelModel;
+* Name: QuizziPedia::Front-End::Models::TrainingModeModel;
 * Description: rappresenta un allenamento.
  *
  *
@@ -8,8 +8,13 @@
 * License: MIT.
 ********************************************************************************
 * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: TrainingModeModel_20160503;
+ * Update data: 03-05-2016;
+ * Description: Inseriti i metodi setter e getter;
+ * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: _20160503;
+* ID: TrainingModeModel_20160503;
 * Update data: 03-05-2016;
 * Description: Creato il file;
 * Author: Matteo Granzotto.

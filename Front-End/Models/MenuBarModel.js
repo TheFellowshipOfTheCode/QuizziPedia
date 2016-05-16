@@ -6,19 +6,19 @@
 * barra menù posizionata in modo fisso su ogni pagina;
  *
  * 
-* Creation data: 27-04-2016;
+* Creation data: 26-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
-* ID: MenuBarModel_20160428;
-* Update data: 28-04-2016;
-* Description: Scritto la classe;
+* ID: MenuBarModel_20160426;
+* Update data: 26-04-2016;
+* Description: Scritti metodo getDirectives();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: MenuBarModel_20160427;
-* Update data: 27-04-2016;
+* ID: MenuBarModel_20160426;
+* Update data: 26-04-2016;
 * Description: Creato il file;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------

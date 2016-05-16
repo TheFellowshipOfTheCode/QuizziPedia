@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Libreries::createJSON;
+ * Name: QuizziPedia::Front-End::QML::createJSON;
  * Description: questo file contiene le funzioni che permettono la generazione
  * del json a partire da un testo validato dal parser QML;
  * Creation data: 27-04-2016;
@@ -7,60 +7,72 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * Id: createJSON_20160513
  * Update data: 13-05-2016;
  * Description: Ottimizzati i cicli for delle funzioni in modo da minimizzare
  * la computazione
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
+ * Id: createJSON_20160513
  * Update data: 13-05-2016;
  * Description: Risolto problemi di formazione valida del json finale
  * per la domanda custom
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
+ * Id: createJSON_20160513
  * Update data: 13-05-2016;
  * Description: Risolto problemi di formazione valida del json finale
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createCustom che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createCollegamentoelementi che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createSpaziVuoti che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createAreaCliccabile che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createOrdinamentoStringhe che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createOrdinamentoImmagini che creea la parte
  * JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createRispostaMultipla che creea
  * la parte JSON riguardante la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: createJSON_20160527
+ * Update data: 27-04-2016;
  * Description: Creata funzione createVF che creea la parte JSON riguardante
  * la tipologia specifica della domanda;
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
+ * Id: createJSON_20160527
  * Update data: 27-04-2016;
  * Description: Creata funzione che crea la parte json dei campi comuni
  * a tutte le tipologie di domanda;

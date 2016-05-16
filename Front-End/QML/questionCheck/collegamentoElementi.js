@@ -7,16 +7,19 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: collegamentoElementi_20160427
+ * Update data: 27-04-2016;
  * Description: Inseriti messaggi d'errore specifici
  * Autore: Matteo Gnoato.
  * -------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Id: collegamentoElementi_20160427
+ * Update data: 27-04-2016;
  * Description: Risolto bug nella lettura dei campi obbligatori
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
- * Description: Creata funzione ordinamentoelementi
+ * Id: collegamentoElementi_20160427
+ * Update data: 27-04-2016;
+ * Description: Creata funzione ordinamentoElementi
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
  ********************************************************************************/

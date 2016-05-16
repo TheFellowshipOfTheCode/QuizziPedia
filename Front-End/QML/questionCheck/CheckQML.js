@@ -7,15 +7,18 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: CheckQML_20160427
+ * Update data: 27-04-2016;
  * Description: Inseriti messaggi d'errore specifici
  * Autore: Matteo Gnoato.
  * -------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Id: CheckQML_20160427
+ * Update data: 27-04-2016;
  * Description: Risolto problemi di incosistenza della funzione
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: CheckQML_20160427
+ * Update data: 27-04-2016;
  * Description: Creata funzione controlloQML
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------

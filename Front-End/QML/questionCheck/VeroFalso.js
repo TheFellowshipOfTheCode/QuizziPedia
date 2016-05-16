@@ -7,15 +7,18 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: VeroFalso_20160427
+ * Update data: 27-04-2016;
  * Description: Inseriti messaggi d'errore specifici
  * Autore: Matteo Gnoato.
  * -------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Id: rispostaMultipla_20160427
+ * Update data: 27-04-2016;
  * Description: Risolto bug nella lettura dei campi obbligatori
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: rispostaMultipla_20160427
+ * Update data: 27-04-2016;
  * Description: Creata funzione veroFalso
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------

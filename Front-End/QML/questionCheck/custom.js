@@ -7,18 +7,21 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: custom_20160427
+ * Update data: 27-04-2016;
  * Description: Inseriti tutti i casi di domanda custom specifica, inseriti
  * inoltre dei messaggi d'errore specifici per i casi in cui manchino dei campi
  * obbligatori nel testo QML
  * Autore: Matteo Gnoato.
  * -------------------------------------------------------------------------------
- *  * Update data: 28-04-2016;
+ * Id: custom_20160427
+ * Update data: 27-04-2016;
  * Description: creata funzione richiamaFunzione, inseriti parzialmente
  * i casi specifici per la verifica della domanda custom
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Update data: 28-04-2016;
+ * Id: custom_20160427
+ * Update data: 27-04-2016;
  * Description: Creata funzione custom
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------

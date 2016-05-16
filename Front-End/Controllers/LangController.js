@@ -27,14 +27,11 @@ function LangController ($location, $mdBottomSheet, LangService, $rootScope, $sc
 
   $scope.goToNewLang= goToNewLang;
   function goToNewLang(lang) {
-      console.log(lang);
-      console.log("entro");
       $mdBottomSheet.hide();
       $rootScope.isDownloading=true;
       LangService
         .getSlang(lang)
         .then(function(lang){
-          console.log(lang);
           //$rootScope.systemLang=lang[0].lang;
           $location.path("/"+lang[0].lang+"/home");
           $rootScope.isDownloading=false;

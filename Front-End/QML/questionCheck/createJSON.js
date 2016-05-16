@@ -120,9 +120,7 @@ createJSON = function(corpo, res, tipologia, topic){
 
     jsonString = jsonString + "\n ]"; // questi dovrebbero chiudere il tag "question"
     jsonString = campiComuni + jsonString + jsonKey +  jsonStatistic;
-    console.log(jsonString);
     var fine = JSON.parse(jsonString);
-    console.log(fine);
     return fine;
 }
 

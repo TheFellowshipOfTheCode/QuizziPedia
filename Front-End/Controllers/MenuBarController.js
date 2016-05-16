@@ -83,7 +83,6 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
 
   $scope.backToHome = function () {
     resetRefreshBlocking();
-    console.log($rootScope.systemLang);
     $location.path('/'+$rootScope.systemLang+'/home');
   }
 

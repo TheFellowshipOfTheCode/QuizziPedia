@@ -158,7 +158,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
 
   /*Function to download the new question of the training mode*/
   function loadNextQuestionQuiz(question) {
-    //console.log(question);
         $scope.question= new QuestionItemModel(question._id, question.author, question.makeWith, question.language, question.question, question.keywords, question.level);
         $scope.objAnswer=[];
         delete $scope.temporyObjectForView;

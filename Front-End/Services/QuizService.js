@@ -120,7 +120,6 @@ function QuizService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/usersubscribe')
             .then(function(data) {
-              console.log(data);
                 deferred.resolve(data);
             }, function(error){
                 deferred.reject(error);

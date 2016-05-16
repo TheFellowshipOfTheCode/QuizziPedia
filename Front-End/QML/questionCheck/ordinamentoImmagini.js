@@ -7,17 +7,17 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
- * Id: collegamentoImmagini_20160427
+ * Id: ordinamentoImmagini_20160427
  * Update data: 27-04-2016;
  * Description: Inseriti messaggi d'errore specifici
  * Autore: Matteo Gnoato.
  * -------------------------------------------------------------------------------
- * Id: collegamentoImmagini_20160427
+ * Id: ordinamentoImmagini_20160427
  * Update data: 27-04-2016;
  * Description: Risolto bug nella lettura dei campi obbligatori
  * Autore: Matteo Gnoato.
  *-------------------------------------------------------------------------------
- * Id: collegamentoImmagini_20160427
+ * Id: ordinamentoImmagini_20160427
  * Update data: 27-04-2016;
  * Description: Creata funzione ordinamentoImmagini
  * Autore: Matteo Gnoato.

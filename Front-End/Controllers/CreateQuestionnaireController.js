@@ -34,7 +34,6 @@ app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav','filterFilter', 'ErrorInfoModel', 'QuizService', 'UserDetailsModel'];
 
 function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav,filterFilter, ErrorInfoModel, QuizService, UserDetailsModel) {
-
   /*Variabili*/
   $scope.questions_selected=[];
 
@@ -68,12 +67,25 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
               });
     });
 
-    $scope.showAllQuestions(null,null);
-
     /*Funzioni pubbliche*/
     $scope.resetFilters = function () {
         // needs to be a function or it won't trigger a $watch
         $scope.search = {};
+    };
+
+    $scope.currentPage= 1;
+    $scope.numPerPage = 10;
+
+    $scope.update = function()
+    {
+        $scope.filtered = filterFilter($scope.questions, $scope.search);
+        $scope.totalItems = $scope.filtered.length;
+        $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
+    }
+
+    $scope.updateSearch = function () {
+        $scope.filtered = filterFilter($scope.questions, {name: $scope.search.name});
+        $scope.maxSize  = Math.ceil($scope.questions / $scope.numPerPage);
     };
 
     $scope.showAllQuestions=function(topic,keyword) {
@@ -81,18 +93,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             .then(function (result) {
                 if (result.data != undefined) {
                     $scope.questions = result.data;
-                    $scope.currentPage= 1;
-                    $scope.numPerPage = 10;
-                    $scope.totalItems = $scope.questions.length;
-                    $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
-
-                    $scope.$watch('search', function(newVal, oldVal) {
-                        $scope.filtered = filterFilter($scope.questions, newVal);
-                        $scope.totalItems = $scope.filtered.length;
-                        $scope.maxSize  = Math.ceil($scope.totalItems / $scope.numPerPage);
-                        $scope.currentPage = 1;
-                    },true);
-
+                    $scope.update();
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
@@ -108,12 +109,11 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             });
     }
 
+    $scope.showAllQuestions(null,null);
 
     $scope.filterByYours = function (question) {
         return $scope.filter[question.author] || noFilter($scope.filter);
     };
-
-
 
     $scope.addQuestion=function(question){
         $scope.questions_selected.push(question);

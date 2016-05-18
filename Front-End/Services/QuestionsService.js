@@ -98,6 +98,7 @@ function QuestionsService($http, $cookies, $q) {
             var deferred = $q.defer();
             $http.post('/api/'+ lang + '/user/training/question', q)
                 .then(function(data) {
+                    console.log(data);
                     deferred.resolve(data);
                 }, function(error) {
                     deferred.reject(error);

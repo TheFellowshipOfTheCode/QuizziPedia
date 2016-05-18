@@ -273,7 +273,7 @@ createJSONriepimentoSpaziVuoti = function(corpo){
     jsonString = jsonString + " \n \"questionText\" : \"" + corpo.questionText + "\" ,";
     jsonString = jsonString + " \n \"answers\" : [{";
     for(var j=0 ; j < corpo.answer.length ; j++){
-        jsonString = jsonString + " \n \"position\" : " + corpo.answer[j].parolaNumero;
+        jsonString = jsonString + " \n \"parolaNumero\" : " + corpo.answer[j].parolaNumero;
         if(j == corpo.answer.length -1){
             jsonString = jsonString + "}]";
         }

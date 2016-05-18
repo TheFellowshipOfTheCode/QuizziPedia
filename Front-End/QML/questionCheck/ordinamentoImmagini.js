@@ -25,7 +25,7 @@
  ********************************************************************************/
 
 
-ordinamentoImmagini = function(corpo,res){
+ordinamentoImmagini = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 

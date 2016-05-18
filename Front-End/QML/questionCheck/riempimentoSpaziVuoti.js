@@ -25,7 +25,7 @@
  ********************************************************************************/
 
 
-riempimentoSpaziVuoti = function(corpo,res){
+riempimentoSpaziVuoti = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 

@@ -26,7 +26,7 @@
 
 
 
-areaCliccabile = function(corpo,res){
+areaCliccabile = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 

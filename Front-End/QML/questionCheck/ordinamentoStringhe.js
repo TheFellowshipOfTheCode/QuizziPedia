@@ -25,7 +25,7 @@
  ********************************************************************************/
 
 
-ordinamentoStringhe = function(corpo,res){
+ordinamentoStringhe = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 

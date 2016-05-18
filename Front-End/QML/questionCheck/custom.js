@@ -27,7 +27,7 @@
  *-------------------------------------------------------------------------------
  ********************************************************************************/
 
-custom = function(corpo,res){
+custom = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -48,11 +48,11 @@ custom = function(corpo,res){
         for(var k = 0; k < corpo.question.length ; k++) {
             if (corpo.question[k].hasOwnProperty('type')){
                 if (!consistente) {
-                    consistente = richiamaFunzione(corpo.question[k].type, corpo.question[k]);
+                    consistente = richiamaFunzione(corpo.question[k].type, corpo.question[k], $mdDialog);
                     campiObbligatori = true;
                 }
                 else {
-                    valido = richiamaFunzione(corpo.question[k].type, corpo.question[k]);
+                    valido = richiamaFunzione(corpo.question[k].type, corpo.question[k], $mdDialog);
                 }
                 if (!valido || !consistente){
                     return false;
@@ -91,27 +91,27 @@ custom = function(corpo,res){
     }
 }
 
-richiamaFunzione = function(tipologia, corpo){
+richiamaFunzione = function(tipologia, corpo, $mdDialog){
     if(tipologia == "veroFalso"){
-      return consistenzaVeroFalso(corpo);
+      return consistenzaVeroFalso(corpo, $mdDialog);
     }
     else if(tipologia == "rispostaMultipla"){
-        return consistenzaRispostaMultipla(corpo);
+        return consistenzaRispostaMultipla(corpo, $mdDialog);
     }
     else if(tipologia == "ordinamentoStringhe"){
-        return consistenzaOrdinamentoStringhe(corpo);
+        return consistenzaOrdinamentoStringhe(corpo, $mdDialog);
     }
     else if(tipologia == "ordinamentoImmagini"){
-        return consistenzaOrdinamentoImmagini(corpo);
+        return consistenzaOrdinamentoImmagini(corpo, $mdDialog);
     }
     else if(tipologia == "riempimentoSpaziVuoti"){
-        return consistenzaRiempimentoSpaziVutoi(corpo);
+        return consistenzaRiempimentoSpaziVutoi(corpo, $mdDialog);
     }
     else if(tipologia == "collegamentoElementi"){
-        return consistenzaCollegamentoElementi(corpo);
+        return consistenzaCollegamentoElementi(corpo, $mdDialog);
     }
     else if(tipologia == "areaCliccabile"){
-        return consistenzaAreaCliccabile(corpo);
+        return consistenzaAreaCliccabile(corpo, $mdDialog);
     }
     else{
         console.log("tipologia di domanda sconosciuta");
@@ -119,7 +119,7 @@ richiamaFunzione = function(tipologia, corpo){
     }
 }
 
-consistenzaVeroFalso = function(corpo){
+consistenzaVeroFalso = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -198,7 +198,7 @@ consistenzaVeroFalso = function(corpo){
     }
 }
 
-consistenzaRispostaMultipla = function(corpo){
+consistenzaRispostaMultipla = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -331,7 +331,7 @@ consistenzaRispostaMultipla = function(corpo){
 
 }
 
-consistenzaOrdinamentoStringhe = function(corpo){
+consistenzaOrdinamentoStringhe = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -426,7 +426,7 @@ consistenzaOrdinamentoStringhe = function(corpo){
     }
 }
 
-consistenzaOrdinamentoImmagini = function(corpo){
+consistenzaOrdinamentoImmagini = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -521,7 +521,7 @@ consistenzaOrdinamentoImmagini = function(corpo){
     }
 }
 
-consistenzaRiempimentoSpaziVutoi = function(corpo){
+consistenzaRiempimentoSpaziVutoi = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -604,7 +604,7 @@ consistenzaRiempimentoSpaziVutoi = function(corpo){
 
 }
 
-consistenzaCollegamentoElementi = function(corpo){
+consistenzaCollegamentoElementi = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 
@@ -720,7 +720,7 @@ consistenzaCollegamentoElementi = function(corpo){
 
 }
 
-consistenzaAreaCliccabile = function(corpo){
+consistenzaAreaCliccabile = function(corpo, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 

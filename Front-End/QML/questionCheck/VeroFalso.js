@@ -25,7 +25,7 @@
  ********************************************************************************/
 
 
-veroFalso = function(corpo,res){
+veroFalso = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
   

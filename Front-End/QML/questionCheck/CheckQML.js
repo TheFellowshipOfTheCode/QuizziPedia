@@ -24,7 +24,7 @@
  *-------------------------------------------------------------------------------
  ********************************************************************************/
 
-controlloQML = function(req, res, topics) {
+controlloQML = function(req, res, topics, $mdDialog) {
 
     var corpo = JSON.parse(req);
     var success;
@@ -41,44 +41,44 @@ controlloQML = function(req, res, topics) {
             }
             if (trovato) {
                 if (corpo.type == tipologiaDomande[0]) {
-                    success = veroFalso(corpo, res);
+                    success = veroFalso(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "veroFalso", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[1]) {
-                    success = rispostaMultipla(corpo, res);
+                    success = rispostaMultipla(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "rispostaMultipla", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[2]) {
-                    success = ordinamentoStringhe(corpo, res);
+                    success = ordinamentoStringhe(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "ordinamentoStringhe", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[3]) {
-                    success = ordinamentoImmagini(corpo, res);
+                    success = ordinamentoImmagini(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "ordinamentoImmagini", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[4]) {
-                    success = collegamentoElementi(corpo, res);
+                    success = collegamentoElementi(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "collegamentoElementi", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[5]) {
 
-                    success = areaCliccabile(corpo, res);
+                    success = areaCliccabile(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "areaCliccabile", topic);
                     }
                 }
                 else if (corpo.type == tipologiaDomande[6]) {
-                    success = riempimentoSpaziVuoti(corpo, res);
+                    success = riempimentoSpaziVuoti(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "riempimentoSpaziVuoti", topic);
                     }

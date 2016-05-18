@@ -25,7 +25,7 @@
  ********************************************************************************/
 
 
-rispostaMultipla = function(corpo,res){
+rispostaMultipla = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
 

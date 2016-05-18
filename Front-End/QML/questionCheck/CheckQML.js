@@ -84,7 +84,7 @@ controlloQML = function(req, res, topics, $mdDialog) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[7]) {
-                    success = custom(corpo, res);
+                    success = custom(corpo, res, $mdDialog);
                     if (success) {
                         return createJSON(corpo, res, "custom", topic);
                     }

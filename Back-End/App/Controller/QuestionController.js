@@ -33,6 +33,7 @@ var Question = require('../Model/QuestionModel');
 var Topic= require('../Model/TopicModel');
 
 exports.createQuestion = function(req, res) {
+    console.log(req.body)
     Question.createQuestion(req.user._id, req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
         else {

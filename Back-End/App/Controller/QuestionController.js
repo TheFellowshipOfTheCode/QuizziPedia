@@ -30,6 +30,7 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 var Question = require('../Model/QuestionModel');
+var Topic= require('../Model/TopicModel');
 
 exports.createQuestion = function(req, res) {
     Question.createQuestion(req.user._id, req.body, function(err, question){

@@ -270,10 +270,10 @@ createJSONareaCliccabile = function(corpo){
 
 createJSONriepimentoSpaziVuoti = function(corpo){
     var jsonString = "\"type\" : \"spaziVuoti\" ,";
-    jsonString = jsonString + " \n \"quesitonText\" : \"" + corpo.questionText + "\" ,";
-    jsonString = jsonString + " \n \"answer\" : [{";
+    jsonString = jsonString + " \n \"questionText\" : \"" + corpo.questionText + "\" ,";
+    jsonString = jsonString + " \n \"answers\" : [{";
     for(var j=0 ; j < corpo.answer.length ; j++){
-        jsonString = jsonString + " \n \"wordNumber\" : " + corpo.answer[j].parolaNumero;
+        jsonString = jsonString + " \n \"position\" : " + corpo.answer[j].parolaNumero;
         if(j == corpo.answer.length -1){
             jsonString = jsonString + "}]";
         }

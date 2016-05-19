@@ -94,7 +94,7 @@ createJSON = function(corpo, res, tipologia, topic){
     if(corpo.hasOwnProperty('keywords')){
         jsonKey = " , \n \"keywords\" : \n [ ";
         for(k = 0 ; k < corpo.keywords.length ; k++){
-            if(i == corpo.keywords.length-1){
+            if(k == corpo.keywords.length-1){
                 jsonKey = jsonKey + "\"" + corpo.keywords[k] + "\"";
             }
             else{
@@ -132,6 +132,7 @@ createJSON = function(corpo, res, tipologia, topic){
 
     jsonString = jsonString + "\n ]"; // questi dovrebbero chiudere il tag "question"
     jsonString = campiComuni + jsonString + jsonKey +  jsonStatistic;
+    console.log(jsonString);
     var fine = JSON.parse(jsonString);
     return fine;
 }
@@ -272,16 +273,17 @@ createJSONriepimentoSpaziVuoti = function(corpo){
     var jsonString = "\"type\" : \"spaziVuoti\" ,";
     jsonString = jsonString + " \n \"questionText\" : \"" + corpo.questionText + "\" ,";
     jsonString = jsonString + " \n \"answers\" : [{";
-    for(var j=0 ; j < corpo.answer.length ; j++){
+    for(j=0 ; j < corpo.answer.length ; j++){
         jsonString = jsonString + " \n \"parolaNumero\" : " + corpo.answer[j].parolaNumero;
         if(j == corpo.answer.length -1){
             jsonString = jsonString + "}]";
         }
         else {
-            jsonString = jsonString + "}, \n {";
+            jsonString = jsonString + " \n}, \n {";
         }
     }
     jsonString = jsonString + "}";
+
     return jsonString;
 }
 
@@ -306,7 +308,7 @@ createJSONcustom = function(corpo){
         else if(corpo.question[i].type == "areaCliccabile"){
             jsonString = jsonString + createJSONareaCliccabile(corpo.question[i]);
         }
-        else if(corpo.question[i].type == "spaziVuoti"){
+        else if(corpo.question[i].type == "riempimentoSpaziVuoti"){
             jsonString = jsonString + createJSONriepimentoSpaziVuoti(corpo.question[i]);
         }
         if(i == corpo.question.length -1){

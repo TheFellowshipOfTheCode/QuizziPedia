@@ -230,7 +230,7 @@ createJSONcollegamentoElementi = function(corpo){
 
 createJSONordinamentoImmagini = function(corpo){
     var jsonString = "\"type\" : \"ordinamentoImmagini\" ,";
-    jsonString = jsonString + " \n \"quesitonText\" : \"" + corpo.questionText + "\" ,";
+    jsonString = jsonString + " \n \"questionText\" : \"" + corpo.questionText + "\" ,";
     jsonString = jsonString + " \n \"answers\" : [ \n {";
     for(j = 0 ; j < corpo.answer.length ; j++){
         jsonString = jsonString + "\n \"url\" : \"" + corpo.answer[j].url + "\" ,";

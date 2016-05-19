@@ -201,7 +201,7 @@ createJSONordinamentoStringhe = function(corpo){
 }
 
 createJSONcollegamentoElementi = function(corpo){
-    var jsonString = "\"type\" : \"collegamentoElementi\" ,";
+    var jsonString = "\"type\" : \"collegamento\" ,";
     jsonString = jsonString + " \n \"questionText\" : " + "\"" + corpo.questionText + "\",";
     jsonString = jsonString + " \n \"answers\" : \n [ \n {";
     for(j=0 ; j < corpo.answer.length ; j++){

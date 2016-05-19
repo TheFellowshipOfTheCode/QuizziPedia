@@ -230,18 +230,19 @@ createJSONcollegamentoElementi = function(corpo){
 
 createJSONordinamentoImmagini = function(corpo){
     var jsonString = "\"type\" : \"ordinamentoImmagini\" ,";
-    jsonString = jsonString + "\"quesitonText\" : \"" + corpo.questionText + "\" ,";
-    jsonString = jsonString + "\"answers\" : [{";
+    jsonString = jsonString + " \n \"quesitonText\" : \"" + corpo.questionText + "\" ,";
+    jsonString = jsonString + " \n \"answers\" : [ \n {";
     for(j = 0 ; j < corpo.answer.length ; j++){
-        jsonString = jsonString + "\"url\" \"" + corpo.answer[j].url + "\" ,";
-        jsonString = jsonString + "\"position\" \"" + corpo.answer[j].position + "\"";
+        jsonString = jsonString + "\n \"url\" : \"" + corpo.answer[j].url + "\" ,";
+        jsonString = jsonString + "\n \"position\"  :\"" + corpo.answer[j].position + "\"";
         if(j == corpo.answer.length -1){
-            jsonString = jsonString + "}]";
+            jsonString = jsonString + " \n } \n]";
         }
         else {
             jsonString = jsonString + "}, \n {";
         }
     }
+    jsonString = jsonString + "}";
     return jsonString;
 
 }

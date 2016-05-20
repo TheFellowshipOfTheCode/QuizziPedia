@@ -30,7 +30,7 @@ function questionnaireDoneDetailsDirective() {
 questionnaireDoneDetailsDirectiveFunction.$inject = ['$scope'];
 
 function questionnaireDoneDetailsDirectiveFunction ($scope) {
-  $scope.currentPage = 0;
+  $scope.currentPageLineOne = 0;
   $scope.pageSize = 7;
   $scope.isActive = true;
 

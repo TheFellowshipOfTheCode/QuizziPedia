@@ -33,11 +33,25 @@ describe("Get user approved Test", function() {
             })
     })
 }); */
-
+/*
 describe("Get users active  Test", function() {
     it("should return users active", function (done) {
         agent
             .get('/api/:lang/userquizactiveUser/573ec3f7c97365bd014e3121')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500);
+                done();
+            })
+    })
+});*/
+
+describe("Put active field quiz Test", function() {
+    it("should return active ok", function (done) {
+        agent
+            .put('/api/:lang/quizactive/573ed361ebdba94cfee823bd')
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     console.log(res.body);

@@ -37,6 +37,7 @@ summarySchema.statics.findSummary=function(summaryId,callback){
          Quiz.getQuiz2(summary.quiz, function(err,quiz){
              summary.author=quiz.author
              summary.title=quiz.title
+             summary.topic=quiz.topic
              callback(null,summary)
          })
     });

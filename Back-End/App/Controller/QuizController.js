@@ -55,6 +55,7 @@ exports.getQuiz = function (req, res, next) {
 }
 
 exports.quizActive= function (req, res, next) {
+    
     Quiz.quizActive(req.params.quizId, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,

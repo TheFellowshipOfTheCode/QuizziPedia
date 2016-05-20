@@ -97,6 +97,17 @@ exports.getQuizSubscribe=function(req,res,next){
     })
 }
 
+exports.getQuizApproved = function(req,res,next){
+    Quiz.getQuizApproved(req.user._id,function(err,quiz) {
+        if (err) return res.status(500).json({
+            code: 331,
+            title: 'Questionario Error',
+            message: err.message
+        });
+        else return res.send(quiz)
+    })
+}
+
 exports.subscribeUser = function (req, res, next) {
     Quiz.subscribeUser(req.body.quizId, req.user._id, function (err, userId) {
         if (err) return res.status(500).json({
@@ -134,6 +145,18 @@ exports.addActiveUser = function (req, res, next) {
             code: 354,
             title: 'Abilitazione Utente ok',
             message: 'Abilitazione iscritto avvenuta'})
+    })
+}
+
+exports.getActiveUsers = function(req,res){
+    Quiz.getActiveUsers(req.params.quizId,function(err,users){
+        if (err)
+            return res.status(500).json({
+                code: 344,
+                title: 'getActiveUsers-error',
+                message: 'error getActiveUsers'
+            });
+        else return res.send(users)
     })
 }
 

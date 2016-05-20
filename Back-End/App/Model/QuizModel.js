@@ -103,6 +103,36 @@ quizSchema.statics.getQuizSubscribe=function(userId, callback) {
     });
 }
 
+quizSchema.statics.getQuizApproved = function(userId, callback) {
+    return this.find({activeUsers: userId},'title topic author').lean().exec(function(err,quiz){
+        if (quiz.length>0)
+            quiz.forEach(function(elem,index){
+                User.getUser(elem.author,function(err,author){
+                    if(author) {
+                        quiz[index].author=author.username
+                    }
+                    if (index+1==quiz.length){
+                        callback(null,quiz)
+                    }
+                })
+            })
+        else
+            callback(new Error("Errore l'utente non ha ottenuto l'approvazione di alcun questionario"));
+    });
+}
+
+quizSchema.statics.getActiveUsers = function(quizId, callback) {
+    return this.findOne({'_id': quizId },'activeUsers', function(err, users){
+        users.activeUsers.forEach(function(user,index){
+            User.getUser(user,function(err,activeUser) {
+                users.activeUsers[index]={_id :activeUser._id, name:activeUser.name, username:activeUser.username}
+                if (index+1 == users.activeUsers.length)
+                    callback(null, users.activeUsers)
+            });
+        })
+    })
+}
+
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
     return this.find({ author: author}, callback);
 }

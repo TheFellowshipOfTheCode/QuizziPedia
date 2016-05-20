@@ -40,6 +40,12 @@ module.exports = function(app){
     app.route('/api/:lang/userquiz/removeUser')
         .put(QuizController.removeUser);
 
+    app.route('/api/:lang/userapproved')
+        .get(QuizController.getQuizApproved)
+
     app.route('/api/:lang/userquizactiveUser')
         .post(QuizController.addActiveUser);
+
+    app.route('/api/:lang/userquizactiveUser/:quizId')
+        .get(QuizController.getActiveUsers)
 };

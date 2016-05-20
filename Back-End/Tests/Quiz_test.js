@@ -8,16 +8,47 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'blundert', password: 'ciaociao'})
+            .send({username: 'aferrara', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("userpro");
+                    res.body.user.username.should.equal("aferrara");
                 else
                     res.status.should.equal(500);
                 done()
             });
     });
 });
+
+/*
+describe("Get user approved Test", function() {
+    it("should return user approved", function (done) {
+        agent
+            .get('/api/:lang/userapproved')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500);
+                done();
+            })
+    })
+}); */
+
+describe("Get users active  Test", function() {
+    it("should return users active", function (done) {
+        agent
+            .get('/api/:lang/userquizactiveUser/573ec3f7c97365bd014e3121')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500);
+                done();
+            })
+    })
+});
+
+
 
 /*
 describe("Get topic Test", function() {

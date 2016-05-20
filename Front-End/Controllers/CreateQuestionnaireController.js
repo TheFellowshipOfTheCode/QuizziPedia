@@ -47,6 +47,18 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
 
   $scope.filter = {};
 
+    $scope.moreInfo={
+        selected:[],
+        found:[]
+    };
+
+    $scope.toggle = function(type,index) {
+        if(type=='found')
+            $scope.moreInfo.found[index] = !$scope.moreInfo.found[index];
+        else
+            $scope.moreInfo.selected[index] = !$scope.moreInfo.selected[index];
+    };
+
   /*Costruttore*/
   QuizService.getTopic($routeParams.lang)
       .then(function(result){

@@ -4,7 +4,7 @@ var request = require("supertest");
 var should = require("should")
 var agent = request.agent(app);
 var user;
-/*
+
     describe("Signin Test", function () {
         it("should signin and return a user object", function (done) {
             agent
@@ -23,6 +23,22 @@ var user;
         });
     })
 
+describe("User Done Quizzes Test", function () {
+    it("should return userdonequizzes", function (done) {
+        agent
+            .get('/api/:lang/userdonequizzes')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body)
+                else
+                    console.log(res.body);
+                done()
+            });
+    });
+})
+
+
+/*
     describe("GetInfo Test", function() {
         it("return user info", function (done) {
             agent
@@ -55,7 +71,7 @@ var user;
         });
     })
 */
-
+/*
 describe("Search Users Test", function(){
     it("should return user", function(done){
         agent
@@ -99,5 +115,5 @@ describe("Update Statistics Test", function(){
                 done()
             })
     })
-});
+});*/
 

@@ -54,6 +54,20 @@ exports.getQuiz = function (req, res, next) {
     })
 }
 
+exports.quizActive= function (req, res, next) {
+    Quiz.quizActive(req.params.quizId, function(err, quiz) {
+        if (err) return res.status(500).json({
+            code: 323,
+            title: 'Errore Questionario',
+            message: err.message
+        });
+        else
+            res.send({code: 3003,
+            title: 'Ok Questionario',
+            message: 'Abilitazione avvenuta correttamente'})
+    })
+}
+
 exports.getQuizSubscribers=function (req, res, next) {
     Quiz.getQuizSubscribers(req.params.quizId,function(err, subscribers) {
         if (err) return res.status(500).json({

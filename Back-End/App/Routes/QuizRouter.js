@@ -36,6 +36,9 @@ module.exports = function(app){
 
     app.route('/api/:lang/userquizsubscribe/:quizId')
         .get(QuizController.getQuizSubscribers);
+    
+    app.route('/api/:lang/quizactive/:quizId')
+        .put(QuizController.quizActive);
 
     app.route('/api/:lang/userquiz/removeUser')
         .put(QuizController.removeUser);

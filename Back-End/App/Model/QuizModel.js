@@ -133,6 +133,10 @@ quizSchema.statics.getActiveUsers = function(quizId, callback) {
     })
 }
 
+quizSchema.statics.quizActive = function(quizId, callback) {
+    return this.findOneAndUpdate({'_id': quizId },{$set:{active:true}}, callback)
+}
+
 quizSchema.statics.getPersonalQuizzes = function(author, callback) {
     return this.find({ author: author}, callback);
 }

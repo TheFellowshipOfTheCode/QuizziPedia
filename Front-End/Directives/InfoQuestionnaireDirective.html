@@ -42,7 +42,7 @@
           <span>{{quiz.getArgument()}}</span>
         </li>
       </ul>
-      <ul>
+      <ul ng-if="quiz.getKeyword().lenght > 0">
         <li class="keywords">
           <span>{{listOfKeys.keywords}}: </span>
         </li>

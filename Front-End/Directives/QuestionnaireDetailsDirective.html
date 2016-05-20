@@ -27,7 +27,7 @@
     <span class="a-quarter"> {{listOfKeys.quizTopic}}   </span>
 </md-toolbar>
 
-<section class="md-whiteframe-1dp" ng-if="subscribedQuizzes != undefined" ng-repeat="quiz in subscribedQuizzes | startFrom:currentPage*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+<section class="md-whiteframe-1dp" ng-if="subscribedQuizzes != undefined" ng-repeat="quiz in subscribedQuizzes | startFrom:currentPageLineThree*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
     <div class="md-toolbar-tools no-padding">
       <span class="a-quarter no-wrap "><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
       <span class="a-quarter no-wrap ">  {{quiz.author}}</span>

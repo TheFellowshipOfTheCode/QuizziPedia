@@ -29,7 +29,7 @@
     <span class="a-quarter"> {{listOfKeys.quizMark}}    </span>
 </md-toolbar>
 
-<section class="md-whiteframe-1dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPage*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+<section class="md-whiteframe-1dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
     <div class="md-toolbar-tools no-padding">
       <span class="a-quarter no-wrap "> {{quiz.title}} </span>
       <span class="a-quarter no-wrap ">  {{quiz.author}}</span>

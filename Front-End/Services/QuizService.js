@@ -195,7 +195,7 @@ function QuizService($http, $cookies, $q) {
 
     function startQuiz(quizId, lang){
         var deferred = $q.defer();
-        $http.get('/api/'+ lang + '/quizactive/' + quizId)
+        $http.put('/api/'+ lang + '/quizactive/' + quizId)
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error) {

@@ -27,8 +27,8 @@
 
 <section class="user-container-section" layout-sm="column" layout-align="center">
         <div class="img-user-container">
-                <image ng-if="user.getUserImg()==false"  class="img-user" ng-src="/Images/Icons/user-default.png"/>
-                <image ng-if="user.getUserImg()==true"  class="img-user" ng-src="user.getUserImg()"/>
+            <image ng-if="user.getUserImg()==false"  class="img-user" ng-src="/Images/Icons/user-default.png"/>
+            <image ng-if="user.getUserImg()!=false"  class="img-user" ng-src="$scope.user.getUserImg()"/>
         </div>
         <div class="user-container">
           <div class="">

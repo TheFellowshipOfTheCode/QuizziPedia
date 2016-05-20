@@ -46,6 +46,7 @@ veroFalso = function(corpo,res, $mdDialog){
                                 alert = undefined;
                             });
                         campiObbligatori = false;
+                        return false;
                     }
                 }
                 else{
@@ -59,6 +60,7 @@ veroFalso = function(corpo,res, $mdDialog){
                             alert = undefined;
                         });
                     campiObbligatori = false;
+                    return false;
                 }
             }
             else {
@@ -71,6 +73,7 @@ veroFalso = function(corpo,res, $mdDialog){
                     .finally(function () {
                         alert = undefined;
                     });
+                return false;
                 }
             // controllo campi
             var facoltativiString = ["type","answer","image", "keywords", "topic"];
@@ -93,7 +96,7 @@ veroFalso = function(corpo,res, $mdDialog){
                             alert = undefined;
                         });
                     campiFacoltativi = false;
-                    break;
+                    return false;
                 }
             }
             if(campiFacoltativi && campiObbligatori){

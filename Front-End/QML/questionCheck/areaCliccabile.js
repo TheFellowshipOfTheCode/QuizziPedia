@@ -161,7 +161,7 @@ areaCliccabile = function(corpo,res, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     // controllo se ci sono keyword inserite

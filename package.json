@@ -34,6 +34,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "angular-chart.js": "^0.10.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.5.2",
     "bower": "~1.7.9",
@@ -65,8 +66,8 @@
     "mocha": "2.x.x",
     "protractor": "^2.1.0",
     "shelljs": "^0.2.6",
-    "mongoose-simple-random" : "*",
-    "supertest" : "*",
-    "should" : "*"
+    "mongoose-simple-random": "*",
+    "supertest": "*",
+    "should": "*"
   }
 }

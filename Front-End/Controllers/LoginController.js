@@ -32,6 +32,8 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
         AuthService.signIn(username, password, $routeParams.lang)
             .then(function(result){
                 if(result.data.user != undefined) {
+                    console.log("result" + result.data.user.userImg);
+
                     var profileImg = false;
                     if(result.data.user.userImg != undefined) {
                       profileImg=result.data.user.userImg;

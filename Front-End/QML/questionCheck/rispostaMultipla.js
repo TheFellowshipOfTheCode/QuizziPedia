@@ -61,7 +61,7 @@ rispostaMultipla = function(corpo,res, $mdDialog){
                                             alert = undefined;
                                         });
                                     campiFacoltativi = false;
-                                    break;
+                                    return false;
                                 }
                             }
                         }
@@ -75,6 +75,7 @@ rispostaMultipla = function(corpo,res, $mdDialog){
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            return false;
                         }
                     }
                     else{
@@ -87,6 +88,7 @@ rispostaMultipla = function(corpo,res, $mdDialog){
                             .finally(function () {
                                 alert = undefined;
                             });
+                        return false;
                     }
                 }
                 else{
@@ -99,7 +101,7 @@ rispostaMultipla = function(corpo,res, $mdDialog){
                         .finally(function () {
                             alert = undefined;
                         });
-                    console.log("campo text mancante");
+                    return false;
                 }
             }
         }
@@ -113,6 +115,7 @@ rispostaMultipla = function(corpo,res, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -147,7 +150,7 @@ rispostaMultipla = function(corpo,res, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){

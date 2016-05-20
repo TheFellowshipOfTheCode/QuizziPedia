@@ -37,7 +37,7 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
                 if(result.data != false) {
                   var profileImg = false;
                   if(result.data.userImg != undefined) {
-                    profileImg=result.data.user.userImg;
+                      profileImg=result.data.userImg;
                   }
                   $rootScope.userLogged = new UserDetailsModel(result.data.name, result.data.surname, result.data.email, profileImg, result.data.username, result.data.statistics , result.data.experienceLevel, result.data.privilege, result.data._id);
                   $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());

@@ -50,6 +50,7 @@ ordinamentoImmagini = function(corpo,res, $mdDialog){
                             .finally(function () {
                                 alert = undefined;
                             });
+                        return false;
                     }
                 }
                 else{
@@ -62,6 +63,7 @@ ordinamentoImmagini = function(corpo,res, $mdDialog){
                         .finally(function () {
                             alert = undefined;
                         });
+                    return false;
                 }
             }
         }
@@ -75,6 +77,7 @@ ordinamentoImmagini = function(corpo,res, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -109,7 +112,7 @@ ordinamentoImmagini = function(corpo,res, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){

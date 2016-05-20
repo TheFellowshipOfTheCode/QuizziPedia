@@ -68,6 +68,7 @@ custom = function(corpo,res, $mdDialog){
                     .finally(function () {
                         alert = undefined;
                     });
+                return false;
             }
         }
     }
@@ -140,6 +141,7 @@ consistenzaVeroFalso = function(corpo, $mdDialog){
                     .finally(function () {
                         alert = undefined;
                     });
+                return false;
             }
         }
         else{
@@ -153,6 +155,7 @@ consistenzaVeroFalso = function(corpo, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     }
     else {
@@ -165,6 +168,7 @@ consistenzaVeroFalso = function(corpo, $mdDialog){
             .finally(function () {
                 alert = undefined;
             });
+        return false;
     }
     // controllo campi
     var facoltativiString = ["type","answer","image", "keywords", "topic"];
@@ -187,7 +191,7 @@ consistenzaVeroFalso = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){
@@ -234,7 +238,7 @@ consistenzaRispostaMultipla = function(corpo, $mdDialog){
                                             alert = undefined;
                                         });
                                     campiFacoltativi = false;
-                                    break;
+                                    return false;;
                                 }
                             }
                         }
@@ -248,6 +252,7 @@ consistenzaRispostaMultipla = function(corpo, $mdDialog){
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            return false;
                         }
                     }
                     else{
@@ -260,6 +265,7 @@ consistenzaRispostaMultipla = function(corpo, $mdDialog){
                             .finally(function () {
                                 alert = undefined;
                             });
+                        return false;
                     }
                 }
                 else{
@@ -272,6 +278,7 @@ consistenzaRispostaMultipla = function(corpo, $mdDialog){
                         .finally(function () {
                             alert = undefined;
                         });
+                    return false;
                 }
             }
         }
@@ -285,6 +292,7 @@ consistenzaRispostaMultipla = function(corpo, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -319,7 +327,7 @@ consistenzaRispostaMultipla = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){
@@ -356,6 +364,7 @@ consistenzaOrdinamentoStringhe = function(corpo, $mdDialog){
                             .finally(function () {
                                 alert = undefined;
                             });
+                        return false;
                     }
                 }
                 else{
@@ -368,6 +377,7 @@ consistenzaOrdinamentoStringhe = function(corpo, $mdDialog){
                         .finally(function () {
                             alert = undefined;
                         });
+                    return false;
                 }
             }
         }
@@ -381,6 +391,7 @@ consistenzaOrdinamentoStringhe = function(corpo, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -415,7 +426,7 @@ consistenzaOrdinamentoStringhe = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){
@@ -451,6 +462,7 @@ consistenzaOrdinamentoImmagini = function(corpo, $mdDialog){
                             .finally(function () {
                                 alert = undefined;
                             });
+                        return false;
                     }
                 }
                 else{
@@ -463,6 +475,7 @@ consistenzaOrdinamentoImmagini = function(corpo, $mdDialog){
                         .finally(function () {
                             alert = undefined;
                         });
+                    return false;
                 }
             }
         }
@@ -476,6 +489,7 @@ consistenzaOrdinamentoImmagini = function(corpo, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -510,7 +524,7 @@ consistenzaOrdinamentoImmagini = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){
@@ -592,7 +606,7 @@ consistenzaRiempimentoSpaziVutoi = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){
@@ -645,6 +659,7 @@ consistenzaCollegamentoElementi = function(corpo, $mdDialog){
                             .finally(function () {
                                 alert = undefined;
                             });
+                        return false;
                     }
                 }else{
                     alert = $mdDialog.alert()
@@ -657,7 +672,7 @@ consistenzaCollegamentoElementi = function(corpo, $mdDialog){
                             alert = undefined;
                         });
                     valido = false;
-                    break;
+                    return false;
                 }
             }
             if(valido){
@@ -674,6 +689,7 @@ consistenzaCollegamentoElementi = function(corpo, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -708,7 +724,7 @@ consistenzaCollegamentoElementi = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){
@@ -853,7 +869,7 @@ consistenzaAreaCliccabile = function(corpo, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){

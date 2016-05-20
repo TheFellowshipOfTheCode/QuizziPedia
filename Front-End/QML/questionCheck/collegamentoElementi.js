@@ -70,7 +70,8 @@ collegamentoElementi = function(corpo,res, $mdDialog){
                             alert = undefined;
                         });
                     valido = false;
-                    break;
+                    return false;
+
                 }
             }
             if(valido){
@@ -87,6 +88,7 @@ collegamentoElementi = function(corpo,res, $mdDialog){
                 .finally(function () {
                     alert = undefined;
                 });
+            return false;
         }
     } else{
         alert = $mdDialog.alert()
@@ -121,7 +123,7 @@ collegamentoElementi = function(corpo,res, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     // controllo se ci sono keyword inserite

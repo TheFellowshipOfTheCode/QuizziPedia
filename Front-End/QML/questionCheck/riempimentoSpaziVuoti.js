@@ -96,7 +96,7 @@ riempimentoSpaziVuoti = function(corpo,res, $mdDialog){
                     alert = undefined;
                 });
             campiFacoltativi = false;
-            break;
+            return false;
         }
     }
     if(campiFacoltativi && campiObbligatori){

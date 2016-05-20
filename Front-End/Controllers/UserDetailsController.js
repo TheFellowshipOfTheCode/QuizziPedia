@@ -37,6 +37,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
         loadAbilitatedQuizzes();
         loadApprovedQuizzes();
         graphResultAfterFinishedATraining($scope.user.getStatistics());
+        //console.log("img1:" + $scope.user.getUserImg());
     }
     else{
         var ist = $rootScope.$on("userDownloaded", function(event, args) {
@@ -45,6 +46,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 loadDoneQuizzes();
                 loadAbilitatedQuizzes();
                 loadApprovedQuizzes();
+                //console.log("img2:" + $scope.user.getUserImg());
             }
         });
         $scope.$on('$destroy', ist);

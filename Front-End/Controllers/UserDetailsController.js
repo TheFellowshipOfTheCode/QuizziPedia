@@ -35,6 +35,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
         $scope.user = $rootScope.userLogged;
         loadDoneQuizzes();
         loadAbilitatedQuizzes();
+        loadApprovedQuizzes();
         graphResultAfterFinishedATraining($scope.user.getStatistics());
     }
     else{
@@ -43,6 +44,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 $scope.user = $rootScope.userLogged;
                 loadDoneQuizzes();
                 loadAbilitatedQuizzes();
+                loadApprovedQuizzes();
             }
         });
         $scope.$on('$destroy', ist);
@@ -57,14 +59,14 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     $scope.$on('$destroy', langDownloaded);
 
     $scope.goToQuiz = function (id) {
-      $location.path("/"+$routeParams.lang+"/quiz/"+id)
+        $location.path("/"+$routeParams.lang+"/quiz/"+id)
     }
 
     function loadDoneQuizzes() {
         QuizService.getDoneQuestionnaire($routeParams.lang)
             .then(function (result) {
                 if(result.data.length != undefined){
-                     $scope.quizzes = result.data;}
+                    $scope.quizzes = result.data;}
                 else{
                     delete $scope.quizzes;
                 }
@@ -79,6 +81,32 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                     $scope.subscribedQuizzes = result.data;}
                 else{
                     delete $scope.subscribedQuizzes;
+                }
+
+            }, function (err) {
+                if(err.data.code!="331") {
+                    $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari a cui sei iscritto non andato a buon fine");
+                    alert = $mdDialog.alert()
+                        .title($scope.error.getTitle())
+                        .content($scope.error.getMessage())
+                        .ok('Ok');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                }
+            });
+
+    }
+
+    function loadApprovedQuizzes() {
+        QuizService.getApprovedQuestionnaire($routeParams.lang)
+            .then(function (result) {
+                if(result.data.length >0){
+                    $scope.approvedQuizzes = result.data;}
+                else{
+                    delete $scope.approvedQuizzes;
                 }
 
             }, function (err) {
@@ -99,18 +127,18 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     }
 
     function graphResultAfterFinishedATraining(statistics){
-      var rightAnswers = 0;
-      var totalAnswers = 0;
-      statistics.forEach(function(elem) {
-        rightAnswers = parseInt(rightAnswers) + parseInt(elem.correctAnswers);
-        totalAnswers = parseInt(totalAnswers) + parseInt(elem.totalAnswers);
+        var rightAnswers = 0;
+        var totalAnswers = 0;
+        statistics.forEach(function(elem) {
+            rightAnswers = parseInt(rightAnswers) + parseInt(elem.correctAnswers);
+            totalAnswers = parseInt(totalAnswers) + parseInt(elem.totalAnswers);
 
-      });
+        });
 
-      $scope.publicRightAnswers = rightAnswers;
-      $scope.puclicTotalAnswers = totalAnswers;
+        $scope.publicRightAnswers = rightAnswers;
+        $scope.puclicTotalAnswers = totalAnswers;
 
-      $scope.myChartDataDoughnut = [
+        $scope.myChartDataDoughnut = [
             {
                 value: rightAnswers,
                 color: "#86FC72",

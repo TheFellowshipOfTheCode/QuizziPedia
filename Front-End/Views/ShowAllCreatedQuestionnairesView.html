@@ -34,6 +34,7 @@
                 <section ng-if="personalQuizzes != undefined" class="md-whiteframe-1dp" ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center">
                     <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
                         <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="goToQuiz(q._id)">{{listOfKeys.goToSubscribeManagement}}</button>
+                        <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
                         <span class="ng-binding divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>
                         <span class="ng-binding divided"> {{listOfKeys.quizTopicResult}}: <h3>{{q.topic}} </h3> </span>
                     </div>

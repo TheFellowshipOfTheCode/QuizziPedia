@@ -50,7 +50,8 @@ function QuizService($http, $cookies, $q) {
         getSubscribedQuestionnaire: getSubscribedQuestionnaire,
         setQuizResult:setQuizResult,
         getUsersForThisQuestionnaire:getUsersForThisQuestionnaire,
-        approveSubscribeQuestionnaire:approveSubscribeQuestionnaire
+        approveSubscribeQuestionnaire:approveSubscribeQuestionnaire,
+        getApprovedQuestionnaire : getApprovedQuestionnaire
     };
 
     return methods;
@@ -137,6 +138,17 @@ function QuizService($http, $cookies, $q) {
     function getSubscribedQuestionnaire(lang){
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/usersubscribe')
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    function getApprovedQuestionnaire(lang){
+        var deferred = $q.defer();
+        $http.get('/api/' + lang + '/userapproved')
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){

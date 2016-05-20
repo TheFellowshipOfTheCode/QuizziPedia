@@ -28,24 +28,42 @@
                 </div>
 
             </md-toolbar>
+
+
+              <span ng-if="personalQuizzes === undefined">
+                <div class="spinner">
+                  <img src="Images/Icons/reload.svg"/>
+                </div>
+              </span>
+
             <section>
-                    <span ng-if="personalQuizzes == undefined"><h3> {{listOfKeys.noQuizCreatedLang}} </h3></span>
+                    <span ng-if="personalQuizzes.length == 0"><h3> {{listOfKeys.noQuizCreatedLang}} </h3></span>
             </section>
-                <section ng-if="personalQuizzes != undefined" class="md-whiteframe-2dp line-quiz  " ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-                    <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-                      <div layout="row" class="container-topic-name-quiz">
-                        <span class="divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>
-                        <span class="divided"> {{listOfKeys.quizTopicResult}}: <h3>{{q.topic}} </h3> </span>
-                      </div>
 
-                        <span flex=""> </span>
-                        <div layout="column">
-                          <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="goToQuiz(q._id)"><div> {{listOfKeys.goToSubscribeManagement}} </div> </button>
-                          <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
-                        </div>
+
+            <section ng-if="personalQuizzes != undefined" class="md-whiteframe-2dp line-quiz  " ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+                <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
+                  <div layout="row" class="container-topic-name-quiz">
+                    <span class="divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>
+                    <span class="divided"> {{listOfKeys.quizTopicResult}}: <h3>{{q.topic}} </h3> </span>
+                  </div>
+
+                    <span flex=""> </span>
+                    <div layout="column">
+                      <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="goToQuiz(q._id)"><div> {{listOfKeys.goToSubscribeManagement}} </div> </button>
+                      <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
                     </div>
-                </section>
+                </div>
+            </section>
 
+            <md-toolbar ng-if="personalQuizzes.length > 0" class="toolbar-section toolbar-top">
+              <div class="md-toolbar-tools">
+                <span flex=""></span>
+                <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+                <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(personalQuizzes.length)-1" ng-click="goOn()">>></md-button>
+                <span>{{listOfKeys.pageLang}} {{currentPageLineOne +1}} {{listOfKeys.ofLang}} {{numberOfPages(personalQuizzes.length)}}</span>
+              </div>
+            </md-toolbar>
 
 
         </section>

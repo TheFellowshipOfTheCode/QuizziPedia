@@ -27,10 +27,17 @@
                 </div>
             </md-toolbar>
 
-            <md-toolbar class="toolbar-section toolbar-top">
+            <span ng-if="subscribedUsers === undefined">
+              <div class="spinner">
+                <img src="Images/Icons/reload.svg"/>
+              </div>
+            </span>
+
+
+            <md-toolbar ng-if="subscribedUsers != undefined" class="toolbar-section toolbar-top">
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span ng-if="subscribedUsers.length == undefined"> Ci sono 0 iscritti. </span>
+                        <span ng-if="subscribedUsers.length == 0"> Ci sono 0 iscritti. </span>
                         <span ng-if="subscribedUsers.length == 1"> C'è {{subscribedUsers.length}} iscritto. </span>
                         <span ng-if="subscribedUsers.length > 1"> Ci sono {{subscribedUsers.length}} iscritti. </span>
                         </span>
@@ -38,16 +45,21 @@
                     <span flex=""></span>
                     <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
                     <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(subscribedUsers.length)-1 || subscribedUsers.length == undefined" ng-click="goOn()">>></md-button>
-                    <span ng-if="subscribedUsers.length > 0"> Page {{currentPage+1}} of {{numberOfPages(subscribedUsers.length)}}</span>
+                    <span ng-if="subscribedUsers.length > 0"> {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(subscribedUsers.length)}}</span>
 
                 </div>
             </md-toolbar>
 
-            <div ng-if="subscribedUsers != undefined" class="md-whiteframe-1dp" ng-repeat="u in subscribedUsers | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
+            <div ng-if="subscribedUsers != undefined" class="md-whiteframe-2dp line-quiz " ng-repeat="u in subscribedUsers | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
                 <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-                    <span class="ng-binding divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
-                    <span class="ng-binding divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
-                    <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="subscribeQuestionnaire(u._id)">{{listOfKeys.buttonAddLang}}</button>
+                    <span class="divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
+                    <span class="divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
+                    <span flex=""></span>
+                    <div layout="column">
+                      <span flex=""></span>
+                      <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="subscribeQuestionnaire(u._id)">{{listOfKeys.buttonAddLang}}</button>
+                      <span flex=""></span>
+                    </div>
                 </div>
             </div>
 

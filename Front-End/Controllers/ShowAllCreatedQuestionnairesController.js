@@ -47,7 +47,8 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
                     $scope.personalQuizzes = result.data;
                 }
                 else {
-                    delete $scope.personalQuizzes;
+                    $scope.personalQuizzes = [];
+
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel();
@@ -70,7 +71,7 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
             });
 
     }
-    
+
     $scope.goToQuiz = function(quizId) {
         $location.path('/' + $routeParams.lang + '/managementsubscription/' + quizId);
     }
@@ -100,4 +101,29 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
                     });
             });
     }
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.isActive = true;
+
+    $scope.goOn = function () {
+    angular.element(".scrollable").scrollTop(0,0);
+    $scope.currentPage=$scope.currentPage+1;
+    }
+
+    $scope.goBack = function () {
+    angular.element(".scrollable").scrollTop(0,0);
+    $scope.currentPage=$scope.currentPage-1;
+    }
+
+    $scope.numberOfPages=function(numberOfQuestions){
+    var value;
+      if(numberOfQuestions%$scope.pageSize > 0) {
+        value = Math.floor(numberOfQuestions/$scope.pageSize)+1;
+      }
+      else {
+        value = Math.floor(numberOfQuestions/$scope.pageSize);
+      }
+      return value;
+    };
 }

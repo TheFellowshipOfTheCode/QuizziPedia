@@ -144,10 +144,6 @@
     margin-bottom: 1em;
 }
 
-.divided{
-    margin-left: 2%;
-}
-
 .user-details{
     margin-top: 1%;
 }
@@ -157,4 +153,26 @@
 }
 .no-quiz{
     margin-left: 1%
+}
+
+.divided {
+  width: 50%;
+}
+
+.container-topic-name-quiz {
+  width: 100%;
+  word-break: break-word;
+}
+
+.line-quiz {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.odd{
+  background-color: #edebe8 !important;
+}
+
+.even {
+  background-color: white !important;
 }

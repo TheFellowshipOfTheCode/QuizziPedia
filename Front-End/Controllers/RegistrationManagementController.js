@@ -46,7 +46,7 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                 if(result.data.length >0){
                     $scope.subscribedUsers = result.data;}
                 else{
-                    delete $scope.subscribedUsers;
+                    $scope.subscribedUsers = [];
                 }
 
             }, function (err) {
@@ -119,4 +119,3 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
 
 
 }
-

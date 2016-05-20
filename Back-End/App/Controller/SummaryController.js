@@ -41,9 +41,8 @@ exports.getQuizzes = function(req, res) {
         var quiz_summary=[]
         req.user.quizSummaries.forEach(function(quizSummary,index){
             Summary.findSummary(quizSummary, function(err, elem){
-                if (err){
-                    return res.status(500).json({code:333, title:"Errore Riepiloghi", message:"Riepiloghi Err",})
-                }
+                if (err)
+                    return res.send()
                 User.getUser(elem.author, function(err,user){
                     elem.author=user.username
                     quiz_summary.push(elem)

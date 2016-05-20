@@ -55,7 +55,6 @@ exports.getQuiz = function (req, res, next) {
 }
 
 exports.quizActive= function (req, res, next) {
-    
     Quiz.quizActive(req.params.quizId, function(err, quiz) {
         if (err) return res.status(500).json({
             code: 323,
@@ -103,11 +102,7 @@ exports.editQuiz = function (req, res, next) {
 
 exports.getQuizSubscribe=function(req,res,next){
     Quiz.getQuizSubscribe(req.user._id,function(err,quiz) {
-        if (err) return res.status(500).json({
-            code: 331,
-            title: 'Iscrizione Utente Questionario Error',
-            message: err.message
-        });
+        if (err) return res.send();
         else return res.send(quiz)
     })
 }

@@ -31,12 +31,18 @@
             <section>
                     <span ng-if="personalQuizzes == undefined"><h3> {{listOfKeys.noQuizCreatedLang}} </h3></span>
             </section>
-                <section ng-if="personalQuizzes != undefined" class="md-whiteframe-1dp" ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center">
+                <section ng-if="personalQuizzes != undefined" class="md-whiteframe-2dp line-quiz  " ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
                     <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-                        <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="goToQuiz(q._id)">{{listOfKeys.goToSubscribeManagement}}</button>
-                        <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
-                        <span class="ng-binding divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>
-                        <span class="ng-binding divided"> {{listOfKeys.quizTopicResult}}: <h3>{{q.topic}} </h3> </span>
+                      <div layout="row" class="container-topic-name-quiz">
+                        <span class="divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>
+                        <span class="divided"> {{listOfKeys.quizTopicResult}}: <h3>{{q.topic}} </h3> </span>
+                      </div>
+
+                        <span flex=""> </span>
+                        <div layout="column">
+                          <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="goToQuiz(q._id)"><div> {{listOfKeys.goToSubscribeManagement}} </div> </button>
+                          <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
+                        </div>
                     </div>
                 </section>
 

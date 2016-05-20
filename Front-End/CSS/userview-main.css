@@ -159,7 +159,7 @@
     margin-left: 1%
  }
 
- user-details-directive, questionnaire-details-directive, questionnaire-done-details-directive, statistics-directive {
+ user-details-directive, questionnaire-details-directive, questionnaire-done-details-directive, statistics-directive, approved-subscribe-directive {
   margin: auto;
   width: 80%;
   display: block;

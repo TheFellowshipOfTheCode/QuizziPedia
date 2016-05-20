@@ -68,14 +68,6 @@
     display: inline;
 }
 
-.odd{
-    background-color: .edebe8;
-}
-
-.even {
-    background-color: white;
-}
-
 .toolbar-top {
     margin-bottom: 1em;
 }
@@ -123,4 +115,40 @@
 
 .quiz-title{
     margin-top: 2%;
+}
+
+.result-line {
+  margin-bottom: 5em;
+}
+
+.container-result {
+  width: 100%;
+  word-break: break-word;
+}
+
+.odd{
+  background-color: #edebe8 !important;
+}
+
+.even {
+  background-color: white !important;
+}
+
+.dimension {
+  line-height: 2.5em;
+}
+
+.dimension h3 {
+  margin-top: 1em;
+}
+
+.dimension span {
+  display: block;
+  padding-top: 1.5em;
+  margin-right: 1em;
+}
+
+.result-line-details {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }

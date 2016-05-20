@@ -18,10 +18,9 @@
  *******************************************************************************/
 -->
 
-<md-toolbar class="toolbar-section toolbar-top">
+<md-toolbar ng-if="users.length>0" class="toolbar-section toolbar-top">
     <div class="md-toolbar-tools">
         <h2>
-        <span ng-if="users.length==0"> Ci sono 0 utenti. </span>
         <span ng-if="users.length==1"> C'è {{users.length}} utente. </span>
         <span ng-if="users.length>1"> Ci sono {{users.length}} utenti. </span>
       </span>
@@ -34,11 +33,16 @@
 
 </md-toolbar>
 
-<section ng-if="users != undefined" class="md-whiteframe-1dp" ng-repeat="u in users | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
-       <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
-           <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
+<section ng-if="users != undefined" class="md-whiteframe-2dp result-line-details" ng-repeat="u in users | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+       <div class="text-center " layout="row" layout-xs="column" layout-sm="column">
            <span class="ng-binding divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
             <span class="ng-binding divided"> {{listOfKeys.userSurnameResult}}: <h3>{{u.surname}} </h3> </span>
             <span class="ng-binding divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
+            <span flex=""></span>
+            <div layout="column">
+              <span flex=""></span>
+              <button class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u._id)">{{listOfKeys.profileButton}}</button>
+              <span flex=""></span>
+            </div>
        </div>
 </section>

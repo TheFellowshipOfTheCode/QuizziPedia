@@ -74,4 +74,30 @@ function ShowAllCreatedQuestionnairesController ($scope, $rootScope, $routeParam
     $scope.goToQuiz = function(quizId) {
         $location.path('/' + $routeParams.lang + '/managementsubscription/' + quizId);
     }
+
+    $scope.startQuiz = function(quizId){
+        QuizService.startQuiz(quizId, $routeParams.lang)
+            .then(function (result) {
+                alert = $mdDialog.alert()
+                    .title("Questionario iniziato")
+                    .content("Il questionario è stato avviato")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            }, function (err) {
+
+                alert = $mdDialog.alert()
+                    .title("Errore")
+                    .content("Il questionario non è stato avviato!")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+    }
 }

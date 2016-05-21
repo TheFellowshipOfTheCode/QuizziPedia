@@ -21,8 +21,8 @@
 <md-toolbar  ng-if="quizzes.length>0" class="toolbar-section toolbar-top">
     <div class="md-toolbar-tools">
         <h2>
-        <span ng-if="quizzes.length==1"> C'è {{quizzes.length}} questionario. </span>
-        <span ng-if="quizzes.length>1"> Ci sono {{quizzes.length}} questionari. </span>
+        <span ng-if="quizzes.length==1"> {{listOfKeys.thereIsLang}}{{quizzes.length}} {{listOfKeys.thereIsQuiz}}. </span>
+        <span ng-if="quizzes.length>1"> {{listOfKeys.thereAresLang}} {{quizzes.length}} {{listOfKeys.thereAreQuizzes}}. </span>
       </span>
         </h2>
         <span flex=""></span>

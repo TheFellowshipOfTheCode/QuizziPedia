@@ -21,8 +21,8 @@
 <md-toolbar ng-if="users.length>0" class="toolbar-section toolbar-top">
     <div class="md-toolbar-tools">
         <h2>
-        <span ng-if="users.length==1"> C'è {{users.length}} utente. </span>
-        <span ng-if="users.length>1"> Ci sono {{users.length}} utenti. </span>
+        <span ng-if="users.length==1"> {{listOfKeys.thereIsLang}} {{users.length}} {{listOfKeys.userLang}}. </span>
+        <span ng-if="users.length>1"> {{listOfKeys.thereAreLang}} {{users.length}} {{listOfKeys.usersLang}}. </span>
       </span>
         </h2>
         <span flex=""></span>

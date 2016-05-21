@@ -23,9 +23,9 @@
 <md-toolbar class="modifyQuestionTitle toolbar-section toolbar-top">
   <div class="md-toolbar-tools">
     <h2>
-      <span ng-if="questions.length==0"> Ci sono 0 domande. </span>
-      <span ng-if="questions.length==1"> C'è {{questions.length}} domanda. </span>
-        <span ng-if="questions.length>1"> Ci sono {{questions.length}} domande. </span>
+      <span ng-if="questions.length==0"> {{listOfKeys.thereAreLang}} 0 {{listOfKeys.questionsLang}}. </span>
+      <span ng-if="questions.length==1"> {{listOfKeys.thereIsLang}} {{questions.length}} {{listOfKeys.questionLang}}. </span>
+        <span ng-if="questions.length>1"> {{listOfKeys.thereAreLang}} {{questions.length}} {{listOfKeys.questionsLang}}. </span>
       </span>
     </h2>
     <span flex=""></span>
@@ -40,7 +40,7 @@
   <md-toolbar class="toolbar-section">
       <div class="md-toolbar-tools">
         <h2>
-          <span>{{$index+1+pageSize*currentPage}}) Domanda creata con {{q.makeWith}}</span>
+          <span>{{$index+1+pageSize*currentPage}}) {{listOfKeys.questionCreatedWith}} {{q.makeWith}}</span>
         </h2>
         <span flex=""></span>
         <md-button class="md-raised" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
@@ -52,8 +52,8 @@
     <div class="md-padding">
       <ul>
         <li ng-repeat="d in q.question" ng-switch on="d.type" class="md-whiteframe-1dp li-question" ng-class-odd="'odd'" ng-class-even="'even'">
-          <p class="question-type">Tipologia della domanda: {{d.type}}</p>
-          <p class="inline-text">Testo della domanda:</p>
+          <p class="question-type">{{listOfKeys.questionTypeLang}}: {{d.type}}</p>
+          <p class="inline-text">{{listOfKeys.questionTextLang}}:</p>
           <div class="inline-text" ng-switch-when="veroFalso"> <true-false-answer-preview-directive></true-false-answer-preview-directive> </div>
           <div class="inline-text" ng-switch-when="rispostaMultipla"> <multiple-choice-answer-preview-directive></multiple-choice-answer-preview-directive> </div>
           <div class="inline-text" ng-switch-when="collegamento"> <linking-answer-preview-directive></linking-answer-preview-directive> </div>

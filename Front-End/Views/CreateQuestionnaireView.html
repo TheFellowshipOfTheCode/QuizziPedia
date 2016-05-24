@@ -133,9 +133,9 @@
                                 <h4 class="text-center">Domande Trovate</h4>
                             </md-card-title-text>
                         </md-card-title>
-                        <md-list>
+                        <md-list class="col-md-10 col-md-offset-1">
                             <md-item class="md-3-line row" ng-repeat="question in filtered=(questions  | filter:filterByYours | filter:search| startFrom:(currentPage-1)*numPerPage | limitTo:numPerPage)">
-                                <md-item-content  class="col-md-10 col-md-offset-1" >
+                                <md-item-content>
                                             <h4>{{(currentPage-1)*10+$index+1}}) Domanda creata con {{question.makeWith}}</h4>
                                             <div  ng-repeat="q in question.question">
                                                 <div ng-if="$index<2 || moreInfo.found[questions.indexOf(question)]">

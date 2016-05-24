@@ -134,6 +134,8 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         if (idx > -1) {
             $scope.questions.splice(idx, 1);
         }
+        if ($scope.moreInfo.found[idx])
+            $scope.moreInfo.found[idx] = !$scope.moreInfo.found[idx]
     }
 
     $scope.deleteQuestion=function(question){
@@ -143,6 +145,9 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             $scope.questions_selected.splice(idx, 1);
             $scope.quiz.questions.push(idx,1)
         }
+
+        if ($scope.moreInfo.selected[idx])
+            $scope.moreInfo.selected[idx] = !$scope.moreInfo.selected[idx]
     }
 
     $scope.createQMLQuestion = function() {

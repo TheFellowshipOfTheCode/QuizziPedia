@@ -39,7 +39,7 @@
 </style>
 <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
-    <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+    <div class="authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
 
         <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
 
@@ -52,7 +52,10 @@
             </md-toolbar>
 
             <div layout="row" layout-align="center center" >
-                <form name="quizForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+                <div class="spinner" ng-if="questions === undefined">
+                    <img src="Images/Icons/reload.svg"/>
+                </div>
+                <form name="quizForm" class="userForm" ng-if="questions != undefined" flex="100" >
 
                     <md-input-container class="md-block">
                         <label>{{listOfKeys.titleCreateQuestionnaireView}}</label>
@@ -90,7 +93,7 @@
                                                         <h5>Tipologia: {{q.type}}</h5>
                                                         <p ng-if="q.questionText">Testo: {{q.questionText}}  </p>
                                                         <div ng-if="q.answers.length>0" ng-repeat="answer in q.answers">
-                                                            <p ng-if="answer.text">Testo: {{answer.text}}</p>
+                                                            <p ng-if="answer.text">Risposta: {{answer.text}}</p>
                                                         </div>
                                                     </div>
                                             </div>
@@ -128,9 +131,19 @@
                     </md-tabs>
 
                     <md-card ng-if="questions.length>0">
-                        <md-card-title>
-                            <md-card-title-text >
-                                <h4 class="text-center">Domande Trovate</h4>
+                        <md-card-title ng-if="(questions | filter:search).length>0">
+                            <md-card-title-text class="text-center" >
+                                <h4>Domande Trovate</h4>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-title ng-if="(questions | filter:search).length==0">
+                            <md-card-title-text class="text-center" >
+                                <h4 class="m-b-20">Nessuna domanda trovata</h4>
+                                <p>E' possibile creare una domanda tramite:</p>
+                                <md-input-container >
+                                    <md-button class="md-raised md-primary"  ng-click="">QML</md-button>
+                                    <md-button class="md-raised md-primary"  ng-click="">Wizard</md-button>
+                                </md-input-container>
                             </md-card-title-text>
                         </md-card-title>
                         <md-list class="col-md-10 col-md-offset-1">
@@ -139,10 +152,10 @@
                                             <h4>{{(currentPage-1)*10+$index+1}}) Domanda creata con {{question.makeWith}}</h4>
                                             <div  ng-repeat="q in question.question">
                                                 <div ng-if="$index<2 || moreInfo.found[questions.indexOf(question)]">
-                                                    <h5>Tipologia: {{q.type}}</h5>
+                                                    <h5>Tipologia: {{(q.type.charAt(0).toUpperCase()+ q.type.slice(1)).split("(?=[A-Z])")}}</h5>
                                                     <p ng-if="q.questionText">Testo: {{q.questionText}}</p>
                                                     <div ng-if="q.answers.length>0" ng-repeat="answer in q.answers">
-                                                        <p ng-if="answer.text">Testo: {{answer.text}}</p>
+                                                        <p ng-if="answer.text">Risposta: {{answer.text}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,6 +170,7 @@
                             </md-item>
                             <div layout="row" layout-align="center center">
                                 <uib-pagination class="text-center pagination-sm"
+                                                ng-if="(questions | filter:search).length>0"
                                         ng-model="currentPage"
                                         total-items="(questions | filter:search).length"
                                         max-size="maxSize"
@@ -171,13 +185,11 @@
                             </div>
                         </md-list>
                     </md-card>
-
-
-                    <md-input-container>
-                        <div layout="row" layout-sm="column" layout-margin  layout-align="center center">
+                    <div layout="row" layout-align="center center">
+                        <md-input-container >
                             <md-button ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
-                        </div>
-                    </md-input-container>
+                        </md-input-container>
+                    </div>
 
                 </form>
 

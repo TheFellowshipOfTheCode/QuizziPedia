@@ -18,19 +18,19 @@
  *******************************************************************************/
 -->
 
-<md-toolbar ng-if="quizzes != undefined" class="toolbar-section quizzes-done quizzipedia-color" layout="row" layout-sm="row" layout-xs="row">
+<md-toolbar ng-if="quizzes != undefined" class="toolbar-section quizzes-done quizzipedia-color" layout="row" layout-sm="row" >
     <span class="divided"> <h3>{{listOfKeys.historyQuizzesLang}} </h3></span>
     <span flex=""></span>
 </md-toolbar>
 <md-toolbar ng-if="quizzes != undefined" class="toolbar-section" layout="row" layout-sm="row" layout-xs="row">
-    <span class="a-quarter"> {{listOfKeys.quizName}}    </span>
-    <span class="a-quarter"> {{listOfKeys.quizAuthor}}  </span>
-    <span class="a-quarter"> {{listOfKeys.quizTopic}}   </span>
-    <span class="a-quarter"> {{listOfKeys.quizMark}}    </span>
+    <span class="a-quarter-title"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title"> {{listOfKeys.quizTopic}}   </span>
+    <span class="a-quarter-title"> {{listOfKeys.quizMark}}    </span>
 </md-toolbar>
 
-<section class="md-whiteframe-1dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-    <div class="md-toolbar-tools no-padding">
+<section class="md-whiteframe-1dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div layout-xs="column" class="center-on-column">
       <span class="a-quarter no-wrap "> {{quiz.title}} </span>
       <span class="a-quarter no-wrap ">  {{quiz.author}}</span>
       <span class="a-quarter no-wrap ">  {{quiz.topic}} </span>

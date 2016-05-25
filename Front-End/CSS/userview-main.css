@@ -200,9 +200,31 @@
 }
 
 .a-quarter {
+  width: 24%;
+  margin: 0px;
+  text-align: center;
+  display: inline-block;
+}
+
+.a-quarter-33 {
+  width: 33%;
+  margin: 0px;
+  text-align: center;
+  display: inline-block;
+}
+
+.a-quarter-title {
   width: 25%;
   margin: 0px;
-  text-align: center
+  text-align: center;
+  display: inline-block;
+}
+
+.a-quarter-title-33 {
+  width: 33%;
+  margin: 0px;
+  text-align: center;
+  display: inline-block;
 }
 
 .no-padding {
@@ -210,7 +232,10 @@
 }
 
 .no-wrap {
-  word-wrap: break-word;
+  word-wrap: break-all;
+  font-size: 1.5em;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .vertical-align {

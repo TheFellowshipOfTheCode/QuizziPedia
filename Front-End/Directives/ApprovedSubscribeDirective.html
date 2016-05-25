@@ -22,16 +22,16 @@
     <span flex=""></span>
 </md-toolbar>
 <md-toolbar ng-if="approvedQuizzes != undefined" class="toolbar-section" layout="row" layout-sm="row" layout-xs="row">
-    <span class="a-quarter"> {{listOfKeys.quizName}}    </span>
-    <span class="a-quarter"> {{listOfKeys.quizAuthor}}  </span>
-    <span class="a-quarter"> {{listOfKeys.quizTopic}}   </span>
+    <span class="a-quarter-title-33"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title-33"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title-33"> {{listOfKeys.quizTopic}}   </span>
 </md-toolbar>
 
 <section class="md-whiteframe-1dp" ng-if="approvedQuizzes != undefined" ng-repeat="quiz in approvedQuizzes | startFrom:currentPageLineTwo*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-    <div class="md-toolbar-tools no-padding">
-        <span class="a-quarter no-wrap "><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
-        <span class="a-quarter no-wrap "> {{quiz.author}} </span>
-        <span class="a-quarter no-wrap "> {{quiz.topic}} </span>
+    <div class="center-on-column">
+        <span class="a-quarter-33 no-wrap "><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
+        <span class="a-quarter-33 no-wrap "> {{quiz.author}} </span>
+        <span class="a-quarter-33 no-wrap "> {{quiz.topic}} </span>
     </div>
 </section>
 

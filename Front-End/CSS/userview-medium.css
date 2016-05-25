@@ -1,0 +1,27 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::userview-main;
+ *
+ * Creation data: 12-05-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: userview-main_20160512
+ * Update data: 12-05-2016
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+ .img-user {
+   margin-top: 0em;
+ }
+
+ @media screen and (max-width: 960px) {
+
+   .center-on-column {
+     text-align: center;
+   }
+
+ }

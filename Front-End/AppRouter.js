@@ -319,6 +319,24 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                 }
             ]
         })
+        .when('/:lang/profilemanagement', {
+            templateUrl: '/Views/ProfileManagementView.html',
+            controller: "ProfileManagementController",
+            css: [
+                {
+
+                    href: 'css/userview-main.css'
+                },
+                {
+                    href: 'css/userview-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/userview-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
       .otherwise({
         redirectTo: '/it/home'
       })

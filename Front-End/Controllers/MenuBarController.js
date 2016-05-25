@@ -58,7 +58,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.goToUserManagementPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/'); // da completare
+    $location.path('/'+$routeParams.lang+'/profilemanagement'); // da completare
   };
   $scope.goToQuestionsManagementPage = function () {
     $location.path('/'+$routeParams.lang+'/questions');

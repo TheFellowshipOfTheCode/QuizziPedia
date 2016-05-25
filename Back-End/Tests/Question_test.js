@@ -8,10 +8,10 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'userpro@gmail.com', password: 'userpro1'})
+            .send({username: 'albertoferrara92@gmail.com', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("userpro");
+                    res.body.user.username.should.equal("aferrara");
                 else
                     res.status.should.equal(500);
                 done()
@@ -176,8 +176,8 @@ describe("Create Question Test", function(){
                         ]
                     }
                 ],
-                keywords: ["4"],
-                topic: "Architettura"
+                keywords: ["Prova"],
+                topic: "Informatica"
             })
             .end(function(err,res){ 
                 if (!err && res.status == 200){

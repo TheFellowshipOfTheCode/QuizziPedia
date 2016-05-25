@@ -147,8 +147,12 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
           $rootScope.$emit("checkAnswerEvent",$scope.quiz.getArgument(), $scope.userLogged.getLevelByTopic($scope.quiz.getArgument()));
           $scope.stopToGoBack = false;
           graphResultAfterFinishedATraining();
-          for(var i= $scope.questionNumberOnQuiz++; i < $scope.getNumberOfQuestions; i++) {
+          console.log($scope.questionNumberOnQuiz++);
+          console.log($scope.getNumberOfQuestions);
+          console.log($scope.quiz.getNumberOfQuestions());
+          for(var i= $scope.questionNumberOnQuiz++; i < $scope.quiz.getNumberOfQuestions(); i++) {
             $scope.quiz.addResult(questions[i]._id, false);
+            console.log(i);
           }
           QuizService.setQuizResult($routeParams.lang,
             {
@@ -204,7 +208,7 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
 
 
   /*actions to do on the start of the loading of teh page*/
-  
+
   if($rootScope.userLogged != undefined ){
     $scope.downloadQuiz();
   }

@@ -159,7 +159,9 @@ function QuizService($http, $cookies, $q) {
     }
 
     function setQuizResult(lang, resultOfQuiz) {
+        console.log(resultOfQuiz);
         var q = JSON.stringify(resultOfQuiz, null, "  ");
+        console.log(q);
         var deferred = $q.defer();
         $http.post('/api/'+ lang + '/user/quiz/summary', q)
             .then(function(data) {

@@ -9,31 +9,35 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160501;
- * Update data: 01-05-2016;
- * Description: Creata classe;
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
- * Update data: 01-05-2016;
- * Description: Create le funzioni: searchUser(), updateDataUser(); updatePasswordUser();
+ * ID: UserManagementController_20160503;
+ * Update data: 25-05-2016;
+ * Description: Creata le funzioni: updateDataUser(), deleteUser(), getInfo();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
- * Update data: 02-05-2016;
- * Description: Create le funzioni: updateStatisticsUser(), deleteUser(), getInfo(), getSummary();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
+ * ID: UserManagementController_20160503;
  * Update data: 03-05-2016;
  * Description: Create le funzioni: getSummaries(), getUser(), getStatistics();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
+ * ID: UserManagementController_20160502;
+ * Update data: 02-05-2016;
+ * Description: Create le funzioni: updateStatisticsUser(), getSummary();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: UserManagementController_20160501;
+ * Update data: 01-05-2016;
+ * Description: Create la funzione searchUser();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: UserManagementController_20160501;
+ * Update data: 01-05-2016;
+ * Description: Creata classe;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-var topic = require('../../Model/TopicModel');
 var user = require('../../Model/UserModel');
-var Summary = require('../../Model/SummaryModel');
+var summary = require('../../Model/SummaryModel');
 var quiz = require('../../Model/QuizModel');
 var error = require('../../Model/ErrorModel');
 
@@ -46,9 +50,19 @@ exports.searchUser=function(req, res) {
 };
 
 exports.updateDataUser = function(req, res, next) {
-    req.user.editUser(req.content,function(err){
-        if (err) return res.status(500).json(error.findOne({code:700}));
-        return res.send(200);
+    req.user.editUser(req.body.name, req.body.surname, req.body.email, function(err){
+        if (err)
+            return res.status(500).json({
+                code: 814,
+                title: "Errore",
+                message: "Dati utente non aggiornati"
+            });
+        else
+            return res.send({
+                code: 222,
+                title: "Ok",
+                message: "Dati utente aggiornati correttamente"
+            });
     })
 };
 
@@ -97,29 +111,32 @@ exports.updateStatisticUser = function(req, res) {
     }
 };
 
-    
- 
-
 exports.deleteUser = function(req, res, next) {
     req.user.deleteUser(function(err,user){
         if (err)
-            return handleError(err)
+            return res.status(500).json({
+                code: 555,
+                title: "Errore",
+                message: "Utente non eliminato"
+            });
         else
-            return res.send(user)
+            return res.send({
+                code: 222,
+                title: "Ok",
+                message: "Utente eliminato"
+            });
     })
 };
 
 
 exports.getInfo = function(req, res, next) {
-    userId=req.params.userId.replace(':','');
-    user.findOne({'_id':userId},'name surname userImg experienceLevel', function(err,info){
-        /*if (err) return res.status(522).json({
-            code: 2,
-            title: 'visualizzazione-quiz-fallita',
-            message: 'la visualizzazione dei quiz è fallita'
-        });*/
+    user.findOne({'_id':req.user._id},'name surname email privilege userImg experienceLevel', function(err,info){
         if (err)
-            return err;
+            return res.status(500).json({
+                code: 412,
+                title: "Errore",
+                message: "Info utente non trovate"
+            });
         else
             return res.send(info);
     })
@@ -134,7 +151,7 @@ exports.getSummary= function(req, res, next) {
 };
 
 exports.getSummaries = function(req, res, next) {
-    req.user.getSummaries(function(error,summaries){
+req.req.user.getSummaries(function(error,summaries){
         if(err) return res.status(500).json(err.findOne({code:700}));
         var query=summary.find({'quiz':{$in:summaries.quizSummaries.quiz}});
         var query2=quiz.find({'_id':{$in:query.quiz}});
@@ -145,12 +162,4 @@ exports.getSummaries = function(req, res, next) {
         };
         return res.send(dataSummaries);
     });
-};
-
-exports.getUsers = function(req, res, next) {
-
-};
-
-exports.getStatistics = function(req, res, next) {
-
 };

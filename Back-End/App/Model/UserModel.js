@@ -61,8 +61,16 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.editUser=function(content,callback,errback){
-    return User.update({username: this.username},content, callback);
+userSchema.methods.editUser=function(name, surname, email, callback){
+    return this.model('User').findOne({_id: this._id}, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        user.name=name;
+        user.surname=surname;
+        user.email=email;
+        return user.save(callback);
+    });
 };
 
 userSchema.methods.editPassword=function(password,errback){

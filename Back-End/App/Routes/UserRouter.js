@@ -37,8 +37,9 @@ module.exports = function(app){
     app.route('/api/:lang/loggedin')
         .get(user.session.loggedin);
 
-    app.route('/api/:lang/user/:userId')
-        .get(user.userManagement.getInfo);
+    app.route('/api/:lang/user/info')
+        .get(user.userManagement.getInfo)
+        .put(user.userManagement.updateDataUser);
 
     app.route('/api/:lang/user')
         .delete(user.userManagement.deleteUser);

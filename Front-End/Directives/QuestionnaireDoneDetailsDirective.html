@@ -43,8 +43,8 @@
 <md-toolbar ng-if="quizzes != undefined" class="toolbar-section toolbar-top">
   <div class="md-toolbar-tools center-on-column">
     <span flex=""></span>
-    <md-button class="md-raised" ng-disabled="currentPageLineOne <= 0" ng-click="goBack()"><<</md-button>
-    <md-button class="md-raised" ng-disabled="currentPageLineOne >= numberOfPages(quizzes.length)-1" ng-click="goOn()">>></md-button>
+    <md-button class="md-raised" ng-disabled="currentPageLineOne <= 0" ng-click="goBackOne()"><<</md-button>
+    <md-button class="md-raised" ng-disabled="currentPageLineOne >= numberOfPages(quizzes.length)-1" ng-click="goOnOne()">>></md-button>
     <span class="hide-me-when-i-am-ugly">{{listOfKeys.pageLang}} {{currentPageLineOne +1}} {{listOfKeys.ofLang}} {{numberOfPages(quizzes.length)}}</span>
   </div>
 </md-toolbar>

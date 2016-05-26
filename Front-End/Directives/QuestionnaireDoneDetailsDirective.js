@@ -34,14 +34,14 @@ function questionnaireDoneDetailsDirectiveFunction ($scope) {
   $scope.pageSize = 7;
   $scope.isActive = true;
 
-  $scope.goOn = function () {
-  angular.element(".scrollable").scrollTop(0,0);
-  $scope.currentPage=$scope.currentPage+1;
+  $scope.goOnOne = function () {
+    console.log("entro");
+  $scope.currentPageLineOne=$scope.currentPageLineOne+1;
+  console.log($scope.currentPageLineOne);
   }
 
-  $scope.goBack = function () {
-  angular.element(".scrollable").scrollTop(0,0);
-  $scope.currentPage=$scope.currentPage-1;
+  $scope.goBackOne = function () {
+  $scope.currentPageLineOne=$scope.currentPageLineOne-1;
   }
 
   $scope.numberOfPages=function(numberOfQuestions){

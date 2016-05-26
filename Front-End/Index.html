@@ -42,7 +42,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-startup-image" href="Images/Icons/logo.png">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="Images/Icons/logo.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="Images/Icons/logo.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="Images/Icons/logo.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="Images/Icons/logo.png">
 
     <!-- Mobile view -->
     <meta name="viewport" content="width=device-width, user-scalable=yes">
@@ -102,9 +106,9 @@
     <div layout="column" tabindex="-1" role="main" flex="" class="layout-column flex">
       <bread-bar-directive></bread-bar-directive>
       <md-content layout="column" flex="" class="_md layout-column flex scrollable">
-        <div  layout-fill="" layout-align="top center">
+        <div layout-fill="" layout-align="top center">
           <!-- AngularJS's views -->
-          <div data-ng-view>
+          <div data-ng-view class="all-the-screen">
           </div>
           <footer-directive></footer-directive>
         </div>

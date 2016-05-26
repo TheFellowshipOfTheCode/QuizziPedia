@@ -167,3 +167,7 @@ footer ul  {
   left: 0px;
   background-color: rgba(255, 255, 255, 0.8);
 }
+
+.all-the-screen {
+  min-height: 100vh;
+}

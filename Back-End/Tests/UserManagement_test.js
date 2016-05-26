@@ -1,4 +1,4 @@
-
+/*
 var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
@@ -23,7 +23,7 @@ var user;
                 });
         });
     })
-/*
+
 describe("User Done Quizzes Test", function () {
     it("should return userdonequizzes", function (done) {
         agent
@@ -91,7 +91,7 @@ describe("Search Users Test", function(){
             })
     })
 });
-*/
+
 
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
@@ -118,7 +118,7 @@ describe("Update Statistics Test", function(){
     })
 });
 
-/*
+
 describe("Update Info User Test", function(){
     it("should update the info of a user", function(done){
         this.timeout(10000);

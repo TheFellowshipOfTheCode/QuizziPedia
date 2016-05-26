@@ -18,10 +18,34 @@
    margin-top: 0em;
  }
 
- @media screen and (max-width: 960px) {
+ @media screen and (max-width: 660px) {
 
-   .center-on-column {
-     text-align: center;
+  .center-on-column {
+    text-align: center;
+    display: block;
+    width: 95%;
+    margin: auto;
+    padding: 0.5em;
+    border-top-style: dotted;
+    border-top-width: 1px;
+    border-top-color: rgba(0, 0, 0, 0.13);
+  }
+
+  .no-border {
+    border: none;
+  }
+
+  .divided {
+    width: 100%;
+    text-align: center;
+  }
+
+ }
+
+ @media screen and (max-width: 575px) {
+
+   .hide-me-when-i-am-ugly {
+     font-size: 0.75em;
    }
 
  }

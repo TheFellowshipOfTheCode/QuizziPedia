@@ -210,7 +210,7 @@
   width: 33%;
   margin: 0px;
   text-align: center;
-  display: inline-block;
+  display: inline-block  !important;
 }
 
 .a-quarter-title {
@@ -221,7 +221,7 @@
 }
 
 .a-quarter-title-33 {
-  width: 33%;
+  width: 32%;
   margin: 0px;
   text-align: center;
   display: inline-block;
@@ -256,4 +256,14 @@
 
 .padding-bottom {
   padding-bottom: 1em;
+}
+
+.line {
+  margin-bottom: 0.8em;
+  min-height: 3.75em;
+}
+
+.legends {
+  background-color: rgba(255, 250, 40, 0.28) !important;
+  margin-bottom: 0.8em;
 }

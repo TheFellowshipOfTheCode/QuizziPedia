@@ -13,3 +13,22 @@
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+.pie-chart {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.hide-me-when-i-am-ugly {
+  display: none;
+}
+
+@media screen and (max-width: 345px) {
+
+  .toolbar-section div {
+      min-height: 6em;
+  }
+
+  .toolbar-section button {
+    margin-top: 0.5em !important;
+  }
+}

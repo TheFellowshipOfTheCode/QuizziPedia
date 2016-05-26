@@ -22,28 +22,28 @@
     <span class="divided"> <h3>{{listOfKeys.historyQuizzesLang}} </h3></span>
     <span flex=""></span>
 </md-toolbar>
-<md-toolbar ng-if="quizzes != undefined" class="toolbar-section" layout="row" layout-sm="row" layout-xs="row">
-    <span class="a-quarter-title"> {{listOfKeys.quizName}}    </span>
-    <span class="a-quarter-title"> {{listOfKeys.quizAuthor}}  </span>
-    <span class="a-quarter-title"> {{listOfKeys.quizTopic}}   </span>
-    <span class="a-quarter-title"> {{listOfKeys.quizMark}}    </span>
+<md-toolbar ng-if="quizzes != undefined" class="toolbar-section legends" layout="row" layout-sm="row" layout-xs="column">
+    <span class="a-quarter-title center-on-column no-border"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title center-on-column"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title center-on-column"> {{listOfKeys.quizTopic}}   </span>
+    <span class="a-quarter-title center-on-column"> {{listOfKeys.quizMark}}    </span>
 </md-toolbar>
 
-<section class="md-whiteframe-1dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-    <div layout-xs="column" class="center-on-column">
-      <span class="a-quarter no-wrap "> {{quiz.title}} </span>
-      <span class="a-quarter no-wrap ">  {{quiz.author}}</span>
-      <span class="a-quarter no-wrap ">  {{quiz.topic}} </span>
-      <span class="a-quarter no-wrap "> {{quiz.mark}} </span>
+<section class="line md-whiteframe-2dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div layout-xs="column">
+      <span class="a-quarter no-wrap center-on-column no-border"> {{quiz.title}} </span>
+      <span class="a-quarter no-wrap center-on-column">  {{quiz.author}}</span>
+      <span class="a-quarter no-wrap center-on-column">  {{quiz.topic}} </span>
+      <span class="a-quarter no-wrap center-on-column"> {{quiz.mark}} </span>
     </div>
 </section>
 
 <md-toolbar ng-if="quizzes != undefined" class="toolbar-section toolbar-top">
-  <div class="md-toolbar-tools">
+  <div class="md-toolbar-tools center-on-column">
     <span flex=""></span>
     <md-button class="md-raised" ng-disabled="currentPageLineOne <= 0" ng-click="goBack()"><<</md-button>
     <md-button class="md-raised" ng-disabled="currentPageLineOne >= numberOfPages(quizzes.length)-1" ng-click="goOn()">>></md-button>
-    <span>{{listOfKeys.pageLang}} {{currentPageLineOne +1}} {{listOfKeys.ofLang}} {{numberOfPages(quizzes.length)}}</span>
+    <span class="hide-me-when-i-am-ugly">{{listOfKeys.pageLang}} {{currentPageLineOne +1}} {{listOfKeys.ofLang}} {{numberOfPages(quizzes.length)}}</span>
   </div>
 </md-toolbar>
 

@@ -296,7 +296,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/userview-small',
+                    href: 'css/userview-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]

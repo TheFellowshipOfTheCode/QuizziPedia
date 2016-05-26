@@ -21,26 +21,26 @@
     <span class="divided"> <h3>{{listOfKeys.approvedQuizzesLang}} </h3></span>
     <span flex=""></span>
 </md-toolbar>
-<md-toolbar ng-if="approvedQuizzes != undefined" class="toolbar-section" layout="row" layout-sm="row" layout-xs="row">
-    <span class="a-quarter-title-33"> {{listOfKeys.quizName}}    </span>
-    <span class="a-quarter-title-33"> {{listOfKeys.quizAuthor}}  </span>
-    <span class="a-quarter-title-33"> {{listOfKeys.quizTopic}}   </span>
+<md-toolbar ng-if="approvedQuizzes != undefined" class="toolbar-section legends" layout="row" layout-sm="row" layout-xs="column">
+    <span class="a-quarter-title-33 center-on-column no-border"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title-33 center-on-column"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title-33 center-on-column"> {{listOfKeys.quizTopic}}   </span>
 </md-toolbar>
 
-<section class="md-whiteframe-1dp" ng-if="approvedQuizzes != undefined" ng-repeat="quiz in approvedQuizzes | startFrom:currentPageLineTwo*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-    <div class="center-on-column">
-        <span class="a-quarter-33 no-wrap "><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
-        <span class="a-quarter-33 no-wrap "> {{quiz.author}} </span>
-        <span class="a-quarter-33 no-wrap "> {{quiz.topic}} </span>
+<section class="line md-whiteframe-1dp" ng-if="approvedQuizzes != undefined" ng-repeat="quiz in approvedQuizzes | startFrom:currentPageLineTwo*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div layout-xs="column">
+        <span class="a-quarter-33 no-wrap center-on-column no-border"><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
+        <span class="a-quarter-33 no-wrap center-on-column"> {{quiz.author}} </span>
+        <span class="a-quarter-33 no-wrap center-on-column"> {{quiz.topic}} </span>
     </div>
 </section>
 
 <md-toolbar ng-if="approvedQuizzes != undefined" class="toolbar-section toolbar-top">
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools center-on-column">
         <span flex=""></span>
         <md-button class="md-raised" ng-disabled="currentPageLineTwo <= 0" ng-click="goBack()"><<</md-button>
         <md-button class="md-raised" ng-disabled="currentPageLineTwo >= numberOfPages(approvedQuizzes.length)-1" ng-click="goOn()">>></md-button>
-        <span>{{listOfKeys.pageLang}} {{currentPageLineTwo+1}} {{listOfKeys.ofLang}} {{numberOfPages(approvedQuizzes.length)}}</span>
+        <span class="hide-me-when-i-am-ugly">{{listOfKeys.pageLang}} {{currentPageLineTwo+1}} {{listOfKeys.ofLang}} {{numberOfPages(approvedQuizzes.length)}}</span>
     </div>
 </md-toolbar>
 

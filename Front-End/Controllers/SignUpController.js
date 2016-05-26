@@ -36,7 +36,7 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
 
     function metaData() {
         ngMeta.setTitle($rootScope.listOfKeys.signUp);
-        ngMeta.setTag('description',$rootScope.listOfKeys.signUp);
+        ngMeta.setTag('description',$rootScope.listOfKeys.signUpDescription);
     }
 
     $scope.user = {

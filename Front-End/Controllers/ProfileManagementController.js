@@ -57,71 +57,129 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 });
         }
         else {
-            var pwd;
-            if(userLog.password !== "") {
-                pwd = userLog.password;
+            if (userLog.password !== "") {
+                $scope.user.setName(userLog.name);
+                $scope.user.setSurname(userLog.surname);
+                $scope.user.setEmail(userLog.email);
+                var nome = $scope.user.getName();
+                var cognome = $scope.user.getSurname();
+                var email = $scope.user.getEmail();
+                UserDetailsService.modifyProfilePwd(nome, cognome, email, userLog.password, $routeParams.lang)
+                    .then(function (result) {
+                        if (result.status == "200") {
+                            alert = $mdDialog.alert()
+                                .title("Modifiche accettate")
+                                .content("La modifica del profilo è andata a buon fine")
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $location.path('/' + $routeParams.lang + '/userpage');
+                        }
+                    }, function (err) {
+                        if (err.data.code == 2) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+                        if (err.data.code == 3) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+                        if (err.data.code == 4) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+
+                    })
             }
             else {
-                pwd = $scope.user.password;
+                $scope.user.setName(userLog.name);
+                $scope.user.setSurname(userLog.surname);
+                $scope.user.setEmail(userLog.email);
+                var nome = $scope.user.getName();
+                var cognome = $scope.user.getSurname();
+                var email = $scope.user.getEmail();
+                UserDetailsService.modifyProfile(nome, cognome, email, $routeParams.lang)
+                    .then(function (result) {
+                        if (result.status == "200") {
+                            alert = $mdDialog.alert()
+                                .title("Modifiche accettate")
+                                .content("La modifica del profilo è andata a buon fine")
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $location.path('/' + $routeParams.lang + '/userpage');
+                        }
+                    }, function (err) {
+                        if (err.data.code == 2) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+                        if (err.data.code == 3) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+                        if (err.data.code == 4) {
+                            alert = $mdDialog.alert()
+                                .title(err.data.title)
+                                .content(err.data.message)
+                                .ok('Chiudi');
+                            $mdDialog
+                                .show(alert)
+                                .finally(function () {
+                                    alert = undefined;
+                                });
+                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                        }
+
+                    })
+                }
             }
-            user.setName(userLog.name);
-            user.setSurname(userLog.surname);
-            user.setEmail(userLog.email);
-            UserDetailsService.modifyProfile(user.name, user.surname, user.email, pwd, lang)
-                .then(function (result) {
-                    if (result.status == "200") {
-                        alert = $mdDialog.alert()
-                            .title("Modifiche accettate")
-                            .content("La modifica del profilo è andata a buon fine")
-                            .ok('Chiudi');
-                        $mdDialog
-                            .show(alert)
-                            .finally(function () {
-                                alert = undefined;
-                            });
-                        $location.path('/' + $routeParams.lang + '/userpage');
-                    }
-                }, function (err) {
-                    if (err.data.code == 2) {
-                        alert = $mdDialog.alert()
-                            .title(err.data.title)
-                            .content(err.data.message)
-                            .ok('Chiudi');
-                        $mdDialog
-                            .show(alert)
-                            .finally(function () {
-                                alert = undefined;
-                            });
-                        $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                    }
-                    if (err.data.code == 3) {
-                        alert = $mdDialog.alert()
-                            .title(err.data.title)
-                            .content(err.data.message)
-                            .ok('Chiudi');
-                        $mdDialog
-                            .show(alert)
-                            .finally(function () {
-                                alert = undefined;
-                            });
-                        $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                    }
-                    if (err.data.code == 4) {
-                        alert = $mdDialog.alert()
-                            .title(err.data.title)
-                            .content(err.data.message)
-                            .ok('Chiudi');
-                        $mdDialog
-                            .show(alert)
-                            .finally(function () {
-                                alert = undefined;
-                            });
-                        $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                    }
-
-                })
         }
-    }
-
 }
 

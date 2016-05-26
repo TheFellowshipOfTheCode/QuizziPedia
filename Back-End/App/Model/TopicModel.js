@@ -115,15 +115,17 @@ topicSchema.statics.addCorrect = function(topic, callback) {
             return next(err);
         }
         topic.correctAnswers++;
+        console.log(topic)
         return topic.save(callback)
     })
 };
 
 topicSchema.statics.addTotal=function(topic, callback) {
-    this.findOne({'name': topic}, function(err, topic) {
+    this.findOne({'name': topic }, function(err, topic) {
         if (err) {
             return next(err);
         }
+        console.log(topic);
         topic.totalAnswers++;
         return topic.save(callback)
     })

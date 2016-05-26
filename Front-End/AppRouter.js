@@ -324,15 +324,14 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
             controller: "ProfileManagementController",
             css: [
                 {
-
-                    href: 'css/userview-main.css'
+                    href: 'css/auth-main.css'
                 },
                 {
-                    href: 'css/userview-medium.css',
+                    href: 'css/auth-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/userview-small.css',
+                    href: 'css/auth-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]

@@ -19,6 +19,27 @@ app.controller('ProfileManagementController', ProfileManagementController);
 ProfileManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'UserDetailsModel'];
 
 function ProfileManagementController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, UserDetailsModel) {
+    if($rootScope.userLogged != undefined){
+        $scope.user = $rootScope.userLogged;
+        loadUserDetails();
+    }
+    else{
+        var ist = $rootScope.$on("userDownloaded", function(event, args) {
+            if(args){
+                $scope.user = $rootScope.userLogged;
+                loadUserDetails();
+            }
+        });
+        $scope.$on('$destroy', ist);
+    }
 
+    function loadUserDetails() {
+        $scope.userLog = {
+            name: $scope.user.getName(),
+            surname: $scope.user.getSurname(),
+            email: $scope.user.getEmail()
+
+        }
+    }
 }
 

@@ -6,19 +6,33 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160505;
- * Update data: 05-05-2016;
- * Description: Aggiunte le funzioni addCorrect, addTotal, generateHash,
- * validPassword, editUser, editPassword, setImg, getUser, upLevel,
- * deleteUser, updateSummary, getSummary, getUser, addCorrect, addTotal
+ * ID: UserModel_20160526;
+ * Update data: 26-05-2016;
+ * Description: Creata le funzioni: editPassword(), editType(), upLevel();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160505;
- * Update data: 05-05-2016;
- * Description: Aggiunta la funzione updateTopicLevel;
+ * ID: UserModel_20160525;
+ * Update data: 25-05-2016;
+ * Description: Creata le funzioni: editUser(), deleteUser();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: TopicModel_20160501;
+ * ID: UserModel_20160505;
+ * Update data: 05-05-2016;
+ * Description: Aggiunte le funzioni getUser, updateSummary, getSummary,
+ * getUser, getSummaries;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: UserModel_20160503;
+ * Update data: 03-05-2016;
+ * Description: Aggiunte le funzioni: updateTopicLevel, addTotal, addCorrect;
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: UserModel_20160502;
+ * Update data: 02-05-2016;
+ * Description: Aggiunte le funzioni: generateHash, validPassword;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ * ID: UserModel_20160501;
  * Update data: 01-05-2016;
  * Description: Creata classe e aggiunto lo userSchema;
  * Autore: Franco Berton.

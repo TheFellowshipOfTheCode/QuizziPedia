@@ -19,13 +19,13 @@
  * Description: Creata le funzioni: updateDataUser(), deleteUser(), getInfo();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160503;
- * Update data: 03-05-2016;
+ * ID: UserManagementController_20160505;
+ * Update data: 05-05-2016;
  * Description: Create le funzioni: getSummaries(), getUser(), getStatistics();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160502;
- * Update data: 02-05-2016;
+ * ID: UserManagementController_20160503;
+ * Update data: 03-05-2016;
  * Description: Create le funzioni: updateStatisticsUser(), getSummary();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------

@@ -31,12 +31,7 @@
  *-------------------------------------------------------------------------------
  * ID: UserManagementController_20160501;
  * Update data: 01-05-2016;
- * Description: Create la funzione searchUser();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160501;
- * Update data: 01-05-2016;
- * Description: Creata classe;
+ * Description: Creata classe e la funzione searchUser();
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

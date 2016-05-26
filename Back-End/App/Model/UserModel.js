@@ -18,18 +18,19 @@
  *-------------------------------------------------------------------------------
  * ID: UserModel_20160505;
  * Update data: 05-05-2016;
- * Description: Aggiunte le funzioni getUser, updateSummary, getSummary,
- * getUser, getSummaries;
+ * Description: Aggiunte le funzioni getUser(), updateSummary(), getSummary(),
+ * getUser(), getSummaries();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: UserModel_20160503;
  * Update data: 03-05-2016;
- * Description: Aggiunte le funzioni: updateTopicLevel, addTotal, addCorrect;
+ * Description: Aggiunte le funzioni: updateTopicLevel(), addTotal(),
+ * addCorrect();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: UserModel_20160502;
  * Update data: 02-05-2016;
- * Description: Aggiunte le funzioni: generateHash, validPassword;
+ * Description: Aggiunte le funzioni: generateHash(), validPassword();
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  * ID: UserModel_20160501;

@@ -26,7 +26,6 @@ app.controller('HomeController', HomeController);
 
 HomeController.$inject = ['$rootScope','$scope','$location','$routeParams','ngMeta'];
 function HomeController ($rootScope,$scope, $location, $routeParams,ngMeta) {
-  console.log("ENTRO QUA");
   
   $scope.trainingMode = function(){
     $location.path("/"+$routeParams.lang+"/training");

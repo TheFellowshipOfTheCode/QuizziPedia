@@ -80,7 +80,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
         controller:"HomeController",
         meta: {
           'title':'Home',
-          'description':'Homepage.'
+          'description':'Homepage QuizziPedia.'
         },
         css: [
             {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Directives::QuestionnaireDetailsDirective;
+ * Name: QuizziPedia::Front-End::Directives::ApprovedSubscribeDirective;
  * Description: rappresenta il componente grafico che permette all’utente di
  visualizzare la lista di questionari che può compilare;
  * Creation data: 13-05-2016;
@@ -7,6 +7,12 @@
  * License: MIT.
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: ApprovedSubscribeDirective_20160526
+ * Update data: 26-05-2016
+ * Description: Corretto vari bug e sistemato grafica in modo che sia
+ * responsive;
+ * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: QuestionnaireDoneDetailsDirective_20160513
  * Update data: 13-05-2016

@@ -9,6 +9,12 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: QuestionnaireDoneDetailsDirective_20160526
+ * Update data: 26-05-2016
+ * Description: Corretto vari bug e sistemato grafica in modo che sia
+ * responsive;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
  * ID: QuestionnaireDoneDetailsDirective_20160512
  * Update data: 12-05-2016
  * Description: Creata la classe e scritto il file js;

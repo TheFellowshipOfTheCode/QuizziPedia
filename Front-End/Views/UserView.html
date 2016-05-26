@@ -30,11 +30,19 @@
                 </div>
             </md-toolbar>
 
-            <user-details-directive></user-details-directive>
-            <questionnaire-done-details-directive></questionnaire-done-details-directive>
-            <approved-subscribe-directive></approved-subscribe-directive>
-            <questionnaire-details-directive></questionnaire-details-directive>
-            <statistics-directive></statistics-directive>
+            <span ng-if="approvedQuizzes === undefined || subscribedQuizzes === undefined || quizzes ===undefined ">
+              <div class="spinner">
+                <img src="Images/Icons/reload.svg"/>
+              </div>
+            </span>
+
+            <span ng-if="approvedQuizzes != undefined && quizzes != undefined && subscribedQuizzes != undefined">
+              <user-details-directive></user-details-directive>
+              <questionnaire-done-details-directive></questionnaire-done-details-directive>
+              <approved-subscribe-directive></approved-subscribe-directive>
+              <questionnaire-details-directive></questionnaire-details-directive>
+              <statistics-directive></statistics-directive>
+            </span>
         </section>
 
     </div>

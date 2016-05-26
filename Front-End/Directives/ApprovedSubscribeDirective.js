@@ -33,13 +33,11 @@ function approvedSubscribeDirectiveFunction ($scope) {
     $scope.pageSize = 7;
     $scope.isActive = true;
 
-    $scope.goOn = function () {
-        angular.element(".scrollable").scrollTop(0,0);
+    $scope.goOnTwo = function () {
         $scope.currentPageLineTwo=$scope.currentPageLineTwo+1;
     }
 
-    $scope.goBack = function () {
-        angular.element(".scrollable").scrollTop(0,0);
+    $scope.goBackTwo = function () {
         $scope.currentPageLineTwo=$scope.currentPageLineTwo-1;
     }
 

@@ -30,8 +30,8 @@
 
 app.controller('FillingQuestionnaireController', FillingQuestionnaireController);
 
-FillingQuestionnaireController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'QuestionnaireModel', 'QuestionsService', 'QuizService'];
-function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionnaireModel, QuestionsService, QuizService ) {
+FillingQuestionnaireController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'QuestionnaireModel', 'QuestionsService', 'QuizService', 'ngMeta'];
+function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, QuestionnaireModel, QuestionsService, QuizService, ngMeta ) {
 
   /*Public variables on Scope*/
   $scope.quizIsLoaded = false;
@@ -48,6 +48,21 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
   $scope.noAuth = false;
 
   var questions = [];
+
+  if ($rootScope.listOfKeys!=undefined){
+      metaData();
+  }
+  var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+      if(args){
+          metaData();
+      }
+  });
+  $scope.$on('$destroy', langDownloaded);
+
+  function metaData() {
+      ngMeta.setTitle($rootScope.listOfKeys.fillingQuiz);
+      ngMeta.setTag('description',$rootScope.listOfKeys.fillingQuizDescription);
+  }
 
   /*Functions on scope*/
 

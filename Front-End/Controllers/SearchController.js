@@ -31,9 +31,24 @@
 
 app.controller('SearchController', SearchController);
 
-SearchController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'SearchService', 'QuizService'];
+SearchController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'SearchService', 'QuizService','ngMeta'];
 
-function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog, ErrorInfoModel, SearchService, QuizService) {
+function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog, ErrorInfoModel, SearchService, QuizService, ngMeta) {
+
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.search);
+        ngMeta.setTag('description',$rootScope.listOfKeys.searchDescription);
+    }
 
     SearchService.searchUsers($routeParams.tosearch, $routeParams.lang)
         .then(function (result) {
@@ -95,5 +110,3 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
 
     }
 }
-
-

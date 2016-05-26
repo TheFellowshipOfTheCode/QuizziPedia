@@ -25,9 +25,9 @@
 
 app.controller('UserDetailsController', UserDetailsController);
 
-UserDetailsController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'QuizService'];
+UserDetailsController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'QuizService','ngMeta'];
 
-function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService) {
+function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService, ngMeta) {
     $scope.quizzes = undefined;
     $scope.subscribedQuizzes = undefined;
 
@@ -52,6 +52,20 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
         $scope.$on('$destroy', ist);
     }
 
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.titleLangUserView);
+        ngMeta.setTag('description',$rootScope.listOfKeys.titleLangUserViewDescription);
+    }
 
     var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
         if(args){

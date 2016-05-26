@@ -29,9 +29,24 @@
 
 app.controller('RegistrationManagementController', RegistrationManagementController);
 
-RegistrationManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'QuizService'];
+RegistrationManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'QuizService','ngMeta'];
 
-function RegistrationManagementController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, QuizService) {
+function RegistrationManagementController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, QuizService, ngMeta) {
+
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.titleLangRegistrationManagement);
+        ngMeta.setTag('description',$rootScope.listOfKeys.titleLangRegistrationManagementDescription);
+    }
 
     $scope.currentPage = 0;
     $scope.pageSize = 15;

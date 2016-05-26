@@ -28,9 +28,25 @@
 
 app.controller('QuestionsManagementController', QuestionsManagementController);
 
-QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel'];
+QuestionsManagementController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel', 'ngMeta'];
 
-function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel){
+function QuestionsManagementController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta){
+
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.questionsManagement);
+        ngMeta.setTag('description',$rootScope.listOfKeys.questionsManagementDescription);
+    }
+
     if($rootScope.userLogged != undefined){
         loadQuestions();
     }

@@ -36,8 +36,8 @@
 
 app.controller('TrainingController', TrainingController);
 
-TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel', 'QuestionsService'];
-function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel, QuestionsService ) {
+TrainingController.$inject = ['$scope', '$rootScope', '$timeout', '$mdDialog', '$location', '$routeParams', 'ErrorInfoModel', 'UserDetailsModel', 'TrainingModeModel', 'QuestionsService','ngMeta'];
+function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location, $routeParams, ErrorInfoModel, UserDetailsModel, TrainingModeModel, QuestionsService, ngMeta ) {
 
   /*Private variables*/
   var keepOnMind = 0;
@@ -65,6 +65,22 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   $scope.problemWithTopic = false;
   $scope.stopToGoBack = false;
   $scope.temporaryLevel = 500;
+
+  if ($rootScope.listOfKeys!=undefined){
+      metaData();
+  }
+  var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+      if(args){
+          metaData();
+      }
+  });
+  $scope.$on('$destroy', langDownloaded);
+
+  function metaData() {
+      ngMeta.setTitle($rootScope.listOfKeys.training);
+      ngMeta.setTag('description',$rootScope.listOfKeys.trainingDescription);
+  }
+
 
   /*Functions on scope*/
 

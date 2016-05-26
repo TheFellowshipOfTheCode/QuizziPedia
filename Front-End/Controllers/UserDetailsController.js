@@ -63,7 +63,9 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     $scope.$on('$destroy', langDownloaded);
 
     function metaData() {
+      console.log($rootScope.listOfKeys.titleLangUserView);
         ngMeta.setTitle($rootScope.listOfKeys.titleLangUserView);
+        console.log($scope.ngMeta.title);
         ngMeta.setTag('description',$rootScope.listOfKeys.titleLangUserViewDescription);
     }
 

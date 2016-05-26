@@ -78,6 +78,10 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
       .when('/:lang/home', {
         templateUrl: '/Views/HomeView.html',
         controller:"HomeController",
+        meta: {
+          'title':'Home',
+          'description':'Homepage.'
+        },
         css: [
             {
               href: 'css/home-main.css'

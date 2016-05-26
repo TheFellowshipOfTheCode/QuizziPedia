@@ -2,8 +2,8 @@
 * Nome: QuizziPedia::Front-End::Controllers::HomeController;
 * Description: questa classe permette di gestire la home page. Fornisce tutte
 * le informazioni da mostrare nella homepage;
-* 
-* 
+*
+*
 * Creation data: 25-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -26,24 +26,12 @@ app.controller('HomeController', HomeController);
 
 HomeController.$inject = ['$rootScope','$scope','$location','$routeParams','ngMeta'];
 function HomeController ($rootScope,$scope, $location, $routeParams,ngMeta) {
-  if ($rootScope.listOfKeys!=undefined){
-    metaData();
-  }
-  var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
-    if(args){
-      metaData();
-    }
-  });
-  $scope.$on('$destroy', langDownloaded);
-
-  function metaData() {
-    ngMeta.setTitle($rootScope.listOfKeys.home);
-    ngMeta.setTag('description',$rootScope.listOfKeys.homeDescription);
-  }
+  console.log("ENTRO QUA");
+  
   $scope.trainingMode = function(){
     $location.path("/"+$routeParams.lang+"/training");
   };
-  
+
   $scope.search = function(){
     var tosearch = document.getElementById("lookingfor").value;
     if(tosearch){

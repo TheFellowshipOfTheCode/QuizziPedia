@@ -135,7 +135,6 @@ userSchema.statics.upLevel=function(userId, isCorrected, callback){
             user.experienceLevel.experience=0;
             user.experienceLevel.barLength=user.experienceLevel.barLength+Math.round(user.experienceLevel.barLength/4);
         }
-        console.log(user.experienceLevel);
         return user.save(callback);
     });
 };

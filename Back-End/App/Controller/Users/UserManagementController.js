@@ -9,7 +9,12 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160503;
+ * ID: UserManagementController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Creata le funzioni: updatePasswordUser(), changeUserType();
+ * Autore: Marco Prelaz.
+ *-------------------------------------------------------------------------------
+ * ID: UserManagementController_20160525;
  * Update data: 25-05-2016;
  * Description: Creata le funzioni: updateDataUser(), deleteUser(), getInfo();
  * Autore: Marco Prelaz.
@@ -67,7 +72,20 @@ exports.updateDataUser = function(req, res, next) {
 };
 
 exports.updatePasswordUser = function(req, res, next) {
-
+    req.user.editPassword(req.body.password, function(err){
+        if (err)
+            return res.status(500).json({
+                code: 746,
+                title: "Errore",
+                message: "Password non aggiornata"
+            });
+        else
+            return res.send({
+                code: 313,
+                title: "Ok",
+                message: "Password aggiornata correttamente"
+            });
+    })
 };
 
 exports.updateStatisticUser = function(req, res) {
@@ -75,33 +93,41 @@ exports.updateStatisticUser = function(req, res) {
         user.updateTopicLevel(req.body.userId, req.body.userLevel, req.body.topic, req.body.difficultyLevel, req.body.isCorrected, function (err, userLevel) {
             if (err)
                 return res.status(500).json({code: 733, title: "Errore", message: "Livello utente non aggiornato"});
-            user.addTotal(req.body.userId, req.body.topic, function (err) {
+            user.upLevel(req.body.userId, req.body.isCorrected, function(err){
                 if (err)
                     return res.status(500).json({
-                        code: 734,
+                        code: 899,
                         title: "Errore",
-                        message: "Contatore risposte non aggiornato"
+                        message: "Experience level non aggiornato"
                     });
-                if (req.body.isCorrected) {
-                    user.addCorrect(req.body.userId, req.body.topic, function (err) {
-                        if (err)
-                            return res.status(500).json({
-                                code: 735,
-                                title: "Errore",
-                                message: "Contatore risposte corrette non aggiornato"
+                user.addTotal(req.body.userId, req.body.topic, function (err) {
+                    if (err)
+                        return res.status(500).json({
+                            code: 734,
+                            title: "Errore",
+                            message: "Contatore risposte non aggiornato"
+                        });
+                    if (req.body.isCorrected) {
+                        user.addCorrect(req.body.userId, req.body.topic, function (err) {
+                            if (err)
+                                return res.status(500).json({
+                                    code: 735,
+                                    title: "Errore",
+                                    message: "Contatore risposte corrette non aggiornato"
+                                });
+                            userLevel.statistics.forEach(function(stat){
+                                if(stat.topicName==req.body.topic)
+                                    res.send({userLevel: stat.topicLevel});
                             });
+                        })
+                    }
+                    else {
                         userLevel.statistics.forEach(function(stat){
                             if(stat.topicName==req.body.topic)
                                 res.send({userLevel: stat.topicLevel});
                         });
-                    })
-                }
-                else {
-                    userLevel.statistics.forEach(function(stat){
-                        if(stat.topicName==req.body.topic)
-                            res.send({userLevel: stat.topicLevel});
-                    });
-                }
+                    }
+                })
             })
         })
     }
@@ -112,7 +138,7 @@ exports.updateStatisticUser = function(req, res) {
 };
 
 exports.deleteUser = function(req, res, next) {
-    req.user.deleteUser(function(err,user){
+    req.user.deleteUser(function(err){
         if (err)
             return res.status(500).json({
                 code: 555,
@@ -162,4 +188,21 @@ req.req.user.getSummaries(function(error,summaries){
         };
         return res.send(dataSummaries);
     });
+};
+
+exports.changeUserType = function(req, res, next) {
+    req.user.editType(function(err){
+        if (err)
+            return res.status(500).json({
+                code: 625,
+                title: "Errore",
+                message: "Cambio tipo non effettuato"
+            });
+        else
+            return res.send({
+                code: 646,
+                title: "Ok",
+                message: "Cambio tipo effettuato correttamente"
+            });
+    })
 };

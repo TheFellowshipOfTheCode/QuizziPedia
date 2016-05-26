@@ -44,7 +44,11 @@ var userSchema = new mongoose.Schema(
             correctAnswers: {type:Number, default:0},
             totalAnswers: {type:Number, default:0}
         }],
-        experienceLevel: {type:Number, default:1},
+        experienceLevel: {
+            level: {type: Number, default: 1},
+            experience: {type: Number, default: 0},
+            barLength: {type:Number, default:30}
+        },
         quizSummaries:[{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Summaries'
@@ -73,11 +77,30 @@ userSchema.methods.editUser=function(name, surname, email, callback){
     });
 };
 
-userSchema.methods.editPassword=function(password,errback){
-
+userSchema.methods.editPassword=function(password, callback) {
+    return this.model('User').findOne({_id: this._id}, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        user.password=user.generateHash(password);
+        return user.save(callback);
+    });
 };
 
-userSchema.methods.setImg=function(image,errback){
+userSchema.methods.editType=function(callback) {
+    return this.model('User').findOne({_id: this._id}, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        if(user.privilege=="pro")
+            user.privilege="normal";
+        else
+            user.privilege="pro";
+        return user.save(callback);
+    });
+};
+
+userSchema.methods.setImg=function(image){
 
 };
 
@@ -85,18 +108,26 @@ userSchema.statics.getUser=function(userId,callback){
     return this.findOne({'_id':userId}, callback)
 };
 
-userSchema.methods.upLevel=function(callback){
-
+userSchema.statics.upLevel=function(userId, isCorrected, callback){
+    return this.findOne({_id: userId}, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        if(isCorrected)
+            user.experienceLevel.experience=user.experienceLevel.experience++;
+        if(user.experienceLevel.experience>=user.experienceLevel.barLength) {
+            user.experienceLevel.level++;
+            user.experienceLevel.experience=0;
+            user.experienceLevel.barLength=user.experienceLevel.barLength+Math.round(user.experienceLevel.barLength/4);
+        }
+        console.log(user.experienceLevel);
+        return user.save(callback);
+    });
 };
 
 userSchema.methods.deleteUser=function(callback){
     return this.model('User').findByIdAndRemove(this._id , callback);
 };
-
-userSchema.methods.updateSummary=function(summaryId){
-
-};
-
 
 userSchema.methods.getSummary=function(summaryId,callback,errback){
     User.findOne({ 'username': this.username, 'quizSummaries': summaryId },'quizSummaries', quizSummary);

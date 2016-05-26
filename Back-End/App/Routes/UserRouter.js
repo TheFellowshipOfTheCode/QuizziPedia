@@ -41,6 +41,12 @@ module.exports = function(app){
         .get(user.userManagement.getInfo)
         .put(user.userManagement.updateDataUser);
 
+    app.route('/api/:lang/user/password')
+        .put(user.userManagement.updatePasswordUser);
+
+    app.route('/api/:lang/user/type')
+        .put(user.userManagement.changeUserType);
+
     app.route('/api/:lang/user')
         .delete(user.userManagement.deleteUser);
     

@@ -32,7 +32,15 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
         AuthService.signIn(username, password, $routeParams.lang)
             .then(function(result){
                 if(result.data.user != undefined) {
-                    console.log("result" + result.data.user.userImg);
+                    console.log("resultUser" + result.data.user.name);
+                    console.log("resultUser" + result.data.user.surname);
+                    console.log("resultUser" + result.data.user.email);
+                    console.log("resultUser" + result.data.user.username);
+                    console.log("resultUser" + result.data.user.userImg);
+                    console.log("resultUserStats" + result.data.user.statistics);
+                    console.log("resultUserLevel" + result.data.user.experienceLevel);
+                    console.log("resultUserPrivilege" + result.data.user.privilege);
+                    console.log("resultUserID" + result.data.user._id);
 
                     var profileImg = false;
                     if(result.data.user.userImg != undefined) {

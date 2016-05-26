@@ -1,4 +1,4 @@
-var app = require('../Server');
+/*var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
@@ -17,7 +17,7 @@ describe("Signin Test", function () {
             });
     });
 });
-/*
+
 describe("Create Summary Test", function(){
     it("should create a summary of a quiz", function(done){
         //this.timeout(15000);
@@ -39,7 +39,7 @@ describe("Create Summary Test", function(){
                 done()
             })
     })
-}); */
+});
 
 describe("View Summaries Test", function(){
     it("should view summaries of a user", function(done){
@@ -57,5 +57,5 @@ describe("View Summaries Test", function(){
                 done()
             })
     })
-});
+});*/
 

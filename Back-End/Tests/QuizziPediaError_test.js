@@ -18,7 +18,7 @@
  * Autore: Mattia Varotto
  *******************************************************************************/
 "use strict";
-
+/*
 let QuizziPediaError = require('../App/Controller/Errors/QuizziPediaError.js');
 let q = new QuizziPediaError(123,"Accesso vietato","l\'utente non può accedere a quest\'area");
 
@@ -48,4 +48,4 @@ describe("QuizziPediaError", function() {
             "message": "l\'utente non può accedere a quest\'area" });
     });
 });
-
+*/

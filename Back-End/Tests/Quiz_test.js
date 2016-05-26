@@ -1,4 +1,4 @@
-var app = require('../Server');;
+/*var app = require('../Server');;
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
@@ -19,7 +19,7 @@ describe("Signin Test", function () {
     });
 });
 
-/*
+
 describe("Get user approved Test", function() {
     it("should return user approved", function (done) {
         agent
@@ -46,7 +46,7 @@ describe("Get users active  Test", function() {
                 done();
             })
     })
-});*/
+});
 
 describe("Put active field quiz Test", function() {
     it("should return active ok", function (done) {
@@ -64,7 +64,7 @@ describe("Put active field quiz Test", function() {
 
 
 
-/*
+
 describe("Get topic Test", function() {
     it("should return topic", function (done) {
         agent
@@ -78,8 +78,8 @@ describe("Get topic Test", function() {
             })
     })
 });
-*/
-/*
+
+
 describe("Quiz tests", function() {
     it("should create a quiz", function (done) {
         agent
@@ -133,7 +133,7 @@ describe("Search Quiz Test", function () {
             });
     });
 })
-*/
+
 
 describe("Get Quiz subscribe Test", function () {
     it("should return subscribe of a Quiz Test", function (done) {
@@ -148,7 +148,7 @@ describe("Get Quiz subscribe Test", function () {
             });
     });
 })
-/*
+
 describe("Get Quiz subscribers Test", function () {
     it("should return subscribers of a Quiz Test", function (done) {
         agent
@@ -161,8 +161,8 @@ describe("Get Quiz subscribers Test", function () {
                 done()
             });
     });
-})*/
-    /*
+})
+    
 
     it("should return the desired quiz", function(done) {
         agent

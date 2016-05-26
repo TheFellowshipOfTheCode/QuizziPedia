@@ -14,7 +14,7 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-
+/*
 "use strict";
 let expect = require('expect');
 
@@ -38,3 +38,4 @@ describe("ErrorModel", function() {
         expect(errormodel.getMessage()).toEqual('la pagina cercata non è stata trovata');
     });
 });
+*/

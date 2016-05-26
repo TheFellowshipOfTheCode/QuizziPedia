@@ -1,4 +1,4 @@
-
+/*
 var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
@@ -19,7 +19,7 @@ describe("Signin Test", function () {
     });
 });
 
-/*
+
 describe("Get All Questions Test", function () {
     it("should return all questions of a topic", function (done) {
         agent
@@ -51,7 +51,7 @@ describe("Get Question Test", function(){
             });
     })
 });
-*/
+
 describe("Create Question Test", function(){
     it("should create a question", function(done){
         agent
@@ -191,7 +191,7 @@ describe("Create Question Test", function(){
 
     })
 });
-/*
+
 describe("Edit Question Test", function(){
     it("should edit a question", function(done){
         agent
@@ -247,7 +247,7 @@ describe("Update Statistics Question Test", function(){
 
     })
 });
-*/
+
 describe("View NextQuestion Test", function(){
     it("should view the next question of a training", function(done){
         this.timeout(20000);
@@ -272,7 +272,7 @@ describe("View NextQuestion Test", function(){
             })
     })
 });
-/*
+
 
 
 describe("View Keywords Test", function(){

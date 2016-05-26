@@ -123,15 +123,18 @@ quizSchema.statics.getQuizApproved = function(userId, callback) {
 
 quizSchema.statics.getActiveUsers = function(quizId, callback) {
     return this.findOne({'_id': quizId },'activeUsers', function(err, users){
-        users.activeUsers.forEach(function(user,index){
-            User.getUser(user,function(err,activeUser) {
-                users.activeUsers[index]={_id :activeUser._id, name:activeUser.name, username:activeUser.username}
-                if (index+1 == users.activeUsers.length)
-                    callback(null, users.activeUsers)
+        if(users.activeUsers.length!=0)
+            users.activeUsers.forEach(function(user,index){
+                User.getUser(user,function(err,activeUser) {
+                    users.activeUsers[index]={_id :activeUser._id, name:activeUser.name, username:activeUser.username}
+                    if (index+1 == users.activeUsers.length)
+                        callback(null, users.activeUsers)
+                });
             });
-        })
+        else
+            callback(null, [])
     })
-}
+};
 
 quizSchema.statics.quizActive = function(quizId, callback) {
     return this.findOneAndUpdate({'_id': quizId },{$set:{active:true}}, callback)
@@ -147,13 +150,16 @@ quizSchema.statics.searchQuiz=function(tosearch, callback){
 
 quizSchema.statics.getQuizSubscribers=function(quizId, callback){
     return this.findOne({'_id': quizId },'registeredUsers', function(err, users){
-         users.registeredUsers.forEach(function(user,index){
-            User.getUser(user,function(err,subscriber) {
-                users.registeredUsers[index]={_id :subscriber._id, name:subscriber.name, username:subscriber.username}
-                if (index+1 == users.registeredUsers.length)
-                    callback(null, users.registeredUsers)
+        if(users.registeredUsers.length!=0)
+            users.registeredUsers.forEach(function(user,index){
+                User.getUser(user,function(err,subscriber) {
+                    users.registeredUsers[index]={_id :subscriber._id, name:subscriber.name, username:subscriber.username}
+                    if (index+1 == users.registeredUsers.length)
+                        callback(null, users.registeredUsers)
             });
-         })
+         });
+        else
+            callback(null, [])
     })
 };
 

@@ -22,12 +22,14 @@
     <span class="divided"> <h3>{{listOfKeys.historyQuizzesLang}} </h3></span>
     <span flex=""></span>
 </md-toolbar>
-<md-toolbar ng-if="quizzes != undefined" class="toolbar-section legends" layout="row" layout-sm="row" layout-xs="column">
-    <span class="a-quarter-title center-on-column no-border"> {{listOfKeys.quizName}}    </span>
-    <span class="a-quarter-title center-on-column"> {{listOfKeys.quizAuthor}}  </span>
-    <span class="a-quarter-title center-on-column"> {{listOfKeys.quizTopic}}   </span>
-    <span class="a-quarter-title center-on-column"> {{listOfKeys.quizMark}}    </span>
-</md-toolbar>
+<section class="line md-whiteframe-2dp legends" ng-if="quizzes != undefined" class="toolbar-section legends" >
+  <div layout-xs="column">
+    <span class="a-quarter-title no-wrap center-on-column no-border"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title no-wrap center-on-column"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title no-wrap center-on-column"> {{listOfKeys.quizTopic}}   </span>
+    <span class="a-quarter-title no-wrap center-on-column"> {{listOfKeys.quizMark}}    </span>
+  </div>
+</section>
 
 <section class="line md-whiteframe-2dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
     <div layout-xs="column">

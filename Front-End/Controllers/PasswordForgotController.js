@@ -22,9 +22,23 @@
 
 app.controller('PasswordForgotController', PasswordForgotController);
 
-PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService'];
+PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService','ngMeta'];
 
-function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, AuthService) {
+function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, AuthService,ngMeta) {
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.titleLangPasswordForgot);
+        ngMeta.setTag('description',$rootScope.listOfKeys.passwordForgotDescription);
+    }
 
     $scope.user = {
         email: ''

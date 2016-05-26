@@ -31,9 +31,24 @@
 
 app.controller('CreateQuestionnaireController', CreateQuestionnaireController);
 
-CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav','filterFilter', 'ErrorInfoModel', 'QuizService', 'UserDetailsModel'];
+CreateQuestionnaireController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav','filterFilter', 'ErrorInfoModel', 'QuizService', 'UserDetailsModel','ngMeta'];
 
-function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav,filterFilter, ErrorInfoModel, QuizService, UserDetailsModel) {
+function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav,filterFilter, ErrorInfoModel, QuizService, UserDetailsModel,ngMeta) {
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.titleLangCreateQuestionnaire);
+        ngMeta.setTag('description',$rootScope.listOfKeys.createQuestionnaireDescription);
+    }
+
   /*Variabili*/
   $scope.questions_selected=[];
 

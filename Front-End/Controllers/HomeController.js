@@ -24,8 +24,22 @@
 
 app.controller('HomeController', HomeController);
 
-HomeController.$inject = ['$scope','$location','$routeParams'];
-function HomeController ($scope, $location, $routeParams) {
+HomeController.$inject = ['$scope','$location','$routeParams','ngMeta'];
+function HomeController ($scope, $location, $routeParams,ngMeta) {
+  if ($rootScope.listOfKeys!=undefined){
+    metaData();
+  }
+  var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+    if(args){
+      metaData();
+    }
+  });
+  $scope.$on('$destroy', langDownloaded);
+
+  function metaData() {
+    ngMeta.setTitle($rootScope.listOfKeys.home);
+    ngMeta.setTag('description',$rootScope.listOfKeys.homeDescription);
+  }
   $scope.trainingMode = function(){
     $location.path("/"+$routeParams.lang+"/training");
   };

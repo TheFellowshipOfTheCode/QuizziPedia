@@ -21,11 +21,13 @@
     <span class="divided"> <h3>{{listOfKeys.subscribedQuizzesLang}} </h3></span>
     <span flex=""></span>
 </md-toolbar>
-<md-toolbar ng-if="subscribedQuizzes != undefined" class="toolbar-section legends" layout="row" layout-sm="row" layout-xs="column">
-    <span class="a-quarter-title-33 center-on-column no-border"> {{listOfKeys.quizName}}    </span>
-    <span class="a-quarter-title-33 center-on-column"> {{listOfKeys.quizAuthor}}  </span>
-    <span class="a-quarter-title-33 center-on-column"> {{listOfKeys.quizTopic}}   </span>
-</md-toolbar>
+<section class="line md-whiteframe-2dp legends" ng-if="subscribedQuizzes != undefined" layout="row" layout-sm="row" layout-xs="column">
+  <div layout-xs="column" class="line-container">
+    <span class="a-quarter-title-33 no-wrap center-on-column no-border"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title-33 no-wrap center-on-column"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title-33 no-wrap center-on-column"> {{listOfKeys.quizTopic}}   </span>
+  </div>
+</section>
 
 <section class="line md-whiteframe-1dp" ng-if="subscribedQuizzes != undefined" ng-repeat="quiz in subscribedQuizzes | startFrom:currentPageLineThree*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
     <div layout-xs="column">

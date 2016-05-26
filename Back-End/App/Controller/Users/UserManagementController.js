@@ -11,7 +11,8 @@
  *-------------------------------------------------------------------------------
  * ID: UserManagementController_20160526;
  * Update data: 26-05-2016;
- * Description: Creata le funzioni: updatePasswordUser(), changeUserType();
+ * Description: Creata le funzioni: updatePasswordUser(), changeUserType() e
+ * aggiornata la funzione updateStatisticUser();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: UserManagementController_20160525;
@@ -19,24 +20,19 @@
  * Description: Creata le funzioni: updateDataUser(), deleteUser(), getInfo();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160503;
- * Update data: 03-05-2016;
+ * ID: UserManagementController_20160505;
+ * Update data: 05-05-2016;
  * Description: Create le funzioni: getSummaries(), getUser(), getStatistics();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160502;
- * Update data: 02-05-2016;
+ * ID: UserManagementController_20160503;
+ * Update data: 03-05-2016;
  * Description: Create le funzioni: updateStatisticsUser(), getSummary();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: UserManagementController_20160501;
  * Update data: 01-05-2016;
- * Description: Create la funzione searchUser();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160501;
- * Update data: 01-05-2016;
- * Description: Creata classe;
+ * Description: Creata classe e la funzione searchUser();
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  *******************************************************************************/

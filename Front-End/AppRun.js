@@ -23,7 +23,7 @@
 *******************************************************************************/
 
 
-var app = angular.module('QuizziPedia', ['ngRoute','ngAnimate', 'ngMaterial', 'ngMessages', 'ngCookies','ngFileUpload', 'angularCSS','ui.bootstrap', 'ngDragDrop', 'angularNumberPicker', 'angles'])
+var app = angular.module('QuizziPedia', ['ngRoute','ngAnimate', 'ngMaterial', 'ngMessages', 'ngCookies','ngFileUpload', 'angularCSS','ui.bootstrap', 'ngDragDrop', 'angularNumberPicker', 'angles','ngMeta'])
 //var app = angular.module('QuizziPedia', ['ngRoute','ngAnimate', 'ngMaterial', 'ngMessages', 'ngCookies', 'angularCSS'])
 
 

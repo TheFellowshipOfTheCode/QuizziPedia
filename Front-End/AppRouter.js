@@ -17,12 +17,21 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
-var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider) {
+var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider, ngMetaProvider) {
     $locationProvider.html5Mode(true);
+    //Add a suffix to all page titles
+    ngMetaProvider.useTitleSuffix(true);
+    // On /home, the title would change to
+    // 'Home Page | Best Website on the Internet!'
+    ngMetaProvider.setDefaultTitleSuffix(' | QuizziPedia');
     $routeProvider
       .when('/:lang/login', {
         templateUrl: '/Views/LoginView.html',
         controller:"LoginController",
+        meta: {
+          'title': 'Login',
+          'description': 'Login to the site.'
+        },
         css: [
             {
               href: 'css/auth-main.css'
@@ -343,4 +352,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider)
 
 
 
-app.config(AppRouter);
+app.config(AppRouter)
+.run(['ngMeta', function(ngMeta) {
+  ngMeta.init();
+}]);

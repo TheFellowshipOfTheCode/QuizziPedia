@@ -26,7 +26,8 @@ UserDetailsService.$inject = ['$http', '$cookies', '$q'];
 
 function UserDetailsService($http, $cookies, $q) {
     var methods = {
-        getUserDetails: getUserDetails
+        getUserDetails: getUserDetails,
+        modifyProfile: modifyProfile
 
     };
     return methods;
@@ -40,6 +41,27 @@ function UserDetailsService($http, $cookies, $q) {
                 deferred.reject(error);
             });
         return deferred.promise;
+    }
 
+    function modifyProfile(name, surname, email, password, lang) {
+        if(!username || !password || !email || !name || !surname || !lang) return;
+        var deferred = $q.defer();
+        var userJSON = {name: name, surname: surname, email: email};
+        var pwdJSON = {password: password};
+        $http.put('/api/' + lang + '/user/info', userJSON)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+
+        $http.put('/api/' + lang + '/user/password', pwdJSON)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+        
+        return deferred.promise;
     }
 }

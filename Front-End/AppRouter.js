@@ -166,22 +166,6 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                 }
             ]
         })
-        .when('/:lang/showallcreatedquestionnaires', {
-            templateUrl: '/Views/ShowAllCreatedQuestionnairesView.html',
-            controller: "ShowAllCreatedQuestionnairesController",
-            css: [
-                {
-                    href: 'css/auth-main.css'
-                },
-                {
-                    href: 'css/auth-medium.css',
-                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
-                },
-                {
-                    href: 'css/auth-small.css'
-                }
-            ]
-        })
         .when('/:lang/wizard', {
             templateUrl: '/Views/CreateWithWizardView.html',
             controller:"",

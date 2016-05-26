@@ -22,9 +22,9 @@
 
 app.controller('QuestionnaireManagementController', QuestionnaireManagementController);
 
-QuestionnaireManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'ErrorInfoModel'];
+QuestionnaireManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$cookies', '$timeout', '$mdSidenav', 'ErrorInfoModel','QuizService'];
 
-function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel) {
+function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $location, $mdDialog, $cookies, $timeout, $mdSidenav, ErrorInfoModel,QuizService) {
 
     $scope.goToCreateQuestionnaire = function() {
         $location.path('/'+$routeParams.lang+'/createquestionnaire');
@@ -33,4 +33,102 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
     $scope.goToShowAllCreatedQuestionnaires = function() {
         $location.path('/'+$routeParams.lang+'/showallcreatedquestionnaires');
     }
+    if($rootScope.userLogged != undefined){
+        showAllQuizzes($rootScope.userLogged, $routeParams.lang);
+    }
+    else{
+        var ist = $rootScope.$on("userDownloaded", function(event, args) {
+            if(args){
+                showAllQuizzes($rootScope.userLogged, $routeParams.lang);
+            }
+        });
+        $scope.$on('$destroy', ist);
+    }
+
+    function showAllQuizzes(user, lang) {
+        QuizService.showAllCreatedQuestionnaires(user, lang)
+            .then(function (result) {
+                if (result.data.length > 0) {
+                    $scope.personalQuizzes = result.data;
+                }
+                else {
+                    $scope.personalQuizzes = [];
+
+                }
+            }, function (err) {
+                $scope.error = new ErrorInfoModel();
+                if ($routeParams.lang === 'it') {
+                    alert = $mdDialog.alert()
+                        .title("Errore")
+                        .content("I questionari non possono essere visualizzati!")
+                        .ok('Ok');
+                } else {
+                    alert = $mdDialog.alert()
+                        .title("Error")
+                        .content("Questionnaires can't be showed!")
+                        .ok('Ok');
+                }
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+
+    }
+
+    $scope.goToQuiz = function(quizId) {
+        $location.path('/' + $routeParams.lang + '/managementsubscription/' + quizId);
+    }
+
+    $scope.startQuiz = function(quizId){
+        QuizService.startQuiz(quizId, $routeParams.lang)
+            .then(function (result) {
+                alert = $mdDialog.alert()
+                    .title("Questionario iniziato")
+                    .content("Il questionario è stato avviato")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            }, function (err) {
+
+                alert = $mdDialog.alert()
+                    .title("Errore")
+                    .content("Il questionario non è stato avviato!")
+                    .ok('Ok');
+                $mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    });
+            });
+    }
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.isActive = true;
+
+    $scope.goOn = function () {
+        angular.element(".scrollable").scrollTop(0,0);
+        $scope.currentPage=$scope.currentPage+1;
+    }
+
+    $scope.goBack = function () {
+        angular.element(".scrollable").scrollTop(0,0);
+        $scope.currentPage=$scope.currentPage-1;
+    }
+
+    $scope.numberOfPages=function(numberOfQuestions){
+        var value;
+        if(numberOfQuestions%$scope.pageSize > 0) {
+            value = Math.floor(numberOfQuestions/$scope.pageSize)+1;
+        }
+        else {
+            value = Math.floor(numberOfQuestions/$scope.pageSize);
+        }
+        return value;
+    };
 }

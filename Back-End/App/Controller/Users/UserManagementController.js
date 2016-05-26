@@ -11,7 +11,8 @@
  *-------------------------------------------------------------------------------
  * ID: UserManagementController_20160526;
  * Update data: 26-05-2016;
- * Description: Creata le funzioni: updatePasswordUser(), changeUserType();
+ * Description: Creata le funzioni: updatePasswordUser(), changeUserType() e
+ * aggiornata la funzione updateStatisticUser();
  * Autore: Marco Prelaz.
  *-------------------------------------------------------------------------------
  * ID: UserManagementController_20160525;

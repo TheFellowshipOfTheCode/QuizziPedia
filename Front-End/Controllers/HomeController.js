@@ -24,8 +24,8 @@
 
 app.controller('HomeController', HomeController);
 
-HomeController.$inject = ['$scope','$location','$routeParams','ngMeta'];
-function HomeController ($scope, $location, $routeParams,ngMeta) {
+HomeController.$inject = ['$rootScope','$scope','$location','$routeParams','ngMeta'];
+function HomeController ($rootScope,$scope, $location, $routeParams,ngMeta) {
   if ($rootScope.listOfKeys!=undefined){
     metaData();
   }

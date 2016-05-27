@@ -18,3 +18,18 @@
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+ .pie-chart {
+   width: 250px !important;
+   height: 250px !important;
+ }
+
+ .mark {
+     margin-top: -2.75em;
+     padding-bottom: 2em;
+     font-size: 5em;
+     background-color: initial;
+ }
+
+ .mark-lang {
+    font-size: 0.23em !important;
+}

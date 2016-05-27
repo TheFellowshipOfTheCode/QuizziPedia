@@ -109,6 +109,16 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                 },
                 {
                     href: 'css/auth-small.css'
+                },
+                {
+                    href: 'css/create-quiz-main.css'
+                },
+                {
+                    href: 'css/create-quiz-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/create-quiz-small.css'
                 }
             ]
         })

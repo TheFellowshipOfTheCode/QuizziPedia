@@ -18,15 +18,15 @@
 
 
 <div id="newQuestionButtons" class="text-center" class="md-padding">
-    <md-toolbar class="modifyQuestionTitle toolbar-section toolbar-bottom">
-      <div class="md-toolbar-tools">
+    <div class="modifyQuestionTitle toolbar-section toolbar-bottom" >
+      <div class="md-toolbar-tools line md-whiteframe-2dp" layout-xs="column">
         <h2>
           <span>{{listOfKeys.createANewQuestionLang}}
           </span>
         </h2>
-        <span flex=""></span>
-        <md-button class="md-button md-raised md-primary" ng-href="" ng-click="goToWizardCreation()" target="_blank">{{listOfKeys.creationWizard}}</md-button>
-        <md-button class="md-button md-raised md-primary" ng-href="" ng-click="goToQMLCreation()" target="_blank">{{listOfKeys.creationQML}}</md-button>
+        <span flex="" class="hideMeOnMobileManageQuestion"></span>
+        <md-button class="md-button md-raised md-primary font xs-layout" ng-href="" ng-click="goToWizardCreation()" target="_blank">{{listOfKeys.creationWizard}}</md-button>
+        <md-button class="md-button md-raised md-primary font xs-layout" ng-href="" ng-click="goToQMLCreation()" target="_blank">{{listOfKeys.creationQML}}</md-button>
       </div>
-    </md-toolbar>
+    </div>
 </div>

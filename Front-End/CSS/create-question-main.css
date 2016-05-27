@@ -153,3 +153,27 @@
   width: 80%;
   margin: auto;
 }
+
+@media screen and (max-width: 1170px) {
+
+  .font {
+    font-size: 0.6em;
+  }
+
+  .modifyQuestionTitle h2 {
+    font-size: 0.9em;
+  }
+
+}
+
+@media screen and (max-width: 1090px) {
+
+  .font {
+    font-size: 0.5em;
+  }
+
+  .modifyQuestionTitle h2 {
+    font-size: 0.6em;
+  }
+
+}

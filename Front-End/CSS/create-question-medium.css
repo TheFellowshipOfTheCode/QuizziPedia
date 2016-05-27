@@ -64,3 +64,66 @@
   }
 
 }
+
+.font {
+  font-size: 0.7em;
+}
+
+.modifyQuestionTitle h2 {
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 840px) {
+
+  .font {
+    font-size: 0.6em;
+  }
+
+  .modifyQuestionTitle h2 {
+    font-size: 0.9em;
+  }
+
+}
+
+@media screen and (max-width: 750px) {
+
+  .font {
+    font-size: 0.5em;
+  }
+
+  .modifyQuestionTitle h2 {
+    font-size: 0.6em;
+  }
+
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .line {
+    height: 7em !important;
+    max-height: 7em !important;
+  }
+
+  .font {
+    font-size: 0.7em;
+  }
+
+  .modifyQuestionTitle h2 {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 0.9em;
+  }
+
+  .xs-layout  {
+    width: 90% !important;
+    margin-right: 0px !important;
+    margin-bottom: -0.5em !important;
+    margin-top: 1em !important;
+  }
+
+  .hideMeOnMobileManageQuestion {
+    display: none;
+  }
+
+}

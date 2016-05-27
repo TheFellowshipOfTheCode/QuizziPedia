@@ -57,13 +57,29 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
   /*Variabili*/
   $scope.questions_selected=[];
 
-  $scope.quiz = {
-      title: '',
-      author: $rootScope.userLogged.getId(),
-      keyword: '',
-      topic: undefined,
-      questions: []
-  };
+  if($rootScope.userLogged != undefined){
+      $scope.user = $rootScope.userLogged;
+      crateTheQuiz();
+  }
+  else {
+      var ist = $rootScope.$on("userDownloaded", function(event, args) {
+          if(args){
+              $scope.user = $rootScope.userLogged;
+              crateTheQuiz();
+          }
+      });
+      $scope.$on('$destroy', ist);
+  }
+
+  function crateTheQuiz() {
+    $scope.quiz = {
+        title: '',
+        author: $rootScope.userLogged.getId(),
+        keyword: '',
+        topic: undefined,
+        questions: []
+    };
+  }
 
   $scope.filter = {};
 
@@ -78,7 +94,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         else
             $scope.moreInfo.selected[index] = !$scope.moreInfo.selected[index];
     };
-    
+
     $scope.goToQMLCreation = function(){
         $location.path('/' + $routeParams.lang + '/QML');
     }

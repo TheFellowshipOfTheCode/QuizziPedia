@@ -21,25 +21,6 @@
 *******************************************************************************/
 -->
 
-<style>
-    .pagination a:hover,
-    .pagination .active a {
-        background-color: #FFC107 !important;
-        color: #ffffff;
-        border-color: transparent;
-    }
-
-    .pagination :not(.disabled):not(.active) a{
-        color: lightgrey;
-    }
-
-    .pagination .disabled span,
-    .pagination .disabled a:hover {
-        color: #999999;
-        background-color: transparent;
-        cursor: default;
-    }
-</style>
 <!-- Metadata -->
 <title ng-bind="ngMeta.title"></title>
 <meta name="description" content="{{ngMeta.description}}" />
@@ -192,7 +173,7 @@
                     </md-card>
                     <div layout="row" layout-align="center center">
                         <md-input-container >
-                            <md-button ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
+                            <md-button ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
                         </md-input-container>
                     </div>
 

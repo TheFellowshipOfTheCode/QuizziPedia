@@ -84,7 +84,7 @@ li {
   min-height: 10em;
   display: list-item;
   line-height: 10em;
-  z-index: 100;
+  z-index: 78;
   position: absolute;
 }
 
@@ -192,4 +192,8 @@ li {
   display: inline;
   margin: auto;
   margin-top: 1em;
+}
+
+.no-overflow {
+  overflow: hidden;
 }

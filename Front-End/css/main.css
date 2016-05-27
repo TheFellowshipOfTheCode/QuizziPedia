@@ -28,6 +28,7 @@
 
 html {
   overflow: hidden;
+  min-width: 380px;
 }
 
 @font-face {

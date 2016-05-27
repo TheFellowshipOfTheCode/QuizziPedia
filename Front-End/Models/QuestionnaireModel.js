@@ -2,7 +2,7 @@
  * Name: QuizziPedia::Front-End::Models:QuestionnaireModel;
  * Description: model che rappresenta un questionario;
  *
- * 
+ *
  * Creation data: 02-05-2016;
  * Author: Simone Magagna;
  * License: MIT.
@@ -39,7 +39,7 @@ function QuestionnaireModel() {
         var argument_ = argument;
         var questions_ = questions;
         var id_ = id;
-        var results_ = results;
+        var results_ = [];
         var numOfRightAnswer = 0;
         var mark_ = 0;
 
@@ -101,7 +101,7 @@ function QuestionnaireModel() {
         };
 
         this.getResultById = function (id) {
-          var obj = results.filter(function ( obj ) {
+          var obj = results_.filter(function ( obj ) {
             return obj.question._id == id;
           })[0];
           if(obj) {
@@ -113,7 +113,7 @@ function QuestionnaireModel() {
         };
 
         this.getResultSummary = function () {
-          return results;
+          return results_;
         };
 
         this.getNumberOfQuestions = function () {
@@ -125,7 +125,7 @@ function QuestionnaireModel() {
         };
 
         this.addResult = function(id, res){
-          results.push({"question": {"_id":id }, "isCorrected" : res});
+          results_.push({"question": {"_id":id }, "isCorrected" : res});
           if(res) {
             numOfRightAnswer++;
           }

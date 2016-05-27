@@ -68,6 +68,18 @@
 
 }
 
+.center-margin {
+  margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+
+  .sort-images, .order-text-element {
+    margin-left: 0px !important;
+  }
+
+}
+
 @media screen and (max-width: 500px) {
 
   .order-text-element {

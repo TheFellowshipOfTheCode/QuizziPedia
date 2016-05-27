@@ -19,17 +19,17 @@
 *******************************************************************************/
 -->
 
-<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+<section class="sezione md-whiteframe-d"  layout-align="center">
   <div class=" md-padding">
     <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
       <span class="text-center questionText">{{d.questionText}} </span>
       <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
     </div>
     <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
-      <div class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
+      <div class="layout-align-center-stretch layout-row" layout="row"  layout-align="center">
         <ul class="line">
           <li class="inline" ng-repeat="item in temporyObjectForView[$parent.$index].list1">
-            <section class="object-section md-whiteframe-z1" layout-sm="column" layout-align="center">
+            <section class="object-section md-whiteframe-z1"  layout-align="center">
               <md-toolbar class="md-primary" layout="column" layout-align="center">
                 <div class="md-toolbar-tools  object-toolbar">
                   <span flex="" class="flex"></span>
@@ -39,7 +39,7 @@
                 </div>
               </md-toolbar>
               <div class="md-padding no-owerflow">
-                <div class=" box-in md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.type,temporyObjectForView[$parent.$index].list1)' }" >
+                <div class=" box-in md-whiteframe-z1 center-margin" data-drop="true" ng-model='temporyObjectForView[$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.type,temporyObjectForView[$parent.$index].list1)' }" >
                   <div class="zone md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
                     {{item.text2}}
                   </div>

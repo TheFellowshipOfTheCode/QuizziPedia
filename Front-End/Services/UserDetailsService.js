@@ -28,7 +28,9 @@ function UserDetailsService($http, $cookies, $q) {
     var methods = {
         getUserDetails: getUserDetails,
         modifyProfilePwd: modifyProfilePwd,
-        modifyProfile: modifyProfile
+        modifyProfile: modifyProfile,
+        changeAccount: changeAccount,
+        deleteAccount: deleteAccount
     };
     return methods;
 
@@ -70,6 +72,30 @@ function UserDetailsService($http, $cookies, $q) {
         var deferred = $q.defer();
         var userJSON = {name: name, surname: surname, email: email};
         $http.put('/api/' + lang + '/user/info', userJSON)
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+
+        return deferred.promise;
+    }
+
+    function changeAccount(lang) {
+        var deferred = $q.defer();
+        $http.put('/api/' + lang + '/user/type')
+            .then(function(data) {
+                deferred.resolve(data);
+            }, function(error){
+                deferred.reject(error);
+            });
+
+        return deferred.promise;
+    }
+
+    function deleteAccount(lang) {
+        var deferred = $q.defer();
+        $http.delete('/api/' + lang + '/user')
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){

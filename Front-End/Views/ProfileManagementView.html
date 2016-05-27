@@ -88,7 +88,6 @@
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
                             <md-button ng-disabled="userForm.$invalid" ng-click="modify(userLog)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLangModifyProfile}}</md-button>
-                            <md-button ng-click="changeAccountTipology()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLangChangeAccountTipology}}</md-button>
                         </div>
                     </md-input-container>
 
@@ -96,6 +95,27 @@
 
             </div>
 
+        </section>
+
+        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding">{{listOfKeys.titleChangeAccount}}</h3>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <div class="md-padding">
+                <p class="text-center">{{listOfKeys.textChangeAccount}}</p>
+                <div layout="row" layout-sm="column" layout-align="center">
+                    <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="changeAccount()" aria-label="{{listOfKeys.buttonLangChangeAccountTipology}}">
+                        <span ng-if="userLog.privilege === 'normal'">{{listOfKeys.buttonLangChangeAccountTipologyPro}}</span>
+                        <span ng-if="userLog.privilege === 'pro'">{{listOfKeys.buttonLangChangeAccountTipologyNormal}}</span>
+                    </button>
+                </div>
+            </div>
         </section>
 
         <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
@@ -111,7 +131,7 @@
             <div class="md-padding">
                 <p class="text-center">{{listOfKeys.textDeleteAccount}}</p>
                 <div layout="row" layout-sm="column" layout-align="center">
-                    <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="deleteProfile()" aria-label="{{listOfKeys.goToTraing}}">
+                    <button class="md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="deleteAccount()" aria-label="{{listOfKeys.buttonLangDeleteProfile}}">
                         <span>{{listOfKeys.buttonLangDeleteProfile}}</span>
                     </button>
                 </div>

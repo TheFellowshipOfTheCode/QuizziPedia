@@ -55,6 +55,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
 
     function loadUserDetails() {
         $scope.userLog = {
+            privilege: $scope.user.getPrivilege(),
             name: $scope.user.getName(),
             surname: $scope.user.getSurname(),
             email: $scope.user.getEmail(),
@@ -62,6 +63,124 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
             passwordCheck: ''
 
         }
+    }
+
+    $scope.deleteProfile = function() {
+        UserDetailsService.deleteAccount($routeParams.lang)
+            .then(function (result) {
+                if (result.status == "200") {
+                    alert = $mdDialog.alert()
+                        .title("Eliminazione avvenuta")
+                        .content("L'eliminazione dell'account è avvenuta con successo.")
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $location.path('/' + $routeParams.lang + '/home');
+                }
+            }, function (err) {
+                if (err.data.code == 2) {
+                    alert = $mdDialog.alert()
+                        .title(err.data.title)
+                        .content(err.data.message)
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                }
+                if (err.data.code == 3) {
+                    alert = $mdDialog.alert()
+                        .title(err.data.title)
+                        .content(err.data.message)
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                }
+                if (err.data.code == 4) {
+                    alert = $mdDialog.alert()
+                        .title(err.data.title)
+                        .content(err.data.message)
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                }
+            })
+    }
+
+    $scope.changeAccount = function() {
+        if($scope.user.getPrivilege() === 'normal') {
+            $scope.user.setPrivilege('pro');
+            $scope.userLog.privilege = 'pro';
+        }
+        else {
+            $scope.user.setPrivilege('normal');
+            $scope.userLog.privilege = 'normal';
+        }
+        UserDetailsService.changeAccount($routeParams.lang)
+            .then(function (result) {
+                if (result.status == "200") {
+                    alert = $mdDialog.alert()
+                        .title("Cambio tipologia accettato")
+                        .content("La modifica della tipologia dell'account è andata a buon fine.")
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $location.path('/' + $routeParams.lang + '/profilemanagement');
+                }
+            }, function (err) {
+                if (err.data.code == 2) {
+                    alert = $mdDialog.alert()
+                        .title(err.data.title)
+                        .content(err.data.message)
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                }
+                if (err.data.code == 3) {
+                    alert = $mdDialog.alert()
+                        .title(err.data.title)
+                        .content(err.data.message)
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                }
+                if (err.data.code == 4) {
+                    alert = $mdDialog.alert()
+                        .title(err.data.title)
+                        .content(err.data.message)
+                        .ok('Chiudi');
+                    $mdDialog
+                        .show(alert)
+                        .finally(function () {
+                            alert = undefined;
+                        });
+                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                }
+            })
     }
 
     $scope.modify = function(userLog) {
@@ -89,14 +208,14 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
                                 .title("Modifiche accettate")
-                                .content("La modifica del profilo è andata a buon fine")
+                                .content("La modifica del profilo è andata a buon fine.")
                                 .ok('Chiudi');
                             $mdDialog
                                 .show(alert)
                                 .finally(function () {
                                     alert = undefined;
                                 });
-                            $location.path('/' + $routeParams.lang + '/userpage');
+                            $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
                         if (err.data.code == 2) {
@@ -157,7 +276,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
-                            $location.path('/' + $routeParams.lang + '/userpage');
+                            $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
                         if (err.data.code == 2) {

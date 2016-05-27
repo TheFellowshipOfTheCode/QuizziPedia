@@ -78,6 +78,10 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         else
             $scope.moreInfo.selected[index] = !$scope.moreInfo.selected[index];
     };
+    
+    $scope.goToQMLCreation = function(){
+        $location.path('/' + $routeParams.lang + '/QML');
+    }
 
   /*Costruttore*/
   QuizService.getTopic($routeParams.lang)

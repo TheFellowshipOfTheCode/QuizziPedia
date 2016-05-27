@@ -96,7 +96,7 @@
                                             <h4>{{$index+1}}) Domanda creata con {{question_selected.makeWith}}</h4>
                                             <div  ng-repeat="q in question_selected.question">
                                                     <div ng-if="$index<2 || moreInfo.selected[questions_selected.indexOf(question_selected)]">
-                                                        <h5>Tipologia: {{q.type}}</h5>
+                                                        <h5>Tipologia: {{q.type.charAt(0).toUpperCase()+ q.type.slice(1)}}</h5>
                                                         <p ng-if="q.questionText">Testo: {{q.questionText}}  </p>
                                                         <div ng-if="q.answers.length>0" ng-repeat="answer in q.answers">
                                                             <p ng-if="answer.text">Risposta: {{answer.text}}</p>
@@ -147,8 +147,7 @@
                                 <h4 class="m-b-20">Nessuna domanda trovata</h4>
                                 <p>E' possibile creare una domanda tramite:</p>
                                 <md-input-container >
-                                    <md-button class="md-raised md-primary"  ng-click="">QML</md-button>
-                                    <md-button class="md-raised md-primary"  ng-click="">Wizard</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="goToQMLCreation()">QML</md-button>
                                 </md-input-container>
                             </md-card-title-text>
                         </md-card-title>
@@ -158,7 +157,7 @@
                                             <h4>{{(currentPage-1)*10+$index+1}}) Domanda creata con {{question.makeWith}}</h4>
                                             <div  ng-repeat="q in question.question">
                                                 <div ng-if="$index<2 || moreInfo.found[questions.indexOf(question)]">
-                                                    <h5>Tipologia: {{(q.type.charAt(0).toUpperCase()+ q.type.slice(1)).split("(?=[A-Z])")}}</h5>
+                                                    <h5>Tipologia: {{q.type.charAt(0).toUpperCase()+ q.type.slice(1)}}</h5>
                                                     <p ng-if="q.questionText">Testo: {{q.questionText}}</p>
                                                     <div ng-if="q.answers.length>0" ng-repeat="answer in q.answers">
                                                         <p ng-if="answer.text">Risposta: {{answer.text}}</p>
@@ -176,7 +175,7 @@
                             </md-item>
                             <div layout="row" layout-align="center center">
                                 <uib-pagination class="text-center pagination-sm"
-                                                ng-if="(questions | filter:search).length>0"
+                                                ng-show="(questions | filter:search).length>0"
                                         ng-model="currentPage"
                                         total-items="(questions | filter:search).length"
                                         max-size="maxSize"

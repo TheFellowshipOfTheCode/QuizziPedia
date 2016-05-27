@@ -44,7 +44,7 @@
 
             <md-toolbar ng-if="subscribedUsers != undefined" class="toolbar-section toolbar-top">
                 <div class="md-toolbar-tools">
-                    <h2>
+                    <h2  class="hide-me-when-i-am-ugly-subscribers">
                         <span ng-if="subscribedUsers.length == 0"> Ci sono 0 iscritti. </span>
                         <span ng-if="subscribedUsers.length == 1"> C'è {{subscribedUsers.length}} iscritto. </span>
                         <span ng-if="subscribedUsers.length > 1"> Ci sono {{subscribedUsers.length}} iscritti. </span>
@@ -53,13 +53,13 @@
                     <span flex=""></span>
                     <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
                     <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(subscribedUsers.length)-1 || subscribedUsers.length == undefined" ng-click="goOn()">>></md-button>
-                    <span ng-if="subscribedUsers.length > 0"> {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(subscribedUsers.length)}}</span>
+                    <span ng-if="subscribedUsers.length > 0" class="hide-me-when-i-am-ugly" > {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(subscribedUsers.length)}}</span>
 
                 </div>
             </md-toolbar>
 
             <div ng-if="subscribedUsers != undefined" class="md-whiteframe-2dp line-quiz " ng-repeat="u in subscribedUsers | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-                <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
+                <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="row">
                     <span class="divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
                     <span class="divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
                     <span flex=""></span>

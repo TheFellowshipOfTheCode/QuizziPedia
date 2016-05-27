@@ -306,7 +306,7 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/subscription-management-small',
+                    href: 'css/subscription-management-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]

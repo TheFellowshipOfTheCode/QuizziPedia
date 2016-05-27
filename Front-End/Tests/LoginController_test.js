@@ -4,19 +4,19 @@
  * QuizziPedia::Front-End::Controllers::LoginController;
  * Relations with other classes:
  * + .
- * Creation data: 29-04-2016;
+ * Creation data: 26-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: ErrorInfoModel_20160501;
- * Update data: 01-05-2016;
+ * ID: LoginControllerTest_20160526;
+ * Update data: 26-05-2016;
  * Description: Scritto il test;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
-
+/*
 
 describe('Testing a Controller that uses a Promise', function () {
     var $scope;
@@ -68,3 +68,5 @@ describe('Testing a Controller that uses a Promise', function () {
     });
 
 });
+
+    */

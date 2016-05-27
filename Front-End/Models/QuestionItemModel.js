@@ -55,8 +55,8 @@ function QuestionItemModel() {
             question_ = question;
         };
 
-        this.setKeywords = function (keyword) {
-            keywords_ = keyword;
+        this.setKeywords = function (keywords) {
+            keywords_ = keywords;
         };
 
         this.setLevel = function (level) {
@@ -83,11 +83,23 @@ function QuestionItemModel() {
         };
 
         this.getKeywords = function () {
-            return keywords_;
+            return keywords;
         };
 
         this.getLevel = function () {
             return level_;
+        };
+
+        this.compareAnswers = function(givenAnswers){
+
+        };
+
+        this.addPieceOfQuestion = function(pieceOfQuestion){
+
+        };
+
+        this.createQuestion = function(questionText, image, url){
+
         };
 
     }

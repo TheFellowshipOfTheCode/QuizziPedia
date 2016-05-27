@@ -32,8 +32,8 @@ app.factory('QuestionnaireModel', QuestionnaireModel);
 
 function QuestionnaireModel() {
 
-    var QuestionnaireModel = function (author, name, keyword, argument, questions, id, results) {
-        var author_ = author;
+    var QuestionnaireModel = function (author, name, keyword, argument, questions, id) {
+        var author = author;
         var name_ = name;
         var keyword_ = keyword;
         var argument_ = argument;
@@ -113,7 +113,7 @@ function QuestionnaireModel() {
         };
 
         this.getResultSummary = function () {
-          return results_;
+          return results;
         };
 
         this.getNumberOfQuestions = function () {

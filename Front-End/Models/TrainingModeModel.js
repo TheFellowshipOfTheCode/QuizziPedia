@@ -61,7 +61,7 @@ function TrainingModeModel() {
     };
 
     this.getArgument = function () {
-        return argument_;
+        return argument;
     };
 
     this.getNumberOfQuestions = function () {
@@ -85,7 +85,6 @@ function TrainingModeModel() {
     };
 
     this.addQuestion = function(question){
-      numberOfQuestions_++;
       questions_.push(question);
     };
 

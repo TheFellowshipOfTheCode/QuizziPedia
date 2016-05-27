@@ -21,9 +21,9 @@
 
 app.controller('ProfileManagementController', ProfileManagementController);
 
-ProfileManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'UserDetailsModel', 'ngMeta'];
+ProfileManagementController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'AuthService', 'UserDetailsModel', 'ngMeta'];
 
-function ProfileManagementController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, UserDetailsModel, ngMeta) {
+function ProfileManagementController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, AuthService, UserDetailsModel, ngMeta) {
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }
@@ -65,8 +65,11 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
         }
     }
 
-    $scope.deleteProfile = function() {
-        UserDetailsService.deleteAccount($routeParams.lang)
+    $scope.deleteAccount = function() {
+                AuthService.logout($rootScope.userLogged.getUsername());
+                delete $rootScope.userLogged;
+                $location.path('/'+$routeParams.lang+'/home');
+        /*UserDetailsService.deleteAccount($routeParams.lang)
             .then(function (result) {
                 if (result.status == "200") {
                     alert = $mdDialog.alert()
@@ -117,7 +120,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                         });
                     $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                 }
-            })
+            })*/
     }
 
     $scope.changeAccount = function() {
@@ -315,7 +318,6 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 });
                             $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                         }
-
                     })
                 }
             }

@@ -48,10 +48,7 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
     $scope.goToCreateQuestionnaire = function() {
         $location.path('/'+$routeParams.lang+'/createquestionnaire');
     }
-
-    $scope.goToShowAllCreatedQuestionnaires = function() {
-        $location.path('/'+$routeParams.lang+'/showallcreatedquestionnaires');
-    }
+    
     if($rootScope.userLogged != undefined){
         showAllQuizzes($rootScope.userLogged, $routeParams.lang);
     }

@@ -9,6 +9,11 @@
 ********************************************************************************
 * Updates history
 *-------------------------------------------------------------------------------
+* ID: AppRouter_20160527
+* Update data: 27-05-2016
+* Description: Aggiornata la classe;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
 * ID: AppRouter_20160427
 * Update data: 27-04-2016
 * Description: Creata la classe e scritti tutti i router per la funzionalità

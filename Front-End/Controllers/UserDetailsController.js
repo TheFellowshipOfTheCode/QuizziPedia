@@ -91,7 +91,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 if(result.data.length != undefined){
                     $scope.quizzes = result.data;}
                 else{
-                    delete $scope.quizzes;
+                    $scope.quizzes=[];
                 }
             }, function (err) {
             })
@@ -103,7 +103,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 if(result.data.length >0){
                     $scope.subscribedQuizzes = result.data;}
                 else{
-                    delete $scope.subscribedQuizzes;
+                    $scope.subscribedQuizzes = [];
                 }
 
             }, function (err) {
@@ -129,7 +129,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 if(result.data.length >0){
                     $scope.approvedQuizzes = result.data;}
                 else{
-                    delete $scope.approvedQuizzes;
+                    $scope.approvedQuizzes = [];
                 }
 
             }, function (err) {

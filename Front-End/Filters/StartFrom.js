@@ -1,4 +1,3 @@
-<!--
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Filters::StartForm;
 * Description: classe che permette di restituire una sezione di un array;
@@ -14,7 +13,6 @@
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
--->
 
 app.filter('startFrom', function() {
 

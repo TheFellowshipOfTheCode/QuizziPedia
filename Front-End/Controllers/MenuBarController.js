@@ -38,8 +38,8 @@
 
 app.controller('MenuBarController',MenuBarController);
 
-MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel', '$mdBottomSheet'];
-function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel, $mdBottomSheet) {
+MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel', '$mdBottomSheet', '$window'];
+function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel, $mdBottomSheet, $window) {
 
   /* Scope variables and function*/
   if($rootScope.userLogged != undefined) {
@@ -52,25 +52,31 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   $scope.logIn = function () {
     resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/login');
+    toggleOnlyOnMobile();
   };
   $scope.signUp = function () {
     resetRefreshBlocking();
     $location.path('/'+$routeParams.lang+'/signup');
+    toggleOnlyOnMobile();
   };
   $scope.goToUserPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/userpage'); //
+    $location.path('/'+$routeParams.lang+'/userpage');
+    toggleOnlyOnMobile();
   };
   $scope.goToUserManagementPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/profilemanagement'); // da completare
+    $location.path('/'+$routeParams.lang+'/profilemanagement');
+    toggleOnlyOnMobile();
   };
   $scope.goToQuestionsManagementPage = function () {
     $location.path('/'+$routeParams.lang+'/questions');
+    toggleOnlyOnMobile();
   };
   $scope.goToQuizManagementPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/questionnairemanagement'); // da completare
+    $location.path('/'+$routeParams.lang+'/questionnairemanagement');
+    toggleOnlyOnMobile();
   };
 
   $scope.logOut = function () {
@@ -90,12 +96,14 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
           $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
           resetRefreshBlocking();
           $location.path('/'+$routeParams.lang+'/home');
+          toggleOnlyOnMobile();
         });
   };
 
   $scope.backToHome = function () {
     resetRefreshBlocking();
     $location.path('/'+$rootScope.systemLang+'/home');
+    toggleOnlyOnMobile();
   }
 
   $scope.showListBottomSheet = function() {
@@ -107,6 +115,12 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
     });
   };
 
+  function toggleOnlyOnMobile() {
+    var screenWidth = $window.innerWidth;
+    if (screenWidth < 960) {
+      $scope.toggleLeft();
+    }
+  }
 
 
   /*Variable for animations*/

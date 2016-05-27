@@ -52,7 +52,7 @@
   </div>
 </md-toolbar>
 
-<md-toolbar ng-if="subscribedQuizzes == undefined" class="toolbar-section toolbar-top toolbar-bottom">
+<md-toolbar ng-if="subscribedQuizzes.lenght == 0" class="toolbar-section toolbar-top toolbar-bottom">
     <div class="no-quiz" class="md-toolbar-tools">
         <h3>
             <span>{{listOfKeys.thereIsNoSubscribedQuiz}} </span>

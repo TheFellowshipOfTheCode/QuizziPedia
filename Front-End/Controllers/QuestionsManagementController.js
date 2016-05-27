@@ -8,6 +8,11 @@
  * License: MIT.
  ********************************************************************************
  * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: QuestionsManagementController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
  *-------------------------------------------------------------------------------
  * ID: QuestionsManagementController_20160511
  * Update data: 11-05-2016

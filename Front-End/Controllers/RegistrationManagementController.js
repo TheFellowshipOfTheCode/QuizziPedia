@@ -8,6 +8,11 @@
  * License: MIT.
  ********************************************************************************
  * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: RegistrationManagementController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
  *-------------------------------------------------------------------------------
  * ID: RegistrationManagementController_20160513;
  * Update data: 13-05-2016;

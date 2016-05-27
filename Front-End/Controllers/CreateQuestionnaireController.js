@@ -9,6 +9,11 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: CreateQuestionnaireController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
+ *-------------------------------------------------------------------------------
  * ID: CreateQuestionnaireController_20160504;
  * Update data: 04-05-2016;
  * Description: Ultimata la classe ci metodi createQMLQuestion(),

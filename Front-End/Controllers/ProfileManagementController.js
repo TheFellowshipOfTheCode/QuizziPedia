@@ -6,6 +6,11 @@
  * License: MIT.
  ********************************************************************************
  * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: ProfileManagementController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
  *-------------------------------------------------------------------------------
  * ID: ProfileManagementController_20160525
  * Update data: 25-05-2016

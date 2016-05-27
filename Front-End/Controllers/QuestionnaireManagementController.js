@@ -8,6 +8,11 @@
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
+ * ID: QuestionnaireManagementController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
+ *-------------------------------------------------------------------------------
  * ID: QuestionnaireManagementController_20160427;
  * Update data: 27-04-2016;
  * Description: Aggiunti i metodi goToCreateQuestionnaire() e goToShowAllCreatedQuestionnaires();
@@ -16,7 +21,7 @@
  * ID: QuestionnaireManagementController_20160426
  * Update data: 26-04-2016
  * Description: creazione della classe;
- * Author: Mattia Varotto
+ * Author: Mattia Varotto3
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 

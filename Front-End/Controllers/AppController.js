@@ -8,6 +8,11 @@
  ********************************************************************************
  * Updates history
  * -------------------------------------------------------------------------------
+ * ID: AppController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
+ * -------------------------------------------------------------------------------
  * ID: AppController_20160505;
  * Update data: 05-05-2016;
  * Description: Completata la stesura della classe, scritti i metodi getLang(),

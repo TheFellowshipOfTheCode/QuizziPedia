@@ -8,7 +8,13 @@
  * License: MIT.
  ********************************************************************************
  * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: EditorQMLController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
  *-------------------------------------------------------------------------------
+ * 
  * ID: EditorQMLController_20160510
  * Update data: 10-05-2016
  * Description: Aggiornato il controller alla versiona finalecon il metodo

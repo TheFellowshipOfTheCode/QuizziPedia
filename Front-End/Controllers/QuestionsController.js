@@ -9,6 +9,11 @@
 ********************************************************************************
 * Updates history
  *-------------------------------------------------------------------------------
+ * ID: QuestionsController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
+ *-------------------------------------------------------------------------------
  * ID: QuestionsController_20160505;
  * Update data: 05-05-2016;
  * Description: Aggiunti i metodi updateStatisticsUser(), updateStatisticsQuestion(),

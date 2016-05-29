@@ -54,11 +54,13 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
     }
 
     function loadUserDetails() {
+        
         $scope.userLog = {
             privilege: $scope.user.getPrivilege(),
             name: $scope.user.getName(),
             surname: $scope.user.getSurname(),
             email: $scope.user.getEmail(),
+            image: $scope.user.getUserImg(),
             password: '',
             passwordCheck: ''
 
@@ -123,6 +125,15 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 }
             })
     }
+
+    $scope.uploadImage = function(image){
+        var data={image:image,type:"userImg"}
+        UserDetailsService.uploadImage(data)
+            .success(function(uploadResponse){
+            })
+            .error(function(error){
+            })
+    };
 
     $scope.changeAccount = function() {
         if($scope.user.getPrivilege() === 'normal') {
@@ -204,10 +215,13 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
+                $scope.user.setUserImg(userLog.image)
                 var nome = $scope.user.getName();
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
-                UserDetailsService.modifyProfilePwd(nome, cognome, email, userLog.password, $routeParams.lang)
+                var image = $scope.user.getUserImg();
+
+                UserDetailsService.modifyProfilePwd(nome, cognome, email,image, userLog.password, $routeParams.lang)
                     .then(function (result) {
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
@@ -265,10 +279,12 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
+                $scope.user.setUserImg(userLog.image)
                 var nome = $scope.user.getName();
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
-                UserDetailsService.modifyProfile(nome, cognome, email, $routeParams.lang)
+                var image = $scope.user.getUserImg();
+                UserDetailsService.modifyProfile(nome, cognome, email, image, $routeParams.lang)
                     .then(function (result) {
                         if (result.status == "200") {
                             alert = $mdDialog.alert()

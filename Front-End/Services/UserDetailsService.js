@@ -45,12 +45,20 @@ function UserDetailsService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function modifyProfilePwd(name, surname, email, password, lang) {
-        if(!password || !email || !name || !surname || !lang) return;
+    function modifyProfilePwd(name, surname, email,image, password, lang) {
+        if(!password || !email || !name || !surname || !image || !lang) return;
         var deferred = $q.defer();
-        var userJSON = {name: name, surname: surname, email: email};
+        console.log(image)
+        var formData = new FormData();
+        formData.append("file", image);
+        formData.append("name", name);
+        formData.append("surname", surname);
+        formData.append("email", email);
         var pwdJSON = {password: password};
-        $http.put('/api/' + lang + '/user/info', userJSON)
+        $http.put('/api/' + lang + '/user/info', formData, {
+            headers: {'Content-Type': undefined},
+            transformRequest: angular.identity
+        })
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){
@@ -67,11 +75,20 @@ function UserDetailsService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function modifyProfile(name, surname, email, lang) {
-        if(!email || !name || !surname || !lang) return;
+
+    function modifyProfile(name, surname, email, image, lang) {
+        if(!email || !name || !surname || !image || !lang) return;
         var deferred = $q.defer();
-        var userJSON = {name: name, surname: surname, email: email};
-        $http.put('/api/' + lang + '/user/info', userJSON)
+        var formData = new FormData();
+        formData.append("file", image);
+        formData.append("name", name);
+        formData.append("surname", surname);
+        formData.append("email", email);
+        console.log(image)
+        $http.put('/api/' + lang + '/user/info', formData, {
+                headers: {'Content-Type': undefined},
+                transformRequest: angular.identity
+            })
             .then(function(data) {
                 deferred.resolve(data);
             }, function(error){

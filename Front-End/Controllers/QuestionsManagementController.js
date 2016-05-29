@@ -98,14 +98,5 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
     $scope.goToQMLCreation = function(){
         $location.path('/' + $routeParams.lang + '/QML');
     }
-
-    $scope.uploadImage = function(image){
-        QuestionsService.uploadImage(image)
-            .success(function(uploadResponse){
-            })
-            .error(function(error){
-            })
-    };
-
-
+    
 }

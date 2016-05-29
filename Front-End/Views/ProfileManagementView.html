@@ -20,10 +20,47 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
+<style>
+.image-upload > input
+        {display: none;}
+
+.image-label  {
+    display: block;
+    position: relative;
+    max-width: 200px;
+    margin: 0px auto;
+}
+
+.image-label:hover .image-hover {
+    background: rgba(254, 209, 54, 0.9) none repeat scroll 0% 0%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: all 0.5s ease 0s;
+}
+
+.image-label .image-hover:hover .image-hover-content {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    font-size: 20px;
+    text-align: center;
+    top: 50%;
+    margin-top: -12px;
+    color: #FFF;
+}
+
+.image-label .image-hover .image-hover-content {
+    display:none;
+}
+
+</style>
+
 <!-- Metadata -->
 <title ng-bind="ngMeta.title"></title>
 <meta name="description" content="{{ngMeta.description}}" />
-
 <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
     <div class=" authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
@@ -38,8 +75,33 @@
                 </div>
             </md-toolbar>
 
+
             <div layout="row" layout-align="center center" >
-                <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+                <form name="userForm" enctype="multipart/form-data" ng-submit="modify(userLog)" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+
+
+                    <div style="margin-top:2em;" class="image-upload text-center">
+                            <label class="image-label" for="file-input">
+                                    <div class="image-hover">
+                                        <div class="image-hover-content">
+                                            <img src="Images/Icons/plus-button.png" >
+                                        </div>
+                                    </div>
+                                    <img style="width:200px" ngf-thumbnail="userLog.image"  class="thumb">
+                            </label>
+                            <input type="file" name="file-input" id="file-input" ngf-select ng-model="userLog.image"  accept="image/*" ngf-max-size="2MB" >
+                            <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="userLog.image = 'Images/Members/user-default.png'" ng-show="userLog.image != 'Images/Members/user-default.png'">Remove</md-button>
+                    </div>
+
+                    <!--<md-input-container class="md-block">
+                        <label for="file-input">
+                            <img style="width:200px" ngf-thumbnail="userLog.image"  class="thumb">
+                        </label>
+                        <input type="file" name="file-input" id="file-input" ngf-select ng-model="userLog.image"  accept="image/*" ngf-max-size="2MB" >
+
+                         <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="userLog.image = null" ng-show="userLog.image">Remove</md-button>
+                         <md-button class="md-raised md-primary" type="submit">Conferma</md-button>
+                    </md-input-container>-->
 
                     <md-input-container class="md-block">
                         <span>{{listOfKeys.profileManagementName}}</span>
@@ -87,11 +149,11 @@
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
-                            <md-button ng-disabled="userForm.$invalid" ng-click="modify(userLog)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLangModifyProfile}}</md-button>
+                            <md-button ng-disabled="userForm.$invalid" type="submit" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLangModifyProfile}}</md-button>
                         </div>
                     </md-input-container>
-
                 </form>
+
 
             </div>
 

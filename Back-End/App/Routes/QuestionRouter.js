@@ -18,6 +18,7 @@
 var Topic = require("../Controller/TopicController");
 var Question = require("../Controller/QuestionController");
 
+
 module.exports = function(app){
 
     app.route('/api/:lang/topics')
@@ -33,9 +34,7 @@ module.exports = function(app){
 
     app.route('/api/:lang/usertraining/questionstatistics')
         .put(Question.updatestatisticsQuestion);
-
-    app.route('/api/upload')
-        .post(Question.uploadImage);
+    
 
     app.route('/api/:lang/allquestions/:topicname/:keywords')
         .get(Topic.getAllQuestions);

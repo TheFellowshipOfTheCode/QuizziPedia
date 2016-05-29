@@ -42,7 +42,6 @@ function QuestionsService($http, $cookies, $q) {
         getTopics : getTopics,
         updateStatisticsUser : updateStatisticsUser,
         updateStatisticsQuestion : updateStatisticsQuestion,
-        uploadImage: uploadImage,
         updateStatisticsTopic : updateStatisticsTopic
     };
     return methods;
@@ -160,16 +159,7 @@ function QuestionsService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
-
-
-    function uploadImage (image) {
-        var formData = new FormData();
-        formData.append("file", image);
-        return $http.post('/api/upload', formData, {
-            headers: {'Content-Type': undefined},
-            transformRequest: angular.identity
-        });
-    }
+    
 
 
 }

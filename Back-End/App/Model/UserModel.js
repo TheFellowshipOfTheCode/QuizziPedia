@@ -49,7 +49,7 @@ var userSchema = new mongoose.Schema(
         name: String,
         surname: String,
         email: String,
-        userImg: String,
+        userImg: {type: String, default: "Images/Members/user-default.png"},
         username: String,
         password: String,
         statistics: [{
@@ -80,7 +80,7 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.editUser=function(name, surname, email, callback){
+userSchema.methods.editUser=function(name, surname, email, image, callback){
     return this.model('User').findOne({_id: this._id}, function (err, user) {
         if (err) {
             return next(err);
@@ -88,6 +88,7 @@ userSchema.methods.editUser=function(name, surname, email, callback){
         user.name=name;
         user.surname=surname;
         user.email=email;
+        user.userImg=image
         return user.save(callback);
     });
 };
@@ -113,10 +114,6 @@ userSchema.methods.editType=function(callback) {
             user.privilege="pro";
         return user.save(callback);
     });
-};
-
-userSchema.methods.setImg=function(image){
-
 };
 
 userSchema.statics.getUser=function(userId,callback){

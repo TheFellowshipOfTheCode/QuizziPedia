@@ -41,6 +41,21 @@ var user = require('../../Model/UserModel');
 var summary = require('../../Model/SummaryModel');
 var quiz = require('../../Model/QuizModel');
 var error = require('../../Model/ErrorModel');
+var fs=require("fs")
+
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, '../Front-End/Images/Members'); // Le immagini verranno uploadate qui
+    },
+    filename: function (req, file, callback) {
+        fs.unlink('../Front-End/'+req.user.userImg);
+        callback(null, req.user._id + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]); // Vogliamo che l'immagine salvata mantenga il nome originale
+    }
+});
+
+var upload =multer({storage: storage}).single('file')
 
 
 exports.searchUser=function(req, res) {
@@ -51,19 +66,26 @@ exports.searchUser=function(req, res) {
 };
 
 exports.updateDataUser = function(req, res, next) {
-    req.user.editUser(req.body.name, req.body.surname, req.body.email, function(err){
-        if (err)
-            return res.status(500).json({
-                code: 814,
-                title: "Errore",
-                message: "Dati utente non aggiornati"
-            });
+    upload(req,res,function(err) {
+        var image;
+        if (req.file!=undefined)
+            image="Images/Members/"+req.file.filename;
         else
-            return res.send({
-                code: 222,
-                title: "Ok",
-                message: "Dati utente aggiornati correttamente"
-            });
+            image="Images/Members/user-default.png"
+        req.user.editUser(req.body.name, req.body.surname, req.body.email,image, function (err) {
+            if (err)
+                return res.status(500).json({
+                    code: 814,
+                    title: "Errore",
+                    message: "Dati utente non aggiornati"
+                });
+            else
+                return res.send({
+                    code: 222,
+                    title: "Ok",
+                    message: "Dati utente aggiornati correttamente"
+                });
+        })
     })
 };
 

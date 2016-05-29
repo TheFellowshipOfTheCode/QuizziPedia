@@ -99,6 +99,8 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         $location.path('/' + $routeParams.lang + '/QML');
     }
 
+   
+
   /*Costruttore*/
   QuizService.getTopic($routeParams.lang)
       .then(function(result){

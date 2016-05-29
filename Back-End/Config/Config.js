@@ -30,23 +30,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash    = require('connect-flash');
 var passport= require('passport');
-var multer = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, __dirname +'/../uploadImage/'); // Le immagini verranno uploadate qui
-    },
-    filename: function (req, file, callback) {
-        var datetimestamp = Date.now();
-        callback(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]); // Vogliamo che l'immagine salvata mantenga il nome originale
-    }
-});
-
-
-
 
 module.exports = function(app) {
-
-
     var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
                   replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
@@ -72,7 +57,6 @@ module.exports = function(app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.static(__dirname + '/../../Front-End'));
-    app.use(multer({storage: storage}).single('file'));
     // required for passport
     app.use(session({
         secret: "cookie_secret",
@@ -88,6 +72,7 @@ module.exports = function(app) {
     require('../App/Routes/QuizRouter.js')(app);
     require('../App/Routes/QuestionRouter.js')(app);
     require('../App/Routes/LangRouter.js')(app);
+
     app.get('/*',function(req,res){
         res.sendFile(path.resolve('Front-End/Index.html'));
     });

@@ -33,7 +33,6 @@ var Question = require('../Model/QuestionModel');
 var Topic= require('../Model/TopicModel');
 
 exports.createQuestion = function(req, res) {
-    console.log(req.body.question[0].answer)
     Question.createQuestion(req.user._id, req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
         else {
@@ -48,9 +47,6 @@ exports.createQuestion = function(req, res) {
     })
 };
 
-exports.uploadImage=function(req, res, next) {
-        res.json({message:"ok"});
-};
 
 
 exports.getQuestion = function(req, res) {

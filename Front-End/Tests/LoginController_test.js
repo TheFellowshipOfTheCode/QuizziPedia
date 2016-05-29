@@ -44,7 +44,7 @@ describe('Testing a Controller that uses a Promise', function () {
 
     it('should resolve promise', function () {
         // Setup the data we wish to return for the .then function in the controller
-        var user = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "aferrara", "/Images/Members/aferrara.jpg", "aferrara", "1", "pro", "573b0733ade95afa018870e4");
+        var user = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "aferrara", "aferrara", "1", "pro", "573b0733ade95afa018870e4");
         deferred.resolve(user);
 
         // We have to call apply for this to work

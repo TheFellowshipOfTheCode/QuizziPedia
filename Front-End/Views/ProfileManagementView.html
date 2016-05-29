@@ -79,7 +79,6 @@
             <div layout="row" layout-align="center center" >
                 <form name="userForm" enctype="multipart/form-data" ng-submit="modify(userLog)" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
 
-
                     <div style="margin-top:2em;" class="image-upload text-center">
                             <label class="image-label" for="file-input">
                                     <div class="image-hover">
@@ -87,10 +86,11 @@
                                             <img src="Images/Icons/plus-button.png" >
                                         </div>
                                     </div>
-                                    <img style="width:200px" ngf-thumbnail="userLog.image"  class="thumb">
+                                    <img style="width:200px" ngf-thumbnail="userLog.image || 'Images/Members/user-default.png'"  class="thumb">
                             </label>
-                            <input type="file" name="file-input" id="file-input" ngf-select ng-model="userLog.image"  accept="image/*" ngf-max-size="2MB" >
-                            <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="userLog.image = 'Images/Members/user-default.png'" ng-show="userLog.image != 'Images/Members/user-default.png'">Remove</md-button>
+
+                            <input type="file" name="file-input" id="file-input"  ngf-select ng-model="userLog.image"  accept="image/*" ngf-max-size="2MB" >
+                            <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="userLog.image = 'Images/Members/user-default.png'" ng-show="userLog.image != 'Images/Members/user-default.png' && userLog.image">Remove</md-button>
                     </div>
 
                     <!--<md-input-container class="md-block">

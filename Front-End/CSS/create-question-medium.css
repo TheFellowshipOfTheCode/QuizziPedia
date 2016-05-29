@@ -126,4 +126,11 @@
     display: none;
   }
 
+  .hideMeOn600 {
+    display: none;
+  }
+
+  .question-edit, .modifyQuestionTitle {
+    width: 95%;
+  }
 }

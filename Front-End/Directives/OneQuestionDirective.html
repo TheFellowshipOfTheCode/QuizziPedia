@@ -22,16 +22,16 @@
 
 <md-toolbar class="modifyQuestionTitle toolbar-section toolbar-top">
   <div class="md-toolbar-tools">
-    <h2>
+    <h2 class="hideMeOn600">
       <span ng-if="questions.length==0"> {{listOfKeys.thereAreLang}} 0 {{listOfKeys.questionsLang}}. </span>
       <span ng-if="questions.length==1"> {{listOfKeys.thereIsLang}} {{questions.length}} {{listOfKeys.questionLang}}. </span>
         <span ng-if="questions.length>1"> {{listOfKeys.thereAreLang}} {{questions.length}} {{listOfKeys.questionsLang}}. </span>
       </span>
     </h2>
     <span flex=""></span>
-    <md-button ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button ng-if="questions.length != 0" class="md-raised " ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
     <md-button ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
-    <span ng-if="questions.length != 0"> {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
+    <span ng-if="questions.length != 0" class="hideMeOn600"> {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
   </div>
 </md-toolbar>
 
@@ -40,7 +40,9 @@
   <md-toolbar class="toolbar-section">
       <div class="md-toolbar-tools">
         <h2>
-          <span>{{$index+1+pageSize*currentPage}}) {{listOfKeys.questionCreatedWith}} {{q.makeWith}}</span>
+          <span>{{$index+1+pageSize*currentPage}})
+             <span class="hideMeOn600"> {{listOfKeys.questionCreatedWith}} </span>
+             {{q.makeWith}}</span>
         </h2>
         <span flex=""></span>
         <md-button class="md-raised" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
@@ -70,6 +72,6 @@
     <span flex=""></span>
     <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
     <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
-    <span>{{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
+    <span class="hideMeOn600">{{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
   </div>
 </md-toolbar>

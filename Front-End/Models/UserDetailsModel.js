@@ -4,7 +4,7 @@
  * alla presentazione del contenuto di un utente sia nella visualizzazione che
  * nella gestione di un profilo;
  *
- * 
+ *
  * Creation data: 25-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
@@ -112,7 +112,7 @@ function UserDetailsModel() {
         };
 
         this.getLevel = function () {
-            return levelUser_;
+            return levelUser_.level;
         };
 
         this.getLevelByTopic = function (topic) {

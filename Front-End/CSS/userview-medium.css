@@ -23,6 +23,17 @@
    margin-top: 0em;
  }
 
+ @media screen and (max-width: 760px) {
+
+   .toolbar-section div {
+       min-height: 6em;
+   }
+
+   .toolbar-section button {
+     margin-top: 0.5em !important;
+   }
+ }
+
  @media screen and (max-width: 660px) {
 
   .center-on-column {

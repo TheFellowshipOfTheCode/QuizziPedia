@@ -88,25 +88,34 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadDoneQuizzes() {
         QuizService.getDoneQuestionnaire($routeParams.lang)
             .then(function (result) {
-                if(result.data.length != undefined){
+                console.log(result.data.length);
+                if(result.data.length > 0){
                     $scope.quizzes = result.data;}
                 else{
+                    console.log("entro qui");
                     $scope.quizzes=[];
                 }
             }, function (err) {
+              $scope.quizzes=[];
+              console.log("entro qui");
             })
     }
 
     function loadAbilitatedQuizzes() {
         QuizService.getSubscribedQuestionnaire($routeParams.lang)
             .then(function (result) {
+                console.log(result);
                 if(result.data.length >0){
+                  console.log("a");
                     $scope.subscribedQuizzes = result.data;}
                 else{
+                  console.log("b");
                     $scope.subscribedQuizzes = [];
                 }
 
             }, function (err) {
+              console.log(err);
+                $scope.subscribedQuizzes = [];
                /* if(err.data.code!="331") {
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari a cui sei iscritto non andato a buon fine");
                     alert = $mdDialog.alert()
@@ -126,13 +135,18 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadApprovedQuizzes() {
         QuizService.getApprovedQuestionnaire($routeParams.lang)
             .then(function (result) {
+              console.log(result);
                 if(result.data.length >0){
+                  console.log("c");
                     $scope.approvedQuizzes = result.data;}
                 else{
+                  console.log("d");
                     $scope.approvedQuizzes = [];
                 }
 
             }, function (err) {
+              console.log(err);
+              $scope.approvedQuizzes = [];
                /* if(err.data.code!="331") {
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");
                     alert = $mdDialog.alert()

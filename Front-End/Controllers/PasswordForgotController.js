@@ -27,9 +27,9 @@
 
 app.controller('PasswordForgotController', PasswordForgotController);
 
-PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService','ngMeta'];
+PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService','ngMeta', '$rootScope'];
 
-function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, AuthService,ngMeta) {
+function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, AuthService,ngMeta, $rootScope) {
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }

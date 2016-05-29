@@ -50,7 +50,8 @@ var storage = multer.diskStorage({
         callback(null, '../Front-End/Images/Members'); // Le immagini verranno uploadate qui
     },
     filename: function (req, file, callback) {
-        fs.unlink('../Front-End/'+req.user.userImg);
+        if (req.user.userImg != 'Images/Members/user-default.png')
+            fs.unlink('../Front-End/'+req.user.userImg);
         callback(null, req.user._id + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]); // Vogliamo che l'immagine salvata mantenga il nome originale
     }
 });

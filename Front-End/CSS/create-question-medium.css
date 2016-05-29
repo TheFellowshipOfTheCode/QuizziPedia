@@ -21,6 +21,10 @@
 
 /*General*/
 
+.QMLtitle {
+  font-size: 1.5em;
+}
+
 .logo-mobile-home {
   height: 30px !important;
   margin: 0px !important;
@@ -132,5 +136,9 @@
 
   .question-edit, .modifyQuestionTitle {
     width: 95%;
+  }
+
+  .font-smaller {
+    font-size: 0.8em;
   }
 }

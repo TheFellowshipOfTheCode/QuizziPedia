@@ -120,11 +120,11 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
         {
             $location.path('/'+$routeParams.lang+'/home');
         }
-        if(variableOfPath.indexOf("questionnairemanagement") != -1  && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() == "normal")
+        if((variableOfPath.indexOf("questionnairemanagement") != -1 || variableOfPath.indexOf("createquestionnaire") != -1)  && $rootScope.userLogged != undefined && $rootScope.userLogged.getPrivilege() == "normal")
         {
             $location.path('/'+$routeParams.lang+'/home');
         }
-        if((variableOfPath.indexOf("search") != -1 || variableOfPath.indexOf("questions") != -1 || variableOfPath.indexOf("questionnairemanagement") != -1 ||  variableOfPath.indexOf("userpage") != -1 || variableOfPath.indexOf("quiz") != -1) && $rootScope.userLogged === undefined)
+        if((variableOfPath.indexOf("QML") != -1 || variableOfPath.indexOf("profilemanagement") != -1 || variableOfPath.indexOf("createquestionnaire") != -1 || variableOfPath.indexOf("search") != -1 || variableOfPath.indexOf("questions") != -1 || variableOfPath.indexOf("questionnairemanagement") != -1 ||  variableOfPath.indexOf("userpage") != -1 || variableOfPath.indexOf("quiz") != -1) && $rootScope.userLogged === undefined)
         {
             $location.path('/'+$routeParams.lang+'/home');
         }

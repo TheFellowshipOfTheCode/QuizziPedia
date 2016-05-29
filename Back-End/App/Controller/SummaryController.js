@@ -42,16 +42,22 @@ exports.getQuizzes = function(req, res) {
         req.user.quizSummaries.forEach(function(quizSummary,index){
             Summary.findSummary(quizSummary, function(err, elem){
                 if (err)
-                    return res.send()
+                    return res.send();
+                console.log(elem.author);
                 User.getUser(elem.author, function(err,user){
-                    elem.author=user.username
-                    quiz_summary.push(elem)
+                    if(user) {
+                      elem.author=user.username;
+                    }
+                    else {
+                      elem.author="User deleted";
+                    }
+                    quiz_summary.push(elem);
                     if (index+1==req.user.quizSummaries.length)
                         res.send(quiz_summary);
                 })
-                
+
             })
-            
+
         })
     }
 

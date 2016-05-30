@@ -1,4 +1,4 @@
-/*
+
 var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
@@ -8,10 +8,10 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'albertoferrara92@gmail.com', password: 'ciaociao'})
+            .send({username: 'fberton', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("aferrara");
+                    res.body.user.username.should.equal("fberton");
                 else
                     res.status.should.equal(500);
                 done()
@@ -19,7 +19,7 @@ describe("Signin Test", function () {
     });
 });
 
-
+/*
 describe("Get All Questions Test", function () {
     it("should return all questions of a topic", function (done) {
         agent
@@ -34,15 +34,16 @@ describe("Get All Questions Test", function () {
             });
     });
 })
-
+*/
 
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
         agent
-            .get('/api/:lang/userquestion/5728c4504c16020e07c41449')
+            .get('/api/:lang/userquestion/574168240a7ba626375283af')
             .expect(200)
             .end(function(err,res){
                 if (!err && res.status == 200){
+                    console.log(res.body)
                     res.status.should.equal(200);
                 }
                 else
@@ -52,6 +53,7 @@ describe("Get Question Test", function(){
     })
 });
 
+/*
 describe("Create Question Test", function(){
     it("should create a question", function(done){
         agent

@@ -177,3 +177,7 @@
   }
 
 }
+
+.ace_content  {
+  overflow-y: scroll !important;
+}

@@ -46,6 +46,8 @@ module.exports = function(config){
       'Front-End/Directives/**/*.html',
       'Front-End/Services/**/*.js',
       'Front-End/Tests/**/*.js',
+      'Back-End/Server.js',
+      'Back-End/Config/Config.js',
       'Back-End/Tests/**/*.js'
     ],
 

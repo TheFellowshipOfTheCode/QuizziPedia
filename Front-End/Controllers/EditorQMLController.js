@@ -14,7 +14,7 @@
  * Description: Aggiornato controller
  * Author: Franco Berton.
  *-------------------------------------------------------------------------------
- * 
+ *
  * ID: EditorQMLController_20160510
  * Update data: 10-05-2016
  * Description: Aggiornato il controller alla versiona finalecon il metodo
@@ -37,6 +37,10 @@ app.controller('EditorQMLController', EditorQMLController);
 EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta'];
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta) {
+
+    var idQuestion;
+    var questionTemp;
+
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }
@@ -52,11 +56,47 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         ngMeta.setTag('description',$rootScope.listOfKeys.QMLDescription);
     }
 
+    function setTempQuestionID(id) {
+      idQuestion=id;
+    }
+
+    function getTempQuestionID() {
+      return idQuestion;
+    }
+
+    function deleteTempQuestionID() {
+      delete idQuestion;
+      idQuestion="";
+    }
+
+    function setToBeViewed(questionDownloaded) {
+      if(questionDownloaded.question.length>0) {
+        console.log("matteo gnoato non fa niente");
+        questionTemp= questionDownloaded;
+        var qD={};
+        qD.type="custom";
+        qD.topic=questionDownloaded.topic;
+        qD.question= questionDownloaded.question;
+        return qD;
+      }
+      else { // domanda non custom
+          questionTemp= questionDownloaded;
+          var qD= questionDownloaded.question[0];
+          qD.topic=questionDownloaded.topic;
+          return qD;
+      }
+    }
+
     $scope.id = $routeParams.idQuestion;
     if ($scope.id) {
         QuestionsService.getQuestion($scope.id, $routeParams.lang)
             .then(function (result) {
                 var questionDownloaded = result.data;
+                console.log(questionDownloaded);
+                //setTempQuestionID(questionDownloaded._id);
+                //delete questionDownloaded._id;
+                //console.log(questionDownloaded);
+                questionDownloaded=setToBeViewed(questionDownloaded);
                 $scope.question = JSON.stringify(questionDownloaded, null, 2);
             }, function (err) {
                 $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
@@ -88,6 +128,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             var result = '';
             try {
                 result = jsonlint.parse(question);
+                result._id=getTempQuestionID();
+                console.log(result);
             }
             catch (e) {
                 alert = $mdDialog.alert()
@@ -161,4 +203,3 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         $location.path('/' + $routeParams.lang + '/wizard');
     };
 }
-

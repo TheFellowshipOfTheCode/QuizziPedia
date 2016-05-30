@@ -59,7 +59,7 @@ exports.getQuestion = function(req, res) {
                 message: "Nessuna domanda trovata con l'id passato"
             });
             else return res.send(question);
-        })  
+        })
     })
 };
 
@@ -71,6 +71,7 @@ exports.getQuestions = function(req, res) {
 };
 
 exports.editQuestion = function(req, res) {
+  console.log(req.body);
     Question.editQuestion(req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
         else return res.send({code:88, title: "Errore Domanda", message: "Domanda modificata correttamente"});
@@ -92,8 +93,7 @@ exports.updatestatisticsQuestion = function(req, res) {
             }
             else
                 return res.send({code:100, title: "Ok Domanda", message: "Statistiche domande aggiornate correttamente"});
-            
+
         })
     })
 }
-

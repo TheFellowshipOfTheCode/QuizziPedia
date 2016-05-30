@@ -34,12 +34,9 @@
  *******************************************************************************/
 app.controller('EditorQMLController', EditorQMLController);
 
-EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta'];
+EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta', 'JSONtoQML'];
 
-function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta) {
-
-    var idQuestion;
-    var questionTemp;
+function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML) {
 
     if ($rootScope.listOfKeys!=undefined){
         metaData();
@@ -56,36 +53,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         ngMeta.setTag('description',$rootScope.listOfKeys.QMLDescription);
     }
 
-    function setTempQuestionID(id) {
-      idQuestion=id;
-    }
 
-    function getTempQuestionID() {
-      return idQuestion;
-    }
-
-    function deleteTempQuestionID() {
-      delete idQuestion;
-      idQuestion="";
-    }
-
-    function setToBeViewed(questionDownloaded) {
-      if(questionDownloaded.question.length>0) {
-        console.log("matteo gnoato non fa niente");
-        questionTemp= questionDownloaded;
-        var qD={};
-        qD.type="custom";
-        qD.topic=questionDownloaded.topic;
-        qD.question= questionDownloaded.question;
-        return qD;
-      }
-      else { // domanda non custom
-          questionTemp= questionDownloaded;
-          var qD= questionDownloaded.question[0];
-          qD.topic=questionDownloaded.topic;
-          return qD;
-      }
-    }
 
     $scope.id = $routeParams.idQuestion;
     if ($scope.id) {
@@ -93,10 +61,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             .then(function (result) {
                 var questionDownloaded = result.data;
                 console.log(questionDownloaded);
-                //setTempQuestionID(questionDownloaded._id);
-                //delete questionDownloaded._id;
-                //console.log(questionDownloaded);
-                questionDownloaded=setToBeViewed(questionDownloaded);
+                JSONtoQML.setTempQuestionID(questionDownloaded._id);
+                questionDownloaded=JSONtoQML.setToBeViewed(questionDownloaded);
                 $scope.question = JSON.stringify(questionDownloaded, null, 2);
             }, function (err) {
                 $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
@@ -128,7 +94,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             var result = '';
             try {
                 result = jsonlint.parse(question);
-                result._id=getTempQuestionID();
+                result._id=JSONtoQML.getTempQuestionID();
                 console.log(result);
             }
             catch (e) {
@@ -151,6 +117,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .then(function (result) {
                         var topics = result.data;
                         var resultQML = controlloQML(question, res, topics, $mdDialog);
+                        resultQML._id=JSONtoQML.getTempQuestionID();
+                        console.log(resultQML);
                         if (resultQML) {
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
@@ -164,7 +132,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                             .finally(function () {
                                                 alert = undefined;
                                             });
-                                        $location.path('/' + $routeParams.lang + '/home');
+                                        $location.path('/' + $routeParams.lang + '/questions');
                                     }
                                 }, function (err) {
                                     $scope.error = new ErrorInfoModel();

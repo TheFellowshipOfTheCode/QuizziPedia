@@ -78,11 +78,7 @@ describe('QuestionItemModel', function(){
         var result = q.getQuestion();
         expect(result).toEqual("Objects");
     });
-    it('should set the keywords of the question', function(){
-        q.setKeywords(['Cultura Generale', 'PD']); 
-        var result = q.getKeywords();
-        expect(result).toEqual(['Cultura Generale', 'PD']);
-    });
+   
 });
 
 

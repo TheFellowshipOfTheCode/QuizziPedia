@@ -51,12 +51,8 @@ var storage = multer.diskStorage({
         callback(null, 'Front-End/Images/Members'); // Le immagini verranno uploadate qui
     },
     filename: function (req, file, callback) {
-<<<<<<< Updated upstream
         if (req.user.userImg != 'Images/Members/user-default.png')
-            fs.unlink('../Front-End/'+req.user.userImg);
-=======
         fs.unlink('Front-End/'+req.user.userImg);
->>>>>>> Stashed changes
         callback(null, req.user._id + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]); // Vogliamo che l'immagine salvata mantenga il nome originale
     }
 });

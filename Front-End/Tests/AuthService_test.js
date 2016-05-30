@@ -18,7 +18,7 @@
  *******************************************************************************/
 
 describe('AuthService', function(){
-    describe('when I call signIn', function(){
+/*    describe('when I call signIn', function(){
         it('set the cookie right', function(){
             var $injector = angular.injector([ 'myModule' ]);
             var myService = $injector.get( 'myService' );
@@ -26,5 +26,5 @@ describe('AuthService', function(){
         })
 
     })
-
+*/
 });

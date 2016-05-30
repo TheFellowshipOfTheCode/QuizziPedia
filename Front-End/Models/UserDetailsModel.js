@@ -112,7 +112,7 @@ function UserDetailsModel() {
         };
 
         this.getLevel = function () {
-            return levelUser_.level;
+            return levelUser_;
         };
 
         this.getLevelByTopic = function (topic) {

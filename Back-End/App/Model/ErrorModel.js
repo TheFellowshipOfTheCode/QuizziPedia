@@ -24,15 +24,20 @@ var errorSchema = new mongoose.Schema({
 });
 
 
-errorSchema.methods.getCode = function() {
+errorSchema.statics.generateError = function(error, callback) {
+    console.log(error);
+    return this.findOne({errorCode: 123}, callback);
+}
+
+errorSchema.statics.getCode = function() {
     return this.errorCode;
 };
 
-errorSchema.methods.getTitle = function() {
+errorSchema.statics.getTitle = function() {
     return this.errorTitle;
 };
 
-errorSchema.methods.getMessage = function() {
+errorSchema.statics.getMessage = function() {
     return this.errorMessage;
 };
 

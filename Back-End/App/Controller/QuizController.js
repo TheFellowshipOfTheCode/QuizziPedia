@@ -28,17 +28,23 @@
 var user = require('../Model/UserModel.js');
 var Quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
+var quizzipediaerror = require('../Controller/Errors/QuizziPediaError.js');
 
 exports.createQuiz = function (req, res) {
     req.body.author=req.user._id;
-    Quiz.createQuiz(req.body, function(err,quiz) {
-        if (err) return res.status(500).json({
-            code: 2,
-            title: 'quiz-insertion-error',
-            message: "l'inserimento del quiz è fallito"
+    if (req.body.title != undefined && req.body.topic != undefined) {
+        Quiz.createQuiz(req.body, function (err, quiz) {
+            if (err) return res.status(500).json({
+                code: 2,
+                title: 'quiz-insertion-error',
+                message: "l'inserimento del quiz è fallito"
+            });
+            else return res.send(quiz);
         });
-        else return res.send(quiz);
-    });
+    }
+    else {
+        quizzipediaerror.generateError({errorCode: 123}, res);
+    }
 }
 
 exports.getQuiz = function (req, res, next) {

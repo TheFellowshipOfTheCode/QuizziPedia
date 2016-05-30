@@ -23,17 +23,7 @@ var ErrorModel = require('../App/Model/ErrorModel.js');
 
 var errormodel = new ErrorModel();
 
-exports.insertError = function(req, res, next) {
-    var error = {
-        errorCode: req.errorCode,
-        errorTitle: req.errorTitle,
-        errorMessage: req.errorMessage
-    }
-    errormodel.insert(error);
-    return res.send(error);
-}
-
-
+/*  serve a qualcosa???
 
 exports.handleError = function(req, res, next) {
     errormodel.findOne({errorCode: req.errormodel.errorCode}, function(errorFound) {
@@ -45,3 +35,5 @@ exports.handleError = function(req, res, next) {
         res.send(error);
     })
 }
+
+*/

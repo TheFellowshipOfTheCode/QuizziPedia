@@ -20,14 +20,20 @@
   *******************************************************************************/
 "use strict";
 
-module.exports = class QuizziPediaError  {
-    constructor(code, title, message) {
-        this.code = code;
-        this.title = title;
-        this.message = message;
-    }
+var errorModel = require('../../Model/ErrorModel.js')
 
-    getCode() {
+exports.generateError = function(req, res) {
+    console.log(req);
+    errorModel.generateError(req, res);
+    console.log("returning RES: " + res.body)
+}
+
+exports.getCode = function(req, res) {
+
+}
+
+
+    /*getCode() {
         return this.code;
     }
 
@@ -51,4 +57,4 @@ module.exports = class QuizziPediaError  {
         return this.code + ' ' + this.title + ': ' + this.message + '.';
     }
 }
-
+*/

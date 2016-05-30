@@ -109,6 +109,10 @@ topicSchema.statics.getTopic= function(lang, callback) {
     return this.find({}, 'name', callback);
 };
 
+topicSchema.statics.getTopicQuestion= function(questionId, callback) {
+    return this.findOne({question:questionId}, 'name', callback);
+};
+
 topicSchema.statics.addCorrect = function(topic, callback) {
     this.findOne({'name': topic}, function(err, topic) {
         if (err) {

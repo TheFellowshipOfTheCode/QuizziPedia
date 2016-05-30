@@ -24,11 +24,13 @@
  *-------------------------------------------------------------------------------
  ********************************************************************************/
 
-controlloQML = function(req, res, topics, $mdDialog) {
+controlloQML = function(req, res,selectedTopic, topics, $mdDialog) {
 
     var corpo = JSON.parse(req);
+    corpo.topic=selectedTopic;
+    console.log(corpo);
     var success;
-    var tipologiaDomande = ["veroFalso", "rispostaMultipla", "ordinamentoStringhe", "ordinamentoImmagini", "collegamentoElementi", "areaCliccabile", "spaziVuoti", "custom"];
+    var tipologiaDomande = ["veroFalso", "rispostaMultipla", "ordinamentoStringhe", "ordinamentoImmagini", "collegamentoElementi", "areaCliccabile", "riempimentoSpaziVuoti", "custom"];
     if (corpo.hasOwnProperty('type')) {
         if(corpo.hasOwnProperty('topic')) {
             var topic = corpo.topic;
@@ -144,5 +146,3 @@ controlloQML = function(req, res, topics, $mdDialog) {
         return false;
     }
 }
-
-

@@ -37,7 +37,23 @@
                         </div>
                     </md-toolbar>
 
-                    <h1 class="QMLtitle">{{listOfKeys.writeHereLang}}</h1>
+                    <!-- <h1 class="QMLtitle">{{listOfKeys.writeHereLang}}</h1> -->
+                    <div class="false-if-choice" layout="row" layout-sm="column" layout-xs="column" ng-if="!id">
+                      <div class="topicTextChoice" id="topicTextChoiceId"> {{listOfKeys.selectedTopicLang}} </div>
+                      <div class="topicPossibleChoice">
+                        <md-input-container class="select-container">
+                          <md-select class="topics" placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="$parent.selectedTopic" >
+                            <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+                              <md-option ng-value="topic" ng-repeat="topic in topics | orderBy : 'name'">{{topic.name}}</md-option>
+                          </md-select>
+                        </md-optgroup>
+                        </md-input-container>
+                      </div>
+                    </div>
+                    <div class="true-if-choice" layout="row" layout-sm="column" layout-xs="column" ng-if="id">
+                      <div class="topicTextChoice" id="topicTextChoiceId"> {{listOfKeys.choosenTopicLang}}:  </div>
+                      <div class="topicChoice" id="topicChoiceId"> {{selectedTopic.name}} </div>
+                    </div>
                     <div class="contentQML">
                         <juicy-ace-editor id="Juiceeditor" style="min-height:500px" mode="ace/mode/json">{{question}}</juicy-ace-editor>
                       </div>
@@ -46,8 +62,8 @@
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-md="column" layout-sm="column"  layout-xs="column" layout-margin>
                                     <md-button ng-click="goToWizard()" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.goToWizard}}</md-button>
-                                    <md-button ng-if="id == undefined" ng-click="submitQuestion()" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
-                                    <md-button ng-if="id != undefined" ng-click="submitQuestion()" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
+                                    <md-button ng-if="id == undefined" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button ng-if="id != undefined" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
                                 </div>
                             </md-input-container>
 

@@ -38,14 +38,12 @@ function JSONtoQML() {
 
     function deleteTempQuestionID() {
       delete idQuestion;
-      idQuestion="";
     }
 
     function setToBeViewed(questionDownloaded) {
       if(questionDownloaded.question.length>1) {
         var qD={};
         qD.type="custom";
-        qD.topic=questionDownloaded.topic;
         qD.question= questionDownloaded.question;
         qD.question.forEach(function(elem){
           if(elem.type=="spaziVuoti") {
@@ -57,7 +55,7 @@ function JSONtoQML() {
           elem.answer=elem.answers;
           delete elem.answers;
         });
-        qD.topic=questionDownloaded.topic;
+        qD.keywords=questionDownloaded.keywords;
         return qD;
       }
       else { // domanda non custom
@@ -65,7 +63,6 @@ function JSONtoQML() {
           var qD= questionDownloaded.question[0];
           delete qD.answers;
           qD.answer=tempAnswer;
-          qD.topic=questionDownloaded.topic;
           qD.keywords=questionDownloaded.keywords;
           return qD;
       }

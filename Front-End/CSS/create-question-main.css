@@ -181,3 +181,37 @@
 .ace_content  {
   overflow-y: scroll !important;
 }
+
+.true-if-choice, .false-if-choice {
+  width: 80%;
+  margin: auto;
+}
+
+.topicChoice {
+  line-height: 2em;
+  vertical-align: middle;
+  font-size: 1.3em;
+  padding-left: 0.5em;
+}
+.topicTextChoice {
+  line-height: 2em;
+  vertical-align: middle;
+  font-size: 1.1em;
+  padding-top: 0.25em;
+}
+
+.select-container {
+  min-width: 18em;
+  width: 18em;
+}
+
+.topicPossibleChoice {
+  margin-top: -1.25em;
+  min-width: 6em;
+  width: 6em;
+  margin-left: 1em;
+}
+
+.false-if-choice  {
+  margin-top: 1em;
+}

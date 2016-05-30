@@ -38,6 +38,9 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML) {
 
+    //loadTopics(function(data) {
+    //});
+
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }
@@ -54,16 +57,28 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
     }
 
 
-
     $scope.id = $routeParams.idQuestion;
     if ($scope.id) {
         QuestionsService.getQuestion($scope.id, $routeParams.lang)
             .then(function (result) {
                 var questionDownloaded = result.data;
+                var topic=result.data.topic;
                 console.log(questionDownloaded);
                 JSONtoQML.setTempQuestionID(questionDownloaded._id);
+
                 questionDownloaded=JSONtoQML.setToBeViewed(questionDownloaded);
-                $scope.question = JSON.stringify(questionDownloaded, null, 2);
+                var topics;
+                loadTopics(function(data) {
+                  console.log(data);
+                  topics = data.filter(function(elem){
+                    return elem.name==topic;
+                  });
+
+                  console.log(topics[0]);
+                  $scope.selectedTopic=topics[0];
+                  $scope.question = JSON.stringify(questionDownloaded, null, 2);
+                  $scope.topics = data;
+                });
             }, function (err) {
                 $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
                 alert = $mdDialog.alert()
@@ -77,7 +92,13 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     });
             });
     }
-    $scope.submitQuestion = function () {
+    else {
+      loadTopics(function(data) {
+        $scope.topics = data;
+      });
+    }
+    $scope.submitQuestion = function (selectedTopic) {
+      console.log(selectedTopic);
         var question = document.getElementById('Juiceeditor').value;
         if (question == undefined) {
             alert = $mdDialog.alert()
@@ -94,7 +115,9 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             var result = '';
             try {
                 result = jsonlint.parse(question);
-                result._id=JSONtoQML.getTempQuestionID();
+                //result._id=JSONtoQML.getTempQuestionID();
+
+                //result.topic=selectedTopic.name;
                 console.log(result);
             }
             catch (e) {
@@ -116,7 +139,9 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .getTopics($routeParams.lang)
                     .then(function (result) {
                         var topics = result.data;
-                        var resultQML = controlloQML(question, res, topics, $mdDialog);
+                        console.log(topics);
+                        console.log(question);
+                        var resultQML = controlloQML(question, res, selectedTopic.name, topics, $mdDialog);
                         resultQML._id=JSONtoQML.getTempQuestionID();
                         console.log(resultQML);
                         if (resultQML) {
@@ -132,6 +157,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                             .finally(function () {
                                                 alert = undefined;
                                             });
+                                            JSONtoQML.deleteTempQuestionID();
                                         $location.path('/' + $routeParams.lang + '/questions');
                                     }
                                 }, function (err) {
@@ -170,4 +196,24 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
     $scope.goToWizard = function () {
         $location.path('/' + $routeParams.lang + '/wizard');
     };
+
+    function loadTopics(callback) {
+      QuestionsService
+        .getTopics($routeParams.lang)
+        .then(function(result){
+            topics = result.data;
+            callback(topics);
+        } ,function (err){
+            $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+            alert = $mdDialog.alert()
+                .title($scope.error.getTitle())
+                .content($scope.error.getCode()+": "+$scope.error.getMessage())
+                .ok('Ok');
+            $mdDialog
+                .show( alert )
+                .finally(function() {
+                    alert = undefined;
+                });
+        });
+    }
 }

@@ -37,14 +37,8 @@ module.exports = function(app) {
 
     var mongodbUri = 'mongodb://'+accessToDB.login+':'+accessToDB.password+'@'+accessToDB.url+'/'+accessToDB.database;
 
-    mongoose.connect(mongodbUri, options, function(err) {
-        if(err) {
-            console.log('connection error', err);
-        } else {
-            console.log('connection successful');
-        }
+    dataDaseConnection(mongodbUri, options);
 
-    });
     require('./Passport')(passport); // pass passport for configuration
     // view engine setup
     app.set('views','../../Front-End/Views');
@@ -77,3 +71,15 @@ module.exports = function(app) {
         res.sendFile(path.resolve('Front-End/Index.html'));
     });
 };
+
+function dataDaseConnection(mongodbUri, options) {
+  mongoose.connect(mongodbUri, options, function(err) {
+      if(err) {
+          console.log('connection error', err);
+          dataDaseConnection(mongodbUri, options);
+      } else {
+          console.log('connection successful');
+      }
+
+  });
+}

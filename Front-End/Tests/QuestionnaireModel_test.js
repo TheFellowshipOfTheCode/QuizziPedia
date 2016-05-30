@@ -28,7 +28,8 @@ describe('QuestionnaireModel', function(){
         inject( function($injector){
             QuestionnaireModel = $injector.get('QuestionnaireModel');
         });
-        q = new QuestionnaireModel("aferrara", "Questionario", ['Informatica', 'UniPD'], "Cultura Generale", [123234345456, 12323434523], "02341", ['true', 'false', 'true'])
+        q = new QuestionnaireModel("aferrara", "Questionario", ['Informatica', 'UniPD'], "Cultura Generale", [123234345456, 12323434523], "02341")
+
 
 
     });
@@ -61,8 +62,8 @@ describe('QuestionnaireModel', function(){
         expect(result).toEqual(0);
     });
     it('should get the results of the questionnaire', function(){
-        var result = q.getResultSummary();
-        expect(result).toEqual(['true', 'false', 'true']);
+        var result = q.getResult();
+        expect(result).toEqual([]);
     });
     it('should get the number of questions of the questionnaire', function(){
         var result = q.getNumberOfQuestions();

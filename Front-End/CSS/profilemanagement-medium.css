@@ -86,3 +86,8 @@ md-input-container {
 .even {
     background-color: white !important;
 }
+
+.change {
+  margin: auto;
+  width: 50%;
+}

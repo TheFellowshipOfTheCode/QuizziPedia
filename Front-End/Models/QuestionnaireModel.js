@@ -43,8 +43,8 @@ function QuestionnaireModel() {
         var numOfRightAnswer = 0;
         var mark_ = 0;
 
-        this.setAuthor = function (author) {
-            author_ = author;
+        this.setAuthor = function (author_) {
+            author = author_;
         };
 
         this.setName = function (name) {
@@ -69,7 +69,7 @@ function QuestionnaireModel() {
         };
 
         this.getAuthor = function () {
-            return author_;
+            return author;
         };
 
         this.getName = function () {
@@ -93,7 +93,7 @@ function QuestionnaireModel() {
         };
 
         this.getResult = function () {
-          return numOfRightAnswer;
+          return results_;
         };
 
         this.getMark = function () {

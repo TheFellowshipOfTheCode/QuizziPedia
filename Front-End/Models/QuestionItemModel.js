@@ -55,8 +55,8 @@ function QuestionItemModel() {
             question_ = question;
         };
 
-        this.setKeywords = function (keywords) {
-            keywords_ = keywords;
+        this.setKeywords = function (keyword) {
+            keywords_ = keyword;
         };
 
         this.setLevel = function (level) {

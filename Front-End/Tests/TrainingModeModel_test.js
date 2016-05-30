@@ -63,11 +63,6 @@ describe('TrainingModeModel', function(){
         var result = t.getKeywords();
         expect(result).toEqual(["Programmazione ad Oggetti"]);
     });
-    it('should set the Argument of the training', function(){
-        t.setArgument("Matematica");
-        var result = t.getArgument();
-        expect(result).toEqual("Matematica");
-    });
     it('should set the number of questions of the training', function(){
         t.setNumberOfQuestions(5);
         var result = t.getNumberOfQuestions();
@@ -78,17 +73,14 @@ describe('TrainingModeModel', function(){
         var result = t.getQuestions();
         expect(result).toEqual([Object, Object]);
     });
-    it('should add a questions to the training', function(){
-        t.addQuestion(Object);
-        var result = t.getNumberOfQuestions();
-        expect(result).toEqual(11);
-    });
+
     it('should set the right answer of the training', function(){
         t.setRightAnswer(2);
         var result = t.getRightAnswer();
         expect(result).toEqual(2);
     });
     it('should add a right answer to the training', function(){
+        t.addQuestion('12345323');
         var result = t.getRightAnswer()
         expect(result).toEqual([]);
     });

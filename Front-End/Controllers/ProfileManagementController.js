@@ -54,7 +54,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
     }
 
     function loadUserDetails() {
-        
+
         $scope.userLog = {
             privilege: $scope.user.getPrivilege(),
             name: $scope.user.getName(),
@@ -157,6 +157,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                             alert = undefined;
                         });
                     $location.path('/' + $routeParams.lang + '/profilemanagement');
+                    $rootScope.directivesChoose= MenuBarModel.getDirectives(location,$rootScope.userLogged.getPrivilege());
                 }
             }, function (err) {
                 if (err.data.code == 2) {

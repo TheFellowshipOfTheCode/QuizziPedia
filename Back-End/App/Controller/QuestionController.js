@@ -38,16 +38,31 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        fs.mkdir('Front-End/Images/Questions/'+req.params.questionId, function(err) {
-            var dir='Front-End/Images/Questions/'+req.params.questionId
-            if (!err)
-                callback(null, dir); // Le immagini verranno uploadate qui
+        var dir='Front-End/Images/Questions/'+req.params.questionId
+        fs.stat(dir, function(err, stats) {
+            if (err)
+                fs.mkdir(dir, function(err) {
+                    if (!err)
+                        callback(null, dir); // Le immagini verranno uploadate qui
+                })
+            else
+                callback(null, dir);
+            
         });
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
     }
 });
+/*
+fs.stat('Front-End/Images/Questions/'+req.params.questionId, function(err, stats) {
+    if (err)
+        fs.mkdir('Front-End/Images/Questions/' + req.params.questionId, callback);
+    else{
+        var dir='Front-End/Images/Questions/' + req.params.questionId;
+        callback(null, dir);
+    }
+}) */
 
 var upload =multer({storage: storage}).array("files")
 

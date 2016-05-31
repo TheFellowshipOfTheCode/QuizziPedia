@@ -99,7 +99,7 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
                 console.log(question.image)
                 if (question.image){
                     if (question.image.replace(" ", "")==(image.filename.replace(" ", ""))) {
-                        question.image = image.path
+                        question.image = image.path.substr(10)
                         found = true;
                     }
                 }
@@ -117,15 +117,15 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
                 images.forEach(function (image) {
                     if (answer.url || answer.url1 || answer.url2){
                         if (answer.url && answer.url == image.filename) {
-                            answer.url = image.path
+                            answer.url = image.path.substr(10)
                             found = true;
                         }
                         if (answer.url1 && answer.url1 == image.filename) {
-                            answer.url1 = image.path
+                            answer.url1 = image.path.substr(10)
                             found = true;
                         }
                         if (answer.url2 && answer.url2 == image.filename) {
-                            answer.url2 = image.path
+                            answer.url2 = image.path.substr(10)
                             found = true;
                         }
                     }

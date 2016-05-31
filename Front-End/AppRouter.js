@@ -359,14 +359,14 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
             templateUrl: '/Views/QMLtutorial.html',
             css: [
                 {
-                    href: 'css/auth-main.css'
+                    href: 'css/qml-tutorial-main.css'
                 },
                 {
-                    href: 'css/auth-medium.css',
+                    href: 'css/qml-tutorial-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
                 {
-                    href: 'css/auth-small.css',
+                    href: 'css/qml-tutorial-small.css',
                     media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
                 }
             ]

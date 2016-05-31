@@ -39,6 +39,7 @@ describe("Get All Questions Test", function () {
 
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
+        this.timeout(10000)
         agent
             .get('/api/:lang/userquestion/574168240a7ba626375283af')
             .expect(200)

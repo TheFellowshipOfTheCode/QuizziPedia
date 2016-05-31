@@ -1,4 +1,5 @@
-/*var app = require('../Server');
+
+var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
@@ -38,7 +39,7 @@ describe("View Topics Test", function(){
 
 describe("Update Statistics Test", function(){
     it("should update the statistics of a topic", function(done){
-        this.timeout(5000);
+        this.timeout(10000);
         agent
             .put('/api/:lang/topic/statistics')
             .send({
@@ -57,4 +58,3 @@ describe("Update Statistics Test", function(){
             })
     })
 });
-*/

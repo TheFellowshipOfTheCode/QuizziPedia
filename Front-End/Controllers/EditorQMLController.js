@@ -56,7 +56,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         ngMeta.setTag('description',$rootScope.listOfKeys.QMLDescription);
     }
 
-
+    $scope.images=[]
     $scope.id = $routeParams.idQuestion;
     if ($scope.id) {
         QuestionsService.getQuestion($scope.id, $routeParams.lang)
@@ -139,26 +139,38 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .getTopics($routeParams.lang)
                     .then(function (result) {
                         var topics = result.data;
-                        console.log(topics);
-                        console.log(question);
+                        
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $mdDialog);
                         resultQML._id=JSONtoQML.getTempQuestionID();
-                        console.log(resultQML);
                         if (resultQML) {
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
                                     if (result) {
-                                        alert = $mdDialog.alert()
-                                            .title("Inserimento avvenuto con successo")
-                                            .content("La domanda è stata inserita!")
-                                            .ok('Ok');
-                                        $mdDialog
-                                            .show(alert)
-                                            .finally(function () {
-                                                alert = undefined;
-                                            });
-                                            JSONtoQML.deleteTempQuestionID();
-                                        $location.path('/' + $routeParams.lang + '/questions');
+                                        QuestionsService.uploadImageQuestion(result.data.questionId,$scope.images,$routeParams.lang)
+                                            .then(function (result) {
+                                                alert = $mdDialog.alert()
+                                                    .title("Inserimento avvenuto con successo")
+                                                    .content("La domanda è stata inserita!")
+                                                    .ok('Ok');
+                                                $mdDialog
+                                                    .show(alert)
+                                                    .finally(function () {
+                                                        alert = undefined;
+                                                    });
+                                                JSONtoQML.deleteTempQuestionID();
+                                                $location.path('/' + $routeParams.lang + '/questions');
+                                            }, function (err) {
+                                                $scope.error = new ErrorInfoModel();
+                                                alert = $mdDialog.alert()
+                                                    .title("Errore")
+                                                    .content("Inserimento Immagini non andato a buon fine")
+                                                    .ok('Ok');
+                                                $mdDialog
+                                                    .show(alert)
+                                                    .finally(function () {
+                                                        alert = undefined;
+                                                    });
+                                            })
                                     }
                                 }, function (err) {
                                     $scope.error = new ErrorInfoModel();
@@ -196,6 +208,20 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
     $scope.goToWizard = function () {
         $location.path('/' + $routeParams.lang + '/wizard');
     };
+
+  
+    $scope.uploadImage = function(image){
+        if (image)
+            $scope.images.push(image)
+
+    }
+
+    $scope.removeImage=function(image){
+        var idx = $scope.images.indexOf(image);
+        if (idx > -1) {
+            $scope.images.splice(idx, 1);
+        }
+    }
 
     function loadTopics(callback) {
       QuestionsService

@@ -91,6 +91,63 @@ questionSchema.statics.getQuestions=function(author, callback){
     return this.find({'author': author},'_id makeWith language question.type question.questionText', callback);
 };
 
+questionSchema.statics.saveImages=function(questionId,images,callback){
+    return this.findOne({'_id': questionId}, function(err, questionSelected){
+        questionSelected.question.forEach(function(question) {
+            var found = false;
+            images.forEach(function (image) {
+                console.log(question.image)
+                if (question.image){
+                    if (question.image.replace(" ", "")==(image.filename.replace(" ", ""))) {
+                        question.image = image.path
+                        found = true;
+                    }
+                }
+                else
+                        found = true;
+            })
+            if (found)
+                found = false;
+            else{
+                console.log("ccc")
+                return callback("Immagine non caricata")
+            }
+            question.answers.forEach(function (answer) {
+                var found=false;
+                images.forEach(function (image) {
+                    if (answer.url || answer.url1 || answer.url2){
+                        if (answer.url && answer.url == image.filename) {
+                            answer.url = image.path
+                            found = true;
+                        }
+                        if (answer.url1 && answer.url1 == image.filename) {
+                            answer.url1 = image.path
+                            found = true;
+                        }
+                        if (answer.url2 && answer.url2 == image.filename) {
+                            answer.url2 = image.path
+                            found = true;
+                        }
+                    }
+                    else 
+                        found=true;
+                })
+                if (found)
+                    found=false;
+                else{
+                    return callback("Immagine non caricata")
+                }
+            })
+        })
+        questionSelected.save(function (err) {
+            if(err) {
+                return callback("Immagine non caricata")
+            }
+        });
+        return callback(null)
+    });
+}
+
 
 questionSchema.statics.editQuestion=function(question,callback){
     return this.findOneAndUpdate({'_id' : question._id}, question, callback)

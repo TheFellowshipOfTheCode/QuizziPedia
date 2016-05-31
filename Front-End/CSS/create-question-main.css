@@ -215,3 +215,44 @@
 .false-if-choice  {
   margin-top: 1em;
 }
+
+.image-upload > input
+{display: none;}
+
+.image-label  {
+    display: block;
+    position: relative;
+    max-width: 200px;
+    margin: 0px auto;
+}
+
+.image-label:hover .image-hover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: all 0.5s ease 0s;
+}
+.image-label:hover .image-hover-add {
+    background: rgba(254, 209, 54, 0.9) none repeat scroll 0% 0%;
+}
+
+.image-label:hover .image-hover-delete {
+    background: rgba(255, 89, 70, 0.9) none repeat scroll 0% 0%;
+}
+
+.image-label .image-hover:hover .image-hover-content {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    font-size: 20px;
+    text-align: center;
+    top: 50%;
+    margin-top: -12px;
+    color: #FFF;
+}
+
+.image-label .image-hover .image-hover-content {
+    display:none;
+}

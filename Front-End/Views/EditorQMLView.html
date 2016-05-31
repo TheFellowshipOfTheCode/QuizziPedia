@@ -37,7 +37,6 @@
                         </div>
                     </md-toolbar>
 
-                    <!-- <h1 class="QMLtitle">{{listOfKeys.writeHereLang}}</h1> -->
                     <div class="false-if-choice" layout="row" layout-sm="column" layout-xs="column" ng-if="!id">
                       <div class="topicTextChoice" id="topicTextChoiceId"> {{listOfKeys.selectedTopicLang}} </div>
                       <div class="topicPossibleChoice">
@@ -57,6 +56,41 @@
                     <div class="contentQML">
                         <juicy-ace-editor id="Juiceeditor" style="min-height:500px" mode="ace/mode/json">{{question}}</juicy-ace-editor>
                       </div>
+
+                    <div style="margin-top:2em;" class="image-upload text-center">
+                        <h2>Caricamento immagini</h2>
+                        <label class="image-label" for="fileinput" title="Inserisci un immagine da associare all'attributo image">
+                            <div class="image-hover image-hover-add">
+                                <div class="image-hover-content">
+                                    <img src="Images/Icons/plus-button.png" >
+                                </div>
+                            </div>
+                            <img style="width:200px" ngf-thumbnail="'Images/Icons/image-default.jpeg'"  class="thumb">
+                        </label>
+                        <input type="file" name="file-input" id="fileinput" ngf-select="uploadImage(image)" ng-model="image" accept="image/*" ngf-max-size="2MB" >
+                    </div>
+
+                    <h4 style="margin-top:2em; margin-bottom:2em;" class="text-center" ng-if="images.length>0">Copia e incolla il nome dell'immagine nell'apposito attributo immagine</h4>
+                    <div class="row" layout-wrap layout-align="left" >
+                        <div class="col-md-4" ng-repeat="image in images">
+                            <div class="image-upload text-center">
+                                <label class="image-label" for="fileoutput"  title="Rimuovi l'immagine">
+                                    <div class="image-hover image-hover-delete">
+                                        <div class="image-hover-content">
+                                            <img src="Images/Icons/delete-button.png" >
+                                        </div>
+                                    </div>
+                                    <img style="width:200px" ngf-thumbnail="image">
+                                </label>
+                                <input type=”button” name="fileoutput" id="fileoutput" ng-click="removeImage(image)" >
+                                <md-input-container >
+                                    <input style="width:200px;" type=”text” value="{{image.name}}" readonly>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div layout="row" layout-align="center center" >
                         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
                             <md-input-container layout-align="center center">

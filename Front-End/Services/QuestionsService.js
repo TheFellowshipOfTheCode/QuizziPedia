@@ -42,14 +42,15 @@ function QuestionsService($http, $cookies, $q) {
         getTopics : getTopics,
         updateStatisticsUser : updateStatisticsUser,
         updateStatisticsQuestion : updateStatisticsQuestion,
-        updateStatisticsTopic : updateStatisticsTopic
+        updateStatisticsTopic : updateStatisticsTopic,
+        uploadImageQuestion: uploadImageQuestion
     };
     return methods;
 
     function sendQuestion(question, lang, id) {
         var deferred = $q.defer();
         if(id == undefined) {
-            $http.post('/api/' + lang + '/userquestion', question)
+            $http.post('/api/' + lang + '/userquestion',question)
                 .then(function (data) {
                     deferred.resolve(data);
                 }, function (error) {
@@ -65,6 +66,25 @@ function QuestionsService($http, $cookies, $q) {
                 });
             return deferred.promise;
         }
+        return deferred.promise;
+    }
+    
+    function uploadImageQuestion(questionId,images,lang){
+        console.log(questionId)
+        var deferred = $q.defer();
+        var formData = new FormData();
+        for (var i = 0; i < images.length; i++) {
+            formData.append('files', images[i]);
+        }
+        $http.put('/api/' + lang + '/userquestion/'+questionId, formData, {
+            headers: {'Content-Type': undefined},
+            transformRequest: angular.identity
+            })
+            .then(function (data) {
+                deferred.resolve(data);
+            }, function (error) {
+                deferred.reject(error);
+            });
         return deferred.promise;
     }
 

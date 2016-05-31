@@ -28,13 +28,14 @@ module.exports = function(app){
         .post(Question.createQuestion)
         .put(Question.editQuestion)
         .get(Question.getQuestions);
+    
 
     app.route('/api/:lang/userquestion/:questionId')
-        .get(Question.getQuestion);
+        .get(Question.getQuestion)
+        .put(Question.uploadImageQuestion);
 
     app.route('/api/:lang/usertraining/questionstatistics')
         .put(Question.updatestatisticsQuestion);
-    
 
     app.route('/api/:lang/allquestions/:topicname/:keywords')
         .get(Topic.getAllQuestions);

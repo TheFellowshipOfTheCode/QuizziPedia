@@ -32,19 +32,57 @@
 var Question = require('../Model/QuestionModel');
 var Topic= require('../Model/TopicModel');
 
+var fs=require("fs")
+
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        fs.mkdir('Front-End/Images/Questions/'+req.params.questionId, function(err) {
+            var dir='Front-End/Images/Questions/'+req.params.questionId
+            if (!err)
+                callback(null, dir); // Le immagini verranno uploadate qui
+        });
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
+    }
+});
+
+var upload =multer({storage: storage}).array("files")
+
 exports.createQuestion = function(req, res) {
-    Question.createQuestion(req.user._id, req.body, function(err, question){
-        if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non creata"});
-        else {
-            Topic.findOne({'name':req.body.topic}, function(err,topic){
-                if(err)
-                    return next(err);
-                topic.question.push(question._id);
-                topic.save();
-                return res.send({code:90, title: "Ok Domanda", message: "Domanda creata correttamente"});
-            });
-        }
-    })
+        Question.createQuestion(req.user._id, req.body, function (err, question) {
+            if (err) return res.status(500).json({code: 88, title: "Errore Domanda", message: "Domanda non creata"});
+            else {
+                Topic.findOne({'name': req.body.topic}, function (err, topic) {
+                    if (err)
+                        return next(err);
+                    topic.question.push(question._id);
+                    topic.save();
+                    return res.send({code: 90, title: "Ok Domanda", message: "Domanda creata correttamente", questionId:question._id});
+                });
+            }
+        })
+};
+
+exports.uploadImageQuestion = function(req, res) {
+   upload(req,res,function(err){
+       Question.saveImages(req.params.questionId,req.files,function(err){
+           if(err)
+               return res.status(500).json({
+                   code: 88,
+                   title: "Errore Domanda",
+                   message: "Immagine non caricate"
+               });
+           else
+               return res.send({
+                   code: 84,
+                   title: "Ok Domanda",
+                   message: "Immagine caricate correttamente"
+               });
+       })
+   })
 };
 
 

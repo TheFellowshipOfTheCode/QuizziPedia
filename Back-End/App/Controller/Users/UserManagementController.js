@@ -47,7 +47,6 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        fs.mkdirSync('prova');
         callback(null, 'Front-End/Images/Members'); // Le immagini verranno uploadate qui
     },
     filename: function (req, file, callback) {

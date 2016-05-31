@@ -48,7 +48,6 @@ function UserDetailsService($http, $cookies, $q) {
     function modifyProfilePwd(name, surname, email,image, password, lang) {
         if(!password || !email || !name || !surname || !image || !lang) return;
         var deferred = $q.defer();
-        console.log(image)
         var formData = new FormData();
         formData.append("file", image);
         formData.append("name", name);
@@ -84,7 +83,6 @@ function UserDetailsService($http, $cookies, $q) {
         formData.append("name", name);
         formData.append("surname", surname);
         formData.append("email", email);
-        console.log(image)
         $http.put('/api/' + lang + '/user/info', formData, {
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity

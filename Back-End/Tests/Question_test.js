@@ -6,6 +6,7 @@ var agent = request.agent(app);
 
 describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
+        this.timeout(10000);
         agent
             .post('/api/:lang/signin')
             .send({username: 'fberton', password: 'ciaociao'})

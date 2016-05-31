@@ -57,9 +57,11 @@
     "mongoose-simple-random": "*"
   },
   "devDependencies": {
+    "browserify": "^13.0.1",
     "grunt-serve": "^0.1.6",
     "jasmine-core": "^2.3.4",
     "karma": "0.13.22",
+    "karma-browserify": "^5.0.5",
     "karma-chrome-launcher": "0.2.3",
     "karma-firefox-launcher": "0.1.7",
     "karma-jasmine": "0.3.8",
@@ -68,7 +70,8 @@
     "mocha": "2.x.x",
     "protractor": "^2.1.0",
     "shelljs": "^0.2.6",
+    "should": "*",
     "supertest": "*",
-    "should": "*"
+    "watchify": "^3.7.0"
   }
 }

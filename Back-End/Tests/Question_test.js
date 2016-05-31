@@ -20,22 +20,21 @@ describe("Signin Test", function () {
     });
 });
 
-/*
+
 describe("Get All Questions Test", function () {
     it("should return all questions of a topic", function (done) {
         agent
-            .get('/api/it/allquestions/Religione/Dio,Porco')
+            .get('/api/it/allquestions/Patente/Guida,Strada')
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    //res.body.equal("aferrara")
                     console.log(res.body);
                 else
-                    res.status.should.equal(500)
+                    res.status.should.equal(500);
                 done()
             });
     });
-})
-*/
+});
+
 
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
@@ -45,8 +44,7 @@ describe("Get Question Test", function(){
             .expect(200)
             .end(function(err,res){
                 if (!err && res.status == 200){
-                    console.log(res.body)
-                    res.status.should.equal(200);
+                    console.log(res.body);
                 }
                 else
                     res.status.should.equal(500);
@@ -251,7 +249,7 @@ describe("Update Statistics Question Test", function(){
 
     })
 });
-
+*/
 describe("View NextQuestion Test", function(){
     it("should view the next question of a training", function(done){
         this.timeout(20000);
@@ -298,7 +296,7 @@ describe("View Keywords Test", function(){
             })
     })
 });
-
+/*
 describe("Update Statistics Question Test", function(){
     it("should update statistics  question", function(done){
         agent

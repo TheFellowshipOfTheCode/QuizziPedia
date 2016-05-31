@@ -36,7 +36,7 @@ describe("View Topics Test", function(){
             })
     })
 });
-
+/*
 describe("Update Statistics Test", function(){
     it("should update the statistics of a topic", function(done){
         this.timeout(10000);
@@ -58,3 +58,4 @@ describe("Update Statistics Test", function(){
             })
     })
 });
+*/

@@ -1,0 +1,311 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Views::QMLtutorial;
+ * Description: view statica per guidare l'utente alla realizzazione di una
+ * domanda tramite il linguaggio QML;
+ * il recupero della password;
+ * Creation data: 26-05-2016;
+ * Author: Matteo Gnoato;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QMLtutorial_20160526;
+ * Update data: 26-05-2016;
+ * Description: ;
+ * Author: Matteo Gnoato;
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <link href="http://strapdownjs.com/v/0.2/themes/simplex.min.css" rel="stylesheet">
+    <link href="http://strapdownjs.com/v/0.2/strapdown.css" rel="stylesheet">
+    <link href="http://strapdownjs.com/v/0.2/themes/bootstrap-responsive.min.css" rel="stylesheet">
+
+<title>QML tutorial</title>
+</head>
+<xmp theme="united">
+
+    <p>Benvenuti nel tutorial del nostro linguaggio per la definizione delle domande di QuizziPedia
+
+    ##Capitolo 1 - La sintassi
+
+    Il QML è un linguaggio di markup molto simile al noto linguaggio JSON. vediamo le principale
+    regole sintattiche per la definizione di una domanda:
+
+    1) tutto il corpo della domanda deve essere compreso tra parentesi grafe { ..QML.. }
+    2) ogni keyword testuale deve essere compresa tra doppi apici: "keywordDiProva"
+    3) l'associazione tra una keyword e il suo valore avviene così: "keywordDiProva" : "valore"
+    a) se il valore è numerico allora possono essere omessi i doppi apici: "number" : 5
+    4) per dividere le associazioni è necessario immettere una virgola: "key_1" : "valore_1" , "key_2" : "valore_2"
+    5) gli array sono definiti come valore associato ad una keyword e gli elementi sono compresi tra parentesi quandre [ ],
+    5a) se l'array contiene oggetti, devono essere definiti tra parentesi grafe { }:
+    [
+    {
+    oggetto_1
+    },
+    {
+    oggetto_2
+    }
+    ]
+    5b) se l'array contiene solo Stringhe, devono essere inserite tra doppi apici e separate da virgole:
+    [
+    "Stringa_1",
+    "Stringa_2"
+    ]
+
+    ##Capitolo 2 - La semantica
+
+    Per definire correttamente una domanda è necessario inserire delle parole chiavi per ordinare in modo corretto il contenuto
+    eliminando ogni tipo di ambiguità, vediamo quali sono le parole obbligatorie da inserire e come inserirle:
+
+    1) "type" : "tipologiaDomanda" -> questo definisce la tipologia di domanda che si vuole realizzare, le tipologie disponibili sono:
+    - "veroFalso"
+    - "rispostaMultipla"
+    - "ordinamentoStringhe"
+    - "ordinamentoImmagini"
+    - "riempimentoSpaziVuoti"
+    - "collegamentoElementi"
+    - "areaCliccabile"
+    - "custom"
+
+    2) "topic" : "argomentoPrincipale" -> questo definisce l'argomento principale della domanda che si vuole realizzare, gli argomenti disponibili sono:
+    - "Animali"
+    - "Architettura"
+    - "Arte"
+    - "Astronomia"
+    - "Biologia"
+    - "Caccia e Pesca"
+    - "Chimica"
+    - "Cinema"
+    - "Cucina"
+    - "Cultura Generale"
+    - "Economia e Finanza"
+    - "Elettronica"
+    - "Filosofia"
+    - "Fisica"
+    - "Fumetti e Manga"
+    - "Geografia"
+    - "Geologia"
+    - "Geometria"
+    - "Giurisprudenza e Diritto"
+    - "Informatica"
+    - "Letteratura Italiana"
+    - "Letteratura Straniera"
+    - "Logica"
+    - "Matematica"
+    - "Medicina"
+    - "Moda"
+    - "Motori"
+    - "Musica"
+    - "Patente"
+    - "Politica"
+    - "Psicologia"
+    - "Religione"
+    - "Sport"
+    - "Storia"
+    - "Tecnologia"
+    - "TV e Spettacolo"
+    - "Videogiochi"
+
+    da questo momento la semantica del QML cambia a seconda del contenuto della keyword "type", questo per garantire la giuste informazioni
+    inserite per tipologia.
+
+    ##Capitolo 2.1 - Semantica domanda Vero Falso
+
+    Per definire una domanda di tipo "veroFalso" è  necessario aver inserito le keyword obbligatore come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) creare un array chiamato "answer" che conterrà il testo e la soluzione della domanda
+    2) all'interno dell'array "answer" inserire i seguenti campi obbligatori:
+    2a) "text" : "testoDellaDomanda" -> questo definisce il testo in chiaro della domanda che verrà visualizzata
+    2b) "isItRight" : "true|false" -> questo indica se la risposta corretta è vero o falso
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "text" : "testo della domanda",
+    "isItRight" : "risposta esatta"
+    }
+    ]
+
+    ##Capitolo 2.2 - Semantica domanda a risposta multipla
+
+    Per definire una domanda di tipo "rispostaMultipla" è necessario aver inserito le keyword obbligatorie come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) inserire una keyword "questionText" contenente il testo della domanda.
+    2) creare una array chiamato "answer" che conterrà la lista delle risposte.
+    3) all'interno dell'array "answer" inserire i seguenti campi obbligatori:
+    3a) "text" : "testo della risposta" -> questo definisce il testo in chiaro di una possibile risposta
+    3b) "isItRight" : "true|false" -> questo indica se la risposta è corretta
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "text" : "risposta 1",
+    "isItRight" : "true|false"
+    },
+    {
+    "text" : "risposta 2",
+    "isItRight" : "true|false"
+    }
+    ]
+
+    la soluzione può contenere più risposte esatte, non c'è limite imposto per questo
+
+    ##Capitolo 2.3 - Semantica domanda a ordinamento di stringhe
+
+    Per definire una domanda di tipo "ordinamentoStringhe" è necessario aver inserito le keyword obbligatorie come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) inserire una keyword "questionText" contenente il testo della domanda.
+    2) creare un array chiamato "answer" che conterrà la lista delle parole il loro ordine
+    3) all'interno dell'array "answer" inserire i seguenti campi obbligatori:
+    3a) "text" : "testo della parola" -> questo definisce il testo in chiaro di una parola
+    3b) "position"  : n -> questo definiesce la posizione della parola nella stringa
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "text" : "hello",
+    "position" : 1
+    },
+    {
+    "text" : "world",
+    "position" : 2
+    }
+    ]
+
+    la soluzione può contenere un numero arbitrario di parole da ordinare.
+
+    ##Capitolo 2.4 - Semantica domanda a ordinamento di immagini
+
+    Per definire una domanda di tipo "ordinamentoImmagini" è necessario aver inserito le keyword obbligatorie come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) inserire una keyword "questionText" contenente il testo della domanda.
+    2) creare un array chiamato "answer" che conterrà la lista delle immagini e la loro posizione.
+    3) all'interno dell'array "answer" inserire i seguenti campi obbligatori:
+    3a) "url" : "img/image.png" -> questo definisce l'immagine in chiaro
+    3b) "position" : n -> questo definisce la posizione dell'immagine
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "url" : "img/imm_1.png",
+    "position" : 1
+    },
+    {
+    "url" : "img/imm_2.png",
+    "position" : 2
+    }
+    ]
+
+    ##Capitolo 2.5 - Semantica domanda a riempimento spazi vuoti
+
+    Per definire una domanda di tipo "riempimentoSpaziVuoti" è necessario aver inserito le keyword obbligatorie come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) inserire una keyword "questionText" contenente il testo della domanda.
+    2) creare un array chiamato "answer" che conterrà gli indici delle parole da oscurare.
+    3) all'interno dell'array "answer" inserire i seguenti campi obbligatori:
+    3a) "parolaNumero" : n -> questo indica il numero della parola da oscurare nella stringa, attenzione che l'indice parte da zero!
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "parolaNumero" : 0
+    },
+    {
+    "parolaNumero" : 5
+    }
+    ]
+
+    ##Capitolo 2.6 - Semantica domanda a collegamento elementi
+
+    Per definire una domanda di tipo "collegamentoElementi" è necessario aver inserito le keyword obbligatorie come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) inserire una keyword "questionText" contenente il testo della domanda.
+    2) creare un array chiamato "answer" che conterrà coppie di elementi.
+    3) all'interno della'array "answer" inserire le coppie che dovranno essere collegate:
+    3a) "text1" : "testo" , "text2" : "testo" -> questo definisce il collegamento tra 2 stringhe
+    3b) "text1" : "testo" , "url2" : "img/imm_01.png" -> questo definisce il collegamento tra stringa e immagine
+    3c) "url1" : "img/imm_01.png" , "text2" : "testo" -> questo definisce il collegamento tra immagine e stringa
+    3d) "url1" : "img/imm_01.png" , "url2" : "img/imm_02.png" -> questo definisce il collegamento tra 2 immagini
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "text1" : "hello",
+    "text2" : "world"
+    },
+    {
+    "text1" : "periferica",
+    "url2" : "img/mouse.png"
+    }
+    ]
+
+    ##Capitolo 2.7 - Semantica domanda ad area cliccabile
+
+    Per definire una domanda di tipo "areaCliccabile" è necessario aver inserito le keyword obbligatorie come viste nel capitoo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda:
+
+    1) inserire una keyword "image" contenente l'url dell'immagine generale che si vuole rendere cliccabile
+    2) inserire una keyword "questionText" contenente il testo della domanda.
+    3) inserire un array chiamato "answer" contenente le coordinate dei punti cliccabili
+    4) all'interno dell'array "answer" inserire le coppie di coordinate da rendere cliccabili
+    4a) "x" : nx , "y" : ny -> questo definisce un punto nel piano dell'immagine da rendere cliccabile
+
+    vediamo un esempio per schiarirci le idee:
+
+    "answer" : [
+    {
+    "x" : 10,
+    "y" : 20
+    },
+    {
+    "x" : 26,
+    "y" : 85
+    }
+    ]
+
+    ##Capitolo 2.8 - Semantica domanda custom
+
+    Per definire una domanda "custom" è necessario aver inserito le keyword obbligatorie come viste nel capitolo 2.
+    Una volta inserite si può procedere alla stesura del corpo della domanda.
+    La domanda di tipo "custom" è una domanda che mette in sequenza più tipologie di domande, in modo da rendere più completa
+    una domanda, che per essere risposta correttamente, deve essere corretta in tutte le sue parti.
+    Vediamo come comporre una domanda custom, ricordiamo che all'interno della custom vive la semantica della tipologia di
+    domanda che si intende inserire, perciò non verrà riportato l'esempio, ma solo il riferimento al capitolo che spiega la tipologia specifica.
+
+    1) inserire una keyword "question" che sarà un array di oggetti, dove ogni oggetto sarà una domanda di tipologia nota, vediamo un esempio:
+
+    "question" : [
+    {
+    "type" : "veroFalso"
+    // vedi capitolo 2.1 per la semantica
+    }
+    {
+    "type" : "rispostaMultipla"
+    // vedi capitolo 2.2 per la semantica
+    }
+    ]
+
+    possono essere composte anche domande "custom" con ripetizioni di tipologia di domanda interna.</p>
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

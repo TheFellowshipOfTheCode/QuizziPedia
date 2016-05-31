@@ -355,12 +355,26 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                 }
             ]
         })
+        .when('/:lang/QMLtutorial', {
+            templateUrl: '/Views/QMLtutorial.html',
+            css: [
+                {
+                    href: 'css/auth-main.css'
+                },
+                {
+                    href: 'css/auth-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/auth-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
       .otherwise({
         redirectTo: '/it/home'
       })
     }
-
-
 
 app.config(AppRouter)
 .run(['ngMeta', function(ngMeta) {

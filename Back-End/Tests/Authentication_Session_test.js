@@ -6,6 +6,7 @@ var agent = request.agent(app);
 
 describe("Signup Test", function() {
     it("should signup and return a user object", function (done) {
+        this.timeout(10000);
         var userJSON = {
             'name': 'Gilberto',
             'surname': 'Filè',

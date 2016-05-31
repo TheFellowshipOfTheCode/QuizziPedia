@@ -50,7 +50,7 @@ exports.createQuestion = function(req, res) {
 
 
 exports.getQuestion = function(req, res) {
-    Question.getQuestion(req.param("questionId")).lean().exec(function(err, question){
+    Question.getQuestion(req.params.questionId).lean().exec(function(err, question){
         Topic.getTopicQuestion(question._id, function(err, topicname) {
             question.topic=topicname.name;
             if (err) return res.status(500).json({

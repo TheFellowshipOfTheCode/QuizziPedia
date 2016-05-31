@@ -189,7 +189,7 @@ exports.getInfo = function(req, res, next) {
 };
 
 exports.getSummary= function(req, res, next) {
-    summary.findOne({_id:req.param('summaryId')},'quiz givenAnswers data mark', function(summaryJson){
+    summary.findOne({_id:req.params.summaryId},'quiz givenAnswers data mark', function(summaryJson){
         var quizJson=summary.getQuiz(summaryJson.quiz)
         summaryJson.quizJson=quizJson;
         return res.send(summaryJson);

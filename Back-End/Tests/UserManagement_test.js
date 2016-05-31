@@ -58,20 +58,6 @@ describe("User Done Quizzes Test", function () {
     })
 */
 /*
-    describe("Delete Test", function() {
-        it("should delete user authenticated", function (done) {
-            agent
-                .delete('/api/:lang/user')
-                .end(function(err,res){
-                    if (!err && res.status==200){
-                        res.body.message.should.equal("Utente eliminato");
-                    }
-                    else
-                        res.status.should.equal(500);
-                    done()
-                });
-        });
-    })
 
 describe("Search Users Test", function(){
     it("should return user", function(done){

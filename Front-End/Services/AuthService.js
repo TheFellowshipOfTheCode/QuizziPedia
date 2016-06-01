@@ -93,6 +93,7 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password, email: email, name: name, surname: surname};
         $http.post('/api/' + lang + '/signup', userJSON)
             .then(function(data) {
+               console.log(data);
                 deferred.resolve(data);
             }, function(error){
                 deferred.reject(error);

@@ -136,6 +136,9 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                       href: 'css/create-question-main.css'
                 },
                 {
+                    href: 'css/qml-tutorial-main.css'
+                },
+                {
                     href: 'css/create-question-medium.css',
                     media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
                 },
@@ -357,6 +360,10 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
         })
         .when('/:lang/QMLtutorial', {
             templateUrl: '/Views/QMLtutorial.html',
+            meta: {
+              'title':'QML Tutorial',
+              'description':'QML Tutorial.'
+            },
             css: [
                 {
                     href: 'css/qml-tutorial-main.css'

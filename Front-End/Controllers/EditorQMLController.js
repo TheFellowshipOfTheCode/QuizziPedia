@@ -34,9 +34,9 @@
  *******************************************************************************/
 app.controller('EditorQMLController', EditorQMLController);
 
-EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta', 'JSONtoQML'];
+EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta', 'JSONtoQML','$window'];
 
-function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML) {
+function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML, $window) {
 
     //loadTopics(function(data) {
     //});
@@ -139,7 +139,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .getTopics($routeParams.lang)
                     .then(function (result) {
                         var topics = result.data;
-                        
+
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $mdDialog);
                         resultQML._id=JSONtoQML.getTempQuestionID();
                         if (resultQML) {
@@ -209,7 +209,13 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         $location.path('/' + $routeParams.lang + '/wizard');
     };
 
-  
+    $scope.showTutorialFlag=false;
+    $scope.tutorialShowIndex=false;
+    $scope.showTutorial = function () {
+        $scope.showTutorialFlag=!$scope.showTutorialFlag;
+    };
+
+
     $scope.uploadImage = function(image){
         if (image)
             $scope.images.push(image)
@@ -242,4 +248,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                 });
         });
     }
+
+
+
 }

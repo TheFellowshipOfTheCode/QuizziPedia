@@ -9,12 +9,6 @@ blockquote {
   border-left: 0px;
 }
 
-.index {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-
 li> p {
   margin-bottom: 0px;
 }

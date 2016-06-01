@@ -256,3 +256,26 @@
 .image-label .image-hover .image-hover-content {
     display:none;
 }
+
+.desktop {
+  background-color: red;
+}
+
+.mobile {
+  background-color: blue;
+}
+
+.go-to-tutorial {
+  display: block;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.tutorial {
+  width: 90%;
+  margin: auto;
+}
+
+.button-tutorial {
+  width: 80%;
+}

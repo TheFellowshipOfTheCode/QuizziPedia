@@ -105,6 +105,27 @@
 
                     </div>
 
+                    <div layout="row" layout-align="center center" >
+                            <md-input-container layout-align="center center" class="button-tutorial">
+                                <div layout="row" layout-md="column" layout-sm="column"  layout-xs="column" layout-margin>
+                                    <md-button ng-click="showTutorial()" class="md-raised md-button font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">
+                                      <span ng-if="!showTutorialFlag">
+                                        {{listOfKeys.showTutorial}}
+                                      </span>
+                                      <span ng-if="showTutorialFlag">
+                                        {{listOfKeys.hideTutorial}}
+                                      </span>
+                                    </md-button>
+                                    <md-button class="md-raised md-button font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100"> <a class="go-to-tutorial" href="/{{systemLang}}/QMLtutorial" target="_blank">{{listOfKeys.goToTutorial}}</a> </md-button>
+                                </div>
+                            </md-input-container>
+                    </div>
+
+                    <div class="tutorial" ng-if="showTutorialFlag">
+                      <qml-tutorial-directive></qml-tutorial-directive>
+                    </div>
+
+
                 </section>
 
             </div>

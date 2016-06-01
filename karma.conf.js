@@ -46,6 +46,7 @@ module.exports = function(config){
       'Front-End/Models/**/*.js',
       'Front-End/Directives/*.js',
       'Front-End/Directives/**/*.html',
+      'Front-End/Views/**/*.html',
       'Front-End/Services/**/*.js',
       'Front-End/Tests/**/*.js'
     ],

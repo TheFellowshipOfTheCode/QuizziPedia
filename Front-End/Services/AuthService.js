@@ -72,6 +72,8 @@ function AuthService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.get('/api/'+ lang + '/loggedin')
             .then(function(data) {
+              var q = JSON.stringify(data, null, "  ");
+              console.log(q);
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
             }

@@ -1,4 +1,4 @@
-/*var app = require('../Server');
+var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
@@ -7,17 +7,17 @@ describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
         agent
             .post('/api/:lang/signin')
-            .send({username: 'blundert', password: 'ciaociao'})
+            .send({username: 'aferrara', password: 'ciaociaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("blundert");
+                    res.body.user.username.should.equal("aferrara");
                 else
                     res.status.should.equal(500);
                 done()
             });
     });
 });
-
+/*
 describe("Create Summary Test", function(){
     it("should create a summary of a quiz", function(done){
         //this.timeout(15000);
@@ -57,5 +57,5 @@ describe("View Summaries Test", function(){
                 done()
             })
     })
-});*/
-
+});
+*/

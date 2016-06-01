@@ -1,4 +1,4 @@
-/*var app = require('../Server');;
+var app = require('../Server');;
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
@@ -6,9 +6,10 @@ var agent = request.agent(app);
 
 describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
+        this.timeout(10000);
         agent
             .post('/api/:lang/signin')
-            .send({username: 'aferrara', password: 'ciaociao'})
+            .send({username: 'aferrara', password: 'ciaociaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     res.body.user.username.should.equal("aferrara");
@@ -32,8 +33,8 @@ describe("Get user approved Test", function() {
                 done();
             })
     })
-}); */
-/*
+});
+
 describe("Get users active  Test", function() {
     it("should return users active", function (done) {
         agent
@@ -47,7 +48,7 @@ describe("Get users active  Test", function() {
             })
     })
 });
-
+/*
 describe("Put active field quiz Test", function() {
     it("should return active ok", function (done) {
         agent
@@ -61,7 +62,7 @@ describe("Put active field quiz Test", function() {
             })
     })
 });
-
+*/
 
 
 
@@ -79,7 +80,7 @@ describe("Get topic Test", function() {
     })
 });
 
-
+/*
 describe("Quiz tests", function() {
     it("should create a quiz", function (done) {
         agent
@@ -103,7 +104,7 @@ describe("Quiz tests", function() {
             })
     })
 })
-
+*/
 describe("Quiz tests", function() {
     it("should get a quiz", function (done) {
         agent
@@ -118,7 +119,7 @@ describe("Quiz tests", function() {
                 done();
             })
     })
-})
+});
 
 describe("Search Quiz Test", function () {
     it("should return quiz Test", function (done) {
@@ -128,11 +129,11 @@ describe("Search Quiz Test", function () {
                 if (!err && res.status == 200)
                     console.log(res.body);
                 else
-                    res.status.should.equal(500)
+                    res.status.should.equal(500);
                 done()
             });
     });
-})
+});
 
 
 describe("Get Quiz subscribe Test", function () {
@@ -143,12 +144,12 @@ describe("Get Quiz subscribe Test", function () {
                 if (!err && res.status == 200)
                     console.log(res.body);
                 else
-                    res.status.should.equal(500)
+                    res.status.should.equal(500);
                 done()
             });
     });
-})
-
+});
+/*
 describe("Get Quiz subscribers Test", function () {
     it("should return subscribers of a Quiz Test", function (done) {
         agent
@@ -157,17 +158,16 @@ describe("Get Quiz subscribers Test", function () {
                 if (!err && res.status == 200)
                     console.log(res.body);
                 else
-                    res.status.should.equal(500)
+                    res.status.should.equal(500);
                 done()
             });
     });
-})
-    
+});
 
+describe("Get Quiz desidered Test", function () {
     it("should return the desired quiz", function(done) {
         agent
             .get('/api/:lang/user/quiz/:quizId')
-
             .end(function(err, res) {
                 if (!err && res.status == 200) {
                     res.body.title.should.equal("questionario top");
@@ -178,5 +178,6 @@ describe("Get Quiz subscribers Test", function () {
                 }
                 done();
             })
-    })
-})*/
+    });
+});
+*/

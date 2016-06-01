@@ -51,8 +51,8 @@
                         </span>
                     </h2>
                     <span flex=""></span>
-                    <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
-                    <md-button ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(subscribedUsers.length)-1 || subscribedUsers.length == undefined" ng-click="goOn()">>></md-button>
+                    <md-button aria-label="aria-label"  ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+                    <md-button aria-label="aria-label"  ng-if="subscribedUsers.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(subscribedUsers.length)-1 || subscribedUsers.length == undefined" ng-click="goOn()">>></md-button>
                     <span ng-if="subscribedUsers.length > 0" class="hide-me-when-i-am-ugly" > {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(subscribedUsers.length)}}</span>
 
                 </div>
@@ -65,7 +65,7 @@
                     <span flex=""></span>
                     <div layout="column">
                       <span flex=""></span>
-                      <button class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="subscribeQuestionnaire(u._id)">{{listOfKeys.buttonAddLang}}</button>
+                      <button aria-label="aria-label"  class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="subscribeQuestionnaire(u._id)">{{listOfKeys.buttonAddLang}}</button>
                       <span flex=""></span>
                     </div>
                 </div>

@@ -86,9 +86,9 @@
                                             </div>
                                             <div layout="column" layout-align="center center">
                                                 <md-input-container>
-                                                    <md-button class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
-                                                    <md-button class="md-raised" ng-if="question_selected.question.length>1 && !moreInfo.selected[$index]" ng-click="toggle('selected',$index)">More Info</md-button>
-                                                    <md-button class="md-raised" ng-if="question_selected.question.length>1 && moreInfo.selected[$index]" ng-click="toggle('selected',$index)">Hide Info</md-button>
+                                                    <md-button aria-label="aria-label"  class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
+                                                    <md-button aria-label="aria-label"  class="md-raised" ng-if="question_selected.question.length>1 && !moreInfo.selected[$index]" ng-click="toggle('selected',$index)">More Info</md-button>
+                                                    <md-button aria-label="aria-label"  class="md-raised" ng-if="question_selected.question.length>1 && moreInfo.selected[$index]" ng-click="toggle('selected',$index)">Hide Info</md-button>
                                                 </md-input-container>
                                             </div>
                                     </md-item-content>
@@ -128,7 +128,7 @@
                                 <h4 class="m-b-20">Nessuna domanda trovata</h4>
                                 <p>E' possibile creare una domanda tramite:</p>
                                 <md-input-container >
-                                    <md-button class="md-raised md-primary" ng-click="goToQMLCreation()">QML</md-button>
+                                    <md-button aria-label="aria-label"  class="md-raised md-primary" ng-click="goToQMLCreation()">QML</md-button>
                                 </md-input-container>
                             </md-card-title-text>
                         </md-card-title>
@@ -147,9 +147,9 @@
                                             </div>
                                    <div layout="column" layout-align="center center">
                                         <md-input-container >
-                                            <md-button class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
-                                            <md-button class="md-raised" ng-if="question.question.length>1 && !moreInfo.found[$index]" ng-click="toggle('found',$index)">More Info</md-button>
-                                            <md-button class="md-raised" ng-if="question.question.length>1 && moreInfo.found[$index]" ng-click="toggle('found',$index)">Hide Info</md-button>
+                                            <md-button aria-label="aria-label"  class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
+                                            <md-button aria-label="aria-label"  class="md-raised" ng-if="question.question.length>1 && !moreInfo.found[$index]" ng-click="toggle('found',$index)">More Info</md-button>
+                                            <md-button aria-label="aria-label"  class="md-raised" ng-if="question.question.length>1 && moreInfo.found[$index]" ng-click="toggle('found',$index)">Hide Info</md-button>
                                         </md-input-container>
                                    </div>
                                 </md-item-content>
@@ -173,7 +173,7 @@
                     </md-card>
                     <div layout="row" layout-align="center center">
                         <md-input-container >
-                            <md-button ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
+                            <md-button aria-label="aria-label"  ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
                         </md-input-container>
                     </div>
 

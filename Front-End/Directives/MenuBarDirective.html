@@ -36,6 +36,6 @@
     <login-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
     <sign-up-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
     <logout-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
-    <md-button class="md-primary md-raised" ng-click="showListBottomSheet()">{{listOfKeys.changeLang}}</md-button>
+    <md-button aria-label="aria-label"  class="md-primary md-raised" ng-click="showListBottomSheet()">{{listOfKeys.changeLang}}</md-button>
   </md-content>
 </md-sidenav>

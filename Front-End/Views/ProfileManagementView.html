@@ -53,7 +53,7 @@
                             </label>
 
                             <input type="file" name="file-input" id="file-input"  ngf-select ng-model="userLog.image"  accept="image/*" ngf-max-size="2MB" >
-                            <md-button class="md-raised md-primary" flex="50" flex-sm="100" flex-xs="100" ng-click="userLog.image = 'Images/Members/user-default.png'" ng-show="userLog.image != 'Images/Members/user-default.png' && userLog.image">Remove</md-button>
+                            <md-button aria-label="aria-label"  class="md-raised md-primary" flex="50" flex-sm="100" flex-xs="100" ng-click="userLog.image = 'Images/Members/user-default.png'" ng-show="userLog.image != 'Images/Members/user-default.png' && userLog.image">Remove</md-button>
                     </div>
 
                     <!--<md-input-container class="md-block">
@@ -62,8 +62,8 @@
                         </label>
                         <input type="file" name="file-input" id="file-input" ngf-select ng-model="userLog.image"  accept="image/*" ngf-max-size="2MB" >
 
-                         <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="userLog.image = null" ng-show="userLog.image">Remove</md-button>
-                         <md-button class="md-raised md-primary" type="submit">Conferma</md-button>
+                         <md-button aria-label="aria-label"  class="md-raised md-primary" flex="50" flex-sm="100" ng-click="userLog.image = null" ng-show="userLog.image">Remove</md-button>
+                         <md-button aria-label="aria-label"  class="md-raised md-primary" type="submit">Conferma</md-button>
                     </md-input-container>-->
 
                     <md-input-container class="md-block">
@@ -112,7 +112,7 @@
 
                     <md-input-container layout-align="center center">
                         <div layout="row" layout-sm="column" layout-margin>
-                            <md-button ng-disabled="userForm.$invalid" type="submit" class="md-raised md-primary" flex="50" flex-sm="100" flex-xs="100">{{listOfKeys.buttonLangModifyProfile}}</md-button>
+                            <md-button aria-label="aria-label"  ng-disabled="userForm.$invalid" type="submit" class="md-raised md-primary" flex="50" flex-sm="100" flex-xs="100">{{listOfKeys.buttonLangModifyProfile}}</md-button>
                         </div>
                     </md-input-container>
                 </form>
@@ -135,7 +135,7 @@
             <div class="md-padding">
                 <p class="text-center">{{listOfKeys.textChangeAccount}}</p>
                 <div layout="row" layout-sm="column" layout-align="center">
-                    <button class="change md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="changeAccount()" aria-label="{{listOfKeys.buttonLangChangeAccountTipology}}">
+                    <button aria-label="aria-label"  class="change md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="changeAccount()" aria-label="{{listOfKeys.buttonLangChangeAccountTipology}}">
                         <span ng-if="userLog.privilege === 'normal'">{{listOfKeys.buttonLangChangeAccountTipologyPro}}</span>
                         <span ng-if="userLog.privilege === 'pro'">{{listOfKeys.buttonLangChangeAccountTipologyNormal}}</span>
                     </button>
@@ -156,7 +156,7 @@
             <div class="md-padding">
                 <p class="text-center">{{listOfKeys.textDeleteAccount}}</p>
                 <div layout="row" layout-sm="column" layout-align="center">
-                    <button class="change md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="deleteAccount()" aria-label="{{listOfKeys.buttonLangDeleteProfile}}">
+                    <button aria-label="aria-label"  class="change md-primary md-raised md-button md-ink-ripple flex-80" type="button" ng-click="deleteAccount()" aria-label="{{listOfKeys.buttonLangDeleteProfile}}">
                         <span>{{listOfKeys.buttonLangDeleteProfile}}</span>
                     </button>
                 </div>

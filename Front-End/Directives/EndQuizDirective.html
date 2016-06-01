@@ -49,10 +49,10 @@
           </h2>
           <span flex=""></span>
           <div ng-init="result=quiz.getResultById(q._id)">
-            <md-button class="md-raised green" ng-if="result==true"  aria-label="">
+            <md-button aria-label="aria-label"  class="md-raised green" ng-if="result==true"  aria-label="aria-label"  >
               {{listOfKeys.correctLang}}
             </md-button>
-            <md-button class="md-raised red" ng-if="result==false"  aria-label="">
+            <md-button aria-label="aria-label"  class="md-raised red" ng-if="result==false"  aria-label="aria-label"  >
               {{listOfKeys.wrongLang}}
             </md-button>
           </div>

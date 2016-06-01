@@ -81,25 +81,25 @@
         </div>
 
         <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button  class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords, false)'>
+          <button aria-label="aria-label"   class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords, false)'>
             {{listOfKeys.goToTraining}}
           </button>
         </div>
 
         <div ng-if="traininIsFinished == true " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-sm="column" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='goBackToSetUp()'>
+          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='goBackToSetUp()'>
             {{listOfKeys.goBackToSetUp}}
           </button>
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='resetTraining()'>
+          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='resetTraining()'>
             {{listOfKeys.restartTraining}}
           </button>
         </div>
 
         <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='newQuestion()'>
+          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='newQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
-          <button class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endTraining()'>
+          <button aria-label="aria-label"  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endTraining()'>
             {{listOfKeys.buttonEndTrainingLang}}
           </button>
         </div>

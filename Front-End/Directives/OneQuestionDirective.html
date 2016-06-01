@@ -29,8 +29,8 @@
       </span>
     </h2>
     <span flex=""></span>
-    <md-button ng-if="questions.length != 0" class="md-raised " ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
-    <md-button ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <md-button aria-label="aria-label"  ng-if="questions.length != 0" class="md-raised " ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button aria-label="aria-label"  ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
     <span ng-if="questions.length != 0" class="hideMeOn600"> {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
   </div>
 </md-toolbar>
@@ -45,7 +45,7 @@
              {{q.makeWith}}</span>
         </h2>
         <span flex=""></span>
-        <md-button class="md-raised" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
+        <md-button aria-label="aria-label"  class="md-raised" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
           {{listOfKeys.modifyButtonOneQuestion}}
         </md-button>
       </div>
@@ -70,8 +70,8 @@
 <md-toolbar ng-if="questions.length != 0" class="modifyQuestionTitle toolbar-section toolbar-bottom">
   <div class="md-toolbar-tools">
     <span flex=""></span>
-    <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
-    <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
     <span class="hideMeOn600">{{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
   </div>
 </md-toolbar>

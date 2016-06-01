@@ -45,7 +45,7 @@
                             <span>{{listOfKeys.buttonNewQuestionnaireLangQuestionnaireManagement}}</span>
                         </h2>
                         <span flex=""></span>
-                        <md-button class="md-button md-raised md-primary button-new-quiz" flex-xs="100" ng-href="" ng-click="goToCreateQuestionnaire()" target="_blank">{{listOfKeys.buttonNewQuestionnaireLangQuestionnaireManagement}}</md-button>
+                        <md-button aria-label="aria-label"  class="md-button md-raised md-primary button-new-quiz" flex-xs="100" ng-href="" ng-click="goToCreateQuestionnaire()" target="_blank">{{listOfKeys.buttonNewQuestionnaireLangQuestionnaireManagement}}</md-button>
                     </div>
                 </md-toolbar>
             </div>
@@ -67,8 +67,8 @@
 
                       <span flex=""> </span>
                       <div layout="column">
-                          <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="goToQuiz(q._id)"><div> {{listOfKeys.goToSubscribeManagement}} </div> </button>
-                          <button class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
+                          <button aria-label="aria-label"  class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="goToQuiz(q._id)"><div> {{listOfKeys.goToSubscribeManagement}} </div> </button>
+                          <button aria-label="aria-label"  class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id)">{{listOfKeys.startQuizLang}}</button>
                       </div>
                   </div>
               </section>
@@ -76,8 +76,8 @@
               <md-toolbar ng-if="personalQuizzes.length > 0" class="toolbar-section toolbar-top">
                   <div class="md-toolbar-tools">
                       <span flex=""></span>
-                      <md-button class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
-                      <md-button class="md-raised" ng-disabled="currentPage >= numberOfPages(personalQuizzes.length)-1" ng-click="goOn()">>></md-button>
+                      <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+                      <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage >= numberOfPages(personalQuizzes.length)-1" ng-click="goOn()">>></md-button>
                       <span class="hide-me-when-i-am-ugly">{{listOfKeys.pageLang}} {{currentPageLineOne +1}} {{listOfKeys.ofLang}} {{numberOfPages(personalQuizzes.length)}}</span>
                   </div>
               </md-toolbar>

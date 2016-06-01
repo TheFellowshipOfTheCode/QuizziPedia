@@ -38,6 +38,8 @@ module.exports = function(config){
       'Front-End/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'Front-End/bower_components/ngMeta/dist/ngMeta.min.js',
       'Front-End/bower_components/webcomponentsjs/webcomponents.js',
+      'Front-End/bower_components/marked/lib/marked.js',
+      'Front-End/bower_components/angular-marked/dist/angular-marked.js',
       'Front-End/AppRun.js',
       'Front-End/AppRouter.js',
       'Front-End/Controllers/**/*.js',

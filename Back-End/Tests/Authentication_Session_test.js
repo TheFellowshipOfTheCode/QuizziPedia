@@ -94,6 +94,7 @@ describe("Signin Test", function () {
 
 describe("Delete Test", function() {
     it("should delete user authenticated", function (done) {
+        this.timeout(10000);
         agent
             .delete('/api/:lang/user')
             .end(function(err,res){

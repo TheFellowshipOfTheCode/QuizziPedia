@@ -1,4 +1,4 @@
-var app = require('../Server');;
+var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
@@ -23,6 +23,7 @@ describe("Signin Test", function () {
 
 describe("Get user approved Test", function() {
     it("should return user approved", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/userapproved')
             .end(function (err, res) {
@@ -37,6 +38,7 @@ describe("Get user approved Test", function() {
 
 describe("Get users active  Test", function() {
     it("should return users active", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/userquizactiveUser/573ec3f7c97365bd014e3121')
             .end(function (err, res) {
@@ -68,6 +70,7 @@ describe("Put active field quiz Test", function() {
 
 describe("Get topic Test", function() {
     it("should return topic", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/topic')
             .end(function (err, res) {

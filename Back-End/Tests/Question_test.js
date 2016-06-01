@@ -1,4 +1,3 @@
-
 var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
@@ -279,6 +278,7 @@ describe("View NextQuestion Test", function(){
 
 describe("View Keywords Test", function(){
     it("should view the keywords of a topic", function(done){
+        this.timeout(10000);
         agent
             .post('/api/:lang/topic/keywords')
             .send({

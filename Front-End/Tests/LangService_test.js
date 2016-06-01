@@ -34,9 +34,6 @@
 /*1-Respons object*/
 var objRes1 =
 {
-    "_id": "57237ec7c80eb66928eb3ca5",
-    "lang": "it",
-    "correctWord": "Italiano",
     "variables": {
         "logIn": "Accedi",
         "signUp": "Registrati",
@@ -227,7 +224,7 @@ var objRes1 =
         "goToTutorial": "Mostra la guida QML in un'altra pagina",
         "otherProfile": "Visualizzazione Profilo di",
         "otherProfileDescription": "Funzionalità di visualizzazione di un profilo di utente cercato"
-    }
+      }
 };
 
 var objRes2 = [ 'English', 'Italiano' ];
@@ -254,7 +251,7 @@ describe("LangService api rest unit test", function () {
         /*2-Back-End simulato*/
         httpBackend.whenGET("/api/it").respond(objRes1);
         httpBackend.whenGET("/api/supported/lang/give/me").respond(objRes2);
-        httpBackend.whenGET("/api/supported/lang/give/me/it").respond(objRes3);
+        httpBackend.whenGET("/api/supported/lang/give/me/Italiano").respond(objRes3);
 
 
     });
@@ -264,9 +261,8 @@ describe("LangService api rest unit test", function () {
         httpBackend.expectGET("/api/it");
         httpBackend.whenGET(/Views/).respond(200, '');
         LangService.getKeywords("it").then(function(result) {
-            console.log(result.data);
-                expect(JSON.stringify(result.data)).toEqual(
-                    JSON.stringify(objRes1)
+                expect(JSON.stringify(result)).toEqual(
+                    JSON.stringify(objRes1.variables)
                 );
             }, function(err) {
                 console.log(err);
@@ -279,8 +275,8 @@ describe("LangService api rest unit test", function () {
         httpBackend.expectGET("/api/supported/lang/give/me");
         httpBackend.whenGET(/Views/).respond(200, '');
         LangService.getSupportedLang().then(function(result) {
-            console.log(result.data);
-                expect(JSON.stringify(result.data)).toEqual(
+            console.log(result);
+                expect(JSON.stringify(result)).toEqual(
                     JSON.stringify(objRes2)
                 );
             }, function(err) {
@@ -293,9 +289,9 @@ describe("LangService api rest unit test", function () {
     it("should give back to the server the abbreviation of a language", function () {
         httpBackend.expectGET("/api/supported/lang/give/me/Italiano");
         httpBackend.whenGET(/Views/).respond(200, '');
-        LangService.getSlang("it").then(function(result) {
-            console.log(result.data);
-                expect(JSON.stringify(result.data)).toEqual(
+        LangService.getSlang("Italiano").then(function(result) {
+            console.log(result);
+                expect(JSON.stringify(result)).toEqual(
                     JSON.stringify(objRes3)
                 );
             }, function(err) {

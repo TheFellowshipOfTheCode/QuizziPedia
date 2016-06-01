@@ -103,7 +103,7 @@ describe("AuthService api rest unit test", function () {
     httpBackend.flush();
   });
 
-  it("should give back to the server the authticathed user after the login operation", function () {
+  it("should give back from the server the authticathed user after the login operation", function () {
     httpBackend.expectPOST("/api/it/signin");
     httpBackend.whenGET(/Views/).respond(200, '');
     AuthService.signIn("mgranzot", "$2a$08$dxLlHUAATVdByHRXq07Up.W9fk6d5FnFOu6/NuDuWlH6UEY7d16kC", "it").then(function(result) {
@@ -137,6 +137,15 @@ describe("AuthService api rest unit test", function () {
       }
     );
     httpBackend.flush();
+  });
+
+  it("should test the method isLogged when the return value is true", function () {
+    expect(AuthService.isLogged()).toEqual('true');
+  });
+
+  it("should test the method resetCookies when the return value is false", function () {
+    AuthService.resetCookies();
+    expect(AuthService.isLogged()).toEqual(undefined);
   });
 
 });

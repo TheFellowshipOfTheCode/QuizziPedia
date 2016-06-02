@@ -148,7 +148,7 @@ describe("QuestionsService api rest unit test", function () {
         httpBackend.flush();
     });
 
-    it("should upload a image in a question", function () {
+    /*it("should upload a image in a question", function () {
         httpBackend.expectPUT("/api/it/userquestion/573db90ac54482a1f5a82e56");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuestionsService.uploadImageQuestion("573db90ac54482a1f5a82e56", "[/Images/collegamentotorre.jpg]", "it").then(function(result) {
@@ -161,7 +161,7 @@ describe("QuestionsService api rest unit test", function () {
             }
         );
         httpBackend.flush();
-    });
+    });*/
 
     it("should give back the questions of a user", function () {
         httpBackend.expectGET("/api/it/userquestion");

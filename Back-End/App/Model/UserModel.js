@@ -93,6 +93,10 @@ userSchema.methods.editUser=function(name, surname, email, image, callback){
     });
 };
 
+userSchema.statics.getInfoUserSearched=function(username, callback){
+    return this.findOne({username: username}, callback);
+};
+
 userSchema.methods.editPassword=function(password, callback) {
     return this.model('User').findOne({_id: this._id}, function (err, user) {
         if (err) {

@@ -114,4 +114,8 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
             });
 
     }
+
+    $scope.showUser = function (username) {
+        $location.path('/' + $routeParams.lang + '/user/' + username);
+    }
 }

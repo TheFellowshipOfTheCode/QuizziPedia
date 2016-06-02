@@ -107,6 +107,19 @@ exports.updatePasswordUser = function(req, res, next) {
     })
 };
 
+exports.getInfoUserSearched=function(req, res, next) {
+    user.getInfoUserSearched(req.params.username,function(err,user){
+        if (err)
+            return res.status(500).json({
+                code: 746,
+                title: "Errore",
+                message: "Utente non trovato"
+            });
+        else
+            return res.send({user:user})
+    })
+}
+
 exports.updateStatisticUser = function(req, res) {
     if(req.body.userId) {
         user.updateTopicLevel(req.body.userId, req.body.userLevel, req.body.topic, req.body.difficultyLevel, req.body.isCorrected, function (err, userLevel) {

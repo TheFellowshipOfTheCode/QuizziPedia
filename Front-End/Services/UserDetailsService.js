@@ -92,7 +92,6 @@ function UserDetailsService($http, $cookies, $q) {
             }, function(error){
                 deferred.reject(error);
             });
-
         return deferred.promise;
     }
 

@@ -53,6 +53,9 @@ module.exports = function(app){
     app.route('/api/:lang/searchuser/:keyword')
         .get(user.userManagement.searchUser);
 
+    app.route('/api/:lang/userdetails/:username')
+        .get(user.userManagement.getInfoUserSearched)
+
     app.route('/api/:lang/user/statistics')
         .put(user.userManagement.updateStatisticUser);
 

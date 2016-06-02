@@ -32,15 +32,13 @@
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+
 app.controller('EditorQMLController', EditorQMLController);
 
 EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta', 'JSONtoQML','$window'];
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML, $window) {
-
-    //loadTopics(function(data) {
-    //});
-
+    
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }

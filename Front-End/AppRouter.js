@@ -323,6 +323,24 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                 }
             ]
         })
+        .when('/:lang/user/:username', {
+            templateUrl: '/Views/OtherUserView.html',
+            controller: "OtherUserViewController",
+            css: [
+                {
+
+                    href: 'css/otheruserview-main.css'
+                },
+                {
+                    href: 'css/otheruserview-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/otheruserview-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
         .when('/:lang/managementsubscription/:idQuiz', {
             templateUrl: '/Views/RegistrationManagementView.html',
             controller: "RegistrationManagementController",

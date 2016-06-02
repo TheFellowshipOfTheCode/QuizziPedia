@@ -84,6 +84,21 @@ describe("Get topic Test", function() {
     })
 });
 
+describe("Get personal Quizzes Test", function() {
+    it("should return the quizzes of a user", function (done) {
+        this.timeout(10000);
+        agent
+            .get('/api/:lang/userquiz')
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    console.log(res.body);
+                else
+                    res.status.should.equal(500);
+                done();
+            })
+    })
+});
+
 /*
 describe("Quiz tests", function() {
     it("should create a quiz", function (done) {
@@ -114,10 +129,10 @@ describe("Quiz tests", function() {
     it("should get a quiz", function (done) {
         this.timeout(10000);
         agent
-            .get('/api/:lang/userquiz/573233e79b9b577603f506a2')
+            .get('/api/:lang/userquiz/5741796380586d4a380ffe10')
             .end(function (err, res) {
                 if (!err && res.status == 200) {
-                    res.body.title.should.equal("questionario prova2");
+                    console.log(res.body);
                 }
                 else {
                     res.status.should.equal(500);
@@ -157,12 +172,12 @@ describe("Get Quiz subscribe Test", function () {
             });
     });
 });
-/*
+
 describe("Get Quiz subscribers Test", function () {
     it("should return subscribers of a Quiz Test", function (done) {
         this.timeout(10000);
         agent
-            .get('/api/:lang/userquizsubscribe/572c4c350c1776e00f48065a')
+            .get('/api/:lang/userquizsubscribe/573ec3f7c97365bd014e3121')
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     console.log(res.body);
@@ -177,11 +192,10 @@ describe("Get Quiz desidered Test", function () {
     it("should return the desired quiz", function(done) {
         this.timeout(10000);
         agent
-            .get('/api/:lang/user/quiz/:quizId')
+            .get('/api/it/userquiz/573ec3f7c97365bd014e3121')
             .end(function(err, res) {
                 if (!err && res.status == 200) {
-                    res.body.title.should.equal("questionario top");
-                    res.body.correctAnswers.should.equal(13);
+                    console.log(res.body);
                 }
                 else {
                     res.status.should.equal(500);
@@ -190,4 +204,3 @@ describe("Get Quiz desidered Test", function () {
             })
     });
 });
-*/

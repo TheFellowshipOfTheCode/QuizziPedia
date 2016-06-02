@@ -80,7 +80,7 @@ function QuizService($http, $cookies, $q) {
         return deferred.promise;
     }
 
-    function showAllCreatedQuestionnaires(id, lang) {
+    function showAllCreatedQuestionnaires(lang) {
         var deferred = $q.defer();
         $http.get('/api/' + lang + '/userquiz')
             .then(function(personalQuizzes) {

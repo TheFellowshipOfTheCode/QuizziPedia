@@ -64,15 +64,15 @@ module.exports = function(passport) {
             process.nextTick(function() {
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.findOne({$or: [{'username' : username}, {'email' : req.params.email}]}, function(err, user) {
+                User.findOne({$or: [{'username' : username}, {'email' : req.body.email}]}, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
                     if (user) {
-                        if (user.username == username && user.email == req.params.email)
+                        if (user.username == username && user.email == req.body.email)
                             return done(null, false, {code:4,title:'Errore Registrazione',message: 'Username e Email già presente'});
                         else {
-                            if (user.email === req.params.email)
+                            if (user.email === req.body.email)
                                 return done(null, false, {code:3, title:'Errore Registrazione', message: 'Email già presente'})
                             else
                                 return done(null, false, {code:2, title:'Errore Registrazione', message: 'Username già presente'})
@@ -86,9 +86,9 @@ module.exports = function(passport) {
                         // set the user's local credentials
                         newUser.password 	  = newUser.generateHash(password)
                         newUser.username      = username;
-                        newUser.email    	  = req.params.email;
-                        newUser.surname 	  = req.params.surname;
-                        newUser.name    	  = req.params.name;
+                        newUser.email    	  = req.body.email;
+                        newUser.surname 	  = req.body.surname;
+                        newUser.name    	  = req.body.name;
                         newUser.privilege     = 'normal';
                         Topic.find({},function(err,topics){
                             if(err)

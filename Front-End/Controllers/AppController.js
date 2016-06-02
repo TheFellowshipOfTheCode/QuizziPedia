@@ -128,6 +128,9 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
         {
             $location.path('/'+$routeParams.lang+'/home');
         }
+        else {
+          $rootScope.testPassed=true;
+        }
     }
 
     function checkLang() {

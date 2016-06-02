@@ -2,7 +2,7 @@
  * Name: AuthServiceTest;
  * Description: test di unità per la classe;
  * QuizziPedia::Front-End::Tests::AuthService_test;
- * Creation data: 26-05-2016;
+ * Creation data: 01-06-2016;
  * Author: Matteo Granzotto;
  * License: MIT.
  ********************************************************************************
@@ -27,6 +27,7 @@
  * link utili sono:
   + http://nathanleclaire.com/blog/2014/04/12/unit-testing-services-in-angularjs-for-fun-and-for-profit/
   + https://docs.angularjs.org/api/ngMock/service/$httpBackend
+ * httpBackend.whenGET("/api/it/loggedin").respond(objRes); fa si che il service quando chiama uno specifico url ha come ritorno sempre objRes
 */
 
 

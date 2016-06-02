@@ -6,6 +6,7 @@ var agent = request.agent(app);
 
 describe("View Topics Test", function(){
     it("should view topics", function(done){
+        this.timeout(10000);
         agent
             .get('/api/:lang/topics')
             .end(function(err,res){

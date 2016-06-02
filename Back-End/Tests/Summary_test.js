@@ -5,6 +5,7 @@ var agent = request.agent(app);
 
 describe("Signin Test", function () {
     it("should signin and return a user object", function (done) {
+        this.timeout(10000);
         agent
             .post('/api/:lang/signin')
             .send({username: 'aferrara', password: 'ciaociaociao'})
@@ -40,7 +41,7 @@ describe("Create Summary Test", function(){
             })
     })
 });
-
+*/
 describe("View Summaries Test", function(){
     it("should view summaries of a user", function(done){
         this.timeout(15000);
@@ -58,4 +59,4 @@ describe("View Summaries Test", function(){
             })
     })
 });
-*/
+

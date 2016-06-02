@@ -48,6 +48,7 @@ describe("Signin Test", function () {
 
 describe("User Loggedin Test", function () {
     it("should return a user object", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/loggedin')
             .expect('Content-Type', /json/)
@@ -63,6 +64,7 @@ describe("User Loggedin Test", function () {
 
 describe("Signout Test", function () {
     it("should signout", function (done) {
+        this.timeout(10000);
         agent
             .post('/api/:lang/signout')
             .send({})

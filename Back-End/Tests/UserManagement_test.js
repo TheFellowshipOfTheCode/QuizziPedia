@@ -1,66 +1,61 @@
-/*
 var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
 var agent = request.agent(app);
 var user;
 
-    describe("Signin Test", function () {
-        it("should signin and return a user object", function (done) {
-            this.timeout(10000);
-            agent
-                .post('/api/:lang/signin')
-                .send({username: 'a', password: 'aaaaaaaa'})
-                .end(function (err, res) {
-                    if (!err && res.status == 200)
-                        if (res.body.success == false)
-                            res.body.message.should.equal("Login non effettuato")
-                        else{
-                            user=res.body.user;
-                            res.body.user.username.should.equal("a")
-                        }
-                    done()
-                });
-        });
-    })
+describe("Signin Test", function () {
+    it("should signin and return a user object", function (done) {
+        this.timeout(10000);
+        agent
+            .post('/api/:lang/signin')
+            .send({username: 'aferrara', password: 'ciaociaociao'})
+            .end(function (err, res) {
+                if (!err && res.status == 200)
+                    res.body.user.username.should.equal("aferrara");
+                else
+                    res.status.should.equal(500);
+                done()
+            });
+    });
+});
 
 describe("User Done Quizzes Test", function () {
     it("should return userdonequizzes", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/userdonequizzes')
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    console.log(res.body)
+                    console.log(res.body);
                 else
                     console.log(res.body);
                 done()
             });
     });
 })
-*/
 
+describe("GetInfo Test", function() {
+    it("return user info", function (done) {
+        this.timeout(10000);
+        agent
+            .get('/api/:lang/user/info')
+            .end(function(err,res){
+                if (!err && res.status==200){
+                    res.body.name.should.equal("Alberto");
+                    res.body.surname.should.equal("Ferrara");
+                    console.log(res.body);
+                }
+                else
+                    res.status.should.equal(500);
+                done()
+            });
+    });
+});
 /*
-    describe("GetInfo Test", function() {
-        it("return user info", function (done) {
-            agent
-                .get('/api/:lang/user/info')
-                .end(function(err,res){
-                    if (!err && res.status==200){
-                        res.body.name.should.equal("Alberto");
-                        res.body.surname.should.equal("Ferrara");
-                        console.log(res.body);
-                    }
-                    else
-                        res.status.should.equal(500);
-                    done()
-                });
-        });
-    })
-*/
-/*
-
 describe("Search Users Test", function(){
     it("should return user", function(done){
+        this.timeout(10000);
         agent
             .post('/api/it/searchuser')
             .send({
@@ -77,7 +72,6 @@ describe("Search Users Test", function(){
             })
     })
 });
-
 
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
@@ -125,8 +119,7 @@ describe("Update Info User Test", function(){
             })
     })
 });
-*/
-/*
+
 describe("Update Password Test", function(){
     it("should update the password of a user", function(done){
         this.timeout(10000);

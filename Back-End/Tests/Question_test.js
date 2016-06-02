@@ -22,6 +22,7 @@ describe("Signin Test", function () {
 
 describe("Get All Questions Test", function () {
     it("should return all questions of a topic", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/it/allquestions/Patente/Guida,Strada')
             .end(function (err, res) {
@@ -55,6 +56,7 @@ describe("Get Question Test", function(){
 /*
 describe("Create Question Test", function(){
     it("should create a question", function(done){
+        this.timeout(10000);
         agent
             .post('/api/:lang/userquestion')
             .send({
@@ -195,6 +197,7 @@ describe("Create Question Test", function(){
 
 describe("Edit Question Test", function(){
     it("should edit a question", function(done){
+        this.timeout(10000);
         agent
             .put('/api/:lang/userquestion')
             .send({
@@ -229,6 +232,7 @@ describe("Edit Question Test", function(){
 
 describe("Update Statistics Question Test", function(){
     it("should update statistics  question", function(done){
+        this.timeout(10000);
         agent
             .put('/api/:lang/usertraining/questionstatistics')
             .send({
@@ -299,6 +303,7 @@ describe("View Keywords Test", function(){
 /*
 describe("Update Statistics Question Test", function(){
     it("should update statistics  question", function(done){
+        this.timeout(10000);
         agent
             .put('/api/:lang/usertraining/questionstatistics')
             .send({

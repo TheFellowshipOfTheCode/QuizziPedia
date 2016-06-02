@@ -53,6 +53,7 @@ describe("Get users active  Test", function() {
 /*
 describe("Put active field quiz Test", function() {
     it("should return active ok", function (done) {
+        this.timeout(10000);
         agent
             .put('/api/:lang/quizactive/573ed361ebdba94cfee823bd')
             .end(function (err, res) {
@@ -86,6 +87,7 @@ describe("Get topic Test", function() {
 /*
 describe("Quiz tests", function() {
     it("should create a quiz", function (done) {
+        this.timeout(10000);
         agent
             .post('/api/:lang/userquiz')
             .send({
@@ -110,6 +112,7 @@ describe("Quiz tests", function() {
 */
 describe("Quiz tests", function() {
     it("should get a quiz", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/userquiz/573233e79b9b577603f506a2')
             .end(function (err, res) {
@@ -126,6 +129,7 @@ describe("Quiz tests", function() {
 
 describe("Search Quiz Test", function () {
     it("should return quiz Test", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/it/searchquiz/PHP')
             .end(function (err, res) {
@@ -141,6 +145,7 @@ describe("Search Quiz Test", function () {
 
 describe("Get Quiz subscribe Test", function () {
     it("should return subscribe of a Quiz Test", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/usersubscribe')
             .end(function (err, res) {
@@ -155,6 +160,7 @@ describe("Get Quiz subscribe Test", function () {
 /*
 describe("Get Quiz subscribers Test", function () {
     it("should return subscribers of a Quiz Test", function (done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/userquizsubscribe/572c4c350c1776e00f48065a')
             .end(function (err, res) {
@@ -169,6 +175,7 @@ describe("Get Quiz subscribers Test", function () {
 
 describe("Get Quiz desidered Test", function () {
     it("should return the desired quiz", function(done) {
+        this.timeout(10000);
         agent
             .get('/api/:lang/user/quiz/:quizId')
             .end(function(err, res) {

@@ -46,30 +46,22 @@ function LoginController($scope, $rootScope, $routeParams, AuthService, $locatio
     }
 
     $scope.logIn = function(username, password){
-
         if(!username || username.length<1 || !password || password.length<1) return;
+        $rootScope.isDownloading=true;
         AuthService.signIn(username, password, $routeParams.lang)
             .then(function(result){
                 if(result.data.user != undefined) {
-                    console.log("resultUser" + result.data.user.name);
-                    console.log("resultUser" + result.data.user.surname);
-                    console.log("resultUser" + result.data.user.email);
-                    console.log("resultUser" + result.data.user.username);
-                    console.log("resultUser" + result.data.user.userImg);
-                    console.log("resultUserStats" + result.data.user.statistics);
-                    console.log("resultUserLevel" + result.data.user.experienceLevel);
-                    console.log("resultUserPrivilege" + result.data.user.privilege);
-                    console.log("resultUserID" + result.data.user._id);
-
                     var profileImg = false;
                     if(result.data.user.userImg != undefined) {
                       profileImg=result.data.user.userImg;
                     }
                     $rootScope.userLogged = new UserDetailsModel(result.data.user.name, result.data.user.surname, result.data.user.email, profileImg, result.data.user.username, result.data.user.statistics , result.data.user.experienceLevel, result.data.user.privilege, result.data.user._id);
+                    $rootScope.isDownloading=false;
                     $location.path('/' + $routeParams.lang + '/home');
                 }
             } ,function (err){
                 $scope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
+                $rootScope.isDownloading=false;
                 alert = $mdDialog.alert()
                     .title($scope.error.getTitle())
                     .content($scope.error.getCode()+": "+$scope.error.getMessage())

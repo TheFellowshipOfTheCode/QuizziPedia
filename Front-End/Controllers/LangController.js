@@ -3,7 +3,7 @@
  * Description: questa classe permette di gestire la lingua dell'applicazione e
  * tiene aggiornate le direttive di BreadBarDirective, MenuBarDirective;
  *
- * 
+ *
  * Creation data: 26-04-2016;
  * Author: Matteo Granzotto;
  * License: MIT.
@@ -39,7 +39,6 @@ function LangController ($location, $mdBottomSheet, LangService, $rootScope, $sc
       LangService
         .getSlang(lang)
         .then(function(lang){
-          //$rootScope.systemLang=lang[0].lang;
           $location.path("/"+lang[0].lang+"/home");
           $rootScope.isDownloading=false;
         });

@@ -70,62 +70,39 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
                     });
             }
             else {
-                $rootScope.isDownloading=true;
-                AuthService.signUp(user.username, user.password, user.email, user.name, user.surname, $routeParams.lang)
-                    .then(function (result) {
-                        if (result.status == "200") {
-                            $rootScope.isDownloading=false;
-                            alert = $mdDialog.alert()
-                                .title('Ciao ' + user.name + " " + user.surname)
-                                .content("La regisrazione è andata a buon fine")
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $location.path('/' + $routeParams.lang + '/login');
-                        }
-                    }, function (err) {
-                        $rootScope.isDownloading=false;
-                        if (err.data.code == 2) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
-                        if (err.data.code == 3) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
-                        if (err.data.code == 4) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
+                if(user.email!="") {
+                  $rootScope.isDownloading=true;
+                  AuthService.signUp(user.username, user.password, user.email, user.name, user.surname, $routeParams.lang)
+                      .then(function (result) {
+                          if (result.status == "200") {
+                              $rootScope.isDownloading=false;
+                              alert = $mdDialog.alert()
+                                  .title('Ciao ' + user.name + " " + user.surname)
+                                  .content("La regisrazione è andata a buon fine")
+                                  .ok('Chiudi');
+                              $mdDialog
+                                  .show(alert)
+                                  .finally(function () {
+                                      alert = undefined;
+                                  });
+                              $location.path('/' + $routeParams.lang + '/login');
+                          }
+                      }, function (err) {
+                          $rootScope.isDownloading=false;
+                              alert = $mdDialog.alert()
+                                  .title(err.data.title)
+                                  .content(err.data.message)
+                                  .ok('Chiudi');
+                              $mdDialog
+                                  .show(alert)
+                                  .finally(function () {
+                                      alert = undefined;
+                                  });
+                              $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                          
 
-                    })
+                        })
+                      }
             }
         };
 

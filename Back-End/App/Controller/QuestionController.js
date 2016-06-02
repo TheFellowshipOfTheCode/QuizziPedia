@@ -127,7 +127,7 @@ exports.editQuestion = function(req, res) {
   console.log(req.body);
     Question.editQuestion(req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
-        else return res.send({code:88, title: "Errore Domanda", message: "Domanda modificata correttamente"});
+        else return res.send({code:88, title: "Ok Domanda", message: "Domanda modificata correttamente"});
     })
 };
 

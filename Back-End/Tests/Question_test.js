@@ -8,10 +8,10 @@ describe("Signin Test", function () {
         this.timeout(10000);
         agent
             .post('/api/:lang/signin')
-            .send({username: 'fberton', password: 'ciaociao'})
+            .send({username: 'aferrara', password: 'ciaociaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("fberton");
+                    res.body.user.username.should.equal("aferrara");
                 else
                     res.status.should.equal(500);
                 done()
@@ -20,11 +20,11 @@ describe("Signin Test", function () {
 });
 
 
-describe("Get All Questions Test", function () {
-    it("should return all questions of a topic", function (done) {
+describe("Get User Questions Test", function () {
+    it("should return all questions of a user", function (done) {
         this.timeout(10000);
         agent
-            .get('/api/it/allquestions/Patente/Guida,Strada')
+            .get('/api/it/userquestion')
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     console.log(res.body);
@@ -38,7 +38,7 @@ describe("Get All Questions Test", function () {
 
 describe("Get Question Test", function(){
     it("should get question of an user", function(done){
-        this.timeout(10000)
+        this.timeout(10000);
         agent
             .get('/api/:lang/userquestion/574168240a7ba626375283af')
             .expect(200)
@@ -286,7 +286,7 @@ describe("View Keywords Test", function(){
         agent
             .post('/api/:lang/topic/keywords')
             .send({
-                topic: "Patente"
+                topic: "Motori"
             })
             .end(function(err,res){
                 if (!err && res.status == 200){

@@ -40,6 +40,18 @@ module.exports = function(config){
       'Front-End/bower_components/webcomponentsjs/webcomponents.js',
       'Front-End/bower_components/marked/lib/marked.js',
       'Front-End/bower_components/angular-marked/dist/angular-marked.js',
+      'Front-End/QML/json2.js',
+      'Front-End/QML/jsonlint.js',
+      'Front-End/QML/questionCheck/CheckQML.js',
+      'Front-End/QML/questionCheck/rispostaMultipla.js',
+      'Front-End/QML/questionCheck/areaCliccabile.js',
+      'Front-End/QML/questionCheck/collegamentoElementi.js',
+      'Front-End/QML/questionCheck/ordinamentoImmagini.js',
+      'Front-End/QML/questionCheck/ordinamentoStringhe.js',
+      'Front-End/QML/questionCheck/riempimentoSpaziVuoti.js',
+      'Front-End/QML/questionCheck/VeroFalso.js',
+      'Front-End/QML/questionCheck/custom.js',
+      'Front-End/QML/questionCheck/createJSON.js',
       'Front-End/AppRun.js',
       'Front-End/AppRouter.js',
       'Front-End/Controllers/**/*.js',
@@ -48,7 +60,8 @@ module.exports = function(config){
       'Front-End/Directives/**/*.html',
       'Front-End/Views/**/*.html',
       'Front-End/Services/**/*.js',
-      'Front-End/Tests/**/*.js'
+      'Front-End/Tests/**/*.js',
+      'Front-End/QML/JSONtoQML.js'
     ],
 
 

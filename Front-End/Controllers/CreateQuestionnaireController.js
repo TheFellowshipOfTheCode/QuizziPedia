@@ -99,12 +99,15 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         $location.path('/' + $routeParams.lang + '/QML');
     }
 
-   
+
 
   /*Costruttore*/
   QuizService.getTopic($routeParams.lang)
       .then(function(result){
+          console.log(result);
+          console.log(result.data);
           if(result.data != undefined) {
+              console.log(result);
               $scope.topics = result.data;
 
           }
@@ -138,14 +141,20 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     }
 
     $scope.updateSearch = function () {
-        $scope.filtered = filterFilter($scope.questions, {name: $scope.search.name});
+        console.log($scope.search);
+        console.log($scope.questions);
+        $scope.filtered = filterFilter($scope.questions, $scope.search);
+        console.log("--->>>v");
+        console.log($scope.filtered);
         $scope.maxSize  = Math.ceil($scope.questions / $scope.numPerPage);
     };
 
     $scope.showAllQuestions=function(topic,keyword) {
+      console.log("showAllQuestions is called");
         QuizService.showAllQuestions(topic, keyword, $routeParams.lang)
             .then(function (result) {
                 if (result.data != undefined) {
+                    console.log(JSON.stringify(result));
                     $scope.questions = result.data;
                     $scope.update();
                 }
@@ -199,8 +208,10 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     $scope.createQuestionnaire = function(quiz) {
         QuizService.createQuestionnaire(quiz.title, quiz.author, quiz.keyword, quiz.topic,quiz.questions, $routeParams.lang)
             .then(function (result) {
+              console.log("risultato");
+                console.log(result);
                 if (result) {
-                    $scope.error = new ErrorInfoModel();
+                    $scope.createdQuestionnaireTest=true;
                     if($routeParams.lang === 'it') {
                         alert = $mdDialog.alert()
                             .title("Operazione completata con successo")
@@ -220,7 +231,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     $location.path('/' + $routeParams.lang + '/questionnairemanagement');
                 }
             }, function (err) {
-                $scope.error = new ErrorInfoModel();
+                $scope.createdQuestionnaireTest=false;
                 if($routeParams.lang === 'it') {
                     alert = $mdDialog.alert()
                         .title("Errore")

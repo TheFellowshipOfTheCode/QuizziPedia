@@ -44,7 +44,7 @@ describe("Create Summary Test", function(){
 */
 describe("View Summaries Test", function(){
     it("should view summaries of a user", function(done){
-        this.timeout(15000);
+        this.timeout(18000);
         agent
             .get('/api/:lang/userdonequizzes')
             .end(function(err,res){

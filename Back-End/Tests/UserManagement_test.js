@@ -52,15 +52,13 @@ describe("GetInfo Test", function() {
             });
     });
 });
-/*
+
+
 describe("Search Users Test", function(){
     it("should return user", function(done){
         this.timeout(10000);
         agent
-            .post('/api/it/searchuser')
-            .send({
-                tosearch: "matteo"
-            })
+            .get('/api/it/searchuser/matteo')
             .end(function(err,res){
                 if (!err && res.status == 200){
                     console.log(res.body);
@@ -72,7 +70,7 @@ describe("Search Users Test", function(){
             })
     })
 });
-
+/*
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){
         this.timeout(10000);

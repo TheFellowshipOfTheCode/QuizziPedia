@@ -146,7 +146,7 @@ describe("Search Quiz Test", function () {
     it("should return quiz Test", function (done) {
         this.timeout(10000);
         agent
-            .get('/api/it/searchquiz/PHP')
+            .get('/api/it/searchquiz/Ingegneria')
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     console.log(res.body);

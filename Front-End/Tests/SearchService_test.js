@@ -47,7 +47,7 @@ var objRes2 =
     ];
 
 
-describe("QuestionsService api rest unit test", function () {
+describe("SearchService api rest unit test", function () {
     var redditService, httpBackend;
 
 

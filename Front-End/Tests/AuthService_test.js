@@ -15,21 +15,6 @@
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
-/*Guida su come creare test per i Services (Da cancellare quando finito)
- 1) Capire che tipo di oggetti restituisce il Back-End alle varie api del service
- 2) Scrive gli oggetti come variabili globali nella sezione "1-Respons object"
- 3) Scrivere nella sezione "2-Back-End simulato" l'api del Back-End a cui il service
-    tenta di connettersi.
- 4) Scrivere nella sezione "3-Test veri e propri" il test vero e proprio
-
- Nota bene:
- *  httpBackend.whenGET(/Views/).respond(200, ''); serve per risolvere le chiamate alle view indesiderate.
- * link utili sono:
-  + http://nathanleclaire.com/blog/2014/04/12/unit-testing-services-in-angularjs-for-fun-and-for-profit/
-  + https://docs.angularjs.org/api/ngMock/service/$httpBackend
- * httpBackend.whenGET("/api/it/loggedin").respond(objRes); fa si che il service quando chiama uno specifico url ha come ritorno sempre objRes
-*/
-
 
  "use strict";
  /*1-Respons object*/

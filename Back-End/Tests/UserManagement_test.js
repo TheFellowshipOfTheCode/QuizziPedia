@@ -70,6 +70,23 @@ describe("Search Users Test", function(){
             })
     })
 });
+
+describe("UserDetails Test", function(){
+    it("should return details of a user", function(done){
+        this.timeout(10000);
+        agent
+            .get('/api/it/userdetails/aferrara')
+            .end(function(err,res){
+                if (!err && res.status == 200){
+                    console.log(res.body);
+                }
+                else {
+                    res.status.should.equal(500);
+                }
+                done()
+            })
+    })
+});
 /*
 describe("Update Statistics Test", function(){
     it("should update the statistics of a user", function(done){

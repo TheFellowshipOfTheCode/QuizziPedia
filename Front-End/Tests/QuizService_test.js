@@ -111,7 +111,7 @@ var objRes6 =
 };
 
 
-describe("QuestionsService api rest unit test", function () {
+describe("QuizService api rest unit test", function () {
     var redditService, httpBackend;
 
 

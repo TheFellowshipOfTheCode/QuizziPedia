@@ -44,7 +44,7 @@ describe('Testing AppController', function () {
   beforeEach(function() {
 
     module('QuizziPedia');
-    /*2-Fare l'inject di $contorller e di tutte le dipendenze del controller testato*/
+    /*2-Fare l'inject di $controller e di tutte le dipendenze del controller testato*/
     inject(function($controller, _$httpBackend_, _$rootScope_, _$q_, _$location_, AuthService, LangService) {
       $q = _$q_;
       $rootScope= _$rootScope_;

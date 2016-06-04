@@ -88,9 +88,8 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadDoneQuizzes() {
         QuizService.getDoneQuestionnaire($routeParams.lang)
             .then(function (result) {
-                console.log(result.data.length);
-                if(result.data.length > 0){
-                    $scope.quizzes = result.data;}
+                if(result.data.length > 0)
+                    $scope.quizzes = result.data;
                 else{
                     console.log("entro qui");
                     $scope.quizzes=[];
@@ -104,12 +103,9 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadAbilitatedQuizzes() {
         QuizService.getSubscribedQuestionnaire($routeParams.lang)
             .then(function (result) {
-                console.log(result);
                 if(result.data.length >0){
-                  console.log("a");
                     $scope.subscribedQuizzes = result.data;}
                 else{
-                  console.log("b");
                     $scope.subscribedQuizzes = [];
                 }
 

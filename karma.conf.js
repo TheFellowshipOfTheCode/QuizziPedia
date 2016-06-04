@@ -14,6 +14,8 @@ module.exports = function(config){
       moduleName: 'templates'
     },
 
+    frameworks: ['jasmine'],
+
     files : [
       'Front-End/bower_components/angular/angular.js',
       'Front-End/bower_components/angular-route/angular-route.js',
@@ -67,8 +69,6 @@ module.exports = function(config){
 
 
     autoWatch : true,
-
-    frameworks: ['jasmine'],
 
     browsers : ['Chrome'],
 

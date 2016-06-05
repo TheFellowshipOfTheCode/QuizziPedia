@@ -91,10 +91,10 @@ describe('my app', function() {
             element(by.id('signupButton')).click();
             //element(by.id('goToLoginButton')).click();
         });
-
+/*
         it('should test userpage view', function() {
 
-            //Devo gestire il login prima di effettuar el'accesso alla pagina utente
+            Devo gestire il login prima di effettuar el'accesso alla pagina utente
             browser.get('http://localhost:8080/it/login');
 
             var userUserNameField = element(by.model('user.username'));
@@ -110,12 +110,28 @@ describe('my app', function() {
 
             element(by.id('loginButton')).click();
 
+
+
+            //browser.get('http://localhost:8080/it/home');
+
+            var mock_code = function () {
+                angular.module('httpBackendMock', ['ngMockE2E','ngCookies'])
+                    .run(function ($httpBackend, $cookies) {
+                        $cookies.logged = 'true';
+                    });
+            };
+            browser.addMockModule('httpBackendMock', mock_code);
+            browser.get('http://localhost:8080/it/home');
+
+
             //Redirect alla pagina utente
-            browser.get('http://localhost:8080/it/userpage');
+            browser.driver.get('http://localhost:8080/it/userpage');
+
+            browser.sleep(2000);
 
         });
 
-    /*
+
      it('should test training view', function() {
         browser.get('http://localhost:8080/it/training');
         element(by.model('user.username')).sendKeys('aferrara');
@@ -123,16 +139,21 @@ describe('my app', function() {
         element(by.id('loginButton')).click();
         browser.get('http://localhost:8080/it/userpage');
     });
-
+*/
     //DEVO GESTIRE IL LOGIN
        it('should test profile management view', function() {
-            browser.get('http://localhost:8080/it/login');
-            element(by.model('user.username')).sendKeys('aferrara');
-            element(by.model('user.password')).sendKeys('ciaociaociao');
-            element(by.id('loginButton')).click();
-            browser.get('http://localhost:8080/it/profilemanagement');
+
+           var mock_code = function () {
+               angular.module('httpBackendMock', ['ngMockE2E','ngCookies'])
+                   .run(function ($httpBackend, $cookies) {
+                       $cookies.logged = 'true';
+                   });
+           };
+           browser.addMockModule('httpBackendMock', mock_code);
+
+            browser.driver.get('http://localhost:8080/it/profilemanagement');
             //element(by.id('removeImage')).click();
-            element(by.model('user.name')).sendKeys('Matteo');
+            element(by.model('userLog.name')).sendKeys('Matteo');
             element(by.model('userLog.surname')).sendKeys('Granzotto');
             element(by.model('userLog.email')).sendKeys('matteo.granzotto@gmail.com');
             element(by.model('userLog.password')).sendKeys('ciaociaociao');
@@ -141,7 +162,7 @@ describe('my app', function() {
             //element(by.id('changePrivilegeAccount')).click();
             //element(by.id('deleteAccount')).click();
          });
-
+/*
         it('should test quizzes view', function() {
             browser.get('http://localhost:8080/it/login');
             element(by.model('user.username')).sendKeys('aferrara');
@@ -151,6 +172,6 @@ describe('my app', function() {
             element(by.id('createQuizButton')).click();
             element(by.model('quiz.title')).sendKeys('Questionario Prova');
     });
-
 */
+
 });

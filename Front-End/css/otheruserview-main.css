@@ -1,0 +1,66 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::otheruserview-main;
+ *
+ * Creation data: 1-06-2016;
+ * Author: Franco Berton;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: otheruserview_20160526
+ * Update data: 3-06-2016
+ * Description: Aggiornato css;
+ * Author: Franco Berton.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+.user-view {
+    margin: auto;
+    margin-top: 3em;
+    width: 90%;
+}
+
+.toolbar {
+    background-color: rgb(255,202,40) !important;
+}
+
+.md-padding {
+    min-height: 6em;
+    overflow: auto;
+}
+
+.otheruserview{
+    margin-top:2em;
+    margin-bottom:2em;
+}
+
+.otheruserview .image img{
+    width: 200px;
+}
+
+
+.padding-bottom {
+    padding-bottom: 1em;
+}
+
+.toolbar-section {
+    min-height: 2.5em !important;
+}
+
+.toolbar-section div {
+    height: 2.5em;
+}
+
+.quizzipedia-color {
+    background-color: rgb(255,202,40) !important;
+}
+
+.otheruserview .info p{
+    margin-bottom: 2em;
+}
+
+
+.center, h3 {
+    text-align: center;
+}
+

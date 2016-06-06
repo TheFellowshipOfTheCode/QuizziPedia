@@ -1,0 +1,106 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::training-main;
+ *
+ * Creation data: 12-05-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: training-main_20160526
+ * Update data: 26-05-2016
+ * Description: Aggiornato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: training-main_20160512
+ * Update data: 12-05-2016
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+.training {
+  width: 90%;
+  margin: auto;
+}
+
+.sezione {
+  margin-top: 3em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.toolbar {
+  background-color: rgb(255,202,40) !important;
+}
+
+ .md-padding {
+   min-height: 6em;
+   overflow: auto;
+ }
+
+.question-picker {
+  margin: 1em;
+}
+
+.question-picker .input-group {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.center-it {
+  width: 60%;
+  min-width: 200px;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.topics {
+  margin: 1em;
+}
+
+.questions md-checkbox {
+  float: left;
+  vertical-align: baseline;
+  line-height: 2.5em;
+  margin-left: 1em;
+}
+
+.questions fieldset {
+  float: left;
+}
+
+.keywordsChip {
+  width: 100%;
+}
+
+.keywordsChip md-chips-wrap {
+  margin: 1em;
+}
+
+.toolbar-section {
+  min-height: 2.5em !important;
+}
+
+.toolbar-section div {
+  height: 2.5em;
+}
+
+.start-training {
+  margin: 0 !important;
+}
+
+.end-training {
+  margin-top: 3em;
+}
+
+.select-container {
+  display: block;
+}
+
+.pie-chart {
+  width: 200px !important;
+  height: 200px !important;
+}

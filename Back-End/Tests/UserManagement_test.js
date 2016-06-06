@@ -9,7 +9,7 @@ describe("Signin Test", function () {
         this.timeout(10000);
         agent
             .post('/api/:lang/signin')
-            .send({username: 'aferrara', password: 'ciaociaociao'})
+            .send({username: 'aferrara', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
                     res.body.user.username.should.equal("aferrara");

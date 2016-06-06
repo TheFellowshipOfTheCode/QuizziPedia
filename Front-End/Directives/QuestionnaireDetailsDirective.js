@@ -26,7 +26,7 @@ app.directive('questionnaireDetailsDirective', questionnaireDetailsDirective);
 function questionnaireDetailsDirective() {
     var directive = {
         restrict: 'E',
-        templateUrl: 'Directives/questionnaireDetailsDirective.html',
+        templateUrl: 'Directives/QuestionnaireDetailsDirective.html',
         link: questionnaireDetailsDirectiveFunction
     };
     return directive;

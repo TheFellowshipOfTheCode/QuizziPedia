@@ -103,21 +103,25 @@ exports.editQuiz = function (req, res, next) {
 
 exports.getQuizSubscribe=function(req,res,next){
     Quiz.getQuizSubscribe(req.user._id,function(err,quiz) {
-        if (err) return res.send();
+        if (err) return res.status(500).json({
+            code: 331,
+            title: "Err",
+            message: "Errore"
+        });
         else return res.send(quiz)
     })
-}
+};
 
 exports.getQuizApproved = function(req,res,next){
     Quiz.getQuizApproved(req.user._id,function(err,quiz) {
         if (err) return res.status(500).json({
             code: 331,
-            title: 'Questionario Error',
-            message: err.message
+            title: "Err",
+            message: "Errore"
         });
         else return res.send(quiz)
     })
-}
+};
 
 exports.subscribeUser = function (req, res, next) {
     Quiz.subscribeUser(req.body.quizId, req.user._id, function (err, userId) {

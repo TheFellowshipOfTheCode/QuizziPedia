@@ -45,7 +45,11 @@ exports.getQuizzes = function(req, res) {
         req.user.quizSummaries.forEach(function(quizSummary,index){
             Summary.findSummary(quizSummary, function(err, elem){
                 if (err)
-                    return res.send();
+                    return res.status(500).json({
+                        code: 331,
+                        title: "Err",
+                        message: "Errore"
+                    });
                 console.log(elem.author);
                 User.getUser(elem.author, function(err,user){
                     if(user) {

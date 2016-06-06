@@ -93,15 +93,18 @@ quizSchema.statics.getQuizSubscribe=function(userId, callback) {
                 if(author) {
                     quiz[index].author=author.username
                 }
+                else {
+                    quiz[index].author="User deleted";
+                }
                 if (index+1==quiz.length){
                     callback(null,quiz)
                 }
             })
-        })
+        });
         else
-            callback(new Error("Errore l'utente non è iscritto d alcun questionario"));
+            callback(new Error("Errore l'utente non è iscritto ad alcun questionario"));
     });
-}
+};
 
 quizSchema.statics.getQuizApproved = function(userId, callback) {
     return this.find({activeUsers: userId},'title topic author').lean().exec(function(err,quiz){
@@ -111,15 +114,18 @@ quizSchema.statics.getQuizApproved = function(userId, callback) {
                     if(author) {
                         quiz[index].author=author.username
                     }
+                    else {
+                        quiz[index].author="User deleted";
+                    }
                     if (index+1==quiz.length){
                         callback(null,quiz)
                     }
                 })
-            })
+            });
         else
             callback(new Error("Errore l'utente non ha ottenuto l'approvazione di alcun questionario"));
     });
-}
+};
 
 quizSchema.statics.getActiveUsers = function(quizId, callback) {
     return this.findOne({'_id': quizId },'activeUsers', function(err, users){

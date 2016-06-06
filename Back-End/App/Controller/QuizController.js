@@ -28,11 +28,9 @@
 var user = require('../Model/UserModel.js');
 var Quiz = require('../Model/QuizModel.js');
 var error = require('../Model/ErrorModel.js');
-var quizzipediaerror = require('../Controller/Errors/QuizziPediaError.js');
 
 exports.createQuiz = function (req, res) {
     req.body.author=req.user._id;
-    if (req.body.title != undefined && req.body.topic != undefined) {
         Quiz.createQuiz(req.body, function (err, quiz) {
             if (err) return res.status(500).json({
                 code: 2,
@@ -41,11 +39,8 @@ exports.createQuiz = function (req, res) {
             });
             else return res.send(quiz);
         });
-    }
-    else {
-        quizzipediaerror.generateError({errorCode: 123}, res);
-    }
 }
+
 
 exports.getQuiz = function (req, res, next) {
     Quiz.getQuiz(req.params.quizId,req.user._id, function(err, quiz) {

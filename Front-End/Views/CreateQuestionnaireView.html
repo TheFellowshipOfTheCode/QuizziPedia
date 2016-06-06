@@ -59,7 +59,7 @@
                         <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
                         <md-select ng-model="quiz.topic" ng-change="showAllQuestions(quiz.topic,null)">
                             <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-                                <md-option ng-value="topic.name" ng-repeat="topic in topics | orderBy:'name'">{{topic.name}}</md-option>
+                                <md-option id="topicCreateQuestionnaire" ng-value="topic.name" ng-repeat="topic in topics | orderBy:'name'">{{topic.name}}</md-option>
                             </md-optgroup>
                         </md-select>
                     </md-input-container>
@@ -147,7 +147,7 @@
                                             </div>
                                    <div layout="column" layout-align="center center">
                                         <md-input-container >
-                                            <md-button aria-label="aria-label"  class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
+                                            <md-button id="addQuestionButton" aria-label="aria-label"  class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
                                             <md-button aria-label="aria-label"  class="md-raised" ng-if="question.question.length>1 && !moreInfo.found[$index]" ng-click="toggle('found',$index)">More Info</md-button>
                                             <md-button aria-label="aria-label"  class="md-raised" ng-if="question.question.length>1 && moreInfo.found[$index]" ng-click="toggle('found',$index)">Hide Info</md-button>
                                         </md-input-container>

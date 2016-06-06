@@ -99,7 +99,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         $location.path('/' + $routeParams.lang + '/QML');
     }
 
-   
+
 
   /*Costruttore*/
   QuizService.getTopic($routeParams.lang)
@@ -200,7 +200,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
         QuizService.createQuestionnaire(quiz.title, quiz.author, quiz.keyword, quiz.topic,quiz.questions, $routeParams.lang)
             .then(function (result) {
                 if (result) {
-                    $scope.error = new ErrorInfoModel();
+                    $scope.createdQuestionnaireTest=true;
                     if($routeParams.lang === 'it') {
                         alert = $mdDialog.alert()
                             .title("Operazione completata con successo")
@@ -220,7 +220,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     $location.path('/' + $routeParams.lang + '/questionnairemanagement');
                 }
             }, function (err) {
-                $scope.error = new ErrorInfoModel();
+                $scope.createdQuestionnaireTest=false;
                 if($routeParams.lang === 'it') {
                     alert = $mdDialog.alert()
                         .title("Errore")

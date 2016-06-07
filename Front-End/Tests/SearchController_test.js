@@ -27,7 +27,7 @@ describe('Testing SearchController', function () {
 
             spyOn(SearchService, 'searchUsers').and.returnValue(deferred.promise);
             spyOn(SearchService, 'searchQuestionnaire').and.returnValue(deferred.promise);
-           
+
 
             $controller('SearchController', {
                 $scope: $scope,
@@ -43,11 +43,11 @@ describe('Testing SearchController', function () {
     it('should resolve promise that search multiple users', function () {
         httpBackend.whenGET(/Views/).respond(200, '');
         deferred.resolve({
-            "data":{
+            "data":[{
                 "name":"alberto",
                 "surname": "ferrara",
                 "mail":"aferrara@gmail.com"
-            }
+            }]
         });
         $rootScope.$apply();
         expect($scope.users).not.toBe(undefined);

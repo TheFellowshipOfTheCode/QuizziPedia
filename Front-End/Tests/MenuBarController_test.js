@@ -56,7 +56,7 @@ describe('Testing MenuBarController', function() {
     })
 
 
-    it('should redirect to the login page', function () {
+    it('should check that logIn() is being called', function () {
         httpBackend.whenGET(/Views/).respond(200, '');
 
         spyOn($scope, 'logIn');
@@ -67,7 +67,7 @@ describe('Testing MenuBarController', function() {
         expect($location.path).toHaveBeenCalledWith('/'+$routeParams.lang+'/login');
     });
 
-    it('should redirect to the signup page', function () {
+    it('should check that signUp() is being called', function () {
         httpBackend.whenGET(/Views/).respond(200, '');
 
         spyOn($scope, 'signUp');
@@ -76,6 +76,61 @@ describe('Testing MenuBarController', function() {
         $routeParams.lang = 'it';
         expect($scope.signUp).toHaveBeenCalled();
         expect($location.path).toHaveBeenCalledWith('/'+$routeParams.lang+'/signup');
+    });
+
+    it('should check that goToUserPage() is being called', function () {
+        httpBackend.whenGET(/Views/).respond(200, '');
+
+        spyOn($scope, 'goToUserPage');
+        $scope.goToUserPage();
+        $location.path('/it/userpage');
+        $routeParams.lang = 'it';
+        expect($scope.goToUserPage).toHaveBeenCalled();
+        expect($location.path).toHaveBeenCalledWith('/'+$routeParams.lang+'/userpage');
+    });
+
+    it('should check that goToUserManagementPage() is being called', function () {
+        httpBackend.whenGET(/Views/).respond(200, '');
+
+        spyOn($scope, 'goToUserManagementPage');
+        $scope.goToUserManagementPage();
+        $location.path('/it/profilemanagement');
+        $routeParams.lang = 'it';
+        expect($scope.goToUserManagementPage).toHaveBeenCalled();
+        expect($location.path).toHaveBeenCalledWith('/'+$routeParams.lang+'/profilemanagement');
+    });
+
+    it('should check that goToQuestionsManagementPage() is being called', function () {
+        httpBackend.whenGET(/Views/).respond(200, '');
+
+        spyOn($scope, 'goToQuestionsManagementPage');
+        $scope.goToQuestionsManagementPage();
+        $location.path('/it/questions');
+        $routeParams.lang = 'it';
+        expect($scope.goToQuestionsManagementPage).toHaveBeenCalled();
+        expect($location.path).toHaveBeenCalledWith('/'+$routeParams.lang+'/questions');
+    });
+
+    it('should check that goToQuizManagementPage() is being called', function () {
+        httpBackend.whenGET(/Views/).respond(200, '');
+
+        spyOn($scope, 'goToQuizManagementPage');
+        $scope.goToQuizManagementPage();
+        $location.path('/it/questionnairemanagement');
+        $routeParams.lang = 'it';
+        expect($scope.goToQuizManagementPage).toHaveBeenCalled();
+        expect($location.path).toHaveBeenCalledWith('/'+$routeParams.lang+'/questionnairemanagement');
+    });
+
+    it('should check that backToHome() is being called', function () {
+        httpBackend.whenGET(/Views/).respond(200, '');
+
+        spyOn($scope, 'backToHome');
+        $scope.backToHome();
+        $location.path('/it/home');
+        $rootScope.systemLang = 'it';
+        expect($scope.backToHome).toHaveBeenCalled();
+        expect($location.path).toHaveBeenCalledWith('/'+$rootScope.systemLang+'/home');
     });
 })
 

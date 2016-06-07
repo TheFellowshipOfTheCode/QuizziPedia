@@ -9,10 +9,10 @@ describe("Signin Test", function () {
         this.timeout(10000);
         agent
             .post('/api/:lang/signin')
-            .send({username: 'aferrara', password: 'ciaociao'})
+            .send({username: 'fberton', password: 'ciaociao'})
             .end(function (err, res) {
                 if (!err && res.status == 200)
-                    res.body.user.username.should.equal("aferrara");
+                    res.body.user.username.should.equal("fberton");
                 else
                     res.status.should.equal(500);
                 done()
@@ -42,8 +42,6 @@ describe("GetInfo Test", function() {
             .get('/api/:lang/user/info')
             .end(function(err,res){
                 if (!err && res.status==200){
-                    res.body.name.should.equal("Alberto");
-                    res.body.surname.should.equal("Ferrara");
                     console.log(res.body);
                 }
                 else
@@ -75,7 +73,7 @@ describe("UserDetails Test", function(){
     it("should return details of a user", function(done){
         this.timeout(10000);
         agent
-            .get('/api/it/userdetails/aferrara')
+            .get('/api/it/userdetails/fberton')
             .end(function(err,res){
                 if (!err && res.status == 200){
                     console.log(res.body);

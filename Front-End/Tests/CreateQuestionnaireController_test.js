@@ -227,7 +227,7 @@ describe('Testing CreateQuestionnaireController', function () {
     $scope.updateSearch();
     $rootScope.$apply();
     expect($scope.questions).not.toBe(undefined);
-    expect(JSON.stringify($scope.filtered[0])).toBe(JSON.stringify(
+    expect(JSON.stringify($scope.filtered[1])).toBe(JSON.stringify(
       {
         "_id":"57343f882aad4ba97602fbb4",
         "makeWith":"qml","language":"it",
@@ -392,7 +392,7 @@ describe('Testing CreateQuestionnaireController', function () {
             ]
           }
         ];
-        
+
     $scope.quiz = {
         title: "Quiz Test",
         author: "572639ee3ad3319e15d36e71",

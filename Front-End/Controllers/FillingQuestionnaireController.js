@@ -77,6 +77,7 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     QuizService
       .getQuiz($routeParams.lang, $routeParams.id)
       .then(function(result){
+        console.log(JSON.stringify(result.data));
           $scope.quiz= new QuestionnaireModel(result.data.author, result.data.title, result.data.keywords, result.data.topic, result.data.questions, result.data._id);
           questions = $scope.quiz.getQuestions();
           $scope.quizIsLoaded = true;
@@ -123,11 +124,13 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     $mdDialog
         .show( alert )
         .then(function() {
+          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
           if($scope.questionNumberOnQuiz+1 < $scope.quiz.getNumberOfQuestions() )
           {
             $scope.questionNumberOnQuiz++;
             $rootScope.$emit("loadNewQuestionQuiz", questions[$scope.questionNumberOnQuiz], $scope.questionNumberOnQuiz, $scope.quiz.getArgument(), $rootScope.userLogged.getLevel());
-            angular.element(".scrollable").scrollTop(0,0);
+            //angular.element(".scrollable").scrollTop(0,0);
+            $(".scrollable").scrollTop(0,0);
           }
           else {
             $rootScope.$emit("checkAnswerEvent",$scope.quiz.getArgument(), $scope.userLogged.getLevelByTopic($scope.quiz.getArgument()));

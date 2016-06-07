@@ -27,6 +27,8 @@ function TrainingModeModel() {
   //constructor
   var TrainingModeModel = function (argument, keywords, numberOfQuestions)
   {
+    console.log("CREO UN NUOVO ALLENAMENOT");
+
     // private variables
     var argument_ = argument;
     var keywords_ = keywords;

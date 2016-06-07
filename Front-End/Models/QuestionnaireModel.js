@@ -96,6 +96,11 @@ function QuestionnaireModel() {
           return results_;
         };
 
+        this.getResultNumber = function () {
+          console.log("getResultNumber");
+          return numOfRightAnswer;
+        };
+
         this.getMark = function () {
             return mark_;
         };

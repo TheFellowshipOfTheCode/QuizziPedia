@@ -213,12 +213,12 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
   function graphResultAfterFinishedATraining(){
     $scope.myChartDataDoughnut = [
           {
-              value: $scope.quiz.getResult(),
+              value: $scope.quiz.getResultNumber(),
               color: "#86FC72",
               label: $rootScope.listOfKeys.questionsRight
           },
           {
-              value : $scope.quiz.getNumberOfQuestions() - $scope.quiz.getResult(),
+              value : $scope.quiz.getNumberOfQuestions() - $scope.quiz.getResultNumber(),
               color : "#F7464A",
               label: $rootScope.listOfKeys.questionsWrong
           }

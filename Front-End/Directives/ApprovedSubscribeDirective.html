@@ -37,7 +37,7 @@
 
 <section class="line md-whiteframe-1dp" ng-if="approvedQuizzes != undefined" ng-repeat="quiz in approvedQuizzes | startFrom:currentPageLineTwo*pageSize | limitTo:pageSize  " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
     <div layout-xs="column">
-        <span class="a-quarter-33 no-wrap center-on-column no-border"><a ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
+        <span class="a-quarter-33 no-wrap center-on-column no-border"><a id="goToQuizButton" ng-click="goToQuiz(quiz._id)"> {{quiz.title}} </a></span>
         <span class="a-quarter-33 no-wrap center-on-column"> {{quiz.author}} </span>
         <span class="a-quarter-33 no-wrap center-on-column"> {{quiz.topic}} </span>
     </div>

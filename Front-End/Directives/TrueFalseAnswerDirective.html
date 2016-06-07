@@ -25,10 +25,10 @@
           <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
         </div>
         <div class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-align="center">
-          <button aria-label="aria-label"   ng-class="{true: 'button-answer-true-false'}[isActiveTrue]" class="answer-button  md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.type, true); toggleActive(true)'>
+          <button aria-label="aria-label"  id="trueButton" ng-class="{true: 'button-answer-true-false'}[isActiveTrue]" class="answer-button  md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.type, true); toggleActive(true)'>
             {{listOfKeys.trueButton}}
           </button>
-          <button aria-label="aria-label"  ng-class="{true: 'button-answer-true-false'}[isActiveFalse]" class="answer-button md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.type, false); toggleActive(false)'>
+          <button aria-label="aria-label"  id="falseButton" ng-class="{true: 'button-answer-true-false'}[isActiveFalse]" class="answer-button md-primary md-raised md-button md-ink-ripple flex-30" type="button" name="button" ng-click='addAnswer($index,d.type, false); toggleActive(false)'>
             {{listOfKeys.falseButton}}
           </button>
         </div>

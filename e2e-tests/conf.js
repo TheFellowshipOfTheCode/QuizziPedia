@@ -9,6 +9,16 @@ exports.config = {
     'browserName': 'chrome'
   },
 
+  onPrepare: function() {
+    var disableNgAnimate = function() {
+      angular.module('disableNgAnimate', []).run(function($animate) {
+        $animate.enabled(false);
+      });
+    };
+    browser.addMockModule('disableNgAnimate', disableNgAnimate);
+  },
+
+
   baseUrl: 'http://localhost:8080/',
 
   framework: 'jasmine',

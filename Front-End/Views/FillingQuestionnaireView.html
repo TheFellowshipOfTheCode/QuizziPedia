@@ -82,17 +82,17 @@
         <div ng-if="quizIsFinished == true ">
           <end-quiz-directive></end-quiz-directive>
         </div>
-        <div ng-if="startQuiz == true && started == false && quiz != undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+        <div ng-if="startQuiz == true && started == false && quiz != undefined" id="startQuizButton" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
           <button aria-label="aria-label"   class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='startQuizClick()'>
             {{listOfKeys.startQuizLang}}
           </button>
         </div>
 
         <div ng-if="started == true && startQuiz == false && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
-          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='nextQuestion()'>
+          <button aria-label="aria-label" id="nextQuestionButton"  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='nextQuestion()'>
             {{listOfKeys.buttonNextQuestionLang}}
           </button>
-          <button aria-label="aria-label"  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endQuiz()'>
+          <button aria-label="aria-label"  id="endQuizButton" class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endQuiz()'>
             {{listOfKeys.endQuizLang}}
           </button>
         </div>

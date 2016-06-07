@@ -59,7 +59,7 @@
                         <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
                         <md-select ng-model="quiz.topic" ng-change="showAllQuestions(quiz.topic,null)">
                             <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
-                                <md-option id="topicCreateQuestionnaire" ng-value="topic.name" ng-repeat="topic in topics | orderBy:'name'">{{topic.name}}</md-option>
+                                <md-option id="item_{{$index}}" ng-value="topic.name" ng-repeat="topic in topics | orderBy:'name'">{{topic.name}}</md-option>
                             </md-optgroup>
                         </md-select>
                     </md-input-container>

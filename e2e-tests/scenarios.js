@@ -17,14 +17,15 @@ describe('my app', function() {
     });
 
 /* OK FUNZIONA */
-    it('should test home view', function() {
+  /*  it('should test home view', function() {
             browser.get('it/home');
             element(by.id('lookingfor')).sendKeys('utente ricercato');
             element(by.id('searchButton')).click();
             element(by.id('goToTrainingButton')).click();
         });
+ */
 /* OK FUNZIONA */
-    it('should test signup view', function() {
+/*    it('should test signup view', function() {
             browser.get('it/signup');
 
             var userNameField = element(by.model('user.name'));
@@ -53,6 +54,7 @@ describe('my app', function() {
             element(by.id('signupButton')).click();
             //element(by.id('goToLoginButton')).click();
         });
+        */
 /* OK FUNZIONA */
     it('should test login view', function() {
         browser.get('it/login');
@@ -68,8 +70,9 @@ describe('my app', function() {
 
         element(by.id('loginButton')).click();
     });
+
 /* OK FUNZIONA */
-    it('should test userpage view', function() {
+/*    it('should test userpage view', function() {
         browser.waitForAngular();
 
         browser.get('it/home');
@@ -82,8 +85,9 @@ describe('my app', function() {
         //browser.waitForAngular();
 
     });
+    */
 /* OK FUNZIONA */
-    it('should test profile management view', function() {
+  /*  it('should test profile management view', function() {
         browser.get('it/home');
 
         //Redirect alla pagina di gestione del profilo utente
@@ -122,8 +126,12 @@ describe('my app', function() {
 
         browser.waitForAngular();
     });
-/* OK FUNZIONA MA NON COMPLETO*/
-    it('should test create questionnaire view', function() {
+
+*/
+/* NON COMPLETO*/
+ /*   it('should test create questionnaire view', function() {
+        browser.waitForAngular();
+
         browser.get('it/home');
 
         browser.waitForAngular();
@@ -142,11 +150,14 @@ describe('my app', function() {
             eachElement.click();    //select the select
             element(by.id('topicCreateQuestionnaire')).click();   //select the first md-option
         });
+        var firstTopicName = element(by.repeater('topic in topics').
+        row(4)).click();
 
         expect(quizTitleField.getAttribute('value')).toEqual('Quiz di Prova');
     });
-
-    it('should test training view', function() {
+*/
+/* NON COMPLETO*/
+/*    it('should test training view', function() {
         browser.waitForAngular();
 
         browser.get('it/training');
@@ -158,7 +169,63 @@ describe('my app', function() {
 
         });
 
+
         element(by.id('startTraining')).click();
     });
+*/
+    /*
+    it('should test a questionnaire view', function() {
+        browser.waitForAngular();
 
+        browser.get('it/home');
+
+        browser.waitForAngular();
+
+        //Redirect alla pagina utente
+        element(by.id('userPageButton')).click();
+
+        browser.waitForAngular();
+
+
+
+        browser.get('it/quiz/57569a41851bc6e252a40ca3');
+
+        browser.waitForAngular();
+
+        element(by.id('startQuizButton')).click();
+        browser.waitForAngular();
+
+        element(by.id('trueButton')).click();
+
+        browser.waitForAngular();
+
+        element(by.id('nextQuestionButton')).click();
+
+        browser.waitForAngular();
+
+        element(by.id('falseButton')).click();
+
+        browser.waitForAngular();
+
+        element(by.id('endQuizButton')).click();
+
+    });
+*/
+    it('should test creation question view', function() {
+        browser.waitForAngular();
+
+        browser.get('it/home');
+        browser.waitForAngular();
+
+        element(by.id('questionsManagementButton')).click();
+        browser.waitForAngular();
+
+        element(by.id('newQuestionQMLButton')).click();
+        browser.waitForAngular();
+        element(by.id('Juiceeditor')).sendKeys('PROVA');
+
+        browser.waitForAngular();
+
+
+    });
 });

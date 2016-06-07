@@ -31,12 +31,15 @@ app.controller('HomeController', HomeController);
 
 HomeController.$inject = ['$rootScope','$scope','$location','$routeParams','ngMeta'];
 function HomeController ($rootScope,$scope, $location, $routeParams,ngMeta) {
-  
+
   $scope.trainingMode = function(){
+    console.log("entoroooooooooooooooooooooooooooooooooooooooooooooo");
+    console.log("/"+$routeParams.lang+"/training");
     $location.path("/"+$routeParams.lang+"/training");
   };
 
   $scope.search = function(){
+    console.log("ggggggggggggggggggggggggggggggggggggggg");
     var tosearch = document.getElementById("lookingfor").value;
     if(tosearch){
         $location.path("/" + $routeParams.lang + "/search/" + tosearch);

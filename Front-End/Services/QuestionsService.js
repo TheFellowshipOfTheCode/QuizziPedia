@@ -69,13 +69,15 @@ function QuestionsService($http, $cookies, $q) {
         return deferred.promise;
     }
     
-    function uploadImageQuestion(questionId,images,lang){
-        console.log(questionId)
+    function uploadImageQuestion(questionId,images,lang,id){
         var deferred = $q.defer();
         var formData = new FormData();
+        formData.append('edit',id);
         for (var i = 0; i < images.length; i++) {
             formData.append('files', images[i]);
         }
+        if(id)
+            questionId=id
         $http.put('/api/' + lang + '/userquestion/'+questionId, formData, {
             headers: {'Content-Type': undefined},
             transformRequest: angular.identity

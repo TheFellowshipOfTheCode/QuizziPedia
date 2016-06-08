@@ -57,7 +57,6 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
     $scope.images=[]
     $scope.id = $routeParams.idQuestion;
     if ($scope.id) {
-      console.log("ENTROAQUA");
         QuestionsService.getQuestion($scope.id, $routeParams.lang)
             .then(function (result) {
                 var questionDownloaded = result.data;
@@ -155,7 +154,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
                                     if (result) {
-                                        QuestionsService.uploadImageQuestion(result.data.questionId,$scope.images,$routeParams.lang)
+                                        QuestionsService.uploadImageQuestion(result.data.questionId,$scope.images,$routeParams.lang,$routeParams.idQuestion)
                                             .then(function (result) {
                                                 alert = $mdDialog.alert()
                                                     .title("Inserimento avvenuto con successo")
@@ -172,7 +171,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                                 $scope.error = new ErrorInfoModel();
                                                 alert = $mdDialog.alert()
                                                     .title("Errore")
-                                                    .content("Inserimento Immagini non andato a buon fine")
+                                                    .content("Inserimento immagini non andato a buon fine")
                                                     .ok('Ok');
                                                 $mdDialog
                                                     .show(alert)

@@ -93,10 +93,10 @@ questionSchema.statics.getQuestions=function(author, callback){
 
 questionSchema.statics.saveImages=function(questionId,images,callback){
     return this.findOne({'_id': questionId}, function(err, questionSelected){
+        var exit=false;
         questionSelected.question.forEach(function(question) {
             var found = false;
             images.forEach(function (image) {
-                console.log(question.image)
                 if (question.image){
                     if (question.image.replace(" ", "")==(image.filename.replace(" ", ""))) {
                         question.image = image.path.substr(10)
@@ -109,9 +109,10 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
             if (found)
                 found = false;
             else{
-                console.log("ccc")
-                return callback("Immagine non caricata")
+                exit=true;
+                return callback("Immagine non caricata",questionSelected)
             }
+            
             question.answers.forEach(function (answer) {
                 var found=false;
                 images.forEach(function (image) {
@@ -135,24 +136,36 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
                 if (found)
                     found=false;
                 else{
-                    questionSelected.remove()
-                    return callback("Immagine non caricata")
+                    exit=true;
+                    return callback("Immagine non caricata",questionSelected)
                 }
             })
         })
         questionSelected.save(function (err) {
-            if(err) {
-                questionSelected.remove()
-                return callback("Immagine non caricata")
-            }
+            if(err)
+                return callback("Immagine non caricata",questionSelected)
         });
-        return callback(null)
+        if (!exit)
+            return callback(null)
     });
 }
 
 
-questionSchema.statics.editQuestion=function(question,callback){
-    return this.findOneAndUpdate({'_id' : question._id}, question, callback)
+questionSchema.statics.editQuestion=function(questionEdited,callback){
+        questionEdited.question.forEach(function (quest) {
+            if (quest.image) {
+                quest.image = 'Images/Questions/'+questionEdited._id+'/'+ quest.image.replace(" ", "")
+            }
+            quest.answers.forEach(function (answer) {
+                if (answer.url)
+                    answer.url = 'Images/Questions/'+questionEdited._id+'/'+answer.url.replace(" ", "");
+                if (answer.url1)
+                    answer.url1 = 'Images/Questions/'+questionEdited._id+'/'+answer.url1.replace(" ", "");
+                if (answer.url2)
+                    answer.url2 = 'Images/Questions/'+questionEdited._id+'/'+answer.url2.replace(" ", "");
+            })
+        })
+        return this.findOneAndUpdate({'_id' : questionEdited._id}, questionEdited, callback)
 };
 
 questionSchema.statics.updateLevel=function(questionId,userLevel,isCorrected,callback){

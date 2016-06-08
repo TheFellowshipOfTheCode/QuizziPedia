@@ -38,6 +38,7 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
+        console.log(req.params.questionId)
         var dir='Front-End/Images/Questions/'+req.params.questionId
         fs.stat(dir, function(err, stats) {
             if (err)
@@ -54,15 +55,7 @@ var storage = multer.diskStorage({
         callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
     }
 });
-/*
-fs.stat('Front-End/Images/Questions/'+req.params.questionId, function(err, stats) {
-    if (err)
-        fs.mkdir('Front-End/Images/Questions/' + req.params.questionId, callback);
-    else{
-        var dir='Front-End/Images/Questions/' + req.params.questionId;
-        callback(null, dir);
-    }
-}) */
+
 
 var upload =multer({storage: storage}).array("files")
 
@@ -83,20 +76,32 @@ exports.createQuestion = function(req, res) {
 
 exports.uploadImageQuestion = function(req, res) {
    upload(req,res,function(err){
-       Question.saveImages(req.params.questionId,req.files,function(err){
-           if(err)
-               return res.status(500).json({
-                   code: 88,
-                   title: "Errore Domanda",
-                   message: "Immagine non caricate"
-               });
-           else
-               return res.send({
-                   code: 84,
-                   title: "Ok Domanda",
-                   message: "Immagine caricate correttamente"
-               });
-       })
+       if (!req.body.edit){
+           Question.saveImages(req.params.questionId,req.files,function(err,question){
+               if(err){
+                   question.remove(function(err){
+                       return res.status(500).json({
+                           code: 88,
+                           title: "Errore Domanda",
+                           message: "Immagine non caricate"
+                       });
+                   })
+               }
+               else
+                   return res.send({
+                       code: 84,
+                       title: "Ok Domanda",
+                       message: "Immagine caricate correttamente"
+                   });
+           })
+       }
+       else
+           return res.send({
+               code: 84,
+               title: "Ok Domanda",
+               message: "Immagine caricate correttamente"
+           });
+
    })
 };
 
@@ -104,6 +109,19 @@ exports.uploadImageQuestion = function(req, res) {
 
 exports.getQuestion = function(req, res) {
     Question.getQuestion(req.params.questionId).lean().exec(function(err, question){
+        question.question.forEach(function (quest) {
+            if (quest.image){
+                quest.image =  quest.image.replace(/^.*[\\\/]/, '')
+            }
+            quest.answers.forEach(function (answer) {
+                if (answer.url)
+                    answer.url =  answer.url.replace(/^.*[\\\/]/, '')
+                if (answer.url1)
+                    answer.url1 =  answer.url1.replace(/^.*[\\\/]/, '')
+                if (answer.url2)
+                    answer.url2 =  answer.url2.replace(/^.*[\\\/]/, '')
+            })
+        })
         Topic.getTopicQuestion(question._id, function(err, topicname) {
             question.topic=topicname.name;
             if (err) return res.status(500).json({
@@ -124,7 +142,6 @@ exports.getQuestions = function(req, res) {
 };
 
 exports.editQuestion = function(req, res) {
-  console.log(req.body);
     Question.editQuestion(req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
         else return res.send({code:88, title: "Ok Domanda", message: "Domanda modificata correttamente"});

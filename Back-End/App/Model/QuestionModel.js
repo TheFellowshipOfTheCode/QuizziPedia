@@ -135,12 +135,14 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
                 if (found)
                     found=false;
                 else{
+                    questionSelected.remove()
                     return callback("Immagine non caricata")
                 }
             })
         })
         questionSelected.save(function (err) {
             if(err) {
+                questionSelected.remove()
                 return callback("Immagine non caricata")
             }
         });

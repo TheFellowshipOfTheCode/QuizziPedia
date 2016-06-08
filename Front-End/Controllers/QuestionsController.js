@@ -255,8 +255,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log("ordinamento");
-                console.log(answerCheckB);
                 break;
             case "collegamento":
                 elem.answers.forEach(function (answer, indexAnswerGiven) {
@@ -267,8 +265,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log("collegamento");
-                console.log(answerCheckB);
                 break;
             case "veroFalso":
                 if(answersGiven[index] === undefined) {
@@ -279,8 +275,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log("vf");
-                console.log(answerCheckB);
                 break;
             case "rispostaMultipla":
                 console.log("rm");
@@ -290,19 +284,14 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                   answerCheckB = false;
                 }
                 answersGiven[index].answerGiven.forEach(function (answerGived) {
-                  console.log(answerGived);
                   elem.answers.forEach(function (answer) {
-                    console.log("->"+answer.text);
                     if(answerGived == answer.text) {
-                      console.log(answer.text+"->"+answer.isItRight);
                       if(answer.isItRight == "false" && answerCheckB) {
                         answerCheckB = false;
-                        console.log("FALSO");
                       }
                     }
                   });
                 });
-                console.log(answerCheckB);
                 break;
             case "spaziVuoti":
                 var text1 = elem.questionText;
@@ -328,16 +317,12 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                     answerCheckB = false;
                   }
                 });
-                console.log("sv");
-                console.log(answerCheckB);
                 break;
           }
 
           if(answerCheckA) {
             answerCheckA = answerCheckB;
           }
-          console.log(answerCheckA);
-
         });
       }
       $rootScope.$emit("addResult", $scope.question.getId(), answerCheckA);

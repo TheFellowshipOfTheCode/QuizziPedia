@@ -37,7 +37,12 @@ describe('Testing QuestionsController', function () {
             $scope = _$rootScope_.$new();
             $routeParams=_$routeParams_
             deferred = _$q_.defer();
+            
 
+            spyOn(QuestionsService, 'updateStatisticsUser').and.returnValue(deferred.promise);
+            spyOn(QuestionsService, 'updateStatisticsQuestion').and.returnValue(deferred.promise);
+            spyOn(QuestionsService, 'updateStatisticsTopic').and.returnValue(deferred.promise);
+            spyOn($rootScope, '$on').and.callThrough();
 
             $controller('QuestionsController', {
                 $scope: $scope,
@@ -77,4 +82,5 @@ describe('Testing QuestionsController', function () {
             });
         })
     })
+    
 })

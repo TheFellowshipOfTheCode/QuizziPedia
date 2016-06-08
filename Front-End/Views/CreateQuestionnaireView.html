@@ -99,7 +99,7 @@
 
 
 
-                    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always">
+                    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always" ng-show="quiz.topic">
                         <md-tab label="Ricerca Domande" >
                             <div layout="row" layout-align="center center">
                             <md-content class="md-padding" flex="100">
@@ -117,7 +117,7 @@
                         </md-tab>
                     </md-tabs>
 
-                    <md-card>
+                    <md-card ng-show="quiz.topic">
                         <md-card-title ng-if="(questions | filter:search).length>0">
                             <md-card-title-text class="text-center" >
                                 <h4>Domande Trovate</h4>
@@ -173,7 +173,7 @@
                     </md-card>
                     <div layout="row" layout-align="center center">
                         <md-input-container >
-                            <md-button aria-label="aria-label"  ng-disabled="questions_selected.length==0" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
+                            <md-button aria-label="aria-label"  ng-disabled="questions_selected.length==0 || !quiz.topic || !quiz.title" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
                         </md-input-container>
                     </div>
 

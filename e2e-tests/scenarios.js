@@ -1,7 +1,5 @@
 'use strict';
 
-// https://github.com/angular/protractor/blob/master/docs/toc.md
-
 describe('my app', function() {
     beforeEach(function() {
         var width = 1260;
@@ -10,22 +8,21 @@ describe('my app', function() {
 
     });
 
-
     afterEach(function() {
         //browser.get('it/home');
         //element(by.id('logoutButton')).click();
     });
 
 /* OK FUNZIONA */
-  /*  it('should test home view', function() {
+  it('should test home view', function() {
             browser.get('it/home');
             element(by.id('lookingfor')).sendKeys('utente ricercato');
             element(by.id('searchButton')).click();
             element(by.id('goToTrainingButton')).click();
         });
- */
+
 /* OK FUNZIONA */
-/*    it('should test signup view', function() {
+  it('should test signup view', function() {
             browser.get('it/signup');
 
             var userNameField = element(by.model('user.name'));
@@ -54,9 +51,9 @@ describe('my app', function() {
             element(by.id('signupButton')).click();
             //element(by.id('goToLoginButton')).click();
         });
-        */
+
 /* OK FUNZIONA */
-    it('should test login view', function() {
+  it('should test login view', function() {
         browser.get('it/login');
 
         var userNameField = element(by.model('user.username'));
@@ -72,7 +69,7 @@ describe('my app', function() {
     });
 
 /* OK FUNZIONA */
-/*    it('should test userpage view', function() {
+  it('should test userpage view', function() {
         browser.waitForAngular();
 
         browser.get('it/home');
@@ -85,9 +82,9 @@ describe('my app', function() {
         //browser.waitForAngular();
 
     });
-    */
+
 /* OK FUNZIONA */
-  /*  it('should test profile management view', function() {
+  it('should test profile management view', function() {
         browser.get('it/home');
 
         //Redirect alla pagina di gestione del profilo utente
@@ -127,8 +124,7 @@ describe('my app', function() {
         browser.waitForAngular();
     });
 
-*/
-/* NON COMPLETO*/
+/* NON COMPLETO, MANCA SELEZIONE TOPIC*/
  /*   it('should test create questionnaire view', function() {
         browser.waitForAngular();
 
@@ -156,25 +152,27 @@ describe('my app', function() {
         expect(quizTitleField.getAttribute('value')).toEqual('Quiz di Prova');
     });
 */
-/* NON COMPLETO*/
-/*    it('should test training view', function() {
+/* NON COMPLETO, MANCA SELEZIONE TOPIC E RISPOSTA DOMANDE*/
+    it('should test training view', function() {
         browser.waitForAngular();
 
         browser.get('it/training');
-
+/*
         element.all(by.model('selectedTopic')).each(function (eachElement, index) {
             eachElement.click();                    //select the select
 
             element(by.id('topicTraining')).click();   //select the first md-option
 
         });
-
-
+*/
+        element.all(by.model('selectedTopic')).click();
+        element(by.id('topicTraining')).click();
         element(by.id('startTraining')).click();
     });
-*/
-    /*
+
+    /* NON COMPLETO, MANCA CHIUSA POPUP*/
     it('should test a questionnaire view', function() {
+
         browser.waitForAngular();
 
         browser.get('it/home');
@@ -196,21 +194,23 @@ describe('my app', function() {
         browser.waitForAngular();
 
         element(by.id('trueButton')).click();
-
         browser.waitForAngular();
-
+        browser.ignoreSynchronization = true;
         element(by.id('nextQuestionButton')).click();
+        browser.ignoreSynchronization = false;
 
-        browser.waitForAngular();
+
 
         element(by.id('falseButton')).click();
-
+        /*
         browser.waitForAngular();
 
-        element(by.id('endQuizButton')).click();
+        element(by.id('endQuizButton')).click();*/
 
     });
-*/
+
+/* NON COMPLETO, MANCA SELEZIONE TOPIC*/
+    /*
     it('should test creation question view', function() {
         browser.waitForAngular();
 
@@ -226,6 +226,5 @@ describe('my app', function() {
 
         browser.waitForAngular();
 
-
-    });
+    });*/
 });

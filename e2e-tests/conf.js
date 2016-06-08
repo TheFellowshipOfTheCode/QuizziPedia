@@ -8,8 +8,9 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
-
+/*
   onPrepare: function() {
+    global.EC = protractor.ExpectedConditions;
     var disableNgAnimate = function() {
       angular.module('disableNgAnimate', []).run(function($animate) {
         $animate.enabled(false);
@@ -17,7 +18,7 @@ exports.config = {
     };
     browser.addMockModule('disableNgAnimate', disableNgAnimate);
   },
-
+*/
 
   baseUrl: 'http://localhost:8080/',
 

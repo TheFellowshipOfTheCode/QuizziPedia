@@ -22,7 +22,7 @@ var LangModel = require("../Model/LangModel.js");
 
 exports.getVarlist=function(req,res,next){
   LangModel.getVarlist(req.params.lang,function(err,result){
-    if(err)
+    if(err || result.length==0)
       return res.status(500).json({code: 1601, title: "getVarlistErrror", message: "error"});
     return res.send(result);
   })

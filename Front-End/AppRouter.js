@@ -101,6 +101,9 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
             }
           ]
       })
+      .when('/', {
+        redirectTo:"/it/home"
+      })
         .when('/:lang/createquestionnaire', {
             templateUrl: '/Views/CreateQuestionnaireView.html',
             controller:"CreateQuestionnaireController",
@@ -396,8 +399,28 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                 }
             ]
         })
+        .when('/404', {
+            templateUrl: '/Views/ErrorView.html',
+            meta: {
+              'title':'404 Error',
+              'description':'404 Error.'
+            },
+            css: [
+                {
+                    href: 'css/error-page-main.css'
+                },
+                {
+                    href: 'css/error-page-medium.css',
+                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
+                },
+                {
+                    href: 'css/error-page-small.css',
+                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
+                }
+            ]
+        })
       .otherwise({
-        redirectTo: '/it/home'
+        redirectTo: '/404'
       })
     }
 

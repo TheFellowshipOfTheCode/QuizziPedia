@@ -62,45 +62,50 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
       checkUrl($location.path());
     }
 
-
     if($rootScope.userLogged != undefined) {
         $rootScope.directivesChoose= MenuBarModel.getDirectives(location, $rootScope.userLogged.getPrivilege());
     }
 
-    if($rootScope.systemLang === undefined) {
-        $rootScope.systemLang=$routeParams.lang;
-        lang = getLang($routeParams.lang);
-        lang.then(function(data){
-            $rootScope.listOfKeys= data.getListOfKeys();
-            $rootScope.$emit("langDownloaded", true);
-        }, function(err) {
-          $location.path("/it/home");
-          lang = getLang("it");
+    if($routeParams.lang!=undefined) {
+      if($rootScope.systemLang === undefined) {
+        console.log("A");
+          $rootScope.systemLang=$routeParams.lang;
+          lang = getLang($routeParams.lang);
           lang.then(function(data){
-              $rootScope.systemLang = "it";
               $rootScope.listOfKeys= data.getListOfKeys();
-          });
-        }
-      );
-    }
-    else {
-      if($rootScope.systemLang != $routeParams.lang) {
-        lang = getLang($routeParams.lang);
-        lang.then(function(data){
-            $rootScope.systemLang = $routeParams.lang;
-            $rootScope.listOfKeys= data.getListOfKeys();
-            $rootScope.$emit("langDownloaded", true);
-        }, function(err) {
-          $location.path("/it/home");
-          lang = getLang("it");
-          lang.then(function(data){
-            $rootScope.systemLang = "it";
-              $rootScope.listOfKeys= data.getListOfKeys();
-          });
-        });
+              $rootScope.$emit("langDownloaded", true);
+          }, function(err) {
+            $location.path("/it/home");
+            lang = getLang("it");
+            lang.then(function(data){
+                $rootScope.systemLang = "it";
+                $rootScope.listOfKeys= data.getListOfKeys();
+            });
+          }
+        );
       }
       else {
-        $rootScope.isDownloading=false;
+        console.log("B");
+        if($rootScope.systemLang != $routeParams.lang) {
+          console.log("C");
+          lang = getLang($routeParams.lang);
+          lang.then(function(data){
+              $rootScope.systemLang = $routeParams.lang;
+              $rootScope.listOfKeys= data.getListOfKeys();
+              $rootScope.$emit("langDownloaded", true);
+          }, function(err) {
+            $location.path("/it/home");
+            lang = getLang("it");
+            lang.then(function(data){
+              $rootScope.systemLang = "it";
+                $rootScope.listOfKeys= data.getListOfKeys();
+            });
+          });
+        }
+        else {
+          console.log("D");
+          $rootScope.isDownloading=false;
+        }
       }
     }
 

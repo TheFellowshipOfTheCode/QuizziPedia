@@ -18,10 +18,15 @@
 <meta name="description" content="{{ngMeta.description}}" />
 
 <div ng-controller="AppController">
-
+  <div ng-controller="ErrorController">
     <div class="errore">
-      <img src="Images/Icons/logo.png"/>
-      <img src="Images/Icons/sheep.png"/>
+      <div class="sheep">
+        <img class="sheep-head" src="Images/Icons/sheep-head.png"/>
+        <img class="sheep-body" src="Images/Icons/sheep-body.png"/>
+      </div>
+      <div class="sentence">
+        <h1>{{listOfKeys.youAreIntheWrongPage}}</h2>
+      </div>
     </div>
-
+  </div>
 </div>

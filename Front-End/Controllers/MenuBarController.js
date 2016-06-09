@@ -51,31 +51,62 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
 
   $scope.logIn = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/login');
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/login');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/login');
+    }
     toggleOnlyOnMobile();
   };
   $scope.signUp = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/signup');
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/signup');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/signup');
+    }
     toggleOnlyOnMobile();
   };
   $scope.goToUserPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/userpage');
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/userpage');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/userpage');
+    }
     toggleOnlyOnMobile();
   };
   $scope.goToUserManagementPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/profilemanagement');
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/profilemanagement');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/profilemanagement');
+    }
     toggleOnlyOnMobile();
   };
   $scope.goToQuestionsManagementPage = function () {
-    $location.path('/'+$routeParams.lang+'/questions');
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/questions');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/questions');
+    }
     toggleOnlyOnMobile();
   };
   $scope.goToQuizManagementPage = function () {
     resetRefreshBlocking();
-    $location.path('/'+$routeParams.lang+'/questionnairemanagement');
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/questionnairemanagement');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/questionnairemanagement');
+    }
     toggleOnlyOnMobile();
   };
 
@@ -95,14 +126,24 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
           delete $rootScope.userLogged;
           $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
           resetRefreshBlocking();
-          $location.path('/'+$routeParams.lang+'/home');
+          if($routeParams.lang!=undefined) {
+            $location.path('/'+$routeParams.lang+'/home');
+          }
+          else {
+            $location.path('/'+geoplugin_countryCode().toLowerCase()+'/home');
+          }
           toggleOnlyOnMobile();
         });
   };
 
   $scope.backToHome = function () {
     resetRefreshBlocking();
-    $location.path('/'+$rootScope.systemLang+'/home');
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$rootScope.systemLang+'/home');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/home');
+    }
     toggleOnlyOnMobile();
   }
 

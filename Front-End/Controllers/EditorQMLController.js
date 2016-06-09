@@ -193,7 +193,15 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
     };
 
     $scope.goToWizard = function () {
-        $location.path('/' + $routeParams.lang + '/wizard');
+      alert = $mdDialog.alert()
+          .title($rootScope.listOfKeys.funtionalityNotImplementedTitle)
+          .content($rootScope.listOfKeys.funtionalityNotImplemented)
+          .ok('Ok');
+      $mdDialog
+          .show( alert )
+          .finally(function() {
+              alert = undefined;
+          });
     };
 
     $scope.showTutorialFlag=false;

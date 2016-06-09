@@ -198,23 +198,6 @@ var AppRouter = function ($routeProvider, $locationProvider, $mdThemingProvider,
                 }
             ]
         })
-        .when('/:lang/wizard', {
-            templateUrl: '/Views/CreateWithWizardView.html',
-            controller:"",
-            css: [
-                {
-                    href: 'css/create-question-main.css'
-                },
-                {
-                    href: 'css/create-question-medium.css',
-                    media: 'handheld, screen and (max-width:960px), only screen and (max-device-width:960px)'
-                },
-                {
-                    href: 'css/create-question-small.css',
-                    media: 'handheld, screen and (max-width:480px), only screen and (max-device-width:480px)'
-                }
-            ]
-        })
         .when('/:lang/questions', {
             templateUrl: '/Views/QuestionsManagementView.html',
             controller: "QuestionsManagementController",

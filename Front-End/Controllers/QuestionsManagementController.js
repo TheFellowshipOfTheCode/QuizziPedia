@@ -92,11 +92,19 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
     };
 
     $scope.goToWizardCreation = function(){
-        $location.path('/' + $routeParams.lang + '/wizard');
+      alert = $mdDialog.alert()
+          .title($rootScope.listOfKeys.funtionalityNotImplementedTitle)
+          .content($rootScope.listOfKeys.funtionalityNotImplemented)
+          .ok('Ok');
+      $mdDialog
+          .show( alert )
+          .finally(function() {
+              alert = undefined;
+          });
     }
 
     $scope.goToQMLCreation = function(){
         $location.path('/' + $routeParams.lang + '/QML');
     }
-    
+
 }

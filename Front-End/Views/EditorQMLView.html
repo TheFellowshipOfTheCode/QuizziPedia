@@ -96,7 +96,7 @@
                             <md-input-container layout-align="center center">
                                 <div layout="row" layout-md="column" layout-sm="column"  layout-xs="column" layout-margin>
                                     <md-button aria-label="aria-label"  ng-click="goToWizard()" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.goToWizard}}</md-button>
-                                    <md-button aria-label="aria-label"  ng-if="id == undefined" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button aria-label="aria-label"  ng-if="id == undefined" ng-disabled="!selectedTopic" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
                                     <md-button aria-label="aria-label"  ng-if="id != undefined" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
                                 </div>
                             </md-input-container>

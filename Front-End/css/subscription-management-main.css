@@ -141,7 +141,7 @@
 }
 
 .toolbar-top {
-    margin-bottom: 1em;
+    margin-bottom: 1em !important;
 }
 
 .toolbar-bottom {
@@ -172,6 +172,8 @@
 .line-quiz {
   margin-top: 1em;
   margin-bottom: 1em;
+  width: 80%;
+  margin: auto;
 }
 
 .odd{

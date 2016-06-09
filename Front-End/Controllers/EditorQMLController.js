@@ -74,7 +74,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                   $scope.topics = data;
                 });
             }, function (err) {
-                $scope.error = new ErrorInfoModel("9", "Errore", "Caricamento domanda tramite id non andato a buon fine");
+                $scope.error = new ErrorInfoModel("9", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.noQuestionIdDownloaded);
                 alert = $mdDialog.alert()
                     .title($scope.error.getTitle())
                     .content($scope.error.getMessage())
@@ -95,8 +95,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         var question = document.getElementById('Juiceeditor').value;
         if (question == undefined) {
             alert = $mdDialog.alert()
-                .title("Errore con la domanda")
-                .content("Domanda Vuota!")
+                .title($rootScope.listOfKeys.genericError)
+                .content($rootScope.listOfKeys.emptyQuestion)
                 .ok('Ok');
             $mdDialog
                 .show(alert)
@@ -111,7 +111,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             }
             catch (e) {
                 alert = $mdDialog.alert()
-                    .title("Errore con la domanda")
+                    .title($rootScope.listOfKeys.genericError)
                     .content(e.message)
                     .ok('Ok');
                 $mdDialog
@@ -136,8 +136,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                         QuestionsService.uploadImageQuestion(result.data.questionId,$scope.images,$routeParams.lang,$routeParams.idQuestion)
                                             .then(function (result) {
                                                 alert = $mdDialog.alert()
-                                                    .title("Inserimento avvenuto con successo")
-                                                    .content("La domanda è stata inserita!")
+                                                    .title($rootScope.listOfKeys.okInsertTitle)
+                                                    .content($rootScope.listOfKeys.okInsertQuestion)
                                                     .ok('Ok');
                                                 $mdDialog
                                                     .show(alert)
@@ -149,8 +149,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                             }, function (err) {
                                                 $scope.error = new ErrorInfoModel();
                                                 alert = $mdDialog.alert()
-                                                    .title("Errore")
-                                                    .content("Inserimento immagini non andato a buon fine")
+                                                    .title($rootScope.listOfKeys.genericError)
+                                                    .content($rootScope.listOfKeys.noUploadImage)
                                                     .ok('Ok');
                                                 $mdDialog
                                                     .show(alert)
@@ -162,8 +162,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                 }, function (err) {
                                     $scope.error = new ErrorInfoModel();
                                     alert = $mdDialog.alert()
-                                        .title("Errore")
-                                        .content("La richiesta di inserimento domanda non è andata a buon fine")
+                                        .title($rootScope.listOfKeys.genericError)
+                                        .content($rootScope.listOfKeys.noUploadQuestion)
                                         .ok('Ok');
                                     $mdDialog
                                         .show(alert)

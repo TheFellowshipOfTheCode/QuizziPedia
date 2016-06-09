@@ -50,12 +50,12 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
                   checkUrl($location.path());
                 }
                 else{
-                  $rootScope.error = new ErrorInfoModel("6", result.message, "Errore Login");
+                  $rootScope.error = new ErrorInfoModel("6", result.message, result.message);
                   AuthService.resetCookies();
                   $rootScope.$emit("userDownloaded", false);
                 }
             } ,function (err){
-                $rootScope.error = new ErrorInfoModel("1", "Errore nella Login", "Login non effettuata");
+                $rootScope.error = new ErrorInfoModel(err.data.code,  err.data.message, err.data.title);
             });
     }
     else {

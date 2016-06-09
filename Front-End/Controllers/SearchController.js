@@ -64,7 +64,7 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
                 delete $scope.users;
             }
         }, function (err) {
-            $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento utenti non andato a buon fine");
+            $scope.error = new ErrorInfoModel("8", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.usersNotDownloaded);
             alert = $mdDialog.alert()
                 .title($scope.error.getTitle())
                 .content($scope.error.getMessage())
@@ -86,7 +86,7 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
                 delete $scope.quizzes;
             }
         }, function (err) {
-            $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari non andato a buon fine");
+            $scope.error = new ErrorInfoModel("8", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.quizzesNotDownloaded);
             alert = $mdDialog.alert()
                 .title($scope.error.getTitle())
                 .content($scope.error.getMessage())
@@ -102,8 +102,8 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
         QuizService.subscribeQuestionnaire(quizId, $routeParams.lang)
             .then(function (result) {
                 alert = $mdDialog.alert()
-                    .title("Registrazione avvenuta con successo")
-                    .content("Ti sei appena iscritto al questionario!")
+                    .title($rootScope.listOfKeys.subscribeToQuizTitle)
+                    .content($rootScope.listOfKeys.subscribeToQuiz)
                     .ok('Ok');
                 $mdDialog
                     .show(alert)

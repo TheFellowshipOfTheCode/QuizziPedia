@@ -109,7 +109,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
 
           }
       } ,function (err){
-          $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+          $scope.error = new ErrorInfoModel("8", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.noTopicDownloaded);
           alert = $mdDialog.alert()
               .title($scope.error.getTitle())
               .content($scope.error.getMessage())
@@ -150,7 +150,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     $scope.update();
                 }
             }, function (err) {
-                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+                $scope.error = new ErrorInfoModel("8", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.noQuestionDownloaded);
                 alert = $mdDialog.alert()
                     .title($scope.error.getTitle())
                     .content($scope.error.getMessage())
@@ -201,17 +201,10 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
             .then(function (result) {
                 if (result) {
                     $scope.createdQuestionnaireTest=true;
-                    if($routeParams.lang === 'it') {
-                        alert = $mdDialog.alert()
-                            .title("Operazione completata con successo")
-                            .content("Il questionario è stato creato!")
-                            .ok('Ok');
-                    } else{
-                        alert = $mdDialog.alert()
-                            .title("Successfully completed operation")
-                            .content("Quiz is created!")
-                            .ok('Ok');
-                    }
+                    alert = $mdDialog.alert()
+                      .title($rootScope.listOfKeys.okOperation)
+                      .content($rootScope.listOfKeys.madeQuiz)
+                      .ok('Ok');
                     $mdDialog
                         .show(alert)
                         .finally(function () {
@@ -221,17 +214,10 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                 }
             }, function (err) {
                 $scope.createdQuestionnaireTest=false;
-                if($routeParams.lang === 'it') {
-                    alert = $mdDialog.alert()
-                        .title("Errore")
-                        .content("Il questionario non è stato crato!")
-                        .ok('Ok');
-                } else {
-                    alert = $mdDialog.alert()
-                        .title("Error")
-                        .content("Quiz is not created!")
-                        .ok('Ok');
-                }
+                alert = $mdDialog.alert()
+                    .title($rootScope.listOfKeys.genericError)
+                    .content($rootScope.listOfKeys.noMadeQuiz)
+                    .ok('Ok');
                 $mdDialog
                     .show(alert)
                     .finally(function () {

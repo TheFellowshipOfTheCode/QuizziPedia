@@ -1,8 +1,6 @@
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Controllers::TrainingController;
 * Description: controller che gestisce la modalità allenamento;
- *
- *
 * Creation data: 01-05-2016;
 * Author: Matteo Granzotto;
 * License: MIT.

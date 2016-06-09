@@ -42,7 +42,7 @@
             </span>
 
 
-            <md-toolbar ng-if="subscribedUsers != undefined" class="toolbar-section toolbar-top">
+            <md-toolbar ng-if="subscribedUsers != undefined" class="modifyQuestionTitle toolbar-section toolbar-bottom">
                 <div class="md-toolbar-tools">
                     <h2  class="hide-me-when-i-am-ugly-subscribers">
                         <span ng-if="subscribedUsers.length == 0"> Ci sono 0 iscritti. </span>
@@ -58,7 +58,7 @@
                 </div>
             </md-toolbar>
 
-            <div ng-if="subscribedUsers != undefined" class="md-whiteframe-2dp line-quiz " ng-repeat="u in subscribedUsers | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+            <div ng-if="subscribedUsers != undefined" class="md-whiteframe-2dp line-quiz toolbar-top" ng-repeat="u in subscribedUsers | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
                 <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="row">
                     <span class="divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
                     <span class="divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>

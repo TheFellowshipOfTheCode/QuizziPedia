@@ -70,7 +70,7 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                 }
 
             }, function (err) {
-                $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento utenti registrati non andato a buon fine");
+                $scope.error = new ErrorInfoModel("8", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.noTopicDownloaded);
                 alert = $mdDialog.alert()
                     .title($scope.error.getTitle())
                     .content($scope.error.getMessage())
@@ -113,8 +113,8 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                 QuizService.approveSubscribeQuestionnaire(userId, $routeParams.idQuiz, $routeParams.lang)
                     .then(function (result) {
                         alert = $mdDialog.alert()
-                            .title("Approvazione andata a buon fine")
-                            .content("Hai approvato l'iscrizione dell'utente")
+                            .title($rootScope.listOfKeys.approvedIsDone)
+                            .content($rootScope.listOfKeys.youApprovedUser)
                             .ok('Ok');
                         $mdDialog
                             .show(alert)
@@ -123,7 +123,7 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                             });
 
                     }, function (err) {
-                        $scope.error = new ErrorInfoModel("10", "Errore", "Approvazione non andata a buon fine");
+                        $scope.error = new ErrorInfoModel("10", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.approvedIsNotDone);
                         alert = $mdDialog.alert()
                             .title($scope.error.getTitle())
                             .content($scope.error.getMessage())

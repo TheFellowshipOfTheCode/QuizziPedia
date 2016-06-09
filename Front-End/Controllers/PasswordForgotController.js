@@ -54,7 +54,16 @@ function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, A
     }
 
     $scope.passwordForgot = function (user) {
-        AuthService.getNewPassword(user.email, $routeParams.lang)
+        alert = $mdDialog.alert()
+            .title($rootScope.listOfKeys.funtionalityNotImplementedTitle)
+            .content($rootScope.listOfKeys.funtionalityNotImplemented)
+            .ok('Ok');
+        $mdDialog
+            .show( alert )
+            .finally(function() {
+                alert = undefined;
+            });
+        /*AuthService.getNewPassword(user.email, $routeParams.lang)
 
             .success(function(result){
                 $location.path('/'+$routeParams.lang+'/login');
@@ -65,5 +74,6 @@ function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, A
                     "non effettuato");
 
             });
+        */
     }
 }

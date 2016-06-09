@@ -60,9 +60,9 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
         $scope.signUp = function(user) {
             if(user.password !== user.passwordCheck){
                 alert = $mdDialog.alert()
-                    .title("Errore Password")
-                    .content('Le Password non corrispondono!')
-                    .ok('Chiudi');
+                    .title($rootScope.listOfKeys.errorPasswordProfileManagement)
+                    .content($rootScope.listOfKeys.passwordsAreDifferent)
+                    .ok($rootScope.listOfKeys.closeIt);
                 $mdDialog
                     .show( alert )
                     .finally(function() {
@@ -77,9 +77,9 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
                           if (result.status == "200") {
                               $rootScope.isDownloading=false;
                               alert = $mdDialog.alert()
-                                  .title('Ciao ' + user.name + " " + user.surname)
-                                  .content("La regisrazione è andata a buon fine")
-                                  .ok('Chiudi');
+                                  .title($rootScope.listOfKeys.hi + " " + user.name + " " + user.surname)
+                                  .content($rootScope.listOfKeys.correctSignUp)
+                                  .ok($rootScope.listOfKeys.closeIt);
                               $mdDialog
                                   .show(alert)
                                   .finally(function () {
@@ -99,7 +99,7 @@ function SignUpController ($scope, $rootScope, $routeParams, AuthService, $locat
                                       alert = undefined;
                                   });
                               $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                          
+
 
                         })
                       }

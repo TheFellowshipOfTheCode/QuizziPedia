@@ -73,7 +73,7 @@ function QuestionsManagementController($scope, $rootScope, $routeParams, Questio
                         $scope.questions = result.data;
                     }
                 } ,function (err){
-                    $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento domande non andato a buon fine");
+                    $scope.error = new ErrorInfoModel("8", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.noTopicDownloaded);
                     alert = $mdDialog.alert()
                         .title($scope.error.getTitle())
                         .content($scope.error.getMessage())

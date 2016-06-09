@@ -48,7 +48,7 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
     $scope.goToCreateQuestionnaire = function() {
         $location.path('/'+$routeParams.lang+'/createquestionnaire');
     }
-    
+
     if($rootScope.userLogged != undefined){
         showAllQuizzes($rootScope.userLogged, $routeParams.lang);
     }
@@ -73,17 +73,10 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
                 }
             }, function (err) {
                 $scope.error = new ErrorInfoModel();
-                if ($routeParams.lang === 'it') {
-                    alert = $mdDialog.alert()
-                        .title("Errore")
-                        .content("I questionari non possono essere visualizzati!")
-                        .ok('Ok');
-                } else {
-                    alert = $mdDialog.alert()
-                        .title("Error")
-                        .content("Questionnaires can't be showed!")
-                        .ok('Ok');
-                }
+                alert = $mdDialog.alert()
+                    .title($rootScope.listOfKeys.genericError)
+                    .content("I questionari non possono essere visualizzati!")
+                    .ok('Ok');
                 $mdDialog
                     .show(alert)
                     .finally(function () {
@@ -101,8 +94,8 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
         QuizService.startQuiz(quizId, $routeParams.lang)
             .then(function (result) {
                 alert = $mdDialog.alert()
-                    .title("Questionario iniziato")
-                    .content("Il questionario è stato avviato")
+                    .title($rootScope.listOfKeys.quizIsStartedTitle)
+                    .content($rootScope.listOfKeys.quizIsStarted)
                     .ok('Ok');
                 $mdDialog
                     .show(alert)
@@ -112,8 +105,8 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
             }, function (err) {
 
                 alert = $mdDialog.alert()
-                    .title("Errore")
-                    .content("Il questionario non è stato avviato!")
+                    .title($rootScope.listOfKeys.genericError)
+                    .content($rootScope.listOfKeys.quizIsNotStarted)
                     .ok('Ok');
                 $mdDialog
                     .show(alert)

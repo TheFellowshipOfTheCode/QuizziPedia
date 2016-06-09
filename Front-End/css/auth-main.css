@@ -60,29 +60,3 @@ md-input-container {
   margin-top: 2em !important;
   margin-bottom: 0.5em !important;
 }
-
-.show-allcreate-questionnaire-button {
-  word-wrap: break-word;
-}
-
-.divided {
-  width: 50%;
-}
-
-.container-topic-name-quiz {
-  width: 100%;
-  word-break: break-word;
-}
-
-.line-quiz {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.odd{
-  background-color: #edebe8 !important;
-}
-
-.even {
-  background-color: white !important;
-}

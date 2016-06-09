@@ -105,18 +105,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
 
             }, function (err) {
                 $scope.subscribedQuizzes = [];
-               /* if(err.data.code!="331") {
-                    $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari a cui sei iscritto non andato a buon fine");
-                    alert = $mdDialog.alert()
-                        .title($scope.error.getTitle())
-                        .content($scope.error.getMessage())
-                        .ok('Ok');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                }*/
             });
 
     }
@@ -132,18 +120,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
 
             }, function (err) {
               $scope.approvedQuizzes = [];
-               /* if(err.data.code!="331") {
-                    $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");
-                    alert = $mdDialog.alert()
-                        .title($scope.error.getTitle())
-                        .content($scope.error.getMessage())
-                        .ok('Ok');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                }*/
             });
 
     }

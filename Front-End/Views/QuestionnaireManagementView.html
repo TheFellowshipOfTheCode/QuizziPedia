@@ -55,9 +55,16 @@
               </div>
             </span>
             <div ng-if="personalQuizzes != undefined">
-              <section>
-                  <span ng-if="personalQuizzes.length == 0"><h3> {{listOfKeys.noQuizCreatedLang}} </h3></span>
+              <section ng-if="personalQuizzes.length == 0">
+                  <md-toolbar class="modifyQuestionTitle toolbar-section toolbar-bottom">
+                    <div class="md-toolbar-tools">
+                      <h2 class="hideMeOn600">
+                        <span><h3> {{listOfKeys.noQuizCreatedLang}} </h3></span>
+                      </h2>
+                    </div>
+                  </md-toolbar>
               </section>
+
               <section ng-if="personalQuizzes != undefined" class="md-whiteframe-2dp line-quiz  " ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
                   <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
                       <div layout="row" class="container-topic-name-quiz">
@@ -73,7 +80,7 @@
                   </div>
               </section>
 
-              <md-toolbar ng-if="personalQuizzes.length > 0" class="toolbar-section toolbar-top">
+              <md-toolbar ng-if="personalQuizzes.length > 0" class="modifyQuestionTitle toolbar-section toolbar-bottom">
                   <div class="md-toolbar-tools">
                       <span flex=""></span>
                       <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>

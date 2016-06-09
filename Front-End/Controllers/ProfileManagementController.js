@@ -76,9 +76,9 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
             .then(function (result) {
                 if (result.status == "200") {
                     alert = $mdDialog.alert()
-                        .title("Eliminazione avvenuta")
-                        .content("L'eliminazione dell'account è avvenuta con successo.")
-                        .ok('Chiudi');
+                        .title($rootScope.listOfKeys.doneDelete)
+                        .content($rootScope.listOfKeys.userDeleted)
+                        .ok($rootScope.listOfKeys.closeIt);
                     $mdDialog
                         .show(alert)
                         .finally(function () {
@@ -87,11 +87,11 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                     $location.path('/' + $routeParams.lang + '/home');
                 }
             }, function (err) {
-                if (err.data.code == 2) {
+                if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
                     alert = $mdDialog.alert()
                         .title(err.data.title)
                         .content(err.data.message)
-                        .ok('Chiudi');
+                        .ok($rootScope.listOfKeys.closeIt);
                     $mdDialog
                         .show(alert)
                         .finally(function () {
@@ -99,31 +99,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                         });
                     $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                 }
-                if (err.data.code == 3) {
-                    alert = $mdDialog.alert()
-                        .title(err.data.title)
-                        .content(err.data.message)
-                        .ok('Chiudi');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                }
-                if (err.data.code == 4) {
-                    alert = $mdDialog.alert()
-                        .title(err.data.title)
-                        .content(err.data.message)
-                        .ok('Chiudi');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                }
-            })
+            });
     }
 
     $scope.uploadImage = function(image){
@@ -148,9 +124,9 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
             .then(function (result) {
                 if (result.status == "200") {
                     alert = $mdDialog.alert()
-                        .title("Cambio tipologia accettato")
-                        .content("La modifica della tipologia dell'account è andata a buon fine.")
-                        .ok('Chiudi');
+                        .title($rootScope.listOfKeys.okChangePrivilegeTitle)
+                        .content($rootScope.listOfKeys.okChangePrivilege)
+                        .ok($rootScope.listOfKeys.closeIt);
                     $mdDialog
                         .show(alert)
                         .finally(function () {
@@ -160,51 +136,27 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                     $rootScope.directivesChoose= MenuBarModel.getDirectives(location,$rootScope.userLogged.getPrivilege());
                 }
             }, function (err) {
-                if (err.data.code == 2) {
-                    alert = $mdDialog.alert()
-                        .title(err.data.title)
-                        .content(err.data.message)
-                        .ok('Chiudi');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                }
-                if (err.data.code == 3) {
-                    alert = $mdDialog.alert()
-                        .title(err.data.title)
-                        .content(err.data.message)
-                        .ok('Chiudi');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                }
-                if (err.data.code == 4) {
-                    alert = $mdDialog.alert()
-                        .title(err.data.title)
-                        .content(err.data.message)
-                        .ok('Chiudi');
-                    $mdDialog
-                        .show(alert)
-                        .finally(function () {
-                            alert = undefined;
-                        });
-                    $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                }
+                  if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                      alert = $mdDialog.alert()
+                          .title(err.data.title)
+                          .content(err.data.message)
+                          .ok($rootScope.listOfKeys.closeIt);
+                      $mdDialog
+                          .show(alert)
+                          .finally(function () {
+                              alert = undefined;
+                          });
+                      $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                  }
             })
     }
 
     $scope.modify = function(userLog) {
         if(userLog.password !== userLog.passwordCheck){
             alert = $mdDialog.alert()
-                .title("Errore Password")
-                .content('Le Password non corrispondono!')
-                .ok('Chiudi');
+                .title($rootScope.listOfKeys.errorPasswordProfileManagement)
+                .content($rootScope.listOfKeys.passwordsAreDifferent)
+                .ok($rootScope.listOfKeys.closeIt);
             $mdDialog
                 .show( alert )
                 .finally(function() {
@@ -226,9 +178,9 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                     .then(function (result) {
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
-                                .title("Modifiche accettate")
-                                .content("La modifica del profilo è andata a buon fine.")
-                                .ok('Chiudi');
+                                .title($rootScope.listOfKeys.okChangesTitle)
+                                .content($rootScope.listOfKeys.okChanges)
+                                .ok($rootScope.listOfKeys.closeIt);
                             $mdDialog
                                 .show(alert)
                                 .finally(function () {
@@ -237,42 +189,18 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
-                        if (err.data.code == 2) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
-                        if (err.data.code == 3) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
-                        if (err.data.code == 4) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
+                      if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                          alert = $mdDialog.alert()
+                              .title(err.data.title)
+                              .content(err.data.message)
+                              .ok($rootScope.listOfKeys.closeIt);
+                          $mdDialog
+                              .show(alert)
+                              .finally(function () {
+                                  alert = undefined;
+                              });
+                          $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                      }
 
                     })
             }
@@ -289,9 +217,9 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                     .then(function (result) {
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
-                                .title("Modifiche accettate")
-                                .content("La modifica del profilo è andata a buon fine")
-                                .ok('Chiudi');
+                                .title($rootScope.listOfKeys.okChangesTitle)
+                                .content($rootScope.listOfKeys.okChanges)
+                                .ok($rootScope.listOfKeys.closeIt);
                             $mdDialog
                                 .show(alert)
                                 .finally(function () {
@@ -300,42 +228,18 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
-                        if (err.data.code == 2) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
-                        if (err.data.code == 3) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
-                        if (err.data.code == 4) {
-                            alert = $mdDialog.alert()
-                                .title(err.data.title)
-                                .content(err.data.message)
-                                .ok('Chiudi');
-                            $mdDialog
-                                .show(alert)
-                                .finally(function () {
-                                    alert = undefined;
-                                });
-                            $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
-                        }
+                      if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                          alert = $mdDialog.alert()
+                              .title(err.data.title)
+                              .content(err.data.message)
+                              .ok($rootScope.listOfKeys.closeIt);
+                          $mdDialog
+                              .show(alert)
+                              .finally(function () {
+                                  alert = undefined;
+                              });
+                          $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
+                      }
                     })
                 }
             }

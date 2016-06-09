@@ -9,11 +9,11 @@ app.controller('OtherUserViewController', OtherUserViewController);
 OtherUserViewController.$inject = ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ErrorInfoModel', 'UserDetailsService', 'QuizService','ngMeta'];
 
 function OtherUserViewController($scope, $rootScope, $routeParams, $location, $mdDialog , ErrorInfoModel, UserDetailsService, QuizService, ngMeta) {
-    
+
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }
-    
+
     var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
         if(args){
             metaData();
@@ -27,28 +27,38 @@ function OtherUserViewController($scope, $rootScope, $routeParams, $location, $m
         ngMeta.setTag('description',$rootScope.listOfKeys.otherProfileDescription);
     }
 
-    UserDetailsService.getUserDetails($routeParams.username,$routeParams.lang)
-        .then(function (result) {
-               $scope.userResearched=result.data.user;
-               graphResultAfterFinishedATraining($scope.userResearched.statistics)
-            }, function (err) {
+    if($rootScope.userLogged != undefined){
+        UserDetailsService.getUserDetails($routeParams.username,$routeParams.lang)
+            .then(function (result) {
+                   $scope.userResearched=result.data.user;
+                   graphResultAfterFinishedATraining($scope.userResearched.statistics)
+                }, function (err) {
 
-            });
-    
-
-
-    /*;*/
-
-    
-/*
-
-        var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+                });
+    }
+    else{
+        var ist = $rootScope.$on("userDownloaded", function(event, args) {
             if(args){
-                graphResultAfterFinishedATraining($scope.user.getStatistics());
+              UserDetailsService.getUserDetails($routeParams.username,$routeParams.lang)
+                  .then(function (result) {
+                         $scope.userResearched=result.data.user;
+                         graphResultAfterFinishedATraining($scope.userResearched.statistics)
+                      }, function (err) {
+
+                      });
             }
         });
-        $scope.$on('$destroy', langDownloaded);
-*/
+        $scope.$on('$destroy', ist);
+    }
+
+
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            graphResultAfterFinishedATraining($scope.user.getStatistics());
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
 
     function graphResultAfterFinishedATraining(statistics){
         var rightAnswers = 0;

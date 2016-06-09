@@ -41,9 +41,7 @@ function questionnaireDoneDetailsDirectiveFunction ($scope) {
   $scope.isActive = true;
 
   $scope.goOnOne = function () {
-    console.log("entro");
   $scope.currentPageLineOne=$scope.currentPageLineOne+1;
-  console.log($scope.currentPageLineOne);
   }
 
   $scope.goBackOne = function () {

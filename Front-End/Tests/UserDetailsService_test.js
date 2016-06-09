@@ -62,7 +62,6 @@ describe("UserDetailsService api rest unit test", function () {
         httpBackend.expectGET("/api/it/userdetails/aferrara");
         httpBackend.whenGET(/Views/).respond(200, '');
         UserDetailsService.getUserDetails("aferrara", "it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes)
                 );
@@ -77,7 +76,6 @@ describe("UserDetailsService api rest unit test", function () {
         httpBackend.expectPUT("/api/it/user/password");
         httpBackend.whenGET(/Views/).respond(200, '');
         UserDetailsService.modifyProfilePwd("Alberto", "Ferrara", "albertoferrara92@gmail.com", "albe.png", "$2a$08$CPcAgHvjZk2IHzLgcroCH", "it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 222, title: "Ok", message: "Dati utente aggiornati correttamente"})
                 );
@@ -92,7 +90,6 @@ describe("UserDetailsService api rest unit test", function () {
         httpBackend.expectPUT("/api/it/user/info");
         httpBackend.whenGET(/Views/).respond(200, '');
         UserDetailsService.modifyProfile("Alberto", "Ferrara", "albertoferrara92@gmail.com", "albe.png", "it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 222, title: "Ok", message: "Dati utente aggiornati correttamente"})
                 );
@@ -107,7 +104,6 @@ describe("UserDetailsService api rest unit test", function () {
         httpBackend.expectPUT("/api/it/user/type");
         httpBackend.whenGET(/Views/).respond(200, '');
         UserDetailsService.changeAccount("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 646, title: "Ok", message: "Cambio tipo effettuato correttamente"})
                 );
@@ -122,7 +118,6 @@ describe("UserDetailsService api rest unit test", function () {
         httpBackend.expectDELETE("/api/it/user");
         httpBackend.whenGET(/Views/).respond(200, '');
         UserDetailsService.deleteAccount("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 222, title: "Ok", message: "Utente eliminato"})
                 );

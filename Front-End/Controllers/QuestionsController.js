@@ -277,9 +277,6 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
                 });
                 break;
             case "rispostaMultipla":
-                console.log("rm");
-                console.log("lunghezza array risposte");
-                console.log(answersGiven[index].answerGiven.length);
                 if(answersGiven[index].answerGiven.length == 0 || answersGiven[index].answerGiven== undefined) {
                   answerCheckB = false;
                 }

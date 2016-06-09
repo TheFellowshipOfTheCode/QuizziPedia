@@ -90,12 +90,6 @@ describe('Testing EditorQMLController', function () {
     expect(JSON.stringify($scope.topics)).toBe(JSON.stringify(["Architettura"]));
   });
 
-
-
-
-
-
-
 });
 
 
@@ -106,7 +100,6 @@ describe('Testing EditorQMLController for the second time', function () {
   var $q;
   var deferred;
   var deferred2;
-
   var $rootScope;
   var $location;
   var $routeParams;
@@ -295,7 +288,6 @@ describe('Testing EditorQMLController for the second time', function () {
    var document_getElementById = document.getElementById;
    spyOn(document, "getElementById").and.callFake(function(id){
        if(id==="Juiceeditor"){
-          console.log("FACICIAICAICAICAICAICAICIC");
            return mockElement;
        }
        return document_getElementById(id);
@@ -337,9 +329,5 @@ describe('Testing EditorQMLController for the second time', function () {
     ));
 
   });
-
-
-
-
 
 });

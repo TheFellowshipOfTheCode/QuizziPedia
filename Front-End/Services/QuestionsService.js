@@ -68,7 +68,7 @@ function QuestionsService($http, $cookies, $q) {
         }
         return deferred.promise;
     }
-    
+
     function uploadImageQuestion(questionId,images,lang,id){
         var deferred = $q.defer();
         var formData = new FormData();
@@ -119,7 +119,6 @@ function QuestionsService($http, $cookies, $q) {
             var deferred = $q.defer();
             $http.post('/api/'+ lang + '/user/training/question', q)
                 .then(function(data) {
-                    console.log(data);
                     deferred.resolve(data);
                 }, function(error) {
                     deferred.reject(error);
@@ -181,7 +180,7 @@ function QuestionsService($http, $cookies, $q) {
             });
         return deferred.promise;
     }
-    
+
 
 
 }

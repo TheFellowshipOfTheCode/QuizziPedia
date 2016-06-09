@@ -23,38 +23,9 @@
 var errorModel = require('../../Model/ErrorModel.js')
 
 exports.generateError = function(req, res) {
-    console.log(req);
     errorModel.generateError(req, res);
-    console.log("returning RES: " + res.body)
 }
 
 exports.getCode = function(req, res) {
 
 }
-
-
-    /*getCode() {
-        return this.code;
-    }
-
-    getTitle() {
-        return this.title;
-    }
-
-    getMessage() {
-        return this.message;
-    }
-
-    toJSON() {
-        let string = '{ "code": ' + this.code + ',' +
-                       ' "title": ' + '"' + this.title + '"' + ',' +
-                        ' "message": ' + '"' + this.message + '"' + ' }';
-        let json = JSON.parse(string);
-        return json;
-    }
-
-    toString() {
-        return this.code + ' ' + this.title + ': ' + this.message + '.';
-    }
-}
-*/

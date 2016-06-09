@@ -56,9 +56,7 @@ collegamentoElementi = function(corpo,res, $mdDialog){
                     // nel caso di associazione tra 2 immagini
                     else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
                         valido = true;
-                    } else{
-                        console.log("errore nell'associazioni degli elementi");
-                    }
+                    } 
                 }else{
                     alert = $mdDialog.alert()
                         .title("Errore: struttura errata")

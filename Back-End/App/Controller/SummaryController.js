@@ -37,11 +37,8 @@ exports.createSummary = function(req, res) {
 };
 
 exports.getQuizzes = function(req, res) {
-    console.log("getQuizzes");
     if (req.user.quizSummaries.length>0){
         var quiz_summary=[];
-        console.log("-->Entro qui!!");
-        console.log(req.user.quizSummaries);
         req.user.quizSummaries.forEach(function(quizSummary,index){
             Summary.findSummary(quizSummary, function(err, elem){
                 if (err)
@@ -50,7 +47,6 @@ exports.getQuizzes = function(req, res) {
                         title: "Err",
                         message: "Errore"
                     });
-                console.log(elem.author);
                 User.getUser(elem.author, function(err,user){
                     if(user) {
                       elem.author=user.username;

@@ -115,7 +115,6 @@ richiamaFunzione = function(tipologia, corpo, $mdDialog){
         return consistenzaAreaCliccabile(corpo, $mdDialog);
     }
     else{
-        console.log("tipologia di domanda sconosciuta");
         return false;
     }
 }

@@ -77,7 +77,6 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     QuizService
       .getQuiz($routeParams.lang, $routeParams.id)
       .then(function(result){
-        console.log(JSON.stringify(result.data));
           $scope.quiz= new QuestionnaireModel(result.data.author, result.data.title, result.data.keywords, result.data.topic, result.data.questions, result.data._id);
           questions = $scope.quiz.getQuestions();
           $scope.quizIsLoaded = true;
@@ -124,7 +123,6 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
     $mdDialog
         .show( alert )
         .then(function() {
-          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
           if($scope.questionNumberOnQuiz+1 < $scope.quiz.getNumberOfQuestions() )
           {
             $scope.questionNumberOnQuiz++;
@@ -170,12 +168,8 @@ function FillingQuestionnaireController ($scope, $rootScope, $timeout,  $mdDialo
           $rootScope.$emit("checkAnswerEvent",$scope.quiz.getArgument(), $scope.userLogged.getLevelByTopic($scope.quiz.getArgument()));
           $scope.stopToGoBack = false;
           graphResultAfterFinishedATraining();
-          console.log($scope.questionNumberOnQuiz++);
-          console.log($scope.getNumberOfQuestions);
-          console.log($scope.quiz.getNumberOfQuestions());
           for(var i= $scope.questionNumberOnQuiz++; i < $scope.quiz.getNumberOfQuestions(); i++) {
             $scope.quiz.addResult(questions[i]._id, false);
-            console.log(i);
           }
           QuizService.setQuizResult($routeParams.lang,
             {

@@ -42,7 +42,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
         loadAbilitatedQuizzes();
         loadApprovedQuizzes();
         graphResultAfterFinishedATraining($scope.user.getStatistics());
-        //console.log("img1:" + $scope.user.getUserImg());
     }
     else{
         var ist = $rootScope.$on("userDownloaded", function(event, args) {
@@ -51,7 +50,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 loadDoneQuizzes();
                 loadAbilitatedQuizzes();
                 loadApprovedQuizzes();
-                //console.log("img2:" + $scope.user.getUserImg());
             }
         });
         $scope.$on('$destroy', ist);
@@ -68,9 +66,7 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     $scope.$on('$destroy', langDownloaded);
 
     function metaData() {
-      console.log($rootScope.listOfKeys.titleLangUserView);
         ngMeta.setTitle($rootScope.listOfKeys.titleLangUserView);
-        console.log($scope.ngMeta.title);
         ngMeta.setTag('description',$rootScope.listOfKeys.titleLangUserViewDescription);
     }
 
@@ -91,12 +87,10 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 if(result.data.length > 0)
                     $scope.quizzes = result.data;
                 else{
-                    console.log("entro qui");
                     $scope.quizzes=[];
                 }
             }, function (err) {
               $scope.quizzes=[];
-              console.log("entro qui");
             })
     }
 
@@ -110,7 +104,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
                 }
 
             }, function (err) {
-              console.log(err);
                 $scope.subscribedQuizzes = [];
                /* if(err.data.code!="331") {
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari a cui sei iscritto non andato a buon fine");
@@ -131,17 +124,13 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     function loadApprovedQuizzes() {
         QuizService.getApprovedQuestionnaire($routeParams.lang)
             .then(function (result) {
-              console.log(result);
                 if(result.data.length >0){
-                  console.log("c");
                     $scope.approvedQuizzes = result.data;}
                 else{
-                  console.log("d");
                     $scope.approvedQuizzes = [];
                 }
 
             }, function (err) {
-              console.log(err);
               $scope.approvedQuizzes = [];
                /* if(err.data.code!="331") {
                     $scope.error = new ErrorInfoModel("8", "Errore", "Caricamento questionari disponibili non andato a buon fine");

@@ -61,21 +61,15 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             .then(function (result) {
                 var questionDownloaded = result.data;
                 var topic=result.data.topic;
-                console.log(questionDownloaded);
                 JSONtoQML.setTempQuestionID(questionDownloaded._id);
 
                 questionDownloaded=JSONtoQML.setToBeViewed(questionDownloaded);
                 var topics;
                 loadTopics(function(data) {
-                  console.log(data);
                   topics = data.filter(function(elem){
                     return elem.name==topic;
                   });
-
-                  console.log(topics[0]);
                   $scope.selectedTopic=topics[0];
-                  console.log("-------------------------------------------------");
-                  console.log(JSON.stringify(questionDownloaded, null, 2));
                   $scope.question = JSON.stringify(questionDownloaded, null, 2);
                   $scope.topics = data;
                 });
@@ -98,11 +92,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
       });
     }
     $scope.submitQuestion = function (selectedTopic) {
-      console.log(selectedTopic);
         var question = document.getElementById('Juiceeditor').value;
-        console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-        console.log(document.getElementById('Juiceeditor'));
-        console.log(question);
         if (question == undefined) {
             alert = $mdDialog.alert()
                 .title("Errore con la domanda")
@@ -115,19 +105,11 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                 });
         }
         else {
-          console.log("33333333333333333333333333333333333333");
             var result = '';
             try {
-                console.log("21111111111111111111111111");
                 result = jsonlint.parse(question.toString());
-                //result._id=JSONtoQML.getTempQuestionID();
-
-                //result.topic=selectedTopic.name;
-                console.log("++++++++++++++++++++++++++++++++++++++++");
-                console.log(result);
             }
             catch (e) {
-                console.log("esiste un errore");
                 alert = $mdDialog.alert()
                     .title("Errore con la domanda")
                     .content(e.message)
@@ -139,15 +121,12 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     });
                 return;
             }
-            console.log(result);
             if (result) {
-                console.log("result esiste");
                 var res = '';
                 QuestionsService
                     .getTopics($routeParams.lang)
                     .then(function (result) {
                         var topics = result.data;
-                        console.log("fffffffffffffffffffffffffffffffffff");
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $mdDialog);
                         resultQML._id=JSONtoQML.getTempQuestionID();
                         if (resultQML) {
@@ -209,9 +188,6 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     });
 
 
-            }
-            else  {
-              console.log("result non esiste");
             }
         }
     };

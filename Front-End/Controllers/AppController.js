@@ -68,7 +68,6 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
 
     if($routeParams.lang!=undefined) {
       if($rootScope.systemLang === undefined) {
-        console.log("A");
           $rootScope.systemLang=$routeParams.lang;
           lang = getLang($routeParams.lang);
           lang.then(function(data){
@@ -85,9 +84,7 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
         );
       }
       else {
-        console.log("B");
         if($rootScope.systemLang != $routeParams.lang) {
-          console.log("C");
           lang = getLang($routeParams.lang);
           lang.then(function(data){
               $rootScope.systemLang = $routeParams.lang;
@@ -103,7 +100,6 @@ function AppController ($rootScope, $location, $routeParams, UserDetailsModel, A
           });
         }
         else {
-          console.log("D");
           $rootScope.isDownloading=false;
         }
       }

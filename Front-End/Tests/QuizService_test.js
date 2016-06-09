@@ -154,7 +154,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/topics");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.getTopic("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes1)
                 );
@@ -169,7 +168,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectPOST("/api/it/userquiz");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.createQuestionnaire("Ingegneria del Software", "aferrara", [], "Informatica", [], "it").then(function(result) {
-                console.log("Passed createQuiz test");
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes2)
                 );
@@ -184,7 +182,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/userquiz");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.showAllCreatedQuestionnaires("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes3)
                 );
@@ -199,7 +196,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/allquestions/Motori/motoGP");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.showAllQuestions("Motori", "motoGP", "it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes4)
                 );
@@ -214,7 +210,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/userquiz/5741796380586d4a380ffe10");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.getQuiz("it", "5741796380586d4a380ffe10").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes2)
                 );
@@ -229,7 +224,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/userdonequizzes");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.getDoneQuestionnaire("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes5)
                 );
@@ -244,7 +238,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectPOST("/api/it/usersubscribe");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.subscribeQuestionnaire("5741796380586d4a380ffe10", "it").then(function(result) {
-                console.log("Passed userSubscribe test");
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 331, title: "Iscrizione Utente Questionario OK", message: "L'utente si è registrato correttamente al questionario"})
                 );
@@ -259,7 +252,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/usersubscribe");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.getSubscribedQuestionnaire("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes5)
                 );
@@ -274,7 +266,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/userapproved");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.getApprovedQuestionnaire("it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes5)
                 );
@@ -289,7 +280,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectPOST("/api/it/user/quiz/summary");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.setQuizResult("it", objRes2).then(function(result) {
-                console.log("Passed userSubscribe test");
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes5)
                 );
@@ -304,7 +294,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectGET("/api/it/userquizsubscribe/5741796380586d4a380ffe10");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.getUsersForThisQuestionnaire("5741796380586d4a380ffe10", "it").then(function(result) {
-                console.log(result.data);
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify(objRes5)
                 );
@@ -319,7 +308,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectPOST("/api/it/userquizactiveUser");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.approveSubscribeQuestionnaire("573b0733ade95afa018870e4", "5741796380586d4a380ffe10", "it").then(function(result) {
-                console.log("Passed approveSubscribeQuiz test");
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 354, title: 'Abilitazione Utente ok', message: 'Abilitazione iscritto avvenuta'})
                 );
@@ -334,7 +322,6 @@ describe("QuizService api rest unit test", function () {
         httpBackend.expectPUT("/api/it/quizactive/5741796380586d4a380ffe10");
         httpBackend.whenGET(/Views/).respond(200, '');
         QuizService.startQuiz("5741796380586d4a380ffe10", "it").then(function(result) {
-                console.log("Passed startQuiz test");
                 expect(JSON.stringify(result.data)).toEqual(
                     JSON.stringify({code: 3003, title: 'Ok Questionario', message: 'Abilitazione avvenuta correttamente'})
                 );

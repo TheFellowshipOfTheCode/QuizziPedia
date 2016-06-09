@@ -84,7 +84,6 @@ describe("LangService api rest unit test", function () {
         httpBackend.expectGET("/api/supported/lang/give/me");
         httpBackend.whenGET(/Views/).respond(200, '');
         LangService.getSupportedLang().then(function(result) {
-            console.log(result);
                 expect(JSON.stringify(result)).toEqual(
                     JSON.stringify(objRes2)
                 );
@@ -99,7 +98,6 @@ describe("LangService api rest unit test", function () {
         httpBackend.expectGET("/api/supported/lang/give/me/Italiano");
         httpBackend.whenGET(/Views/).respond(200, '');
         LangService.getSlang("Italiano").then(function(result) {
-            console.log(result);
                 expect(JSON.stringify(result)).toEqual(
                     JSON.stringify(objRes3)
                 );

@@ -32,10 +32,8 @@ app.controller('LangController', LangController);
 LangController.$inject = ['$location', '$mdBottomSheet', 'LangService', '$rootScope', '$scope'];
 function LangController ($location, $mdBottomSheet, LangService, $rootScope, $scope) {
 
-  console.log("arrivo");
   $scope.goToNewLang= goToNewLang;
   function goToNewLang(lang) {
-      console.log("entro");
       $mdBottomSheet.hide();
       $rootScope.isDownloading=true;
       LangService

@@ -28,7 +28,6 @@ controlloQML = function(req, res,selectedTopic, topics, $mdDialog) {
 
     var corpo = JSON.parse(req);
     corpo.topic=selectedTopic;
-    console.log(corpo);
     var success;
     var tipologiaDomande = ["veroFalso", "rispostaMultipla", "ordinamentoStringhe", "ordinamentoImmagini", "collegamentoElementi", "areaCliccabile", "riempimentoSpaziVuoti", "custom"];
     if (corpo.hasOwnProperty('type')) {
@@ -116,7 +115,6 @@ controlloQML = function(req, res,selectedTopic, topics, $mdDialog) {
                         alert = undefined;
                     });
                 res = "topic sconosciuto";
-                console.log(res);
                 return false;
             }
         }

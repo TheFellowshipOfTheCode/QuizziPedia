@@ -50,7 +50,6 @@ function MenuBarModel() {
 
     function getDirectives(path, privilege) {
       var pathLocal = path+ '';
-      console.log(pathLocal);
       var variableOfPath= pathLocal.split("/");
       var combination = "noAuth";
       if(variableOfPath.indexOf("home") != -1 && privilege == "normal")

@@ -73,7 +73,6 @@ function AuthService($http, $cookies, $q) {
         $http.get('/api/'+ lang + '/loggedin')
             .then(function(data) {
               var q = JSON.stringify(data, null, "  ");
-              console.log(q);
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
             }
@@ -93,7 +92,6 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password, email: email, name: name, surname: surname};
         $http.post('/api/' + lang + '/signup', userJSON)
             .then(function(data) {
-               console.log(data);
                 deferred.resolve(data);
             }, function(error){
                 deferred.reject(error);

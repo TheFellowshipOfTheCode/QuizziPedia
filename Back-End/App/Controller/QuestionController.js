@@ -38,7 +38,6 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        console.log(req.params.questionId)
         var dir='Front-End/Images/Questions/'+req.params.questionId
         fs.stat(dir, function(err, stats) {
             if (err)
@@ -48,7 +47,7 @@ var storage = multer.diskStorage({
                 })
             else
                 callback(null, dir);
-            
+
         });
     },
     filename: function (req, file, callback) {

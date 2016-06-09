@@ -25,7 +25,6 @@ var errorSchema = new mongoose.Schema({
 
 
 errorSchema.statics.generateError = function(error, callback) {
-    console.log(error);
     return this.findOne({errorCode: 123}, callback);
 }
 

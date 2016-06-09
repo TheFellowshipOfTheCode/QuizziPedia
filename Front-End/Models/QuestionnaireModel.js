@@ -97,7 +97,6 @@ function QuestionnaireModel() {
         };
 
         this.getResultNumber = function () {
-          console.log("getResultNumber");
           return numOfRightAnswer;
         };
 

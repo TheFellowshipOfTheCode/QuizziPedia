@@ -153,7 +153,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
   /*Function to get the new question*/
   $scope.newQuestion= newQuestion;
   function newQuestion() {
-    console.log("entroentroentroentroentro");
 
     alert = $mdDialog.confirm()
         .title($rootScope.listOfKeys.attention)
@@ -163,7 +162,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     $mdDialog
         .show( alert )
         .then(function() {
-          console.log("entroentroentroentroentro2");
           checkIfICouldGoOn();
         });
   };
@@ -312,7 +310,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
 
   /*Function that checks if yuo could go on or the trainging is over*/
   function checkIfICouldGoOn() {
-    console.log("checkIfICouldGoOncheckIfICouldGoOncheckIfICouldGoOn");
     var arryOfQuestionsAlreadyAnswered= [];
     $scope.training.getQuestions().forEach(
       function (elem) {
@@ -328,7 +325,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
     }
     if($scope.training.getNumberOfQuestions() == 0 || $scope.questionNumberOnTraining+1 <= $scope.training.getNumberOfQuestions() )
     {
-      console.log("1");
       $rootScope.$emit("loadNewQuestion", {
         language  : $routeParams.lang,
         topic: $scope.training.getArgument(),
@@ -340,7 +336,6 @@ function TrainingController ($scope, $rootScope, $timeout,  $mdDialog, $location
       $(".scrollable").scrollTop(0,0);
     }
     else {
-      console.log("2");
       $rootScope.$emit("checkAnswerEvent", $scope.training.getArgument(), level);
       $scope.stopToGoBack = false;
       graphResultAfterFinishedATraining();

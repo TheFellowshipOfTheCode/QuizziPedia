@@ -84,10 +84,10 @@
 
 
 
-createJSON = function(corpo, res, tipologia, topic){
+createJSON = function(corpo, res, tipologia, topic, lang){
     var campiComuni = "{ \n " +
         "\"makeWith\" : \"qml\" , \n" +
-        " \"language\" : " + "\"it\"" + ", \n";
+        " \"language\" : " + "\""+lang+"\"" + ", \n";
     campiComuni = campiComuni + "\"topic\" : \"" + topic + "\" , \n " ;
     var jsonString = "\n \"question\" :[ \n { \n";
     var jsonKey = "";

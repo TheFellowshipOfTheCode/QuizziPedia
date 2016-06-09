@@ -127,7 +127,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .getTopics($routeParams.lang)
                     .then(function (result) {
                         var topics = result.data;
-                        var resultQML = controlloQML(question, res, selectedTopic.name, topics, $mdDialog);
+                        var resultQML = controlloQML(question, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
                         resultQML._id=JSONtoQML.getTempQuestionID();
                         if (resultQML) {
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)

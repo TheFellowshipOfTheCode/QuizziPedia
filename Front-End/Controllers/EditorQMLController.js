@@ -130,6 +130,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
                         resultQML._id=JSONtoQML.getTempQuestionID();
                         if (resultQML) {
+                            $rootScope.isDownloading=true;
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
                                     if (result) {
@@ -145,6 +146,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                                         alert = undefined;
                                                     });
                                                 JSONtoQML.deleteTempQuestionID();
+                                                $rootScope.isDownloading=false;
                                                 $location.path('/' + $routeParams.lang + '/questions');
                                             }, function (err) {
                                                 $scope.error = new ErrorInfoModel();
@@ -157,6 +159,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                                     .finally(function () {
                                                         alert = undefined;
                                                     });
+                                                $rootScope.isDownloading=false;
                                             })
                                     }
                                 }, function (err) {
@@ -170,6 +173,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                         .finally(function () {
                                             alert = undefined;
                                         });
+                                    $rootScope.isDownloading=true;
                                 });
 
                         }
@@ -185,6 +189,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                             .finally(function () {
                                 alert = undefined;
                             });
+                        $rootScope.isDownloading=false;
                     });
 
 

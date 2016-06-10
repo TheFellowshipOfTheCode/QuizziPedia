@@ -109,6 +109,7 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
         }
 
         $scope.subscribeQuestionnaire = function(userId) {
+            $rootScope.isDownloading=true;
             if ($routeParams.idQuiz != undefined) {
                 QuizService.approveSubscribeQuestionnaire(userId, $routeParams.idQuiz, $routeParams.lang)
                     .then(function (result) {
@@ -121,7 +122,9 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                             .finally(function () {
                                 alert = undefined;
                             });
-
+                        $rootScope.isDownloading=false;
+                        $location.path("/"+ $routeParams.lang+"/managementsubscription/"+ $routeParams.idQuiz);
+                        $route.reload();
                     }, function (err) {
                         $scope.error = new ErrorInfoModel("10", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.approvedIsNotDone);
                         alert = $mdDialog.alert()
@@ -133,6 +136,7 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                             .finally(function () {
                                 alert = undefined;
                             });
+                        $rootScope.isDownloading=false;
                     });
             }
         }

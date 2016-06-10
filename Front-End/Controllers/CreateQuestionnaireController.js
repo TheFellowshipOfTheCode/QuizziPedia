@@ -197,6 +197,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
     }
 
     $scope.createQuestionnaire = function(quiz) {
+        $rootScope.isDownloading=true;
         QuizService.createQuestionnaire(quiz.title, quiz.author, quiz.keyword, quiz.topic,quiz.questions, $routeParams.lang)
             .then(function (result) {
                 if (result) {
@@ -210,6 +211,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                         .finally(function () {
                             alert = undefined;
                         });
+                    $rootScope.isDownloading=false;
                     $location.path('/' + $routeParams.lang + '/questionnairemanagement');
                 }
             }, function (err) {
@@ -223,6 +225,7 @@ function CreateQuestionnaireController ($scope, $rootScope, $routeParams, $locat
                     .finally(function () {
                         alert = undefined;
                     });
+                $rootScope.isDownloading=false;
             });
     }
 

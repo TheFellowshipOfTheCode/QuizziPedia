@@ -65,7 +65,7 @@
                   </md-toolbar>
               </section>
 
-              <section ng-if="personalQuizzes != undefined" class="md-whiteframe-2dp line-quiz  " ng-repeat="q in personalQuizzes" layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+              <section ng-if="personalQuizzes != undefined" class="md-whiteframe-2dp line-quiz  " ng-repeat="q in personalQuizzes | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
                   <div class="text-center blancBackground" layout="row" layout-xs="column" layout-sm="column">
                       <div layout="row" class="container-topic-name-quiz">
                           <span class="divided"> {{listOfKeys.quizTitleResult}}: <h3>{{q.title}} </h3></span>

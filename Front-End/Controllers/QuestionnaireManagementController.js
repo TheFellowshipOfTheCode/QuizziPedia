@@ -91,6 +91,7 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
     }
 
     $scope.startQuiz = function(quizId){
+        $rootScope.isDownloading=true;
         QuizService.startQuiz(quizId, $routeParams.lang)
             .then(function (result) {
                 alert = $mdDialog.alert()
@@ -102,6 +103,7 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
                     .finally(function () {
                         alert = undefined;
                     });
+                $rootScope.isDownloading=false;
             }, function (err) {
 
                 alert = $mdDialog.alert()
@@ -113,6 +115,7 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
                     .finally(function () {
                         alert = undefined;
                     });
+                $rootScope.isDownloading=false;
             });
     }
 

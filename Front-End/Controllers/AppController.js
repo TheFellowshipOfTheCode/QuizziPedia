@@ -36,6 +36,7 @@ app.controller('AppController', AppController);
 AppController.$inject = ['$rootScope', '$location', '$routeParams', 'UserDetailsModel', 'AuthService', 'LangModel', 'LangService', 'MenuBarModel', 'Utils'];
 function AppController ($rootScope, $location, $routeParams, UserDetailsModel, AuthService, LangModel, LangService, MenuBarModel) {
     var lang;
+    $(".scrollable").scrollTop(0,0);
     if(AuthService.isLogged() === "true" && $rootScope.userLogged === undefined) {
         AuthService.giveMe($routeParams.lang)
             .then(function(result){

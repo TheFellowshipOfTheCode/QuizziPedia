@@ -68,10 +68,11 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
     }
 
     $scope.deleteAccount = function() {
-                AuthService.logout($rootScope.userLogged.getUsername());
-                delete $rootScope.userLogged;
-                $location.path('/'+$routeParams.lang+'/home');
-                $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
+        $rootScope.isDownloading=true;
+        AuthService.logout($rootScope.userLogged.getUsername());
+        delete $rootScope.userLogged;
+        $location.path('/'+$routeParams.lang+'/home');
+        $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
         UserDetailsService.deleteAccount($routeParams.lang)
             .then(function (result) {
                 if (result.status == "200") {
@@ -84,6 +85,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                         .finally(function () {
                             alert = undefined;
                         });
+                    $rootScope.isDownloading=false;
                     $location.path('/' + $routeParams.lang + '/home');
                 }
             }, function (err) {
@@ -97,6 +99,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                         .finally(function () {
                             alert = undefined;
                         });
+                    $rootScope.isDownloading=false;
                     $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                 }
             });
@@ -120,6 +123,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
             $scope.user.setPrivilege('normal');
             $scope.userLog.privilege = 'normal';
         }
+        $rootScope.isDownloading=true;
         UserDetailsService.changeAccount($routeParams.lang)
             .then(function (result) {
                 if (result.status == "200") {
@@ -132,6 +136,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                         .finally(function () {
                             alert = undefined;
                         });
+                    $rootScope.isDownloading=false;
                     $location.path('/' + $routeParams.lang + '/profilemanagement');
                     $rootScope.directivesChoose= MenuBarModel.getDirectives(location,$rootScope.userLogged.getPrivilege());
                 }
@@ -146,6 +151,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                           .finally(function () {
                               alert = undefined;
                           });
+                      $rootScope.isDownloading=false;
                       $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                   }
             })
@@ -173,7 +179,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
                 var image = $scope.user.getUserImg();
-
+                $rootScope.isDownloading=true;
                 UserDetailsService.modifyProfilePwd(nome, cognome, email,image, userLog.password, $routeParams.lang)
                     .then(function (result) {
                         if (result.status == "200") {
@@ -186,6 +192,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            $rootScope.isDownloading=false;
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
@@ -199,6 +206,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                               .finally(function () {
                                   alert = undefined;
                               });
+                          $rootScope.isDownloading=false;
                           $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                       }
 
@@ -213,6 +221,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
                 var image = $scope.user.getUserImg();
+                $rootScope.isDownloading=true;
                 UserDetailsService.modifyProfile(nome, cognome, email, image, $routeParams.lang)
                     .then(function (result) {
                         if (result.status == "200") {
@@ -225,6 +234,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            $rootScope.isDownloading=false;
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
@@ -238,6 +248,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                               .finally(function () {
                                   alert = undefined;
                               });
+                          $rootScope.isDownloading=false;
                           $rootScope.error = new ErrorInfoModel(err.data.code, err.data.title, err.data.message);
                       }
                     })

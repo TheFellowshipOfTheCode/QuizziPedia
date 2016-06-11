@@ -293,6 +293,9 @@ describe('Testing CreateQuestionnaireController', function () {
           }
         ]
     };
+    $rootScope.listOfKeys={};
+    $rootScope.listOfKeys.okOperation="";
+    $rootScope.listOfKeys.madeQuiz="";
     $scope.createQuestionnaire(quiz);
     deferred.resolve(true);
     $rootScope.$apply();
@@ -330,6 +333,8 @@ describe('Testing CreateQuestionnaireController', function () {
           }
         ]
     };
+    $rootScope.listOfKeys={};
+    $rootScope.listOfKeys.genericError="";
     $scope.createQuestionnaire(quiz);
     deferred.reject();
     $rootScope.$apply();

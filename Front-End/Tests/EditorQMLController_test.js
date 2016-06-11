@@ -294,7 +294,8 @@ describe('Testing EditorQMLController for the second time', function () {
    });
 
     var selectedTopic= {name: "Architettura"};
-
+    $rootScope.listOfKeys={};
+    $rootScope.listOfKeys.genericError="";
     $scope.submitQuestion(selectedTopic);
 
 

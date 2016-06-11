@@ -159,7 +159,7 @@ describe('Testing AppController', function () {
   //Test che per un determinato metodo non risolve la promessa
   it('should reject promise when a user is not logged and change location', function () {
     httpBackend.whenGET(/Views/).respond(200, '');
-    deferred.reject();
+    deferred.reject({"data":{"title":"", "code":"","message":""}});
     $rootScope.$apply();
     expect($rootScope.error).not.toBe(undefined);
   });

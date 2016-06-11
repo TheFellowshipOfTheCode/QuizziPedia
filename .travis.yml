@@ -14,3 +14,5 @@ script:
 notifications:
   slack: fellowshipofthecode:qWpjO7JR3sUskrGMLVTbOlYf
   email: false
+addons:
+  firefox: "46.0"

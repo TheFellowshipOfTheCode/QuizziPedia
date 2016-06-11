@@ -21,9 +21,9 @@
 app.directive('profileManagementBarDirective', profileManagementBarDirective);
 
 function profileManagementBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/ProfileManagementBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/ProfileManagementBarDirective.html'
+  };
+  return directive;
 }

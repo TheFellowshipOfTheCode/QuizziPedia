@@ -14,6 +14,8 @@ module.exports = function(config){
       moduleName: 'templates'
     },
 
+    frameworks: ['jasmine'],
+
     files : [
       'Front-End/bower_components/angular/angular.js',
       'Front-End/bower_components/angular-route/angular-route.js',
@@ -27,22 +29,46 @@ module.exports = function(config){
       'Front-End/bower_components/angular-mocks/angular-mocks.js',
       'Front-End/bower_components/angular-cookies/angular-cookies.min.js',
       'Front-End/bower_components/bootstrap/dist/js/bootstrap.min.js',
+      'Front-End/bower_components/angular-cookies/angular-cookies.min.js',
+      'Front-End/bower_components/angular-dragdrop/src/angular-dragdrop.min.js',
+      'Front-End/bower_components/angular-dragdrop/src/angular-dragdrop.min.js',
+      'Front-End/bower_components/angular-number-picker/angular-number-picker.min.js',
+      'Front-End/bower_components/chartjs/Chart.min.js',
+      'Front-End/bower_components/angles/angles.js',
+      'Front-End/bower_components/ng-file-upload/ng-file-upload-shim.min.js',
+      'Front-End/bower_components/ng-file-upload/ng-file-upload.min.js',
+      'Front-End/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'Front-End/bower_components/ngMeta/dist/ngMeta.min.js',
+      'Front-End/bower_components/webcomponentsjs/webcomponents.js',
+      'Front-End/bower_components/marked/lib/marked.js',
+      'Front-End/bower_components/angular-marked/dist/angular-marked.js',
+      'Front-End/QML/json2.js',
+      'Front-End/QML/jsonlint.js',
+      'Front-End/QML/questionCheck/CheckQML.js',
+      'Front-End/QML/questionCheck/rispostaMultipla.js',
+      'Front-End/QML/questionCheck/areaCliccabile.js',
+      'Front-End/QML/questionCheck/collegamentoElementi.js',
+      'Front-End/QML/questionCheck/ordinamentoImmagini.js',
+      'Front-End/QML/questionCheck/ordinamentoStringhe.js',
+      'Front-End/QML/questionCheck/riempimentoSpaziVuoti.js',
+      'Front-End/QML/questionCheck/VeroFalso.js',
+      'Front-End/QML/questionCheck/custom.js',
+      'Front-End/QML/questionCheck/createJSON.js',
       'Front-End/AppRun.js',
       'Front-End/AppRouter.js',
       'Front-End/Controllers/**/*.js',
       'Front-End/Models/**/*.js',
       'Front-End/Directives/*.js',
       'Front-End/Directives/**/*.html',
+      'Front-End/Views/**/*.html',
       'Front-End/Services/**/*.js',
       'Front-End/Tests/**/*.js',
-      'Back-End/Tests/**/*.js'
+      'Front-End/QML/JSONtoQML.js'
     ],
 
 
 
     autoWatch : true,
-
-    frameworks: ['jasmine'],
 
     browsers : ['Chrome'],
 

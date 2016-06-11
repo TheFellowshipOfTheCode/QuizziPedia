@@ -1,0 +1,67 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::LinkingAnswerDirective;
+* Description: rappresenta il componente grafico che permette all’utente di
+  visualizzare la domanda di collegamento. Viene visualizzato dinamicamente
+  all’interno delle views TrainingView e FillingQuestionnaireView mediante
+  il controller QuestionsController;
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: LinkingAnswerDirective_20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-d"  layout-align="center">
+  <div class=" md-padding">
+    <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
+      <span class="text-center questionText">{{d.questionText}} </span>
+      <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
+    </div>
+    <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
+      <div class="layout-align-center-stretch layout-row" layout="row"  layout-align="center">
+        <ul class="line">
+          <li class="inline" ng-repeat="item in temporyObjectForView[$parent.$index].list1">
+            <section class="object-section md-whiteframe-z1"  layout-align="center">
+              <md-toolbar class="md-primary" layout="column" layout-align="center">
+                <div class="md-toolbar-tools  object-toolbar">
+                  <span flex="" class="flex"></span>
+                  <h3 ng-if="d.answers[$index].text1 != undefined" class="ng-binding">{{d.answers[$index].text1}}</h3>
+                  <image ng-if="d.answers[$index].url1 != undefined"  class="img-answer img-question" ng-src="{{d.answers[$index].url1}}"/>
+                  <span flex="" class="flex"></span>
+                </div>
+              </md-toolbar>
+              <div class="md-padding no-owerflow">
+                <div class=" box-in md-whiteframe-z1 center-margin" data-drop="true" ng-model='temporyObjectForView[$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$index,d.type,temporyObjectForView[$parent.$index].list1)' }" >
+                  <div class="zone md-primary md-raised md-button" ng-show="item.text2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
+                    {{item.text2}}
+                  </div>
+                  <div class="zone md-primary md-raised md-button" ng-show="item.url2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
+                    <image class="img-answer" ng-src="{{item.url2}}"/>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </li>
+        </ul>
+        <ul class="line">
+          <li class="inline" ng-repeat="item in temporyObjectForView[$parent.$index].list2 " ng-model='temporyObjectForView[$parent.$index].list2' >
+            <div class="zone zone-mobile md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!item.text2" style="margin-top:{{12*$index}}em !important">
+              {{item.text2}}
+            </div>
+            <div class="zone zone-mobile md-primary md-raised md-button " data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true}" ng-hide="!item.url2" style="margin-top:{{12*$index}}em !important">
+              <image class="img-answer" ng-src="{{item.url2}}"/>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

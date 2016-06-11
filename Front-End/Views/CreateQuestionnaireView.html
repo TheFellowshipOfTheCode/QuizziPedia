@@ -1,0 +1,188 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::CreateQuestionnaireView;
+* Description: view per la creazione dei questionari;
+* Creation data: 03-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireView_20160305;
+* Update data: 03-05-2016;
+* Description: Creata la classe;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
+<div layout="column" flex id="content" role="main" ng-controller="AppController">
+
+    <div class="authpage layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+        <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center">
+
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding">{{listOfKeys.titleLangCreateQuestionnaire}}</h3>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <div layout="row" layout-align="center center" >
+                <div class="spinner" ng-if="questions === undefined">
+                    <img src="Images/Icons/reload.svg"/>
+                </div>
+                <form name="quizForm" class="userForm" ng-if="questions != undefined" flex="100" >
+
+                    <md-input-container class="md-block">
+                        <label>{{listOfKeys.titleCreateQuestionnaireView}}</label>
+                        <input required="" type="text" name="name" ng-model="quiz.title">
+
+                        <div ng-messages="userForm.name.$error" role="alert">
+                            <div ng-message-exp="['required']">
+                                {{listOfKeys.titleQuestionnaire}}
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
+                        <md-select ng-model="quiz.topic" ng-change="showAllQuestions(quiz.topic,null)">
+                            <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+                                <md-option id="item_{{$index}}" ng-value="topic.name" ng-repeat="topic in topics | orderBy:'name'">{{topic.name}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-card ng-if="questions_selected.length>0" >
+                        <md-card-content>
+                            <md-card-title>
+                                <md-card-title-text >
+                                    <h4 class="text-center">Domande inserite</h4>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-list >
+                                <md-item class="md-3-line" ng-repeat="question_selected in  questions_selected" >
+                                    <md-item-content class="col-md-10 col-md-offset-1" >
+                                            <h4>{{$index+1}}) Domanda creata con {{question_selected.makeWith}}</h4>
+                                            <div  ng-repeat="q in question_selected.question">
+                                                    <div ng-if="$index<2 || moreInfo.selected[questions_selected.indexOf(question_selected)]">
+                                                        <h5>Tipologia: {{q.type.charAt(0).toUpperCase()+ q.type.slice(1)}}</h5>
+                                                        <p ng-if="q.questionText">Testo: {{q.questionText}}  </p>
+                                                        <div ng-if="q.answers.length>0" ng-repeat="answer in q.answers">
+                                                            <p ng-if="answer.text">Risposta: {{answer.text}}</p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div layout="column" layout-align="center center">
+                                                <md-input-container>
+                                                    <md-button aria-label="aria-label"  class="md-raised md-warn" ng-click="deleteQuestion(question_selected)">Rimuovi</md-button>
+                                                    <md-button aria-label="aria-label"  class="md-raised" ng-if="question_selected.question.length>1 && !moreInfo.selected[$index]" ng-click="toggle('selected',$index)">More Info</md-button>
+                                                    <md-button aria-label="aria-label"  class="md-raised" ng-if="question_selected.question.length>1 && moreInfo.selected[$index]" ng-click="toggle('selected',$index)">Hide Info</md-button>
+                                                </md-input-container>
+                                            </div>
+                                    </md-item-content>
+                                </md-item>
+                            </md-list>
+                        </md-card-content>
+                    </md-card>
+
+
+
+                    <md-tabs md-dynamic-height md-border-bottom  md-stretch-tabs="always" ng-show="quiz.topic">
+                        <md-tab label="Ricerca Domande" >
+                            <div layout="row" layout-align="center center">
+                            <md-content class="md-padding" flex="100">
+                                <div layout="row" layout-align="space-around center">
+                                    <md-input-container flex="80" >
+                                        <label>Search</label>
+                                        <input ng-model="search" ng-change="updateSearch()">
+                                    </md-input-container>
+                                    <md-input-container  >
+                                        <md-checkbox ng-model="filter[userLogged.getId()]">Yours</md-checkbox>
+                                    </md-input-container>
+                                </div>
+                            </md-content>
+                            </div>
+                        </md-tab>
+                    </md-tabs>
+
+                    <md-card ng-show="quiz.topic">
+                        <md-card-title ng-if="(questions | filter:search).length>0">
+                            <md-card-title-text class="text-center" >
+                                <h4>Domande Trovate</h4>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-title ng-if="(questions | filter:search).length==0">
+                            <md-card-title-text class="text-center" >
+                                <h4 class="m-b-20">Nessuna domanda trovata</h4>
+                                <p>E' possibile creare una domanda tramite:</p>
+                                <md-input-container >
+                                    <md-button aria-label="aria-label"  class="md-raised md-primary" ng-click="goToQMLCreation()">QML</md-button>
+                                </md-input-container>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-list class="col-md-10 col-md-offset-1" ng-if="(questions | filter:search).length>0">
+                            <md-item class="md-3-line row" ng-repeat="question in filtered=(questions  | filter:filterByYours | filter:search| startFrom:(currentPage-1)*numPerPage | limitTo:numPerPage)">
+                                <md-item-content>
+                                            <h4>{{(currentPage-1)*10+$index+1}}) Domanda creata con {{question.makeWith}}</h4>
+                                            <div  ng-repeat="q in question.question">
+                                                <div ng-if="$index<2 || moreInfo.found[questions.indexOf(question)]">
+                                                    <h5>Tipologia: {{q.type.charAt(0).toUpperCase()+ q.type.slice(1)}}</h5>
+                                                    <p ng-if="q.questionText">Testo: {{q.questionText}}</p>
+                                                    <div ng-if="q.answers.length>0" ng-repeat="answer in q.answers">
+                                                        <p ng-if="answer.text">Risposta: {{answer.text}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                   <div layout="column" layout-align="center center">
+                                        <md-input-container >
+                                            <md-button id="addQuestionButton" aria-label="aria-label"  class="md-raised md-primary"  ng-click="addQuestion(question)">Aggiungi</md-button>
+                                            <md-button aria-label="aria-label"  class="md-raised" ng-if="question.question.length>1 && !moreInfo.found[$index]" ng-click="toggle('found',$index)">More Info</md-button>
+                                            <md-button aria-label="aria-label"  class="md-raised" ng-if="question.question.length>1 && moreInfo.found[$index]" ng-click="toggle('found',$index)">Hide Info</md-button>
+                                        </md-input-container>
+                                   </div>
+                                </md-item-content>
+                            </md-item>
+                            <div layout="row" layout-align="center center">
+                                <uib-pagination class="text-center pagination-sm"
+                                                ng-show="(questions | filter:search).length>0"
+                                        ng-model="currentPage"
+                                        total-items="(questions | filter:search).length"
+                                        max-size="maxSize"
+                                        items-per-page="numPerPage"
+                                        boundary-links="true"
+                                                previous-text="&lsaquo;"
+                                                next-text="&rsaquo;"
+                                                first-text="&laquo;"
+                                                last-text="&raquo;"
+                                >
+                                </uib-pagination>
+                            </div>
+                        </md-list>
+                    </md-card>
+                    <div layout="row" layout-align="center center">
+                        <md-input-container >
+                            <md-button aria-label="aria-label"  ng-disabled="questions_selected.length==0 || !quiz.topic || !quiz.title" ng-click="createQuestionnaire(quiz)" class="md-raised md-primary" flex="100">{{listOfKeys.buttonConfirmLangCreateQuestionnaire}}</md-button>
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>

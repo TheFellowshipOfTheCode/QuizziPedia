@@ -1,0 +1,49 @@
+.authpage {
+    width: 90% !important;
+}
+
+.modifyQuestionTitle{
+  margin: auto;
+  width: 80%;
+}
+
+.toolbar-bottom {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.toolbar-section {
+  min-height: 2.5em !important;
+}
+
+.toolbar-section div {
+  height: 2.5em;
+}
+
+.show-allcreate-questionnaire-button {
+  word-wrap: break-word;
+}
+
+.divided {
+  width: 50%;
+}
+
+.container-topic-name-quiz {
+  width: 100%;
+  word-break: break-word;
+}
+
+.line-quiz {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 80%;
+  margin: auto;
+}
+
+.odd{
+  background-color: #edebe8 !important;
+}
+
+.even {
+  background-color: white !important;
+}

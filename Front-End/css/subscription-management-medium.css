@@ -1,0 +1,29 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::subsription-management-medium;
+ * Creation data: 27-05-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: subsription-management-medium_20160527;
+ * Update data: 27-05-2016;
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+ @media screen and (max-width: 575px) {
+
+   .hide-me-when-i-am-ugly {
+     font-size: 0.75em;
+   }
+
+ }
+
+ @media screen and (max-width: 600px) {
+
+   .divided {
+     width: 100%;
+   }
+
+ }

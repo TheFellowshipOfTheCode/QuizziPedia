@@ -3,8 +3,6 @@
 * Name: QuizziPedia::Front-End::Directives::LogoutBarDirective;
 * Description: directive contenente il componente che permette di effettuare
 * il logout dal sistema; Permette di effettuare il logout dal sistema;
-* Relations with other classes:
-* + MenuBarDirective.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -19,4 +17,4 @@
 *******************************************************************************/
 -->
 
-<md-button class="md-button md-raised md-primary" ng-click="logOut()"> {{listOfKeys.logOut}} </md-button>
+<md-button id="logoutButton" aria-label="aria-label"  class="md-button md-raised md-primary" ng-click="logOut()"> {{listOfKeys.logOut}} </md-button>

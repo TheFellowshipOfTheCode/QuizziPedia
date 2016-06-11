@@ -1,0 +1,144 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::create-question-medium;
+ *
+ * Creation data: 12-05-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: create-question-medium_20160526
+ * Update data: 26-05-2016
+ * Description: Aggiornato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: create-question-medium_20160512
+ * Update data: 12-05-2016
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+/*General*/
+
+.QMLtitle {
+  font-size: 1.5em;
+}
+
+.logo-mobile-home {
+  height: 30px !important;
+  margin: 0px !important;
+  margin-top: -10px !important;
+  margin-left: 1em !important;
+  display: inline-block !important;
+}
+
+.quizzipedia-mobile-home {
+  display: inline-block;
+  color: black;
+  font-size: 25px !important;
+  padding-top: 5px;
+}
+
+.logo-and-quizzipedia-mobile-home {
+  display: block;
+  width: 100%;
+  margin-left: -30px;
+}
+
+@media screen and (max-width: 960px) {
+
+  .hideMeOnMobile {
+    display: none;
+  }
+
+  .hideMeOnDesktop {
+    display: inline;
+  }
+
+}
+
+/*Ricerca*/
+
+@media screen and (max-width: 960px) {
+
+  search-directive {
+    display: inline;
+    width: 100%;
+  }
+
+}
+
+.font {
+  font-size: 0.7em;
+}
+
+.modifyQuestionTitle h2 {
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 840px) {
+
+  .font {
+    font-size: 0.6em;
+  }
+
+  .modifyQuestionTitle h2 {
+    font-size: 0.9em;
+  }
+
+}
+
+@media screen and (max-width: 750px) {
+
+  .font {
+    font-size: 0.5em;
+  }
+
+  .modifyQuestionTitle h2 {
+    font-size: 0.6em;
+  }
+
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .line {
+    height: 7em !important;
+    max-height: 7em !important;
+  }
+
+  .font {
+    font-size: 0.7em;
+  }
+
+  .modifyQuestionTitle h2 {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 0.9em;
+  }
+
+  .xs-layout  {
+    width: 90% !important;
+    margin-right: 0px !important;
+    margin-bottom: -0.5em !important;
+    margin-top: 1em !important;
+  }
+
+  .hideMeOnMobileManageQuestion {
+    display: none;
+  }
+
+  .hideMeOn600 {
+    display: none;
+  }
+
+  .question-edit, .modifyQuestionTitle {
+    width: 95%;
+  }
+
+  .font-smaller {
+    font-size: 0.8em;
+  }
+}

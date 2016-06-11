@@ -1,31 +1,49 @@
 /*******************************************************************************
 * Name: QuizziPedia::Front-End::Views::PasswordForgotController
-* Description:
-* Relations with other classes:
-* + PasswordForgoView
-* + AuthService
-* Creation data: 27-04-2016
+* Description: controller che gestisce il recupero della password;
+*
+*
+* Creation data: 26-04-2016
 * Author: Simone Magagna
 ********************************************************************************
 * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: PasswordForgotController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
 *-------------------------------------------------------------------------------
-* ID: PasswordForgotController_20160502;
-* Update data: 02-05-2016;
-* Description: Riscritta la classe con le promesse;
+* ID: PasswordForgotController_20160505;
+* Update data: 05-05-2016;
+* Description: Aggiunti i metodi logIn() e passwordForgot();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: PasswordForgotController_20160427
-* Update data: 27-04-2016
-* Description: creazione
+* ID: PasswordForgotController_20160426
+* Update data: 26-04-2016
+* Description: creazione della classe;
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
 app.controller('PasswordForgotController', PasswordForgotController);
 
-PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService'];
+PasswordForgotController.$inject = ['$scope', '$location', '$mdDialog', '$routeParams', 'AuthService','ngMeta', '$rootScope'];
 
-function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, AuthService) {
+function PasswordForgotController ($scope, $location, $mdDialog, $routeParams, AuthService,ngMeta, $rootScope) {
+    if ($rootScope.listOfKeys!=undefined){
+        metaData();
+    }
+    var langDownloaded = $rootScope.$on("langDownloaded", function(event, args) {
+        if(args){
+            metaData();
+        }
+    });
+    $scope.$on('$destroy', langDownloaded);
+
+    function metaData() {
+        ngMeta.setTitle($rootScope.listOfKeys.titleLangPasswordForgot);
+        ngMeta.setTag('description',$rootScope.listOfKeys.passwordForgotDescription);
+    }
 
     $scope.user = {
         email: ''
@@ -36,7 +54,16 @@ function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, A
     }
 
     $scope.passwordForgot = function (user) {
-        AuthService.getNewPassword(user.email, $routeParams.lang)
+        alert = $mdDialog.alert()
+            .title($rootScope.listOfKeys.funtionalityNotImplementedTitle)
+            .content($rootScope.listOfKeys.funtionalityNotImplemented)
+            .ok('Ok');
+        $mdDialog
+            .show( alert )
+            .finally(function() {
+                alert = undefined;
+            });
+        /*AuthService.getNewPassword(user.email, $routeParams.lang)
 
             .success(function(result){
                 $location.path('/'+$routeParams.lang+'/login');
@@ -47,5 +74,6 @@ function PasswordForgotController ($scope, $location, $routeParams, $mdDialog, A
                     "non effettuato");
 
             });
+        */
     }
 }

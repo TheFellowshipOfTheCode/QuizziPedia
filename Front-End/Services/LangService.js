@@ -3,12 +3,17 @@
  * Description: questa classe permette di gestire la lingua nella quale si è
  * scelto di utilizzare l’applicazione. Fornisce delle funzionalità per
  * recuperare la giusta traduzione delle pagine;
- * Relations with other classes:
- * + AppRun.
+ *
+ *
  * Creation data: 27-04-2016;
  * Author: Matteo Granzotto.
  *******************************************************************************
  * Updates history
+ *------------------------------------------------------------------------------
+ * ID: LangService_20160427;
+ * Update data: 27-04-2016;
+ * Description: Aggiunti i metodi getKeywords(), getSupportedLang e getSLang();
+ * Autore: Matteo Granzotto.
  *------------------------------------------------------------------------------
  * ID: LangService_20160427;
  * Update data: 27-04-2016;
@@ -17,11 +22,6 @@
  *------------------------------------------------------------------------------
  ******************************************************************************/
 
-app.factory('LangService', ['$http', '$q', '$cookie', function($http, $q, $cookie) {
-
-
-}]);
-
 app.factory('LangService', LangService);
 
 LangService.$inject = ['$http', '$q', 'ErrorInfoModel'];
@@ -29,7 +29,9 @@ LangService.$inject = ['$http', '$q', 'ErrorInfoModel'];
 function LangService($http, $q, ErrorInfoModel) {
 
   var methods = {
-    getKeywords : getKeywords
+    getKeywords : getKeywords,
+    getSupportedLang : getSupportedLang,
+    getSlang : getSlang
   };
   return methods;
 
@@ -37,7 +39,36 @@ function LangService($http, $q, ErrorInfoModel) {
     var deferred = $q.defer();
     $http.get('/api/' + lang)
      .success(function(data) {
-          deferred.resolve(data[0].variables);
+          if(data[0]!=undefined) {
+            deferred.resolve(data[0].variables);
+          }
+          else {
+            if(data != undefined) {
+              deferred.resolve(data.variables);
+            }
+          }
+     }).error(function(msg, code) {
+        deferred.reject(msg);
+     });
+    return deferred.promise;
+  }
+
+  function getSupportedLang() {
+    var deferred = $q.defer();
+    $http.get('/api/supported/lang/give/me')
+     .success(function(data) {
+          deferred.resolve(data);
+     }).error(function(msg, code) {
+        deferred.reject(msg);
+     });
+    return deferred.promise;
+  }
+
+  function getSlang(lang) {
+    var deferred = $q.defer();
+    $http.get('/api/supported/lang/give/me/'+lang)
+     .success(function(data) {
+          deferred.resolve(data);
      }).error(function(msg, code) {
         deferred.reject(msg);
      });

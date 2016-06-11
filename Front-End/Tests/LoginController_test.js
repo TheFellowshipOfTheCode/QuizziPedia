@@ -4,27 +4,26 @@
  * QuizziPedia::Front-End::Controllers::LoginController;
  * Relations with other classes:
  * + .
- * Creation data: 29-04-2016;
+ * Creation data: 26-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
- * ID: ErrorInfoModel_20160501;
- * Update data: 01-05-2016;
+ * ID: LoginControllerTest_20160526;
+ * Update data: 26-05-2016;
  * Description: Scritto il test;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
+/*
 
-'use strict'
-
-describe("Testing a Controller that uses a Promise", function () {
+describe('Testing a Controller that uses a Promise', function () {
     var $scope;
     var $q;
     var deferred;
 
-    beforeEach(module('QuizziPedia'));
+    beforeEach(module('signIn'));
 
     beforeEach(inject(function($controller, _$rootScope_, _$q_, AuthService) {
         $q = _$q_;
@@ -45,7 +44,8 @@ describe("Testing a Controller that uses a Promise", function () {
 
     it('should resolve promise', function () {
         // Setup the data we wish to return for the .then function in the controller
-        deferred.resolve([{ name: "Alberto" }, { surname: "Ferrara" }]);
+        var user = new UserDetailsModel("Alberto", "Ferrara", "albertoferrara92@gmail.com", "aferrara", "aferrara", "1", "pro", "573b0733ade95afa018870e4");
+        deferred.resolve(user);
 
         // We have to call apply for this to work
         $scope.$apply();
@@ -54,7 +54,7 @@ describe("Testing a Controller that uses a Promise", function () {
         expect($scope.results).not.toBe(undefined);
         expect($scope.error).toBe(undefined);
     });
-/*
+
     it('should reject promise', function () {
         // This will call the .catch function in the controller
         deferred.reject();
@@ -66,5 +66,7 @@ describe("Testing a Controller that uses a Promise", function () {
         expect($scope.results).toBe(undefined);
         expect($scope.error).toBe('There has been an error!');
     });
-*/
+
 });
+
+    */

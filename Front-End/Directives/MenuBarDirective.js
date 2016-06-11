@@ -5,16 +5,6 @@
 * pulsante per ogni oggetto ricevuto come parametro, ogni pulsante viene
 * rappresentato con un’icona e con un testo. Al click di un pulsante viene
 * invocata la funzione ad esso associata;
-* Relations with other classes:
-* + Index;
-* + SearchDirective;
-* + LoginDirective;
-* + SignUpBarDirective;
-* + UserBarDirective;
-* + ProfileManagementBarDirective;
-* + QuestionsManagementBarDirective;
-* + LogoutBarDirective;
-* + QuestionnarireManagementBarDirective.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -31,9 +21,9 @@
 app.directive('menuBarDirective', menuBarDirective);
 
 function menuBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/MenuBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/MenuBarDirective.html'
+  };
+  return directive;
 }

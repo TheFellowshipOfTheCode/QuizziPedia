@@ -1,0 +1,64 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::InfoQuestionnaireDirective;
+* Description: rappresenta il componente grafico che permette all’utente di
+  visualizzare le informazioni principali del questionario che si sta per svolgere.
+  Viene visualizzato dinamicamente all’interno della view FillingQuestionnaireView
+  mediante il controller FillingQuestionsController;;
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: InfoQuestionnaireDirective_20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center"  layout="column" ng-cloak="" class="chipsdemoCustomInputs">
+  <div class="center-it error-quiz-log " ng-if="noAuth == true">
+        <span>{{listOfKeys.noAuthToDoQuiz}}</span>
+  </div>
+  <div class="center-it error-quiz-log" ng-if="noStart == true">
+        <span>{{listOfKeys.quizIsNotStarted}}</span>
+  </div>
+  <div class="center-it md-whiteframe-1dp" ng-if="startQuiz == true">
+    <md-toolbar class="toolbar-section toolbar">
+      <div class="md-toolbar-tools">
+        <span flex="" class="flex"></span>
+        <span>{{listOfKeys.generalInfoQuiz}}</span>
+        <span flex="" class="flex"></span>
+      </div>
+    </md-toolbar>
+    <div class="center-it-quiz">
+      <ul>
+        <li class="keywords">
+          <span>{{listOfKeys.topic}}: </span>
+        </li>
+        <li class="md-primary md-raised md-button" >
+          <span>{{quiz.getArgument()}}</span>
+        </li>
+      </ul>
+      <ul ng-if="quiz.getKeyword().lenght > 0">
+        <li class="keywords">
+          <span>{{listOfKeys.keywords}}: </span>
+        </li>
+        <li class="md-primary md-raised md-button" ng-repeat="item in quiz.getKeyword() track by $index">
+          {{item}}
+        </li>
+      </ul>
+      <ul>
+        <li class="keywords">
+          <span>{{listOfKeys.numberOfQuestions}}: </span>
+        </li>
+        <li class="md-primary md-raised md-button" >
+          <span>{{quiz.getNumberOfQuestions()}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</section>

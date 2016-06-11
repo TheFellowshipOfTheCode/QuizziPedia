@@ -1,0 +1,46 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::UserDetailsDirective;
+ * Description: directive che rappresenta i dati di un utente;
+ * Creation data: 12-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: UserDetailsDirective_20160512
+ * Update data: 12-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<!--
+<md-toolbar class="toolbar-section toolbar-top user-details" layout="row" layout-sm="row" layout-xs="row">
+        <span class="ng-binding divided"> <h3>{{listOfKeys.userUsername}}</h3></span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.userName}}</h3></span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.userSurname}} </h3></span>
+</md-toolbar>
+-->
+
+
+<section class="user-container-section" layout-sm="column" layout-align="center">
+        <div class="img-user-container">
+            <image ng-if="user.getUserImg()==false"  class="img-user" ng-src="/Images/Icons/user-default.png"/>
+            <image ng-if="user.getUserImg()!=false"  class="img-user" ng-src="{{user.getUserImg()}}"/>
+        </div>
+        <div class="user-container">
+          <div class="">
+                  <span class="capitalized user-section-text name"> {{user.getName()}}</span>
+                  <span class="capitalized user-section-text name"> {{user.getSurname()}} </span>
+          </div>
+          <div class="">
+            <span class="username user-section-text"> @{{user.getUsername()}}</span>
+          </div>
+          <div class="">
+            <span class="user-section-text"> {{listOfKeys.levelLang}} {{user.getLevel().level}}</span>
+          </div>
+        </div>
+
+</section>

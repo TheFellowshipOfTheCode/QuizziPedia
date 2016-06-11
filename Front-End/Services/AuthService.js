@@ -1,14 +1,19 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Services::AuthService;
- * Description: questa classe permette di gestire la registrazione e l’autenticazione di un utente.
- * Relations with other classes:
- * + LoginController
- * + PasswordForgotController
- * + SignUpController
+ * Description: questa classe permette di gestire la registrazione e
+ * l’autenticazione di un utente.
+ *
+ *
  * Creation data: 27-04-2016
  * Author: Alberto Ferrara
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: AuthService_20160504
+ * Update data: 04-05-2016
+ * Description: Ultimata la classe con i metodi getNewPassword(), giveMe(),
+ * resetCookies() e isLogged().
+ * Autore: Alberto Ferrara
  *-------------------------------------------------------------------------------
  * ID: AuthService_20160502
  * Update data: 02-05-2016
@@ -53,7 +58,9 @@ function AuthService($http, $cookies, $q) {
         var userJSON = {username: username, password: password};
         $http.post('/api/'+ lang + '/signin', userJSON)
             .then(function(data) {
-                $cookies.putObject('logged', true );
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() + 1);
+                $cookies.putObject('logged', true , {'expires': expireDate} );
                 deferred.resolve(data);
             }, function(error) {
             deferred.reject(error);
@@ -65,6 +72,7 @@ function AuthService($http, $cookies, $q) {
         var deferred = $q.defer();
         $http.get('/api/'+ lang + '/loggedin')
             .then(function(data) {
+              var q = JSON.stringify(data, null, "  ");
                 $cookies.putObject('logged', true );
                 deferred.resolve(data);
             }

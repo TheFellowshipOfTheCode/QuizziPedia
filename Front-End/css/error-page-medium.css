@@ -1,0 +1,33 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::error-page-medium;
+ * Creation data: 01-06-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ * ID: error-page-medium_20160601;
+ * Update data: 01-06-2016;
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+ @media screen and (max-width: 750px) {
+
+   .sheep-head {
+     z-index: 10;
+     width: 37%;
+     margin-right: -44%;
+   }
+
+   .sheep-body {
+     z-index: 5;
+     width: 50%;
+     margin-top: 10%;
+   }
+
+   .sentence h1 {
+     font-size: 2em;
+   }
+
+ }

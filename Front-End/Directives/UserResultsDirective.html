@@ -1,0 +1,48 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::UserResultsDirective;
+ * Description: rappresenta un utente ricercato;
+ * Relations with other classes:
+ * +
+ * Creation data: 10-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: UserResultsDirective_20160510
+ * Update data: 10-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<md-toolbar ng-if="users.length>0" class="toolbar-section toolbar-top">
+    <div class="md-toolbar-tools">
+        <h2>
+        <span ng-if="users.length==1"> {{listOfKeys.thereIsLang}} {{users.length}} {{listOfKeys.userLang}}. </span>
+        <span ng-if="users.length>1"> {{listOfKeys.thereAreLang}} {{users.length}} {{listOfKeys.usersLang}}. </span>
+      </span>
+        </h2>
+        <span flex=""></span>
+        <md-button aria-label="aria-label"  ng-if="users.length != 0" class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+        <md-button aria-label="aria-label"  ng-if="users.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(users.length)-1" ng-click="goOn()">>></md-button>
+        <span ng-if="users.length != 0"> Page {{currentPage+1}} of {{numberOfPages(users.length)}}</span>
+    </div>
+
+</md-toolbar>
+
+<section ng-if="users != undefined" class="md-whiteframe-2dp result-line-details" ng-repeat="u in users | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+       <div class="text-center " layout="row" layout-xs="column" layout-sm="column">
+           <span class="ng-binding divided"> {{listOfKeys.userNameResult}}: <h3>{{u.name}} </h3></span>
+            <span class="ng-binding divided"> {{listOfKeys.userSurnameResult}}: <h3>{{u.surname}} </h3> </span>
+            <span class="ng-binding divided"> {{listOfKeys.userUsernameResult}}: <h3>{{u.username}} </h3> </span>
+            <span flex=""></span>
+            <div layout="column">
+              <span flex=""></span>
+              <button aria-label="aria-label"  class="go-to-user-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="showUser(u.username)">{{listOfKeys.profileButton}}</button>
+              <span flex=""></span>
+            </div>
+       </div>
+</section>

@@ -1,0 +1,133 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::EditorQMLView;
+* Description: view contenente le form dedicate alla creazione di domanda con
+* QML;
+* Creation data: 03-04-2016;
+* Author: Alberto Ferrara.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: EditorQMLView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* class: EditorQMLView_20160503;
+* Update data: 03-05-2016;
+* Description: creazione view;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
+        <div layout="column" flex class="content" role="main" ng-controller="AppController">
+
+            <div class="layout-align-center layout-column" layout="column" layout-align="center"  >
+
+                <section class="question-creation sezione md-whiteframe-z1" layout-sm="column" layout-xs="column" layout-align="center">
+
+                    <md-toolbar class="md-primary toolbar">
+                        <div class="md-toolbar-tools">
+                            <span flex="" class="flex"></span>
+                            <h3 class="ng-binding">{{listOfKeys.titleLangQML}}</h3>
+                            <span flex="" class="flex"></span>
+                        </div>
+                    </md-toolbar>
+
+                    <div class="false-if-choice" layout="row" layout-sm="column" layout-xs="column" ng-if="!id">
+                      <div class="topicTextChoice" id="topicTextChoiceId"> {{listOfKeys.selectedTopicLang}} </div>
+                      <div class="topicPossibleChoice">
+                        <md-input-container class="select-container">
+                          <md-select class="topics" placeholder="{{listOfKeys.selectedTopicLang}}" ng-model="$parent.selectedTopic" >
+                            <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+                              <md-option ng-value="topic" ng-repeat="topic in topics | orderBy : 'name'">{{topic.name}}</md-option>
+                          </md-select>
+                        </md-optgroup>
+                        </md-input-container>
+                      </div>
+                    </div>
+                    <div class="true-if-choice" layout="row" layout-sm="column" layout-xs="column" ng-if="id">
+                      <div class="topicTextChoice" id="topicTextChoiceId"> {{listOfKeys.choosenTopicLang}}:  </div>
+                      <div class="topicChoice" id="topicChoiceId"> {{selectedTopic.name}} </div>
+                    </div>
+                    <div class="contentQML">
+                        <juicy-ace-editor id="Juiceeditor" style="min-height:500px" mode="ace/mode/json">{{question}}</juicy-ace-editor>
+                      </div>
+
+                    <div style="margin-top:2em;" class="image-upload text-center">
+                        <h2>Caricamento immagini</h2>
+                        <label class="image-label" for="fileinput" title="Inserisci un immagine da associare all'attributo image">
+                            <div class="image-hover image-hover-add">
+                                <div class="image-hover-content">
+                                    <img src="Images/Icons/plus-button.png" >
+                                </div>
+                            </div>
+                            <img style="width:200px" ngf-thumbnail="'Images/Icons/image-default.jpeg'"  class="thumb">
+                        </label>
+                        <input type="file" name="file-input" id="fileinput" ngf-select="uploadImage(image)" ng-model="image" accept="image/*" ngf-max-size="2MB" >
+                    </div>
+
+                    <h4 style="margin-top:2em; margin-bottom:2em;" class="text-center" ng-if="images.length>0">Copia e incolla il nome dell'immagine nell'apposito attributo immagine</h4>
+                    <div class="row" layout-wrap layout-align="left" >
+                        <div class="col-md-4" ng-repeat="image in images">
+                            <div class="image-upload text-center">
+                                <label class="image-label" for="fileoutput"  title="Rimuovi l'immagine">
+                                    <div class="image-hover image-hover-delete">
+                                        <div class="image-hover-content">
+                                            <img src="Images/Icons/delete-button.png" >
+                                        </div>
+                                    </div>
+                                    <img style="width:200px" ngf-thumbnail="image">
+                                </label>
+                                <input type=”button” name="fileoutput" id="fileoutput" ng-click="removeImage(image)" >
+                                <md-input-container >
+                                    <input style="width:200px;" type=”text” value="{{image.name}}" readonly>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div layout="row" layout-align="center center" >
+                        <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
+                            <md-input-container layout-align="center center">
+                                <div layout="row" layout-md="column" layout-sm="column"  layout-xs="column" layout-margin>
+                                    <md-button aria-label="aria-label"  ng-click="goToWizard()" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.goToWizard}}</md-button>
+                                    <md-button aria-label="aria-label"  ng-if="id == undefined" ng-disabled="!selectedTopic" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmLangQML}}</md-button>
+                                    <md-button aria-label="aria-label"  ng-if="id != undefined" ng-click="submitQuestion(selectedTopic)" class="md-raised md-primary font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">{{listOfKeys.buttonConfirmEditLangQML}}</md-button>
+                                </div>
+                            </md-input-container>
+
+                        </form>
+
+                    </div>
+
+                    <div layout="row" layout-align="center center" >
+                            <md-input-container layout-align="center center" class="button-tutorial">
+                                <div layout="row" layout-md="column" layout-sm="column"  layout-xs="column" layout-margin>
+                                    <md-button aria-label="aria-label" ng-click="showTutorial()" class="md-raised md-button font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100">
+                                      <span ng-if="!showTutorialFlag">
+                                        {{listOfKeys.showTutorial}}
+                                      </span>
+                                      <span ng-if="showTutorialFlag">
+                                        {{listOfKeys.hideTutorial}}
+                                      </span>
+                                    </md-button>
+                                    <md-button aria-label="aria-label" class="md-raised md-button font-smaller" flex="50" flex-md="100" flex-sm="100" flex-xs="100"> <a class="go-to-tutorial" href="/{{systemLang}}/QMLtutorial" target="_blank">{{listOfKeys.goToTutorial}}</a> </md-button>
+                                </div>
+                            </md-input-container>
+                    </div>
+
+                    <div class="tutorial" ng-if="showTutorialFlag">
+                      <qml-tutorial-directive></qml-tutorial-directive>
+                    </div>
+
+
+                </section>
+
+            </div>
+
+        </div>

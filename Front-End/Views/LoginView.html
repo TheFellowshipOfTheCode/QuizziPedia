@@ -4,14 +4,16 @@
  * Description: view contenente le form necessarie per e ettuare il login.
  * Contiene inoltre un link alla pagina di registrazione e uno alla pagina per
  * il recupero della password;
- * Relations with other classes:
- * + LoginModelView;
- * + LangModel.
  * Creation data: 28-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: LoginView_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornata la view;
+ * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: LoginView_20160502;
  * Update data: 02-05-2016;
@@ -24,12 +26,15 @@
  * Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: LoginView_20160428
- * Update data: 28-04-2016
+ * Update data: 27-04-2016
  * Description: Creata la view;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 -->
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
 
 <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
@@ -48,12 +53,12 @@
       <div layout="row" layout-align="center center" >
         <form name="userForm" class=" userForm layout-align-center layout-column flex-80" layout="column" layout-align="center">
           <md-input-container class="md-block">
-              <label>Username</label>
-              <input required="" type="" name="username" ng-model="user.username">
+              <label>Username o Email</label>
+              <input id="userUsernameLogin" required="" type="" name="username" ng-model="user.username">
           </md-input-container>
           <md-input-container class="md-block">
               <label>Password</label>
-              <input required="" type="password" name="password" ng-model="user.password" minlength="8">
+              <input id="userPasswordLogin" required="" type="password" name="password" ng-model="user.password" minlength="8">
 
               <div ng-messages="userForm.password.$error" role="alert">
                   <div ng-message-exp="['required', 'minlength']">
@@ -63,8 +68,8 @@
           </md-input-container>
           <md-input-container layout-align="center">
               <div layout="column" layout-sm="column" layout-margin>
-                  <md-button ng-disabled="userForm.$invalid" ng-click="logIn(user.username, user.password)" class="md-raised md-primary auth-button">{{listOfKeys.logIn}}</md-button>
-                  <md-button class="md-primary" ng-href="" ng-click="goToPasswordForgotPage()" target="_blank">{{listOfKeys.passwordForgot}}</md-button>
+                  <md-button aria-label="aria-label" id="loginButton" ng-disabled="userForm.$invalid" ng-click="logIn(user.username, user.password)" class="md-raised md-primary auth-button">{{listOfKeys.logIn}}</md-button>
+                  <md-button aria-label="aria-label" class="md-primary" ng-click="goToPasswordForgotPage()" target="_blank">{{listOfKeys.passwordForgot}}</md-button>
               </div>
           </md-input-container>
         </form>

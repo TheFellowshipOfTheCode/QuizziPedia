@@ -4,12 +4,6 @@
  * alla gestione della sessione e alla cronologia dei questionari svolti da un
  * utente. Componente ConcreteHandler del design pattern Chain of
  * responsibility. Utilizza il modulo Passport;
- * Relations with other classes:
- * + IN	Server;
- * + OUT ErrorHandler;
- * + OUT NotFoundHandler;
- * + OUT UserController;
- * + OUT SummaryController.
  * Creation data: 27-04-2016;
  * Author: Franco Berton.
  ********************************************************************************
@@ -17,12 +11,14 @@
  *-------------------------------------------------------------------------------
  * ID: UserRouter_20160427;
  * Update data: 27-04-2016;
- * Description: Creata classe e inseriti tutti metodi;
+ * Description: Creata classe e aggiunte prime REST;
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
  *******************************************************************************/
 
 var user = require('../Controller/UserController');
+var topic = require('../Controller/TopicController');
+var summary = require('../Controller/SummaryController');
 
 module.exports = function(app){
 
@@ -41,10 +37,35 @@ module.exports = function(app){
     app.route('/api/:lang/loggedin')
         .get(user.session.loggedin);
 
-    app.route('/api/:lang/user/:userId')
+    app.route('/api/:lang/user/info')
         .get(user.userManagement.getInfo)
+        .put(user.userManagement.updateDataUser);
+
+    app.route('/api/:lang/user/password')
+        .put(user.userManagement.updatePasswordUser);
+
+    app.route('/api/:lang/user/type')
+        .put(user.userManagement.changeUserType);
 
     app.route('/api/:lang/user')
-        .delete(user.userManagement.deleteUser)
+        .delete(user.userManagement.deleteUser);
+    
+    app.route('/api/:lang/searchuser/:keyword')
+        .get(user.userManagement.searchUser);
+
+    app.route('/api/:lang/userdetails/:username')
+        .get(user.userManagement.getInfoUserSearched);
+
+    app.route('/api/:lang/user/statistics')
+        .put(user.userManagement.updateStatisticUser);
+
+    app.route('/api/:lang/userdonequizzes')
+        .get(summary.getQuizzes);
+
+    app.route('/api/:lang/topic/statistics')
+        .put(topic.updateStatisticTopic);
+
+    app.route('/api/:lang/user/quiz/summary')
+        .post(summary.createSummary);
 
 };

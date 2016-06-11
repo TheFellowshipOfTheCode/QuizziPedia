@@ -1,15 +1,17 @@
 <!--
 /*******************************************************************************
-* Name: QuizziPedia::Front-End::Views::SignUpView
+* Name: QuizziPedia::Front-End::Views::SignUpView;
 * Description: view contenente le form dedicate alla registrazione utente.
-* Contiene inoltre un link alla pagina di login
-* Relations with other classes:
-* + SignUpController;
-* + LangModel.
-* Creation data: 27-04-2016
-* Author: Simone Magagna
+* Contiene inoltre un link alla pagina di login;
+* Creation data: 27-04-2016;
+* Author: Simone Magagna.
 ********************************************************************************
 * Updates history
+*-------------------------------------------------------------------------------
+* ID: SignUpView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 * ID: SignUpView_20160501;
 * Update data: 01-05-2016;
@@ -23,6 +25,9 @@
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 -->
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
 
 <div layout="column" flex id="content" role="main" ng-controller="AppController">
 
@@ -97,9 +102,10 @@
 
 
             <md-input-container layout-align="center center">
-              <div layout="row" layout-sm="column" layout-margin>
-                  <md-button ng-disabled="userForm.$invalid" ng-click="signUp(user)" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.buttonLangSignUp}}</md-button>
-                  <md-button ng-click="logIn()" class="md-raised md-primary" flex="50" flex-sm="100">{{listOfKeys.loginButtonLangSignUp}}</md-button>
+              <div layout="row" layout-sm="column" layout-xs="column" layout-margin>
+
+                  <md-button aria-label="aria-label" id="signupButton" ng-disabled="userForm.$invalid" ng-click="signUp(user)" class="md-raised md-primary" flex="50" flex-sm="100" flex-xs="100">{{listOfKeys.buttonLangSignUp}}</md-button>
+                  <md-button aria-label="aria-label" id="goToLoginButton" ng-click="logIn()" class="md-raised md-primary" flex="50" flex-sm="100" flex-xs="100">{{listOfKeys.loginButtonLangSignUp}}</md-button>
               </div>
           </md-input-container>
 

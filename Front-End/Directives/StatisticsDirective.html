@@ -1,0 +1,40 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::UserDetailsDirective;
+ * Description: directive per la visualizzazione delle statistiche di un utente;
+ * Creation data: 12-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: UserDetailsDirective_20160512
+ * Update data: 12-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<!--
+<md-toolbar class="toolbar-section toolbar-top user-details" layout="row" layout-sm="row" layout-xs="row">
+        <span class="ng-binding divided"> <h3>{{listOfKeys.userUsername}}</h3></span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.userName}}</h3></span>
+        <span class="ng-binding divided"> <h3>{{listOfKeys.userSurname}} </h3></span>
+</md-toolbar>
+-->
+
+<section class="md-whiteframe-1dp padding-bottom toolbar-top" layout-align="center" >
+    <md-toolbar  class="toolbar-section quizzes-done quizzipedia-color">
+      <span flex=""></span>
+        <h3>{{listOfKeys.statisticsLang}} </h3>
+        <span flex=""></span>
+    </md-toolbar>
+
+    <div class="center padding-bottom">
+      <h3> {{listOfKeys.resultOfTrainingLang}}
+      {{publicRightAnswers}} / {{puclicTotalAnswers}}
+       {{listOfKeys.questions}}.</h3>
+      <canvas ng-if="puclicTotalAnswers>=1" doughnutchart options="myChartOptionsDoughnut" data="myChartDataDoughnut" width="300" height="300" class="center-it padding-bottom pie-chart""></canvas>
+    </div>
+</section>

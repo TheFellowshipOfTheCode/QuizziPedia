@@ -4,8 +4,6 @@
 * Description: directive contenente il componente che permette di effettuare
 * il redirect alla pagina di login. Permette di effettuare il redirect alla
 * pagina di login;
-* Relations with other classes:
-* + MenuBarDirective.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -20,6 +18,6 @@
 *******************************************************************************/
 -->
 <!--
-<md-button class="md-raised md-primary"> {listOfKeys.logIn} </md-button>
+<md-button aria-label="aria-label"  class="md-raised md-primary"> {listOfKeys.logIn} </md-button>
 -->
-<md-button class="md-button md-raised md-primary" ng-click="logIn()"> {{listOfKeys.logIn}} </md-button>
+<md-button aria-label="aria-label"  class="md-button md-raised md-primary" ng-click="logIn()" aria-label="login"> {{listOfKeys.logIn}} </md-button>

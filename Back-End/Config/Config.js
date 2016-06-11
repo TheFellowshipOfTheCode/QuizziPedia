@@ -30,27 +30,21 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash    = require('connect-flash');
 var passport= require('passport');
+
 module.exports = function(app) {
-
-
     var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
                   replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
     var mongodbUri = 'mongodb://'+accessToDB.login+':'+accessToDB.password+'@'+accessToDB.url+'/'+accessToDB.database;
 
-    mongoose.connect(mongodbUri, options, function(err) {
-        if(err) {
-            console.log('connection error', err);
-        } else {
-            console.log('connection successful');
-        }
+    dataDaseConnection(mongodbUri, options);
 
-    });
     require('./Passport')(passport); // pass passport for configuration
     // view engine setup
     app.set('views','../../Front-End/Views');
     app.set('view engine', 'html');
     // set up our express application
+
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
     app.use(bodyParser.urlencoded());
@@ -72,7 +66,20 @@ module.exports = function(app) {
     require('../App/Routes/QuizRouter.js')(app);
     require('../App/Routes/QuestionRouter.js')(app);
     require('../App/Routes/LangRouter.js')(app);
+
     app.get('/*',function(req,res){
-      res.sendFile(path.resolve('Front-End/index.html'));
+        res.sendFile(path.resolve('Front-End/Index.html'));
     });
 };
+
+function dataDaseConnection(mongodbUri, options) {
+  mongoose.connect(mongodbUri, options, function(err) {
+      if(err) {
+          console.log('connection error', err);
+          dataDaseConnection(mongodbUri, options);
+      } else {
+          console.log('connection successful');
+      }
+
+  });
+}

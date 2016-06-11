@@ -1,0 +1,47 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::EmptySpaceAnswerDirective;
+* Description: rappresenta il componente grafico che permette all’utente di visualizzare
+l’esercizio a riempimento di spazi vuoti. Viene visualizzato dinamicamente all’interno delle views
+TrainingView e FillingQuestionnaireView mediante il controller QuestionsController;
+* Creation data: 03-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: EmptySpaceAnswerDirective_20160503;
+* Update data: 03-05-2016;
+* Description: Creata la direttiva;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<section class="sezione md-whiteframe-d" layout-sm="column" layout-align="center">
+  <div class=" md-padding" ng-init="splitTheText($parent.$index, d.questionText)">
+    <div class="layout-align-center-stretch layout-column" layout="column" layout-align="center">
+      <span class="text-center questionText">{{listOfKeys.wordsInRightPlace}} </span>
+      <img class="question-image-container" ng-if="d.image!=undefined" src="{{d.image}}" />
+    </div>
+    <div class="button-go-to-training layout-align-center-stretch layout-column" layout="column" layout-align="center">
+      <div class="layout-align-center-stretch layout-column" layout="column" layout-sm="column" layout-align="center">
+        <span class="center">
+          <div class="div-inline" ng-repeat="elem in temporyObjectForView[$parent.$index].emptySpaceText track by $index" >
+             <span class="word" ng-if="elem != '##TODELETE##'"> {{elem}} </span>
+             <div ng-if="elem === '##TODELETE##'" class="box-in-word-empty-answer-zone md-whiteframe-z1" data-drop="true" ng-model='temporyObjectForView[$parent.$parent.$index].list1' jqyoui-droppable="{index: {{$index}}, onDrop : 'dragnNDropQuestions($parent.$parent.$index,d.type,temporyObjectForView[$parent.$parent.$index].list1)' }" >
+               <div class="box-in-word-empty-answer md-primary md-raised md-button" ng-show="temporyObjectForView[$parent.$parent.$index].list1[$index].hideWord" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$parent.$index].list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" >
+                 {{temporyObjectForView[$parent.$parent.$index].list1[$index].hideWord}}
+               </div>
+             </div>
+          </div>
+        </span>
+        <ul class="layout-align-center-stretch layout-row" layout="row" layout-sm="row" layout-align="center">
+          <li ng-repeat="elem in temporyObjectForView[$parent.$index].list2 track by $index" ng-model='temporyObjectForView[$parent.$index].list2' >
+            <div  class="box-in-word-empty-answer md-primary md-raised md-button" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="temporyObjectForView[$parent.$index].list2" jqyoui-draggable="{index: {{$index}},animate:true }" ng-hide="!elem.hideWord" >{{elem.hideWord}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

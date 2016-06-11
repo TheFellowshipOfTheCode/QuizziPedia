@@ -1,0 +1,63 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::UserView;
+* Description: view contenente le informazioni di un utente;
+* Creation data: 12-05-2016;
+* Author: Alberto Ferrara.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: UserView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+-->
+
+
+
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
+
+<div layout="column" flex id="content" role="main" ng-controller="AppController" >
+
+    <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+        <section class="user-view md-whiteframe-z1" layout-sm="column" layout-align="center">
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h3 class="ng-binding">{{listOfKeys.otherProfile}} {{userResearched.name}} {{userResearched.surname}}</h3>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <span ng-if="userResearched === undefined">
+              <div class="spinner">
+                <img src="Images/Icons/reload.svg"/>
+              </div>
+            </span>
+
+            <span ng-if="userResearched != undefined">
+                <div class="otheruserview" layout="row" layout-xs="column" layout-align="space-around center">
+                    <div class="image">
+                        <img ng-src="{{userResearched.userImg}}">
+                    </div>
+                    <div class="info">
+                        <h4>Nome</h4>
+                        <p>{{userResearched.name}}</p>
+                        <h4>Cognome</h4>
+                        <p>{{userResearched.surname}}</p>
+                        <h4>Email</h4>
+                        <p>{{userResearched.email}}</p>
+                        <h4>Username</h4>
+                        <p>{{userResearched.username}}</p>
+                    </div>
+                </div>
+            </span>
+
+            <statistics-directive ng-if="userResearched != undefined"></statistics-directive>
+        </section>
+
+    </div>
+
+</div>

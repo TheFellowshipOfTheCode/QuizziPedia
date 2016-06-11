@@ -1,0 +1,110 @@
+<!--
+/*******************************************************************************
+* Nome: QuizziPedia::Front-End::Views::FillingQuestionnaireView;
+* Description: view per la visualizzazione delle domande a collegamento;
+* Creation data: 01-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: FillingQuestionnaireView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: HomeView_20160430;
+* Update data: 01-05-2016;
+* Description: Ultimato il codice;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
+<div ng-controller="AppController">
+
+  <div class=" training layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center" ng-if="quizIsLoaded == true">
+      <md-toolbar class="md-primary toolbar">
+        <div class="md-toolbar-tools">
+          <span flex="" class="flex"></span>
+          <h3 ng-if="started == true && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " class="ng-binding">
+            {{listOfKeys.questionNumberLang}} {{questionNumberOnQuiz+1}}
+             {{listOfKeys.ofLang}}
+             {{quiz.getNumberOfQuestions()}}
+          </h3>
+          <h3 ng-if="quiz != undefined && quizIsFinished == false && started==false " class="ng-binding">
+            {{quiz.getName()}}
+          </h3>
+          <h3 ng-if="quizIsFinished == true " class="ng-binding">
+            {{listOfKeys.endOfQuiz}}
+          </h3>
+          <h3 ng-if="(noStart == true || noAuth == true ) && startQuiz == false " class="ng-binding">
+            {{listOfKeys.genericError}}
+          </h3>
+         <span flex="" class="flex"></span>
+        </div>
+      </md-toolbar>
+      <div class="md-padding">
+
+        <div class="spinner" ng-if="noStart == false && noAuth == false && startQuiz == false && started == false">
+          <img src="Images/Icons/reload.svg"/>
+        </div>
+
+        <div ng-if="quizIsLoaded == true && started == false">
+          <info-questionnaire-directive></info-questionnaire-directive>
+        </div>
+
+        <div ng-controller="QuestionsController" >
+          <div ng-if="started == true && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions() " >
+            <div class="spinner" ng-if="question === undefined">
+              <img src="Images/Icons/reload.svg"/>
+            </div>
+            <div ng-if="question != undefined">
+              <header-text-question-directive></header-text-question-directive>
+              <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
+                <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
+                <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
+                <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
+                <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
+                <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
+                <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
+                {{objAnswer[$index]}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="quizIsFinished == true ">
+          <end-quiz-directive></end-quiz-directive>
+        </div>
+        <div ng-if="startQuiz == true && started == false && quiz != undefined" id="startQuizButton" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button aria-label="aria-label"   class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='startQuizClick()'>
+            {{listOfKeys.startQuizLang}}
+          </button>
+        </div>
+
+        <div ng-if="started == true && startQuiz == false && quizIsFinished == false && quiz != undefined && questionNumberOnQuiz <= quiz.getNumberOfQuestions()" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button aria-label="aria-label" id="nextQuestionButton"  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='nextQuestion()'>
+            {{listOfKeys.buttonNextQuestionLang}}
+          </button>
+          <button aria-label="aria-label"  id="endQuizButton" class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endQuiz()'>
+            {{listOfKeys.endQuizLang}}
+          </button>
+        </div>
+
+        <div ng-if="startQuiz == false && started == false && quiz === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button aria-label="aria-label"   class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='goToHome()'>
+            {{listOfKeys.backToHome}}
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+</div>

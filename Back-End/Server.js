@@ -1,10 +1,22 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::Server;
+ * Description: classe che crea il server;
+ * Creation data: 27-04-2016;
+ * Author: Franco Berton.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: Config_20160427;
+ * Update data: 27-04-2016;
+ * Description: Creata e ultimata la classe.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
 // set up ======================================================================
 // get all the tools we need
 var express = require('express');
 var app = express();
 var port     = process.env.PORT || 8080;  // set our port
 var config= require('./Config/Config');
-var server;
 start(config(app));
 function start(config){
 // start app ===============================================

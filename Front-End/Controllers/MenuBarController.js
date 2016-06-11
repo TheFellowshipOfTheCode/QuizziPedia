@@ -3,31 +3,43 @@
 * Description: questa classe permette di gestire il menù fisso per ogni pagina;
 * Fornisce le funzionalità per aggiornare, a seconda della pagina, il contenuto
 * del menù;
-* Relations with other classes:
-* + AuthService;
-* + MenuBarModel.
+*
+*
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
+ * -------------------------------------------------------------------------------
+ * ID: MenuBarController_20160526;
+ * Update data: 26-05-2016;
+ * Description: Aggiornato controller
+ * Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: MenuBarController_20160505;
+* Update data: 05-05-2016;
+* Description: Aggiunti i metodi goToUserPage(), goToUserManagementPage(),
+* goToQuestionsManagementPage() e goToQuizManagementPage();
+* Author: Alberto Ferrara.
 *-------------------------------------------------------------------------------
 * ID: MenuBarController_20160502;
 * Update data: 02-05-2016;
-* Description: Pulito il codice;
+* Description: Aggiunti i metodi buildDelayedToggler(), debounce() e
+* backToHome();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: MenuBarController_20160427;
-* Update data: 27-04-2016;
-* Description: Creata la classe;
+* ID: MenuBarController_20160425;
+* Update data: 25-04-2016;
+* Description: Creata la classe e i metodi logIn(), signUp(), logOut(),
+* showListBottomSheet(), resetRefreshBlocking(), buildToggler();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 *******************************************************************************/
 
 app.controller('MenuBarController',MenuBarController);
 
-MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel'];
-function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel) {
+MenuBarController.$inject = ['$scope', '$rootScope', '$timeout','$mdSidenav', '$mdDialog', '$location', '$routeParams', 'MenuBarModel', 'ErrorInfoModel', 'AuthService', 'UserDetailsModel', '$mdBottomSheet', '$window'];
+function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog, $location,$routeParams, MenuBarModel, ErrorInfoModel, AuthService, UserDetailsModel, $mdBottomSheet, $window) {
 
   /* Scope variables and function*/
   if($rootScope.userLogged != undefined) {
@@ -38,23 +50,66 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   }
 
   $scope.logIn = function () {
-    $location.path('/'+$routeParams.lang+'/login');
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/login');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/login');
+    }
+    toggleOnlyOnMobile();
   };
   $scope.signUp = function () {
-    $location.path('/'+$routeParams.lang+'/signup');
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/signup');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/signup');
+    }
+    toggleOnlyOnMobile();
   };
   $scope.goToUserPage = function () {
-    $location.path('/'+$routeParams.lang+'/'); // da completare
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/userpage');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/userpage');
+    }
+    toggleOnlyOnMobile();
   };
   $scope.goToUserManagementPage = function () {
-    $location.path('/'+$routeParams.lang+'/'); // da completare
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/profilemanagement');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/profilemanagement');
+    }
+    toggleOnlyOnMobile();
   };
   $scope.goToQuestionsManagementPage = function () {
-    $location.path('/'+$routeParams.lang+'/'); // da completare
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/questions');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/questions');
+    }
+    toggleOnlyOnMobile();
   };
   $scope.goToQuizManagementPage = function () {
-    $location.path('/'+$routeParams.lang+'/'); // da completare
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$routeParams.lang+'/questionnairemanagement');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/questionnairemanagement');
+    }
+    toggleOnlyOnMobile();
   };
+
   $scope.logOut = function () {
     alert = $mdDialog.confirm()
         .title($rootScope.listOfKeys.logOut)
@@ -70,9 +125,44 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
           AuthService.logout($rootScope.userLogged.getUsername());
           delete $rootScope.userLogged;
           $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
-          $location.path('/'+$routeParams.lang+'/home');
+          resetRefreshBlocking();
+          if($routeParams.lang!=undefined) {
+            $location.path('/'+$routeParams.lang+'/home');
+          }
+          else {
+            $location.path('/'+geoplugin_countryCode().toLowerCase()+'/home');
+          }
+          toggleOnlyOnMobile();
         });
   };
+
+  $scope.backToHome = function () {
+    resetRefreshBlocking();
+    if($routeParams.lang!=undefined) {
+      $location.path('/'+$rootScope.systemLang+'/home');
+    }
+    else {
+      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/home');
+    }
+    toggleOnlyOnMobile();
+  }
+
+  $scope.showListBottomSheet = function() {
+    $scope.alert = '';
+    $mdBottomSheet.show({
+      templateUrl: '../Directives/ChangeLangDirective.html',
+      controller: "LangController"
+    }).then(function(clickedItem) {
+    });
+  };
+
+  function toggleOnlyOnMobile() {
+    var screenWidth = $window.innerWidth;
+    if (screenWidth < 960) {
+      $scope.toggleLeft();
+    }
+  }
+
 
   /*Variable for animations*/
   $scope.toggleLeft = buildDelayedToggler('left');
@@ -106,5 +196,9 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $mdSidenav(navID)
         .toggle();
     }
+  }
+
+  function resetRefreshBlocking () {
+    window.onbeforeunload = null;
   }
 }

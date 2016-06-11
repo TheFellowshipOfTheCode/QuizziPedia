@@ -2,8 +2,6 @@
 * Name: QuizziPedia::Front-End::Directives::LogoutBarDirective;
 * Description: directive contenente il componente che permette di effettuare
 * il logout dal sistema; Permette di effettuare il logout dal sistema;
-* Relations with other classes:
-* + MenuBarDirective.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -20,9 +18,9 @@
 app.directive('logoutBarDirective', logoutBarDirective);
 
 function logoutBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/LogoutBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/LogoutBarDirective.html'
+  };
+  return directive;
 }

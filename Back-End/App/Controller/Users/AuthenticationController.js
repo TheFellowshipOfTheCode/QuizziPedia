@@ -5,10 +5,6 @@
  * dell'utente nel sistema. È un componente ConcreteHandler del design pattern
  * Chain of responsibility. Risulta essere il componente che eventualmente
  * esegue la richiesta del client attraverso Passport;
- * Relations with other classes:
- * + IN	UserController;
- * + OUT Session;
- * + OUT UserModel.
  * Creation data: 27-04-2016;
  * Author: Franco Berton.
  ********************************************************************************
@@ -19,6 +15,12 @@
  * Description: Creata classe e inseriti tutti i metodi;
  * Autore: Franco Berton.
  *-------------------------------------------------------------------------------
+ * ID: AuthenticationController_20160427;
+ * Update data: 01-05-2016;
+ * Description: Creati metodi signout(), signin(), signup();
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+
  *******************************************************************************/
 
 var passport = require("passport");
@@ -50,9 +52,8 @@ exports.signup = function(req, res, next) {
         if (err)
             return next(err);
         if (!user)
-        {   console.log(info);
-            return res.status(500).json({code:2, title:"no registration", message:'Registrazione effettuata'});}
+            return res.status(500).json(info);
         else
-            return res.status(200).json({code:3, title:"ok registration", message:'Registrazione effettuata'})
+            return res.status(200).json(info)
     })(req, res, next);
 };

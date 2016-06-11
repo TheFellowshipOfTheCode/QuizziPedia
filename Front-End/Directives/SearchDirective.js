@@ -4,10 +4,6 @@
 * questionari. Permette all’utente di effettuare ricerche, è formata da:
 * + Barra di ricerca;
 * + Pulsante per effettuare la ricerca.
-* Relations with other classes:
-* + HomeView;
-* + MenuBarDirective;
-* + LangModel.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -24,9 +20,9 @@
 app.directive('searchDirective', searchDirective);
 
 function searchDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/SearchDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/SearchDirective.html'
+  };
+  return directive;
 }

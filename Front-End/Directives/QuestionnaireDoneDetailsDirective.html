@@ -1,0 +1,64 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::QuestionnaireDoneDetailsDirective;
+ * Description: rappresenta il componente grafico che permette all’utente di
+   visualizzare la lista di questionari che ha già compilato e di conseguenza
+   vederne le valutazioni;
+ * Creation data: 12-05-2016;
+ * Author: Alberto Ferrara;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: QuestionnaireDoneDetailsDirective_20160526
+ * Update data: 26-05-2016
+ * Description: Corretto vari bug e sistemato grafica in modo che sia
+ * responsive;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: QuestionnaireDoneDetailsDirective_20160512
+ * Update data: 12-05-2016
+ * Description: Creata la classe e scritto il file html;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+
+<md-toolbar ng-if="quizzes != undefined && quizzes.length > 0" class="toolbar-section quizzes-done quizzipedia-color" layout="row" layout-sm="row" >
+    <span class="divided"> <h3>{{listOfKeys.historyQuizzesLang}} </h3></span>
+    <span flex=""></span>
+</md-toolbar>
+<section class="line md-whiteframe-2dp legends" ng-if="quizzes != undefined && quizzes.length > 0" >
+  <div layout-xs="column" class="line-container">
+    <span class="a-quarter-title no-wrap center-on-column no-border"> {{listOfKeys.quizName}}    </span>
+    <span class="a-quarter-title no-wrap center-on-column"> {{listOfKeys.quizAuthor}}  </span>
+    <span class="a-quarter-title no-wrap center-on-column"> {{listOfKeys.quizTopic}}   </span>
+    <span class="a-quarter-title no-wrap center-on-column"> {{listOfKeys.quizMark}}    </span>
+  </div>
+</section>
+
+<section class="line md-whiteframe-2dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div layout-xs="column">
+      <span class="a-quarter no-wrap center-on-column no-border"> {{quiz.title}} </span>
+      <span class="a-quarter no-wrap center-on-column">  {{quiz.author}}</span>
+      <span class="a-quarter no-wrap center-on-column">  {{quiz.topic}} </span>
+      <span class="a-quarter no-wrap center-on-column"> {{quiz.mark}} </span>
+    </div>
+</section>
+
+<md-toolbar ng-if="quizzes != undefined && quizzes.length > 0" class="toolbar-section toolbar-top">
+  <div class="md-toolbar-tools center-on-column">
+    <span flex=""></span>
+    <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPageLineOne <= 0" ng-click="goBackOne()"><<</md-button>
+    <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPageLineOne >= numberOfPages(quizzes.length)-1" ng-click="goOnOne()">>></md-button>
+    <span class="hide-me-when-i-am-ugly">{{listOfKeys.pageLang}} {{currentPageLineOne +1}} {{listOfKeys.ofLang}} {{numberOfPages(quizzes.length)}}</span>
+  </div>
+</md-toolbar>
+
+<md-toolbar ng-if="quizzes.length <= 0" class="toolbar-section toolbar-top toolbar-bottom">
+    <div class="no-quiz" class="md-toolbar-tools">
+        <h3>
+            <span>{{listOfKeys.thereIsNoDoneQuiz}} </span>
+        </h3>
+    </div>
+</md-toolbar>

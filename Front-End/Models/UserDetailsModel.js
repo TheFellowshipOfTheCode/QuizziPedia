@@ -1,22 +1,23 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Models::UserDetailsModel;
- * Description: rappresenta un utente. Contiene tutte le informazioni necessarie alla pre- sentazione del contenuto
- * di un utente sia nella visualizzazione che nella gestione di un profilo;
+ * Description: rappresenta un utente. Contiene tutte le informazioni necessarie
+ * alla presentazione del contenuto di un utente sia nella visualizzazione che
+ * nella gestione di un profilo;
  *
- * Relations with other classes:
- * + LoginController
- * + SearchController
- * + UserDetailsController
- * + StatisticsController
  *
- * Creation data: 28-04-2016;
+ * Creation data: 25-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
  * Updates history
  *-------------------------------------------------------------------------------
  * ID: UserDetailsModel_20160427
- * Update data: 28-04-2016
+ * Update data: 27-04-2016
+ * Description: Ultimato il model con tutti i metodi getter e setter;
+ * Author: Alberto Ferrara.
+ *-------------------------------------------------------------------------------
+ * ID: UserDetailsModel_20160425
+ * Update data: 25-04-2016
  * Description: Creato il model;
  * Author: Alberto Ferrara.
  *-------------------------------------------------------------------------------
@@ -64,6 +65,20 @@ function UserDetailsModel() {
             levelUser_ = level;
         };
 
+        this.setLevelByTopic = function (topic, level, answer) {
+            statistics_ = statistics_.filter(function (obj) {
+
+              if(obj.topicName == topic) {
+                obj.topicLevel = level;
+                obj.totalAnswers= parseInt(obj.totalAnswers)+1;
+                if(answer) {
+                  obj.correctAnswer= obj.correctAnswers+1;
+                }
+              }
+              return obj;
+            });
+        };
+
         this.setPrivilege = function (privilege) {
             privilege_ = privilege;
         };
@@ -98,6 +113,14 @@ function UserDetailsModel() {
 
         this.getLevel = function () {
             return levelUser_;
+        };
+
+        this.getLevelByTopic = function (topic) {
+          var obj = statistics_.filter(function ( obj ) {
+            return obj.topicName == topic;
+          })[0];
+          return obj.topicLevel;
+
         };
 
         this.getPrivilege = function () {

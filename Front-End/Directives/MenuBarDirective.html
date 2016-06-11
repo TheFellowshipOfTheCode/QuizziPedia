@@ -6,16 +6,6 @@
 * pulsante per ogni oggetto ricevuto come parametro, ogni pulsante viene
 * rappresentato con un’icona e con un testo. Al click di un pulsante viene
 * invocata la funzione ad esso associata;
-* Relations with other classes:
-* + Index;
-* + SearchDirective;
-* + LoginDirective;
-* + SignUpBarDirective;
-* + UserBarDirective;
-* + ProfileManagementBarDirective;
-* + QuestionsManagementBarDirective;
-* + LogoutBarDirective;
-* + QuestionnarireManagementBarDirective.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -33,10 +23,10 @@
 
 <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print ng-isolate-scope _md _md-closed _md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
   <header class="nav-header">
-    <a ng-href="/" class="logo" href="/">
+    <div href="" class="logo" ng-click="backToHome()">
       <img src="Images/Icons/logo.png" alt="" data-pin-nopin="true">
       <h1 class="md-heading">QuizziPedia</h1>
-    </a>
+    </div>
   </header>
   <md-content flex="" role="navigation" class="menu _md flex">
     <user-bar-directive ng-if="userLogged != undefined"></user-bar-directive>
@@ -46,5 +36,6 @@
     <login-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.loginBarDirective != undefined"></login-bar-directive>
     <sign-up-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.signUpBarDirective != undefined"></sign-up-bar-directive>
     <logout-bar-directive class="hideMeOnDesktop" ng-if="directivesChoose.logoutBarDirective != undefined"></logout-bar-directive>
+    <md-button aria-label="aria-label"  class="md-primary md-raised" ng-click="showListBottomSheet()">{{listOfKeys.changeLang}}</md-button>
   </md-content>
 </md-sidenav>

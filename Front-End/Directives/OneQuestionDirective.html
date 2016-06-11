@@ -1,0 +1,77 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Directives::OneQuestionDirective;
+* Description: rappresenta il componente grafico che visualizza all’utente
+  l’anteprima della domanda che ha creato. Eseguendo l’azione di click sul
+  pulsante di modifica sarà possibile modificare tale domanda. All’interno di
+  QuestionsManagementsView verranno stampati a video tanti componenti quanti
+  presenti nello $scope isolato ad esso associato;
+* Creation data: 04-05-2016;
+* Author: Alberto Ferrara;
+* License: MIT.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: OneQuestionDirective_20160504
+* Update data: 04-05-2016
+* Description: Creata la classe e scritto il codice html;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+
+<md-toolbar class="modifyQuestionTitle toolbar-section toolbar-top">
+  <div class="md-toolbar-tools">
+    <h2 class="hideMeOn600">
+      <span ng-if="questions.length==0"> {{listOfKeys.thereAreLang}} 0 {{listOfKeys.questionsLang}}. </span>
+      <span ng-if="questions.length==1"> {{listOfKeys.thereIsLang}} {{questions.length}} {{listOfKeys.questionLang}}. </span>
+        <span ng-if="questions.length>1"> {{listOfKeys.thereAreLang}} {{questions.length}} {{listOfKeys.questionsLang}}. </span>
+      </span>
+    </h2>
+    <span flex=""></span>
+    <md-button aria-label="aria-label"  ng-if="questions.length != 0" class="md-raised " ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button aria-label="aria-label"  ng-if="questions.length != 0" class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <span ng-if="questions.length != 0" class="hideMeOn600"> {{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
+  </div>
+</md-toolbar>
+
+<section ng-if="questions.length != 0" class="question-edit md-whiteframe-1dp" ng-repeat="q in questions | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center">
+
+  <md-toolbar class="toolbar-section">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>{{$index+1+pageSize*currentPage}})
+             <span class="hideMeOn600"> {{listOfKeys.questionCreatedWith}} </span>
+             {{q.makeWith}}</span>
+        </h2>
+        <span flex=""></span>
+        <md-button aria-label="aria-label"  class="md-raised" ng-click="editQuestion(q._id)" aria-label="{{listOfKeys.modifyButtonOneQuestion}}">
+          {{listOfKeys.modifyButtonOneQuestion}}
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <div class="md-padding">
+      <ul>
+        <li ng-repeat="d in q.question" ng-switch on="d.type" class="md-whiteframe-1dp li-question" ng-class-odd="'odd'" ng-class-even="'even'">
+          <p class="question-type">{{listOfKeys.questionTypeLang}}: {{d.type}}</p>
+          <p class="inline-text">{{listOfKeys.questionTextLang}}:</p>
+          <div class="inline-text" ng-switch-when="veroFalso"> <true-false-answer-preview-directive></true-false-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="rispostaMultipla"> <multiple-choice-answer-preview-directive></multiple-choice-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="collegamento"> <linking-answer-preview-directive></linking-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="ordinamentoStringhe"> <sort-text-answer-preview-directive></sort-text-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="ordinamentoImmagini">  <sort-images-answer-preview-directive></sort-images-answer-preview-directive> </div>
+          <div class="inline-text" ng-switch-when="spaziVuoti"> <empty-space-answer-preview-directive></empty-space-answer-preview-directive> </div>
+        </li>
+      </ul>
+    </div>
+</section>
+
+<md-toolbar ng-if="questions.length != 0" class="modifyQuestionTitle toolbar-section toolbar-bottom">
+  <div class="md-toolbar-tools">
+    <span flex=""></span>
+    <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage <= 0" ng-click="goBack()"><<</md-button>
+    <md-button aria-label="aria-label"  class="md-raised" ng-disabled="currentPage >= numberOfPages(questions.length)-1" ng-click="goOn()">>></md-button>
+    <span class="hideMeOn600">{{listOfKeys.pageLang}} {{currentPage+1}} {{listOfKeys.ofLang}} {{numberOfPages(questions.length)}}</span>
+  </div>
+</md-toolbar>

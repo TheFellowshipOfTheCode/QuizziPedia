@@ -1,10 +1,31 @@
-// config/passport.js
+/*******************************************************************************
+ * Name: QuizziPedia::Back-End::Config::Passport;
+ * Description: classe che permette la registrazione all'applicazione.
+ * Creation data: 27-04-2016;
+ * Author: Franco Berton.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: Config_20160427;
+ * Update data: 27-04-2016;
+ * Description: Creata classe e inserite procedure necessarie all'avvio del
+ * server;
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ * * ID: Config_20160427;
+ * Update data: 01-05-2016;
+ * Description: Creati i metodi: exports(), use();
+ * Autore: Franco Berton.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
 
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
 var User        = require('../App/Model/UserModel');
+var Topic = require('../App/Model/TopicModel');
 
 
 // expose this function to our app using module.exports
@@ -43,15 +64,19 @@ module.exports = function(passport) {
             process.nextTick(function() {
                 // find a user whose username is the same as the forms username
                 // we are checking to see if the user trying to login already exists
-                User.findOne({'username' : username, 'email' : req.param('email')}, function(err, user) {
+                User.findOne({$or: [{'username' : username}, {'email' : req.body.email}]}, function(err, user) {
                     if (err)
                         return done(err);
                     // check to see if theres already a user with that email
                     if (user) {
-                        if (user.username)
-                            return done(null, false, req.flash('signupMessage', 'Username già presente'));
-                        else
-                            return done(null, false, req.flash('signupMessage', 'Email già presente'));
+                        if (user.username == username && user.email == req.body.email)
+                            return done(null, false, {code:4,title:'Errore Registrazione',message: 'Username e Email già presente'});
+                        else {
+                            if (user.email === req.body.email)
+                                return done(null, false, {code:3, title:'Errore Registrazione', message: 'Email già presente'})
+                            else
+                                return done(null, false, {code:2, title:'Errore Registrazione', message: 'Username già presente'})
+                        }
                     } else {
 
                         // if there is no user with that email
@@ -61,20 +86,28 @@ module.exports = function(passport) {
                         // set the user's local credentials
                         newUser.password 	  = newUser.generateHash(password)
                         newUser.username      = username;
-                        newUser.email    	  = req.param('email');
-                        newUser.surname 	  = req.param('surname');
-                        newUser.name    	  = req.param('name');
-                        newUser.privilege     = 'normal'
-                        // save the user
-                        newUser.save(function(err) {
-                            if (err)
+                        newUser.email    	  = req.body.email;
+                        newUser.surname 	  = req.body.surname;
+                        newUser.name    	  = req.body.name;
+                        newUser.privilege     = 'normal';
+                        Topic.find({},function(err,topics){
+                            if(err)
                                 throw err;
-                            return done(null, newUser);
+                            topics.forEach(function(topic){
+                                newUser.statistics.push({
+                                    topicName: topic.name
+                                });
+                            });
+                            // save the user
+                            newUser.save(function(err) {
+                                if (err)
+                                    throw err;
+                                return done(null, newUser,{code:1, title:'Registrazione', message: 'Registrazione avvenuta con successo'});
+                            });
                         });
+
                     }
-
                 });
-
             });
 
         }));
@@ -91,8 +124,8 @@ module.exports = function(passport) {
             // callback with email and password from our form
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            //var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
-            User.findOne( {'username': username} , function(err, user) {
+            var UsernameOrEmail = (username.indexOf('@') === -1) ? {'username': username} : {'email': username};
+            User.findOne( UsernameOrEmail , function(err, user) {
                 if (err)
                     return done(err);
 

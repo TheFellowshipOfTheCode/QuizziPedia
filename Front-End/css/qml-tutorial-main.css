@@ -1,0 +1,14 @@
+qml-tutorial-directive {
+  margin: auto;
+  width: 80%;
+  margin-top: 2em;
+  font-size: 1.2em;
+}
+
+blockquote {
+  border-left: 0px;
+}
+
+li> p {
+  margin-bottom: 0px;
+}

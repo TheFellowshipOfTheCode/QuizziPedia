@@ -1,0 +1,30 @@
+<!--
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::Directives::TopicKeywordsDirective;
+ * Description: direttiva per impostare l'argomento e le parole chiave;
+ * Creation data: 03-05-2016;
+ * Author: Simone Magagna;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: TopicKeywordsDirective_20160503;
+ * Update data: 03-05-2016;
+ * Description: Creata la classe;
+ * Author: Simone Magagna.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+-->
+<md-input-container class="md-block" ng-controller="AppController">
+    <label>{{listOfKeys.keywordTopicKeywordsDirective}}</label>
+    <input ng-model="quiz.keyword">
+</md-input-container>
+
+<md-input-container class="md-block" ng-controller="AppController">
+    <label>{{listOfKeys.argumentTopicKeywordsDirective}}</label>
+    <md-select ng-model="quiz.topic" md-selected-text="getSelectedText()">
+        <md-optgroup label={{listOfKeys.argumentsTopicKeywordsDirective}}>
+            <md-option ng-value="topic" ng-repeat="topic in topics">{{topic}}</md-option>
+        </md-optgroup>
+    </md-select>
+</md-input-container>

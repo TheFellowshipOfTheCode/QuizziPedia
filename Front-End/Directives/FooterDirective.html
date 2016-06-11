@@ -2,10 +2,6 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Directives::FooterDirective;
  * Description: directive contenente i componenti grafici del footer dell'applicazione;
- *
- * Relations with other classes:
- * + Index
- *
  * Creation data: 28-04-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
@@ -28,7 +24,7 @@
 
 <footer class="md-whiteframe-z2">
     <div class="container-fluid">
-        <div layout="row" layout-sm="column" layout-align="center">
+        <div layout="row" layout-xs="column" layout-align="center">
             <div class="col-md-6">
                 <h3 class="ng-binding">QuizziPedia</h3>
                 <p class="text-lighten-4">{{listOfKeys.footerDescription}}</p>
@@ -43,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class=" madeBy text-center md-whiteframe-1dp">
+    <div class=" madeBy text-center">
         <div class="container-fluid">
           <span class="developed" aria-label="{{listOfKeys.developed}} "> &lt;/&gt; </span>
           {{listOfKeys.with}}

@@ -1,0 +1,35 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::quiz-small;
+ *
+ * Creation data: 12-05-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: quiz-small_20160526
+ * Update data: 26-05-2016
+ * Description: Aggiornato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ * ID: quiz-small_20160512
+ * Update data: 12-05-2016
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+ .pie-chart {
+   width: 250px !important;
+   height: 250px !important;
+ }
+
+ .mark {
+     margin-top: -2.75em;
+     padding-bottom: 2em;
+     font-size: 5em;
+     background-color: initial;
+ }
+
+ .mark-lang {
+    font-size: 0.23em !important;
+}

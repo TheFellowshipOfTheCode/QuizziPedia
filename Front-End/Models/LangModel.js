@@ -3,17 +3,22 @@
 * Description: rappresenta le informazioni per la giusta traduzione
 * dell’applicazione. Viene utilizzata per racchiudere tutte le informazioni
 * riguardanti la giusta traduzione dell’applicazione;
-* Relations with other classes:
-* + AppRun.
+ *
+ * 
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
 ********************************************************************************
 * Updates history
+ *-------------------------------------------------------------------------------
+ * ID: LangModel_20160427;
+ * Update data: 27-04-2016;
+ * Description: Inseriti i metodi getter;
+ * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
-* ID: LangModel_20160429;
-* Update data: 29-04-2016;
-* Description: Scritta la classe;
+* ID: LangModel_20160427;
+* Update data: 27-04-2016;
+* Description: Inseriti i metodi setter;
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 * ID: LangModel_20160427;

@@ -1,0 +1,54 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::QuestionsManagementView;
+* Description: view contenente le form dedicate alla visualizzazione di domande;
+* Creation data: 04-05-2016;
+* Author: Alberto Ferrara.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: QuestionsManagementView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: CreateWithWizardView_20160504;
+* Update data: 04-05-2016;
+* Description: creazione view;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
+
+<div layout="column" flex id="content" role="main" ng-controller="AppController" >
+
+    <div class="layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+        <section class="question-creation md-whiteframe-z1" layout-sm="column" layout-align="center">
+            <md-toolbar class="md-primary toolbar">
+                <div class="md-toolbar-tools">
+                    <span flex="" class="flex"></span>
+                    <h2 class="ng-binding">{{listOfKeys.titleLangQuestionsManagement}}</h2>
+                    <span flex="" class="flex"></span>
+                </div>
+            </md-toolbar>
+
+            <new-question-button-directive></new-question-button-directive>
+
+            <span ng-if="questions === undefined">
+              <div class="spinner">
+                <img src="Images/Icons/reload.svg"/>
+              </div>
+            </span>
+
+            <div ng-if="questions != undefined">
+              <one-question-directive></one-question-directive>
+            </div>
+
+        </section>
+
+    </div>
+
+</div>

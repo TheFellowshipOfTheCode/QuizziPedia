@@ -3,8 +3,6 @@
 * Description: directive contenente il componente che permette di effettuare
 * il redirect alla pagina di gestione delle domande. Permette di effettuare
 * il redirect alla pagina di gestione delle domande;
-* Relations with other classes:
-* + MenuBarDirective.
 * Creation data: 27-04-2016;
 * Author: Matteo Granzotto;
 * License: MIT.
@@ -21,9 +19,9 @@
 app.directive('questionnaireManagementBarDirective', questionnaireManagementBarDirective);
 
 function questionnaireManagementBarDirective() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'Directives/QuestionnaireManagementBarDirective.html'
-    };
-    return directive;
+  var directive = {
+    restrict: 'E',
+    templateUrl: 'Directives/QuestionnaireManagementBarDirective.html'
+  };
+  return directive;
 }

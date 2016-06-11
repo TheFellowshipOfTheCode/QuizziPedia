@@ -1,0 +1,111 @@
+<!--
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::Views::UserView;
+* Description: view per la visualizzazione della modalità allenamento;
+* Creation data: 12-05-2016;
+* Author: Matteo Granzotto.
+********************************************************************************
+* Updates history
+*-------------------------------------------------------------------------------
+* ID: UserView_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornata la view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: CreateWithWizardView_20160512;
+* Update data: 12-05-2016;
+* Description: creazione view;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+-->
+<!-- Metadata -->
+<title ng-bind="ngMeta.title"></title>
+<meta name="description" content="{{ngMeta.description}}" />
+<div ng-controller="AppController">
+
+  <div class=" training layout-sm-column layout-align-center layout-column" layout="column" layout-align="center"  >
+
+    <div class="spinner" ng-if="trainingIsLoaded == false">
+      <img src="Images/Icons/reload.svg"/>
+    </div>
+    <section class="sezione md-whiteframe-z1" layout-sm="column" layout-align="center" ng-if="trainingIsLoaded == true">
+      <md-toolbar class="md-primary toolbar">
+        <div class="md-toolbar-tools">
+          <span flex="" class="flex"></span>
+          <h3 ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="ng-binding">
+            {{listOfKeys.questionNumberLang}} {{questionNumberOnTraining}}
+            <span ng-if="training.getNumberOfQuestions() != 0">
+             {{listOfKeys.ofLang}}
+             {{training.getNumberOfQuestions()}}
+           </span>
+          </h3>
+          <h3 ng-if="training === undefined" class="ng-binding">
+            {{listOfKeys.training}}
+          </h3>
+          <h3 ng-if="traininIsFinished == true " class="ng-binding">
+            {{listOfKeys.endOfTraining}}
+          </h3>
+         <span flex="" class="flex"></span>
+        </div>
+      </md-toolbar>
+      <div class="md-padding">
+
+        <div ng-if="training === undefined">
+          <training-set-up-directive></training-set-up-directive>
+        </div>
+
+        <div ng-controller="QuestionsController" >
+          <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " >
+            <div class="spinner" ng-if="question === undefined">
+              <img src="Images/Icons/reload.svg"/>
+            </div>
+            <div ng-if="question != undefined">
+              <header-text-question-directive></header-text-question-directive>
+              <div ng-repeat="d in question.getQuestion()" ng-switch on="d.type">
+                <div ng-switch-when="veroFalso"> <true-false-answer-directive></true-false-answer-directive> </div>
+                <div ng-switch-when="rispostaMultipla"> <multiple-choice-answer-directive></multiple-choice-answer-directive> </div>
+                <div ng-switch-when="collegamento"> <linking-answer-directive></linking-answer-directive> </div>
+                <div ng-switch-when="ordinamentoStringhe"> <sort-text-answer-directive></sort-text-answer-directive> </div>
+                <div ng-switch-when="ordinamentoImmagini">  <sort-images-answer-directive></sort-images-answer-directive> </div>
+                <div ng-switch-when="spaziVuoti"> <empty-space-answer-directive></empty-space-answer-directive> </div>
+                {{answerGiven($index)}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div ng-if="traininIsFinished == true ">
+          <end-training-directive></end-training-directive>
+        </div>
+
+        <div ng-if="training === undefined" class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button aria-label="aria-label"  id="startTraining" class="button-answer start-training md-primary md-raised md-button md-ink-ripple flex-60" type="button" name="button" ng-click='starTraining(selectedTopicOnMind,selectedKeywords, false)'>
+            {{listOfKeys.goToTraining}}
+          </button>
+        </div>
+
+        <div ng-if="traininIsFinished == true " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-sm="column" layout-align="center">
+          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='goBackToSetUp()'>
+            {{listOfKeys.goBackToSetUp}}
+          </button>
+          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='resetTraining()'>
+            {{listOfKeys.restartTraining}}
+          </button>
+        </div>
+
+        <div ng-if="traininIsFinished == false && training != undefined && (questionNumberOnTraining <= training.getNumberOfQuestions() || training.getNumberOfQuestions() == 0) " class="button-go-to-training layout-align-center-stretch layout-row" layout="row" layout-xs="column" layout-align="center">
+          <button aria-label="aria-label"   class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='newQuestion()'>
+            {{listOfKeys.buttonNextQuestionLang}}
+          </button>
+          <button aria-label="aria-label"  class="button-answer md-primary md-raised md-button md-ink-ripple flex" type="button" name="button" ng-click='endTraining()'>
+            {{listOfKeys.buttonEndTrainingLang}}
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+</div>

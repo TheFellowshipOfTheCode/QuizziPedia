@@ -1,0 +1,52 @@
+/*******************************************************************************
+ * Name: QuizziPedia::Front-End::CSS::error-page-main;
+ * Creation data: 01-06-2016;
+ * Author: Matteo Granzotto;
+ * License: MIT.
+ ********************************************************************************
+ * Updates history
+ * ID: error-page-main_20160601;
+ * Update data: 01-06-2016;
+ * Description: Creato css;
+ * Author: Matteo Granzotto.
+ *-------------------------------------------------------------------------------
+ *******************************************************************************/
+
+.errore {
+  width: 90%;
+  margin: auto;
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.sheep {
+  margin: auto;
+  text-align: center;
+  margin-top: -4em;
+}
+
+.sheep-head, .sheep-body {
+  position: relative;
+}
+
+.sheep-head {
+  z-index: 10;
+  width: 30%;
+  margin-right: -34%;
+}
+
+.sheep-body {
+  z-index: 5;
+  width: 40%;
+  margin-top: 10%;
+}
+
+.sentence {
+  width: 50%;
+  margin: auto;
+}
+
+.sentence h1 {
+  text-align: center;
+}

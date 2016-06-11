@@ -44,7 +44,7 @@
     "angular-dragdrop": "*",
     "angular-number-picker": "1.2.6",
     "jquery-ui-touch-punch": "*",
-    "chartjs": "1.1.1",
+    "chartjs": "~1.0.1",
     "angles": "*",
     "juicy-ace-editor": "*",
     "angular-bootstrap": "*",

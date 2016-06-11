@@ -19,14 +19,14 @@
   + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RP/TheFellowshipOfTheCode.pdf)
 
 ### Revisione di qualifica
-    + [Documenti](https://goo.gl/qS27Sq) (28/30)
-    + [Presentazione](https://goo.gl/NfOtah) (30/30)
-    + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RQ/TheFellowshipOfTheCode.pdf)
+  + [Documenti](https://goo.gl/qS27Sq) (28/30)
+  + [Presentazione](https://goo.gl/NfOtah) (30/30)
+  + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RQ/TheFellowshipOfTheCode.pdf)
 
 ### Revisione di accettazione
-    + --
-    + --
-    + --
+  + --
+  + --
+  + --
 
 - - -
 ## Installazione

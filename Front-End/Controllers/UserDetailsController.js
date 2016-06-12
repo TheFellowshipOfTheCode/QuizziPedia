@@ -125,7 +125,6 @@ function UserDetailsController($scope, $rootScope, $routeParams, $location, $mdD
     }
 
     function graphResultAfterFinishedATraining(statistics){
-      console.log(statistics);
         var rightAnswers = 0;
         var totalAnswers = 0;
         statistics.forEach(function(elem) {

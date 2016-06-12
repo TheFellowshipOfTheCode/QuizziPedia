@@ -28,7 +28,7 @@
 veroFalso = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
-  
+
             // controllo campi obbligatori
             if(corpo.hasOwnProperty('answer')){
                 if(corpo.answer[0].hasOwnProperty('text') && corpo.answer[0].hasOwnProperty("isItRight")){

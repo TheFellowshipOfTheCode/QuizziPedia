@@ -56,7 +56,7 @@ collegamentoElementi = function(corpo,res, $mdDialog){
                     // nel caso di associazione tra 2 immagini
                     else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
                         valido = true;
-                    } 
+                    }
                 }else{
                     alert = $mdDialog.alert()
                         .title("Errore: struttura errata")
@@ -101,7 +101,7 @@ collegamentoElementi = function(corpo,res, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic"];
+    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;

@@ -56,6 +56,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
 
     $scope.images=[]
     $scope.id = $routeParams.idQuestion;
+    console.log(JSONtoQML.getTempQuestionID());
     if ($scope.id) {
         QuestionsService.getQuestion($scope.id, $routeParams.lang)
             .then(function (result) {
@@ -87,11 +88,15 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             });
     }
     else {
+      console.log("dovrei cancellare l'id");
+      JSONtoQML.deleteTempQuestionID();
+      console.log(JSONtoQML.getTempQuestionID());
       loadTopics(function(data) {
         $scope.topics = data;
       });
     }
     $scope.submitQuestion = function (selectedTopic) {
+        console.log(JSONtoQML.getTempQuestionID());
         var question = document.getElementById('Juiceeditor').value;
         if (question == undefined) {
             alert = $mdDialog.alert()
@@ -129,7 +134,9 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                         var topics = result.data;
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
                         console.log(resultQML);
-                        resultQML._id=JSONtoQML.getTempQuestionID();
+                        if(JSONtoQML.getTempQuestionID()!==undefined) {
+                          resultQML._id=JSONtoQML.getTempQuestionID();
+                        }
                         if (resultQML) {
                             $rootScope.isDownloading=true;
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)

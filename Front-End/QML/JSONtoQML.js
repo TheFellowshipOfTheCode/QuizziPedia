@@ -37,6 +37,8 @@ function JSONtoQML() {
     }
 
     function deleteTempQuestionID() {
+      console.log("Entro qui");
+      idQuestion=undefined;
       delete idQuestion;
     }
 

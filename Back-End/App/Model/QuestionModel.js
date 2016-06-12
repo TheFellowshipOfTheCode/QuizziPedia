@@ -88,7 +88,7 @@ questionSchema.statics.getQuestion=function(questionId,callback) {
 }
 
 questionSchema.statics.getQuestions=function(author, callback){
-    return this.find({'author': author},'_id makeWith language question.type question.questionText', callback);
+    return this.find({'author': author},'_id makeWith language question.type question.questionText question.answers', callback);
 };
 
 questionSchema.statics.saveImages=function(questionId,images,callback){

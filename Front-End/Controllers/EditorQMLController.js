@@ -174,7 +174,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                         .finally(function () {
                                             alert = undefined;
                                         });
-                                    $rootScope.isDownloading=true;
+                                    $rootScope.isDownloading=false;
                                 });
 
                         }

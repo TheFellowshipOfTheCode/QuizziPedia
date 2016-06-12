@@ -21,7 +21,12 @@ function ErrorController ($rootScope, LangModel, LangService) {
     $('.sheep-head').plaxify({"xRange":35,"yRange":35});
     $.plax.enable();
 
-    lang = getLang(geoplugin_countryCode().toLowerCase());
+    var language="it";
+    if(typeof geoplugin_countryCode().toLowerCase() !=='undefined' && geoplugin_countryCode().toLowerCase()) {
+      language=geoplugin_countryCode().toLowerCase()
+    }
+
+    lang = getLang(language);
     lang.then(function(data){
         $rootScope.listOfKeys= data.getListOfKeys();
     }, function(err) {

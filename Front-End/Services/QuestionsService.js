@@ -48,6 +48,7 @@ function QuestionsService($http, $cookies, $q) {
     return methods;
 
     function sendQuestion(question, lang, id) {
+      console.log(JSON.stringify(question));
         var deferred = $q.defer();
         if(id == undefined) {
             $http.post('/api/' + lang + '/userquestion',question)

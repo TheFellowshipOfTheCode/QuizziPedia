@@ -27,7 +27,7 @@
     <span>{{training.getArgument()}}{{quiz.getArgument()}}</span>
   </li>
 </ul>
-<ul>
+<ul ng-if="question.getKeywords().lenght>0">
   <li class="keywords">
     <span>{{listOfKeys.keywords}}: </span>
   </li>

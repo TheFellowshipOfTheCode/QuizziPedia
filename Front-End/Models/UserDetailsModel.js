@@ -72,7 +72,7 @@ function UserDetailsModel() {
                 obj.topicLevel = level;
                 obj.totalAnswers= parseInt(obj.totalAnswers)+1;
                 if(answer) {
-                  obj.correctAnswer= obj.correctAnswers+1;
+                  obj.correctAnswers= obj.correctAnswers+1;
                 }
               }
               return obj;

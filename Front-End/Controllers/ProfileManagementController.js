@@ -171,16 +171,17 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
         }
         else {
             if (userLog.password !== "") {
+              console.log(userLog.image);
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
-                $scope.user.setUserImg(userLog.image)
+                $scope.user.setUserImg(userLog.image);
                 var nome = $scope.user.getName();
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
                 var image = $scope.user.getUserImg();
                 $rootScope.isDownloading=true;
-                UserDetailsService.modifyProfilePwd(nome, cognome, email,image, userLog.password, $routeParams.lang)
+                UserDetailsService.modifyProfilePwd(nome, cognome, email, image, userLog.password, $routeParams.lang)
                     .then(function (result) {
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
@@ -192,11 +193,20 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            AuthService.giveMe($routeParams.lang)
+                                .then(function(result){
+                                    if(result.data != false) {
+                                      var profileImg = false;
+                                      if(result.data.userImg != undefined) {
+                                          $rootScope.userLogged.setUserImg(result.data.userImg);
+                                      }
+                                    }
+                                  });
                             $rootScope.isDownloading=false;
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
-                      if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                      if (err !=undefined && err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
                           alert = $mdDialog.alert()
                               .title(err.data.title)
                               .content(err.data.message)
@@ -213,10 +223,11 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                     })
             }
             else {
+              console.log(userLog.image);
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
-                $scope.user.setUserImg(userLog.image)
+                $scope.user.setUserImg(userLog.image);
                 var nome = $scope.user.getName();
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
@@ -234,11 +245,20 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            AuthService.giveMe($routeParams.lang)
+                                .then(function(result){
+                                    if(result.data != false) {
+                                      var profileImg = false;
+                                      if(result.data.userImg != undefined) {
+                                          $rootScope.userLogged.setUserImg(result.data.userImg);
+                                      }
+                                    }
+                                  });
                             $rootScope.isDownloading=false;
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
-                      if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                      if (err !=undefined && err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
                           alert = $mdDialog.alert()
                               .title(err.data.title)
                               .content(err.data.message)

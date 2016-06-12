@@ -71,6 +71,7 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function uploadImageQuestion(questionId,images,lang,id){
+      console.log(questionId);
         var deferred = $q.defer();
         var formData = new FormData();
         formData.append('edit',id);

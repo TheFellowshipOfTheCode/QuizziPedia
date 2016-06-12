@@ -74,9 +74,16 @@ exports.createQuestion = function(req, res) {
 };
 
 exports.uploadImageQuestion = function(req, res) {
-   upload(req,res,function(err){
-       if (!req.body.edit){
+  console.log("arrivo qua");
+  //console.log(req);
+   upload(req,res, function(err){
+      console.log("arrivo qua");
+      console.log(req.body.edit);
+      console.log(typeof req.body.edit !== 'undefined' && req.body.edit);
+       if (typeof req.body.edit !== 'undefined' && req.body.edit){
+           console.log("arrivo qua");
            Question.saveImages(req.params.questionId,req.files,function(err,question){
+             console.log(req.params.questionId);
                if(err){
                    question.remove(function(err){
                        return res.status(500).json({
@@ -94,12 +101,14 @@ exports.uploadImageQuestion = function(req, res) {
                    });
            })
        }
-       else
+       else {
+          console.log("Arrivo sotto");
            return res.send({
                code: 84,
                title: "Ok Domanda",
                message: "Immagine caricate correttamente"
            });
+      }
 
    })
 };

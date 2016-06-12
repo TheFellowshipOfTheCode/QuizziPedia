@@ -83,7 +83,7 @@ questionSchema.statics.createQuestion=function(author,question, callback){
     return new_question.save(callback);
 };
 
-questionSchema.statics.getQuestion=function(questionId,callback) { 
+questionSchema.statics.getQuestion=function(questionId,callback) {
     return this.findOne({'_id': questionId},'makeWith language question keywords', callback);
 }
 
@@ -94,25 +94,31 @@ questionSchema.statics.getQuestions=function(author, callback){
 questionSchema.statics.saveImages=function(questionId,images,callback){
     return this.findOne({'_id': questionId}, function(err, questionSelected){
         var exit=false;
+        console.log("---------------------------------------------------");
+        console.log(questionId);
         questionSelected.question.forEach(function(question) {
             var found = false;
+            console.log("Ora c'è questa immagine:");
+            console.log(question.image);
             images.forEach(function (image) {
                 if (question.image){
                     if (question.image.replace(" ", "")==(image.filename.replace(" ", ""))) {
                         question.image = image.path.substr(10)
                         found = true;
+                        console.log("Immagine sostituita: ");
+                        console.log(question.image);
                     }
                 }
                 else
                         found = true;
-            })
+            });
             if (found)
                 found = false;
             else{
                 exit=true;
                 return callback("Immagine non caricata",questionSelected)
             }
-            
+
             question.answers.forEach(function (answer) {
                 var found=false;
                 images.forEach(function (image) {
@@ -130,7 +136,7 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
                             found = true;
                         }
                     }
-                    else 
+                    else
                         found=true;
                 })
                 if (found)

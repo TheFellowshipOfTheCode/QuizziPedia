@@ -158,6 +158,7 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
 
 
 questionSchema.statics.editQuestion=function(questionEdited,callback){
+        console.log(questionEdited)
         questionEdited.question.forEach(function (quest) {
             if (quest.image) {
                 quest.image = 'Images/Questions/'+questionEdited._id+'/'+ quest.image.replace(" ", "")

@@ -38,20 +38,20 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        var dir='Front-End/Images/Questions/'+req.params.questionId
-        fs.stat(dir, function(err, stats) {
-            if (err)
-                fs.mkdir(dir, function(err) {
-                    if (!err)
-                        callback(null, dir); // Le immagini verranno uploadate qui
-                })
-            else
-                callback(null, dir);
+            var dir='Front-End/Images/Questions/'+req.params.questionId
+            fs.stat(dir, function(err, stats) {
+                if (err)
+                    fs.mkdir(dir, function(err) {
+                        if (!err)
+                            callback(null, dir); // Le immagini verranno uploadate qui
+                    })
+                else
+                    callback(null, dir);
 
-        });
+            });
     },
     filename: function (req, file, callback) {
-        callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
+            callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
     }
 });
 
@@ -77,39 +77,43 @@ exports.uploadImageQuestion = function(req, res) {
   console.log("arrivo qua");
   //console.log(req);
    upload(req,res, function(err){
-      console.log("arrivo qua");
-      console.log(req.body.edit);
-      console.log(typeof req.body.edit !== 'undefined' && req.body.edit);
-       if (typeof req.body.edit !== 'undefined' && req.body.edit){
-           console.log("arrivo qua");
-           Question.saveImages(req.params.questionId,req.files,function(err,question){
-             console.log(req.params.questionId);
-               if(err){
-                   question.remove(function(err){
-                       return res.status(500).json({
-                           code: 88,
-                           title: "Errore Domanda",
-                           message: "Immagine non caricate"
+    console.log(req.files.length)
+       if (req.files.length>0) {
+           console.log("A")
+           if (typeof req.body.edit !== 'undefined' && req.body.edit) {
+               Question.saveImages(req.params.questionId, req.files, function (err, question) {
+                   if (err) {
+                       question.remove(function (err) {
+                           return res.status(500).json({
+                               code: 88,
+                               title: "Errore Domanda",
+                               message: "Immagine non caricate"
+                           });
+                       })
+                   }
+                   else
+                       return res.send({
+                           code: 84,
+                           title: "Ok Domanda",
+                           message: "Immagine caricate correttamente"
                        });
-                   })
-               }
-               else
-                   return res.send({
-                       code: 84,
-                       title: "Ok Domanda",
-                       message: "Immagine caricate correttamente"
-                   });
-           })
+               })
+           }
+           else {
+               return res.send({
+                   code: 84,
+                   title: "Ok Domanda",
+                   message: "Immagine caricate correttamente"
+               });
+           }
        }
-       else {
-          console.log("Arrivo sotto");
+       else {   console.log("B")
            return res.send({
                code: 84,
                title: "Ok Domanda",
                message: "Immagine caricate correttamente"
            });
-      }
-
+       }
    })
 };
 
@@ -150,6 +154,7 @@ exports.getQuestions = function(req, res) {
 };
 
 exports.editQuestion = function(req, res) {
+    console.log(req.body)
     Question.editQuestion(req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
         else return res.send({code:88, title: "Ok Domanda", message: "Domanda modificata correttamente"});

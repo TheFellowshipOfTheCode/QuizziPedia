@@ -22,9 +22,6 @@ function ErrorController ($rootScope, LangModel, LangService) {
     $.plax.enable();
 
     var language="it";
-    if(typeof geoplugin_countryCode().toLowerCase() !=='undefined' && geoplugin_countryCode().toLowerCase()) {
-      language=geoplugin_countryCode().toLowerCase()
-    }
 
     lang = getLang(language);
     lang.then(function(data){

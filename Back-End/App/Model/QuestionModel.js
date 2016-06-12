@@ -100,9 +100,19 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
             var found = false;
             console.log("Ora c'è questa immagine:");
             console.log(question.image);
+            console.log(images);
+            console.log(images[0]);
             images.forEach(function (image) {
+              console.log(image);
+              console.log(question.image);
                 if (question.image){
-                    if (question.image.replace(" ", "")==(image.filename.replace(" ", ""))) {
+                  var str= question.image.replace(" ", "");
+                  var arr = str.split("/");
+                  questionImage=arr[arr.length-1];
+                    console.log(questionImage);
+                    console.log(image.filename.replace(" ", ""));
+                    console.log(questionImage==(image.filename.replace(" ", "")));
+                    if (questionImage==(image.filename.replace(" ", ""))) {
                         question.image = image.path.substr(10)
                         found = true;
                         console.log("Immagine sostituita: ");

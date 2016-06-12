@@ -71,6 +71,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     return elem.name==topic;
                   });
                   $scope.selectedTopic=topics[0];
+                  $scope.backUpQuestion=JSON.stringify(questionDownloaded, null, 2);
                   $scope.question = JSON.stringify(questionDownloaded, null, 2);
                   $scope.topics = data;
                 });
@@ -95,6 +96,100 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
         $scope.topics = data;
       });
     }
+
+    /*Controllo che il numero di immagini inserite sia lo stesso sia in QML che in $scope.image*/
+    function checkImagesNewQuestion(resultQML, imagesOnScope) {
+      var found = false;
+      var numberOfImages=0;
+      resultQML.question.forEach(function(question) {
+
+          if (question.image){
+              numberOfImages++;
+              found=true;
+          }
+
+          question.answers.forEach(function (answer) {
+              if (answer.url || answer.url1 || answer.url2){
+                numberOfImages++;
+                found = true;
+              }
+          });
+      });
+
+      var goOn=false;
+      if(imagesOnScope.length===numberOfImages) {
+        goOn=true;
+      }
+      return goOn;
+    }
+    /*Controllo che il numero di nuove immagini inserite sia lo stesso sia in QML che in $scope.image*/
+
+    function checkImagesEditQuestion(resultQML, oldQuestion, imagesOnScope) {
+      console.log("vengo chiamato");
+      var found = false;
+      var numberOfImages=0;
+      console.log(resultQML);
+      console.log(angular.fromJson(oldQuestion));
+      resultQML.question.forEach(function(question) {
+
+
+          if (question.image){
+            console.log("+++++++++++++++++++++++++");
+            console.log("Confronto:");
+            console.log(question.image);
+            angular.fromJson(oldQuestion).question.forEach(function(q) {
+                console.log("Con:");
+                console.log(q.image);
+                if (question.image != q.image){
+                    console.log("Sta volta entro: SONO DIVERSI!");
+                    numberOfImages++;
+                    found=true;
+                }
+
+            });
+          }
+          console.log("+++++++++++++++++++++++++");
+
+          question.answers.forEach(function (answer) {
+              if (answer.url || answer.url1 || answer.url2){
+                console.log("Confronto:");
+                console.log(answer.url);
+                console.log(answer.url1);
+                console.log(answer.url2);
+
+                angular.fromJson(oldQuestion).question.forEach(function(q) {
+
+                    q.answers.forEach(function (a) {
+                        console.log("Con:");
+                        console.log(a.url);
+                        console.log(a.url1);
+                        console.log(a.url2);
+                        if (answer.url!=a.url || answer.url1!=a.url1 || answer.url2!=a.url2){
+                          console.log("Sta volta entro: SONO DIVERSI!");
+                          numberOfImages++;
+                          found = true;
+                        }
+                    });
+                });
+                console.log("+++++++++++++++++++++++++");
+
+
+              }
+          });
+      });
+
+      var goOn=false;
+      console.log(imagesOnScope.length);
+      console.log(numberOfImages);
+      if(imagesOnScope.length===numberOfImages) {
+        goOn=true;
+      }
+      console.log(goOn);
+      return goOn;
+    }
+
+
+
     $scope.submitQuestion = function (selectedTopic) {
         console.log(JSONtoQML.getTempQuestionID());
         var question = document.getElementById('Juiceeditor').value;
@@ -134,11 +229,23 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                         var topics = result.data;
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
                         console.log(resultQML);
+                        var goOn;
+                        if($routeParams.idQuestion==undefined) {
+                          console.log("a");
+                          goOn=checkImagesNewQuestion(resultQML, $scope.images);
+                        }
+                        else {
+                          console.log("b");
+                          $scope.backUpQuestion=controlloQML($scope.backUpQuestion, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
+                          goOn=checkImagesEditQuestion(resultQML, $scope.backUpQuestion, $scope.images);
+                        }
+
                         if(JSONtoQML.getTempQuestionID()!==undefined) {
                           resultQML._id=JSONtoQML.getTempQuestionID();
                         }
-                        if (resultQML) {
+                        if (resultQML && goOn) {
                             $rootScope.isDownloading=true;
+                            console.log($routeParams.idQuestion);
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
                                     if (result) {
@@ -184,6 +291,17 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                     $rootScope.isDownloading=false;
                                 });
 
+                        }
+                        else {
+                          alert = $mdDialog.alert()
+                              .title($rootScope.listOfKeys.genericError)
+                              .content($rootScope.listOfKeys.noUploadQuestion)
+                              .ok('Ok');
+                          $mdDialog
+                              .show(alert)
+                              .finally(function () {
+                                  alert = undefined;
+                              });
                         }
 
                     }, function (err) {

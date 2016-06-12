@@ -92,7 +92,7 @@ ordinamentoImmagini = function(corpo,res, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic"];
+    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;

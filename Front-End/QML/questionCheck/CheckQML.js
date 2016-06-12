@@ -66,9 +66,14 @@ controlloQML = function(req, res,selectedTopic, topics, lang, $mdDialog) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[4]) {
+                  console.log("CheckQML collegamentoElementi");
                     success = collegamentoElementi(corpo, res, $mdDialog);
                     if (success) {
+                      console.log("CheckQML collegamentoElementi controllato e passato");
                         return createJSON(corpo, res, "collegamentoElementi", topic, lang);
+                    }
+                    else {
+                      console.log("CheckQML collegamentoElementi controllato e non passato");
                     }
                 }
                 else if (corpo.type == tipologiaDomande[5]) {

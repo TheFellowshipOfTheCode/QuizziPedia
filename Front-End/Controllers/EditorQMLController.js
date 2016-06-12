@@ -128,6 +128,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .then(function (result) {
                         var topics = result.data;
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
+                        console.log(resultQML);
                         resultQML._id=JSONtoQML.getTempQuestionID();
                         if (resultQML) {
                             $rootScope.isDownloading=true;

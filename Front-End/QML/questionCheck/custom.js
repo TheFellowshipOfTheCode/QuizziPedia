@@ -405,7 +405,7 @@ consistenzaOrdinamentoStringhe = function(corpo, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer" ,"url", "keywords", "topic"];
+    var facoltativiString = ["type","questionText","answer" ,"url", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -503,7 +503,7 @@ consistenzaOrdinamentoImmagini = function(corpo, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic"];
+    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -585,7 +585,7 @@ consistenzaRiempimentoSpaziVutoi = function(corpo, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText", "keywords", "topic"];
+    var facoltativiString = ["type","answer","questionText", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;
@@ -646,7 +646,7 @@ consistenzaCollegamentoElementi = function(corpo, $mdDialog){
                         valido = true;
                     }
                                                                                                                         // nel caso di associazione tra 2 immagini
-                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
+                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('url2')){
                         valido = true;
                     } else{
                         alert = $mdDialog.alert()
@@ -703,7 +703,7 @@ consistenzaCollegamentoElementi = function(corpo, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic"];
+    var facoltativiString = ["type","questionText","answer","url", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;

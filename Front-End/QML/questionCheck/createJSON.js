@@ -200,7 +200,7 @@ createJSONordinamentoStringhe = function(corpo){
 }
 
 createJSONcollegamentoElementi = function(corpo){
-    // var jsonString = "\"type\" : \"collegamento\" ,";
+    var jsonString = "\"type\" : \"collegamento\" ,";
     jsonString = jsonString + " \n \"questionText\" : " + "\"" + corpo.questionText + "\",";
     if(corpo.hasOwnProperty('image')){
         jsonString = jsonString + " \n \"image\" : " + "\"" +corpo.image + "\",";

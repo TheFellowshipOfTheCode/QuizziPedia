@@ -54,7 +54,7 @@ collegamentoElementi = function(corpo,res, $mdDialog){
                         valido = true;
                     }
                     // nel caso di associazione tra 2 immagini
-                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('ur')){
+                    else if(corpo.answer[k].hasOwnProperty('url1') && corpo.answer[k].hasOwnProperty('url2')){
                         valido = true;
                     }
                 }else{

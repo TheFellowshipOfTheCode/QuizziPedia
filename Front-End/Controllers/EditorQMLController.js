@@ -109,7 +109,15 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
           }
 
           question.answers.forEach(function (answer) {
-              if (answer.url || answer.url1 || answer.url2){
+              if (answer.url){
+                numberOfImages++;
+                found = true;
+              }
+              if (answer.url1){
+                numberOfImages++;
+                found = true;
+              }
+              if (answer.url2){
                 numberOfImages++;
                 found = true;
               }
@@ -164,7 +172,17 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                         console.log(a.url);
                         console.log(a.url1);
                         console.log(a.url2);
-                        if (answer.url!=a.url || answer.url1!=a.url1 || answer.url2!=a.url2){
+                        if (answer.url!=a.url){
+                          console.log("Sta volta entro: SONO DIVERSI!");
+                          numberOfImages++;
+                          found = true;
+                        }
+                        if (answer.url1!=a.url1){
+                          console.log("Sta volta entro: SONO DIVERSI!");
+                          numberOfImages++;
+                          found = true;
+                        }
+                        if (answer.url2!=a.url2){
                           console.log("Sta volta entro: SONO DIVERSI!");
                           numberOfImages++;
                           found = true;
@@ -239,6 +257,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                           $scope.backUpQuestion=controlloQML($scope.backUpQuestion, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
                           goOn=checkImagesEditQuestion(resultQML, $scope.backUpQuestion, $scope.images);
                         }
+                        console.log(goOn);
 
                         if(JSONtoQML.getTempQuestionID()!==undefined) {
                           resultQML._id=JSONtoQML.getTempQuestionID();

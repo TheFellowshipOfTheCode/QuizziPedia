@@ -61,6 +61,12 @@ function JSONtoQML() {
       else { // domanda non custom
           var tempAnswer=questionDownloaded.question[0].answers;
           var qD= questionDownloaded.question[0];
+          if(qD.type=="spaziVuoti") {
+            qD.type="riempimentoSpaziVuoti";
+          }
+          if(qD.type=="collegamento") {
+            qD.type="collegamentoElementi";
+          }
           delete qD.answers;
           qD.answer=tempAnswer;
           qD.keywords=questionDownloaded.keywords;

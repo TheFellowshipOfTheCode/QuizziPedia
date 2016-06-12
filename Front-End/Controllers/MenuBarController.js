@@ -55,7 +55,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$routeParams.lang+'/login');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/login');
+      $location.path('/it/login');
     }
     toggleOnlyOnMobile();
   };
@@ -65,7 +65,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$routeParams.lang+'/signup');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/signup');
+      $location.path('/it/signup');
     }
     toggleOnlyOnMobile();
   };
@@ -75,7 +75,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$routeParams.lang+'/userpage');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/userpage');
+      $location.path('/it/userpage');
     }
     toggleOnlyOnMobile();
   };
@@ -85,7 +85,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$routeParams.lang+'/profilemanagement');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/profilemanagement');
+      $location.path('/it/profilemanagement');
     }
     toggleOnlyOnMobile();
   };
@@ -95,7 +95,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$routeParams.lang+'/questions');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/questions');
+      $location.path('/it/questions');
     }
     toggleOnlyOnMobile();
   };
@@ -105,7 +105,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$routeParams.lang+'/questionnairemanagement');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/questionnairemanagement');
+      $location.path('/it/questionnairemanagement');
     }
     toggleOnlyOnMobile();
   };
@@ -130,7 +130,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
             $location.path('/'+$routeParams.lang+'/home');
           }
           else {
-            $location.path('/'+geoplugin_countryCode().toLowerCase()+'/home');
+            $location.path('/it/home');
           }
           toggleOnlyOnMobile();
         });
@@ -142,7 +142,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
       $location.path('/'+$rootScope.systemLang+'/home');
     }
     else {
-      $location.path('/'+geoplugin_countryCode().toLowerCase()+'/home');
+      $location.path('/it/home');
     }
     toggleOnlyOnMobile();
   }

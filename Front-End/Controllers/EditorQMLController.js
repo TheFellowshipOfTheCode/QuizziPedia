@@ -39,6 +39,7 @@ EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'Question
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML, $window) {
 
+
     if ($rootScope.listOfKeys!=undefined){
         metaData();
     }
@@ -138,6 +139,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
       var numberOfImages=0;
       console.log(resultQML);
       console.log(angular.fromJson(oldQuestion));
+      var arrOne=[];
       resultQML.question.forEach(function(question) {
 
 
@@ -148,7 +150,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             angular.fromJson(oldQuestion).question.forEach(function(q) {
                 console.log("Con:");
                 console.log(q.image);
-                if (question.image != q.image){
+                if (question.image && q.image && question.image != q.image){
                     console.log("Sta volta entro: SONO DIVERSI!");
                     numberOfImages++;
                     found=true;
@@ -158,42 +160,56 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
           }
           console.log("+++++++++++++++++++++++++");
 
+
           question.answers.forEach(function (answer) {
-              if (answer.url || answer.url1 || answer.url2){
-                console.log("Confronto:");
-                console.log(answer.url);
-                console.log(answer.url1);
-                console.log(answer.url2);
+            if (answer.url!=undefined){
+              arrOne.push(answer.url);
+            }
+            if (answer.url1!=undefined){
+              arrOne.push(answer.url1);
+            }
+            if (answer.url2!=undefined){
+              arrOne.push(answer.url2);
+            }
+          });
+          console.log(arrOne);
 
-                angular.fromJson(oldQuestion).question.forEach(function(q) {
-
-                    q.answers.forEach(function (a) {
-                        console.log("Con:");
-                        console.log(a.url);
-                        console.log(a.url1);
-                        console.log(a.url2);
-                        if (answer.url!=a.url){
-                          console.log("Sta volta entro: SONO DIVERSI!");
-                          numberOfImages++;
-                          found = true;
-                        }
-                        if (answer.url1!=a.url1){
-                          console.log("Sta volta entro: SONO DIVERSI!");
-                          numberOfImages++;
-                          found = true;
-                        }
-                        if (answer.url2!=a.url2){
-                          console.log("Sta volta entro: SONO DIVERSI!");
-                          numberOfImages++;
-                          found = true;
-                        }
-                    });
-                });
-                console.log("+++++++++++++++++++++++++");
-
-
+      });
+      console.log(angular.fromJson(oldQuestion));
+      angular.fromJson(oldQuestion).question.forEach(function(q) {
+        console.log(q);
+          q.answers.forEach(function (answer) {
+            console.log(answer);
+              if (answer.url!=undefined){
+                var a = arrOne.indexOf(answer.url);
+                console.log(a);
+                if(a!=-1) {
+                  delete arrOne[a];
+                }
+              }
+              if (answer.url1!=undefined){
+                var a = arrOne.indexOf(answer.url1);
+                console.log(a);
+                if(a!=-1) {
+                  delete arrOne[a];
+                }
+              }
+              if (answer.url2!=undefined){
+                var a = arrOne.indexOf(answer.url2);
+                console.log(a);
+                if(a!=-1) {
+                  delete arrOne[a];
+                }
               }
           });
+      });
+
+      console.log(arrOne);
+
+      arrOne.forEach(function(value) {
+        if(value!=null) {
+          numberOfImages++;
+        }
       });
 
       var goOn=false;
@@ -208,9 +224,33 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
 
 
 
+      var _session;
+      $scope.aceLoaded = function(_editor){
+        // Editor part
+        _session = _editor.getSession();
+        var _renderer = _editor.renderer;
+
+        _session.setUndoManager(new ace.UndoManager());
+        _renderer.setShowGutter(true);
+
+      };
+
+      $scope.aceChanged = function(e) {
+        $scope.domanda=e;
+        console.log(e);
+        console.log(_session.getValue());
+        $scope.questionOnEditor=_session.getValue();
+      };
+
     $scope.submitQuestion = function (selectedTopic) {
         console.log(JSONtoQML.getTempQuestionID());
-        var question = document.getElementById('Juiceeditor').value;
+
+        //var question = document.getElementById('Juiceeditor').value;
+        //var ok = document.getElementById('Juiceeditor').value;
+        //console.log(ok);
+        //var question = angular.fromJson(JSON.stringify($scope.question));
+        var question = $scope.questionOnEditor;
+        console.log(question);
         if (question == undefined) {
             alert = $mdDialog.alert()
                 .title($rootScope.listOfKeys.genericError)
@@ -226,6 +266,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             var result = '';
             try {
                 result = jsonlint.parse(question.toString());
+                console.log(result);
             }
             catch (e) {
                 alert = $mdDialog.alert()
@@ -254,7 +295,8 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                         }
                         else {
                           console.log("b");
-                          $scope.backUpQuestion=controlloQML($scope.backUpQuestion, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
+                          console.log(JSON.stringify(angular.fromJson($scope.backUpQuestion)));
+                          $scope.backUpQuestion=controlloQML(JSON.stringify(angular.fromJson($scope.backUpQuestion)), res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
                           goOn=checkImagesEditQuestion(resultQML, $scope.backUpQuestion, $scope.images);
                         }
                         console.log(goOn);

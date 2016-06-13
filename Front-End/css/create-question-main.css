@@ -279,3 +279,7 @@
 .button-tutorial {
   width: 80%;
 }
+
+.ace_editor  {
+  height : 768px;
+}

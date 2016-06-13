@@ -39,7 +39,12 @@ function HomeController ($rootScope,$scope, $location, $routeParams,ngMeta) {
   $scope.search = function(){
     var tosearch = document.getElementById("lookingfor").value;
     if(tosearch){
-        $location.path("/" + $routeParams.lang + "/search/" + tosearch);
+        if($routeParams.lang!=undefined) {
+          $location.path("/" + $routeParams.lang + "/search/" + tosearch);
+        }
+        else {
+          $location.path("/it/search/" + tosearch);
+        }
     }
   }
 }

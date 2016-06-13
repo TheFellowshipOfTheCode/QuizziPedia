@@ -26,6 +26,7 @@
 
 controlloQML = function(req, res,selectedTopic, topics, lang, $mdDialog) {
 
+    console.log(req.toString());
     var corpo = JSON.parse(req);
     corpo.topic=selectedTopic;
     var success;

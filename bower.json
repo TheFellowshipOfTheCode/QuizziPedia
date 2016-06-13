@@ -50,7 +50,8 @@
     "angular-bootstrap": "*",
     "ngMeta": "0.3.9",
     "webcomponentsjs" : "0.7.22",
-    "angular-marked": "1.2.0"
+    "angular-marked": "1.2.0",
+    "angular-ui-ace":"0.2.3"
   },
   "ignore": [
     "**/.*",

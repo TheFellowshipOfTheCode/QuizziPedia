@@ -16,7 +16,7 @@ describe('my app', function() {
 /* OK FUNZIONA */
   it('should test home view', function() {
             browser.get('it/home');
-            element(by.id('lookingfor')).sendKeys('utente ricercato');
+            //element(by.id('lookingfor')).sendKeys('utente ricercato');
             element(by.id('searchButton')).click();
             element(by.id('goToTrainingButton')).click();
         });
@@ -154,7 +154,7 @@ describe('my app', function() {
     });
 */
     /* NON COMPLETO, MANCA CHIUSA POPUP*/
-    it('should test a questionnaire view', function() {
+/*    it('should test a questionnaire view', function() {
 
         browser.waitForAngular();
 
@@ -191,7 +191,7 @@ describe('my app', function() {
        // element(by.id('endQuizButton')).click();
 
     });
-
+*/
 /* NON COMPLETO, MANCA SELEZIONE TOPIC*/
     /*
     it('should test creation question view', function() {

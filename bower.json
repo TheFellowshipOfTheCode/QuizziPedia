@@ -46,7 +46,6 @@
     "jquery-ui-touch-punch": "*",
     "chartjs": "~1.0.1",
     "angles": "*",
-    "juicy-ace-editor": "*",
     "angular-bootstrap": "*",
     "ngMeta": "0.3.9",
     "webcomponentsjs" : "0.7.22",

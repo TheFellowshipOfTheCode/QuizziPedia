@@ -83,7 +83,7 @@ Il gruppo [TheFellowshipOfTheCode](http://thefellowshipofthecode.github.io/) è 
 Segnala i bugs che trovi in [QuizziPedia](https://quizzipedia.herokuapp.com) nella sezione [issues](https://github.com/TheFellowshipOfTheCode/QuizziPedia/issues) della repository.
 - - -
 
-## Log building
+## Logs
 Rimani sempre aggiornato sulle build di [QuizziPedia](https://quizzipedia.herokuapp.com) iscrivendoti nel nostro canale [#build](https://fellowshipofthecode.slack.com/messages/build/) di [Slack](https://slack.com/).
 
 - - -
@@ -91,4 +91,7 @@ Rimani sempre aggiornato sulle build di [QuizziPedia](https://quizzipedia.heroku
 ## Community
 Scambia le tue idee con il team. Iscriviti nel nostro canale pubblico [QuizziPedia](https://telegram.me/quizzipedia) di [Telegram](https://telegram.org/).
 - - -
+
+## Browser supportati
+Nella seguente [tabella](https://goo.gl/1Lw8jw) sono indicate quali funzionalità sono implementate e quali sono compatibili con i vari browser.
 Copyright (c) 2016 - TheFellowShipOfTheCode - [UNIPD](http://informatica.math.unipd.it/)

@@ -1,7 +1,9 @@
 <img src="http://thefellowshipofthecode.github.io/IMG/QP.jpg" data-canonical-src="http://thefellowshipofthecode.github.io/"  width="400"/>
 
 
-# QuizziPedia [![Build](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia.svg?branch=master)](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia)
+# QuizziPedia
+
+[![Build](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia.svg?branch=master)](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia)
 
 [![Join the chat at https://gitter.im/TheFellowshipOfTheCode/QuizziPedia](https://badges.gitter.im/TheFellowshipOfTheCode/QuizziPedia.svg)](https://gitter.im/TheFellowshipOfTheCode/QuizziPedia?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

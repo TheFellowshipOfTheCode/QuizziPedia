@@ -3,6 +3,8 @@
 
 # QuizziPedia [![Build](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia.svg?branch=master)](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia)
 
+[![Join the chat at https://gitter.im/TheFellowshipOfTheCode/QuizziPedia](https://badges.gitter.im/TheFellowshipOfTheCode/QuizziPedia.svg)](https://gitter.im/TheFellowshipOfTheCode/QuizziPedia?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [QuizziPedia](https://quizzipedia.herokuapp.com) è una web app sviluppata dal gruppo [TheFellowshipOfTheCode](http://thefellowshipofthecode.github.io/) durante il corso di Ingegneria del Software.
 
 - - -

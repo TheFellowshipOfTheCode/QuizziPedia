@@ -151,7 +151,7 @@ quizSchema.statics.getPersonalQuizzes = function(author, callback) {
 }
 
 quizSchema.statics.searchQuiz=function(tosearch, callback){
-    return this.find({'title':  new RegExp(tosearch, "i") },'title', callback);
+    return this.find({'title':  new RegExp(tosearch, "i") },'title registeredUsers activeUsers', callback);
 };
 
 quizSchema.statics.getQuizSubscribers=function(quizId, callback){
@@ -184,7 +184,7 @@ quizSchema.statics.getQuiz=function(quizId,userId,callback){
                             }
                         })
                 });
-    
+
             }
             else
                 callback(new Error("Questionario non abilitato"))

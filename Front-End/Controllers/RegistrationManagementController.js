@@ -1,8 +1,6 @@
 /*******************************************************************************
  * Name: QuizziPedia::Front-End::Controllers::RegistrationManagementController;
  * Description: questa classe permette di gestire le iscrizioni ad un quiz;
- *
- *
  * Creation data: 10-05-2016;
  * Author: Alberto Ferrara;
  * License: MIT.
@@ -123,8 +121,9 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                                 alert = undefined;
                             });
                         $rootScope.isDownloading=false;
-                        $location.path("/"+ $routeParams.lang+"/managementsubscription/"+ $routeParams.idQuiz);
-                        $route.reload();
+                        var quizId = $routeParams.idQuiz;
+                        getUserForThisQuestionnaire(quizId);
+                        
                     }, function (err) {
                         $scope.error = new ErrorInfoModel("10", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.approvedIsNotDone);
                         alert = $mdDialog.alert()

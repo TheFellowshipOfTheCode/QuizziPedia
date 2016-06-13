@@ -34,6 +34,9 @@
 </md-toolbar>
 
 <div ng-if="quizzes != undefined" class="md-whiteframe-2dp result-line-details" ng-repeat="q in quizzes | startFrom:currentPage*pageSize | limitTo:pageSize " layout-sm="column" layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
+  {{q}}
+  {{iAmAlreadySubscribed(q)}}
+  {{disabled[$index]}}
     <div class="text-center " layout="row" layout-xs="column" layout-sm="column">
         <div layout="row" class="container-result">
           <div class="dimension "> <span> {{listOfKeys.QuizTitleResult}}: </span> </div>
@@ -42,7 +45,8 @@
         <span flex=""></span>
         <div layout="column">
           <span flex=""></span>
-          <button aria-label="aria-label"  class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="registrationToQuiz(q._id)">{{listOfKeys.registrationButton}}</button>
+
+          <button aria-label="aria-label" ng-disabled="disabled[$index] || iAmAlreadySubscribed(q)" class="subscribe-button md-primary md-raised md-button md-ink-ripple" type="button" ng-click="registrationToQuiz(q._id, $index) ">{{listOfKeys.registrationButton}}</button>
           <span flex=""></span>
         </span>
     </div>

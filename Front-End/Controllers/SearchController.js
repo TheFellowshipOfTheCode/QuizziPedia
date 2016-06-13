@@ -97,8 +97,9 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
                     alert = undefined;
                 });
         });
-
-    $scope.registrationToQuiz = function (quizId) {
+    $scope.disabled=[];
+    $scope.registrationToQuiz = function (quizId,i) {
+        console.log(i);
         QuizService.subscribeQuestionnaire(quizId, $routeParams.lang)
             .then(function (result) {
                 alert = $mdDialog.alert()
@@ -110,6 +111,7 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
                     .finally(function () {
                         alert = undefined;
                     });
+                    $scope.disabled[i]=true;
             }, function (err) {
             });
 
@@ -117,5 +119,22 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
 
     $scope.showUser = function (username) {
         $location.path('/' + $routeParams.lang + '/user/' + username);
+    }
+
+    $scope.iAmAlreadySubscribed = function (quiz) {
+        console.log(quiz);
+        if($rootScope.userLogged!=undefined) {
+          console.log("entro");
+          var check=false;
+          var id= $rootScope.userLogged.getId();
+          if(quiz.registeredUsers.indexOf(id)!=-1) {
+            check=true;
+          }
+          if(quiz.activeUsers.indexOf(id)!=-1) {
+            check=true;
+          }
+        }
+        console.log(check);
+        return check;
     }
 }

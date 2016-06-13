@@ -5,7 +5,11 @@
  * Creation data: 27-04-2016;
  * Author: Matteo Gnoato.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  * -------------------------------------------------------------------------------
  * Id: CheckQML_20160427
  * Update data: 27-04-2016;
@@ -26,7 +30,6 @@
 
 controlloQML = function(req, res,selectedTopic, topics, lang, $mdDialog) {
 
-    console.log(req.toString());
     var corpo = JSON.parse(req);
     corpo.topic=selectedTopic;
     var success;
@@ -67,14 +70,9 @@ controlloQML = function(req, res,selectedTopic, topics, lang, $mdDialog) {
                     }
                 }
                 else if (corpo.type == tipologiaDomande[4]) {
-                  console.log("CheckQML collegamentoElementi");
                     success = collegamentoElementi(corpo, res, $mdDialog);
                     if (success) {
-                      console.log("CheckQML collegamentoElementi controllato e passato");
                         return createJSON(corpo, res, "collegamentoElementi", topic, lang);
-                    }
-                    else {
-                      console.log("CheckQML collegamentoElementi controllato e non passato");
                     }
                 }
                 else if (corpo.type == tipologiaDomande[5]) {

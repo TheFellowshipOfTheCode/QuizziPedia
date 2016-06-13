@@ -1,7 +1,7 @@
 {
   "name": "quizzipedia",
   "main": "Back-End/Server.js",
-  "authors": [
+  "authors": [ 
     "TheFellowshipOfTheCode <thefellowshipofthecode@gmail.com>",
     "Matteo Granzotto <granzotto.matteo@gmail.com>",
     "Alberto Ferrara",

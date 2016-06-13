@@ -1,17 +1,21 @@
 /*******************************************************************************
- * Nome: QuizziPedia::Front-End::Controllers::ErrorController;
- * Creation data: 01-06-2016;
- * Author: Matteo Granzotto;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: ErrorController_20160601;
- * Update data: 01-06-2016;
- * Description: Scritta la classe;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Nome: QuizziPedia::Front-End::Controllers::ErrorController;
+* Creation data: 01-06-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: ErrorController_20160601;
+* Update data: 01-06-2016;
+* Description: Scritta la classe;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('ErrorController', ErrorController);
 

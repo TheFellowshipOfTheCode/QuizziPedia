@@ -7,11 +7,11 @@
 * Author: Simone Magagna
 ********************************************************************************
 * Updates history
- * -------------------------------------------------------------------------------
- * ID: SingUpController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
+* -------------------------------------------------------------------------------
+* ID: SingUpController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
 *-------------------------------------------------------------------------------
 * ID: SingUpController_20160417
 * Update data: 17-05-2016
@@ -24,6 +24,7 @@
 * Author: Simone Magagna
 *-------------------------------------------------------------------------------
 *******************************************************************************/
+
 app.controller('SignUpController', SignUpController);
 
 SignUpController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta'];

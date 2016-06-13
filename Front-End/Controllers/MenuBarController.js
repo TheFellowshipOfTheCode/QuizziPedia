@@ -10,11 +10,11 @@
 * License: MIT.
 ********************************************************************************
 * Updates history
- * -------------------------------------------------------------------------------
- * ID: MenuBarController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
+* -------------------------------------------------------------------------------
+* ID: MenuBarController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
 *-------------------------------------------------------------------------------
 * ID: MenuBarController_20160505;
 * Update data: 05-05-2016;

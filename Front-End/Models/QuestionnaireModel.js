@@ -1,32 +1,36 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Models:QuestionnaireModel;
- * Description: model che rappresenta un questionario;
- *
- *
- * Creation data: 02-05-2016;
- * Author: Simone Magagna;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuestionnaireModel_20160503;
- * Update data: 03-05-2016;
- * Description: inseriti i metodi addResult(), removeQuestion(), addQuestion(),
- * getNumberOfQuestions(), getNumberOfQuestions(), getResultSummary() e
- * getResultById();
- * Author: Simone Magagna.
- *-------------------------------------------------------------------------------
- * ID: QuestionnaireModel_20160502;
- * Update data: 02-05-2016;
- * Description: inseriti i metodi setter e getter;
- * Author: Simone Magagna.
- *-------------------------------------------------------------------------------
- * ID: QuestionnaireModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata la classe;
- * Author: Simone Magagna.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Models:QuestionnaireModel;
+* Description: model che rappresenta un questionario;
+*
+*
+* Creation data: 02-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuestionnaireModel_20160503;
+* Update data: 03-05-2016;
+* Description: inseriti i metodi addResult(), removeQuestion(), addQuestion(),
+* getNumberOfQuestions(), getNumberOfQuestions(), getResultSummary() e
+* getResultById();
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+* ID: QuestionnaireModel_20160502;
+* Update data: 02-05-2016;
+* Description: inseriti i metodi setter e getter;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+* ID: QuestionnaireModel_20160502;
+* Update data: 02-05-2016;
+* Description: Creata la classe;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.factory('QuestionnaireModel', QuestionnaireModel);
 

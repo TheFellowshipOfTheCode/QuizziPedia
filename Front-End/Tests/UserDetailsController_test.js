@@ -9,7 +9,11 @@
  * Author:  Franco Berton;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: UserDetailsController_test_20160602;
  * Update data: 02-06-2016;

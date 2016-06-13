@@ -4,7 +4,11 @@
  * Creation data: 30-05-2016;
  * Author: Matteo Granzotto;
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: JSONtoQML_20160530;
  * Update data: 30-05-2016;
@@ -37,7 +41,6 @@ function JSONtoQML() {
     }
 
     function deleteTempQuestionID() {
-      console.log("Entro qui");
       idQuestion=undefined;
       delete idQuestion;
     }

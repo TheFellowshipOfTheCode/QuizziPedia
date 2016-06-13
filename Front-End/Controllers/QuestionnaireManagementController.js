@@ -1,29 +1,33 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Views::QuestionnaireManagementController
- * Description: controller che gestisce la gestione dei questionari;
- *
- *
- * Creation data: 26-04-2016
- * Author: Mattia Varotto
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuestionnaireManagementController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: QuestionnaireManagementController_20160427;
- * Update data: 27-04-2016;
- * Description: Aggiunti i metodi goToCreateQuestionnaire() e goToShowAllCreatedQuestionnaires();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: QuestionnaireManagementController_20160426
- * Update data: 26-04-2016
- * Description: creazione della classe;
- * Author: Mattia Varotto3
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Views::QuestionnaireManagementController
+* Description: controller che gestisce la gestione dei questionari;
+*
+*
+* Creation data: 26-04-2016
+* Author: Mattia Varotto
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuestionnaireManagementController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: QuestionnaireManagementController_20160427;
+* Update data: 27-04-2016;
+* Description: Aggiunti i metodi goToCreateQuestionnaire() e goToShowAllCreatedQuestionnaires();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: QuestionnaireManagementController_20160426
+* Update data: 26-04-2016
+* Description: creazione della classe;
+* Author: Mattia Varotto3
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('QuestionnaireManagementController', QuestionnaireManagementController);
 

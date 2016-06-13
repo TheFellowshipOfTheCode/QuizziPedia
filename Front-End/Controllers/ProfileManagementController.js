@@ -1,23 +1,27 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controller::ProfileManagementController;
- * Description: questa classe permette di gestire il prolo personale di un utente
- * Creation data: 25-05-2016;
- * Author: Simone Magagna;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: ProfileManagementController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: ProfileManagementController_20160525
- * Update data: 25-05-2016
- * Description: Creata la classe;
- * Author: Simone Magagna.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controller::ProfileManagementController;
+* Description: questa classe permette di gestire il prolo personale di un utente
+* Creation data: 25-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: ProfileManagementController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: ProfileManagementController_20160525
+* Update data: 25-05-2016
+* Description: Creata la classe;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('ProfileManagementController', ProfileManagementController);
 
@@ -171,7 +175,6 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
         }
         else {
             if (userLog.password !== "") {
-              console.log(userLog.image);
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
@@ -223,7 +226,6 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                     })
             }
             else {
-              console.log(userLog.image);
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);

@@ -1,5 +1,6 @@
 <img src="http://thefellowshipofthecode.github.io/IMG/QP.jpg" data-canonical-src="http://thefellowshipofthecode.github.io/"  width="400"/>
 
+
 # QuizziPedia [![Build](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia.svg?branch=master)](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia)
 
 [QuizziPedia](https://quizzipedia.herokuapp.com) è una web app sviluppata dal gruppo [TheFellowshipOfTheCode](http://thefellowshipofthecode.github.io/) durante il corso di Ingegneria del Software.

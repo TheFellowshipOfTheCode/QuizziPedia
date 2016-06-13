@@ -1,17 +1,21 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Models::SummaryModel;
- * Description: classe che modella i riepiloghi all'interno dell'applicazione;
- * Creation data: 02-05-2016;
- * Author: Mattia Varotto.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: SummaryModel_20160504;
- * Update data: 04-05-2016;
- * Description: Creata classe e aggiunti metodi findSummary() e createSummary();
- * Autore: Mattia Varotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Models::SummaryModel;
+* Description: classe che modella i riepiloghi all'interno dell'applicazione;
+* Creation data: 02-05-2016;
+* Author: Mattia Varotto.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: SummaryModel_20160504;
+* Update data: 04-05-2016;
+* Description: Creata classe e aggiunti metodi findSummary() e createSummary();
+* Autore: Mattia Varotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 var mongoose = require('mongoose');
 var Quiz=require('./QuizModel');
 var Question=require ('./QuestionModel');

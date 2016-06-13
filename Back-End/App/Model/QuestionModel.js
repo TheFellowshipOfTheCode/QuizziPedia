@@ -1,37 +1,41 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Models::QuestionModel;
- * Description: classe che modella i dati relativi alle domande all’interno
- * dell’applicazione;
- * Creation data: 02-05-2016;
- * Author: Marco Prelaz.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160509;
- * Update data: 09-05-2016;
- * Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
- * editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
- * getAllQuestions()
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160509;
- * Update data: 09-05-2016;
- * Description: Modificato il questionSchema;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160502;
- * Update data: 02-05-2016;
- * Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
- * editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
- * getAllQuestions()
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Models::QuestionModel;
+* Description: classe che modella i dati relativi alle domande all’interno
+* dell’applicazione;
+* Creation data: 02-05-2016;
+* Author: Marco Prelaz.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160509;
+* Update data: 09-05-2016;
+* Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
+* editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
+* getAllQuestions()
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160509;
+* Update data: 09-05-2016;
+* Description: Modificato il questionSchema;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160502;
+* Update data: 02-05-2016;
+* Description: Creata classe;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160502;
+* Update data: 02-05-2016;
+* Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
+* editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
+* getAllQuestions()
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
@@ -94,29 +98,17 @@ questionSchema.statics.getQuestions=function(author, callback){
 questionSchema.statics.saveImages=function(questionId,images,callback){
     return this.findOne({'_id': questionId}, function(err, questionSelected){
         var exit=false;
-        console.log("---------------------------------------------------");
-        console.log(questionId);
         questionSelected.question.forEach(function(question) {
             var found = false;
-            console.log("Ora c'è questa immagine:");
-            console.log(question.image);
-            console.log(images);
-            console.log(images[0]);
             images.forEach(function (image) {
-              console.log(image);
-              console.log(question.image);
                 if (question.image){
                   var str= question.image.replace(" ", "");
                   var arr = str.split("/");
                   questionImage=arr[arr.length-1];
-                    console.log(questionImage);
-                    console.log(image.filename.replace(" ", ""));
-                    console.log(questionImage==(image.filename.replace(" ", "")));
                     if (questionImage==(image.filename.replace(" ", ""))) {
                         question.image = image.path.substr(10)
                         found = true;
-                        console.log("Immagine sostituita: ");
-                        console.log(question.image);
+
                     }
                 }
                 else
@@ -168,7 +160,6 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
 
 
 questionSchema.statics.editQuestion=function(questionEdited,callback){
-        console.log(questionEdited)
         questionEdited.question.forEach(function (quest) {
             if (quest.image) {
                 quest.image = 'Images/Questions/'+questionEdited._id+'/'+ quest.image.replace(" ", "")

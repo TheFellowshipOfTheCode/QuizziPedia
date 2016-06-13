@@ -1,23 +1,27 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::SummaryController;
- * Description: classe che gestisce la logica applicativa riguardante la
- * visualizzazione e la modifica dei riepiloghi dei questionari;
- * Creation data: 04-05-2016;
- * Author: Marco Prelaz.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: SummaryController_20160504;
- * Update data: 04-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: SummaryController_20160512;
- * Update data: 12-05-2016;
- * Description: Creati metodi: createSummary() getQuizzes();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Controllers::SummaryController;
+* Description: classe che gestisce la logica applicativa riguardante la
+* visualizzazione e la modifica dei riepiloghi dei questionari;
+* Creation data: 04-05-2016;
+* Author: Marco Prelaz.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: SummaryController_20160504;
+* Update data: 04-05-2016;
+* Description: Creata classe;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: SummaryController_20160512;
+* Update data: 12-05-2016;
+* Description: Creati metodi: createSummary() getQuizzes();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 var Summary = require('../Model/SummaryModel');
 var User = require('../Model/UserModel');
 

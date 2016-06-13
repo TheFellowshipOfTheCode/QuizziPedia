@@ -1,35 +1,39 @@
 /*******************************************************************************
- * Nome: QuizziPedia::Front-End::Controllers::AppController;
- * Description: questa classe permette di gestire la lingua dell'applicazione e
- * tiene aggiornate le direttive di BreadBarDirective, MenuBarDirective;
- * Creation data: 30-04-2016;
- * Author: Matteo Granzotto;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: AppController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- * -------------------------------------------------------------------------------
- * ID: AppController_20160505;
- * Update data: 05-05-2016;
- * Description: Completata la stesura della classe, scritti i metodi getLang(),
- * checkLang() e getUrl();
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: AppController_20160502;
- * Update data: 02-05-2016;
- * Description: Aggiornata la gestione dell'autorizzazione dell'utente;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: AppController_20160430;
- * Update data: 20-04-2016;
- * Description: Scritta la classe e la gestione dell'autenticazione;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Nome: QuizziPedia::Front-End::Controllers::AppController;
+* Description: questa classe permette di gestire la lingua dell'applicazione e
+* tiene aggiornate le direttive di BreadBarDirective, MenuBarDirective;
+* Creation data: 30-04-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: AppController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+* -------------------------------------------------------------------------------
+* ID: AppController_20160505;
+* Update data: 05-05-2016;
+* Description: Completata la stesura della classe, scritti i metodi getLang(),
+* checkLang() e getUrl();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: AppController_20160502;
+* Update data: 02-05-2016;
+* Description: Aggiornata la gestione dell'autorizzazione dell'utente;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: AppController_20160430;
+* Update data: 20-04-2016;
+* Description: Scritta la classe e la gestione dell'autenticazione;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('AppController', AppController);
 

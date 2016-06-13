@@ -6,7 +6,11 @@
  * Creation data: 03-05-2016
  * Author: Alberto Ferrara
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: QuestionsService_09052016
  * Update data: 09-05-2016
@@ -48,7 +52,6 @@ function QuestionsService($http, $cookies, $q) {
     return methods;
 
     function sendQuestion(question, lang, id) {
-      console.log(JSON.stringify(question));
         var deferred = $q.defer();
         if(id == undefined) {
             $http.post('/api/' + lang + '/userquestion',question)
@@ -71,7 +74,6 @@ function QuestionsService($http, $cookies, $q) {
     }
 
     function uploadImageQuestion(questionId,images,lang,id){
-      console.log(questionId);
         var deferred = $q.defer();
         var formData = new FormData();
         formData.append('edit',id);

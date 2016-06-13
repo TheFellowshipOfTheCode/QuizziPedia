@@ -1,40 +1,44 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::TopicController;
- * Description: classe che gestisce la logica applicativa riguardante la
- * visualizzazione e la modifica degli argomenti delle domande;
- * Creation data: 02-05-2016;
- * Author: Marco Prelaz.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: TopicController_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicController_20160503;
- * Update data: 03-05-2016;
- * Description: Aggiunto un primo prototipo della funzione getNextQuestion;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicController_20160504;
- * Update data: 04-05-2016;
- * Description: Aggiunte la funzione getKeywords e la funzione di supporto
- * arrayUnique;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicController_20160506;
- * Update data: 05-05-2016;
- * Description: Aggiunta la funzione updateStatisticTopic e getNextQuestion è
- * stata migliorata;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicController_20160513;
- * Update data: 13-05-2016;
- * Description: getNextQuestion perfezionata;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Controllers::TopicController;
+* Description: classe che gestisce la logica applicativa riguardante la
+* visualizzazione e la modifica degli argomenti delle domande;
+* Creation data: 02-05-2016;
+* Author: Marco Prelaz.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: TopicController_20160502;
+* Update data: 02-05-2016;
+* Description: Creata classe;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicController_20160503;
+* Update data: 03-05-2016;
+* Description: Aggiunto un primo prototipo della funzione getNextQuestion;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicController_20160504;
+* Update data: 04-05-2016;
+* Description: Aggiunte la funzione getKeywords e la funzione di supporto
+* arrayUnique;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicController_20160506;
+* Update data: 05-05-2016;
+* Description: Aggiunta la funzione updateStatisticTopic e getNextQuestion è
+* stata migliorata;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicController_20160513;
+* Update data: 13-05-2016;
+* Description: getNextQuestion perfezionata;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 var Topic = require('../Model/TopicModel');
 var Question = require('../Model/QuestionModel');
 

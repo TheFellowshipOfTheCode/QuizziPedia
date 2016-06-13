@@ -1,23 +1,27 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::Config::Passport;
- * Description: classe che permette la registrazione all'applicazione.
- * Creation data: 27-04-2016;
- * Author: Franco Berton.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: Config_20160427;
- * Update data: 27-04-2016;
- * Description: Creata classe e inserite procedure necessarie all'avvio del
- * server;
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
- * * ID: Config_20160427;
- * Update data: 01-05-2016;
- * Description: Creati i metodi: exports(), use();
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::Config::Passport;
+* Description: classe che permette la registrazione all'applicazione.
+* Creation data: 27-04-2016;
+* Author: Franco Berton.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: Config_20160427;
+* Update data: 27-04-2016;
+* Description: Creata classe e inserite procedure necessarie all'avvio del
+* server;
+* Autore: Franco Berton.
+*-------------------------------------------------------------------------------
+* * ID: Config_20160427;
+* Update data: 01-05-2016;
+* Description: Creati i metodi: exports(), use();
+* Autore: Franco Berton.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 
 // load all the things we need

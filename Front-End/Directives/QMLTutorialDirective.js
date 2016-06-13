@@ -4,7 +4,11 @@
  * Author: Matteo Granzotto;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  * ID: QMLTutorialDirective_20160531
  * Update data: 31-05-2016
  * Description: Creata la classe e scritto il file js;

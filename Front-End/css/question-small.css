@@ -1,23 +1,27 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::CSS::question-small;
- *
- * Creation data: 12-05-2016;
- * Author: Matteo Granzotto;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: question-small_20160526
- * Update data: 26-05-2016
- * Description: Aggiornato css;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: question-small_20160512
- * Update data: 12-05-2016
- * Description: Creato css;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::CSS::question-small;
+*
+* Creation data: 12-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: question-small_20160526
+* Update data: 26-05-2016
+* Description: Aggiornato css;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: question-small_20160512
+* Update data: 12-05-2016
+* Description: Creato css;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 .order-text-element {
   display: block;

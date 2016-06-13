@@ -8,7 +8,11 @@
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: QuestionnaireDoneDetailsDirective_20160526
  * Update data: 26-05-2016
@@ -38,10 +42,13 @@
 </section>
 
 <section class="line md-whiteframe-2dp" ng-if="quizzes != undefined" ng-repeat="quiz in quizzes | startFrom:currentPageLineOne*pageSize | limitTo:pageSize  " layout-align="center" ng-class-odd="'odd'" ng-class-even="'even'">
-    <div layout-xs="column">
+    <div layout="row" layout-xs="column">
       <span class="a-quarter no-wrap center-on-column no-border"> {{quiz.title}} </span>
+      <span flex=""></span>
       <span class="a-quarter no-wrap center-on-column">  {{quiz.author}}</span>
+      <span flex=""></span>
       <span class="a-quarter no-wrap center-on-column">  {{quiz.topic}} </span>
+      <span flex=""></span>
       <span class="a-quarter no-wrap center-on-column"> {{quiz.mark}} </span>
     </div>
 </section>

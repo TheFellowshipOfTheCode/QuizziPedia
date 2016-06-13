@@ -6,7 +6,11 @@
  * Author: Marco Prelaz;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: LangServiceTest_20160601;
  * Update data: 01-06-2016;

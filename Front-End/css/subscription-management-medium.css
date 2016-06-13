@@ -1,17 +1,22 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::CSS::subsription-management-medium;
- * Creation data: 27-05-2016;
- * Author: Matteo Granzotto;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: subsription-management-medium_20160527;
- * Update data: 27-05-2016;
- * Description: Creato css;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::CSS::subsription-management-medium;
+* Creation data: 27-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: subsription-management-medium_20160527;
+* Update data: 27-05-2016;
+* Description: Creato css;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+
  @media screen and (max-width: 575px) {
 
    .hide-me-when-i-am-ugly {

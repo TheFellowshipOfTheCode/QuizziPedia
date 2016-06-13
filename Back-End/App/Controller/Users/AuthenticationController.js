@@ -1,27 +1,30 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::Users::
- * AuthenticationController;
- * Description: classe che si occupa della registrazione e dell'autenticazione
- * dell'utente nel sistema. È un componente ConcreteHandler del design pattern
- * Chain of responsibility. Risulta essere il componente che eventualmente
- * esegue la richiesta del client attraverso Passport;
- * Creation data: 27-04-2016;
- * Author: Franco Berton.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: AuthenticationController_20160427;
- * Update data: 27-04-2016;
- * Description: Creata classe e inseriti tutti i metodi;
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: AuthenticationController_20160427;
- * Update data: 01-05-2016;
- * Description: Creati metodi signout(), signin(), signup();
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
-
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Controllers::Users::
+* AuthenticationController;
+* Description: classe che si occupa della registrazione e dell'autenticazione
+* dell'utente nel sistema. È un componente ConcreteHandler del design pattern
+* Chain of responsibility. Risulta essere il componente che eventualmente
+* esegue la richiesta del client attraverso Passport;
+* Creation data: 27-04-2016;
+* Author: Franco Berton.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: AuthenticationController_20160427;
+* Update data: 27-04-2016;
+* Description: Creata classe e inseriti tutti i metodi;
+* Autore: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: AuthenticationController_20160427;
+* Update data: 01-05-2016;
+* Description: Creati metodi signout(), signin(), signup();
+* Autore: Franco Berton.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 var passport = require("passport");
 var errormodel = require("../../Model/ErrorModel");
@@ -32,7 +35,7 @@ exports.signout = function(req, res, next) {
     res.sendStatus(200);
 };
 
-exports.signin = function(req, res, next) { 
+exports.signin = function(req, res, next) {
     passport.authenticate('local-signin', function (err, user, info) {
         if (err) {
             return next(err);

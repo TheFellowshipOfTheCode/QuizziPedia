@@ -1,19 +1,23 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Models::ErrorModel
- * Description: classe che rappresenta le informazioni di un errore che si è
- * verificato eseguendo una determianta operazione.
- * Creation data: 03-05-2016
- * Author: Mattia Varotto
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: ErrorModel_20160513
- * Update data: 13-05-2016
- * Description: definito il modello e aggiunti i metodi getCode(), getTitle() e
- * get Message().
- * Autore: Mattia Varotto
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Models::ErrorModel
+* Description: classe che rappresenta le informazioni di un errore che si è
+* verificato eseguendo una determianta operazione.
+* Creation data: 03-05-2016
+* Author: Mattia Varotto
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: ErrorModel_20160513
+* Update data: 13-05-2016
+* Description: definito il modello e aggiunti i metodi getCode(), getTitle() e
+* get Message().
+* Autore: Mattia Varotto
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 "use strict";
 var mongoose = require('mongoose');
 

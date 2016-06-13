@@ -1,41 +1,45 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::UserManagementController;
- * Description: classe che gestisce la logica applicativa riguardante la
- * visualizzazione e la modifica dei dati dell’utente. Rappresenta il
- * ConcreteHandler del design pattern Chain of responsibility. Utilizza
- * Passport;
- * Creation data: 01-05-2016;
- * Author: Franco Berton.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160526;
- * Update data: 26-05-2016;
- * Description: Creata le funzioni: updatePasswordUser(), changeUserType() e
- * aggiornata la funzione updateStatisticUser();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160525;
- * Update data: 25-05-2016;
- * Description: Creata le funzioni: updateDataUser(), deleteUser(), getInfo();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160505;
- * Update data: 05-05-2016;
- * Description: Create le funzioni: getSummaries(), getUser(), getStatistics();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160503;
- * Update data: 03-05-2016;
- * Description: Create le funzioni: updateStatisticsUser(), getSummary();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: UserManagementController_20160501;
- * Update data: 01-05-2016;
- * Description: Creata classe e la funzione searchUser();
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Controllers::UserManagementController;
+* Description: classe che gestisce la logica applicativa riguardante la
+* visualizzazione e la modifica dei dati dell’utente. Rappresenta il
+* ConcreteHandler del design pattern Chain of responsibility. Utilizza
+* Passport;
+* Creation data: 01-05-2016;
+* Author: Franco Berton.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: UserManagementController_20160526;
+* Update data: 26-05-2016;
+* Description: Creata le funzioni: updatePasswordUser(), changeUserType() e
+* aggiornata la funzione updateStatisticUser();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: UserManagementController_20160525;
+* Update data: 25-05-2016;
+* Description: Creata le funzioni: updateDataUser(), deleteUser(), getInfo();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: UserManagementController_20160505;
+* Update data: 05-05-2016;
+* Description: Create le funzioni: getSummaries(), getUser(), getStatistics();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: UserManagementController_20160503;
+* Update data: 03-05-2016;
+* Description: Create le funzioni: updateStatisticsUser(), getSummary();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: UserManagementController_20160501;
+* Update data: 01-05-2016;
+* Description: Creata classe e la funzione searchUser();
+* Autore: Franco Berton.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 var user = require('../../Model/UserModel');
 var summary = require('../../Model/SummaryModel');
@@ -53,10 +57,8 @@ var storage = multer.diskStorage({
         if (req.user.userImg != 'Images/Members/user-default.png') {
           fs.readdir(process.cwd(), function (err, file) {
             if (err) {
-              console.log();
             }
             else {
-            //  fs.unlink('../Front-End/'+req.user.userImg);
             }
           });
         }

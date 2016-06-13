@@ -7,7 +7,11 @@
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: QuestionItemModel_05052016
  * Update data: 05-05-2016

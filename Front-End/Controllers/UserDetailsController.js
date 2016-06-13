@@ -1,31 +1,33 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::UserDetailsController;
- * Description: questa classe permette di recuperare i dati dell'utente;
- *
- *
- * Creation data: 12-05-2016;
- * Author: Alberto Ferrara;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: UserDetailsController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: UserDetailsController_20160513;
- * Update data: 13-05-2016;
- * Description: Inseriti i metodi loadDoneQuizzes(), loadAbilitatedQuizzes(),
- * graphResultAfterFinishedATraining();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: UserDetailsController_20160512;
- * Update data: 12-05-2016;
- * Description: Creata e iniziata stesura della classe;
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::UserDetailsController;
+* Description: questa classe permette di recuperare i dati dell'utente;
+* Creation data: 12-05-2016;
+* Author: Alberto Ferrara;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: UserDetailsController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: UserDetailsController_20160513;
+* Update data: 13-05-2016;
+* Description: Inseriti i metodi loadDoneQuizzes(), loadAbilitatedQuizzes(),
+* graphResultAfterFinishedATraining();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: UserDetailsController_20160512;
+* Update data: 12-05-2016;
+* Description: Creata e iniziata stesura della classe;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 
 app.controller('UserDetailsController', UserDetailsController);

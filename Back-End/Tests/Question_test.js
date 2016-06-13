@@ -1,3 +1,17 @@
+/*******************************************************************************
+* Name: test
+* Description: classe che contiene dei tests;
+* Creation data: 13-06-2016;
+* Author: Matteo Granzotto.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Creata;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+
 var app = require('../Server');
 var request = require("supertest");
 var should = require("should");
@@ -182,7 +196,7 @@ describe("Create Question Test", function(){
                 keywords: ["Prova"],
                 topic: "Informatica"
             })
-            .end(function(err,res){ 
+            .end(function(err,res){
                 if (!err && res.status == 200){
                     res.body.message.should.equal("Domanda creata correttamente");
                 }

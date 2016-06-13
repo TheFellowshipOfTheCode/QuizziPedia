@@ -1,37 +1,41 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Models::QuestionModel;
- * Description: classe che modella i dati relativi alle domande all’interno
- * dell’applicazione;
- * Creation data: 02-05-2016;
- * Author: Marco Prelaz.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160509;
- * Update data: 09-05-2016;
- * Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
- * editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
- * getAllQuestions()
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160509;
- * Update data: 09-05-2016;
- * Description: Modificato il questionSchema;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionModel_20160502;
- * Update data: 02-05-2016;
- * Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
- * editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
- * getAllQuestions()
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Models::QuestionModel;
+* Description: classe che modella i dati relativi alle domande all’interno
+* dell’applicazione;
+* Creation data: 02-05-2016;
+* Author: Marco Prelaz.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160509;
+* Update data: 09-05-2016;
+* Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
+* editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
+* getAllQuestions()
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160509;
+* Update data: 09-05-2016;
+* Description: Modificato il questionSchema;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160502;
+* Update data: 02-05-2016;
+* Description: Creata classe;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionModel_20160502;
+* Update data: 02-05-2016;
+* Description: Aggiunti metodi createQuestion(), getQuestion(), getQuestions(),
+* editQuestion(), updateLevel(), addKeyword(), addCorrect(), addTotal(),
+* getAllQuestions()
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
@@ -83,12 +87,12 @@ questionSchema.statics.createQuestion=function(author,question, callback){
     return new_question.save(callback);
 };
 
-questionSchema.statics.getQuestion=function(questionId,callback) { 
+questionSchema.statics.getQuestion=function(questionId,callback) {
     return this.findOne({'_id': questionId},'makeWith language question keywords', callback);
 }
 
 questionSchema.statics.getQuestions=function(author, callback){
-    return this.find({'author': author},'_id makeWith language question.type question.questionText', callback);
+    return this.find({'author': author},'_id makeWith language question.type question.questionText question.answers', callback);
 };
 
 questionSchema.statics.saveImages=function(questionId,images,callback){
@@ -98,21 +102,25 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
             var found = false;
             images.forEach(function (image) {
                 if (question.image){
-                    if (question.image.replace(" ", "")==(image.filename.replace(" ", ""))) {
+                  var str= question.image.replace(" ", "");
+                  var arr = str.split("/");
+                  questionImage=arr[arr.length-1];
+                    if (questionImage==(image.filename.replace(" ", ""))) {
                         question.image = image.path.substr(10)
                         found = true;
+
                     }
                 }
                 else
                         found = true;
-            })
+            });
             if (found)
                 found = false;
             else{
                 exit=true;
                 return callback("Immagine non caricata",questionSelected)
             }
-            
+
             question.answers.forEach(function (answer) {
                 var found=false;
                 images.forEach(function (image) {
@@ -130,7 +138,7 @@ questionSchema.statics.saveImages=function(questionId,images,callback){
                             found = true;
                         }
                     }
-                    else 
+                    else
                         found=true;
                 })
                 if (found)

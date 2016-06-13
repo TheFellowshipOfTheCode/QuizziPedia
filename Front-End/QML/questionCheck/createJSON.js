@@ -5,7 +5,11 @@
  * Creation data: 27-04-2016;
  * Author: Matteo Gnoato.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * Id: createJSON_20160513
  * Update data: 13-05-2016;
@@ -149,7 +153,7 @@ createJSONVF = function(corpo, res){
 createJSONrispostaMultipla = function(corpo){
     var jsonString = "\"type\" : \"rispostaMultipla\"" + ",";
     if(corpo.hasOwnProperty('image')){
-        jsonString = jsonString + " \n \"image\" : " + "\"" + corpo.url + "\",";
+        jsonString = jsonString + " \n \"image\" : " + "\"" + corpo.image + "\",";
     }
     if(corpo.hasOwnProperty('questionText')) {
         jsonString = jsonString + " \n \"questionText\" : " + "\"" +  corpo.questionText + "\",";
@@ -200,8 +204,11 @@ createJSONordinamentoStringhe = function(corpo){
 }
 
 createJSONcollegamentoElementi = function(corpo){
-    // var jsonString = "\"type\" : \"collegamento\" ,";
+    var jsonString = "\"type\" : \"collegamento\" ,";
     jsonString = jsonString + " \n \"questionText\" : " + "\"" + corpo.questionText + "\",";
+    if(corpo.hasOwnProperty('image')){
+        jsonString = jsonString + " \n \"image\" : " + "\"" +corpo.image + "\",";
+    }
     jsonString = jsonString + " \n \"answers\" : \n [ \n {";
     for(j=0 ; j < corpo.answer.length ; j++){
         if(corpo.answer[j].hasOwnProperty('text1')){
@@ -230,6 +237,9 @@ createJSONcollegamentoElementi = function(corpo){
 createJSONordinamentoImmagini = function(corpo){
     var jsonString = "\"type\" : \"ordinamentoImmagini\" ,";
     jsonString = jsonString + " \n \"questionText\" : \"" + corpo.questionText + "\" ,";
+    if(corpo.hasOwnProperty('image')){
+        jsonString = jsonString + " \n \"image\" : " + "\"" +corpo.image + "\",";
+    }
     jsonString = jsonString + " \n \"answers\" : [ \n {";
     for(j = 0 ; j < corpo.answer.length ; j++){
         jsonString = jsonString + "\n \"url\" : \"" + corpo.answer[j].url + "\" ,";
@@ -272,6 +282,9 @@ createJSONareaCliccabile = function(corpo){
 createJSONriepimentoSpaziVuoti = function(corpo){
     var jsonString = "\"type\" : \"spaziVuoti\" ,";
     jsonString = jsonString + " \n \"questionText\" : \"" + corpo.questionText + "\" ,";
+    if(corpo.hasOwnProperty('image')){
+        jsonString = jsonString + " \n \"image\" : " + "\"" +corpo.image + "\",";
+    }
     jsonString = jsonString + " \n \"answers\" : [{";
     for(j=0 ; j < corpo.answer.length ; j++){
         jsonString = jsonString + " \n \"parolaNumero\" : " + corpo.answer[j].parolaNumero;

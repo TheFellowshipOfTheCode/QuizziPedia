@@ -1,22 +1,26 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::Config::Config;
- * Description: 	questa classe gestisce la configurazione del server.
- * Non sono stati modellati attributi e metodi di questa classe in quanto viene
- * gestita da Express;
- * Relations with other classes:
- * + IN	Server.
- * Creation data: 27-04-2016;
- * Author: Franco Berton.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: Config_20160427;
- * Update data: 27-04-2016;
- * Description: Creata classe e inserite procedure necessarie all'avvio del
- * server;
- * Autore: Franco Berton.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::Config::Config;
+* Description: 	questa classe gestisce la configurazione del server.
+* Non sono stati modellati attributi e metodi di questa classe in quanto viene
+* gestita da Express;
+* Relations with other classes:
+* + IN	Server.
+* Creation data: 27-04-2016;
+* Author: Franco Berton.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: Config_20160427;
+* Update data: 27-04-2016;
+* Description: Creata classe e inserite procedure necessarie all'avvio del
+* server;
+* Autore: Franco Berton.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
  var accessToDB = require("./loginToMongoLab.js");
 

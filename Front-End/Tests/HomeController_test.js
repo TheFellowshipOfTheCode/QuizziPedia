@@ -8,7 +8,11 @@
  * Author: Mattia Varotto;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: HomeController_test_20160606;
  * Update data: 06-06-2016;

@@ -1,8 +1,16 @@
-/**
- * Created by francoberton on 01/06/16.
- */
-
-
+/*******************************************************************************
+* Name: OtherUserViewController;
+* Description: classe OtherUserViewController;
+* Creation data: 13-06-2016;
+* Author: Matteo Granzotto.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Creata OtherUserViewController;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('OtherUserViewController', OtherUserViewController);
 

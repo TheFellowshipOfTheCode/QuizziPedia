@@ -1,34 +1,38 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::QuestionController;
- * Description: classe che gestisce la logica applicativa riguardante la
- * visualizzazione, la creazione e la modifica delle domande presenti
- * nell’applicazione;
- * Creation data: 02-05-2016;
- * Author: Marco Prelaz.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuestionController_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionController_20160510;
- * Update data: 03-05-2016;
- * Description: Creati metodi: createQuestion(), uploadImage(), getQuestion();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionController_20160510;
- * Update data: 04-05-2016;
- * Description: Creati metodi: getQuestions(), editQuestion(), updatestatisticsQuestion();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: QuestionController_20160510;
- * Update data: 05-05-2016;
- * Description: Creati metodi: getAllQuestions(), getTopic();
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Controllers::QuestionController;
+* Description: classe che gestisce la logica applicativa riguardante la
+* visualizzazione, la creazione e la modifica delle domande presenti
+* nell’applicazione;
+* Creation data: 02-05-2016;
+* Author: Marco Prelaz.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuestionController_20160502;
+* Update data: 02-05-2016;
+* Description: Creata classe;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionController_20160510;
+* Update data: 03-05-2016;
+* Description: Creati metodi: createQuestion(), uploadImage(), getQuestion();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionController_20160510;
+* Update data: 04-05-2016;
+* Description: Creati metodi: getQuestions(), editQuestion(), updatestatisticsQuestion();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: QuestionController_20160510;
+* Update data: 05-05-2016;
+* Description: Creati metodi: getAllQuestions(), getTopic();
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 var Question = require('../Model/QuestionModel');
 var Topic= require('../Model/TopicModel');
 
@@ -38,20 +42,20 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        var dir='Front-End/Images/Questions/'+req.params.questionId
-        fs.stat(dir, function(err, stats) {
-            if (err)
-                fs.mkdir(dir, function(err) {
-                    if (!err)
-                        callback(null, dir); // Le immagini verranno uploadate qui
-                })
-            else
-                callback(null, dir);
+            var dir='Front-End/Images/Questions/'+req.params.questionId
+            fs.stat(dir, function(err, stats) {
+                if (err)
+                    fs.mkdir(dir, function(err) {
+                        if (!err)
+                            callback(null, dir); // Le immagini verranno uploadate qui
+                    })
+                else
+                    callback(null, dir);
 
-        });
+            });
     },
     filename: function (req, file, callback) {
-        callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
+            callback(null, file.originalname); // Vogliamo che l'immagine salvata mantenga il nome originale
     }
 });
 
@@ -74,33 +78,42 @@ exports.createQuestion = function(req, res) {
 };
 
 exports.uploadImageQuestion = function(req, res) {
-   upload(req,res,function(err){
-       if (!req.body.edit){
-           Question.saveImages(req.params.questionId,req.files,function(err,question){
-               if(err){
-                   question.remove(function(err){
-                       return res.status(500).json({
-                           code: 88,
-                           title: "Errore Domanda",
-                           message: "Immagine non caricate"
+   upload(req,res, function(err){
+       if (req.files.length>0) {
+           if (typeof req.body.edit !== 'undefined' && req.body.edit) {
+               Question.saveImages(req.params.questionId, req.files, function (err, question) {
+                   if (err) {
+                       question.remove(function (err) {
+                           return res.status(500).json({
+                               code: 88,
+                               title: "Errore Domanda",
+                               message: "Immagine non caricate"
+                           });
+                       })
+                   }
+                   else
+                       return res.send({
+                           code: 84,
+                           title: "Ok Domanda",
+                           message: "Immagine caricate correttamente"
                        });
-                   })
-               }
-               else
-                   return res.send({
-                       code: 84,
-                       title: "Ok Domanda",
-                       message: "Immagine caricate correttamente"
-                   });
-           })
+               })
+           }
+           else {
+               return res.send({
+                   code: 84,
+                   title: "Ok Domanda",
+                   message: "Immagine caricate correttamente"
+               });
+           }
        }
-       else
+       else {
            return res.send({
                code: 84,
                title: "Ok Domanda",
                message: "Immagine caricate correttamente"
            });
-
+       }
    })
 };
 
@@ -143,7 +156,7 @@ exports.getQuestions = function(req, res) {
 exports.editQuestion = function(req, res) {
     Question.editQuestion(req.body, function(err, question){
         if(err) return res.status(500).json({code:88, title: "Errore Domanda", message: "Domanda non modificata"});
-        else return res.send({code:88, title: "Ok Domanda", message: "Domanda modificata correttamente"});
+        else return res.send({code:88, title: "Ok Domanda", message: "Domanda modificata correttamente", questionId:question._id});
     })
 };
 

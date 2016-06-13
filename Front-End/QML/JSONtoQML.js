@@ -4,7 +4,11 @@
  * Creation data: 30-05-2016;
  * Author: Matteo Granzotto;
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: JSONtoQML_20160530;
  * Update data: 30-05-2016;
@@ -37,6 +41,7 @@ function JSONtoQML() {
     }
 
     function deleteTempQuestionID() {
+      idQuestion=undefined;
       delete idQuestion;
     }
 
@@ -61,6 +66,12 @@ function JSONtoQML() {
       else { // domanda non custom
           var tempAnswer=questionDownloaded.question[0].answers;
           var qD= questionDownloaded.question[0];
+          if(qD.type=="spaziVuoti") {
+            qD.type="riempimentoSpaziVuoti";
+          }
+          if(qD.type=="collegamento") {
+            qD.type="collegamentoElementi";
+          }
           delete qD.answers;
           qD.answer=tempAnswer;
           qD.keywords=questionDownloaded.keywords;

@@ -1,37 +1,41 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Models::TopicModel;
- * Description: classe che modella gli argomenti all’interno delle domande;
- * Creation data: 02-05-2016;
- * Author: Marco Prelaz.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160502;
- * Update data: 06-05-2016;
- * Description: Aggiunta le funzioni addCorrect e addTotal;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160502;
- * Update data: 05-05-2016;
- * Description:  getNextQuestion è stata perfezionata;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160502;
- * Update data: 04-05-2016;
- * Description: Aggiunta la funzione getKeywords;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160503;
- * Update data: 03-05-2016;
- * Description: Aggiunto un primo prototipo della funzione getNextQuestion;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- * ID: TopicModel_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Marco Prelaz.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Models::TopicModel;
+* Description: classe che modella gli argomenti all’interno delle domande;
+* Creation data: 02-05-2016;
+* Author: Marco Prelaz.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: TopicModel_20160502;
+* Update data: 06-05-2016;
+* Description: Aggiunta le funzioni addCorrect e addTotal;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicModel_20160502;
+* Update data: 05-05-2016;
+* Description:  getNextQuestion è stata perfezionata;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicModel_20160502;
+* Update data: 04-05-2016;
+* Description: Aggiunta la funzione getKeywords;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicModel_20160503;
+* Update data: 03-05-2016;
+* Description: Aggiunto un primo prototipo della funzione getNextQuestion;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+* ID: TopicModel_20160502;
+* Update data: 02-05-2016;
+* Description: Creata classe;
+* Autore: Marco Prelaz.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 var mongoose = require('mongoose');
 var Question = require('./QuestionModel');

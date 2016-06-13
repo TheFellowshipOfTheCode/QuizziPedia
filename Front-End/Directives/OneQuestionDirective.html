@@ -54,7 +54,11 @@
     <div class="md-padding">
       <ul>
         <li ng-repeat="d in q.question" ng-switch on="d.type" class="md-whiteframe-1dp li-question" ng-class-odd="'odd'" ng-class-even="'even'">
-          <p class="question-type">{{listOfKeys.questionTypeLang}}: {{d.type}}</p>
+          <p class="question-type">{{listOfKeys.questionTypeLang}}:
+          <span ng-if="d.type!='collegamento' && d.type!='spaziVuoti'">  {{d.type}} </span>
+          <span ng-if="d.type=='spaziVuoti'">  riempimentoSpaziVuoti </span>
+          <span ng-if="d.type=='collegamento'">  collegamentoElementi </span>
+          </p>
           <p class="inline-text">{{listOfKeys.questionTextLang}}:</p>
           <div class="inline-text" ng-switch-when="veroFalso"> <true-false-answer-preview-directive></true-false-answer-preview-directive> </div>
           <div class="inline-text" ng-switch-when="rispostaMultipla"> <multiple-choice-answer-preview-directive></multiple-choice-answer-preview-directive> </div>

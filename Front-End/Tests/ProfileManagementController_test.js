@@ -8,7 +8,11 @@
  * Author: Mattia Varotto;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: ProfileManagementController_test_20160607;
  * Update data: 07-06-2016;

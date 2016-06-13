@@ -1,29 +1,33 @@
 /*******************************************************************************
- * Name: QuizziPedia::Back-End::App::Controllers::QuizController;
- * Description: classe che gestisce la logica applicativa riguardante la
- * visualizzazione e la gestione dei questionari;.
- * Creation data: 02-05-2016;
- * Author: Mattia Varotto.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuizController_20160502;
- * Update data: 02-05-2016;
- * Description: Creata classe;
- * Autore: Mattia Varotto.
- *-------------------------------------------------------------------------------
- * ID: QuizController_20160502;
- * Update data: 03-05-2016;
- * Description: Creati i metodi: createQuiz(), getQuiz(), getQuizSubscribers();
- * Autore: Mattia Varotto.
- *-------------------------------------------------------------------------------
- * ID: QuizController_20160502;
- * Update data: 03-05-2016;
- * Description: Creati i metodi: searchQuiz(), editQuiz(), getQuizSubscribe(), subscribeUser(), removeUser(), addActiveUser(),
- * getPersonalQuizzes();
- * Autore: Mattia Varotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Back-End::App::Controllers::QuizController;
+* Description: classe che gestisce la logica applicativa riguardante la
+* visualizzazione e la gestione dei questionari;.
+* Creation data: 02-05-2016;
+* Author: Mattia Varotto.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuizController_20160502;
+* Update data: 02-05-2016;
+* Description: Creata classe;
+* Autore: Mattia Varotto.
+*-------------------------------------------------------------------------------
+* ID: QuizController_20160502;
+* Update data: 03-05-2016;
+* Description: Creati i metodi: createQuiz(), getQuiz(), getQuizSubscribers();
+* Autore: Mattia Varotto.
+*-------------------------------------------------------------------------------
+* ID: QuizController_20160502;
+* Update data: 03-05-2016;
+* Description: Creati i metodi: searchQuiz(), editQuiz(), getQuizSubscribe(), subscribeUser(), removeUser(), addActiveUser(),
+* getPersonalQuizzes();
+* Autore: Mattia Varotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 var user = require('../Model/UserModel.js');
 var Quiz = require('../Model/QuizModel.js');
@@ -49,9 +53,9 @@ exports.getQuiz = function (req, res, next) {
             title: 'Errore Questionario',
             message: err.message
         });
-       else 
+       else
             res.send(quiz)
-            
+
     })
 }
 
@@ -191,4 +195,3 @@ exports.getPersonalQuizzes = function (req, res, next) {
         }
     })
 }
-

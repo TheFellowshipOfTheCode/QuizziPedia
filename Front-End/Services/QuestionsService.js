@@ -6,7 +6,11 @@
  * Creation data: 03-05-2016
  * Author: Alberto Ferrara
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: QuestionsService_09052016
  * Update data: 09-05-2016

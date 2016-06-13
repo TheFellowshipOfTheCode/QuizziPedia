@@ -1,18 +1,22 @@
 /*******************************************************************************
- * Name: ErrorModel_test
- * Description: classe che contiene i test per la classe ErrorModel.
- * Creation data: 04-05-2016
- * Author: Mattia Varotto
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: ErrorModel_test_20160504
- * Update data: 04-05-2016
- * Description: aggiunti i test per i metodi getCode(), getTitle() e getMessage()
- * del modello.
- * Autore: Mattia Varotto
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: ErrorModel_test
+* Description: classe che contiene i test per la classe ErrorModel.
+* Creation data: 04-05-2016
+* Author: Mattia Varotto
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: ErrorModel_test_20160504
+* Update data: 04-05-2016
+* Description: aggiunti i test per i metodi getCode(), getTitle() e getMessage()
+* del modello.
+* Autore: Mattia Varotto
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 /*
 "use strict";

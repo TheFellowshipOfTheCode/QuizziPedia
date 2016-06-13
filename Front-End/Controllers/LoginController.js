@@ -1,30 +1,34 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::LoginController;
- * Description: questa classe permette di gestire l'autenticazione dell'utente al sistema;
- *
- *
- * Creation data: 27-04-2016;
- * Author: Alberto Ferrara;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: LoginController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: LoginController_20160502;
- * Update data: 02-05-2016;
- * Description: Scritto il metodo goToPasswordForgotPage();
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: LoginController_20160427
- * Update data: 27-04-2016
- * Description: Creato il controller con i metodi logIn();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::LoginController;
+* Description: questa classe permette di gestire l'autenticazione dell'utente al sistema;
+*
+*
+* Creation data: 27-04-2016;
+* Author: Alberto Ferrara;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: LoginController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: LoginController_20160502;
+* Update data: 02-05-2016;
+* Description: Scritto il metodo goToPasswordForgotPage();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: LoginController_20160427
+* Update data: 27-04-2016
+* Description: Creato il controller con i metodi logIn();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 app.controller('LoginController', LoginController);
 
 LoginController.$inject = ['$scope', '$rootScope', '$routeParams', 'AuthService', '$location', '$mdDialog', '$cookies', 'UserDetailsModel', 'ErrorInfoModel','ngMeta'];

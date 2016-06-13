@@ -1,23 +1,27 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controller::ProfileManagementController;
- * Description: questa classe permette di gestire il prolo personale di un utente
- * Creation data: 25-05-2016;
- * Author: Simone Magagna;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: ProfileManagementController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: ProfileManagementController_20160525
- * Update data: 25-05-2016
- * Description: Creata la classe;
- * Author: Simone Magagna.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controller::ProfileManagementController;
+* Description: questa classe permette di gestire il prolo personale di un utente
+* Creation data: 25-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: ProfileManagementController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: ProfileManagementController_20160525
+* Update data: 25-05-2016
+* Description: Creata la classe;
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('ProfileManagementController', ProfileManagementController);
 
@@ -174,13 +178,13 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
-                $scope.user.setUserImg(userLog.image)
+                $scope.user.setUserImg(userLog.image);
                 var nome = $scope.user.getName();
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
                 var image = $scope.user.getUserImg();
                 $rootScope.isDownloading=true;
-                UserDetailsService.modifyProfilePwd(nome, cognome, email,image, userLog.password, $routeParams.lang)
+                UserDetailsService.modifyProfilePwd(nome, cognome, email, image, userLog.password, $routeParams.lang)
                     .then(function (result) {
                         if (result.status == "200") {
                             alert = $mdDialog.alert()
@@ -192,11 +196,20 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            AuthService.giveMe($routeParams.lang)
+                                .then(function(result){
+                                    if(result.data != false) {
+                                      var profileImg = false;
+                                      if(result.data.userImg != undefined) {
+                                          $rootScope.userLogged.setUserImg(result.data.userImg);
+                                      }
+                                    }
+                                  });
                             $rootScope.isDownloading=false;
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
-                      if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                      if (err !=undefined && err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
                           alert = $mdDialog.alert()
                               .title(err.data.title)
                               .content(err.data.message)
@@ -216,7 +229,7 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                 $scope.user.setName(userLog.name);
                 $scope.user.setSurname(userLog.surname);
                 $scope.user.setEmail(userLog.email);
-                $scope.user.setUserImg(userLog.image)
+                $scope.user.setUserImg(userLog.image);
                 var nome = $scope.user.getName();
                 var cognome = $scope.user.getSurname();
                 var email = $scope.user.getEmail();
@@ -234,11 +247,20 @@ function ProfileManagementController($scope, $rootScope, $routeParams, $location
                                 .finally(function () {
                                     alert = undefined;
                                 });
+                            AuthService.giveMe($routeParams.lang)
+                                .then(function(result){
+                                    if(result.data != false) {
+                                      var profileImg = false;
+                                      if(result.data.userImg != undefined) {
+                                          $rootScope.userLogged.setUserImg(result.data.userImg);
+                                      }
+                                    }
+                                  });
                             $rootScope.isDownloading=false;
                             $location.path('/' + $routeParams.lang + '/profilemanagement');
                         }
                     }, function (err) {
-                      if (err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
+                      if (err !=undefined && err.data.code == 2 || err.data.code == 3 || err.data.code == 4) {
                           alert = $mdDialog.alert()
                               .title(err.data.title)
                               .content(err.data.message)

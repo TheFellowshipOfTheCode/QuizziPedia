@@ -1,35 +1,39 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::QuestionsManagementController;
- * Description: questa classe permette di gestire le domande utente;
- *
- *
- * Creation data: 04-05-2016;
- * Author: Alberto Ferrara;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: QuestionsManagementController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: QuestionsManagementController_20160511
- * Update data: 11-05-2016
- * Description: Scritti i metodi goToWizardCreation() e goToQMLCreation();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: QuestionsManagementController_20160510
- * Update data: 10-05-2016
- * Description: Scritti i metodi loadQuestions(), editQuestion(), uploadImage();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: QuestionsManagementController_20160504
- * Update data: 04-05-2016
- * Description: Creato il controller;
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::QuestionsManagementController;
+* Description: questa classe permette di gestire le domande utente;
+*
+*
+* Creation data: 04-05-2016;
+* Author: Alberto Ferrara;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: QuestionsManagementController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: QuestionsManagementController_20160511
+* Update data: 11-05-2016
+* Description: Scritti i metodi goToWizardCreation() e goToQMLCreation();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: QuestionsManagementController_20160510
+* Update data: 10-05-2016
+* Description: Scritti i metodi loadQuestions(), editQuestion(), uploadImage();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: QuestionsManagementController_20160504
+* Update data: 04-05-2016
+* Description: Creato il controller;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('QuestionsManagementController', QuestionsManagementController);
 

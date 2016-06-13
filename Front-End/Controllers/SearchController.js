@@ -1,37 +1,41 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::SearchController;
- * Description: questa classe permette di gestire la ricerca di questionari e
- * utenti all’interno dell’applicazione. Fornisce all’utente le funzionalità
- * di ricerca per utenti e questionari;
- *
- *
- * Creation data: 27-04-2016;
- * Author: Matteo Granzotto;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: SearchController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- * -------------------------------------------------------------------------------
- * ID: SearchController_20160504;
- * Update data: 04-05-2016;
- * Description: Inserito il metodo registrationToQuiz();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: SearchController_20160502;
- * Update data: 02-05-2016;
- * Description: Inseriti i metodi searchUsers() e searchQuestionnaire();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: SearchController_20160427;
- * Update data: 27-04-2016;
- * Description: Creata la classe;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::SearchController;
+* Description: questa classe permette di gestire la ricerca di questionari e
+* utenti all’interno dell’applicazione. Fornisce all’utente le funzionalità
+* di ricerca per utenti e questionari;
+*
+*
+* Creation data: 27-04-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: SearchController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+* -------------------------------------------------------------------------------
+* ID: SearchController_20160504;
+* Update data: 04-05-2016;
+* Description: Inserito il metodo registrationToQuiz();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: SearchController_20160502;
+* Update data: 02-05-2016;
+* Description: Inseriti i metodi searchUsers() e searchQuestionnaire();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: SearchController_20160427;
+* Update data: 27-04-2016;
+* Description: Creata la classe;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 
 app.controller('SearchController', SearchController);
@@ -97,8 +101,8 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
                     alert = undefined;
                 });
         });
-
-    $scope.registrationToQuiz = function (quizId) {
+    $scope.disabled=[];
+    $scope.registrationToQuiz = function (quizId,i) {
         QuizService.subscribeQuestionnaire(quizId, $routeParams.lang)
             .then(function (result) {
                 alert = $mdDialog.alert()
@@ -110,6 +114,7 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
                     .finally(function () {
                         alert = undefined;
                     });
+                    $scope.disabled[i]=true;
             }, function (err) {
             });
 
@@ -117,5 +122,19 @@ function SearchController($scope, $rootScope, $routeParams, $location, $mdDialog
 
     $scope.showUser = function (username) {
         $location.path('/' + $routeParams.lang + '/user/' + username);
+    }
+
+    $scope.iAmAlreadySubscribed = function (quiz) {
+        if($rootScope.userLogged!=undefined) {
+          var check=false;
+          var id= $rootScope.userLogged.getId();
+          if(quiz.registeredUsers.indexOf(id)!=-1) {
+            check=true;
+          }
+          if(quiz.activeUsers.indexOf(id)!=-1) {
+            check=true;
+          }
+        }
+        return check;
     }
 }

@@ -1,22 +1,26 @@
 /*******************************************************************************
- * Name: QuizziPediaError_test
- * Description: classe che contiene i test per la classe QuizziPediaError.
- * Creation data: 04-05-2016
- * Author: Mattia Varotto
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: QuizziPediaError_test_20160504
- * Update data: 05-05-2016
- * Description: aggiunti i test per i metodi getCode(), getTitle(), getMessage(),
- * toJSON() e toString(); il test per il metodo toJSON() è ancora da definire.
- * Autore: Mattia Varotto
- *-------------------------------------------------------------------------------
- * ID: QuizziPediaError_test_20160504
- * Update data: 04-05-2016
- * Description: definito il test per il metodo toJSON().
- * Autore: Mattia Varotto
- *******************************************************************************/
+* Name: QuizziPediaError_test
+* Description: classe che contiene i test per la classe QuizziPediaError.
+* Creation data: 04-05-2016
+* Author: Mattia Varotto
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: QuizziPediaError_test_20160504
+* Update data: 05-05-2016
+* Description: aggiunti i test per i metodi getCode(), getTitle(), getMessage(),
+* toJSON() e toString(); il test per il metodo toJSON() è ancora da definire.
+* Autore: Mattia Varotto
+*-------------------------------------------------------------------------------
+* ID: QuizziPediaError_test_20160504
+* Update data: 04-05-2016
+* Description: definito il test per il metodo toJSON().
+* Autore: Mattia Varotto
+*******************************************************************************/
 "use strict";
 /*
 let QuizziPediaError = require('../App/Controller/Errors/QuizziPediaError.js');

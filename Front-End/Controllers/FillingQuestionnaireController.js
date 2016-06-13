@@ -8,11 +8,11 @@
 * License: MIT.
 ********************************************************************************
 * Updates history
- * -------------------------------------------------------------------------------
- * ID: FillingQuestionnaireController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
+* -------------------------------------------------------------------------------
+* ID: FillingQuestionnaireController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
 *-------------------------------------------------------------------------------
 * ID: FillingQuestionnaireController_20160510;
 * Update data: 10-05-2016;
@@ -23,7 +23,7 @@
 * ID: FillingQuestionnaireController_20160505;
 * Update data: 05-05-2016;
 * Description: Aggiunte le funzioni downloadQuiz(), startQuizClick() e
- * nextQuestion();
+* nextQuestion();
 * Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 * ID: FillingQuestionnaireController_20160503;

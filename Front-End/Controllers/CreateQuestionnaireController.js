@@ -1,37 +1,39 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::CreateQuestionnaireController;
- * Description: Controller che gestisce la creazione dei questionari;
- *
- *
- * Creation data: 03-05-2016;
- * Author: Simone Magagna;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: CreateQuestionnaireController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: CreateQuestionnaireController_20160504;
- * Update data: 04-05-2016;
- * Description: Ultimata la classe ci metodi createQMLQuestion(),
- * createQuestionnaire() e noFilter();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: AppController_20160502;
- * Update data: 02-05-2016;
- * Description: Scritti i metodi getTopic(), resetFilters(), filterByYours(),
- * addQuestion(), deleteQuestion();
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: CreateQuestionnaireController_2016426;
- * Update data: 26-04-2016;
- * Description: Creata la classe e i metodi showAllQuestions();
- * Author: Simone Magagna.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::CreateQuestionnaireController;
+* Description: Controller che gestisce la creazione dei questionari;
+* Creation data: 03-05-2016;
+* Author: Simone Magagna;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireController_20160504;
+* Update data: 04-05-2016;
+* Description: Ultimata la classe ci metodi createQMLQuestion(),
+* createQuestionnaire() e noFilter();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: AppController_20160502;
+* Update data: 02-05-2016;
+* Description: Scritti i metodi getTopic(), resetFilters(), filterByYours(),
+* addQuestion(), deleteQuestion();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: CreateQuestionnaireController_2016426;
+* Update data: 26-04-2016;
+* Description: Creata la classe e i metodi showAllQuestions();
+* Author: Simone Magagna.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 
 app.controller('CreateQuestionnaireController', CreateQuestionnaireController);

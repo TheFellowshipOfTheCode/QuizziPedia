@@ -6,7 +6,11 @@
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: ApprovedSubscribeDirective_20160526
  * Update data: 26-05-2016

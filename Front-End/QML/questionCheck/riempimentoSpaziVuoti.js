@@ -5,7 +5,11 @@
  * Creation data: 27-04-2016;
  * Author: Matteo Gnoato.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  * -------------------------------------------------------------------------------
  * Id: riempimentoSpaziVuoti_20160427
  * Update data: 27-04-2016;
@@ -76,7 +80,7 @@ riempimentoSpaziVuoti = function(corpo,res, $mdDialog){
         return false;
     }
     // controllo campi facoltativi
-    var facoltativiString = ["type","answer","questionText", "keywords", "topic"];
+    var facoltativiString = ["type","answer","questionText", "keywords", "topic", "image"];
     var key;
     for(key in corpo) {
         var giusto = false;

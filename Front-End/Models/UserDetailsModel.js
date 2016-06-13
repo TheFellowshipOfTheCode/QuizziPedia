@@ -9,7 +9,11 @@
  * Author: Alberto Ferrara;
  * License: MIT.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *-------------------------------------------------------------------------------
  * ID: UserDetailsModel_20160427
  * Update data: 27-04-2016
@@ -72,7 +76,7 @@ function UserDetailsModel() {
                 obj.topicLevel = level;
                 obj.totalAnswers= parseInt(obj.totalAnswers)+1;
                 if(answer) {
-                  obj.correctAnswer= obj.correctAnswers+1;
+                  obj.correctAnswers= obj.correctAnswers+1;
                 }
               }
               return obj;

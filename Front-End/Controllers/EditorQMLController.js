@@ -1,43 +1,48 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::EditorQMLController;
- * Description: questa classe permette di gestire l'inserimento delle domande QML
- *
- *
- * Creation data: 03-05-2016;
- * Author: Alberto Ferrara;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: EditorQMLController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- *
- * ID: EditorQMLController_20160510
- * Update data: 10-05-2016
- * Description: Aggiornato il controller alla versiona finalecon il metodo
- * goToWizard();
- * Author: Alberto Ferrara.
- * *-------------------------------------------------------------------------------
- * ID: EditorQMLController_20160505
- * Update data: 05-05-2016
- * Description: Aggiunti i metodi submitQuestion();
- * Author: Alberto Ferrara.
- * -------------------------------------------------------------------------------
- * ID: EditorQMLController_20160503
- * Update data: 03-05-2016
- * Description: Creato il controller;
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::EditorQMLController;
+* Description: questa classe permette di gestire l'inserimento delle domande QML
+*
+*
+* Creation data: 03-05-2016;
+* Author: Alberto Ferrara;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: EditorQMLController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+*
+* ID: EditorQMLController_20160510
+* Update data: 10-05-2016
+* Description: Aggiornato il controller alla versiona finalecon il metodo
+* goToWizard();
+* Author: Alberto Ferrara.
+* *-------------------------------------------------------------------------------
+* ID: EditorQMLController_20160505
+* Update data: 05-05-2016
+* Description: Aggiunti i metodi submitQuestion();
+* Author: Alberto Ferrara.
+* -------------------------------------------------------------------------------
+* ID: EditorQMLController_20160503
+* Update data: 03-05-2016
+* Description: Creato il controller;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('EditorQMLController', EditorQMLController);
 
 EditorQMLController.$inject = ['$scope', '$rootScope', '$routeParams', 'QuestionsService', '$location', '$mdDialog', 'ErrorInfoModel','ngMeta', 'JSONtoQML','$window'];
 
 function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService, $location, $mdDialog, ErrorInfoModel, ngMeta, JSONtoQML, $window) {
+
 
     if ($rootScope.listOfKeys!=undefined){
         metaData();
@@ -70,6 +75,7 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     return elem.name==topic;
                   });
                   $scope.selectedTopic=topics[0];
+                  $scope.backUpQuestion=JSON.stringify(questionDownloaded, null, 2);
                   $scope.question = JSON.stringify(questionDownloaded, null, 2);
                   $scope.topics = data;
                 });
@@ -87,12 +93,138 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
             });
     }
     else {
+      JSONtoQML.deleteTempQuestionID();
       loadTopics(function(data) {
         $scope.topics = data;
       });
     }
+
+    /*Controllo che il numero di immagini inserite sia lo stesso sia in QML che in $scope.image*/
+    function checkImagesNewQuestion(resultQML, imagesOnScope) {
+      var found = false;
+      var numberOfImages=0;
+      resultQML.question.forEach(function(question) {
+
+          if (question.image){
+              numberOfImages++;
+              found=true;
+          }
+
+          question.answers.forEach(function (answer) {
+              if (answer.url){
+                numberOfImages++;
+                found = true;
+              }
+              if (answer.url1){
+                numberOfImages++;
+                found = true;
+              }
+              if (answer.url2){
+                numberOfImages++;
+                found = true;
+              }
+          });
+      });
+
+      var goOn=false;
+      if(imagesOnScope.length===numberOfImages) {
+        goOn=true;
+      }
+      return goOn;
+    }
+    /*Controllo che il numero di nuove immagini inserite sia lo stesso sia in QML che in $scope.image*/
+
+    function checkImagesEditQuestion(resultQML, oldQuestion, imagesOnScope) {
+      var found = false;
+      var numberOfImages=0;
+      var arrOne=[];
+      resultQML.question.forEach(function(question) {
+
+
+          if (question.image){
+
+            angular.fromJson(oldQuestion).question.forEach(function(q) {
+
+                if (question.image && q.image && question.image != q.image){
+                    numberOfImages++;
+                    found=true;
+                }
+
+            });
+          }
+
+
+          question.answers.forEach(function (answer) {
+            if (answer.url!=undefined){
+              arrOne.push(answer.url);
+            }
+            if (answer.url1!=undefined){
+              arrOne.push(answer.url1);
+            }
+            if (answer.url2!=undefined){
+              arrOne.push(answer.url2);
+            }
+          });
+
+      });
+      angular.fromJson(oldQuestion).question.forEach(function(q) {
+          q.answers.forEach(function (answer) {
+              if (answer.url!=undefined){
+                var a = arrOne.indexOf(answer.url);
+                if(a!=-1) {
+                  delete arrOne[a];
+                }
+              }
+              if (answer.url1!=undefined){
+                var a = arrOne.indexOf(answer.url1);
+                if(a!=-1) {
+                  delete arrOne[a];
+                }
+              }
+              if (answer.url2!=undefined){
+                var a = arrOne.indexOf(answer.url2);
+                if(a!=-1) {
+                  delete arrOne[a];
+                }
+              }
+          });
+      });
+
+
+      arrOne.forEach(function(value) {
+        if(value!=null) {
+          numberOfImages++;
+        }
+      });
+
+      var goOn=false;
+      if(imagesOnScope.length===numberOfImages) {
+        goOn=true;
+      }
+      return goOn;
+    }
+
+
+
+      var _session;
+      $scope.aceLoaded = function(_editor){
+        // Editor part
+        _session = _editor.getSession();
+        var _renderer = _editor.renderer;
+
+        _session.setUndoManager(new ace.UndoManager());
+        _renderer.setShowGutter(true);
+
+      };
+
+      $scope.aceChanged = function(e) {
+        $scope.domanda=e;
+        $scope.questionOnEditor=_session.getValue();
+      };
+
     $scope.submitQuestion = function (selectedTopic) {
-        var question = document.getElementById('Juiceeditor').value;
+
+        var question = $scope.questionOnEditor;
         if (question == undefined) {
             alert = $mdDialog.alert()
                 .title($rootScope.listOfKeys.genericError)
@@ -128,8 +260,19 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                     .then(function (result) {
                         var topics = result.data;
                         var resultQML = controlloQML(question, res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
-                        resultQML._id=JSONtoQML.getTempQuestionID();
-                        if (resultQML) {
+                        var goOn;
+                        if($routeParams.idQuestion==undefined) {
+                          goOn=checkImagesNewQuestion(resultQML, $scope.images);
+                        }
+                        else {
+                          $scope.backUpQuestion=controlloQML(JSON.stringify(angular.fromJson($scope.backUpQuestion)), res, selectedTopic.name, topics, $routeParams.lang, $mdDialog);
+                          goOn=checkImagesEditQuestion(resultQML, $scope.backUpQuestion, $scope.images);
+                        }
+
+                        if(JSONtoQML.getTempQuestionID()!==undefined) {
+                          resultQML._id=JSONtoQML.getTempQuestionID();
+                        }
+                        if (resultQML && goOn) {
                             $rootScope.isDownloading=true;
                             QuestionsService.sendQuestion(resultQML, $routeParams.lang, $routeParams.idQuestion)
                                 .then(function (result) {
@@ -173,9 +316,20 @@ function EditorQMLController($scope, $rootScope, $routeParams, QuestionsService,
                                         .finally(function () {
                                             alert = undefined;
                                         });
-                                    $rootScope.isDownloading=true;
+                                    $rootScope.isDownloading=false;
                                 });
 
+                        }
+                        else {
+                          alert = $mdDialog.alert()
+                              .title($rootScope.listOfKeys.genericError)
+                              .content($rootScope.listOfKeys.noUploadQuestion)
+                              .ok('Ok');
+                          $mdDialog
+                              .show(alert)
+                              .finally(function () {
+                                  alert = undefined;
+                              });
                         }
 
                     }, function (err) {

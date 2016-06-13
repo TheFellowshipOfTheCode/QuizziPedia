@@ -1,35 +1,37 @@
 /*******************************************************************************
- * Name: QuizziPedia::Front-End::Controllers::RegistrationManagementController;
- * Description: questa classe permette di gestire le iscrizioni ad un quiz;
- *
- *
- * Creation data: 10-05-2016;
- * Author: Alberto Ferrara;
- * License: MIT.
- ********************************************************************************
- * Updates history
- * -------------------------------------------------------------------------------
- * ID: RegistrationManagementController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: RegistrationManagementController_20160513;
- * Update data: 13-05-2016;
- * Description: Inseriti i metodi numberOfPages(), rightColor(), subscribeQuestionnaire();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: RegistrationManagementController_20160511;
- * Update data: 11-05-2016;
- * Description: Inseriti i metodi getUserForThisQuestionnaire(), goOn(), goBack();
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- * ID: RegistrationManagementController_20160510;
- * Update data: 10-05-2016;
- * Description: Creata e iniziata stesura della classe;
- * Author: Alberto Ferrara.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Name: QuizziPedia::Front-End::Controllers::RegistrationManagementController;
+* Description: questa classe permette di gestire le iscrizioni ad un quiz;
+* Creation data: 10-05-2016;
+* Author: Alberto Ferrara;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: RegistrationManagementController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: RegistrationManagementController_20160513;
+* Update data: 13-05-2016;
+* Description: Inseriti i metodi numberOfPages(), rightColor(), subscribeQuestionnaire();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: RegistrationManagementController_20160511;
+* Update data: 11-05-2016;
+* Description: Inseriti i metodi getUserForThisQuestionnaire(), goOn(), goBack();
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+* ID: RegistrationManagementController_20160510;
+* Update data: 10-05-2016;
+* Description: Creata e iniziata stesura della classe;
+* Author: Alberto Ferrara.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 
 app.controller('RegistrationManagementController', RegistrationManagementController);
@@ -123,8 +125,9 @@ function RegistrationManagementController($scope, $rootScope, $routeParams, $loc
                                 alert = undefined;
                             });
                         $rootScope.isDownloading=false;
-                        $location.path("/"+ $routeParams.lang+"/managementsubscription/"+ $routeParams.idQuiz);
-                        $route.reload();
+                        var quizId = $routeParams.idQuiz;
+                        getUserForThisQuestionnaire(quizId);
+
                     }, function (err) {
                         $scope.error = new ErrorInfoModel("10", $rootScope.listOfKeys.genericError, $rootScope.listOfKeys.approvedIsNotDone);
                         alert = $mdDialog.alert()

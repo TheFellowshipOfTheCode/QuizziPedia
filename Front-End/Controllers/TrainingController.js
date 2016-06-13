@@ -6,29 +6,29 @@
 * License: MIT.
 ********************************************************************************
 * Updates history
- * -------------------------------------------------------------------------------
- * ID: TrainingController_20160526;
- * Update data: 26-05-2016;
- * Description: Aggiornato controller
- * Author: Franco Berton.
- *-------------------------------------------------------------------------------
- * ID: TrainingController_20160505;
- * Update data: 05-05-2016;
- * Description: Inseriti i metodi checkIfICouldGoOn(), createFilterFor(),
- * loadTopics(), graphResultAfterFinishedATraining();
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: TrainingController_20160504;
- * Update data: 04-05-2016;
- * Description: Inseriti i metodi newQuestion(), updateSelectedTopic(), querySearch()
- * , transformKey(), loadKeywords() e goBackToSetUp();
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- * ID: TrainingController_20160503;
- * Update data: 03-05-2016;
- * Description: Inseriti i metodi starTraining(), setInfiniteQuestion() e
- * resetTraining();
- * Author: Matteo Granzotto.
+* -------------------------------------------------------------------------------
+* ID: TrainingController_20160526;
+* Update data: 26-05-2016;
+* Description: Aggiornato controller
+* Author: Franco Berton.
+*-------------------------------------------------------------------------------
+* ID: TrainingController_20160505;
+* Update data: 05-05-2016;
+* Description: Inseriti i metodi checkIfICouldGoOn(), createFilterFor(),
+* loadTopics(), graphResultAfterFinishedATraining();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: TrainingController_20160504;
+* Update data: 04-05-2016;
+* Description: Inseriti i metodi newQuestion(), updateSelectedTopic(), querySearch()
+* , transformKey(), loadKeywords() e goBackToSetUp();
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: TrainingController_20160503;
+* Update data: 03-05-2016;
+* Description: Inseriti i metodi starTraining(), setInfiniteQuestion() e
+* resetTraining();
+* Author: Matteo Granzotto.
 *-------------------------------------------------------------------------------
 * ID: TrainingController_20160503;
 * Update data: 01-05-2016;

@@ -1,17 +1,21 @@
 /*******************************************************************************
- * Nome: QuizziPedia::Front-End::Controllers::ErrorController;
- * Creation data: 01-06-2016;
- * Author: Matteo Granzotto;
- * License: MIT.
- ********************************************************************************
- * Updates history
- *-------------------------------------------------------------------------------
- * ID: ErrorController_20160601;
- * Update data: 01-06-2016;
- * Description: Scritta la classe;
- * Author: Matteo Granzotto.
- *-------------------------------------------------------------------------------
- *******************************************************************************/
+* Nome: QuizziPedia::Front-End::Controllers::ErrorController;
+* Creation data: 01-06-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: ErrorController_20160601;
+* Update data: 01-06-2016;
+* Description: Scritta la classe;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
 
 app.controller('ErrorController', ErrorController);
 
@@ -21,7 +25,9 @@ function ErrorController ($rootScope, LangModel, LangService) {
     $('.sheep-head').plaxify({"xRange":35,"yRange":35});
     $.plax.enable();
 
-    lang = getLang(geoplugin_countryCode().toLowerCase());
+    var language="it";
+
+    lang = getLang(language);
     lang.then(function(data){
         $rootScope.listOfKeys= data.getListOfKeys();
     }, function(err) {

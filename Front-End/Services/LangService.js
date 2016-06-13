@@ -8,7 +8,11 @@
  * Creation data: 27-04-2016;
  * Author: Matteo Granzotto.
  *******************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  *------------------------------------------------------------------------------
  * ID: LangService_20160427;
  * Update data: 27-04-2016;

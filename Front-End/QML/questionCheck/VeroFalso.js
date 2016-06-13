@@ -5,7 +5,11 @@
  * Creation data: 27-04-2016;
  * Author: Matteo Gnoato.
  ********************************************************************************
- * Updates history
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
  * -------------------------------------------------------------------------------
  * Id: VeroFalso_20160427
  * Update data: 27-04-2016;
@@ -28,7 +32,7 @@
 veroFalso = function(corpo,res, $mdDialog){
     var campiObbligatori = false;
     var campiFacoltativi = true;
-  
+
             // controllo campi obbligatori
             if(corpo.hasOwnProperty('answer')){
                 if(corpo.answer[0].hasOwnProperty('text') && corpo.answer[0].hasOwnProperty("isItRight")){

@@ -54,7 +54,11 @@
                       <div class="topicChoice" id="topicChoiceId"> {{selectedTopic.name}} </div>
                     </div>
                     <div class="contentQML">
-                        <juicy-ace-editor id="Juiceeditor" style="min-height:500px" mode="ace/mode/json">{{question}}</juicy-ace-editor>
+                      <div ui-ace="{
+                        onLoad : aceLoaded,
+                        onChange: aceChanged,
+                          mode: 'json'
+                        }" ng-model="question"></div>
                       </div>
 
                     <div style="margin-top:2em;" class="image-upload text-center">

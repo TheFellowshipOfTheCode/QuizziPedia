@@ -4,6 +4,7 @@
 # QuizziPedia [![Build](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia.svg?branch=master)](https://travis-ci.org/TheFellowshipOfTheCode/QuizziPedia)
 
 [QuizziPedia](https://quizzipedia.herokuapp.com) è una web app sviluppata dal gruppo [TheFellowshipOfTheCode](http://thefellowshipofthecode.github.io/) durante il corso di Ingegneria del Software.
+
 - - -
 
 ## Documenti
@@ -27,6 +28,7 @@
   + --
   + --
   + --
+
 - - -
 
 ## Installazione
@@ -45,6 +47,7 @@ Dopo essersi posizionati dentro la cartella di QuizziPedia lanciare i seguenti c
 ```
 
 Se hai ulteriori dubbi consulta il nostro [manuale di installazione](https://goo.gl/r1YlTx).
+
 - - -
 
 ## Esecuzione
@@ -56,6 +59,7 @@ Una volta installati tutti i pacchetti per lanciare l'applicazione è necessario
 
 ## Utilizzo
 Se hai qualche dubbio su come utilizzare [QuizziPedia](https://quizzipedia.herokuapp.com) consulta il nostro [manuale per gli utenti](https://goo.gl/uwRlYC).
+
 - - -
 
 ## Autori
@@ -67,26 +71,32 @@ Il gruppo [TheFellowshipOfTheCode](http://thefellowshipofthecode.github.io/) è 
 * [Matteo Gnoato]()
 * [Mattia Varotto]()
 * [Marco Prelaz]()
+
 - - -
 
 ## Licenza
-[Licenza MIT](https://github.com/TheFellowshipOfTheCode/QuizziPedia/blob/master/license)
+[Licenza MIT](https://github.com/TheFellowshipOfTheCode/QuizziPedia/blob/master/license).
+
 - - -
 
 ## Problemi
 Segnala i bugs che trovi in [QuizziPedia](https://quizzipedia.herokuapp.com) nella sezione [issues](https://github.com/TheFellowshipOfTheCode/QuizziPedia/issues) della repository.
+
 - - -
 
 ## Logs
 Rimani sempre aggiornato sulle build di [QuizziPedia](https://quizzipedia.herokuapp.com) iscrivendoti nel nostro canale [#build](https://fellowshipofthecode.slack.com/messages/build/) di [Slack](https://slack.com/).
+
 - - -
 
 ## Community
 Scambia le tue idee con il team. Iscriviti nel nostro canale pubblico [QuizziPedia](https://telegram.me/quizzipedia) di [Telegram](https://telegram.org/).
+
 - - -
 
 ## Browser supportati
 Nella seguente [tabella](https://goo.gl/1Lw8jw) sono indicate le funzionalità che sono implementate e quali browser le supportano.
+
 - - -
 
 Copyright (c) 2016 - TheFellowShipOfTheCode - [UNIPD](http://informatica.math.unipd.it/)

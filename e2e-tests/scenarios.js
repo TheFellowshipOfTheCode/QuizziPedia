@@ -74,12 +74,8 @@ describe('my app', function() {
 
         browser.get('it/home');
 
-        browser.waitForAngular();
-
-        //Redirect alla pagina utente
+      //Redirect alla pagina utente
         element(by.id('userPageButton')).click();
-
-        //browser.waitForAngular();
 
     });
 
@@ -91,8 +87,6 @@ describe('my app', function() {
         browser.waitForAngular();
 
         element(by.id('profileManagementButton')).click();
-
-        browser.waitForAngular();
 
         var userNameField = element(by.model('userLog.name'));
         var userSurnameField = element(by.model('userLog.surname'));
@@ -120,9 +114,7 @@ describe('my app', function() {
         expect(userPasswordFieldCheck.getAttribute('value')).toEqual('ciaociao');
 
         //element(by.id('confirmModifyProfile')).click();
-
-        browser.waitForAngular();
-    });
+   });
 
 /* NON COMPLETO, MANCA SELEZIONE TOPIC*/
  /*   it('should test create questionnaire view', function() {
@@ -130,12 +122,10 @@ describe('my app', function() {
 
         browser.get('it/home');
 
-        browser.waitForAngular();
 
         //Redirect alla pagina di gestione dei questionari
         element(by.id('questionnaireManagementButton')).click();
 
-        browser.waitForAngular();
 
         element(by.id('createQuizButton')).click();
 
@@ -152,24 +142,17 @@ describe('my app', function() {
         expect(quizTitleField.getAttribute('value')).toEqual('Quiz di Prova');
     });
 */
-/* NON COMPLETO, MANCA SELEZIONE TOPIC E RISPOSTA DOMANDE*/
-    it('should test training view', function() {
+/* NON COMPLETO, MANCA RISPOSTA DOMANDE*/
+ /*   it('should test training view', function() {
         browser.waitForAngular();
 
         browser.get('it/training');
-/*
-        element.all(by.model('selectedTopic')).each(function (eachElement, index) {
-            eachElement.click();                    //select the select
 
-            element(by.id('topicTraining')).click();   //select the first md-option
-
-        });
-*/
         element.all(by.model('selectedTopic')).click();
         element(by.id('topicTraining')).click();
         element(by.id('startTraining')).click();
     });
-
+*/
     /* NON COMPLETO, MANCA CHIUSA POPUP*/
     it('should test a questionnaire view', function() {
 
@@ -177,35 +160,35 @@ describe('my app', function() {
 
         browser.get('it/home');
 
-        browser.waitForAngular();
 
         //Redirect alla pagina utente
         element(by.id('userPageButton')).click();
 
-        browser.waitForAngular();
 
 
 
         browser.get('it/quiz/57569a41851bc6e252a40ca3');
 
-        browser.waitForAngular();
 
         element(by.id('startQuizButton')).click();
-        browser.waitForAngular();
 
         element(by.id('trueButton')).click();
-        browser.waitForAngular();
-        browser.ignoreSynchronization = true;
         element(by.id('nextQuestionButton')).click();
-        browser.ignoreSynchronization = false;
+
+        //browser.waitForAngular().then(function(){element(by.id('GoNextQuestionButton')).click();});
 
 
+        var EC = protractor.ExpectedConditions;
+// Waits for the element with id 'abc' to be present on the dom.
+        browser.wait(EC.presenceOf($('#GoNextQuestionButton')), 5000);
+        element(by.id('GoNextQuestionButton')).click();
 
         element(by.id('falseButton')).click();
-        /*
-        browser.waitForAngular();
 
-        element(by.id('endQuizButton')).click();*/
+        element(by.id('nextQuestionButton')).click();
+        element(by.id('GoNextButton')).click();
+
+       // element(by.id('endQuizButton')).click();
 
     });
 
@@ -215,16 +198,12 @@ describe('my app', function() {
         browser.waitForAngular();
 
         browser.get('it/home');
-        browser.waitForAngular();
 
         element(by.id('questionsManagementButton')).click();
-        browser.waitForAngular();
 
         element(by.id('newQuestionQMLButton')).click();
-        browser.waitForAngular();
         element(by.id('Juiceeditor')).sendKeys('PROVA');
 
-        browser.waitForAngular();
 
     });*/
 });

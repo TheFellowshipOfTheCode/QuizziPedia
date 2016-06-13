@@ -15,7 +15,9 @@ module.exports = function(config){
     frameworks: ['jasmine'],
 
     files : [
-      'Front-End/bower_components/angular/angular.js',
+      'Front-End/bower_components/ace-builds/src-min-noconflict/ace.js',
+      'Front-End/bower_components/angular/angular.min.js',
+      'Front-End/bower_components/angular-ui-ace/ui-ace.js',
       'Front-End/bower_components/angular-route/angular-route.js',
       'Front-End/bower_components/jquery/dist/jquery.min.js',
       'Front-End/bower_components/angular-animate/angular-animate.min.js',
@@ -37,7 +39,6 @@ module.exports = function(config){
       'Front-End/bower_components/ng-file-upload/ng-file-upload.min.js',
       'Front-End/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'Front-End/bower_components/ngMeta/dist/ngMeta.min.js',
-      'Front-End/bower_components/webcomponentsjs/webcomponents.js',
       'Front-End/bower_components/marked/lib/marked.js',
       'Front-End/bower_components/angular-marked/dist/angular-marked.js',
       'Front-End/QML/json2.js',

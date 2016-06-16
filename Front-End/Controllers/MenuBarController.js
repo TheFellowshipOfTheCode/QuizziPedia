@@ -71,6 +71,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.goToUserPage = function () {
     resetRefreshBlocking();
+    resetSearchField();
     if($routeParams.lang!=undefined) {
       $location.path('/'+$routeParams.lang+'/userpage');
     }
@@ -81,6 +82,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.goToUserManagementPage = function () {
     resetRefreshBlocking();
+    resetSearchField();
     if($routeParams.lang!=undefined) {
       $location.path('/'+$routeParams.lang+'/profilemanagement');
     }
@@ -91,6 +93,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.goToQuestionsManagementPage = function () {
     resetRefreshBlocking();
+    resetSearchField();
     if($routeParams.lang!=undefined) {
       $location.path('/'+$routeParams.lang+'/questions');
     }
@@ -101,6 +104,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
   };
   $scope.goToQuizManagementPage = function () {
     resetRefreshBlocking();
+    resetSearchField();
     if($routeParams.lang!=undefined) {
       $location.path('/'+$routeParams.lang+'/questionnairemanagement');
     }
@@ -126,6 +130,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
           delete $rootScope.userLogged;
           $rootScope.directivesChoose= MenuBarModel.getDirectives(location,"");
           resetRefreshBlocking();
+          resetSearchField();
           if($routeParams.lang!=undefined) {
             $location.path('/'+$routeParams.lang+'/home');
           }
@@ -138,6 +143,7 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
 
   $scope.backToHome = function () {
     resetRefreshBlocking();
+    resetSearchField();
     if($routeParams.lang!=undefined) {
       $location.path('/'+$rootScope.systemLang+'/home');
     }
@@ -200,5 +206,9 @@ function MenuBarController ($scope, $rootScope, $timeout, $mdSidenav, $mdDialog,
 
   function resetRefreshBlocking () {
     window.onbeforeunload = null;
+  }
+
+  function resetSearchField () {
+    document.getElementById("lookingfor").value="";
   }
 }

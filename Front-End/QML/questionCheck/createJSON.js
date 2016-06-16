@@ -211,6 +211,12 @@ createJSONcollegamentoElementi = function(corpo){
     }
     jsonString = jsonString + " \n \"answers\" : \n [ \n {";
     for(j=0 ; j < corpo.answer.length ; j++){
+      if(corpo.answer[j].hasOwnProperty('text2') &&  corpo.answer[j].hasOwnProperty('url1')) {
+          jsonString = jsonString + " \n \"url1\" : \"" + corpo.answer[j].url1 + "\" ,";
+          jsonString = jsonString + " \n \"text2\" : \"" + corpo.answer[j].text2 + "\"";
+
+      }
+      else {
         if(corpo.answer[j].hasOwnProperty('text1')){
             jsonString = jsonString + " \n \"text1\" : \"" + corpo.answer[j].text1 + "\" ,";
         }
@@ -223,6 +229,7 @@ createJSONcollegamentoElementi = function(corpo){
         if(corpo.answer[j].hasOwnProperty('url2')){
             jsonString = jsonString + " \n \"url2\" : \"" + corpo.answer[j].url2 + "\"";
         }
+      }
         if(j == corpo.answer.length -1){
             jsonString = jsonString + " \n }";
         }

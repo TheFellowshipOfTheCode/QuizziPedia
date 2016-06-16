@@ -230,7 +230,7 @@
 }
 
 .a-quarter-title-33 {
-  width: 32%;
+  width: 50vh;
   margin: 0px;
   text-align: center;
   display: inline-block;
@@ -275,4 +275,8 @@
 .legends {
   background-color: rgba(255, 250, 40, 0.28) !important;
   margin-bottom: 0.8em;
+}
+
+.line-container {
+  width: 100%;
 }

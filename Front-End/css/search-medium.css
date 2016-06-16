@@ -1,0 +1,49 @@
+/*******************************************************************************
+* Name: QuizziPedia::Front-End::CSS::search-medium;
+*
+* Creation data: 12-05-2016;
+* Author: Matteo Granzotto;
+* License: MIT.
+********************************************************************************
+* Updates history
+* -------------------------------------------------------------------------------
+* Update data: 13-06-2016;
+* Description: Corretto vari bugs;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: search-main_20160526
+* Update data: 26-05-2016
+* Description: Aggiornato css;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+* ID: search-main_20160512
+* Update data: 12-05-2016
+* Description: Creato css;
+* Author: Matteo Granzotto.
+*-------------------------------------------------------------------------------
+*******************************************************************************/
+
+.subscribe-button{
+    margin: auto;
+    min-width: 180px;
+    max-width: 98%;
+    width: 98%;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.divided{
+    margin-left: 2%;
+    margin-right: 1%;
+    margin-top: 1%;
+    max-width: none;
+    word-break: inherit;
+}
+
+@media screen and (max-width: 550px) {
+
+  .hide-me-when-i-am-ugly {
+    display: none;
+  }
+
+}

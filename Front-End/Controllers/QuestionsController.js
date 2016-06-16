@@ -233,14 +233,14 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
   /*Function to check the given answers*/
   function checkAnswer(question, answersGiven, topic, level) {
     if(question != undefined) {
-      if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
+        if(Object.keys(question.getQuestion()).length == Object.keys(answersGiven).length) {
         var partsOfQuestion = question.getQuestion();
         var answerCheckA= true;
-        partsOfQuestion.forEach(function(elem, index) {
+          partsOfQuestion.forEach(function(elem, index) {
           var answerCheckB= true;
           switch(elem.type) {
             case "ordinamentoStringhe":
-            case "ordinamentoImmagini":
+              case "ordinamentoImmagini":
                 var answersCopy = elem.answers;
                 answersCopy.sort(function compare(a,b) {
                   if (a.position < b.position)
@@ -320,6 +320,7 @@ function QuestionsController ($scope, $rootScope, $timeout,  $mdDialog, $locatio
           if(answerCheckA) {
             answerCheckA = answerCheckB;
           }
+
         });
       }
       $rootScope.$emit("addResult", $scope.question.getId(), answerCheckA);

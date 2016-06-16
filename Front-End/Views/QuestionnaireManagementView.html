@@ -75,7 +75,7 @@
                       <span flex=""> </span>
                       <div layout="column">
                           <button aria-label="aria-label"  class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="goToQuiz(q._id)"><div> {{listOfKeys.goToSubscribeManagement}} </div> </button>
-                          <button aria-label="aria-label" ng-disabled="q.active" class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id)">{{listOfKeys.abileQuizLang}}</button>
+                          <button aria-label="aria-label" ng-disabled="disable[$index] || q.active" class="show-allcreate-questionnaire-button md-button md-raised md-primary" ng-click="startQuiz(q._id, $index)">{{listOfKeys.abileQuizLang}}</button>
                       </div>
                   </div>
               </section>

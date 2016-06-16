@@ -94,7 +94,8 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
         $location.path('/' + $routeParams.lang + '/managementsubscription/' + quizId);
     }
 
-    $scope.startQuiz = function(quizId){
+    $scope.disable=[];
+    $scope.startQuiz = function(quizId, index){
         $rootScope.isDownloading=true;
         QuizService.startQuiz(quizId, $routeParams.lang)
             .then(function (result) {
@@ -107,6 +108,7 @@ function QuestionnaireManagementController ($scope, $rootScope, $routeParams, $l
                     .finally(function () {
                         alert = undefined;
                     });
+                $scope.disable[index]=true;
                 $rootScope.isDownloading=false;
             }, function (err) {
 

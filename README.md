@@ -29,9 +29,9 @@
   + [Valutazione](http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/RQ/TheFellowshipOfTheCode.pdf)
 
 ### Revisione di accettazione
-  + [Documenti](https://goo.gl/TqNI7w) (--/30)
-  + [Presentazione](https://goo.gl/pj0AOl) (--/30)
-  + [Valutazione]()
+  + [Documenti](https://goo.gl/TqNI7w) (30.33/30)
+  + [Collaudo](https://goo.gl/pj0AOl ) (29.75/30)
+  + [Valutazione](https://goo.gl/KciVPE)
 
 - - -
 
